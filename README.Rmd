@@ -1,7 +1,19 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<!-- badges: start -->
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+<!-- badges: start -->
 [![R-CMD-check](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
 <!-- badges: end -->
 
@@ -13,7 +25,7 @@ Aggregating original data into different geographical levels.
 
 To install then run this code
 
-``` r
+```r
 # install.packages("remotes")
 remotes::install_github("helseprofil/orgdata")
 ```

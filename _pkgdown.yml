@@ -1,0 +1,5 @@
+url: https://github.com/helseprofil/orgdata
+
+template:
+  params:
+    bootswatch: cosmo
