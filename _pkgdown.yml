@@ -1,5 +1,16 @@
-url: https://github.com/helseprofil/orgdata
+repo:
+  url:
+    home: https://github.com/helseprofil/orgdata
 
 template:
   params:
     bootswatch: cosmo
+
+navbar:
+  structure:
+    left:  [home, intro, reference, articles, tutorials, news]
+    right: [github]
+  components:
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/helseprofil/orgdata
