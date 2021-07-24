@@ -30,7 +30,7 @@ usethis::use_r("r6-db-connect.R")
 
 
 ## Testing -------------------------------
-usethis::use_testthat()
+# usethis::use_testthat()
 usethis::use_test("specification")
 
 ## Tinytest approach

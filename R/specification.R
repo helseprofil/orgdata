@@ -5,17 +5,22 @@
 #' the data will be restructured and aggregated. The specifications are registered in
 #' the following register database:
 #' \enumerate{
+#'   \item{tbl_Filgruppe}
 #'   \item{tbl_Koble}
 #'   \item{tbl_Orgfile}
 #'   \item{tbl_Innlesing}
 #' }
+#'
+#' SQL file must be written with \code{base::sprintf} style. For example:
+#' \code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'}
+#' Which is saved in \code{C:/myfile.sql} and run as in the code example.
 #' @param file SQL file. If external is TRUE then full file must be specified.
 #' @param filgruppe The \emph{filgruppe} of files category
 #' @param con Connection to database
 #' @return A data.frame
 #' @export
 get_spec <- function(file = NULL, filgruppe = NULL, con = NULL) {
-  qs <- get_query("specification.sql", filgruppe)
+  qs <- get_query(file, filgruppe)
   dt <- DBI::dbGetQuery(con, qs)
   data.table::setDT(dt)
 }
@@ -23,9 +28,12 @@ get_spec <- function(file = NULL, filgruppe = NULL, con = NULL) {
 
 #' @export
 #' @rdname get_spec
-#' @inheritParams get_spec
 #' @param value The value for selection in SQL code with \code{base::sprintf} style.
 #' @param external If SQL file is outside of the package. Default it \code{FALSE}.
+#' @examples
+#' \dontrun{
+#' qr <- get_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
+#' }
 get_query <- function(file = NULL, value = NULL, external = FALSE) {
   if (is.null(value)) {
     stop("Value is missing")

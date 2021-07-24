@@ -2,14 +2,23 @@
 % Please edit documentation in R/specification.R
 \name{get_spec}
 \alias{get_spec}
+\alias{get_query}
 \title{Get File Specification}
 \usage{
-get_spec(filgruppe = NULL, con = NULL)
+get_spec(file = NULL, filgruppe = NULL, con = NULL)
+
+get_query(file = NULL, value = NULL, external = FALSE)
 }
 \arguments{
+\item{file}{SQL file. If external is TRUE then full file must be specified.}
+
 \item{filgruppe}{The \emph{filgruppe} of files category}
 
 \item{con}{Connection to database}
+
+\item{value}{The value for selection in SQL code with \code{base::sprintf} style.}
+
+\item{external}{If SQL file is outside of the package. Default it \code{FALSE}.}
 }
 \value{
 A data.frame
@@ -19,8 +28,18 @@ This function will access all specifications on where the orginal data is and ho
 the data will be restructured and aggregated. The specifications are registered in
 the following register database:
 \enumerate{
+\item{tbl_Filgruppe}
 \item{tbl_Koble}
 \item{tbl_Orgfile}
 \item{tbl_Innlesing}
+}
+
+SQL file must be written with \code{base::sprintf} style. For example:
+\code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '\%s'}
+Which is saved in \code{C:/myfile.sql} and run as in the code example.
+}
+\examples{
+\dontrun{
+qr <- get_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
 }
 }
