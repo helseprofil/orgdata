@@ -2,13 +2,12 @@
 #'
 #' @description
 #' Connect to registration database to get all necessary information
-#' on data source and cleaning process.
-#'
+#' on data source and cleaning specification. The driver is only applicable
+#' to an Access Database.
+#' @export
 
 KHelse <- R6::R6Class(
   classname = "KHelse",
-  class = FALSE,
-  cloneable = FALSE,
   public = list(
 
     #' @field dbname Database filename.
@@ -27,6 +26,12 @@ KHelse <- R6::R6Class(
     #' @description
     #' Start connecting to the database.
     #' @param dbname Database filename.
+    #' @examples
+    #' \dontrun{
+    #' kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
+    #' kh$dbname
+    #' kh$db_close()
+    #' }
     initialize = function(dbname = NULL) {
       if (is.null(dbname)) {
         stop(message(" Woopss!! Database file is missing!"))

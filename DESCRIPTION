@@ -18,4 +18,6 @@ Imports:
     DBI,
     R6
 Suggests: 
+    testthat (>= 3.0.0),
     renv
+Config/testthat/edition: 3

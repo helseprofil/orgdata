@@ -5,7 +5,20 @@
 \title{R6 Class Connecting to Database}
 \description{
 Connect to registration database to get all necessary information
-on data source and cleaning process.
+on data source and cleaning specification. The driver is only applicable
+to an Access Database.
+}
+\examples{
+
+## ------------------------------------------------
+## Method `KHelse$new`
+## ------------------------------------------------
+
+\dontrun{
+kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
+kh$dbname
+kh$db_close()
+}
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -28,6 +41,7 @@ Data must be in a \code{data.frame} or \code{data.table} format.}
 \item \href{#method-db_connect}{\code{KHelse$db_connect()}}
 \item \href{#method-db_write}{\code{KHelse$db_write()}}
 \item \href{#method-db_close}{\code{KHelse$db_close()}}
+\item \href{#method-clone}{\code{KHelse$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -46,6 +60,18 @@ Start connecting to the database.
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{\dontrun{
+kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
+kh$dbname
+kh$db_close()
+}
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-db_connect"></a>}}
@@ -85,5 +111,22 @@ Close connection to the database.
 \if{html}{\out{<div class="r">}}\preformatted{KHelse$db_close()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{KHelse$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
 }
 }
