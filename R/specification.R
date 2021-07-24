@@ -9,20 +9,34 @@
 #'   \item{tbl_Orgfile}
 #'   \item{tbl_Innlesing}
 #' }
+#' @param file SQL file. If external is TRUE then full file must be specified.
 #' @param filgruppe The \emph{filgruppe} of files category
 #' @param con Connection to database
 #' @return A data.frame
 #' @export
-get_spec <- function(filgruppe = NULL, con = NULL) {
-  qs <- sprintf("SELECT KOBLID, tbl_Koble.FILID, tbl_Koble.FILGRUPPE, FILNAVN, IBRUKTIL, tbl_Innlesing.*
-                 FROM tbl_Innlesing
-                 INNER JOIN (tbl_Koble
-                       INNER JOIN tbl_Orgfile
-                       ON tbl_Koble.FILID = tbl_Orgfile.FILID)
-                 ON (tbl_Innlesing.LESID = tbl_Koble.LESID)
-                 WHERE tbl_Koble.FILGRUPPE = '%s'
-                 AND tbl_Orgfile.IBRUKTIL = #9999-01-01#", filgruppe)
-
+get_spec <- function(file = NULL, filgruppe = NULL, con = NULL) {
+  qs <- get_query("specification.sql", filgruppe)
   dt <- DBI::dbGetQuery(con, qs)
   data.table::setDT(dt)
+}
+
+
+#' @export
+#' @rdname get_spec
+#' @inheritParams get_spec
+#' @param value The value for selection in SQL code with \code{base::sprintf} style.
+#' @param external If SQL file is outside of the package. Default it \code{FALSE}.
+get_query <- function(file = NULL, value = NULL, external = FALSE) {
+  if (is.null(value)) {
+    stop("Value is missing")
+  }
+
+  path <- system.file(file, package = "orgdata")
+
+  if (external) {
+    path <- file
+  }
+
+  txt <- paste(readLines(path), collapse = "\n")
+  query <- sprintf(txt, value)
 }

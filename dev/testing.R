@@ -16,5 +16,10 @@ kh$dbconn
 kh$dbname
 
 ## Get Specification
-spec <- get_spec("Dode", kh$dbconn)
+file <- "specification.sql"
+query <- get_query(file, "Dode")
+query
+spec <- get_spec(file, "Dode", kh$dbconn)
 spec
+
+## TODO - get_filgruppe(filgruppe)
