@@ -1,9 +1,5 @@
-#' @title Aggregating Original Data into Geographical Levels
-#' @name orgdata
-#' @description Aggregating Origianl Data (raw data) into different geographical
-#'   levels such as county, manucipality or town
-#'
-#' @docType package
-#' @aliases orgdata orgdata-package
+#' @details
+#' Aggregating Original Data (raw data) into different geographical
+#' levels such as county, manucipality or town.
 #' @keywords internal
-NULL
+"_PACKAGE"

@@ -1,6 +1,9 @@
 install.packages("renv")
-renv::init()
-renv::install(c("devtools", "roxygen2", "testthat", "knitr", "pkgdown", "DBI", "data.table", "R6"))
+renv::init(bare = TRUE)
+renv::install(c(
+  "devtools", "roxygen2", "testthat", "knitr",
+  "pkgdown", "DBI", "odbc", "data.table", "R6", "covr"
+))
 renv::snapshot()
 
 
@@ -10,11 +13,12 @@ usethis::use_build_ignore("dev")
 usethis::use_build_ignore("README.Rmd")
 usethis::use_build_ignore("_pkgdown.yml")
 usethis::use_build_ignore("renv.lock")
+usethis::use_build_ignore("orgdata.Rproj")
 ## usethis::use_testthat()
 usethis::use_git_ignore()
 
 ## Document ------------------------------------
-usethis::use_package_doc()
+usethis::use_package_doc() # for package document roxygen style
 devtools::document()
 roxygen2::roxygenise(clean = TRUE) # to clean up old dirt
 

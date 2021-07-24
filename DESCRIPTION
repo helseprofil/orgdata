@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Yusman",
            family = "Kamaleri",
            role = c("aut", "cre"),
-           email = c("ybka@fhi.no", "ybkamaleri@gmail.com"),
+           email = "ybka@fhi.no",
            comment = c(ORCID = "0000-0001-5014-3665"))
 Description: Aggretating original data usually with enumerical area codes to any geographical codes.
 License: MIT + file LICENSE
@@ -22,3 +22,5 @@ Suggests:
     renv,
     covr
 Config/testthat/edition: 3
+URL: https://github.com/helseprofil/orgdata
+BugReports: https://github.com/helseprofil/orgdata/issues
