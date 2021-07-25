@@ -8,6 +8,7 @@
 
 KHelse <- R6::R6Class(
   classname = "KHelse",
+  cloneable = FALSE,
   public = list(
 
     #' @field dbname Database filename.
@@ -39,9 +40,9 @@ KHelse <- R6::R6Class(
         self$dbname <- dbname
         cs <- paste0(private$..drv, self$dbname)
         self$dbconn <- DBI::dbConnect(odbc::odbc(),
-          .connection_string = cs,
-          encoding = "latin1"
-        )
+                                      .connection_string = cs,
+                                      encoding = "latin1"
+                                      )
       }
     },
 
@@ -51,9 +52,9 @@ KHelse <- R6::R6Class(
       stopifnot(!is.null(self$dbname))
       cs <- paste0(private$..drv, self$dbname)
       self$dbconn <- DBI::dbConnect(odbc::odbc(),
-        .connection_string = cs,
-        encoding = "latin1"
-      )
+                                    .connection_string = cs,
+                                    encoding = "latin1"
+                                    )
     },
 
     #' @description
@@ -64,11 +65,11 @@ KHelse <- R6::R6Class(
       self$tblname <- name
       self$tblvalue <- value
       DBI::dbWriteTable(self$dbconn,
-        self$tblname,
-        self$tblvalue,
-        batch_rows = 1,
-        overwrite = TRUE
-      )
+                        self$tblname,
+                        self$tblvalue,
+                        batch_rows = 1,
+                        overwrite = TRUE
+                        )
     },
 
     #' @description

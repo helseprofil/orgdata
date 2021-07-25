@@ -41,7 +41,6 @@ Data must be in a \code{data.frame} or \code{data.table} format.}
 \item \href{#method-db_connect}{\code{KHelse$db_connect()}}
 \item \href{#method-db_write}{\code{KHelse$db_write()}}
 \item \href{#method-db_close}{\code{KHelse$db_close()}}
-\item \href{#method-clone}{\code{KHelse$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -111,22 +110,5 @@ Close connection to the database.
 \if{html}{\out{<div class="r">}}\preformatted{KHelse$db_close()}\if{html}{\out{</div>}}
 }
 
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{KHelse$clone(deep = FALSE)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
 }
 }
