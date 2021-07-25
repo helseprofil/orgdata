@@ -37,4 +37,4 @@ get_input_arg <- function(arg = NULL, y = NULL) {
 }
 
 ## Example
-## arg <- get_input_arg("ark", args)
+## arg <- get_input_arg("ark", arr)
