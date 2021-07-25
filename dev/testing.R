@@ -14,6 +14,9 @@ regDB
 kh <- KHelse$new(regDB)
 kh$dbconn
 kh$dbname
+kh$db_close()
+kh$db_connect()
+
 
 ## Get Specification
 file <- "specification.sql"

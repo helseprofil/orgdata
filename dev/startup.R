@@ -32,6 +32,7 @@ usethis::use_r("r6-db-connect.R")
 ## Testing -------------------------------
 # usethis::use_testthat()
 usethis::use_test("specification")
+usethis::use_test("check")
 
 ## Tinytest approach
 ## tinytest::setup_tinytest(getwd())
@@ -61,3 +62,5 @@ usethis::use_git_remote("origin", url = "git@work:helseprofil/orgdata.git", over
 ## COV ----------------------------
 usethis::use_coverage()
 covr::report()
+
+pkg <- covr::package_coverage(path = getwd())

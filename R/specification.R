@@ -20,6 +20,10 @@
 #' @return A data.frame
 #' @export
 get_spec <- function(file = NULL, filgruppe = NULL, con = NULL) {
+  check_null(file)
+  check_null(filgruppe)
+  check_null(con)
+
   qs <- get_query(file, filgruppe)
   dt <- DBI::dbGetQuery(con, qs)
   data.table::setDT(dt)
@@ -35,9 +39,8 @@ get_spec <- function(file = NULL, filgruppe = NULL, con = NULL) {
 #' qr <- get_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
 #' }
 get_query <- function(file = NULL, value = NULL, external = FALSE) {
-  if (is.null(value)) {
-    stop("Value is missing")
-  }
+  check_null(file)
+  check_null(value)
 
   path <- system.file(file, package = "orgdata")
 
@@ -46,5 +49,6 @@ get_query <- function(file = NULL, value = NULL, external = FALSE) {
   }
 
   txt <- paste(readLines(path), collapse = "\n")
+  check_sql(txt)
   query <- sprintf(txt, value)
 }
