@@ -5,7 +5,7 @@
 \alias{get_query}
 \title{Get File Specification}
 \usage{
-get_spec(file = NULL, filgruppe = NULL, con = NULL)
+get_spec(file = NULL, filgruppe = NULL, con = NULL, ...)
 
 get_query(file = NULL, value = NULL, external = FALSE)
 }
@@ -15,6 +15,8 @@ get_query(file = NULL, value = NULL, external = FALSE)
 \item{filgruppe}{The \emph{filgruppe} of files category}
 
 \item{con}{Connection to database}
+
+\item{...}{Other arguments}
 
 \item{value}{The value for selection in SQL code with \code{base::sprintf} style.}
 
@@ -34,7 +36,9 @@ the following register database:
 \item{tbl_Innlesing}
 }
 
-SQL file must be written with \code{base::sprintf} style. For example:
+SQL file must be written with \code{base::sprintf} style ie. \code{'\%s','\%d'} etc.
+Please refer to \code{sprintf} documentation. In addition, SQL code must not contain comments.
+Example of SQL code with \code{'\%s'}:
 \code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '\%s'}
 Which is saved in \code{C:/myfile.sql} and run as in the code example.
 }

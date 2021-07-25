@@ -11,20 +11,23 @@
 #'   \item{tbl_Innlesing}
 #' }
 #'
-#' SQL file must be written with \code{base::sprintf} style. For example:
+#' SQL file must be written with \code{base::sprintf} style ie. \code{'%s','%d'} etc.
+#' Please refer to \code{base::sprintf} documentation. In addition, SQL code must not contain comments.
+#' Example of SQL code with \code{'%s'}:
 #' \code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'}
 #' Which is saved in \code{C:/myfile.sql} and run as in the code example.
 #' @param file SQL file. If external is TRUE then full file must be specified.
 #' @param filgruppe The \emph{filgruppe} of files category
 #' @param con Connection to database
+#' @param ... Other arguments
 #' @return A data.frame
 #' @export
-get_spec <- function(file = NULL, filgruppe = NULL, con = NULL) {
+get_spec <- function(file = NULL, filgruppe = NULL, con = NULL, ...) {
   check_null(file)
   check_null(filgruppe)
   check_null(con)
 
-  qs <- get_query(file, filgruppe)
+  qs <- get_query(file, filgruppe, ...)
   dt <- DBI::dbGetQuery(con, qs)
   data.table::setDT(dt)
 }

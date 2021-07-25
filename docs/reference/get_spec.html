@@ -49,7 +49,9 @@ tbl_Orgfile
 tbl_Innlesing
 
 
-SQL file must be written with base::sprintf style. For example:
+SQL file must be written with base::sprintf style ie. '%s','%d' etc.
+Please refer to sprintf documentation. In addition, SQL code must not contain comments.
+Example of SQL code with '%s':
 SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'
 Which is saved in C:/myfile.sql and run as in the code example." />
 
@@ -134,7 +136,9 @@ the following register database:</p><ol>
 <li><p>tbl_Innlesing</p></li>
 </ol>
 
-<p>SQL file must be written with <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> style. For example:
+<p>SQL file must be written with <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> style ie. <code>'%s','%d'</code> etc.
+Please refer to <code>sprintf</code> documentation. In addition, SQL code must not contain comments.
+Example of SQL code with <code>'%s'</code>:
 <code>SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'</code>
 Which is saved in <code>C:/myfile.sql</code> and run as in the code example.</p>
     </div>

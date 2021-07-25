@@ -25,4 +25,8 @@ query
 spec <- get_spec(file, "Dode", kh$dbconn)
 spec
 
+# External SQL
+dd <- get_spec("c:/Users/ybka/Git-fhi/orgdata/inst/specification.sql", "Dode", kh$dbconn, external = TRUE)
+dd
+
 ## TODO - get_filgruppe(filgruppe)
