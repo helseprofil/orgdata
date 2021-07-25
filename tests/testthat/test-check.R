@@ -13,5 +13,5 @@ test_that("Check for error for SQL query", {
   expect_error(get_query(file), "Argument for value is missing")
   expect_error(get_query(fileError, value), "Missing sprintf reference in SQL code")
 
-  expect_error(get_spec(file, value), "Argument for con is missing")
+  expect_error(read_spec(file, value), "Argument for con is missing")
 })

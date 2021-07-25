@@ -1,9 +1,10 @@
-#' Get File Specification
+#' Read File Specifications
 #'
 #' @description
-#' This function will access all specifications on where the orginal data is and how
+#' This function will read all specifications in the Access registration database via SQL code.
+#' For example where the orginal data is and how
 #' the data will be restructured and aggregated. The specifications are registered in
-#' the following register database:
+#' the following tables:
 #' \enumerate{
 #'   \item{tbl_Filgruppe}
 #'   \item{tbl_Koble}
@@ -23,7 +24,7 @@
 #' @param ... Other arguments
 #' @return Out put will be a data.frame.
 #' @export
-get_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
+read_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
   check_null(con)
 
   qs <- get_query(file, value, ...)
@@ -33,7 +34,7 @@ get_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
 
 
 #' @export
-#' @rdname get_spec
+#' @rdname read_spec
 #' @param external If SQL file is outside of the package. Default is \code{FALSE}.
 #' @examples
 #' \dontrun{
