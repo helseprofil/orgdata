@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • orgdata</title>
+<title>Read File Specifications — read_spec • orgdata</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,22 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Read File Specifications — read_spec" />
+<meta property="og:description" content="This function will read all specifications in the Access registration database via SQL code.
+For example where the orginal data is and how
+the data will be restructured and aggregated. The specifications are registered in
+the following tables:
+tbl_Filgruppe
+tbl_Koble
+tbl_Orgfile
+tbl_Innlesing
+
+
+SQL file must be written with base::sprintf style ie. '%s','%d' etc.
+Please refer to base::sprintf documentation. In addition, SQL code must not contain comments.
+Example of SQL code with '%s':
+SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'
+Which is saved in C:/myfile.sql and run as in the code example." />
 
 
 
@@ -58,7 +73,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,54 +120,71 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Read File Specifications</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/sql-spec.R'><code>R/sql-spec.R</code></a></small>
+    <div class="hidden name"><code>read_spec.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This function will read all specifications in the Access registration database via SQL code.
+For example where the orginal data is and how
+the data will be restructured and aggregated. The specifications are registered in
+the following tables:</p><ol>
+<li><p>tbl_Filgruppe</p></li>
+<li><p>tbl_Koble</p></li>
+<li><p>tbl_Orgfile</p></li>
+<li><p>tbl_Innlesing</p></li>
+</ol>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+<p>SQL file must be written with <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> style ie. <code>'%s','%d'</code> etc.
+Please refer to <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> documentation. In addition, SQL code must not contain comments.
+Example of SQL code with <code>'%s'</code>:
+<code>SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'</code>
+Which is saved in <code>C:/myfile.sql</code> and run as in the code example.</p>
+    </div>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_innlesarg.html">get_innlesarg()</a></code> </p>
-        </td>
-        <td><p>Get File Specifications</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KHelse.html">KHelse</a></code> </p>
-        </td>
-        <td><p>R6 Class Connecting to Database</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_spec.html">read_spec()</a></code> <code><a href="read_spec.html">get_query()</a></code> </p>
-        </td>
-        <td><p>Read File Specifications</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>read_spec</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, value <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>get_query</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, value <span class='op'>=</span> <span class='cn'>NULL</span>, external <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>SQL file. If external is TRUE then complete filepath must be specified.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>The value for selection in SQL code with <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> style.
+For example the name of a <em>filgruppe</em>.</p></td>
+    </tr>
+    <tr>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments</p></td>
+    </tr>
+    <tr>
+      <th>external</th>
+      <td><p>If SQL file is outside of the package. Default is <code>FALSE</code>.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Out put will be a data.frame.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>qr</span> <span class='op'>&lt;-</span> <span class='fu'>get_query</span><span class='op'>(</span><span class='st'>"C:/myfile.sql"</span>, value <span class='op'>=</span> <span class='st'>"BEFOLKNING"</span>, external <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

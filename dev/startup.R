@@ -22,7 +22,7 @@ usethis::use_package_doc() # for package document roxygen style
 devtools::document()
 roxygen2::roxygenise(clean = TRUE) # to clean up old dirt
 
-## Development
+## Development --------------------------
 devtools::load_all()
 devtools::check()
 usethis::use_r("zzz.R")

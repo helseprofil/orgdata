@@ -22,11 +22,11 @@ kh$db_connect()
 file <- "specification.sql"
 query <- get_query(file, "Dode")
 query
-spec <- get_spec(file, "Dode", kh$dbconn)
+spec <- read_spec(file, "TEST01", kh$dbconn)
 spec
 
 # External SQL
-dd <- get_spec("c:/Users/ybka/Git-fhi/orgdata/inst/specification.sql", "Dode", kh$dbconn, external = TRUE)
+dd <- read_spec("c:/Users/ybka/Git-fhi/orgdata/inst/specification.sql", "Dode", kh$dbconn, external = TRUE)
 dd
 
 ## TODO - get_filgruppe(filgruppe)
