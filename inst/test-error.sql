@@ -1,0 +1,2 @@
+SELECT * FROM tblTest
+ WHERE ID = 9
