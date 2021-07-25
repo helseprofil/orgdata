@@ -30,3 +30,7 @@ dd <- read_spec("c:/Users/ybka/Git-fhi/orgdata/inst/specification.sql", "Dode", 
 dd
 
 ## TODO - get_filgruppe(filgruppe)
+
+## Innlesarg
+## TODO - Error if EXTRA column uses "," to sperarate arguments
+(input <- get_innlesarg("ark", spec$INNLESARG))
