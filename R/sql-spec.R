@@ -16,27 +16,25 @@
 #' Example of SQL code with \code{'%s'}:
 #' \code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'}
 #' Which is saved in \code{C:/myfile.sql} and run as in the code example.
-#' @param file SQL file. If external is TRUE then full file must be specified.
-#' @param filgruppe The \emph{filgruppe} of files category
+#' @param file SQL file. If external is TRUE then complete filepath must be specified.
+#' @param value The value for selection in SQL code with \code{base::sprintf} style.
+#'    For example the name of a \emph{filgruppe}.
 #' @param con Connection to database
 #' @param ... Other arguments
-#' @return A data.frame
+#' @return Out put will be a data.frame.
 #' @export
-get_spec <- function(file = NULL, filgruppe = NULL, con = NULL, ...) {
-  check_null(file)
-  check_null(filgruppe)
+get_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
   check_null(con)
 
-  qs <- get_query(file, filgruppe, ...)
+  qs <- get_query(file, value, ...)
   dt <- DBI::dbGetQuery(con, qs)
-  data.table::setDT(dt)
+  return(dt)
 }
 
 
 #' @export
 #' @rdname get_spec
-#' @param value The value for selection in SQL code with \code{base::sprintf} style.
-#' @param external If SQL file is outside of the package. Default it \code{FALSE}.
+#' @param external If SQL file is outside of the package. Default is \code{FALSE}.
 #' @examples
 #' \dontrun{
 #' qr <- get_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
