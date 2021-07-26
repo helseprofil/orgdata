@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • orgdata</title>
+<title>Get year — get_year_from_file • orgdata</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Get year — get_year_from_file" />
+<meta property="og:description" content="Get the year value in column DEFAAR from table tbl_Orgfile
+when column for year isn't available in the raw data. This is
+indicated with $Y in the table  tbl_Innlesing ." />
 
 
 
@@ -58,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,60 +108,39 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Get year</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/innlesing.R'><code>R/innlesing.R</code></a></small>
+    <div class="hidden name"><code>get_year_from_file.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Get the year value in column <code>DEFAAR</code> from table <em>tbl_Orgfile</em>
+when column for year isn't available in the raw data. This is
+indicated with <code>$Y</code> in the table <em> tbl_Innlesing </em>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>get_year_from_file</span><span class='op'>(</span>id <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_innlesarg.html">get_innlesarg()</a></code> </p>
-        </td>
-        <td><p>Get File Specifications</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_year_from_file.html">get_year_from_file()</a></code> </p>
-        </td>
-        <td><p>Get year</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KHelse.html">KHelse</a></code> </p>
-        </td>
-        <td><p>R6 Class Connecting to Database</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_spec.html">read_spec()</a></code> <code><a href="read_spec.html">get_query()</a></code> </p>
-        </td>
-        <td><p>Read File Specifications</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>id</th>
+      <td><p>Is <code>FILID</code> from table <em>tbl_Orgfile</em></p></td>
+    </tr>
+    <tr>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An integer</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
