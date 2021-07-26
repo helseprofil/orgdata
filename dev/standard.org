@@ -3,11 +3,15 @@
 Use message for commit as follows:
 
 #+begin_example
-Keyword: Write summary as imperative
+Keyword: Write summary as imperative or command
 
 More detail explanation if necessary with maximum 72 characters and use
 line break for long sentences.
 #+end_example
+
+The first line gives summary for what was done. Preferably to write this as
+imperative mood or like commanding someone especially for commit related to
+feature or function.
 * Keyword for Commit
 These keywords will helps when searching all the commits:
 - =Feat:= for new feature or functions
