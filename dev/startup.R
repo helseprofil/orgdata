@@ -61,7 +61,10 @@ usethis::use_github_action_check_standard()
 usethis::use_git_remote("origin", url = "git@work:helseprofil/orgdata.git", overwrite = TRUE)
 
 ## COV ----------------------------
-usethis::use_coverage()
-covr::report()
+# usethis::use_coverage()
 
+## In Windows. Unload package first
+# renv::install("DT")
+library(covr)
 pkg <- covr::package_coverage(path = getwd())
+covr::report(pkg)
