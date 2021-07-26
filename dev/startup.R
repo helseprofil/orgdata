@@ -62,6 +62,7 @@ usethis::use_git_remote("origin", url = "git@work:helseprofil/orgdata.git", over
 
 ## COV ----------------------------
 # usethis::use_coverage()
+# usethis::use_github_action("test-coverage")
 
 ## In Windows. Unload package first
 # renv::install("DT")
