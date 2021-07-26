@@ -37,6 +37,11 @@ get_input_multi_args <- function(arg = NULL, y = NULL) {
   check_null(y)
   i <- grep(paste0("^", arg), y)
   input <- unlist(strsplit(y[i], "="))[2]
+
+  if (input %in% c("TRUE", "FALSE")) {
+    input <- as.logical(input)
+  }
+  input
 }
 ## Example
 ## arg <- get_input_multi_args("ark", arr)
