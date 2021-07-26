@@ -27,7 +27,7 @@ get_column_arg <- function(col = NULL, sep = c(",", "|")) {
 }
 
 # Example
-## (arr <- get_column_input(spec$INNLESARG))
+## (arr <- get_column_arg(spec$INNLESARG))
 
 get_input_arg <- function(arg = NULL, y = NULL) {
   # arg : Name of arg in the column eg. header
