@@ -11,7 +11,7 @@ get_innlesarg(arg, col, ...)
 
 \item{col}{Column name in the table}
 
-\item{...}{Other arguments eg. sep = "|"}
+\item{...}{Other arguments eg. sep = ":"}
 }
 \value{
 A character

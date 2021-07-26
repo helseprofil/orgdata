@@ -25,6 +25,7 @@ roxygen2::roxygenise(clean = TRUE) # to clean up old dirt
 ## Development --------------------------
 devtools::load_all()
 devtools::check()
+
 usethis::use_r("zzz.R")
 usethis::use_r("r6-db-connect.R")
 

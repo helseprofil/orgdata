@@ -12,7 +12,7 @@
 #'
 #' @param arg Name of the arguments
 #' @param col Column name in the table
-#' @param ... Other arguments eg. sep = "|"
+#' @param ... Other arguments eg. sep = ":"
 #' @examples
 #' \dontrun{
 #' input <- get_innlesarg("ark", spec$INNLESARG)
@@ -21,6 +21,6 @@
 #' @export
 
 get_innlesarg <- function(arg, col, ...) {
-  args <- get_column_arg(col, ...)
-  input <- get_input_arg(arg, args)
+  args <- get_column_multi_args(col, ...)
+  input <- get_input_multi_args(arg, args)
 }
