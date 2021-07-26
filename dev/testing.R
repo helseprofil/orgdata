@@ -14,9 +14,10 @@ regDB
 kh <- KHelse$new(regDB)
 kh$dbconn
 kh$dbname
-kh$db_close()
-kh$db_connect()
+# kh$db_close()
+# kh$db_connect()
 
+dbfile <- "N:/Helseprofiler/DB_helseprofil/org-innlesing.accdb"
 
 ## Get Specification
 file <- "specification.sql"
@@ -30,6 +31,12 @@ dd <- read_spec("c:/Users/ybka/Git-fhi/orgdata/inst/specification.sql", "Dode", 
 dd
 
 ## TODO - get_filgruppe(filgruppe)
+
+## File year
+(qr <- get_query("file-year.sql", 15))
+(sp <- read_spec("file-year.sql", 15, kh$dbconn))
+(yr <- get_year_from_file(15, kh$dbconn))
+class(yr)
 
 ## Innlesarg
 ## TODO - Error if EXTRA column uses "," to sperarate arguments
