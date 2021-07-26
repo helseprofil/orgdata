@@ -1,8 +1,4 @@
 
-dbfile <- "N:/Helseprofiler/DB_helseprofil/org-innlesing.accdb"
-kh <- KHelse$new(dbfile)
-
-
 test_that("Get input column", {
   txt1 <- "header=TRUE, ark=Sheet1"
   txt2 <- "header=TRUE : sep=,"
