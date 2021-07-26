@@ -34,3 +34,10 @@ get_year_from_file <- function(id = NULL, con = NULL) {
   input <- read_spec("file-year.sql", id, con)
   as.integer(input$DEFAAR)
 }
+
+#' @export
+#' @rdname get_year_from_file
+get_year <- function(col = NULL) {
+  check_null(col)
+  as.integer(col)
+}

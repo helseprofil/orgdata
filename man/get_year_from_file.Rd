@@ -2,9 +2,12 @@
 % Please edit documentation in R/innlesing.R
 \name{get_year_from_file}
 \alias{get_year_from_file}
+\alias{get_year}
 \title{Get year}
 \usage{
 get_year_from_file(id = NULL, con = NULL)
+
+get_year(col = NULL)
 }
 \arguments{
 \item{id}{Is \code{FILID} from table \emph{tbl_Orgfile}}
