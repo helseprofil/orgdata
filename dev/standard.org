@@ -11,10 +11,10 @@ line break for long sentences.
 
 The first line gives summary for what was done. Preferably to write this as
 imperative mood or like commanding someone especially for commit related to
-feature or function.
+features or functions.
 * Keyword for Commit
-These keywords will helps when searching all the commits:
-- =Feat:= for new feature or functions
+These keywords will be helpful when searching for relevant commits:
+- =Feat:= for new feature or function
 - =Fix:= for bug fix
 - =Doc:= for documentation or changes to documentation
 - =Style:= for changes to code or comments that aren't because of bugs
