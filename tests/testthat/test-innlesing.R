@@ -1,3 +1,8 @@
+
+dbfile <- "N:/Helseprofiler/DB_helseprofil/org-innlesing.accdb"
+kh <- KHelse$new(dbfile)
+
+
 test_that("Get input column", {
   txt1 <- "header=TRUE, ark=Sheet1"
   txt2 <- "header=TRUE : sep=,"
@@ -8,4 +13,8 @@ test_that("Get input column", {
 
   expect_equal(get_input_multi_args("ark", txt3), "Sheet1")
   expect_equal(get_input_multi_args("header", txt3), TRUE)
+})
+
+test_that("Input for DEFAAR", {
+  expect_identical(get_year_from_file(15, kh$dbconn), 2021L)
 })
