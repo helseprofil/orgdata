@@ -2,7 +2,7 @@
 % Please edit documentation in R/innlesing.R
 \name{get_innlesarg}
 \alias{get_innlesarg}
-\title{Get File Specifications}
+\title{Get INNLESARG Specifications}
 \usage{
 get_innlesarg(arg, col, ...)
 }
@@ -17,14 +17,10 @@ get_innlesarg(arg, col, ...)
 A character
 }
 \description{
-This function will access all specifications on how
-the data will be clean, restructured and aggregated. These specifications are registered in
-the following register database tables:
-\enumerate{
-\item{tbl_Filgruppe}
-\item{tbl_Orgfile}
-\item{tbl_Innlesing}
-}
+This function will access all arguments in columns \code{INNLESARG} in table
+\emph{tbl_Innlesing}' where there are possibility to
+specify multiple arguments for example:
+\verb{header=TRUE, ark=Sheet1}
 }
 \examples{
 \dontrun{
