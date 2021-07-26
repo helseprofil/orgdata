@@ -1,0 +1,27 @@
+#+TITLE: Make things standard
+* Github Commit
+Use message for commit as follows:
+
+#+begin_example
+Keyword: Write summary as imperative
+
+More detail explanation if necessary with maximum 72 characters and use
+line break for long sentences.
+#+end_example
+* Keyword for Commit
+These keywords will helps when searching all the commits:
+- =Feat:= for new feature or functions
+- =Fix:= for bug fix
+- =Doc:= for documentation or changes to documentation
+- =Style:= for changes to code or comments that aren't because of bugs
+- =Test:= for code testing in =tests= folder
+- =Misc:= for any changes that aren't critical or doesn't fit to any of the
+  above keywords. Avoid using it if possible or only as a last resort
+
+  Example of commit message
+  #+begin_example
+Feat: Get list of new files
+
+New files are missing in the current list. They need to be in the
+current list before aggregating.
+  #+end_example
