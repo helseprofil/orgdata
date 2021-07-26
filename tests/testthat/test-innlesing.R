@@ -11,6 +11,7 @@ test_that("Get input column", {
   expect_equal(get_input_multi_args("header", txt3), TRUE)
 })
 
-test_that("Input for DEFAAR", {
-  expect_identical(get_year_from_file(15, kh$dbconn), 2021L)
-})
+## Only for test locally and not in GitHub due to connection to DB
+## test_that("Input for DEFAAR", {
+##   expect_identical(get_year_from_file(15, kh$dbconn), 2021L)
+## })
