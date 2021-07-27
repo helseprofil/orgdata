@@ -30,11 +30,11 @@ New files are missing in the current list. They need to be in the
 current list before aggregating.
   #+end_example
 * File structure
-Where are the files located and how the files will be use.
+Where are the files located and how the files will be used.
 - Folder =/R= where all the R codes for the functions and objects for =orgdata=
   lives.
 - Folder =/inst= is for SQL code files and other files.
 - Files with prefix =utils-*= in folder =/R= have functions that are used
   multiple times in different places.
 - Put the functions and helper functions in one file if they aren't used in
-  different place.
+  different places.
