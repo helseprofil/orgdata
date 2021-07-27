@@ -1,17 +1,19 @@
 ## Additional options specific to orgdata
 ## use getOption("orgdata.folder") to get default folder
 ## or options("orgdata.file" = "dbfile.accdb") to change the filename
+
+## Options for Folkehelseprofiler
+op.orgdata <- list(
+  orgdata.folder = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
+  orgdata.file = "org-innlesing.accdb",
+  orgdata.register = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING",
+  orgdata.geo = ""
+)
+
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  op.orgdata <- list(
-    orgdata.folder = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
-    orgdata.file = "org-innlesing.accdb",
-    orgdata.register = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING",
-    orgdata.geo = ""
-  )
-  toset <- !(names(op.orgdata) %in% names(op))
-  if (any(toset)) options(op.orgdata[toset])
-
+  orgDT <- !(names(op.orgdata) %in% names(op))
+  if (any(orgDT)) options(op.orgdata[orgDT])
   invisible()
 }
 
@@ -20,4 +22,4 @@ OS <- Sys.info()["sysname"]
 osDrive <- switch(OS,
   Linux = "/mnt/F",
   Windows = "F:"
-)
+  )
