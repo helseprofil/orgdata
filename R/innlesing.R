@@ -6,8 +6,8 @@
 #' specify multiple arguments for example:
 #' `header=TRUE, ark=Sheet1`
 #' @param arg Name of the arguments
-#' @param col Column name in the table
 #' @param ... Other arguments eg. sep = ":"
+#' @inheritParams get_column_input
 #' @examples
 #' \dontrun{
 #' input <- get_innlesarg("ark", spec$INNLESARG)
@@ -24,20 +24,22 @@ get_innlesarg <- function(arg, col, ...) {
 #' Get the year value in column \code{DEFAAR} from table \emph{tbl_Orgfile}
 #' when column for year isn't available in the raw data. This is
 #' indicated with \code{$Y} in the table \emph{ tbl_Innlesing }.
-#' @param id Is \code{FILID} from table \emph{tbl_Orgfile}
+#' @param id \code{FILID} from table \emph{tbl_Orgfile}
 #' @inheritParams read_spec
 #' @return An integer
 #' @export
 get_year_from_file <- function(id = NULL, con = NULL) {
   check_null(id, "FILID is missing")
   check_null(con)
-  input <- read_spec("file-year.sql", id, con)
-  as.integer(input$DEFAAR)
+  df <- read_spec("file-year.sql", id, con)
+  val <- get_column_input(df, "DEFAAR", "int")
 }
 
 #' @export
 #' @rdname get_year_from_file
-get_year <- function(col = NULL) {
+#' @param df Input data as data.frame
+#' @inheritParams get_innlesarg
+get_year <- function(df = NULL, col = NULL) {
   check_null(col)
-  as.integer(col)
+  get_column_input(df, "AAR", "int")
 }

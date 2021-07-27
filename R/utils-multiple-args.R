@@ -4,7 +4,7 @@
 #' @description Get all arguments in the columns that have multiple arguments with [get_column_multi_args()].
 #' The output will be a vector that can be used in [orgdata::get_input_multi_args()] to get the value of the input.
 #' @param sep Symbols that seperate these arguments eg. "," or ":"
-#' @inheritParams get_innlesarg
+#' @inheritParams get_column_input
 #' @examples
 #' \dontrun{
 #' args <- get_column_multi_args(spec$INNLESARG)
@@ -12,9 +12,6 @@
 #' }
 #' @export
 get_column_multi_args <- function(col = NULL, sep = c(",", ":", ";")) {
-  # col : colum name in Access DB
-  # sep = , : INNLESARG
-  # sep = | : EXTRA
   # Output is a vector of the INNLESARG input
   check_null(col)
   sep <- match.arg(sep)
@@ -24,6 +21,7 @@ get_column_multi_args <- function(col = NULL, sep = c(",", ":", ";")) {
 
 #' @export
 #' @rdname get_column_multi_args
+#' @param arg Name of argument
 #' @param y Argument(s) as a vector
 get_input_multi_args <- function(arg = NULL, y = NULL) {
   # arg : Name of arg in the column eg. header
