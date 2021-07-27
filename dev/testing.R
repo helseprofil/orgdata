@@ -5,9 +5,10 @@ library(orgdata)
 
 op <- options()
 options("orgdata.folder" = "Helseprofiler/DB_helseprofil")
+options("orgdata.file" = "org-innlesing.accdb")
 osDrive <- "N:"
 getOption("orgdata.folder")
-regFile <- "org-innlesing.accdb"
+
 regDB <- file.path(osDrive, getOption("orgdata.folder"), regFile)
 
 regDB
@@ -18,6 +19,12 @@ kh$dbname
 # kh$db_connect()
 
 dbfile <- "N:/Helseprofiler/DB_helseprofil/org-innlesing.accdb"
+
+## LesOrg
+getOption("orgdata.folder")
+getOption("orgdata.file")
+dd <- read_org("Dode")
+
 
 ## Get Specification
 file <- "specification.sql"

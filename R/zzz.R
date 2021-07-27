@@ -4,10 +4,10 @@
 
 ## Options for Folkehelseprofiler
 op.orgdata <- list(
-  orgdata.folder = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
+  orgdata.folder = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING",
   orgdata.file = "org-innlesing.accdb",
-  orgdata.register = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING",
-  orgdata.geo = ""
+  orgdata.rawdata = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
+  orgdata.geofile = ""
 )
 
 .onLoad <- function(libname, pkgname) {
