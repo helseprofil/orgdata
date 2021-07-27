@@ -9,7 +9,7 @@ get_innlesarg(arg, col, ...)
 \arguments{
 \item{arg}{Name of the arguments}
 
-\item{col}{Column name in the table}
+\item{col}{Column name in the database table}
 
 \item{...}{Other arguments eg. sep = ":"}
 }

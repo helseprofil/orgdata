@@ -123,18 +123,26 @@ indicated with <code>$Y</code> in the table <em> tbl_Innlesing </em>.</p>
 
     <pre class="usage"><span class='fu'>get_year_from_file</span><span class='op'>(</span>id <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>get_year</span><span class='op'>(</span>col <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+<span class='fu'>get_year</span><span class='op'>(</span>df <span class='op'>=</span> <span class='cn'>NULL</span>, col <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>id</th>
-      <td><p>Is <code>FILID</code> from table <em>tbl_Orgfile</em></p></td>
+      <td><p><code>FILID</code> from table <em>tbl_Orgfile</em></p></td>
     </tr>
     <tr>
       <th>con</th>
       <td><p>Connection to database</p></td>
+    </tr>
+    <tr>
+      <th>df</th>
+      <td><p>Input data as data.frame</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>Column name in the database table</p></td>
     </tr>
     </table>
 

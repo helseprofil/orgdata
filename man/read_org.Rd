@@ -3,21 +3,23 @@
 \name{read_org}
 \alias{read_org}
 \alias{lesorg}
-\title{Read and Run the Specification}
+\title{Read and Run the Specifications}
 \usage{
 read_org(group = NULL, id = NULL)
 
-lesorg(...)
+lesorg(group = NULL, id = NULL)
 }
 \arguments{
 \item{group}{The group of files (\emph{filgruppe})}
 
-\item{id}{Is \code{FILID} from table \emph{tbl_Orgfile}}
+\item{id}{\code{FILID} from table \emph{tbl_Orgfile}}
 }
 \description{
 Read the specifications in the register database and implement them
 to the selected group of files (\emph{filgruppe}). All files under
 the selected group will be considered unless the \code{FILID} with
-argument \code{id} is specified. The function \code{\link[=lesorg]{lesorg()}} is an
-alternative function to \code{\link[=read_org]{read_org()}}.
+argument \code{id} is specified. This is useful for testing.
+
+The function \code{\link[=lesorg]{lesorg()}} is an
+alias to \code{\link[=read_org]{read_org()}}.
 }

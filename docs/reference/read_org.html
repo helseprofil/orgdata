@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read and Run the Specification — read_org • orgdata</title>
+<title>Read and Run the Specifications — read_org • orgdata</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,13 @@
 
 
 
-<meta property="og:title" content="Read and Run the Specification — read_org" />
+<meta property="og:title" content="Read and Run the Specifications — read_org" />
 <meta property="og:description" content="Read the specifications in the register database and implement them
 to the selected group of files (filgruppe). All files under
 the selected group will be considered unless the FILID with
-argument id is specified. The function lesorg() is an
-alternative function to read_org()." />
+argument id is specified. This is useful for testing.
+The function lesorg() is an
+alias to read_org()." />
 
 
 
@@ -112,7 +113,7 @@ alternative function to read_org()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read and Run the Specification</h1>
+    <h1>Read and Run the Specifications</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/read-org.R'><code>R/read-org.R</code></a></small>
     <div class="hidden name"><code>read_org.Rd</code></div>
     </div>
@@ -121,13 +122,14 @@ alternative function to read_org()." />
     <p>Read the specifications in the register database and implement them
 to the selected group of files (<em>filgruppe</em>). All files under
 the selected group will be considered unless the <code>FILID</code> with
-argument <code>id</code> is specified. The function <code>lesorg()</code> is an
-alternative function to <code>read_org()</code>.</p>
+argument <code>id</code> is specified. This is useful for testing.</p>
+<p>The function <code>lesorg()</code> is an
+alias to <code>read_org()</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>read_org</span><span class='op'>(</span>group <span class='op'>=</span> <span class='cn'>NULL</span>, id <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>lesorg</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>lesorg</span><span class='op'>(</span>group <span class='op'>=</span> <span class='cn'>NULL</span>, id <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,7 +140,7 @@ alternative function to <code>read_org()</code>.</p>
     </tr>
     <tr>
       <th>id</th>
-      <td><p>Is <code>FILID</code> from table <em>tbl_Orgfile</em></p></td>
+      <td><p><code>FILID</code> from table <em>tbl_Orgfile</em></p></td>
     </tr>
     </table>
 

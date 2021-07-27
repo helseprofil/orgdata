@@ -7,12 +7,16 @@
 \usage{
 get_year_from_file(id = NULL, con = NULL)
 
-get_year(col = NULL)
+get_year(df = NULL, col = NULL)
 }
 \arguments{
-\item{id}{Is \code{FILID} from table \emph{tbl_Orgfile}}
+\item{id}{\code{FILID} from table \emph{tbl_Orgfile}}
 
 \item{con}{Connection to database}
+
+\item{df}{Input data as data.frame}
+
+\item{col}{Column name in the database table}
 }
 \value{
 An integer

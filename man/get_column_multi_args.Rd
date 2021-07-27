@@ -10,11 +10,11 @@ get_column_multi_args(col = NULL, sep = c(",", ":", ";"))
 get_input_multi_args(arg = NULL, y = NULL)
 }
 \arguments{
-\item{col}{Column name in the table}
+\item{col}{Column name in the database table}
 
 \item{sep}{Symbols that seperate these arguments eg. "," or ":"}
 
-\item{arg}{Name of the arguments}
+\item{arg}{Name of argument}
 
 \item{y}{Argument(s) as a vector}
 }

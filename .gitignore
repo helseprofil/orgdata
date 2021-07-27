@@ -39,3 +39,4 @@ vignettes/*.pdf
 .Renviron
 /dev/connection.R
 /dev/innlesarg.R
+/dev/options.R
