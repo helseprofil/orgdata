@@ -40,9 +40,10 @@
 
 
 <meta property="og:title" content="Get INNLESARG Specifications — get_innlesarg" />
-<meta property="og:description" content="This function will access all arguments in columns INNLESARG in table
-tbl_Innlesing' where there are possibility to
-specify multiple arguments for example:
+<meta property="og:description" content="This function will access all possible arguments in columns INNLESARG
+in table tbl_Innlesing'. Comma &quot;,&quot; MUST be used to
+seperate arguments if there are more than one argument.
+For example:
 header=TRUE, ark=Sheet1" />
 
 
@@ -117,40 +118,28 @@ header=TRUE, ark=Sheet1" />
     </div>
 
     <div class="ref-description">
-    <p>This function will access all arguments in columns <code>INNLESARG</code> in table
-<em>tbl_Innlesing</em>' where there are possibility to
-specify multiple arguments for example:
-<code>header=TRUE, ark=Sheet1</code></p>
+    <p>This function will access all possible arguments in columns <code>INNLESARG</code>
+in table <em>tbl_Innlesing</em>'. Comma <code>","</code> <strong>MUST</strong> be used to
+seperate arguments if there are more than one argument.
+For example:</p>
+<p><code>header=TRUE, ark=Sheet1</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_innlesarg</span><span class='op'>(</span><span class='va'>arg</span>, <span class='va'>col</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_innlesarg</span><span class='op'>(</span>df <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>arg</th>
-      <td><p>Name of the arguments</p></td>
-    </tr>
-    <tr>
-      <th>col</th>
-      <td><p>Column name in the database table</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other arguments eg. sep = ":"</p></td>
+      <th>df</th>
+      <td><p>Specifications data as data.frame</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character</p>
+    <p>A list with the names and value of arguments</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>input</span> <span class='op'>&lt;-</span> <span class='fu'>get_innlesarg</span><span class='op'>(</span><span class='st'>"ark"</span>, <span class='va'>spec</span><span class='op'>$</span><span class='va'>INNLESARG</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -3,33 +3,47 @@
 \name{find_column_multi}
 \alias{find_column_multi}
 \alias{find_column_multi_input}
+\alias{find_column_multi_input_arg}
 \title{Columns with Multiple Inputs}
 \usage{
-find_column_multi(col = NULL, sep = c(",", ":", ";"))
+find_column_multi(df = NULL, col = NULL, sep = c(",", ":", ";"))
 
-find_column_multi_input(arg = NULL, y = NULL)
+find_column_multi_input(input = NULL)
+
+find_column_multi_input_arg(input = NULL, arg = NULL)
 }
 \arguments{
+\item{df}{Data.frame extracted form registration database}
+
 \item{col}{Column name in the database table}
 
 \item{sep}{Symbols that seperate these arguments eg. "," or ":"}
 
-\item{arg}{Name of argument}
+\item{input}{Input argument(s) as a vector}
 
-\item{y}{Argument(s) as a vector}
+\item{arg}{Name of a specific argument in the column}
 }
 \value{
-A vector of the argument(s) that is seperated with \code{sep} argument
+Two different output:
+\itemize{
+\item{A vector of the argument that is seperated with \code{sep} argument}
+\item{A list of argument names and their values}
+}
 
-The value from the selected argument
+The single object with value from the selected argument
 }
 \description{
-Get all arguments in the columns that have multiple arguments with \code{\link[=find_column_multi]{find_column_multi()}}.
-The output will be a vector that can be used in \code{\link[=find_column_multi_input]{find_column_multi_input()}} to get the value of the input.
+Get all arguments in a selected column that have multiple
+arguments with \code{\link[=find_column_multi]{find_column_multi()}}. The output will be a character
+type of arguments length. This can then can be used in \code{\link[=find_column_multi_input]{find_column_multi_input()}}
+function to get the value of the input as a list object. If you are only
+interested in a specific argument among these arguments in the column,
+then use \code{\link[=find_column_multi_input_arg]{find_column_multi_input_arg()}} function. See example.
 }
 \examples{
 \dontrun{
 args <- find_column_multi(spec$INNLESARG)
-val <- find_column_multi_input("header", args)
+vals <- find_column_multi_input(args)
+val <- find_column_multi_input_arg(args, "header")
 }
 }

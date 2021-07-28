@@ -4,26 +4,19 @@
 \alias{get_innlesarg}
 \title{Get INNLESARG Specifications}
 \usage{
-get_innlesarg(arg, col, ...)
+get_innlesarg(df = NULL)
 }
 \arguments{
-\item{arg}{Name of the arguments}
-
-\item{col}{Column name in the database table}
-
-\item{...}{Other arguments eg. sep = ":"}
+\item{df}{Specifications data as data.frame}
 }
 \value{
-A character
+A list with the names and value of arguments
 }
 \description{
-This function will access all arguments in columns \code{INNLESARG} in table
-\emph{tbl_Innlesing}' where there are possibility to
-specify multiple arguments for example:
+This function will access all possible arguments in columns \code{INNLESARG}
+in table \emph{tbl_Innlesing}'. Comma \code{","} \strong{MUST} be used to
+seperate arguments if there are more than one argument.
+For example:
+
 \verb{header=TRUE, ark=Sheet1}
-}
-\examples{
-\dontrun{
-input <- get_innlesarg("ark", spec$INNLESARG)
-}
 }
