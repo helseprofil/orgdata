@@ -2,6 +2,8 @@
 #' @description
 #' Get the year of the rawdata either when it's available in the rawdata or
 #' manually specified in the registration database. Check helper function [find_year()].
+#'
+#' [get_aar()] is an alias of [get_year()]
 #' @param df Specifications data as data.frame
 #' @inheritParams get_innlesarg
 #' @inheritParams find_spec

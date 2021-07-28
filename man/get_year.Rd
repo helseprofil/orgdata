@@ -2,9 +2,12 @@
 % Please edit documentation in R/innlesing-year.R
 \name{get_year}
 \alias{get_year}
+\alias{get_aar}
 \title{Get Year of Data}
 \usage{
 get_year(df = NULL, con = NULL)
+
+get_aar(df = NULL, con = NULL)
 }
 \arguments{
 \item{df}{Specifications data as data.frame}
@@ -23,4 +26,6 @@ to the raw data with column name \code{AAR}}
 \description{
 Get the year of the rawdata either when it's available in the rawdata or
 manually specified in the registration database. Check helper function \code{\link[=find_year]{find_year()}}.
+
+\code{\link[=get_aar]{get_aar()}} is an alias of \code{\link[=get_year]{get_year()}}
 }
