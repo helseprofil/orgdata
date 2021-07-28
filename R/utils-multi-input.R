@@ -73,7 +73,8 @@ find_column_multi_input_arg <- function(input = NULL, arg = NULL) {
 }
 
 one_arg_only <- function(x) {
-  many <- sum(grepl("=", x))
+  symbol <- gregexpr("=", x)
+  many <- length(symbol[[1]])
   if (many > 1) {
     stop("Too many arguments. Try `find_column_multi_inputs` function")
   }
