@@ -9,7 +9,7 @@
 #' alias to [read_org()].
 #' @param group The group of files (\emph{filgruppe})
 #' @inheritParams find_year
-#' @aliases lesorg
+#' @aliases read_org lesorg
 #' @export
 read_org <- function(group = NULL, id = NULL) {
   dbFile <- file.path(

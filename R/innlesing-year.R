@@ -12,6 +12,7 @@
 #'        \item{\code{Integer} value refers to the year that shoule be added
 #'               to the raw data with column name \code{AAR}}
 #'    }
+#' @aliases get_year get_aar
 #' @export
 get_year <- function(df = NULL, con = NULL) {
   year <- find_column_input(df, "AAR")
@@ -24,6 +25,11 @@ get_year <- function(df = NULL, con = NULL) {
   return(year)
 }
 
+#' @export
+#' @rdname get_year
+get_aar <- get_year
+
+#' @export
 #' @title  Year for The Data
 #' @description
 #' Find the year value in column \code{DEFAAR} from table \emph{tbl_Orgfile}
@@ -32,7 +38,6 @@ get_year <- function(df = NULL, con = NULL) {
 #' @param id \code{FILID} from table \emph{tbl_Orgfile}
 #' @inheritParams find_spec
 #' @return An integer
-#' @export
 find_year <- function(id = NULL, con = NULL) {
   check_null(id, "FILID is missing")
   check_null(con)
