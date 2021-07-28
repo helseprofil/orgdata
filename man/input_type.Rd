@@ -7,7 +7,7 @@
 input_type(value, type = c("double", "integer", "character"))
 }
 \arguments{
-\item{value}{Input value}
+\item{value}{Input value to be converted}
 }
 \description{
 Convert value to selected type ie. checked with \link{typeof}

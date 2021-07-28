@@ -1,3 +1,14 @@
+## Most used functions --------------------------
+devtools::load_all()
+devtools::test()
+devtools::check()
+devtools::document()
+roxygen2::roxygenise(clean = TRUE)
+pkgdown::build_site()
+pkgdown::build_news(preview = TRUE)
+
+
+## Start here ---------------------------------
 install.packages("renv")
 renv::init(bare = TRUE)
 renv::install(c(
@@ -5,7 +16,7 @@ renv::install(c(
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr"
 ))
 renv::snapshot()
-
+## renv::restore()
 
 ## usethis::create_package("orgdata")
 devtools::load_all()

@@ -28,21 +28,21 @@ lesorg("TEST01")
 
 ## Get Specification
 file <- "specification.sql"
-query <- get_query(file, "Dode")
+query <- find_query(file, "Dode")
 query
-spec <- read_spec(file, "TEST01", kh$dbconn)
+spec <- find_spec(file, "TEST01", kh$dbconn)
 spec
 
 # External SQL
-dd <- read_spec("c:/Users/ybka/Git-fhi/orgdata/inst/specification.sql", "Dode", kh$dbconn, external = TRUE)
+dd <- find_spec("c:/Users/ybka/Git-fhi/orgdata/inst/specification.sql", "Dode", kh$dbconn, external = TRUE)
 dd
 
 ## TODO - get_filgruppe(filgruppe)
 
 ## File year
-(qr <- get_query("file-year.sql", 15))
-(sp <- read_spec("file-year.sql", 15, kh$dbconn))
-(yr <- get_year_from_file(15, kh$dbconn))
+(qr <- find_query("file-year.sql", 15))
+(sp <- find_spec("file-year.sql", 15, kh$dbconn))
+(yr <- find_year(15, kh$dbconn))
 class(yr)
 
 ## Innlesarg
