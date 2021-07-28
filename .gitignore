@@ -40,3 +40,4 @@ vignettes/*.pdf
 /dev/connection.R
 /dev/innlesarg.R
 /dev/options.R
+/tests/testthat/test-locally.R

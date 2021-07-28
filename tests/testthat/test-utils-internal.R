@@ -20,4 +20,7 @@ test_that("Column input check", {
   expect_identical(find_column_input(df, "year", "double"), 2021)
   expect_identical(find_column_input(df, "year", "int"), 2021L)
   expect_identical(find_column_input(df, "year", "char"), "2021")
+
+  expect_true(dummy_input("$Y"))
+  expect_false(dummy_input("Y$"))
 })
