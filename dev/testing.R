@@ -31,7 +31,7 @@ lesorg("TEST01")
 file <- "specification.sql"
 query <- find_query(file, "Dode")
 query
-spec <- find_spec(file, "TEST01", kh$dbconn)
+spec <- find_spec(file, "Dode", kh$dbconn)
 spec
 
 # External SQL
@@ -46,10 +46,9 @@ dd
 (yr <- find_year(15, kh$dbconn))
 class(yr)
 
-get_year(spec, kh$dbconn)
+get_year(spec[1, ], kh$dbconn)
+spec[1, ]
 
 ## Innlesarg
 ## TODO - Error if EXTRA column uses "," to sperarate arguments
 (input <- get_innlesarg("ark", spec$INNLESARG))
-
-## Year
