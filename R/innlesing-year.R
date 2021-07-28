@@ -1,11 +1,34 @@
+#' @title Get Year of Data
+#' @description
+#' Get the year of the rawdata either when it's available in the rawdata or
+#' manually specified in the registration database. Check helper function [find_year()].
+#' @param df Specifications data as data.frame
+#' @inheritParams get_innlesarg
+#' @inheritParams find_spec
+#' @return Either a character or integer value.
+#'    \itemize{
+#'        \item{\code{Character} value is refering
+#'              to the column name in the raw data that has value for year.}
+#'        \item{\code{Integer} value refers to the year that shoule be added
+#'               to the raw data with column name \code{AAR}}
+#'    }
+#' @export
+get_year <- function(df = NULL, con = NULL) {
+  year <- find_column_input(df, "AAR")
+  dummy <- dummy_input(year)
 
+  if (dummy) {
+    fileID <- find_column_input(df, "FILID", "int")
+    year <- find_year(fileID, con)
+  }
+  return(year)
+}
 
 #' @title  Year for The Data
 #' @description
 #' Find the year value in column \code{DEFAAR} from table \emph{tbl_Orgfile}
 #' when column for year isn't available in the raw data. This is
 #' indicated with \code{$Y} in column \code{AAR} in table \emph{tbl_Innlesing}.
-#' If column \code{ AAR } has other input then use function [find_year_from_column()] instead.
 #' @param id \code{FILID} from table \emph{tbl_Orgfile}
 #' @inheritParams find_spec
 #' @return An integer
@@ -15,13 +38,4 @@ find_year <- function(id = NULL, con = NULL) {
   check_null(con)
   df <- find_spec("file-year.sql", id, con)
   val <- find_column_input(df, "DEFAAR", "int")
-}
-
-#' @export
-#' @rdname find_year
-#' @param df Input data as data.frame
-#' @inheritParams get_innlesarg
-find_year_from_column <- function(df = NULL, col = NULL) {
-  check_null(col)
-  find_column_input(df, "AAR", "int")
 }
