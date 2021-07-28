@@ -4,14 +4,15 @@
 \alias{find_column_input}
 \title{Columns with Single Input}
 \usage{
-find_column_input(df, col, type = c("double", "integer", "character"))
+find_column_input(df, col, type = c("character", "double", "integer"))
 }
 \arguments{
 \item{df}{Data.frame extracted form registration database}
 
 \item{col}{Column name in the database table}
 
-\item{type}{Type of object as output ie. double, integer or character}
+\item{type}{Type of object as output ie. double, integer or character.
+Default is character.}
 }
 \description{
 Get the value of a column when it's only one input is allowed.

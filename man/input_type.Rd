@@ -4,7 +4,7 @@
 \alias{input_type}
 \title{Type of object input}
 \usage{
-input_type(value, type = c("double", "integer", "character"))
+input_type(value, type = c("character", "double", "integer"))
 }
 \arguments{
 \item{value}{Input value to be converted}

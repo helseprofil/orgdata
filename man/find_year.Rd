@@ -2,21 +2,14 @@
 % Please edit documentation in R/innlesing-year.R
 \name{find_year}
 \alias{find_year}
-\alias{find_year_from_column}
 \title{Year for The Data}
 \usage{
 find_year(id = NULL, con = NULL)
-
-find_year_from_column(df = NULL, col = NULL)
 }
 \arguments{
 \item{id}{\code{FILID} from table \emph{tbl_Orgfile}}
 
 \item{con}{Connection to database}
-
-\item{df}{Input data as data.frame}
-
-\item{col}{Column name in the database table}
 }
 \value{
 An integer
@@ -25,5 +18,4 @@ An integer
 Find the year value in column \code{DEFAAR} from table \emph{tbl_Orgfile}
 when column for year isn't available in the raw data. This is
 indicated with \code{$Y} in column \code{AAR} in table \emph{tbl_Innlesing}.
-If column \code{ AAR } has other input then use function \code{\link[=find_year_from_column]{find_year_from_column()}} instead.
 }
