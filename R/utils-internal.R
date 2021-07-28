@@ -22,3 +22,8 @@ check_null <- function(arg, msg = NULL) {
   }
 }
 
+# Standard dummy input starts with symbol $
+# eg. column AAR
+dummy_input <- function(x) {
+  grepl("^\\$", x)
+}
