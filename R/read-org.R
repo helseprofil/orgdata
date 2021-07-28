@@ -8,7 +8,7 @@
 #' The function [lesorg()] is an
 #' alias to [read_org()].
 #' @param group The group of files (\emph{filgruppe})
-#' @inheritParams get_year_from_file
+#' @inheritParams find_year
 #' @aliases lesorg
 #' @export
 read_org <- function(group = NULL, id = NULL) {
@@ -20,7 +20,7 @@ read_org <- function(group = NULL, id = NULL) {
 
   kh <- KHelse$new(dbFile)
 
-  spec <- read_spec(
+  spec <- find_spec(
     file = "specification.sql",
     value = group,
     con = kh$dbconn

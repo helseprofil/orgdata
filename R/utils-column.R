@@ -6,7 +6,7 @@
 #' @param type Type of object as output ie. double, integer or character
 #' @param col Column name in the database table
 #' @export
-get_column_input <- function(df, col, type = c("double", "integer", "character")) {
+find_column_input <- function(df, col, type = c("double", "integer", "character")) {
   # df : Input data as data.frame
   # col : Selected column in df
   # type : type of input object will be checked with typeof()
@@ -19,7 +19,7 @@ get_column_input <- function(df, col, type = c("double", "integer", "character")
 #' @keywords internal
 #' @title Type of object input
 #' @description Convert value to selected type ie. checked with [typeof]
-#' @param value Input value
+#' @param value Input value to be converted
 input_type <- function(value, type = c("double", "integer", "character")) {
   # value : value to be converted
   # type : type of input object will be checked with typeof()

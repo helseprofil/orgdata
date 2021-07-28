@@ -1,9 +1,9 @@
-#' Read File Specifications
+#' File Specifications in Registration Database
 #'
 #' @description
-#' This function will read all specifications in the Access registration database via SQL code.
-#' For example where the orginal data is and how
-#' the data will be restructured and aggregated. The specifications are registered in
+#' This function will find all specifications in the Access registration database via SQL code.
+#' For example where the orginal data is and how the data will be restructured
+#' and aggregated.. etc.. etc.. The specifications are registered in
 #' the following tables:
 #' \enumerate{
 #'   \item{tbl_Filgruppe}
@@ -24,23 +24,23 @@
 #' @param ... Other arguments
 #' @return Out put will be a data.frame.
 #' @export
-read_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
+find_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
   check_null(con)
 
-  qs <- get_query(file, value, ...)
+  qs <- find_query(file, value, ...)
   dt <- DBI::dbGetQuery(con, qs)
   return(dt)
 }
 
 
 #' @export
-#' @rdname read_spec
+#' @rdname find_spec
 #' @param external If SQL file is outside of the package. Default is \code{FALSE}.
 #' @examples
 #' \dontrun{
-#' qr <- get_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
+#' qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
 #' }
-get_query <- function(file = NULL, value = NULL, external = FALSE) {
+find_query <- function(file = NULL, value = NULL, external = FALSE) {
   check_null(file)
   check_null(value)
 
