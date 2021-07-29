@@ -41,7 +41,7 @@ Where are the files located and how the files will be used.
 - Put the functions and helper functions in the same file if they aren't used in
   different places.
 * Naming style (function or object)
-To different between a function and an object:
-- =snake_case= style is for function eg. =find_column_input=
-- =camelCase= style is for object eg. =fileGroup=
-- =kebab-case= style for file name eg. =utils-internal.R=
+Use these naming style:
+- =snake_case= style is for *function* eg. =find_column_input=
+- =camelCase= style is for *object* eg. =fileGroup=
+- =kebab-case= style for *filename* eg. =utils-internal.R=
