@@ -19,7 +19,7 @@ find_column_multi_input_arg(input = NULL, arg = NULL)
 
 \item{sep}{Symbols that seperate these arguments eg. "," or ":"}
 
-\item{input}{Input argument(s) as a vector}
+\item{input}{Input argument(s) as a character vector}
 
 \item{arg}{Name of a specific argument in the column}
 }

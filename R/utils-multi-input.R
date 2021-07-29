@@ -36,7 +36,7 @@ find_column_multi <- function(df = NULL, col = NULL, sep = c(",", ":", ";")) {
 
 #' @export
 #' @rdname find_column_multi
-#' @param input Input argument(s) as a vector
+#' @param input Input argument(s) as a character vector
 find_column_multi_input <- function(input = NULL) {
   check_null(input)
 
