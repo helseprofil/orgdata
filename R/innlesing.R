@@ -40,3 +40,18 @@ get_manheader <- function(df = NULL) {
 
   return(list(index = lhs, col = rhs))
 }
+
+
+#' @title Get Column Name
+#' @description Get the real column name in rawdata if it's not manually changed
+#'   as specified in the column \code{MANHEADER}. Only applicable for single input, else
+#'   check [find_column_multi()] or [get_innlesarg()] function.
+#' @inheritParams find_column_input
+#' @examples
+#' \dontrun{
+#' geo <- get_column_name(df, "GEO")
+#' }
+#' @export
+get_column_name <- function(df, col, type = c("character", "double", "integer")) {
+  find_column_input(df, col, type)
+}
