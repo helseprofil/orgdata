@@ -86,15 +86,3 @@ make_logical <- function(x) {
   }
   return(x)
 }
-
-
-seperate_value <- function(x, sep = NULL, keep = NULL) {
-  # keep : Keep lhs or rhs eg. x[1] for lhs
-  out <- unlist(strsplit(x, sep))
-  if (!is.null(keep)) {
-    out <- out[keep]
-  }
-
-  out <- trimws(out)
-  return(out)
-}

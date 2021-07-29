@@ -17,3 +17,7 @@ get_innlesarg <- function(df = NULL) {
   args <- find_column_multi(df, "INNLESARG", sep = ",")
   input <- find_column_multi_input(args)
 }
+
+get_manheader <- function(df = NULL) {
+
+}
