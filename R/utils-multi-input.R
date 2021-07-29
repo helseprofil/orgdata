@@ -44,9 +44,9 @@ find_column_multi_input <- function(input = NULL) {
   inVar <- input[!is.na(input)]
   outVar <- vector(mode = "list", length = length(inVar))
 
-  for (i in seq_len(length(input)))
+  for (i in seq_len(length(inVar)))
   {
-    arg <- seperate_value(input[i], "=")
+    arg <- seperate_value(inVar[i], "=")
     names(outVar)[i] <- arg[1]
     val <- make_logical(arg[2])
     outVar[[i]] <- val
