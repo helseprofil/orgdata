@@ -1,4 +1,4 @@
-#+TITLE: Make things standard
+#+TITLE: Make Things Standard
 * Keyword for Commit
 These keywords will be helpful when searching for relevant commits:
 - =Feat:= for new feature or function
@@ -28,17 +28,17 @@ line break for long sentences.
 
 The first line gives summary for what was done. Preferably to write this as
 imperative mood or like commanding someone especially for commit related to
-features, functions =(Feat:)= bs or fixing code =(Fix)=.
+features, functions =(Feat:)= or fixing code =(Fix)=.
 * Files and folders structure
 Where are the files located and how the files will be used.
 - Folder =/R= where all the R codes for the functions and objects for =orgdata=
-  lives.
-- Folder =/inst= is for SQL code files and other files.
+  live.
+- Folder =/inst= is for SQL code files and other files that are needed by the package.
 - Folder =/dev= is for other files that aren't used in the package but good to
   have as reference or code testing.
-- Files with prefix =utils-*= in folder =/R= have functions that are used
+- Files with prefix =utils-*= in folder =/R= have helper functions that are used
   multiple times in different places.
-- Put the functions and helper functions in one file if they aren't used in
+- Put the functions and helper functions in the same file if they aren't used in
   different places.
 * Naming style (function or object)
 To different between a function and an object:
