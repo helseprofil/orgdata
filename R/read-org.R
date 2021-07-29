@@ -3,15 +3,25 @@
 #' Read the specifications in the register database and implement them
 #' to the selected group of files (\emph{filgruppe}). All files under
 #' the selected group will be considered unless the \code{FILID} with
-#' argument \code{id} is specified. This is useful for testing.
+#' argument \code{id} is specified. Specifying \code{id} is useful for testing.
 #'
 #' The function [lesorg()] is an
 #' alias to [read_org()].
+#' @examples
+#' \dontrun{
+#' read_org("BEFOLKNING")
+#' read_org("BEFOLKNING", id = 19)
+#' read_org("BEFOLKNING", id = c(15, 50))
+#' }
 #' @param group The group of files (\emph{filgruppe})
 #' @inheritParams find_year
+#' @param style Output data class style. The options are `DT`, `TB` and `DF`
+#'     which are [data.table], [tibble] and [data.frame] respectively.
 #' @aliases read_org lesorg
 #' @export
-read_org <- function(group = NULL, id = NULL) {
+read_org <- function(group = NULL, id = NULL, style = c("DT", "TB", "DF")) {
+  style <- match.arg(style)
+
   dbFile <- file.path(
     osDrive,
     getOption("orgdata.folder"),
@@ -26,6 +36,10 @@ read_org <- function(group = NULL, id = NULL) {
     con = kh$dbconn
   )
 
+  if (!is.null(id)) {
+    ## TODO Select the id
+  }
+
   ## TODO - Read line by line if it's more than 1 line
   odFiles <- nrow(spec)
 
@@ -35,6 +49,15 @@ read_org <- function(group = NULL, id = NULL) {
 
 
   ## }
+
+  if (style != "DT") {
+    DT <- switch(style,
+                 TB = tibble::as_tibble(DT),
+                 DF = data.table::setDF(DT)
+                 )
+  }
+
+  return(DT)
 }
 
 
