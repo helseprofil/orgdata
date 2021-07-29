@@ -52,6 +52,6 @@ get_manheader <- function(df = NULL) {
 #' geo <- get_column_name(df, "GEO")
 #' }
 #' @export
-get_column_name <- function(df, col, type = c("character", "double", "integer")) {
-  find_column_input(df, col, type)
+get_column_name <- function(df, col) {
+  find_column_input(df, col)
 }
