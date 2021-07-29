@@ -12,8 +12,9 @@ find_column_input <- function(df, col, type = c("character", "double", "integer"
   # col : Selected column in df
   # type : type of input object will be checked with typeof()
   type <- match.arg(type)
-  val <- trimws(df[col])
+  val <- trimws(df[, col])
   val <- input_type(val, type)
+  return(val)
 }
 
 
