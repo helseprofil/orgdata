@@ -18,6 +18,25 @@ get_innlesarg <- function(df = NULL) {
   input <- find_column_multi_input(args)
 }
 
+#' @title Get MANHEADER
+#' @description Get the inputs for column MANHEADER in \code{tbl_Innlesing}.
+#'    The input tells that we want to manually \strong{rename} the column for
+#'    various reasons such as column name in the rawdata is too long or
+#'    it uses unstandard naming style. An input like this:
+#'
+#' \code{3,6=AGE,EDUCATION}
+#'
+#' means we want to rename column \code{3} to \code{AGE} and column \code{6}
+#' to \code{EDUCATION}.
+#' @inheritParams get_year
+#' @return A list containing \code{$index} to refer to the column index and
+#'     \code{$col} for the new name of the selected column index.
+#' @export
 get_manheader <- function(df = NULL) {
+  input <- find_column_input(df, "MANHEADER")
+  args <- seperate_value(input, "=")
+  lhs <- seperate_value(args[1], ",")
+  rhs <- seperate_value(args[2], ",")
 
+  return(list(index = lhs, col = rhs))
 }
