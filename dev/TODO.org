@@ -1,5 +1,5 @@
 #+TITLE: Todo list
-* TODO Input in =find_column_multi_input
+* TODO Input in =find_column_multi_input=
 The loop refers to the variable with =NA=. Should use =seq_len(length(inVar))=.
-* TODO Seperate with whitespace
+* DONE Seperate with whitespace
 Check if =seperate_value= works correctly when there is whitespace eg. ~3 = AGE~.
