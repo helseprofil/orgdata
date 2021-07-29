@@ -5,9 +5,10 @@ test_that("Innlesarg inputs", {
   expect_equal(get_innlesarg(df01), txt4)
 })
 
-## Year ------------------------------
-test_that("Year for data", {
+## Input from Access ------------------------------
+test_that("Output for singel column", {
   expect_identical(get_year(df01), "aar")
+  expect_identical(get_column_name(df02, "GEO"), "geo")
 })
 
 ## Manheader -------------------------
