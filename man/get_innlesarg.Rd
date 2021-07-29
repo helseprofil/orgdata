@@ -7,7 +7,7 @@
 get_innlesarg(df = NULL)
 }
 \arguments{
-\item{df}{Specifications data as data.frame}
+\item{df}{Specifications data as a data.frame}
 }
 \value{
 A list with the names and value of arguments

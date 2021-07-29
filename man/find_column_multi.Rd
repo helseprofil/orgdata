@@ -26,8 +26,9 @@ find_column_multi_input_arg(input = NULL, arg = NULL)
 \value{
 Two different output:
 \itemize{
-\item{A vector of the argument that is seperated with \code{sep} argument}
-\item{A list of argument names and their values}
+\item{\link{find_column_multi} gives a character vector of the
+arguments that is seperated with \code{sep} argument}
+\item{\link{find_column_multi_input} gives a list of argument names and their values}
 }
 
 The single object with value from the selected argument

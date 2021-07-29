@@ -4,7 +4,7 @@
 #' manually specified in the registration database. Check helper function [find_year()].
 #'
 #' [get_aar()] is an alias of [get_year()]
-#' @param df Specifications data as data.frame
+#' @param df Specifications data as a data.frame
 #' @inheritParams get_innlesarg
 #' @inheritParams find_spec
 #' @return Either a character or integer value.

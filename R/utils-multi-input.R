@@ -17,8 +17,9 @@
 #' }
 #' @return Two different output:
 #' \itemize{
-#'    \item{A vector of the argument that is seperated with \code{sep} argument}
-#'    \item{A list of argument names and their values}
+#'    \item{[find_column_multi] gives a character vector of the
+#'          arguments that is seperated with \code{sep} argument}
+#'    \item{[find_column_multi_input] gives a list of argument names and their values}
 #' }
 #' @export
 find_column_multi <- function(df = NULL, col = NULL, sep = c(",", ":", ";")) {

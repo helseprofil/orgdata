@@ -10,7 +10,7 @@ get_year(df = NULL, con = NULL)
 get_aar(df = NULL, con = NULL)
 }
 \arguments{
-\item{df}{Specifications data as data.frame}
+\item{df}{Specifications data as a data.frame}
 
 \item{con}{Connection to database}
 }

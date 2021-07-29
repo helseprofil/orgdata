@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Columns with Multiple Inputs — find_column_multi • orgdata</title>
+<title>Get MANHEADER — get_manheader • orgdata</title>
 
 
 <!-- jquery -->
@@ -39,13 +39,14 @@
 
 
 
-<meta property="og:title" content="Columns with Multiple Inputs — find_column_multi" />
-<meta property="og:description" content="Get all arguments in a selected column that have multiple
-arguments with find_column_multi(). The output will be a character
-type of arguments length. This can then can be used in find_column_multi_input()
-function to get the value of the input as a list object. If you are only
-interested in a specific argument among these arguments in the column,
-then use find_column_multi_input_arg() function. See example." />
+<meta property="og:title" content="Get MANHEADER — get_manheader" />
+<meta property="og:description" content="Get the inputs for column MANHEADER in tbl_Innlesing.
+The input tells that we want to manually rename the column for
+various reasons such as column name in the rawdata is too long or
+it uses unstandard naming style. An input like this:
+3,6=AGE,EDUCATION
+means we want to rename column 3 to AGE and column 6
+to EDUCATION." />
 
 
 
@@ -113,68 +114,37 @@ then use find_column_multi_input_arg() function. See example." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Columns with Multiple Inputs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/utils-multi-input.R'><code>R/utils-multi-input.R</code></a></small>
-    <div class="hidden name"><code>find_column_multi.Rd</code></div>
+    <h1>Get MANHEADER</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/innlesing.R'><code>R/innlesing.R</code></a></small>
+    <div class="hidden name"><code>get_manheader.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get all arguments in a selected column that have multiple
-arguments with <code>find_column_multi()</code>. The output will be a character
-type of arguments length. This can then can be used in <code>find_column_multi_input()</code>
-function to get the value of the input as a list object. If you are only
-interested in a specific argument among these arguments in the column,
-then use <code>find_column_multi_input_arg()</code> function. See example.</p>
+    <p>Get the inputs for column MANHEADER in <code>tbl_Innlesing</code>.
+The input tells that we want to manually <strong>rename</strong> the column for
+various reasons such as column name in the rawdata is too long or
+it uses unstandard naming style. An input like this:</p>
+<p><code>3,6=AGE,EDUCATION</code></p>
+<p>means we want to rename column <code>3</code> to <code>AGE</code> and column <code>6</code>
+to <code>EDUCATION</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_column_multi</span><span class='op'>(</span>df <span class='op'>=</span> <span class='cn'>NULL</span>, col <span class='op'>=</span> <span class='cn'>NULL</span>, sep <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>","</span>, <span class='st'>":"</span>, <span class='st'>";"</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>find_column_multi_input</span><span class='op'>(</span>input <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
-
-<span class='fu'>find_column_multi_input_arg</span><span class='op'>(</span>input <span class='op'>=</span> <span class='cn'>NULL</span>, arg <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_manheader</span><span class='op'>(</span>df <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>df</th>
-      <td><p>Data.frame extracted form registration database</p></td>
-    </tr>
-    <tr>
-      <th>col</th>
-      <td><p>Column name in the database table</p></td>
-    </tr>
-    <tr>
-      <th>sep</th>
-      <td><p>Symbols that seperate these arguments eg. "," or ":"</p></td>
-    </tr>
-    <tr>
-      <th>input</th>
-      <td><p>Input argument(s) as a character vector</p></td>
-    </tr>
-    <tr>
-      <th>arg</th>
-      <td><p>Name of a specific argument in the column</p></td>
+      <td><p>Specifications data as a data.frame</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Two different output:</p><ul>
-<li><p>find_column_multi gives a character vector of the
-arguments that is seperated with <code>sep</code> argument</p></li>
-<li><p>find_column_multi_input gives a list of argument names and their values</p></li>
-</ul>
+    <p>A list containing <code>$index</code> to refer to the column index and
+<code>$col</code> for the new name of the selected column index.</p>
 
-<p>The single object with value from the selected argument</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>args</span> <span class='op'>&lt;-</span> <span class='fu'>find_column_multi</span><span class='op'>(</span><span class='va'>spec</span><span class='op'>$</span><span class='va'>INNLESARG</span><span class='op'>)</span>
-<span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'>find_column_multi_input</span><span class='op'>(</span><span class='va'>args</span><span class='op'>)</span>
-<span class='va'>val</span> <span class='op'>&lt;-</span> <span class='fu'>find_column_multi_input_arg</span><span class='op'>(</span><span class='va'>args</span>, <span class='st'>"header"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
