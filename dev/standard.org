@@ -51,7 +51,7 @@ An effort to group functions according to their responsibilities :)
 - Files with =get_= prefix for main functions.
 - Files with =find_= prefix for helper functions.
 - Internal functions can be any style but should at least elucidate what the
-  function will do eg. =seperate_value()=
+  function will do eg. =separate_value()=
 
   Internal functions will not be exported but if needed, they can be accessed with
-  =:::= eg. =orgdata:::seperate_value()=.
+  =:::= eg. =orgdata:::separate_value()=.

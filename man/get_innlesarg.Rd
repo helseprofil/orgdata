@@ -15,7 +15,7 @@ A list with the names and value of arguments
 \description{
 This function will access all possible arguments in columns \code{INNLESARG}
 in table \emph{tbl_Innlesing}'. Comma \code{","} \strong{MUST} be used to
-seperate arguments if there are more than one argument.
+separate arguments if there are more than one argument.
 For example:
 
 \verb{header=TRUE, ark=Sheet1}

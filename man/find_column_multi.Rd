@@ -17,7 +17,7 @@ find_column_multi_input_arg(input = NULL, arg = NULL)
 
 \item{col}{Column name in the database table}
 
-\item{sep}{Symbols that seperate these arguments eg. "," or ":"}
+\item{sep}{Symbols that separate these arguments eg. "," or ":"}
 
 \item{input}{Input argument(s) as a character vector}
 
@@ -27,7 +27,7 @@ find_column_multi_input_arg(input = NULL, arg = NULL)
 Two different output:
 \itemize{
 \item{\link{find_column_multi} gives a character vector of the
-arguments that is seperated with \code{sep} argument}
+arguments that is separated with \code{sep} argument}
 \item{\link{find_column_multi_input} gives a list of argument names and their values}
 }
 
