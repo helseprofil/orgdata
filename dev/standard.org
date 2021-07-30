@@ -29,7 +29,7 @@ line break for long sentences.
 The first line gives summary for what was done. Preferably to write this as
 imperative mood or like commanding someone especially for commit related to
 features, functions =(Feat:)= or fixing code =(Fix)=.
-* Files and folders structure
+* Folders structure
 Where are the files located and how the files will be used.
 - Folder =/R= where all the R codes for the functions and objects for =orgdata=
   live.
@@ -45,12 +45,12 @@ Use these naming style:
 - =snake_case= style is for *function* eg. =find_column_input=
 - =camelCase= style is for *object* eg. =fileGroup=
 - =kebab-case= style for *filename* eg. =utils-internal.R=
-* Naming files
-An effort to group files according to their functions.
+* Function names
+An effort to group functions according to their responsibilities :)
 - Files with =read_= perfix for major functions.
 - Files with =get_= prefix for main functions.
 - Files with =find_= prefix for helper functions.
-- Internal functions be any style but should at least elucidate what the
+- Internal functions can be any style but should at least elucidate what the
   function will do eg. =seperate_value()=
 
   Internal functions will not be exported but if needed, they can be accessed with
