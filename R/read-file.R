@@ -1,11 +1,11 @@
 #' Read Data File
 #' @description Read the rawdata
-#' @inheritParams open_file
+#' @inheritParams find_data
 #' @export
 read_file <- function(file = NULL, ...) {
   check_null(file)
   file <- identify_file(file)
-  open_file(file, ...)
+  find_data(file, ...)
 }
 
 
