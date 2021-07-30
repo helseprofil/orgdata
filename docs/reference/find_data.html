@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Year for The Data — find_year • orgdata</title>
+<title>Find Rawdata — find_data • orgdata</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,11 @@
 
 
 
-<meta property="og:title" content="Year for The Data — find_year" />
-<meta property="og:description" content="Find the year value in column DEFAAR from table tbl_Orgfile
-when column for year isn't available in the raw data. This is
-indicated with $Y in column AAR in table tbl_Innlesing." />
+<meta property="og:title" content="Find Rawdata — find_data" />
+<meta property="og:description" content="Find rawdata and load it into memory for further process.
+It requires the class attribute of the file is set prior to
+using find_data() method. Otherwise, use read_file() function
+instead unless you have specific reason not to." />
 
 
 
@@ -110,36 +111,41 @@ indicated with $Y in column AAR in table tbl_Innlesing." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Year for The Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/get-year.R'><code>R/get-year.R</code></a></small>
-    <div class="hidden name"><code>find_year.Rd</code></div>
+    <h1>Find Rawdata</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/find-data.R'><code>R/find-data.R</code></a></small>
+    <div class="hidden name"><code>find_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Find the year value in column <code>DEFAAR</code> from table <em>tbl_Orgfile</em>
-when column for year isn't available in the raw data. This is
-indicated with <code>$Y</code> in column <code>AAR</code> in table <em>tbl_Innlesing</em>.</p>
+    <p>Find rawdata and load it into memory for further process.
+It requires the class attribute of the file is set prior to
+using <code>find_data()</code> method. Otherwise, use <code><a href='read_file.html'>read_file()</a></code> function
+instead unless you have specific reason not to.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_year</span><span class='op'>(</span>id <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>find_data</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p><code>FILID</code> from table <em>tbl_Orgfile</em></p></td>
+      <th>file</th>
+      <td><p>Input file</p></td>
     </tr>
     <tr>
-      <th>con</th>
-      <td><p>Connection to database</p></td>
+      <th>...</th>
+      <td><p>Other options relevant to the file type</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An integer</p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>file</span> <span class='op'>&lt;-</span> <span class='st'>"path/to/my-data.csv"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"csv"</span>
+<span class='va'>dt</span> <span class='op'>&lt;-</span> <span class='fu'>find_data</span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

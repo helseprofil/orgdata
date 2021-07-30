@@ -12,7 +12,7 @@ pkgdown::build_news(preview = TRUE)
 install.packages("renv")
 renv::init(bare = TRUE)
 renv::install(c(
-  "devtools", "roxygen2", "testthat", "knitr",
+  "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr"
 ))
 renv::snapshot()
@@ -58,6 +58,8 @@ usethis::use_package("R6")
 usethis::use_package("data.table")
 usethis::use_package("DBI")
 usethis::use_package("odbc")
+usethis::use_package("tibble")
+usethis::use_package("readxl")
 
 # Run to build the website ----------------------------------
 # Install development version from GitHub

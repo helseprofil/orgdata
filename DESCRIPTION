@@ -17,6 +17,7 @@ Imports:
     data.table,
     DBI,
     R6,
+    readxl,
     tibble
 Suggests: 
     testthat (>= 3.0.0),

@@ -111,7 +111,7 @@ check find_column_multi() or get_innlesarg() function." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get Column Name</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/innlesing.R'><code>R/innlesing.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/get-functions.R'><code>R/get-functions.R</code></a></small>
     <div class="hidden name"><code>get_column_name.Rd</code></div>
     </div>
 
@@ -121,7 +121,7 @@ as specified in the column <code>MANHEADER</code>. Only applicable for single in
 check <code><a href='find_column_multi.html'>find_column_multi()</a></code> or <code><a href='get_innlesarg.html'>get_innlesarg()</a></code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_column_name</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>col</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"character"</span>, <span class='st'>"double"</span>, <span class='st'>"integer"</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_column_name</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>col</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,11 +133,6 @@ check <code><a href='find_column_multi.html'>find_column_multi()</a></code> or <
     <tr>
       <th>col</th>
       <td><p>Column name in the database table</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of object as output ie. double, integer or character.
-Default is character.</p></td>
     </tr>
     </table>
 

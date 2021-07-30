@@ -18,8 +18,15 @@ lesorg(group = NULL, id = NULL)
 Read the specifications in the register database and implement them
 to the selected group of files (\emph{filgruppe}). All files under
 the selected group will be considered unless the \code{FILID} with
-argument \code{id} is specified. This is useful for testing.
+argument \code{id} is specified. Specifying \code{id} is useful for testing.
 
 The function \code{\link[=lesorg]{lesorg()}} is an
 alias to \code{\link[=read_org]{read_org()}}.
+}
+\examples{
+\dontrun{
+read_org("BEFOLKNING")
+read_org("BEFOLKNING", id = 19)
+read_org("BEFOLKNING", id = c(15, 50))
+}
 }
