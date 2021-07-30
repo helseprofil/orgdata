@@ -26,10 +26,8 @@
 #' @export
 find_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
   check_null(con)
-
   qs <- find_query(file, value, ...)
-  dt <- DBI::dbGetQuery(con, qs)
-  return(dt)
+  DBI::dbGetQuery(con, qs)
 }
 
 
@@ -52,5 +50,13 @@ find_query <- function(file = NULL, value = NULL, external = FALSE) {
 
   txt <- paste(readLines(path), collapse = "\n")
   check_sql(txt)
-  query <- sprintf(txt, value)
+  sprintf(txt, value)
+}
+
+# SQL code need sprintf for dynamic query
+check_sql <- function(x) {
+  # x : file with sql code
+  if (grepl("%", x) != 1) {
+    stop("Missing `sprintf` reference in SQL code")
+  }
 }

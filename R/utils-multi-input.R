@@ -80,10 +80,3 @@ one_arg_only <- function(x) {
     stop("Too many arguments. Try `find_column_multi_inputs` function")
   }
 }
-
-make_logical <- function(x) {
-  if (x %in% c("TRUE", "FALSE")) {
-    x <- as.logical(x)
-  }
-  return(x)
-}

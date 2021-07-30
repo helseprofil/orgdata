@@ -15,7 +15,7 @@
 get_innlesarg <- function(df = NULL) {
   # column INNLESARG must use coma ',' as seperation btw arguments!
   args <- find_column_multi(df, "INNLESARG", sep = ",")
-  input <- find_column_multi_input(args)
+  find_column_multi_input(args)
 }
 
 #' @title Get MANHEADER

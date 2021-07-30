@@ -3,7 +3,7 @@
 #' Find rawdata and load it into memory for further process.
 #' It requires the class attribute of the file is set prior to
 #' using [find_data()] method. Otherwise, use [read_file()] function
-#' instead unless you have specific reason for not to.
+#' instead unless you have specific reason not to.
 #' @param file Input file
 #' @param ... Other options relevant to the file type
 #' @examples
@@ -20,23 +20,21 @@ find_data <- function(file = NULL, ...) {
 #' @method find_data default
 #' @export
 find_data.default <- function(file, ...) {
-  fileExt <- tools::file_ext(file)
-  message(sprintf("Can't process file `%s` format", fileExt))
-  return(file)
+  ext <- tools::file_ext(file)
+  message(file)
+  stop(sprintf("Unable to read file `%s` format", ext))
 }
 
 #' @method find_data csv
 #' @export
 find_data.csv <- function(file, ...) {
-  args <- list(...)
-  dt <- data.table::fread(input = file)
-  return(dt)
+  data.table::fread(input = file, ...)
 }
 
 #' @method find_data xls
 #' @export
 find_data.xls <- function(file, ...) {
-  args <- list(...)
+  readxl::read_excel(path = file, ...)
 }
 
 #' @method find_data xlsx

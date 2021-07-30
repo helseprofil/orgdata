@@ -1,12 +1,4 @@
 # Check code ------------------------------------------
-# SQL code need sprintf for dynamic query
-check_sql <- function(x) {
-  # x : file with sql code
-  if (grepl("%", x) != 1) {
-    stop("Missing `sprintf` reference in SQL code")
-  }
-}
-
 # Arguments that are missing
 check_null <- function(arg, msg = NULL) {
   # msg : Alternative message if not using default
@@ -43,4 +35,12 @@ seperate_value <- function(x, sep = NULL, keep = NULL) {
 
   out <- trimws(out)
   return(out)
+}
+
+# TRUE/FALSE is character when fetching data from DB
+make_logical <- function(x) {
+  if (x %in% c("TRUE", "FALSE")) {
+    x <- as.logical(x)
+  }
+  return(x)
 }

@@ -15,11 +15,9 @@
 #' }
 #' @param group The group of files (\emph{filgruppe})
 #' @inheritParams find_year
-#' @param style Output data class style. The options are `DT`, `TB` and `DF`
-#'     which are [data.table], [tibble] and [data.frame] respectively.
 #' @aliases read_org lesorg
 #' @export
-read_org <- function(group = NULL, id = NULL, style = c("DT", "TB", "DF")) {
+read_org <- function(group = NULL, id = NULL) {
   style <- match.arg(style)
 
   dbFile <- file.path(
@@ -49,15 +47,6 @@ read_org <- function(group = NULL, id = NULL, style = c("DT", "TB", "DF")) {
 
 
   ## }
-
-  if (style != "DT") {
-    DT <- switch(style,
-                 TB = tibble::as_tibble(DT),
-                 DF = data.table::setDF(DT)
-                 )
-  }
-
-  return(DT)
 }
 
 

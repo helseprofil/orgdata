@@ -1,23 +1,18 @@
 #' Read Data File
-#' @description Read the rawdata
+#' @description Read rawdata. It uses the [find_data()] generic method.
+#'    For a =.csv= file, [data.table::fread()] is used and all the arguments
+#'    for \code{fread} function can be used. For a =.xlsx= or =.xls= file
+#'    [readxl::read_excel()] function is use and all its arguments.
 #' @inheritParams find_data
+#' @examples
+#' \dontrun{
+#' rdata <- read_file("/file/path/mydata.xlsx", sheet = "S3", range = cell_rows(1:4))
+#' rdata <- read_file("/file/path/mydata.csv", sep = ",", header = FALSE)
+#' }
 #' @export
 read_file <- function(file = NULL, ...) {
   check_null(file)
-  file <- identify_file(file)
+  ext <- tools::file_ext(file)
+  class(file) <- append(class(file), ext)
   find_data(file, ...)
-}
-
-
-identify_file <- function(x) {
-  fileExt <- tools::file_ext(x)
-
-  cls <- switch(fileExt,
-    csv = "csv",
-    xlsx = "xls",
-    xls = "xls"
-  )
-
-  class(x) <- append(class(x), cls)
-  return(x)
 }

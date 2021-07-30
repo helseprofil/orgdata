@@ -14,6 +14,7 @@ find_column_input <- function(df, col, type = c("character", "double", "integer"
   type <- match.arg(type)
   val <- trimws(df[, col])
   val <- input_type(val, type)
+  val <- make_logical(val)
   return(val)
 }
 
