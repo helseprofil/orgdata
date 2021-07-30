@@ -44,5 +44,5 @@ find_year <- function(id = NULL, con = NULL) {
   check_null(id, "FILID is missing")
   check_null(con)
   df <- find_spec("file-year.sql", id, con)
-  val <- find_column_input(df, "DEFAAR", "int")
+  find_column_input(df, "DEFAAR", "int")
 }
