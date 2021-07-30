@@ -26,8 +26,8 @@ test_that("Column output as expected", {
   expect_true(dummy_input("$Y"))
   expect_false(dummy_input("Y$"))
 
-  expect_error(seperate_value("3"))
-  expect_equal(seperate_value("3,5 = age,edu", sep = "="), c("3,5", "age,edu"))
-  expect_equal(seperate_value("3,5 = age,edu", sep = "=", keep = 1), "3,5")
-  expect_equal(seperate_value("3,5 = age,edu", sep = "=", keep = 2), "age,edu")
+  expect_error(separate_value("3"))
+  expect_equal(separate_value("3,5 = age,edu", sep = "="), c("3,5", "age,edu"))
+  expect_equal(separate_value("3,5 = age,edu", sep = "=", keep = 1), "3,5")
+  expect_equal(separate_value("3,5 = age,edu", sep = "=", keep = 2), "age,edu")
 })
