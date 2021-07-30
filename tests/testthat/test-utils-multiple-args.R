@@ -18,5 +18,5 @@ test_that("Get input column", {
   expect_equal(find_column_multi_input(txt3), txt4)
 
   expect_equal(find_column_multi_input_arg(txt3, "ark"), "Sheet1")
-  expect_equal(find_column_multi_input_arg(txt3, "header"), TRUE)
+  expect_identical(find_column_multi_input_arg(txt3, "header"), TRUE)
 })
