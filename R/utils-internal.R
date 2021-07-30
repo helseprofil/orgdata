@@ -16,16 +16,16 @@ check_null <- function(arg, msg = NULL) {
 }
 
 # Standard dummy input starts with symbol $
-# eg. column AAR
+# eg. column AAR with $Y
 dummy_input <- function(x) {
   grepl("^\\$", x)
 }
 
-# To seperate a string with selected sep symbol
+# To separate a string with selected sep symbol
 # Can keep both value ie. lhs and rhs or either one
-seperate_value <- function(x, sep = NULL, keep = NULL) {
-  # x : the string to be seperated
-  # sep : seperate symbole like ",","=" etc.
+separate_value <- function(x, sep = NULL, keep = NULL) {
+  # x : the string to be separated
+  # sep : separate symbole like ",","=" etc.
   # keep : Keep lhs or rhs eg. x[1] for lhs
   check_null(sep)
   out <- unlist(strsplit(x, sep))
@@ -33,8 +33,7 @@ seperate_value <- function(x, sep = NULL, keep = NULL) {
     out <- out[keep]
   }
 
-  out <- trimws(out)
-  return(out)
+  trimws(out)
 }
 
 # TRUE/FALSE is character when fetching data from DB

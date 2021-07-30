@@ -7,7 +7,7 @@
 #' function to get the value of the input as a list object. If you are only
 #' interested in a specific argument among these arguments in the column,
 #' then use [find_column_multi_input_arg()] function. See example.
-#' @param sep Symbols that seperate these arguments eg. "," or ":"
+#' @param sep Symbols that separate these arguments eg. "," or ":"
 #' @inheritParams find_column_input
 #' @examples
 #' \dontrun{
@@ -18,7 +18,7 @@
 #' @return Two different output:
 #' \itemize{
 #'    \item{[find_column_multi] gives a character vector of the
-#'          arguments that is seperated with \code{sep} argument}
+#'          arguments that is separated with \code{sep} argument}
 #'    \item{[find_column_multi_input] gives a list of argument names and their values}
 #' }
 #' @export
@@ -28,9 +28,9 @@ find_column_multi <- function(df = NULL, col = NULL, sep = c(",", ":", ";")) {
   sep <- match.arg(sep)
 
   if (is.null(col)) {
-    args <- seperate_value(df, sep)
+    args <- separate_value(df, sep)
   } else {
-    args <- seperate_value(df[, col], sep)
+    args <- separate_value(df[, col], sep)
   }
   return(args)
 }
@@ -46,7 +46,7 @@ find_column_multi_input <- function(input = NULL) {
 
   for (i in seq_len(length(inVar)))
   {
-    arg <- seperate_value(inVar[i], "=")
+    arg <- separate_value(inVar[i], "=")
     names(outVar)[i] <- arg[1]
     val <- make_logical(arg[2])
     outVar[[i]] <- val
@@ -68,7 +68,7 @@ find_column_multi_input_arg <- function(input = NULL, arg = NULL) {
   one_arg_only(arg)
 
   i <- grep(paste0("^", arg), input)
-  input <- seperate_value(input[i], "=", 2)
+  input <- separate_value(input[i], "=", 2)
   input <- make_logical(input)
   return(input)
 }

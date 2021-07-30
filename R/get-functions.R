@@ -3,7 +3,7 @@
 #' @description
 #' This function will access all possible arguments in columns \code{INNLESARG}
 #' in table \emph{tbl_Innlesing}'. Comma \code{","} \strong{MUST} be used to
-#' seperate arguments if there are more than one argument.
+#' separate arguments if there are more than one argument.
 #' For example:
 #'
 #' `header=TRUE, ark=Sheet1`
@@ -34,9 +34,9 @@ get_innlesarg <- function(df = NULL) {
 #' @export
 get_manheader <- function(df = NULL) {
   input <- find_column_input(df, "MANHEADER")
-  args <- seperate_value(input, "=")
-  lhs <- seperate_value(args[1], ",")
-  rhs <- seperate_value(args[2], ",")
+  args <- separate_value(input, "=")
+  lhs <- separate_value(args[1], ",")
+  rhs <- separate_value(args[2], ",")
 
   return(list(index = lhs, col = rhs))
 }
