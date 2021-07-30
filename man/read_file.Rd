@@ -13,9 +13,9 @@ read_file(file = NULL, ...)
 }
 \description{
 Read rawdata. It uses the \code{\link[=find_data]{find_data()}} generic method.
-For a =.csv= file, \code{\link[data.table:fread]{data.table::fread()}} is used and all the arguments
-for \code{fread} function can be used. For a =.xlsx= or =.xls= file
-\code{\link[readxl:read_excel]{readxl::read_excel()}} function is use and all its arguments.
+For a \code{ .csv } file, \code{\link[data.table:fread]{data.table::fread()}} is used and all the arguments
+for \code{fread} function can be used. For a \code{ xlsx } or \code{ .xls } file
+\code{\link[readxl:read_excel]{readxl::read_excel()}} function is used and all its arguments.
 }
 \examples{
 \dontrun{

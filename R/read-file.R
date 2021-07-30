@@ -1,8 +1,8 @@
 #' Read Data File
 #' @description Read rawdata. It uses the [find_data()] generic method.
-#'    For a =.csv= file, [data.table::fread()] is used and all the arguments
-#'    for \code{fread} function can be used. For a =.xlsx= or =.xls= file
-#'    [readxl::read_excel()] function is use and all its arguments.
+#'    For a \code{ .csv } file, [data.table::fread()] is used and all the arguments
+#'    for \code{fread} function can be used. For a \code{ xlsx } or \code{ .xls } file
+#'    [readxl::read_excel()] function is used and all its arguments.
 #' @inheritParams find_data
 #' @examples
 #' \dontrun{

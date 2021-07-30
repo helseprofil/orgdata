@@ -10,7 +10,7 @@ test_that("Check for error for SQL query", {
 
 
 test_that("Column output as expected", {
-  df <- data.frame(year = "2021 ", head = "TRUE", tail = "FALSE")
+  df <- data.frame(year = "2021 ", head = "TRUE", tail = "FALSE", txt = "Text")
 
   expect_identical(input_type("1", "int"), 1L)
   expect_identical(input_type("1", "double"), 1)
@@ -19,6 +19,7 @@ test_that("Column output as expected", {
   expect_identical(find_column_input(df, "year", "double"), 2021)
   expect_identical(find_column_input(df, "year", "int"), 2021L)
   expect_identical(find_column_input(df, "year", "char"), "2021")
+  expect_identical(find_column_input(df, "txt"), "Text")
   expect_identical(find_column_input(df, "head"), TRUE)
   expect_identical(find_column_input(df, "tail"), FALSE)
 
