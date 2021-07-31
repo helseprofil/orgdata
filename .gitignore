@@ -41,3 +41,4 @@ vignettes/*.pdf
 /dev/innlesarg.R
 /dev/options.R
 /tests/testthat/test-locally.R
+/README.html

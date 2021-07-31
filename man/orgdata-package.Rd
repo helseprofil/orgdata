@@ -6,6 +6,8 @@
 \alias{orgdata-package}
 \title{orgdata: Aggregating original data}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Aggretating original data usually with enumerical area codes to any geographical codes.
 }
 \details{
