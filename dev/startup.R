@@ -5,6 +5,7 @@ devtools::check()
 devtools::document()
 roxygen2::roxygenise(clean = TRUE)
 pkgdown::build_site()
+pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
 
 
@@ -66,7 +67,10 @@ usethis::use_package("readxl")
 # devtools::install_github("r-lib/pkgdown")
 # usethis::use_pkgdown() # use only once to configure package to use pkgdown
 pkgdown::build_site()
+pkgdown::preview_site()
+pkgdown::build_news()
 pkgdown::build_news(preview = TRUE)
+
 
 ## Use CI -------------------------------------------
 usethis::use_git_remote("origin", url = "https://github.com/helseprofil/orgdata.git", overwrite = TRUE)
