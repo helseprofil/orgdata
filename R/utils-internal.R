@@ -36,9 +36,9 @@ separate_value <- function(x, sep = NULL, keep = NULL) {
   trimws(out)
 }
 
-# TRUE/FALSE/NA is character when fetching data from DB
+# TRUE/FALSE is character when fetching data from DB
 make_logical <- function(x) {
-  if (x %in% c("TRUE", "FALSE", "NA")) {
+  if (x %in% c("TRUE", "FALSE")) {
     x <- as.logical(x)
   }
   return(x)
