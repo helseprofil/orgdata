@@ -3,11 +3,54 @@ home:
   - text: Folkehelseprofiler
     href: https://www.fhi.no/hn/folkehelse/folkehelseprofil
 
+authors:
+  Yusman Kamaleri:
+    href: https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/
 template:
   params:
     bootswatch: cosmo
 
 navbar:
-  structure:
-    left:  [home, intro, reference, articles, tutorials, news]
-    right: [github]
+  type: default
+  left:
+  - icon: fa-home fa-lg
+    href: index.html
+  - text: Get started
+    href: index.html
+  - text: Database
+    menu:
+    - text: Registration database
+      href:
+    - text: Geographical codes
+      href:
+  - text: Articles
+    menu:
+    - text: Something
+      href:
+  - text: Reference
+    href: reference/index.html
+  - text: News
+    menu:
+    - text: Changelog
+
+reference:
+- title: Database connection
+  desc: >
+    R6 class to connect to the database. Use `op.orgdata` to see orgdata config options
+    or `getOptions("orgdata.file")` for specific option.
+  contents:
+  - KHelse
+- title: Major functions
+  desc: Functions to produce a `csv` file for the selected group (*filgruppe*).
+  contents:
+  - starts_with("read_")
+- title: Main functions
+  desc: >
+    Main functions to get input data that are directly related to
+    the columnames in the registration database.
+  contents:
+  - starts_with("get_")
+- title: Helper functions
+  desc: Utility functions when working with orgdata.
+  contents:
+  - starts_with("find_")

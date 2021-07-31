@@ -18,6 +18,7 @@ to an Access Database.
 kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
 kh$dbname
 kh$db_close()
+kh$db_connect()
 }
 }
 \section{Public fields}{
@@ -65,6 +66,7 @@ Start connecting to the database.
 kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
 kh$dbname
 kh$db_close()
+kh$db_connect()
 }
 }
 \if{html}{\out{</div>}}

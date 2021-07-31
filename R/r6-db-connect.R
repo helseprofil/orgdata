@@ -32,6 +32,7 @@ KHelse <- R6::R6Class(
     #' kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
     #' kh$dbname
     #' kh$db_close()
+    #' kh$db_connect()
     #' }
     initialize = function(dbname = NULL) {
       if (is.null(dbname)) {

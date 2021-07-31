@@ -82,12 +82,46 @@ to an Access Database." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
+  <a href="../index.html">Get started</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Database
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Registration database</li>
+    <li class="dropdown-header">Geographical codes</li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Something</li>
+  </ul>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Changelog</li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -162,6 +196,7 @@ Data must be in a <code>data.frame</code> or <code>data.table</code> format.</p>
 kh &lt;- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
 kh$dbname
 kh$db_close()
+kh$db_connect()
 }
 </pre><p></div></p>
 
@@ -200,6 +235,7 @@ kh$db_close()
 <span class='va'>kh</span> <span class='op'>&lt;-</span> <span class='va'>KHelse</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>osDrive</span>, <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.folder"</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.file"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>kh</span><span class='op'>$</span><span class='va'>dbname</span>
 <span class='va'>kh</span><span class='op'>$</span><span class='fu'>db_close</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>kh</span><span class='op'>$</span><span class='fu'>db_connect</span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
@@ -213,7 +249,7 @@ kh$db_close()
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yusman Kamaleri.</p>
+  <p>Developed by <a href='https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/'>Yusman Kamaleri</a>.</p>
 </div>
 
 <div class="pkgdown">
