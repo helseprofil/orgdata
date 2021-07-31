@@ -1,4 +1,0 @@
-# Guides
-
-Bla.. bla.. bla..
-

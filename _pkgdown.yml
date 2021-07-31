@@ -15,8 +15,6 @@ navbar:
   left:
   - icon: fa-home fa-lg
     href: index.html
-  - text: Get started
-    href: index.html
   - text: Database
     menu:
     - text: Registration database
