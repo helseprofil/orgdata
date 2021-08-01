@@ -18,8 +18,6 @@
 #' @aliases read_org lesorg
 #' @export
 read_org <- function(group = NULL, id = NULL) {
-  style <- match.arg(style)
-
   dbFile <- file.path(
     osDrive,
     getOption("orgdata.folder"),
@@ -44,7 +42,7 @@ read_org <- function(group = NULL, id = NULL) {
   message(group, " has ", odFiles, " files.")
 
   ## for (i in seq_len(odFiles)){
-
+  spec
 
   ## }
 }

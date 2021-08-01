@@ -17,6 +17,32 @@ Aggregating original data into different geographical levels.
 To install then run this code
 
 ``` r
-# install.packages("remotes")
+if(!require(remotes)) install.packages("remotes")
 remotes::install_github("helseprofil/orgdata")
+```
+
+## How to
+
+To implement the specifications per file group as being registered in
+the database use `read_org()` function.
+
+``` r
+library(orgdata)
+# All files under BEFOLKNING group
+read_org("BEFOLKNING")
+
+# For selected files only
+read_org("BEFOLKNING", id = 45)
+```
+
+## Read files
+
+The function `read_file()` can be used to check how a specific rawdata
+file will be read into R.
+
+``` r
+file01 <- "F:/Path/To/File/Rawdata.csv"
+file02 <- "F:/Path/To/File/Rawdata.xlsx"
+read_file(file01)
+read_file(file02)
 ```
