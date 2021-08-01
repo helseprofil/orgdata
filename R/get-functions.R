@@ -9,7 +9,6 @@
 #' `header=TRUE, ark=Sheet1`
 #' @inheritParams get_year
 #' @inheritParams find_spec
-#' @examples
 #' @return A list with the names and value of arguments
 #' @export
 get_innlesarg <- function(df = NULL) {
