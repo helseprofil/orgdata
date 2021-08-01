@@ -14,8 +14,13 @@
 #' @export
 get_innlesarg <- function(df = NULL) {
   # column INNLESARG must use coma ',' as seperation btw arguments!
-  args <- find_column_multi(df, "INNLESARG", sep = ",")
-  find_column_multi_input(args)
+  input <- find_column_input(df, "INNLESARG")
+
+  if (!is.na(input)) {
+    args <- find_column_multi(df, "INNLESARG", sep = ",")
+    input <- find_column_multi_input(args)
+  }
+  return(input)
 }
 
 #' @title Get MANHEADER
@@ -34,11 +39,14 @@ get_innlesarg <- function(df = NULL) {
 #' @export
 get_manheader <- function(df = NULL) {
   input <- find_column_input(df, "MANHEADER")
-  args <- separate_value(input, "=")
-  lhs <- separate_value(args[1], ",")
-  rhs <- separate_value(args[2], ",")
 
-  return(list(index = lhs, col = rhs))
+  if (!is.na(input)) {
+    args <- separate_value(input, "=")
+    lhs <- separate_value(args[1], ",")
+    rhs <- separate_value(args[2], ",")
+    input <- list(index = lhs, col = rhs)
+  }
+  return(input)
 }
 
 
