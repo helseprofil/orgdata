@@ -43,6 +43,8 @@ get_manheader <- function(df = NULL) {
   if (!is.na(input)) {
     args <- separate_value(input, "=")
     lhs <- separate_value(args[1], ",")
+    ## lhs will always be int as it refers to column number in rawdata
+    lhs <- as.integer(lhs)
     rhs <- separate_value(args[2], ",")
     input <- list(index = lhs, col = rhs)
   }
