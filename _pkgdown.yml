@@ -39,7 +39,7 @@ reference:
   - KHelse
 - title: Main functions
   desc: >
-    Functions to load rawdata to R and produce a `csv` file for the selected group (*filgruppe*).
+    Functions to load rawdata into R and produce a `csv` file for the selected group (*filgruppe*).
     These has `read_` prefix.
   contents:
   - starts_with("read_")
@@ -49,7 +49,7 @@ reference:
     input output relationship, for example `INNLESARG` or `MANHEADER`. This has `get_` prefix.
   contents:
   - starts_with("get_")
-- title: Generel functions
+- title: General functions
   desc: Utility functions when working with orgdata. This has `find_` prefix.
   contents:
   - starts_with("find_")
