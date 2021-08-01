@@ -37,17 +37,19 @@ reference:
     or `getOption()` for a specific option.
   contents:
   - KHelse
-- title: Major functions
-  desc: Functions to load rawdata to R and produce a `csv` file for the selected group (*filgruppe*).
-  contents:
-  - starts_with("read_")
 - title: Main functions
   desc: >
-    Main functions to get input data that are directly related to
-    the columnames in the registration database.
+    Functions to load rawdata to R and produce a `csv` file for the selected group (*filgruppe*).
+    These has `read_` prefix.
+  contents:
+  - starts_with("read_")
+- title: Column specific functions
+  desc: >
+    Functions to get input from specific columns in the database that does not have one-to-one
+    input output relationship, for example `INNLESARG` or `MANHEADER`. This has `get_` prefix.
   contents:
   - starts_with("get_")
-- title: Helper functions
-  desc: Utility functions when working with orgdata.
+- title: Generel functions
+  desc: Utility functions when working with orgdata. This has `find_` prefix.
   contents:
   - starts_with("find_")

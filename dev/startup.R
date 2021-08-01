@@ -70,7 +70,7 @@ pkgdown::build_site()
 pkgdown::preview_site()
 pkgdown::build_news()
 pkgdown::build_news(preview = TRUE)
-
+usethis::use_logo("man/figures/orgdataLogo.png")
 
 ## Use CI -------------------------------------------
 usethis::use_git_remote("origin", url = "https://github.com/helseprofil/orgdata.git", overwrite = TRUE)
