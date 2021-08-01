@@ -1,0 +1,14 @@
+#' Aggregate Data
+#' @description
+#' Get the specification on how the data will be aggregated to
+#' different geographical levels ie. county, manucipality, town etc.
+#' @inheritParams read_org
+#' @inheritParams find_spec
+#' @export
+get_aggregere <- function(group = NULL, con = NULL) {
+  check_null(group)
+  check_null(con)
+  spec <- find_spec("aggregate.sql", group, con)
+  input <- find_column_input(spec, "AGGREGERE")
+  separate_value(input, sep = ",")
+}

@@ -42,3 +42,5 @@ vignettes/*.pdf
 /dev/options.R
 /tests/testthat/test-locally.R
 /README.html
+/dev/logo.png
+/dev/logo02.png
