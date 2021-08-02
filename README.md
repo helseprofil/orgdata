@@ -10,7 +10,8 @@
 coverage](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://codecov.io/gh/helseprofil/orgdata?branch=main)
 <!-- badges: end -->
 
-Aggregating original data into different geographical levels.
+Aggregating **OR**i**G**inal **DATA** into different geographical
+levels.
 
 ## Installation
 
@@ -21,7 +22,7 @@ if(!require(remotes)) install.packages("remotes")
 remotes::install_github("helseprofil/orgdata")
 ```
 
-## How to
+## Usage
 
 To implement the specifications per file group as being registered in
 the database use `read_org()` function.
@@ -31,14 +32,16 @@ library(orgdata)
 # All files under BEFOLKNING group
 read_org("BEFOLKNING")
 
-# For selected files only
-read_org("BEFOLKNING", id = 45)
+# For selected files only where id is FILID
+read_org("BEFOLKNING", id = 48)
+read_org("BEFOLKNING", id = c(48, 72))
 ```
 
 ## Read files
 
 The function `read_file()` can be used to check how a specific rawdata
-file will be read into R.
+file will be read into R. Only the first three top and bottom rows will
+be displayed.
 
 ``` r
 file01 <- "F:/Path/To/File/Rawdata.csv"

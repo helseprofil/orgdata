@@ -25,7 +25,7 @@ to the raw data with column name \code{AAR}}
 }
 \description{
 Get the year of the rawdata either when it's available in the rawdata or
-manually specified in the registration database. Check helper function \code{\link[=find_year]{find_year()}}.
+manually specified in the registration database. Check helper function \code{\link[=is_defaar]{is_defaar()}}.
 
 \code{\link[=get_aar]{get_aar()}} is an alias of \code{\link[=get_year]{get_year()}}
 }

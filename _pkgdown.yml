@@ -40,16 +40,18 @@ reference:
 - title: Main functions
   desc: >
     Functions to load rawdata into R and produce a `csv` file for the selected group (*filgruppe*).
-    These has `read_` prefix.
+    These have `read_` prefix.
   contents:
   - starts_with("read_")
 - title: Column specific functions
   desc: >
     Functions to get input from specific columns in the database that does not have one-to-one
-    input output relationship, for example `INNLESARG` or `MANHEADER`. This has `get_` prefix.
+    input output relationship, for example `INNLESARG` or `MANHEADER`. These have `get_` prefix.
   contents:
   - starts_with("get_")
-- title: General functions
-  desc: Utility functions when working with orgdata. This has `find_` prefix.
+- title: Helper functions
+  desc: General functions when working with orgdata. These have `find_` prefix.
   contents:
   - starts_with("find_")
+- title: Internal functions
+  desc: Utility functions that are not exported. These have `is_` prefix.

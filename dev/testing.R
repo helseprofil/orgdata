@@ -43,7 +43,7 @@ dd
 ## File year
 (qr <- find_query("file-year.sql", 15))
 (sp <- find_spec("file-year.sql", 15, kh$dbconn))
-(yr <- find_year(15, kh$dbconn))
+(yr <- is_defaar(15, kh$dbconn))
 class(yr)
 
 get_year(spec[1, ], kh$dbconn)
