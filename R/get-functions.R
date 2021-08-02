@@ -40,11 +40,11 @@ get_manheader <- function(df = NULL) {
   input <- find_column_input(df, "MANHEADER")
 
   if (!is.na(input)) {
-    args <- separate_value(input, "=")
-    lhs <- separate_value(args[1], ",")
+    args <- is_separate(input, "=")
+    lhs <- is_separate(args[1], ",")
     ## lhs will always be int as it refers to column number in rawdata
     lhs <- as.integer(lhs)
-    rhs <- separate_value(args[2], ",")
+    rhs <- is_separate(args[2], ",")
     input <- list(index = lhs, col = rhs)
   }
   return(input)

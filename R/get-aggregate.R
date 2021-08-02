@@ -6,9 +6,9 @@
 #' @inheritParams find_spec
 #' @export
 get_aggregere <- function(group = NULL, con = NULL) {
-  check_null(group)
-  check_null(con)
+  is_null(group)
+  is_null(con)
   spec <- find_spec("aggregate.sql", group, con)
   input <- find_column_input(spec, "AGGREGERE")
-  separate_value(input, sep = ",")
+  is_separate(input, sep = ",")
 }

@@ -24,13 +24,13 @@
 #' @export
 find_column_multi <- function(df = NULL, col = NULL, sep = c(",", ":", ";")) {
   # Output is a vector of the INNLESARG input
-  check_null(df)
+  is_null(df)
   sep <- match.arg(sep)
 
   if (is.null(col)) {
-    args <- separate_value(df, sep)
+    args <- is_separate(df, sep)
   } else {
-    args <- separate_value(df[, col], sep)
+    args <- is_separate(df[, col], sep)
   }
   return(args)
 }
@@ -39,16 +39,16 @@ find_column_multi <- function(df = NULL, col = NULL, sep = c(",", ":", ";")) {
 #' @rdname find_column_multi
 #' @param input Input argument(s) as a character vector
 find_column_multi_input <- function(input = NULL) {
-  check_null(input)
+  is_null(input)
 
   inVar <- input[!is.na(input)]
   outVar <- vector(mode = "list", length = length(inVar))
 
   for (i in seq_len(length(inVar)))
   {
-    arg <- separate_value(inVar[i], "=")
+    arg <- is_separate(inVar[i], "=")
     names(outVar)[i] <- arg[1]
-    val <- make_logical(arg[2])
+    val <- is_logical(arg[2])
     outVar[[i]] <- val
   }
 
@@ -63,17 +63,17 @@ find_column_multi_input <- function(input = NULL) {
 find_column_multi_input_arg <- function(input = NULL, arg = NULL) {
   # arg : Name of arg in the column eg. header
   # input : the set of arguments in the columns INNLESARG as a vector via find_column_multi()
-  check_null(arg)
-  check_null(input)
-  one_arg_only(arg)
+  is_null(arg)
+  is_null(input)
+  is_one_arg(arg)
 
   i <- grep(paste0("^", arg), input)
-  input <- separate_value(input[i], "=", 2)
-  input <- make_logical(input)
+  input <- is_separate(input[i], "=", 2)
+  input <- is_logical(input)
   return(input)
 }
 
-one_arg_only <- function(x) {
+is_one_arg <- function(x) {
   symbol <- gregexpr("=", x)
   many <- length(symbol[[1]])
   if (many > 1) {

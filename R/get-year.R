@@ -1,7 +1,7 @@
 #' @title Get Year of Data
 #' @description
 #' Get the year of the rawdata either when it's available in the rawdata or
-#' manually specified in the registration database. Check helper function [find_year()].
+#' manually specified in the registration database. Check helper function [is_defaar()].
 #'
 #' [get_aar()] is an alias of [get_year()]
 #' @param df Specifications data as a data.frame
@@ -18,11 +18,11 @@
 #' @export
 get_year <- function(df = NULL, con = NULL) {
   year <- find_column_input(df, "AAR")
-  dummy <- dummy_input(year)
+  dummy <- is_dummy(year)
 
   if (dummy) {
     fileID <- find_column_input(df, "FILID", "int")
-    year <- find_year(fileID, con)
+    year <- is_defaar(fileID, con)
   }
   return(year)
 }
@@ -31,18 +31,19 @@ get_year <- function(df = NULL, con = NULL) {
 #' @rdname get_year
 get_aar <- get_year
 
-#' @export
+
+#' @keywords internal
 #' @title  Year for The Data
 #' @description
 #' Find the year value in column \code{DEFAAR} from table \emph{tbl_Orgfile}
 #' when column for year isn't available in the raw data. This is
 #' indicated with \code{$Y} in column \code{AAR} in table \emph{tbl_Innlesing}.
-#' @param id \code{FILID} from table \emph{tbl_Orgfile}
 #' @inheritParams find_spec
+#' @inheritParams read_org
 #' @return An integer
-find_year <- function(id = NULL, con = NULL) {
-  check_null(id, "FILID is missing")
-  check_null(con)
+is_defaar <- function(id = NULL, con = NULL) {
+  is_null(id, "FILID is missing")
+  is_null(con)
   df <- find_spec("file-year.sql", id, con)
   find_column_input(df, "DEFAAR", "int")
 }

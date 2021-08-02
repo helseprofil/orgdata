@@ -13,8 +13,8 @@ find_column_input <- function(df, col, type = c("character", "double", "integer"
   # type : type of input object will be checked with typeof()
   type <- match.arg(type)
   val <- trimws(df[, col])
-  val <- input_type(val, type)
-  val <- make_logical(val)
+  val <- is_input_type(val, type)
+  val <- is_logical(val)
   return(val)
 }
 
@@ -23,7 +23,7 @@ find_column_input <- function(df, col, type = c("character", "double", "integer"
 #' @title Type of object input
 #' @description Convert value to selected type ie. checked with [typeof]
 #' @param value Input value to be converted
-input_type <- function(value, type = c("character", "double", "integer")) {
+is_input_type <- function(value, type = c("character", "double", "integer")) {
   # value : value to be converted
   # type : type of input object will be checked with typeof()
   type <- match.arg(type)

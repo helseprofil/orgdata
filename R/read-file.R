@@ -11,7 +11,7 @@
 #' }
 #' @export
 read_file <- function(file = NULL, ...) {
-  check_null(file)
+  is_null(file)
   ext <- tools::file_ext(file)
   class(file) <- append(class(file), ext)
   find_data(file, ...)

@@ -1,6 +1,6 @@
 # Check code ------------------------------------------
 # Arguments that are missing
-check_null <- function(arg, msg = NULL) {
+is_null <- function(arg, msg = NULL) {
   # msg : Alternative message if not using default
   argchr <- deparse(substitute(arg))
 
@@ -17,17 +17,17 @@ check_null <- function(arg, msg = NULL) {
 
 # Standard dummy input starts with symbol $
 # eg. column AAR with $Y
-dummy_input <- function(x) {
+is_dummy <- function(x) {
   grepl("^\\$", x)
 }
 
 # To separate a string with selected sep symbol
 # Can keep both value ie. lhs and rhs or either one
-separate_value <- function(x, sep = NULL, keep = NULL) {
+is_separate <- function(x, sep = NULL, keep = NULL) {
   # x : the string to be separated
   # sep : separate symbole like ",","=" etc.
   # keep : Keep lhs or rhs eg. x[1] for lhs
-  check_null(sep)
+  is_null(sep)
   out <- unlist(strsplit(x, sep))
   if (!is.null(keep)) {
     out <- out[keep]
@@ -37,7 +37,7 @@ separate_value <- function(x, sep = NULL, keep = NULL) {
 }
 
 # TRUE/FALSE is character when fetching data from DB
-make_logical <- function(x) {
+is_logical <- function(x) {
   if (!is.na(x) && x %in% c("TRUE", "FALSE")) {
     x <- as.logical(x)
   }

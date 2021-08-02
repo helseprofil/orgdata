@@ -1,9 +1,9 @@
 test_that("Helper functions", {
   txt1 <- "ark=Sheet1"
 
-  expect_equal(separate_value(txt1, "="), c("ark", "Sheet1"))
-  expect_equal(separate_value(txt1, "=", 1), "ark")
-  expect_equal(separate_value(txt1, "=", 2), "Sheet1")
+  expect_equal(is_separate(txt1, "="), c("ark", "Sheet1"))
+  expect_equal(is_separate(txt1, "=", 1), "ark")
+  expect_equal(is_separate(txt1, "=", 2), "Sheet1")
 })
 
 test_that("Get input column", {

@@ -25,7 +25,7 @@
 #' @return Out put will be a data.frame.
 #' @export
 find_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
-  check_null(con)
+  is_null(con)
   qs <- find_query(file, value, ...)
   DBI::dbGetQuery(con, qs)
 }
@@ -39,8 +39,8 @@ find_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
 #' qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
 #' }
 find_query <- function(file = NULL, value = NULL, external = FALSE) {
-  check_null(file)
-  check_null(value)
+  is_null(file)
+  is_null(value)
 
   path <- system.file(file, package = "orgdata")
 
@@ -49,12 +49,12 @@ find_query <- function(file = NULL, value = NULL, external = FALSE) {
   }
 
   txt <- paste(readLines(path), collapse = "\n")
-  check_sql(txt)
+  is_sql_code(txt)
   sprintf(txt, value)
 }
 
 # SQL code need sprintf for dynamic query
-check_sql <- function(x) {
+is_sql_code <- function(x) {
   # x : file with sql code
   if (grepl("%", x) != 1) {
     stop("Missing `sprintf` reference in SQL code")

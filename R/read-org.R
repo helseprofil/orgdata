@@ -14,7 +14,7 @@
 #' read_org("BEFOLKNING", id = c(15, 50))
 #' }
 #' @param group The group of files (\emph{filgruppe})
-#' @inheritParams find_year
+#' @param id \code{FILID} from table \emph{tbl_Orgfile}
 #' @aliases read_org lesorg
 #' @export
 read_org <- function(group = NULL, id = NULL) {
