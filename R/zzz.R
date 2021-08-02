@@ -7,7 +7,8 @@ op.orgdata <- list(
   orgdata.folder = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING",
   orgdata.file = "org-innlesing.accdb",
   orgdata.rawdata = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
-  orgdata.geofile = ""
+  orgdata.geofile = "",
+  orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL")
 )
 
 .onLoad <- function(libname, pkgname) {
@@ -22,4 +23,4 @@ OS <- Sys.info()["sysname"]
 osDrive <- switch(OS,
   Linux = "/mnt/F",
   Windows = "F:"
-  )
+)
