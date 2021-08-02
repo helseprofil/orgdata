@@ -5,3 +5,5 @@ The loop refers to the variable with =NA=. Should use =seq_len(length(inVar))=.
 Check if =is_separate= works correctly when there is whitespace eg. ~3 = AGE~.
 * TODO Error for MANHEADER
 Should give error message when MANHEADER isn't balance eg. ~3,5=AGE~
+* TODO Read files
+All files must be standardized to =data.table= class before merging.

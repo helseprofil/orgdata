@@ -40,8 +40,7 @@ read_org("BEFOLKNING", id = c(48, 72))
 ## Read files
 
 The function `read_file()` can be used to check how a specific rawdata
-file will be read into R. Only the first three top and bottom rows will
-be displayed.
+file will be read into R.
 
 ``` r
 file01 <- "F:/Path/To/File/Rawdata.csv"

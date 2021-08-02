@@ -202,7 +202,7 @@ arguments that is separated with <code>sep</code> argument</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>args</span> <span class='op'>&lt;-</span> <span class='fu'>find_column_multi</span><span class='op'>(</span><span class='va'>spec</span><span class='op'>$</span><span class='va'>INNLESARG</span><span class='op'>)</span>
+<span class='va'>args</span> <span class='op'>&lt;-</span> <span class='fu'>find_column_multi</span><span class='op'>(</span><span class='va'>spec</span>, <span class='st'>"INNLESARG"</span><span class='op'>)</span>
 <span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'>find_column_multi_input</span><span class='op'>(</span><span class='va'>args</span><span class='op'>)</span>
 <span class='va'>val</span> <span class='op'>&lt;-</span> <span class='fu'>find_column_multi_input_arg</span><span class='op'>(</span><span class='va'>args</span>, <span class='st'>"header"</span><span class='op'>)</span>
 <span class='op'>}</span>

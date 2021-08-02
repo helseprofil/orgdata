@@ -11,7 +11,7 @@
 #' @inheritParams find_column_input
 #' @examples
 #' \dontrun{
-#' args <- find_column_multi(spec$INNLESARG)
+#' args <- find_column_multi(spec, "INNLESARG")
 #' vals <- find_column_multi_input(args)
 #' val <- find_column_multi_input_arg(args, "header")
 #' }

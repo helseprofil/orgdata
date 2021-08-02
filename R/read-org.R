@@ -2,7 +2,7 @@
 #' @description
 #' Read the specifications in the register database and implement them
 #' to the selected group of files (\emph{filgruppe}). All files under
-#' the selected group will be considered unless the \code{FILID} with
+#' the selected group will be considered unless the \code{KOBLID} with
 #' argument \code{id} is specified. Specifying \code{id} is useful for testing.
 #'
 #' The function [lesorg()] is an
@@ -14,7 +14,7 @@
 #' read_org("BEFOLKNING", id = c(15, 50))
 #' }
 #' @param group The group of files (\emph{filgruppe})
-#' @param id \code{FILID} from table \emph{tbl_Orgfile}
+#' @param id \code{KOBLID} from table \emph{tbl_Koble}
 #' @aliases read_org lesorg
 #' @export
 read_org <- function(group = NULL, id = NULL) {
@@ -32,19 +32,25 @@ read_org <- function(group = NULL, id = NULL) {
     con = kh$dbconn
   )
 
+  koblid <- spec$KOBLID
   if (!is.null(id)) {
-    ## TODO Select the id
+    koblid <- id
+    spec <- spec[spec$KOBLID %in% koblid, ]
   }
 
-  ## TODO - Read line by line if it's more than 1 line
-  odFiles <- nrow(spec)
+  message(group, " has ", length(koblid), " files.")
 
-  message(group, " has ", odFiles, " files.")
+  DT <- vector(mode = "list", length = length(koblid))
 
-  ## for (i in seq_len(odFiles)){
-  spec
+  for (i in seq_len(length(koblid))) {
+    filespec <- spec[i, ]
+    filename <- find_column_input(filespec, "FILNAVN")
+    filepath <- file.path(osDrive, getOption("orgdata.rawdata"), filename)
+    dt <- read_file(filepath)
+    DT[[i]] <- dt
+  }
 
-  ## }
+  out <- data.table::rbindlist(DT)
 }
 
 

@@ -12,12 +12,12 @@ lesorg(group = NULL, id = NULL)
 \arguments{
 \item{group}{The group of files (\emph{filgruppe})}
 
-\item{id}{\code{FILID} from table \emph{tbl_Orgfile}}
+\item{id}{\code{KOBLID} from table \emph{tbl_Koble}}
 }
 \description{
 Read the specifications in the register database and implement them
 to the selected group of files (\emph{filgruppe}). All files under
-the selected group will be considered unless the \code{FILID} with
+the selected group will be considered unless the \code{KOBLID} with
 argument \code{id} is specified. Specifying \code{id} is useful for testing.
 
 The function \code{\link[=lesorg]{lesorg()}} is an
