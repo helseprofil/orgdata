@@ -22,15 +22,15 @@
 #'    \item{[find_column_multi_input] gives a list of argument names and their values}
 #' }
 #' @export
-find_column_multi <- function(df = NULL, col = NULL, sep = c(",", ":", ";")) {
+find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", ":", ";")) {
   # Output is a vector of the INNLESARG input
-  is_null(df)
+  is_null(spec)
   sep <- match.arg(sep)
 
   if (is.null(col)) {
-    args <- is_separate(df, sep)
+    args <- is_separate(spec, sep)
   } else {
-    args <- is_separate(df[, col], sep)
+    args <- is_separate(spec[, col], sep)
   }
   return(args)
 }

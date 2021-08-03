@@ -2,17 +2,17 @@
 #' Columns with Single Input
 #' @description
 #' Get the value of a column when it's only one input is allowed.
-#' @param df Data.frame extracted form registration database
+#' @param spec Specifications data as a data.frame
 #' @param type Type of object as output ie. double, integer or character.
 #'     Default is character.
 #' @param col Column name in the database table
 #' @export
-find_column_input <- function(df, col, type = c("character", "double", "integer")) {
-  # df : Input data as data.frame
-  # col : Selected column in df
+find_column_input <- function(spec = NULL, col = NULL, type = c("character", "double", "integer")) {
+  # spec : Input data as data.frame
+  # col : Selected column in spec
   # type : type of input object will be checked with typeof()
   type <- match.arg(type)
-  val <- trimws(df[, col])
+  val <- trimws(spec[, col])
   val <- is_input_type(val, type)
   val <- is_logical(val)
   return(val)

@@ -3,11 +3,11 @@
 #' @param file Input data
 #' @inheritParams get_year
 #' @export
-do_rename_col_standard <- function(file = NULL, df = NULL) {
+do_rename_col_standard <- function(file = NULL, spec = NULL) {
   is_null(file)
-  is_null(df, "Specification to rename columns is missing")
+  is_null(spec, "Specification to rename columns is missing")
 
   dt <- read_file(file)
-  cols <- is_column_standard(df)
+  cols <- find_column_standard(spec)
   data.table::setnames(dt, cols$old, cols$new)
 }

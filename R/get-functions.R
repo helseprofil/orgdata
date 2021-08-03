@@ -11,12 +11,12 @@
 #' @inheritParams find_spec
 #' @return A list with the names and value of arguments
 #' @export
-get_innlesarg <- function(df = NULL) {
+get_innlesarg <- function(spec = NULL) {
   # column INNLESARG must use coma ',' as seperation btw arguments!
-  input <- find_column_input(df, "INNLESARG")
+  input <- find_column_input(spec, "INNLESARG")
 
   if (!is.na(input)) {
-    args <- find_column_multi(df, "INNLESARG", sep = ",")
+    args <- find_column_multi(spec, "INNLESARG", sep = ",")
     input <- find_column_multi_input(args)
   }
   return(input)
@@ -36,8 +36,8 @@ get_innlesarg <- function(df = NULL) {
 #' @return A list containing \code{$index} to refer to the column index and
 #'     \code{$col} for the new name of the selected column index.
 #' @export
-get_manheader <- function(df = NULL) {
-  input <- find_column_input(df, "MANHEADER")
+get_manheader <- function(spec = NULL) {
+  input <- find_column_input(spec, "MANHEADER")
 
   if (!is.na(input)) {
     args <- is_separate(input, "=")
@@ -58,9 +58,9 @@ get_manheader <- function(df = NULL) {
 #' @inheritParams find_column_input
 #' @examples
 #' \dontrun{
-#' geo <- get_column_input(df, "GEO")
+#' geo <- get_column_input(spec, "GEO")
 #' }
 #' @export
-get_column_input <- function(df, col) {
-  find_column_input(df, col)
+get_column_input <- function(spec, col) {
+  find_column_input(spec, col)
 }

@@ -27,7 +27,7 @@ do_split <- function(dt = NULL, split = NULL) {
 #'   for \code{group} and \code{con} must be \code{NULL}.
 #' @inheritParams read_org
 #' @inheritParams find_spec
-#' @param spec Specification data from register database
+#' @inheritParams find_column_input
 #' @return A list consist of to variable ie. \code{from} and \code{to}
 #'   indicating which column to split and what the new column name will be
 #' @export

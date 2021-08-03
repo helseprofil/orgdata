@@ -4,7 +4,7 @@
 #' manually specified in the registration database. Check helper function [is_defaar()].
 #'
 #' [get_aar()] is an alias of [get_year()]
-#' @param df Specifications data as a data.frame
+#' @param spec Specifications data as a data.frame
 #' @inheritParams get_innlesarg
 #' @inheritParams find_spec
 #' @return Either a character or integer value.
@@ -16,12 +16,12 @@
 #'    }
 #' @aliases get_year get_aar
 #' @export
-get_year <- function(df = NULL, con = NULL) {
-  year <- find_column_input(df, "AAR")
+get_year <- function(spec = NULL, con = NULL) {
+  year <- find_column_input(spec, "AAR")
   dummy <- is_dummy(year)
 
   if (dummy) {
-    fileID <- find_column_input(df, "FILID", "int")
+    fileID <- find_column_input(spec, "FILID", "int")
     year <- is_defaar(fileID, con)
   }
   return(year)
@@ -44,6 +44,6 @@ get_aar <- get_year
 is_defaar <- function(id = NULL, con = NULL) {
   is_null(id, "FILID is missing")
   is_null(con)
-  df <- find_spec("file-year.sql", id, con)
-  find_column_input(df, "DEFAAR", "int")
+  spec <- find_spec("file-year.sql", id, con)
+  find_column_input(spec, "DEFAAR", "int")
 }
