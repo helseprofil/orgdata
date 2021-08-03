@@ -149,14 +149,18 @@
     <p>Get the value of a column when it's only one input is allowed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_column_input</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>col</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"character"</span>, <span class='st'>"double"</span>, <span class='st'>"integer"</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>find_column_input</span><span class='op'>(</span>
+  spec <span class='op'>=</span> <span class='cn'>NULL</span>,
+  col <span class='op'>=</span> <span class='cn'>NULL</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"character"</span>, <span class='st'>"double"</span>, <span class='st'>"integer"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df</th>
-      <td><p>Data.frame extracted form registration database</p></td>
+      <th>spec</th>
+      <td><p>Specifications data as a data.frame</p></td>
     </tr>
     <tr>
       <th>col</th>

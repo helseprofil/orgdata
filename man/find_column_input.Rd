@@ -4,10 +4,14 @@
 \alias{find_column_input}
 \title{Columns with Single Input}
 \usage{
-find_column_input(df, col, type = c("character", "double", "integer"))
+find_column_input(
+  spec = NULL,
+  col = NULL,
+  type = c("character", "double", "integer")
+)
 }
 \arguments{
-\item{df}{Data.frame extracted form registration database}
+\item{spec}{Specifications data as a data.frame}
 
 \item{col}{Column name in the database table}
 

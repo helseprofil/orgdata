@@ -4,10 +4,10 @@
 \alias{get_column_input}
 \title{Get Column Input}
 \usage{
-get_column_input(df, col)
+get_column_input(spec, col)
 }
 \arguments{
-\item{df}{Data.frame extracted form registration database}
+\item{spec}{Specifications data as a data.frame}
 
 \item{col}{Column name in the database table}
 }
@@ -18,6 +18,6 @@ check \code{\link[=find_column_multi]{find_column_multi()}} or \code{\link[=get_
 }
 \examples{
 \dontrun{
-geo <- get_column_input(df, "GEO")
+geo <- get_column_input(spec, "GEO")
 }
 }

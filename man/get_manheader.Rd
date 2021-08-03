@@ -4,10 +4,10 @@
 \alias{get_manheader}
 \title{Get MANHEADER}
 \usage{
-get_manheader(df = NULL)
+get_manheader(spec = NULL)
 }
 \arguments{
-\item{df}{Specifications data as a data.frame}
+\item{spec}{Specifications data as a data.frame}
 }
 \value{
 A list containing \code{$index} to refer to the column index and

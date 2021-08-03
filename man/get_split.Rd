@@ -11,7 +11,7 @@ get_split(group = NULL, con = NULL, spec = NULL)
 
 \item{con}{Connection to database}
 
-\item{spec}{Specification data from register database}
+\item{spec}{Specifications data as a data.frame}
 }
 \value{
 A list consist of to variable ie. \code{from} and \code{to}

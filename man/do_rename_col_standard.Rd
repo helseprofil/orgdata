@@ -4,12 +4,12 @@
 \alias{do_rename_col_standard}
 \title{Rename Standard Columns}
 \usage{
-do_rename_col_standard(file = NULL, df = NULL)
+do_rename_col_standard(file = NULL, spec = NULL)
 }
 \arguments{
 \item{file}{Input data}
 
-\item{df}{Specifications data as a data.frame}
+\item{spec}{Specifications data as a data.frame}
 }
 \description{
 Renaming standard columns as in \code{getOption("orgdata.columns")}.

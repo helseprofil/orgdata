@@ -159,7 +159,7 @@ interested in a specific argument among these arguments in the column,
 then use <code>find_column_multi_input_arg()</code> function. See example.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_column_multi</span><span class='op'>(</span>df <span class='op'>=</span> <span class='cn'>NULL</span>, col <span class='op'>=</span> <span class='cn'>NULL</span>, sep <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>","</span>, <span class='st'>":"</span>, <span class='st'>";"</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>find_column_multi</span><span class='op'>(</span>spec <span class='op'>=</span> <span class='cn'>NULL</span>, col <span class='op'>=</span> <span class='cn'>NULL</span>, sep <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>","</span>, <span class='st'>":"</span>, <span class='st'>";"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>find_column_multi_input</span><span class='op'>(</span>input <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
@@ -169,8 +169,8 @@ then use <code>find_column_multi_input_arg()</code> function. See example.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df</th>
-      <td><p>Data.frame extracted form registration database</p></td>
+      <th>spec</th>
+      <td><p>Specifications data as a data.frame</p></td>
     </tr>
     <tr>
       <th>col</th>

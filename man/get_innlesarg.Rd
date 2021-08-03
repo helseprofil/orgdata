@@ -4,10 +4,10 @@
 \alias{get_innlesarg}
 \title{Get INNLESARG Specifications}
 \usage{
-get_innlesarg(df = NULL)
+get_innlesarg(spec = NULL)
 }
 \arguments{
-\item{df}{Specifications data as a data.frame}
+\item{spec}{Specifications data as a data.frame}
 }
 \value{
 A list with the names and value of arguments

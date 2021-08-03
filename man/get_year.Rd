@@ -5,12 +5,12 @@
 \alias{get_aar}
 \title{Get Year of Data}
 \usage{
-get_year(df = NULL, con = NULL)
+get_year(spec = NULL, con = NULL)
 
-get_aar(df = NULL, con = NULL)
+get_aar(spec = NULL, con = NULL)
 }
 \arguments{
-\item{df}{Specifications data as a data.frame}
+\item{spec}{Specifications data as a data.frame}
 
 \item{con}{Connection to database}
 }

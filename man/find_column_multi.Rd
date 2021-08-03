@@ -6,14 +6,14 @@
 \alias{find_column_multi_input_arg}
 \title{Columns with Multiple Inputs}
 \usage{
-find_column_multi(df = NULL, col = NULL, sep = c(",", ":", ";"))
+find_column_multi(spec = NULL, col = NULL, sep = c(",", ":", ";"))
 
 find_column_multi_input(input = NULL)
 
 find_column_multi_input_arg(input = NULL, arg = NULL)
 }
 \arguments{
-\item{df}{Data.frame extracted form registration database}
+\item{spec}{Specifications data as a data.frame}
 
 \item{col}{Column name in the database table}
 
