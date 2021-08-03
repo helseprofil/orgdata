@@ -31,7 +31,9 @@ KHelse <- R6::R6Class(
     #' @param dbname Database filename.
     #' @examples
     #' \dontrun{
-    #' kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.db")))
+    #' kh <- KHelse$new(file.path(getOption("orgdata.drive"),
+    #'                            getOption("orgdata.folder"),
+    #'                            getOption("orgdata.db")))
     #' kh$dbname
     #' kh$db_close()
     #' kh$db_connect()

@@ -1,4 +1,4 @@
-#' @title Rename standard columns
+#' @title Rename Standard Columns
 #' @description Renaming standard columns as in `getOption("orgdata.columns")`.
 #' @param file Input data
 #' @inheritParams get_year

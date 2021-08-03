@@ -21,19 +21,18 @@
 #' @param value The value for selection in SQL code with \code{base::sprintf} style.
 #'    For example the name of a \emph{filgruppe}.
 #' @param con Connection to database
-#' @param ... Other arguments
+#' @param external If the SQL file is outside of the package. Default is \code{FALSE}.
 #' @return Out put will be a data.frame.
 #' @export
-find_spec <- function(file = NULL, value = NULL, con = NULL, ...) {
+find_spec <- function(file = NULL, value = NULL, con = NULL, external = FALSE) {
   is_null(con)
-  qs <- find_query(file, value, ...)
+  qs <- find_query(file, value, external)
   DBI::dbGetQuery(con, qs)
 }
 
 
 #' @export
 #' @rdname find_spec
-#' @param external If SQL file is outside of the package. Default is \code{FALSE}.
 #' @examples
 #' \dontrun{
 #' qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)

@@ -8,7 +8,7 @@
 get_aggregere <- function(group = NULL, con = NULL) {
   is_null(group)
   is_null(con)
-  spec <- find_spec("aggregate.sql", group, con)
+  spec <- find_spec("filegroups.sql", group, con)
   input <- find_column_input(spec, "AGGREGERE")
   is_separate(input, sep = ",")
 }

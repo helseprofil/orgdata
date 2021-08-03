@@ -59,7 +59,7 @@ lesorg <- read_org
 ## Create complete path to DB file
 is_db_file <- function() {
   db <- file.path(
-    osDrive,
+    getOption("orgdata.drive"),
     getOption("orgdata.folder"),
     getOption("orgdata.db")
   )
@@ -74,7 +74,7 @@ is_db_file <- function() {
 ## Create complete path to raw data file
 is_raw_file <- function(spec) {
   filename <- find_column_input(spec, "FILNAVN")
-  filepath <- file.path(osDrive, getOption("orgdata.rawdata"), filename)
+  filepath <- file.path(getOption("orgdata.drive"), getOption("orgdata.rawdata"), filename)
 
   if (isFALSE(file.exists(filepath))) {
     stop("File does not exist! \n", filepath)
