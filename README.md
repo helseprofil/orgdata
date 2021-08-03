@@ -10,8 +10,7 @@
 coverage](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://codecov.io/gh/helseprofil/orgdata?branch=main)
 <!-- badges: end -->
 
-Aggregating **OR**i**G**inal **DATA** into different geographical
-levels.
+Aggregating **OR**i**G**inal **DATA** into a preferred data structure.
 
 ## Installation
 
@@ -32,7 +31,7 @@ library(orgdata)
 # All files under BEFOLKNING group
 read_org("BEFOLKNING")
 
-# For selected files only where id is FILID
+# For selected files only where id is KOBLID
 read_org("BEFOLKNING", id = 48)
 read_org("BEFOLKNING", id = c(48, 72))
 ```

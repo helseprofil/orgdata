@@ -49,6 +49,12 @@ reference:
     input output relationship, for example `INNLESARG` or `MANHEADER`. These have `get_` prefix.
   contents:
   - starts_with("get_")
+- title: Action functions
+  desc: >
+    Functions for doing the instructions specified such as `rename`, `recode` etc. These
+    have `do_` prefix.
+  contents:
+  - starts_with("do_")
 - title: Helper functions
   desc: General functions when working with orgdata. These have `find_` prefix.
   contents:

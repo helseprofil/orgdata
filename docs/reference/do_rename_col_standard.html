@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • orgdata</title>
+<title>Rename standard columns — do_rename_col_standard • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Rename standard columns — do_rename_col_standard" />
+<meta property="og:description" content="Renaming standard columns as in getOption(&quot;orgdata.columns&quot;)." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -66,7 +67,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -137,175 +138,34 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Rename standard columns</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/do-column-rename.R'><code>R/do-column-rename.R</code></a></small>
+    <div class="hidden name"><code>do_rename_col_standard.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Renaming standard columns as in <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.columns")</a></code>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>do_rename_col_standard</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, df <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-database-connection" class="hasAnchor"><a href="#section-database-connection" class="anchor"></a>Database connection</h2>
-          <p class="section-desc"><p>R6 class to connect to the database. Use <code>op.orgdata</code> to see orgdata config options or <code><a href="https://rdrr.io/r/base/options.html">getOption()</a></code> for a specific option.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="KHelse.html">KHelse</a></code> </p>
-        </td>
-        <td><p>R6 Class Connecting to Database</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-main-functions" class="hasAnchor"><a href="#section-main-functions" class="anchor"></a>Main functions</h2>
-          <p class="section-desc"><p>Functions to load rawdata into R and produce a <code>csv</code> file for the selected group (<em>filgruppe</em>). These have <code>read_</code> prefix.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="read_file.html">read_file()</a></code> </p>
-        </td>
-        <td><p>Read Data File</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_org.html">read_org()</a></code> <code><a href="read_org.html">lesorg()</a></code> </p>
-        </td>
-        <td><p>Read and Run the Specifications</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-column-specific-functions" class="hasAnchor"><a href="#section-column-specific-functions" class="anchor"></a>Column specific functions</h2>
-          <p class="section-desc"><p>Functions to get input from specific columns in the database that does not have one-to-one input output relationship, for example <code>INNLESARG</code> or <code>MANHEADER</code>. These have <code>get_</code> prefix.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_aggregere.html">get_aggregere()</a></code> </p>
-        </td>
-        <td><p>Aggregate Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_column_input.html">get_column_input()</a></code> </p>
-        </td>
-        <td><p>Get Column Input</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_innlesarg.html">get_innlesarg()</a></code> </p>
-        </td>
-        <td><p>Get INNLESARG Specifications</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_manheader.html">get_manheader()</a></code> </p>
-        </td>
-        <td><p>Get MANHEADER</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_year.html">get_year()</a></code> <code><a href="get_year.html">get_aar()</a></code> </p>
-        </td>
-        <td><p>Get Year of Data</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-action-functions" class="hasAnchor"><a href="#section-action-functions" class="anchor"></a>Action functions</h2>
-          <p class="section-desc"><p>Functions for doing the instructions specified such as <code>rename</code>, <code>recode</code> etc. These have <code>do_</code> prefix.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="do_rename_col_standard.html">do_rename_col_standard()</a></code> </p>
-        </td>
-        <td><p>Rename standard columns</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-helper-functions" class="hasAnchor"><a href="#section-helper-functions" class="anchor"></a>Helper functions</h2>
-          <p class="section-desc"><p>General functions when working with orgdata. These have <code>find_</code> prefix.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="find_column_input.html">find_column_input()</a></code> </p>
-        </td>
-        <td><p>Columns with Single Input</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_column_multi.html">find_column_multi()</a></code> <code><a href="find_column_multi.html">find_column_multi_input()</a></code> <code><a href="find_column_multi.html">find_column_multi_input_arg()</a></code> </p>
-        </td>
-        <td><p>Columns with Multiple Inputs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_data.html">find_data()</a></code> </p>
-        </td>
-        <td><p>Find Rawdata</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_spec.html">find_spec()</a></code> <code><a href="find_spec.html">find_query()</a></code> </p>
-        </td>
-        <td><p>File Specifications in Registration Database</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-internal-functions" class="hasAnchor"><a href="#section-internal-functions" class="anchor"></a>Internal functions</h2>
-          <p class="section-desc"><p>Utility functions that are not exported. These have <code>is_</code> prefix.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>Input data</p></td>
+    </tr>
+    <tr>
+      <th>df</th>
+      <td><p>Specifications data as a data.frame</p></td>
+    </tr>
     </table>
-  </div>
 
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
