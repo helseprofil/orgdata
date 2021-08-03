@@ -4,6 +4,13 @@ test_that("Check for error for SQL query", {
   sqlError <- paste(readLines(system.file(fileError, package = "orgdata")), collapse = "\n")
 
   expect_error(is_null(arg = NULL, "Display error"), "Display error")
+  expect_error(is_null_also(x = NULL, y = NULL))
+  expect_identical(is_null_also(x = "NotNull", y = NULL), NULL)
+  expect_identical(is_null_also(y = "NotNull"), NULL)
+
+  expect_error(is_not_both("A", "B"))
+  expect_identical(is_not_both(x = "NotNull"), NULL)
+  expect_identical(is_not_both(), NULL)
 
   expect_error(is_sql_code(sqlError), "Missing `sprintf` reference in SQL code")
 })

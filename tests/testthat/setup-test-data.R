@@ -36,5 +36,67 @@ df02 <- structure(list(
   -1L
 ))
 
+## BEFOLKNING spec
+befolk <- structure(list(
+  ID = 11L, FILGRUPPE = "BEFOLKNING", AGGREGERE = "F,K",
+  ADDKOL = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
+  SPLITTTIL = "landb, landf"
+), class = "data.frame", row.names = c(
+  NA,
+  -1L
+))
 
 ## Dataset --------------------------------
+DT01 <- structure(list(GEO = c(
+  "0806", "210", "0109", "0305", "903",
+  "0405", "0606", "0804", "0203", "1404"
+), KJONN = c(
+  1L, 2L, 2L,
+  2L, 2L, 2L, 2L, 2L, 1L, 1L
+), ALDER = c(
+  74L, 23L, 31L, 28L, 8L,
+  9L, 34L, 20L, 12L, 37L
+), LANDBAK = c(
+  "0", "0", "0", "0", "1C",
+  "2C", "3B", "0", "0", "2B"
+), VAL = c(
+  2L, 23L, 2L, 10L, 2L, 1L,
+  1L, 1L, 1L, 1L
+)), row.names = c(NA, -10L), class = c(
+  "data.table",
+  "data.frame"
+))
+
+
+fspec <- structure(list(
+  ID = 11L, FILGRUPPE = "BEFOLKNING", AGGREGERE = "F,K",
+  ADDKOL = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
+  SPLITTTIL = "landb, landf"
+), class = "data.frame", row.names = c(
+  NA,
+  -1L
+))
+
+
+DFout <- structure(list(GEO = c(
+  "0806", "210", "0109", "0305", "903",
+  "0405", "0606", "0804", "0203", "1404"
+), KJONN = c(
+  1L, 2L, 2L,
+  2L, 2L, 2L, 2L, 2L, 1L, 1L
+), ALDER = c(
+  74L, 23L, 31L, 28L, 8L,
+  9L, 34L, 20L, 12L, 37L
+), LANDBAK = c(
+  "0", "0", "0", "0", "1C",
+  "2C", "3B", "0", "0", "2B"
+), VAL = c(
+  2L, 23L, 2L, 10L, 2L, 1L,
+  1L, 1L, 1L, 1L
+), landb = c(
+  "0", "0", "0", "0", "1", "2", "3",
+  "0", "0", "2"
+), landf = c(
+  NA, NA, NA, NA, "C", "C", "B", NA,
+  NA, "B"
+)), row.names = c(NA, -10L), class = "data.frame")
