@@ -27,3 +27,5 @@ is_column_name <- function(df, col) {
   if (dummy) input <- NA
   list(col = col, input = input)
 }
+
+## TODO How to implement MANHEADER
