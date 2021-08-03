@@ -43,18 +43,18 @@ reference:
     These have `read_` prefix.
   contents:
   - starts_with("read_")
-- title: Column specific functions
-  desc: >
-    Functions to get input from specific columns in the database that does not have one-to-one
-    input output relationship, for example `INNLESARG` or `MANHEADER`. These have `get_` prefix.
-  contents:
-  - starts_with("get_")
 - title: Action functions
   desc: >
     Functions for doing the instructions specified such as `rename`, `recode` etc. These
     have `do_` prefix.
   contents:
   - starts_with("do_")
+- title: Column specific functions
+  desc: >
+    Functions to get input from specific columns in the database that does not have one-to-one
+    input output relationship, for example `INNLESARG` or `MANHEADER`. These have `get_` prefix.
+  contents:
+  - starts_with("get_")
 - title: Helper functions
   desc: General functions when working with orgdata. These have `find_` prefix.
   contents:
