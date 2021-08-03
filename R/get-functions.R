@@ -7,12 +7,20 @@
 #' For example:
 #'
 #' `header=TRUE, ark=Sheet1`
-#' @inheritParams get_year
+#' @inheritParams read_org
 #' @inheritParams find_spec
+#' @inheritParams find_column_input
 #' @return A list with the names and value of arguments
 #' @export
-get_innlesarg <- function(spec = NULL) {
+get_innlesarg <- function(group = NULL, con = NULL, spec = NULL) {
   # column INNLESARG must use coma ',' as seperation btw arguments!
+  is_null_also(group, spec)
+  is_null_both(group, spec)
+
+  if (is.null(spec)) {
+    spec <- find_spec("specification.sql", group, con)
+  }
+
   input <- find_column_input(spec, "INNLESARG")
 
   if (!is.na(input)) {
@@ -32,11 +40,20 @@ get_innlesarg <- function(spec = NULL) {
 #'
 #' means we want to rename column \code{3} to \code{AGE} and column \code{6}
 #' to \code{EDUCATION}.
-#' @inheritParams get_year
+#' @inheritParams read_org
+#' @inheritParams find_spec
+#' @inheritParams find_column_input
 #' @return A list containing \code{$index} to refer to the column index and
 #'     \code{$col} for the new name of the selected column index.
 #' @export
-get_manheader <- function(spec = NULL) {
+get_manheader <- function(group = NULL, con = NULL, spec = NULL) {
+  is_null_also(group, spec)
+  is_null_both(group, spec)
+
+  if (is.null(spec)) {
+    spec <- find_spec("specification.sql", group, con)
+  }
+
   input <- find_column_input(spec, "MANHEADER")
 
   if (!is.na(input)) {
