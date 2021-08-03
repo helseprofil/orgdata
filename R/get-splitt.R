@@ -34,7 +34,7 @@ do_split <- function(dt = NULL, split = NULL) {
 
 get_split <- function(group = NULL, con = NULL, spec = NULL) {
   is_null_also(group, spec)
-  is_not_both(group, spec)
+  is_null_both(group, spec)
 
   if (is.null(spec)) {
     spec <- find_spec("filegroups.sql", group, con)

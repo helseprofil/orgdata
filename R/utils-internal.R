@@ -30,7 +30,7 @@ is_null_also <- function(x = NULL, y = NULL, msg = NULL) {
   }
 }
 
-is_not_both <- function(x = NULL, y = NULL, msg = NULL) {
+is_null_both <- function(x = NULL, y = NULL, msg = NULL) {
   xchr <- deparse(substitute(x))
   ychr <- deparse(substitute(y))
 

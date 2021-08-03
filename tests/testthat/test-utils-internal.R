@@ -8,9 +8,9 @@ test_that("Check for error for SQL query", {
   expect_identical(is_null_also(x = "NotNull", y = NULL), NULL)
   expect_identical(is_null_also(y = "NotNull"), NULL)
 
-  expect_error(is_not_both("A", "B"))
-  expect_identical(is_not_both(x = "NotNull"), NULL)
-  expect_identical(is_not_both(), NULL)
+  expect_error(is_null_both("A", "B"))
+  expect_identical(is_null_both(x = "NotNull"), NULL)
+  expect_identical(is_null_both(), NULL)
 
   expect_error(is_sql_code(sqlError), "Missing `sprintf` reference in SQL code")
 })
