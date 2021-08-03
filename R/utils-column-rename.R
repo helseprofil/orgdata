@@ -1,4 +1,18 @@
-#' @title Rename standard columns
+#' @title Rename Standard Columns
+#' @description Renaming standard columns as in `getOption("orgdata.columns")`.
+#' @param file Input data
+#' @inheritParams get_year
+#' @export
+do_column_standard_rename <- function(file = NULL, spec = NULL) {
+  is_null(file)
+  is_null(spec, "Specification to rename columns is missing")
+
+  dt <- read_file(file)
+  cols <- find_column_standard(spec)
+  data.table::setnames(dt, cols$old, cols$new)
+}
+
+#' @title Find Standard Columns
 #' @description Rename columns in the rawdata to the standard names
 #'    as in `getOptions("orgdata.columns")`.
 #' @inheritParams find_column_input
