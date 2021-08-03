@@ -18,12 +18,7 @@
 #' @aliases read_org lesorg
 #' @export
 read_org <- function(group = NULL, id = NULL) {
-  dbFile <- file.path(
-    osDrive,
-    getOption("orgdata.folder"),
-    getOption("orgdata.file")
-  )
-
+  dbFile <- is_db_file()
   kh <- KHelse$new(dbFile)
 
   spec <- find_spec(
@@ -38,7 +33,7 @@ read_org <- function(group = NULL, id = NULL) {
     spec <- spec[spec$KOBLID %in% koblid, ]
   }
 
-  message(group, " has ", length(koblid), " files.")
+  message(group, " has ", length(koblid), " file(s).")
 
   DT <- vector(mode = "list", length = length(koblid))
 
@@ -46,7 +41,9 @@ read_org <- function(group = NULL, id = NULL) {
     filespec <- spec[i, ]
     filename <- find_column_input(filespec, "FILNAVN")
     filepath <- file.path(osDrive, getOption("orgdata.rawdata"), filename)
-    dt <- read_file(filepath)
+
+    ## TODO Any extra args for file specific from INNLESARG
+    dt <- do_rename_col_standard(filepath, filespec)
     DT[[i]] <- dt
   }
 
@@ -57,3 +54,16 @@ read_org <- function(group = NULL, id = NULL) {
 #' @export
 #' @rdname read_org
 lesorg <- read_org
+
+
+is_db_file <- function() {
+  db <- file.path(
+    osDrive,
+    getOption("orgdata.folder"),
+    getOption("orgdata.file")
+  )
+
+  if (isFALSE(file.exists(db))) {
+    stop("File does not exist! \n", db)
+  }
+}
