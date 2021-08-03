@@ -18,6 +18,7 @@
 #' @aliases read_org lesorg
 #' @export
 read_org <- function(group = NULL, id = NULL) {
+  is_null(group, "Filgruppe is missing")
   dbFile <- is_db_file()
   kh <- KHelse$new(dbFile)
 
@@ -39,8 +40,7 @@ read_org <- function(group = NULL, id = NULL) {
 
   for (i in seq_len(length(koblid))) {
     filespec <- spec[i, ]
-    filename <- find_column_input(filespec, "FILNAVN")
-    filepath <- file.path(osDrive, getOption("orgdata.rawdata"), filename)
+    filepath <- is_raw_file(filespec)
 
     ## TODO Any extra args for file specific from INNLESARG
     dt <- do_rename_col_standard(filepath, filespec)
@@ -55,15 +55,30 @@ read_org <- function(group = NULL, id = NULL) {
 #' @rdname read_org
 lesorg <- read_org
 
-
+## Helper functions ---------------------------------------------------------
+## Create complete path to DB file
 is_db_file <- function() {
   db <- file.path(
     osDrive,
     getOption("orgdata.folder"),
-    getOption("orgdata.file")
+    getOption("orgdata.db")
   )
 
   if (isFALSE(file.exists(db))) {
-    stop("File does not exist! \n", db)
+    stop("Access database file does not exist! \n", db)
   }
+
+  return(db)
+}
+
+## Create complete path to raw data file
+is_raw_file <- function(spec) {
+  filename <- find_column_input(spec, "FILNAVN")
+  filepath <- file.path(osDrive, getOption("orgdata.rawdata"), filename)
+
+  if (isFALSE(file.exists(filepath))) {
+    stop("File does not exist! \n", filepath)
+  }
+
+  return(filepath)
 }
