@@ -1,6 +1,6 @@
 # Check code ------------------------------------------
 # Arguments that are missing
-is_null <- function(arg, msg = NULL) {
+is_null <- function(arg = NULL, msg = NULL) {
   # msg : Alternative message if not using default
   argchr <- deparse(substitute(arg))
 
@@ -14,6 +14,38 @@ is_null <- function(arg, msg = NULL) {
     stop(msgTxt)
   }
 }
+
+is_null_also <- function(x = NULL, y = NULL, msg = NULL) {
+  xchr <- deparse(substitute(x))
+  ychr <- deparse(substitute(y))
+
+  if (!is.null(msg)) {
+    msgTxt <- msg
+  } else {
+    msgTxt <- sprintf("Either `%s` or `%s` can't be empty", xchr, ychr)
+  }
+
+  if (is.null(x) && is.null(y)) {
+    stop(msgTxt)
+  }
+}
+
+is_not_both <- function(x = NULL, y = NULL, msg = NULL) {
+  xchr <- deparse(substitute(x))
+  ychr <- deparse(substitute(y))
+
+  if (!is.null(msg)) {
+    msgTxt <- msg
+  } else {
+    msgTxt <- sprintf("Only one of `%s` or `%s` can be used", xchr, ychr)
+  }
+
+  if (!is.null(x) && !is.null(y)) {
+    stop(msgTxt)
+  }
+}
+
+
 
 # Standard dummy input starts with symbol $
 # eg. column AAR with $Y
