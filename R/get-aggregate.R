@@ -3,7 +3,7 @@
 #' Get the specification on how the data will be aggregated to
 #' different geographical levels ie. county, manucipality, town etc.
 #' @inheritParams read_org
-#' @inheritParams find_spec
+#' @inheritParams get_split
 #' @inheritParams find_column_input
 #' @export
 get_aggregere <- function(group = NULL, con = NULL, spec = NULL) {

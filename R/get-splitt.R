@@ -1,6 +1,6 @@
 #' @title Split Column
 #' @description Split the columns as specified in the registration database.
-#' @param dt Input data
+#' @param dt Input data preferrably in a \code{data.table} format but is not mandatory
 #' @param split Split specification as a list. Should be equivalent
 #'    to the output of [get_split()] function
 #' @export
@@ -27,7 +27,7 @@ do_split <- function(dt = NULL, split = NULL) {
 #'   for \code{group} and \code{con} must be \code{NULL}.
 #' @inheritParams read_org
 #' @inheritParams find_spec
-#' @inheritParams find_column_input
+#' @param spec Specification from \code{tbl_Filgruppe}
 #' @return A list consist of two variables ie. \code{from} and \code{to}
 #'   indicating which column to split and what the new column names will be
 #' @export
