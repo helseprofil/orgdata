@@ -4,9 +4,13 @@
 \alias{get_manheader}
 \title{Get MANHEADER}
 \usage{
-get_manheader(spec = NULL)
+get_manheader(group = NULL, con = NULL, spec = NULL)
 }
 \arguments{
+\item{group}{The group of files (\emph{filgruppe})}
+
+\item{con}{Connection to database}
+
 \item{spec}{Specifications data as a data.frame}
 }
 \value{

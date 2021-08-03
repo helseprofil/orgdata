@@ -14,8 +14,8 @@ get_split(group = NULL, con = NULL, spec = NULL)
 \item{spec}{Specifications data as a data.frame}
 }
 \value{
-A list consist of to variable ie. \code{from} and \code{to}
-indicating which column to split and what the new column name will be
+A list consist of two variables ie. \code{from} and \code{to}
+indicating which column to split and what the new column names will be
 }
 \description{
 Get the column to be splitted and the column name

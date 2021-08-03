@@ -4,12 +4,14 @@
 \alias{get_aggregere}
 \title{Aggregate Data}
 \usage{
-get_aggregere(group = NULL, con = NULL)
+get_aggregere(group = NULL, con = NULL, spec = NULL)
 }
 \arguments{
 \item{group}{The group of files (\emph{filgruppe})}
 
 \item{con}{Connection to database}
+
+\item{spec}{Specifications data as a data.frame}
 }
 \description{
 Get the specification on how the data will be aggregated to

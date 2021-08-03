@@ -4,9 +4,13 @@
 \alias{get_innlesarg}
 \title{Get INNLESARG Specifications}
 \usage{
-get_innlesarg(spec = NULL)
+get_innlesarg(group = NULL, con = NULL, spec = NULL)
 }
 \arguments{
+\item{group}{The group of files (\emph{filgruppe})}
+
+\item{con}{Connection to database}
+
 \item{spec}{Specifications data as a data.frame}
 }
 \value{
