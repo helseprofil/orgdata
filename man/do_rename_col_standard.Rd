@@ -2,7 +2,7 @@
 % Please edit documentation in R/do-column-rename.R
 \name{do_rename_col_standard}
 \alias{do_rename_col_standard}
-\title{Rename standard columns}
+\title{Rename Standard Columns}
 \usage{
 do_rename_col_standard(file = NULL, df = NULL)
 }

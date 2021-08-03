@@ -2,11 +2,13 @@
 % Please edit documentation in R/r6-db-connect.R
 \name{KHelse}
 \alias{KHelse}
-\title{R6 Class Connecting to Database}
+\title{Connecting to Database}
 \description{
 Connect to registration database to get all necessary information
 on data source and cleaning specification. The driver is only applicable
-to an Access Database.
+to an Access Database. Calling the method \code{KHelse$new(YourFilePath)}
+will create an object of R6 Class. Please refer to the
+\href{https://helseprofil.github.io/orgdata/reference/KHelse.html#examples}{examples}.
 }
 \examples{
 
@@ -15,7 +17,9 @@ to an Access Database.
 ## ------------------------------------------------
 
 \dontrun{
-kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
+kh <- KHelse$new(file.path(getOption("orgdata.drive"),
+                           getOption("orgdata.folder"),
+                           getOption("orgdata.db")))
 kh$dbname
 kh$db_close()
 kh$db_connect()
@@ -63,7 +67,9 @@ Start connecting to the database.
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\dontrun{
-kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
+kh <- KHelse$new(file.path(getOption("orgdata.drive"),
+                           getOption("orgdata.folder"),
+                           getOption("orgdata.db")))
 kh$dbname
 kh$db_close()
 kh$db_connect()

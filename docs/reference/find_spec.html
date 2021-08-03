@@ -177,7 +177,7 @@ Example of SQL code with <code>'%s'</code>:
 Which is saved in <code>C:/myfile.sql</code> and run as in the code example.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_spec</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, value <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>find_spec</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, value <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, external <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='fu'>find_query</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, value <span class='op'>=</span> <span class='cn'>NULL</span>, external <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
@@ -198,12 +198,8 @@ For example the name of a <em>filgruppe</em>.</p></td>
       <td><p>Connection to database</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Other arguments</p></td>
-    </tr>
-    <tr>
       <th>external</th>
-      <td><p>If SQL file is outside of the package. Default is <code>FALSE</code>.</p></td>
+      <td><p>If the SQL file is outside of the package. Default is <code>FALSE</code>.</p></td>
     </tr>
     </table>
 

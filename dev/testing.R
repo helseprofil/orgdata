@@ -5,11 +5,11 @@ library(orgdata)
 
 op <- options()
 options("orgdata.folder" = "Helseprofiler/DB_helseprofil")
-options("orgdata.file" = "org-innlesing.accdb")
-osDrive <- "N:"
+options("orgdata.db" = "org-innlesing.accdb")
+getOption("orgdata.drive") <- "N:"
 getOption("orgdata.folder")
 regFile <- "org-innlesing.accdb"
-regDB <- file.path(osDrive, getOption("orgdata.folder"), regFile)
+regDB <- file.path(getOption("orgdata.drive"), getOption("orgdata.folder"), regFile)
 
 regDB
 kh <- KHelse$new(regDB)
@@ -23,7 +23,7 @@ dbfile <- "N:/Helseprofiler/DB_helseprofil/org-innlesing.accdb"
 ## LesOrg
 options(op)
 getOption("orgdata.folder")
-getOption("orgdata.file")
+getOption("orgdata.db")
 dd <- read_org("Dode")
 lesorg("TEST01")
 

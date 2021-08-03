@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>R6 Class Connecting to Database — KHelse • orgdata</title>
+<title>Connecting to Database — KHelse • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,12 @@
 
 
 
-<meta property="og:title" content="R6 Class Connecting to Database — KHelse" />
+<meta property="og:title" content="Connecting to Database — KHelse" />
 <meta property="og:description" content="Connect to registration database to get all necessary information
 on data source and cleaning specification. The driver is only applicable
-to an Access Database." />
+to an Access Database. Calling the method KHelse$new(YourFilePath)
+will create an object of R6 Class. Please refer to the
+examples." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -142,7 +144,7 @@ to an Access Database." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>R6 Class Connecting to Database</h1>
+    <h1>Connecting to Database</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/r6-db-connect.R'><code>R/r6-db-connect.R</code></a></small>
     <div class="hidden name"><code>KHelse.Rd</code></div>
     </div>
@@ -150,7 +152,9 @@ to an Access Database." />
     <div class="ref-description">
     <p>Connect to registration database to get all necessary information
 on data source and cleaning specification. The driver is only applicable
-to an Access Database.</p>
+to an Access Database. Calling the method <code>KHelse$new(YourFilePath)</code>
+will create an object of R6 Class. Please refer to the
+<a href='https://helseprofil.github.io/orgdata/reference/KHelse.html#examples'>examples</a>.</p>
     </div>
 
 
@@ -191,7 +195,9 @@ Data must be in a <code>data.frame</code> or <code>data.table</code> format.</p>
 </dl><p></div></p>
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Examples</h4>
 <p><div class="r example copy"></p><pre>\dontrun{
-kh &lt;- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
+kh &lt;- KHelse$new(file.path(getOption("orgdata.drive"),
+                           getOption("orgdata.folder"),
+                           getOption("orgdata.db")))
 kh$dbname
 kh$db_close()
 kh$db_connect()
@@ -230,7 +236,9 @@ kh$db_connect()
 <span class='co'>## ------------------------------------------------</span>
 
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>kh</span> <span class='op'>&lt;-</span> <span class='va'>KHelse</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>osDrive</span>, <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.folder"</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.file"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>kh</span> <span class='op'>&lt;-</span> <span class='va'>KHelse</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.drive"</span><span class='op'>)</span>,
+                           <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.folder"</span><span class='op'>)</span>,
+                           <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.db"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>kh</span><span class='op'>$</span><span class='va'>dbname</span>
 <span class='va'>kh</span><span class='op'>$</span><span class='fu'>db_close</span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>kh</span><span class='op'>$</span><span class='fu'>db_connect</span><span class='op'>(</span><span class='op'>)</span>

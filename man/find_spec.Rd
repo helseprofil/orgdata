@@ -5,7 +5,7 @@
 \alias{find_query}
 \title{File Specifications in Registration Database}
 \usage{
-find_spec(file = NULL, value = NULL, con = NULL, ...)
+find_spec(file = NULL, value = NULL, con = NULL, external = FALSE)
 
 find_query(file = NULL, value = NULL, external = FALSE)
 }
@@ -17,9 +17,7 @@ For example the name of a \emph{filgruppe}.}
 
 \item{con}{Connection to database}
 
-\item{...}{Other arguments}
-
-\item{external}{If SQL file is outside of the package. Default is \code{FALSE}.}
+\item{external}{If the SQL file is outside of the package. Default is \code{FALSE}.}
 }
 \value{
 Out put will be a data.frame.

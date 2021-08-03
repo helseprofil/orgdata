@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read Data File — read_file • orgdata</title>
+<title>Get Split Column — get_split • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,11 @@
 
 
 
-<meta property="og:title" content="Read Data File — read_file" />
-<meta property="og:description" content="Read rawdata. It uses the find_data() generic method.
-For a  .csv  file, data.table::fread() is used and all other arguments
-for fread function can be used. For a  xlsx  or  .xls  file
-readxl::read_excel() function and all of its arguments." />
+<meta property="og:title" content="Get Split Column — get_split" />
+<meta property="og:description" content="Get the column to be splitted and the column name
+for the new splitted columns.
+If you already have the specification from find_spec(), then the arguments
+for group and con must be NULL." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -143,40 +143,42 @@ readxl::read_excel() function and all of its arguments." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read Data File</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/read-file.R'><code>R/read-file.R</code></a></small>
-    <div class="hidden name"><code>read_file.Rd</code></div>
+    <h1>Get Split Column</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/get-splitt.R'><code>R/get-splitt.R</code></a></small>
+    <div class="hidden name"><code>get_split.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Read rawdata. It uses the <code><a href='find_data.html'>find_data()</a></code> generic method.
-For a <code> .csv </code> file, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>data.table::fread()</a></code> is used and all other arguments
-for <code>fread</code> function can be used. For a <code> xlsx </code> or <code> .xls </code> file
-<code><a href='https://readxl.tidyverse.org/reference/read_excel.html'>readxl::read_excel()</a></code> function and all of its arguments.</p>
+    <p>Get the column to be splitted and the column name
+for the new splitted columns.
+If you already have the specification from <code><a href='find_spec.html'>find_spec()</a></code>, then the arguments
+for <code>group</code> and <code>con</code> must be <code>NULL</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_file</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_split</span><span class='op'>(</span>group <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>Input file</p></td>
+      <th>group</th>
+      <td><p>The group of files (<em>filgruppe</em>)</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>All other arguments to be passed related to the file format.</p></td>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
+    </tr>
+    <tr>
+      <th>spec</th>
+      <td><p>Specification data from register database</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>rdata</span> <span class='op'>&lt;-</span> <span class='fu'>read_file</span><span class='op'>(</span><span class='st'>"/file/path/mydata.xlsx"</span>, sheet <span class='op'>=</span> <span class='st'>"S3"</span>, range <span class='op'>=</span> <span class='fu'>cell_rows</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>rdata</span> <span class='op'>&lt;-</span> <span class='fu'>read_file</span><span class='op'>(</span><span class='st'>"/file/path/mydata.csv"</span>, sep <span class='op'>=</span> <span class='st'>","</span>, header <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <p>A list consist of to variable ie. <code>from</code> and <code>to</code>
+indicating which column to split and what the new column name will be</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
