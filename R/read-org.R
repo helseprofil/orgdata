@@ -22,18 +22,26 @@ read_org <- function(group = NULL, id = NULL) {
   dbFile <- is_db_file()
   kh <- KHelse$new(dbFile)
 
+  # SPECS -----------------------------------------
   spec <- find_spec(
     file = "specification.sql",
     value = group,
     con = kh$dbconn
   )
 
+  fgspec <- find_spec(
+    file = "filegroups.sql",
+    value = group,
+    con = kh$dbconn
+  )
+
+  # FILE ------------------------------------------
   koblid <- spec$KOBLID
   if (!is.null(id)) {
     koblid <- id
     spec <- spec[spec$KOBLID %in% koblid, ]
   }
-
+  # TODO Exclude IBRUKTIL < 01.01.9999
   message(group, " has ", length(koblid), " file(s).")
 
   DT <- vector(mode = "list", length = length(koblid))
@@ -42,8 +50,14 @@ read_org <- function(group = NULL, id = NULL) {
     filespec <- spec[i, ]
     filepath <- is_raw_file(filespec)
 
+    dt <- do_column_standard_rename(filepath, filespec)
     ## TODO Any extra args for file specific from INNLESARG
-    dt <- do_rename_col_standard(filepath, filespec)
+
+    splitSpec <- get_split(spec = fgspec)
+    dt <- do_split(dt = dt, split = splitSpec)
+
+    yrSpec <- get_year(filespec, kh$dbconn)
+    # TODO do_year function to add year to the dt
 
     DT[[i]] <- dt
   }
