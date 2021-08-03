@@ -28,8 +28,8 @@ do_split <- function(dt = NULL, split = NULL) {
 #' @inheritParams read_org
 #' @inheritParams find_spec
 #' @inheritParams find_column_input
-#' @return A list consist of to variable ie. \code{from} and \code{to}
-#'   indicating which column to split and what the new column name will be
+#' @return A list consist of two variables ie. \code{from} and \code{to}
+#'   indicating which column to split and what the new column names will be
 #' @export
 
 get_split <- function(group = NULL, con = NULL, spec = NULL) {

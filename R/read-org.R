@@ -44,6 +44,7 @@ read_org <- function(group = NULL, id = NULL) {
 
     ## TODO Any extra args for file specific from INNLESARG
     dt <- do_rename_col_standard(filepath, filespec)
+
     DT[[i]] <- dt
   }
 
