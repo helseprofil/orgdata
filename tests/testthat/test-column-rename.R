@@ -1,4 +1,4 @@
-test_that("Renaming standard column names", {
+test_that("Rename standard columns", {
   dfCol <- data.frame(
     GEO = "grunnkrets", AAR = "$Y", KJONN = "kjoenn",
     ALDER = "age", UTDANN = NA_character_, LANDBAK = "landb", VAL = "total"
