@@ -1,11 +1,11 @@
 ## Additional options specific to orgdata
 ## use getOption("orgdata.folder") to get default folder
-## or options("orgdata.file" = "dbfile.accdb") to change the filename
+## or options("orgdata.db" = "dbfile.accdb") to change the filename
 
 ## Options for Folkehelseprofiler
 op.orgdata <- list(
   orgdata.folder = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING",
-  orgdata.file = "org-innlesing.accdb",
+  orgdata.db = "org-innlesing.accdb",
   orgdata.rawdata = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
   orgdata.geofile = "",
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL")

@@ -1,9 +1,11 @@
-#' R6 Class Connecting to Database
+#' Connecting to Database
 #'
 #' @description
 #' Connect to registration database to get all necessary information
 #' on data source and cleaning specification. The driver is only applicable
-#' to an Access Database.
+#' to an Access Database. Calling the method \code{KHelse$new(YourFilePath)}
+#' will create an object of R6 Class. Please refer to the
+#' \href{https://helseprofil.github.io/orgdata/reference/KHelse.html#examples}{examples}.
 #' @export
 
 KHelse <- R6::R6Class(
@@ -29,21 +31,21 @@ KHelse <- R6::R6Class(
     #' @param dbname Database filename.
     #' @examples
     #' \dontrun{
-    #' kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.file")))
+    #' kh <- KHelse$new(file.path(osDrive, getOption("orgdata.folder"), getOption("orgdata.db")))
     #' kh$dbname
     #' kh$db_close()
     #' kh$db_connect()
     #' }
     initialize = function(dbname = NULL) {
       if (is.null(dbname)) {
-        stop(message(" Woopss!! Database file is missing!"))
+        stop(message(" Woopss!! Can't find database file!"))
       } else {
         self$dbname <- dbname
         cs <- paste0(private$..drv, self$dbname)
         self$dbconn <- DBI::dbConnect(odbc::odbc(),
-                                      .connection_string = cs,
-                                      encoding = "latin1"
-                                      )
+          .connection_string = cs,
+          encoding = "latin1"
+        )
       }
     },
 
@@ -53,9 +55,9 @@ KHelse <- R6::R6Class(
       stopifnot(!is.null(self$dbname))
       cs <- paste0(private$..drv, self$dbname)
       self$dbconn <- DBI::dbConnect(odbc::odbc(),
-                                    .connection_string = cs,
-                                    encoding = "latin1"
-                                    )
+        .connection_string = cs,
+        encoding = "latin1"
+      )
     },
 
     #' @description
@@ -66,11 +68,11 @@ KHelse <- R6::R6Class(
       self$tblname <- name
       self$tblvalue <- value
       DBI::dbWriteTable(self$dbconn,
-                        self$tblname,
-                        self$tblvalue,
-                        batch_rows = 1,
-                        overwrite = TRUE
-                        )
+        self$tblname,
+        self$tblvalue,
+        batch_rows = 1,
+        overwrite = TRUE
+      )
     },
 
     #' @description
