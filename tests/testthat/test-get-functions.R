@@ -10,7 +10,6 @@ test_that("Innlesarg inputs", {
 
 ## Input from Access ------------------------------
 test_that("Output for singel column", {
-  expect_identical(get_year(df01), "aar")
   expect_identical(get_column_input(df02, "GEO"), "geo")
   expect_identical(get_column_input(dfna, "MANHEADER"), NA_character_)
 })
