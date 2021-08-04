@@ -1,3 +1,22 @@
+#' @title Add Year to Data
+#' @description Add column for year if it doesn't exist in the rawdata
+#' @inheritParams do_split
+#' @param year Output from [get_year()]
+#' @import data.table
+#' @export
+do_year <- function(dt = NULL, year = NULL) {
+  is_null(dt)
+  is_null(year)
+
+  var <- year[["year"]]
+  if (year[["dummy"]] == 1) {
+    dt[, AAR := var]
+  }
+
+  return(dt)
+}
+
+
 #' @title Get Year of Data
 #' @description
 #' Get the year of the rawdata either when it's available in the rawdata or
@@ -24,8 +43,10 @@ get_year <- function(spec = NULL, con = NULL) {
     fileID <- find_column_input(spec, "FILID", "int")
     year <- is_defaar(fileID, con)
   }
-  return(year)
+
+  return(list(year = year, dummy = dummy))
 }
+
 
 #' @export
 #' @rdname get_year

@@ -19,7 +19,9 @@
 #' @export
 read_org <- function(group = NULL, id = NULL) {
   is_null(group, "Filgruppe is missing")
-  dbFile <- is_db_file()
+  dbFile <- is_db_file(check = TRUE)
+
+  # CONN ------------------------------------------
   kh <- KHelse$new(dbFile)
 
   # SPECS -----------------------------------------
@@ -35,7 +37,7 @@ read_org <- function(group = NULL, id = NULL) {
     con = kh$dbconn
   )
 
-  # FILE ------------------------------------------
+  # SELECT FILE ------------------------------------------
   koblid <- spec$KOBLID
   if (!is.null(id)) {
     koblid <- id
@@ -46,9 +48,10 @@ read_org <- function(group = NULL, id = NULL) {
 
   DT <- vector(mode = "list", length = length(koblid))
 
+  # PROCESS ---------------------------------------------
   for (i in seq_len(length(koblid))) {
     filespec <- spec[i, ]
-    filepath <- is_raw_file(filespec)
+    filepath <- is_raw_file(filespec, check = TRUE)
 
     dt <- do_column_standard_rename(filepath, filespec)
     ## TODO Any extra args for file specific from INNLESARG
@@ -57,7 +60,8 @@ read_org <- function(group = NULL, id = NULL) {
     dt <- do_split(dt = dt, split = splitSpec)
 
     yrSpec <- get_year(filespec, kh$dbconn)
-    # TODO do_year function to add year to the dt
+    dt <- do_year(dt, yrSpec)
+
 
     DT[[i]] <- dt
   }
@@ -72,14 +76,14 @@ lesorg <- read_org
 
 ## Helper functions ---------------------------------------------------------
 ## Create complete path to DB file
-is_db_file <- function() {
+is_db_file <- function(check = FALSE) {
   db <- file.path(
     getOption("orgdata.drive"),
     getOption("orgdata.folder"),
     getOption("orgdata.db")
   )
 
-  if (isFALSE(file.exists(db))) {
+  if (isTRUE(check) && isFALSE(file.exists(db))) {
     stop("Access database file does not exist! \n", db)
   }
 
@@ -87,11 +91,11 @@ is_db_file <- function() {
 }
 
 ## Create complete path to raw data file
-is_raw_file <- function(spec) {
+is_raw_file <- function(spec, check = FALSE) {
   filename <- find_column_input(spec, "FILNAVN")
   filepath <- file.path(getOption("orgdata.drive"), getOption("orgdata.rawdata"), filename)
 
-  if (isFALSE(file.exists(filepath))) {
+  if (isTRUE(check) && isFALSE(file.exists(filepath))) {
     stop("File does not exist! \n", filepath)
   }
 
