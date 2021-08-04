@@ -68,15 +68,16 @@ DT01 <- structure(list(GEO = c(
 ))
 
 
-fspec <- structure(list(
-  ID = 11L, FILGRUPPE = "BEFOLKNING", AGGREGERE = "F,K",
-  ADDKOL = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
-  SPLITTTIL = "landb, landf"
-), class = "data.frame", row.names = c(
-  NA,
-  -1L
-))
+## fspec <- structure(list(
+##   ID = 11L, FILGRUPPE = "BEFOLKNING", AGGREGERE = "F,K",
+##   ADDKOL = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
+##   SPLITTTIL = "landb, landf"
+## ), class = "data.frame", row.names = c(
+##   NA,
+##   -1L
+## ))
 
+dfna <- data.frame(INNLESARG = NA_character_, MANHEADER = NA_character_)
 
 DFout <- structure(list(GEO = c(
   "0806", "210", "0109", "0305", "903",
