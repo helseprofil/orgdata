@@ -16,6 +16,7 @@
 #' @param group The group of files (\emph{filgruppe})
 #' @param id \code{KOBLID} from table \emph{tbl_Koble}
 #' @aliases read_org lesorg
+#' @import data.table
 #' @export
 read_org <- function(group = NULL, id = NULL) {
   is_null(group, "Filgruppe is missing")
@@ -30,26 +31,25 @@ read_org <- function(group = NULL, id = NULL) {
     value = group,
     con = kh$dbconn
   )
+  ## data.table::setDT(spec)
+  ## TODO Can't use DT yet. Some functions are still
+  ## based on DF eg. find_column_input
 
   fgspec <- find_spec(
     file = "filegroups.sql",
     value = group,
     con = kh$dbconn
   )
+  ## data.table::setDT(fgspec)
 
   # SELECT FILE ------------------------------------------
-  koblid <- spec$KOBLID
-  if (!is.null(id)) {
-    koblid <- id
-    spec <- spec[spec$KOBLID %in% koblid, ]
-  }
-  # TODO Exclude IBRUKTIL < 01.01.9999
-  message(group, " has ", length(koblid), " file(s).")
-
-  DT <- vector(mode = "list", length = length(koblid))
+  spec <- is_org_files(spec = spec, id = id)
+  rowFile <- nrow(spec)
+  message(group, " has ", rowFile, " file(s).")
 
   # PROCESS ---------------------------------------------
-  for (i in seq_len(length(koblid))) {
+  DT <- vector(mode = "list", length = rowFile)
+  for (i in seq_len(rowFile)) {
     filespec <- spec[i, ]
     filepath <- is_raw_file(filespec, check = TRUE)
 
@@ -66,7 +66,7 @@ read_org <- function(group = NULL, id = NULL) {
     DT[[i]] <- dt
   }
 
-  out <- data.table::rbindlist(DT)
+  out <- data.table::rbindlist(DT, fill = TRUE)
 }
 
 
@@ -100,4 +100,19 @@ is_raw_file <- function(spec, check = FALSE) {
   }
 
   return(filepath)
+}
+
+# Exclude files after KOBLID and IBRUKTIL
+is_org_files <- function(spec, id) {
+  koblid <- spec$KOBLID
+  ## TODO Implement spec as DT from parent.env
+  data.table::setDT(spec)
+  if (!is.null(id)) {
+    koblid <- id
+    spec <- spec[spec$KOBLID %in% koblid, ]
+  }
+
+  spec[, IBRUKTIL := data.table::as.IDate(IBRUKTIL)]
+  spec <- spec[IBRUKTIL == "9999-01-01", ]
+  data.table::setDF(spec)
 }
