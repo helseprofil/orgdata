@@ -105,7 +105,7 @@ is_raw_file <- function(spec, check = FALSE) {
 }
 
 # Exclude files after KOBLID and IBRUKTIL
-is_org_files <- function(spec, id) {
+is_org_files <- function(spec, id = NULL) {
   koblid <- spec$KOBLID
   ## TODO Implement spec as DT from parent.env
   data.table::setDT(spec)
@@ -114,7 +114,12 @@ is_org_files <- function(spec, id) {
     spec <- spec[spec$KOBLID %in% koblid, ]
   }
 
-  spec[, IBRUKTIL := data.table::as.IDate(IBRUKTIL)]
-  spec <- spec[IBRUKTIL == "9999-01-01", ]
+  spec[, IBRUKTIL := as.Date(IBRUKTIL, format = "%Y-%m-%d")]
+  spec <- spec[IBRUKTIL == as.Date("9999-01-01", format = "%Y-%m-%d"), ]
+
+  nfile <- nrow(spec)
+  if (nfile == 0) {
+    stop("No valid file to be processed!")
+  }
   data.table::setDF(spec)
 }
