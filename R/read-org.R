@@ -45,7 +45,7 @@ read_org <- function(group = NULL, id = NULL) {
   # SELECT FILE ------------------------------------------
   spec <- is_org_files(spec = spec, id = id)
   rowFile <- nrow(spec)
-  message(group, " has ", rowFile, " file(s).")
+  message(group, " has ", rowFile, " valid file(s).")
 
   # PROCESS ---------------------------------------------
   DT <- vector(mode = "list", length = rowFile)
@@ -62,6 +62,8 @@ read_org <- function(group = NULL, id = NULL) {
     yrSpec <- get_year(filespec, kh$dbconn)
     dt <- do_year(dt, yrSpec)
 
+    manSpec <- get_manheader(spec = filespec)
+    dt <- do_manheader(dt, manSpec)
 
     DT[[i]] <- dt
   }
