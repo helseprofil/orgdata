@@ -149,18 +149,18 @@
     <p>Renaming standard columns as in <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.columns")</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_column_standard_rename</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_column_standard</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>Input data</p></td>
+      <th>dt</th>
+      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
     </tr>
     <tr>
       <th>spec</th>
-      <td><p>Specifications data as a data.frame</p></td>
+      <td><p>Specification data as list. See output from <code>get_column_standard</code></p></td>
     </tr>
     </table>
 
