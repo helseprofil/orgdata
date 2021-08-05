@@ -106,6 +106,7 @@ is_raw_file <- function(spec, check = FALSE) {
 
 # Exclude files after KOBLID and IBRUKTIL
 is_org_files <- function(spec, id = NULL) {
+  IBRUKTIL <- NULL
   koblid <- spec$KOBLID
   ## TODO Implement spec as DT from parent.env
   data.table::setDT(spec)

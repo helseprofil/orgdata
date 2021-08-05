@@ -5,6 +5,7 @@
 #' @import data.table
 #' @export
 do_year <- function(dt = NULL, year = NULL) {
+  AAR <- NULL
   is_null(dt)
   is_null(year)
 

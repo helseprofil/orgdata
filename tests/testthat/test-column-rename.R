@@ -13,5 +13,5 @@ test_that("Rename standard columns", {
   expect_equal(is_column_name(dfCol, "AAR"), list(col = "AAR", input = NA))
   expect_equal(is_column_name(dfCol, "ALDER"), list(col = "ALDER", input = "age"))
   expect_equal(is_column_name(dfCol, "UTDANN"), list(col = "UTDANN", input = NA_character_))
-  expect_equal(find_column_standard(dfCol), output)
+  expect_equal(get_column_standard(spec = dfCol), output)
 })
