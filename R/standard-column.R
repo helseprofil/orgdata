@@ -1,16 +1,19 @@
 #' @title Rename Standard Columns
 #' @description Renaming standard columns as in `getOption("orgdata.columns")`.
-#' @param file Input data
-#' @inheritParams get_year
+#' @inheritParams do_split
+#' @param spec Specification data as list. See output from \code{get_column_standard}
 #' @export
-do_column_standard_rename <- function(file = NULL, spec = NULL) {
-  is_null(file)
+do_column_standard <- function(dt = NULL, spec = NULL) {
+  is_null(dt, "Data set not found!")
   is_null(spec, "Specification to rename columns is missing")
 
-  dt <- read_file(file)
-  cols <- get_column_standard(spec = spec)
-  data.table::setnames(dt, cols$old, cols$new)
+  if (isFALSE(is.list(spec))) {
+    stop("Input for `spec` must be a 'list' with `old` and `new` names")
+  }
+
+  data.table::setnames(dt, spec$old, spec$new)
 }
+
 
 #' @title Get Standard Columns
 #' @description Standard columns names in rawdata to will be checked against
@@ -33,7 +36,7 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
 
   ## There are 7 standard columns
   for (i in seq_len(7)) {
-    input <- is_column_name(spec, getOption("orgdata.columns")[i])
+    input <- is_column_na(spec, getOption("orgdata.columns")[i])
     assign(input[["col"]], input)
   }
   x <- data.table::rbindlist(list(GEO, AAR, KJONN, ALDER, UTDANN, LANDBAK, VAL))
@@ -45,7 +48,7 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
 
 
 ## Change dummy input to NA for easy selection
-is_column_name <- function(spec, col) {
+is_column_na <- function(spec, col) {
   input <- find_column_input(spec, col)
   dummy <- is_dummy(input)
   if (dummy) input <- NA

@@ -53,7 +53,10 @@ read_org <- function(group = NULL, id = NULL) {
     filespec <- spec[i, ]
     filepath <- is_raw_file(filespec, check = TRUE)
 
-    dt <- do_column_standard_rename(filepath, filespec)
+    dt <- read_file(file = filepath)
+
+    colSpec <- get_column_standard(spec = filespec)
+    dt <- do_column_standard(dt, colSpec)
     ## TODO Any extra args for file specific from INNLESARG
 
     splitSpec <- get_split(spec = fgspec)
