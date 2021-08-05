@@ -5,6 +5,9 @@
 #' @import data.table
 #' @export
 do_manheader <- function(dt = NULL, manspec = NULL) {
+  is_null(dt, "Data set not found!")
+  is_null(manspec)
+
   check <- length(manspec)
   if (check == 2) {
     nameIndex <- manspec[["index"]]

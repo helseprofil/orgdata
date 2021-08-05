@@ -5,7 +5,7 @@
 #'    to the output of [get_split()] function
 #' @export
 do_split <- function(dt = NULL, split = NULL) {
-  is_null(dt, "Data is not found!")
+  is_null(dt, "Data set not found!")
   is_null(split)
 
   if (isFALSE(is.list(split))) {
