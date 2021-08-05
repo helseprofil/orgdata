@@ -6,3 +6,7 @@ other-innlesing.R
 s3-object.R
 read-file.R
 split.R
+dev-year.R
+dev-select-file.R
+dev-manheader.R
+envir.R

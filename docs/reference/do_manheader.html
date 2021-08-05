@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Year of Data — get_year • orgdata</title>
+<title>Rename Colname Manually — do_manheader • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,8 @@
 
 
 
-<meta property="og:title" content="Get Year of Data — get_year" />
-<meta property="og:description" content="Get the year of the rawdata either when it's available in the rawdata or
-manually specified in the registration database. Check helper function is_defaar().
-get_aar() is an alias of get_year()" />
+<meta property="og:title" content="Rename Colname Manually — do_manheader" />
+<meta property="og:description" content="Rename the columns manually based on column index." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -142,42 +140,29 @@ get_aar() is an alias of get_year()" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Year of Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/year.R'><code>R/year.R</code></a></small>
-    <div class="hidden name"><code>get_year.Rd</code></div>
+    <h1>Rename Colname Manually</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/manheader.R'><code>R/manheader.R</code></a></small>
+    <div class="hidden name"><code>do_manheader.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the year of the rawdata either when it's available in the rawdata or
-manually specified in the registration database. Check helper function <code><a href='is_defaar.html'>is_defaar()</a></code>.</p>
-<p><code>get_aar()</code> is an alias of <code>get_year()</code></p>
+    <p>Rename the columns manually based on column index.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_year</span><span class='op'>(</span>spec <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
-
-<span class='fu'>get_aar</span><span class='op'>(</span>spec <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_manheader</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, manspec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>spec</th>
-      <td><p>Specifications data as a data.frame</p></td>
+      <th>dt</th>
+      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
     </tr>
     <tr>
-      <th>con</th>
-      <td><p>Connection to database</p></td>
+      <th>manspec</th>
+      <td><p>Specification from <code>MANHEADER</code> column in <code>tbl_Innlesing</code></p></td>
     </tr>
     </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Either a character or integer value.</p><ul>
-<li><p><code>Character</code> value is refering
-to the column name in the raw data that has value for year.</p></li>
-<li><p><code>Integer</code> value refers to the year that shoule be added
-to the raw data with column name <code>AAR</code></p></li>
-</ul>
 
 
   </div>
