@@ -8,21 +8,28 @@ do_column_standard_rename <- function(file = NULL, spec = NULL) {
   is_null(spec, "Specification to rename columns is missing")
 
   dt <- read_file(file)
-  cols <- find_column_standard(spec)
+  cols <- get_column_standard(spec = spec)
   data.table::setnames(dt, cols$old, cols$new)
 }
 
-#' @title Find Standard Columns
-#' @description Rename columns in the rawdata to the standard names
-#'    as in `getOptions("orgdata.columns")`.
-#' @inheritParams find_column_input
+#' @title Get Standard Columns
+#' @description Standard columns names in rawdata to will be checked against
+#'    the standard names in options as in `getOptions("orgdata.columns")`.
+#' @inheritParams read_org
+#' @inheritParams find_spec
+#' @param spec Specification of the standard columns in \code{tbl_Innlesing}
 #' @return A list with `old` and `new` columnnames
 #' @import data.table
 #' @export
-find_column_standard <- function(spec = NULL) {
+get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
   GEO <- KJONN <- AAR <- ALDER <- UTDANN <- LANDBAK <- VAL <- NULL
 
-  is_null(spec)
+  is_null_also(group, spec)
+  is_null_both(group, spec)
+
+  if (is.null(spec)) {
+    spec <- find_spec("filegroups.sql", group, con)
+  }
 
   ## There are 7 standard columns
   for (i in seq_len(7)) {
