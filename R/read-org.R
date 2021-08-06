@@ -3,22 +3,22 @@
 #' Read the specifications in the register database and implement them
 #' to the selected group of files (\emph{filgruppe}). All files under
 #' the selected group will be considered unless the \code{KOBLID} with
-#' argument \code{id} is specified. Specifying \code{id} is useful for testing.
+#' argument \code{koblid} is specified. Specifying \code{koblid} is useful for testing.
 #'
 #' The function [lesorg()] is an
 #' alias to [read_org()].
 #' @examples
 #' \dontrun{
 #' read_org("BEFOLKNING")
-#' read_org("BEFOLKNING", id = 19)
-#' read_org("BEFOLKNING", id = c(15, 50))
+#' read_org("BEFOLKNING", koblid = 19)
+#' read_org("BEFOLKNING", koblid = c(15, 50))
 #' }
 #' @param group The group of files (\emph{filgruppe})
 #' @param id \code{KOBLID} from table \emph{tbl_Koble}
 #' @aliases read_org lesorg
 #' @import data.table
 #' @export
-read_org <- function(group = NULL, id = NULL) {
+read_org <- function(group = NULL, koblid = NULL) {
   is_null(group, "Filgruppe is missing")
   dbFile <- is_db_file(check = TRUE)
 
@@ -43,7 +43,7 @@ read_org <- function(group = NULL, id = NULL) {
   ## data.table::setDT(fgspec)
 
   # SELECT FILE ------------------------------------------
-  spec <- is_org_files(spec = spec, id = id)
+  spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
   message(group, " has ", rowFile, " valid file(s).")
 
