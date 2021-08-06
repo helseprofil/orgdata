@@ -14,7 +14,7 @@ sysDrive <- switch(OS,
 opt.orgdata <- list(
   orgdata.drive = sysDrive,
   orgdata.folder.db = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING",
-  orgdata.folder.raw = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
+  orgdata.folder.raw = "F:/Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
   orgdata.folder.output = "",
   orgdata.db = "org-innlesing.accdb",
   orgdata.geo = "",
