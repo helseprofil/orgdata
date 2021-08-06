@@ -20,10 +20,11 @@
 #' @export
 read_org <- function(group = NULL, koblid = NULL) {
   is_null(group, "Filgruppe is missing")
-  dbFile <- is_db_file(check = TRUE)
+  dbFile <- is_path_db(check = TRUE)
 
   # CONN ------------------------------------------
   kh <- KHelse$new(dbFile)
+  if (isFALSE(DBI::dbIsValid(kh$dbconn))) kh$db_connect()
 
   # SPECS -----------------------------------------
   spec <- find_spec(
@@ -51,7 +52,7 @@ read_org <- function(group = NULL, koblid = NULL) {
   DT <- vector(mode = "list", length = rowFile)
   for (i in seq_len(rowFile)) {
     filespec <- spec[i, ]
-    filepath <- is_raw_file(filespec, check = TRUE)
+    filepath <- is_path_raw(filespec, check = TRUE)
 
     dt <- read_file(file = filepath)
 
@@ -71,6 +72,8 @@ read_org <- function(group = NULL, koblid = NULL) {
     DT[[i]] <- dt
   }
 
+  if (isTRUE(DBI::dbIsValid(kh$dbconn))) kh$db_close()
+
   out <- data.table::rbindlist(DT, fill = TRUE)
 }
 
@@ -81,7 +84,7 @@ lesorg <- read_org
 
 ## Helper functions ---------------------------------------------------------
 ## Create complete path to DB file
-is_db_file <- function(check = FALSE) {
+is_path_db <- function(check = FALSE) {
   db <- file.path(
     getOption("orgdata.drive"),
     getOption("orgdata.folder.db"),
@@ -96,9 +99,9 @@ is_db_file <- function(check = FALSE) {
 }
 
 ## Create complete path to raw data file
-is_raw_file <- function(spec, check = FALSE) {
+is_path_raw <- function(spec, check = FALSE) {
   filename <- find_column_input(spec, "FILNAVN")
-  filepath <- file.path(getOption("orgdata.drive"), getOption("orgdata.folder.raw"), filename)
+  filepath <- file.path(getOption("orgdata.folder.raw"), filename)
 
   if (isTRUE(check) && isFALSE(file.exists(filepath))) {
     stop("File does not exist! \n", filepath)
