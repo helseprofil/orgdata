@@ -38,22 +38,22 @@ the database use `read_org()` function.
 ```r
 library(orgdata)
 # All files under BEFOLKNING group
-read_org("BEFOLKNING")
+dt <- read_org("BEFOLKNING")
 
 # For selected files only where id is KOBLID
-read_org("BEFOLKNING", id = 48)
-read_org("BEFOLKNING", id = c(48, 72))
+dt <- read_org("BEFOLKNING", koblid = 48)
+dt <- read_org("BEFOLKNING", koblid = c(48, 72))
 ```
 
 ## Read files
 
 The function `read_file()` can be used to check how a specific rawdata 
-file will be read into R. 
+file will be read into R directly. 
 
 
 ```r
 file01 <- "F:/Path/To/File/Rawdata.csv"
 file02 <- "F:/Path/To/File/Rawdata.xlsx"
-read_file(file01)
-read_file(file02)
+dt <- read_file(file01)
+dt <- read_file(file02)
 ```
