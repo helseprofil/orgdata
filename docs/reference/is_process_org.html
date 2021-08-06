@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Year for The Data — is_defaar • orgdata</title>
+<title>Process Raw Data — is_process_org • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,8 @@
 
 
 
-<meta property="og:title" content="Year for The Data — is_defaar" />
-<meta property="og:description" content="Find the year value in column DEFAAR from table tbl_Orgfile
-when column for year isn't available in the raw data. This is
-indicated with $Y in column AAR in table tbl_Innlesing." />
+<meta property="og:title" content="Process Raw Data — is_process_org" />
+<meta property="og:description" content="Implement the specifications to the raw data." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -142,31 +140,41 @@ indicated with $Y in column AAR in table tbl_Innlesing." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Year for The Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/year.R'><code>R/year.R</code></a></small>
-    <div class="hidden name"><code>is_defaar.Rd</code></div>
+    <h1>Process Raw Data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/process-org.R'><code>R/process-org.R</code></a></small>
+    <div class="hidden name"><code>is_process_org.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Find the year value in column <code>DEFAAR</code> from table <em>tbl_Orgfile</em>
-when column for year isn't available in the raw data. This is
-indicated with <code>$Y</code> in column <code>AAR</code> in table <em>tbl_Innlesing</em>.</p>
+    <p>Implement the specifications to the raw data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_defaar</span><span class='op'>(</span>id <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>is_process_org</span><span class='op'>(</span><span class='va'>file</span>, <span class='va'>filespec</span>, <span class='va'>fgspec</span>, <span class='va'>con</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>file</th>
+      <td><p>File rawdata</p></td>
+    </tr>
+    <tr>
+      <th>filespec</th>
+      <td><p>Specification for a file from <code>tbl_Innlesing</code></p></td>
+    </tr>
+    <tr>
+      <th>fgspec</th>
+      <td><p>Specification for a file group</p></td>
+    </tr>
+    <tr>
       <th>con</th>
-      <td><p>Connection to database</p></td>
+      <td><p>Connection to the database</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An integer</p>
+    <p>A dataset with <code>data.table</code> format</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

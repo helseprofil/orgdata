@@ -5,20 +5,20 @@
 \alias{lesorg}
 \title{Read and Run the Specifications}
 \usage{
-read_org(group = NULL, id = NULL)
+read_org(group = NULL, koblid = NULL)
 
-lesorg(group = NULL, id = NULL)
+lesorg(group = NULL, koblid = NULL)
 }
 \arguments{
 \item{group}{The group of files (\emph{filgruppe})}
 
-\item{id}{\code{KOBLID} from table \emph{tbl_Koble}}
+\item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
 }
 \description{
 Read the specifications in the register database and implement them
 to the selected group of files (\emph{filgruppe}). All files under
 the selected group will be considered unless the \code{KOBLID} with
-argument \code{id} is specified. Specifying \code{id} is useful for testing.
+argument \code{koblid} is specified. Specifying \code{koblid} is useful for testing.
 
 The function \code{\link[=lesorg]{lesorg()}} is an
 alias to \code{\link[=read_org]{read_org()}}.
@@ -26,7 +26,7 @@ alias to \code{\link[=read_org]{read_org()}}.
 \examples{
 \dontrun{
 read_org("BEFOLKNING")
-read_org("BEFOLKNING", id = 19)
-read_org("BEFOLKNING", id = c(15, 50))
+read_org("BEFOLKNING", koblid = 19)
+read_org("BEFOLKNING", koblid = c(15, 50))
 }
 }

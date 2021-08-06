@@ -7,8 +7,6 @@
 is_defaar(id = NULL, con = NULL)
 }
 \arguments{
-\item{id}{\code{KOBLID} from table \emph{tbl_Koble}}
-
 \item{con}{Connection to database}
 }
 \value{
