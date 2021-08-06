@@ -14,7 +14,7 @@
 #' read_org("BEFOLKNING", koblid = c(15, 50))
 #' }
 #' @param group The group of files (\emph{filgruppe})
-#' @param id \code{KOBLID} from table \emph{tbl_Koble}
+#' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
 #' @aliases read_org lesorg
 #' @import data.table
 #' @export
@@ -54,26 +54,17 @@ read_org <- function(group = NULL, koblid = NULL) {
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
-    dt <- read_file(file = filePath)
-
-    colSpec <- get_column_standard(spec = fileSpec)
-    dt <- do_column_standard(dt, colSpec)
-    ## TODO Any extra args for file specific from INNLESARG
-
-    splitSpec <- get_split(spec = fgSpec)
-    dt <- do_split(dt = dt, split = splitSpec)
-
-    yrSpec <- get_year(fileSpec, kh$dbconn)
-    dt <- do_year(dt, yrSpec)
-
-    manSpec <- get_manheader(spec = fileSpec)
-    dt <- do_manheader(dt, manSpec)
+    dt <- is_process_org(
+      file = filePath,
+      filespec = fileSpec,
+      fgspec = fgSpec,
+      con = kh$dbconn
+    )
 
     DT[[i]] <- dt
   }
 
   if (isTRUE(DBI::dbIsValid(kh$dbconn))) kh$db_close()
-
   out <- data.table::rbindlist(DT, fill = TRUE)
 }
 
