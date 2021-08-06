@@ -32,7 +32,7 @@ KHelse <- R6::R6Class(
     #' @examples
     #' \dontrun{
     #' kh <- KHelse$new(file.path(getOption("orgdata.drive"),
-    #'                            getOption("orgdata.folder"),
+    #'                            getOption("orgdata.folder.db"),
     #'                            getOption("orgdata.db")))
     #' kh$dbname
     #' kh$db_close()
