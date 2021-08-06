@@ -36,12 +36,12 @@ read_org <- function(group = NULL, koblid = NULL) {
   ## TODO Can't use DT yet. Some functions are still
   ## based on DF eg. find_column_input
 
-  fgspec <- find_spec(
+  fgSpec <- find_spec(
     file = "filegroups.sql",
     value = group,
     con = kh$dbconn
   )
-  ## data.table::setDT(fgspec)
+  ## data.table::setDT(fgSpec)
 
   # SELECT FILE ------------------------------------------
   spec <- is_org_files(spec = spec, id = koblid)
@@ -51,22 +51,22 @@ read_org <- function(group = NULL, koblid = NULL) {
   # PROCESS ---------------------------------------------
   DT <- vector(mode = "list", length = rowFile)
   for (i in seq_len(rowFile)) {
-    filespec <- spec[i, ]
-    filepath <- is_path_raw(filespec, check = TRUE)
+    fileSpec <- spec[i, ]
+    filePath <- is_path_raw(fileSpec, check = TRUE)
 
-    dt <- read_file(file = filepath)
+    dt <- read_file(file = filePath)
 
-    colSpec <- get_column_standard(spec = filespec)
+    colSpec <- get_column_standard(spec = fileSpec)
     dt <- do_column_standard(dt, colSpec)
     ## TODO Any extra args for file specific from INNLESARG
 
-    splitSpec <- get_split(spec = fgspec)
+    splitSpec <- get_split(spec = fgSpec)
     dt <- do_split(dt = dt, split = splitSpec)
 
-    yrSpec <- get_year(filespec, kh$dbconn)
+    yrSpec <- get_year(fileSpec, kh$dbconn)
     dt <- do_year(dt, yrSpec)
 
-    manSpec <- get_manheader(spec = filespec)
+    manSpec <- get_manheader(spec = fileSpec)
     dt <- do_manheader(dt, manSpec)
 
     DT[[i]] <- dt
@@ -101,13 +101,13 @@ is_path_db <- function(check = FALSE) {
 ## Create complete path to raw data file
 is_path_raw <- function(spec, check = FALSE) {
   filename <- find_column_input(spec, "FILNAVN")
-  filepath <- file.path(getOption("orgdata.folder.raw"), filename)
+  filePath <- file.path(getOption("orgdata.folder.raw"), filename)
 
-  if (isTRUE(check) && isFALSE(file.exists(filepath))) {
-    stop("File does not exist! \n", filepath)
+  if (isTRUE(check) && isFALSE(file.exists(filePath))) {
+    stop("File does not exist! \n", filePath)
   }
 
-  return(filepath)
+  return(filePath)
 }
 
 # Exclude files after KOBLID and IBRUKTIL
