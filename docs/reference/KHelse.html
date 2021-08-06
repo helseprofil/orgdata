@@ -196,7 +196,7 @@ Data must be in a <code>data.frame</code> or <code>data.table</code> format.</p>
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Examples</h4>
 <p><div class="r example copy"></p><pre>\dontrun{
 kh &lt;- KHelse$new(file.path(getOption("orgdata.drive"),
-                           getOption("orgdata.folder"),
+                           getOption("orgdata.folder.db"),
                            getOption("orgdata.db")))
 kh$dbname
 kh$db_close()
@@ -237,7 +237,7 @@ kh$db_connect()
 
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='va'>kh</span> <span class='op'>&lt;-</span> <span class='va'>KHelse</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.drive"</span><span class='op'>)</span>,
-                           <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.folder"</span><span class='op'>)</span>,
+                           <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.folder.db"</span><span class='op'>)</span>,
                            <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.db"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>kh</span><span class='op'>$</span><span class='va'>dbname</span>
 <span class='va'>kh</span><span class='op'>$</span><span class='fu'>db_close</span><span class='op'>(</span><span class='op'>)</span>

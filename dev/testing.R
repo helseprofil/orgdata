@@ -4,12 +4,12 @@ devtools::install()
 library(orgdata)
 
 op <- options()
-options("orgdata.folder" = "Helseprofiler/DB_helseprofil")
-options("orgdata.db" = "org-innlesing.accdb")
+options(orgdata.folder.db = "Helseprofiler/DB_helseprofil")
+options(orgdata.db = "org-innlesing.accdb")
 getOption("orgdata.drive") <- "N:"
-getOption("orgdata.folder")
+getOption("orgdata.folder.db")
 regFile <- "org-innlesing.accdb"
-regDB <- file.path(getOption("orgdata.drive"), getOption("orgdata.folder"), regFile)
+regDB <- file.path(getOption("orgdata.drive"), getOption("orgdata.folder.db"), regFile)
 
 regDB
 kh <- KHelse$new(regDB)
@@ -22,7 +22,7 @@ dbfile <- "N:/Helseprofiler/DB_helseprofil/org-innlesing.accdb"
 
 ## LesOrg
 options(op)
-getOption("orgdata.folder")
+getOption("orgdata.folder.db")
 getOption("orgdata.db")
 dd <- read_org("Dode")
 lesorg("TEST01")

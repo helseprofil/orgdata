@@ -1,14 +1,14 @@
 ## Additional options specific to orgdata
 ## use getOption("orgdata.folder.db") to get default folder
-## or options("orgdata.db" = "dbfile.accdb") to change the filename
+## or options(orgdata.db = "dbfile.accdb") to change the filename
 
 
 ## Path for different operating system
 OS <- Sys.info()["sysname"]
 sysDrive <- switch(OS,
-                   Linux = "/mnt/F",
-                   Windows = "F:"
-                   )
+  Linux = "/mnt/F",
+  Windows = "F:"
+)
 
 ## Options for Folkehelseprofiler
 opt.orgdata <- list(

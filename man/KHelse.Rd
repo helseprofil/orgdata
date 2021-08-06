@@ -18,7 +18,7 @@ will create an object of R6 Class. Please refer to the
 
 \dontrun{
 kh <- KHelse$new(file.path(getOption("orgdata.drive"),
-                           getOption("orgdata.folder"),
+                           getOption("orgdata.folder.db"),
                            getOption("orgdata.db")))
 kh$dbname
 kh$db_close()
@@ -68,7 +68,7 @@ Start connecting to the database.
 \if{html}{\out{<div class="r example copy">}}
 \preformatted{\dontrun{
 kh <- KHelse$new(file.path(getOption("orgdata.drive"),
-                           getOption("orgdata.folder"),
+                           getOption("orgdata.folder.db"),
                            getOption("orgdata.db")))
 kh$dbname
 kh$db_close()

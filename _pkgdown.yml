@@ -33,7 +33,7 @@ navbar:
 reference:
 - title: Database connection
   desc: >
-    Make connection to the database. Use `op.orgdata` to see orgdata config options
+    Make connection to the database. Use `opt.orgdata` to see orgdata config options
     or `getOption()` for a specific option. Object of R6 Class will be created.
   contents:
   - KHelse
