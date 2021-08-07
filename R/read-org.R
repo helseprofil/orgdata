@@ -54,14 +54,10 @@ read_org <- function(group = NULL, koblid = NULL) {
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
-    dt <- is_process_org(
-      file = filePath,
-      filespec = fileSpec,
-      fgspec = fgSpec,
-      con = kh$dbconn
-    )
+    .env <- environment()
+    is_org_process()
 
-    DT[[i]] <- dt
+    DT[[i]] <- get(".orgDT", envir = .env)
   }
 
   if (isTRUE(DBI::dbIsValid(kh$dbconn))) kh$db_close()

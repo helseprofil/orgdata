@@ -3,11 +3,9 @@
 #' @description Implement the specifications to the raw data and deliver the output
 #'   to the enclosing environment.
 #' @param .env Enclosing environment
-#' @param verbose Make processes explicit. Default is FALSE
 #' @return A dataset `.orgDT` with `data.table` format
 
-is_org_process <- function(.env = parent.frame(),
-                           verbose = getOption("orgdata.verbose")) {
+is_org_process <- function(.env = parent.frame()) {
   dt <- read_file(file = .env$filePath)
 
   colSpec <- get_column_standard(spec = .env$fileSpec)
