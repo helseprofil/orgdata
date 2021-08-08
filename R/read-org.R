@@ -24,7 +24,6 @@ read_org <- function(group = NULL, koblid = NULL) {
 
   # CONN ------------------------------------------
   kh <- KHelse$new(dbFile)
-  if (isFALSE(DBI::dbIsValid(kh$dbconn))) kh$db_connect()
 
   # SPECS -----------------------------------------
   spec <- find_spec(
@@ -54,14 +53,22 @@ read_org <- function(group = NULL, koblid = NULL) {
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
+    if (getOption("orgdata.verbose")){
+      koblid <- fileSpec$KOBLID
+      fileN <- fileSpec$FILNAVN
+      message("Koblid: ", koblid, " File: ", fileN)
+    }
+
     .env <- environment()
     is_org_process()
 
     DT[[i]] <- get(".orgDT", envir = .env)
+    gc()
   }
 
-  if (isTRUE(DBI::dbIsValid(kh$dbconn))) kh$db_close()
+  on.exit(kh$db_close(), add = TRUE)
   out <- data.table::rbindlist(DT, fill = TRUE)
+
 }
 
 
