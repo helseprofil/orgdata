@@ -4,17 +4,20 @@ devtools::test()
 devtools::check()
 devtools::document()
 roxygen2::roxygenise(clean = TRUE)
-pkgdown::build_site()
+
+## devtools::install()
+pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
 
 
 ## Start here ---------------------------------
-install.packages("renv")
+## install.packages("renv")
 renv::init(bare = TRUE)
 renv::install(c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
-  "pkgdown", "DBI", "odbc", "data.table", "R6", "covr"
+  "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
+  "rmarkdown"
 ))
 renv::snapshot()
 ## renv::restore()

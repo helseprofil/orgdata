@@ -115,7 +115,8 @@ then use find_column_multi_input_arg() function. See example." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Something</li>
+    <li class="dropdown-header">Get started</li>
+    <li class="dropdown-header">Another topic</li>
   </ul>
 </li>
 <li>
@@ -123,6 +124,18 @@ then use find_column_multi_input_arg() function. See example." />
 </li>
 <li>
   <a href="../news/index.html">News</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Related
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/helseprofil/orgdata/blob/main/dev/standard.org">Make standard</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -192,13 +205,13 @@ then use <code>find_column_multi_input_arg()</code> function. See example.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Two different output:</p><ul>
-<li><p>find_column_multi gives a character vector of the
+    <p>Output:</p><ul>
+<li><p><code>find_column_multi</code> gives a character vector of the
 arguments that is separated with <code>sep</code> argument</p></li>
-<li><p>find_column_multi_input gives a list of argument names and their values</p></li>
+<li><p><code>find_column_multi_input</code> gives a list of argument names and their values</p></li>
+<li><p><code>find_column_multi_input_arg</code> gives a single object with value from the selected argument</p></li>
 </ul>
 
-<p>The single object with value from the selected argument</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

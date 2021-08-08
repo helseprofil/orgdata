@@ -15,11 +15,12 @@
 #' vals <- find_column_multi_input(args)
 #' val <- find_column_multi_input_arg(args, "header")
 #' }
-#' @return Two different output:
+#' @return Output:
 #' \itemize{
-#'    \item{[find_column_multi] gives a character vector of the
+#'    \item{`find_column_multi` gives a character vector of the
 #'          arguments that is separated with \code{sep} argument}
-#'    \item{[find_column_multi_input] gives a list of argument names and their values}
+#'    \item{`find_column_multi_input` gives a list of argument names and their values}
+#'    \item{`find_column_multi_input_arg` gives a single object with value from the selected argument}
 #' }
 #' @export
 find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", ":", ";")) {
@@ -59,7 +60,7 @@ find_column_multi_input <- function(input = NULL) {
 #' @rdname find_column_multi
 #' @param arg Name of a specific argument in the column
 #' @inheritParams find_column_multi_input
-#' @return The single object with value from the selected argument
+
 find_column_multi_input_arg <- function(input = NULL, arg = NULL) {
   # arg : Name of arg in the column eg. header
   # input : the set of arguments in the columns INNLESARG as a vector via find_column_multi()

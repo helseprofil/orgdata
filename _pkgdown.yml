@@ -23,12 +23,18 @@ navbar:
       href:
   - text: Articles
     menu:
-    - text: Something
+    - text: Get started
+      href:
+    - text: Another topic
       href:
   - text: Reference
     href: reference/index.html
   - text: News
     href: news/index.html
+  - text: Related
+    menu:
+    - text: Make standard
+      href: https://github.com/helseprofil/orgdata/blob/main/dev/standard.org
 
 reference:
 - title: Database connection

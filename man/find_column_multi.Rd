@@ -24,14 +24,13 @@ find_column_multi_input_arg(input = NULL, arg = NULL)
 \item{arg}{Name of a specific argument in the column}
 }
 \value{
-Two different output:
+Output:
 \itemize{
-\item{\link{find_column_multi} gives a character vector of the
+\item{\code{find_column_multi} gives a character vector of the
 arguments that is separated with \code{sep} argument}
-\item{\link{find_column_multi_input} gives a list of argument names and their values}
+\item{\code{find_column_multi_input} gives a list of argument names and their values}
+\item{\code{find_column_multi_input_arg} gives a single object with value from the selected argument}
 }
-
-The single object with value from the selected argument
 }
 \description{
 Get all arguments in a selected column that have multiple
