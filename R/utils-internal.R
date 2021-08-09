@@ -37,7 +37,7 @@ is_null_both <- function(x = NULL, y = NULL, msg = NULL) {
   if (!is.null(msg)) {
     msgTxt <- msg
   } else {
-    msgTxt <- sprintf("Only one of `%s` or `%s` can be used", xchr, ychr)
+    msgTxt <- sprintf("Either `%s` or `%s` can be used and not both", xchr, ychr)
   }
 
   if (!is.null(x) && !is.null(y)) {
