@@ -65,7 +65,8 @@ usethis::use_package("DBI")
 usethis::use_package("odbc")
 usethis::use_package("tibble")
 usethis::use_package("readxl")
-usethis::use_package("norgeo")
+## usethis::use_package("norgeo")
+
 
 # Run to build the website ----------------------------------
 # Install development version from GitHub
@@ -89,5 +90,8 @@ usethis::use_git_remote("origin", url = "git@work:helseprofil/orgdata.git", over
 ## In Windows. Unload package first
 # renv::install("DT")
 library(covr)
+setwd(dir = "c:/Users/ybka/Git-fhi/orgdata")
 pkg <- covr::package_coverage(path = getwd())
 covr::report(pkg)
+
+devtools::install()

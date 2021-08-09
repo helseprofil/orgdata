@@ -1,5 +1,5 @@
 Package: orgdata
-Title: Aggregating original data
+Title: Aggregating Original Data
 Version: 0.0.1
 Authors@R: 
     person(given = "Yusman",
@@ -16,11 +16,12 @@ RoxygenNote: 7.1.1
 Imports: 
     data.table,
     DBI,
-    norgeo,
     odbc,
     R6,
     readxl,
     tibble
+Remotes:
+    helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),
     renv,

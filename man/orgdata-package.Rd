@@ -4,7 +4,7 @@
 \name{orgdata-package}
 \alias{orgdata}
 \alias{orgdata-package}
-\title{orgdata: Aggregating original data}
+\title{orgdata: Aggregating Original Data}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
