@@ -14,11 +14,12 @@ pkgdown::build_news(preview = TRUE)
 ## Start here ---------------------------------
 ## install.packages("renv")
 renv::init(bare = TRUE)
+renv::install("helseprofil/norgeo")
 renv::install(c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
-  "rmarkdown", "future", "foreach"
-))
+    "rmarkdown", "future", "foreach"
+  ))
 renv::snapshot()
 ## renv::restore()
 
@@ -64,6 +65,7 @@ usethis::use_package("DBI")
 usethis::use_package("odbc")
 usethis::use_package("tibble")
 usethis::use_package("readxl")
+usethis::use_package("norgeo")
 
 # Run to build the website ----------------------------------
 # Install development version from GitHub
