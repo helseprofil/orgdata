@@ -96,7 +96,7 @@ Reconnect to the database when \code{db_close} was used.
 \subsection{Method \code{db_write()}}{
 Write table to the database.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{KHelse$db_write(name, value)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{KHelse$db_write(name = NULL, value = NULL, write = FALSE, append = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -105,6 +105,11 @@ Write table to the database.
 \item{\code{name}}{Table name to be created in the database.}
 
 \item{\code{value}}{The data to be inserted in the table.}
+
+\item{\code{write}}{Write a table to the database. It will overwrite
+the table if it already exists}
+
+\item{\code{append}}{Append the data to an existing table in the database}
 }
 \if{html}{\out{</div>}}
 }
