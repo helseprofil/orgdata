@@ -4,25 +4,44 @@
 \alias{is_org_process}
 \title{Process Raw Data}
 \usage{
-is_org_process(.env = parent.frame(), verbose = getOption("orgdata.verbose"))
+is_org_process(
+  file,
+  filespec,
+  fgspec,
+  con,
+  verbose = getOption("orgdata.verbose")
+)
 
-is_org_process(.env = parent.frame(), verbose = getOption("orgdata.verbose"))
+is_org_process(
+  file,
+  filespec,
+  fgspec,
+  con,
+  verbose = getOption("orgdata.verbose")
+)
 }
 \arguments{
-\item{.env}{Enclosing environment}
+\item{file}{File rawdata}
+
+\item{filespec}{Specification for a file from \code{tbl_Innlesing}}
+
+\item{fgspec}{Specification for a file group}
+
+\item{con}{Connection to the database}
 
 \item{verbose}{Make processes explicit. Default is FALSE}
+
+\item{.env}{Enclosing environment}
 }
 \value{
 A dataset \code{.orgDT} with \code{data.table} format
 
-A dataset \code{.orgDT} with \code{data.table} format
+A dataset with \code{data.table} format
 }
 \description{
 Implement the specifications to the raw data and deliver the output
 to the enclosing environment.
 
 Implement the specifications to the raw data and deliver the output
-to the enclosing environment.
 }
 \keyword{internal}
