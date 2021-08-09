@@ -17,7 +17,7 @@ renv::init(bare = TRUE)
 renv::install(c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
-  "rmarkdown"
+  "rmarkdown", "future", "foreach"
 ))
 renv::snapshot()
 ## renv::restore()
