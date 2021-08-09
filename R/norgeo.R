@@ -6,6 +6,7 @@
 #' @param write Write table `tblGeo` to the `orgdata.geo` database. It will overwrite
 #'    the `tblGeo` if it already exists
 #' @param append Append the data to an existing `tblGeo` in the `orgdata.geo`
+#' @importFrom norgeo cast_geo
 #' @export
 do_norgeo <- function(year = NULL, write = FALSE, append = FALSE){
   is_null(year)
