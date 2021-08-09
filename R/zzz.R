@@ -17,7 +17,7 @@ opt.orgdata <- list(
   orgdata.folder.raw = "F:/Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
   orgdata.folder.output = "",
   orgdata.db = "org-innlesing.accdb",
-  orgdata.geo = "",
+  orgdata.geo = "org-norgeo.accdb",
   orgdata.verbose = FALSE,
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL")
 )

@@ -66,15 +66,20 @@ KHelse <- R6::R6Class(
     #' Write table to the database.
     #' @param name Table name to be created in the database.
     #' @param value The data to be inserted in the table.
-    db_write = function(name, value) {
-      self$tblname <- name
-      self$tblvalue <- value
+    #' @param write Write a table to the database. It will overwrite
+    #'    the table if it already exists
+    #' @param append Append the data to an existing table in the database
+    db_write = function(name = NULL, value=NULL, write = FALSE, append = FALSE) {
+      if(!is.null(name)) { self$tblname <- name }
+      if(!is.null(value)) { self$tblvalue <- value }
+
       DBI::dbWriteTable(self$dbconn,
-        self$tblname,
-        self$tblvalue,
-        batch_rows = 1,
-        overwrite = TRUE
-      )
+                        self$tblname,
+                        self$tblvalue,
+                        batch_rows = 1,
+                        overwrite = write,
+                        append = append
+                        )
     },
 
     #' @description

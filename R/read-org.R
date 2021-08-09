@@ -20,7 +20,8 @@
 #' @export
 read_org <- function(group = NULL, koblid = NULL) {
   is_null(group, "Filgruppe is missing")
-  dbFile <- is_path_db(check = TRUE)
+  dbFile <- is_path_db(db = getOption("orgdata.db"),
+                       check = TRUE)
 
   # CONN ------------------------------------------
   kh <- KHelse$new(dbFile)
@@ -84,11 +85,12 @@ lesorg <- read_org
 
 ## Helper functions ---------------------------------------------------------
 ## Create complete path to DB file
-is_path_db <- function(check = FALSE) {
+is_path_db <- function(db, check = FALSE) {
+  # db - Database file
   db <- file.path(
     getOption("orgdata.drive"),
     getOption("orgdata.folder.db"),
-    getOption("orgdata.db")
+    db
   )
 
   if (isTRUE(check) && isFALSE(file.exists(db))) {
