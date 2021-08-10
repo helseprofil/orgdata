@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Aggregate Data — get_aggregate • orgdata</title>
+<title>Aggregate Data — do_aggregate • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,8 @@
 
 
 
-<meta property="og:title" content="Aggregate Data — get_aggregate" />
-<meta property="og:description" content="Get the specification on how the data will be aggregated to
-different geographical levels ie. county, manucipality, town etc." />
+<meta property="og:title" content="Aggregate Data — do_aggregate" />
+<meta property="og:description" content="Aggregate data according to the specification in tbl_Filgruppe" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -156,30 +155,33 @@ different geographical levels ie. county, manucipality, town etc." />
     <div class="page-header">
     <h1>Aggregate Data</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/aggregate.R'><code>R/aggregate.R</code></a></small>
-    <div class="hidden name"><code>get_aggregate.Rd</code></div>
+    <div class="hidden name"><code>do_aggregate.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the specification on how the data will be aggregated to
-different geographical levels ie. county, manucipality, town etc.</p>
+    <p>Aggregate data according to the specification in <code>tbl_Filgruppe</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_aggregere</span><span class='op'>(</span>group <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_aggregate</span><span class='op'>(</span>
+  dt <span class='op'>=</span> <span class='cn'>NULL</span>,
+  source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"G"</span>, <span class='st'>"F"</span>, <span class='st'>"K"</span>, <span class='st'>"B"</span><span class='op'>)</span>,
+  level <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"G"</span>, <span class='st'>"F"</span>, <span class='st'>"K"</span>, <span class='st'>"B"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>group</th>
-      <td><p>The group of files (<em>filgruppe</em>)</p></td>
+      <th>dt</th>
+      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
     </tr>
     <tr>
-      <th>con</th>
-      <td><p>Connection to database</p></td>
+      <th>source</th>
+      <td><p>Geo code available in the source data for merging</p></td>
     </tr>
     <tr>
-      <th>spec</th>
-      <td><p>Specification from <code>tbl_Filgruppe</code></p></td>
+      <th>level</th>
+      <td><p>Geographical levels for aggregating data</p></td>
     </tr>
     </table>
 

@@ -5,9 +5,10 @@
 #' @param level Geographical levels for aggregating data
 #' @import data.table
 #' @export
-do_aggregere <- function(dt = NULL,
+do_aggregate <- function(dt = NULL,
                          source = c("G", "F", "K", "B"),
                          level = c("G", "F", "K", "B")){
+  VAL <- NULL
   is_null(dt)
 
   source <- match.arg(source)
@@ -31,10 +32,10 @@ do_aggregere <- function(dt = NULL,
   dt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
 
   xCols <- c(aggr, "AAR", "KJONN", "ALDER")
-  ## aggCols <- (names(dt))[!names(dt) %in% c("name", "validTo")]
+
   DT <- data.table::groupingsets(
     dt,
-    j = .(VAL = sum(VAL, na.rm = TRUE)),
+    j = c(VAL = sum(VAL, na.rm = TRUE)),
     by = aggCols,
     sets = list(
       aggCols,
@@ -53,7 +54,7 @@ do_aggregere <- function(dt = NULL,
 #' @inheritParams get_split
 #' @inheritParams find_column_input
 #' @export
-get_aggregere <- function(group = NULL, con = NULL, spec = NULL) {
+get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
   is_null_also(group, spec)
   is_null_both(group, spec)
 

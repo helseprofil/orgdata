@@ -12,3 +12,5 @@ dev-select-file.R
 dev-manheader.R
 envir.R
 dev-norgeo.R
+dev-aggregate.R
+test-groupingset.R
