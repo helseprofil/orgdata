@@ -1,27 +1,41 @@
 #' @title Aggregate Data
-#' @description Aggregate data according to the specification in `tbl_Filgruppe`
+#' @description Aggregate data according to the specification in `tbl_Filgruppe`.
 #' @inheritParams do_split
-#' @param source Geo code available in the source data for merging
-#' @param level Geographical levels for aggregating data
+#' @param source What geographical granularity code that is available in the source data.
+#'    This will be used for merging with the output from `do_norgeo()`
+#' @param level Geographical granularity for aggregating data.
+#' @examples
+#' \dontrun{
+#'   # To aggregate source data with enumeration area codes ie. grunnkrets, to
+#'   # manucipaltiy ie. kommune
+#'   DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
+#' }
 #' @import data.table
 #' @export
 do_aggregate <- function(dt = NULL,
-                         source = c("G", "F", "K", "B"),
-                         level = c("G", "F", "K", "B")){
+                         source = c("grunnkrets",
+                                    "fylke",
+                                    "kommune",
+                                    "bydel"),
+                         level = c("grunnkrets",
+                                   "fylke",
+                                   "kommune",
+                                   "bydel")){
   VAL <- NULL
   is_null(dt)
+  dtt <- data.table::copy(dt)
+  on.exit(rm(dtt, geoDT))
 
+  source <- tolower(source)
+  level <- tolower(level)
   source <- match.arg(source)
   level <- match.arg(level)
 
-  src <- is_geo_level(source)
-  aggr <- is_geo_level(level)
-
-  aggCols <- c(aggr, names(dt)[!names(dt) %in% c("GEO", "VAL") ])
+  aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL") ])
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoFile)
-  geoDT <- find_spec("geo-code.sql", src, geo$dbconn)
+  geoDT <- find_spec("geo-code.sql", source, geo$dbconn)
   data.table::setDT(geoDT)
 
   intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
@@ -29,21 +43,21 @@ do_aggregate <- function(dt = NULL,
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
 
-  dt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
+  dtt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
 
-  xCols <- c(aggr, "AAR", "KJONN", "ALDER")
+  xCols <- is_set_list(level = level,
+                       srcCols = aggCols)
 
+  ## DT <- data.table::cube(dtt, j = c(VAL = sum(VAL, na.rm = TRUE)), by = aggCols)
   DT <- data.table::groupingsets(
-    dt,
+    dtt,
     j = c(VAL = sum(VAL, na.rm = TRUE)),
     by = aggCols,
-    sets = list(
-      aggCols,
-      xCols
-    )
+    sets = xCols
   )
 
-  data.table::setnames(DT, aggr, "GEO")
+  gc()
+  data.table::setnames(DT, level, "GEO")
 }
 
 #' @title Get Aggregate Specification
@@ -67,10 +81,22 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
 
 
 ## Helper ----------------------------------------
-is_geo_level <- function(x){
-  aggr <- switch(x,
-                 G = "grunnkrets",
-                 F = "fylke",
-                 K = "kommune",
-                 B = "bydel")
+is_set_list <- function(level, srcCols){
+  # level - Geo granularity to aggregate.R
+  # srcCols - Colnames of source data to be aggregated
+  cols <- is.element(c("KJONN","ALDER"), srcCols)
+
+  vars <- c("KJONN", "ALDER")
+  vars2 <- c(level, "AAR")
+  var01 <- c(vars2, vars[1])
+  var02 <- c(vars2, vars[2])
+  var03 <- c(vars2, vars)
+
+  if (sum(cols) == 2){
+    list(var01, var02, var03, srcCols)
+  } else {
+    col <- which(cols == 1)
+    list(c(vars2, vars[col]),
+         srcCols)
+  }
 }
