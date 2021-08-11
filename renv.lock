@@ -371,8 +371,8 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "norgeo",
       "RemoteRef": "master",
-      "RemoteSha": "f1b661c721807f3fe222c30bfdbe496377035f8a",
-      "Hash": "7bab3207648db996438df298729ddfdb"
+      "RemoteSha": "e452d033bfbad9684bf1a94e87f36c999a14881e",
+      "Hash": "e9ba11de78aef2ed3927c91cc952671c"
     },
     "odbc": {
       "Package": "odbc",
