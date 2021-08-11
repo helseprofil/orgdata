@@ -4,15 +4,17 @@
 \alias{do_norgeo}
 \title{Create Georgraphical Codes}
 \usage{
-do_norgeo(year = NULL, write = FALSE, append = FALSE)
+do_norgeo(year = NULL, append = FALSE, write = FALSE, table = "tblGeo")
 }
 \arguments{
-\item{year}{Year for geographical codes}
+\item{year}{Year for the valid geographical codes}
 
-\item{write}{Write table \code{tblGeo} to the \code{orgdata.geo} database. It will overwrite
-the \code{tblGeo} if it already exists}
+\item{append}{Append the data to an existing table in the \code{orgdata.geo}}
 
-\item{append}{Append the data to an existing \code{tblGeo} in the \code{orgdata.geo}}
+\item{write}{Write table to the \code{orgdata.geo} database. It will overwrite
+the table if it already exists}
+
+\item{table}{Table name to be created in the database. Default is \code{tblGeo}}
 }
 \description{
 Create a database for geographical codes to aggregate

@@ -6,17 +6,25 @@
 \usage{
 do_aggregate(
   dt = NULL,
-  source = c("G", "F", "K", "B"),
-  level = c("G", "F", "K", "B")
+  source = c("grunnkrets", "fylke", "kommune", "bydel"),
+  level = c("grunnkrets", "fylke", "kommune", "bydel")
 )
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
-\item{source}{Geo code available in the source data for merging}
+\item{source}{What geographical granularity code that is available in the source data.
+This will be used for merging with the output from \code{do_norgeo()}}
 
-\item{level}{Geographical levels for aggregating data}
+\item{level}{Geographical granularity for aggregating data.}
 }
 \description{
-Aggregate data according to the specification in \code{tbl_Filgruppe}
+Aggregate data according to the specification in \code{tbl_Filgruppe}.
+}
+\examples{
+\dontrun{
+  # To aggregate source data with enumeration area codes ie. grunnkrets, to
+  # manucipaltiy ie. kommune
+  DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
+}
 }

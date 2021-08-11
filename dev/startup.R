@@ -22,6 +22,8 @@ renv::install(c(
   ))
 renv::snapshot()
 ## renv::restore()
+## renv::remove("norgeo")
+## devtools::install_github("helseprofil/norgeo")
 
 ## usethis::create_package("orgdata")
 devtools::load_all()
