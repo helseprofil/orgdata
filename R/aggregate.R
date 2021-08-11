@@ -51,7 +51,7 @@ do_aggregate <- function(dt = NULL,
   ## DT <- data.table::cube(dtt, j = c(VAL = sum(VAL, na.rm = TRUE)), by = aggCols)
   DT <- data.table::groupingsets(
     dtt,
-    j = c(VAL = sum(VAL, na.rm = TRUE)),
+    j = list(VAL = sum(VAL, na.rm = TRUE)),
     by = aggCols,
     sets = xCols
   )
