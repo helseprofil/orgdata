@@ -1,6 +1,6 @@
 #' @title Aggregate Data
 #' @description Aggregate data according to the specification in `tbl_Filgruppe`.
-#' @inheritParams do_split
+#' @param dt Input data created with `read_org()` function
 #' @param source What geographical granularity code that is available in the source data.
 #'    This will be used for merging with the output from `do_norgeo()`
 #' @param level Geographical granularity for aggregating data.
@@ -8,6 +8,7 @@
 #' \dontrun{
 #'   # To aggregate source data with enumeration area codes ie. grunnkrets, to
 #'   # manucipaltiy ie. kommune
+#'   dt <- read_org("BEFOLKNING")
 #'   DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
 #' }
 #' @import data.table

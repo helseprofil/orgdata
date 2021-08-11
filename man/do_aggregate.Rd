@@ -11,7 +11,7 @@ do_aggregate(
 )
 }
 \arguments{
-\item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
+\item{dt}{Input data created with \code{read_org()} function}
 
 \item{source}{What geographical granularity code that is available in the source data.
 This will be used for merging with the output from \code{do_norgeo()}}
@@ -25,6 +25,7 @@ Aggregate data according to the specification in \code{tbl_Filgruppe}.
 \dontrun{
   # To aggregate source data with enumeration area codes ie. grunnkrets, to
   # manucipaltiy ie. kommune
+  dt <- read_org("BEFOLKNING")
   DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
 }
 }
