@@ -364,15 +364,15 @@
     },
     "norgeo": {
       "Package": "norgeo",
-      "Version": "0.9.4",
+      "Version": "0.9.5",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "norgeo",
       "RemoteRef": "master",
-      "RemoteSha": "e452d033bfbad9684bf1a94e87f36c999a14881e",
-      "Hash": "e9ba11de78aef2ed3927c91cc952671c"
+      "RemoteSha": "5486c67766b431ce8402221e026f560533dcf871",
+      "Hash": "2e903ffcbc1bf87cca07c0a45ca43455"
     },
     "odbc": {
       "Package": "odbc",
