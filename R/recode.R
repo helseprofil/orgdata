@@ -4,6 +4,7 @@
 #' @inheritParams do_split
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
+#' @import data.table
 #' @export
 do_recode <- function(dt = NULL, spec = NULL, con = NULL){
   grp <- spec$FILGRUPPE
@@ -22,7 +23,10 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL){
 ## code - From codebook
 ## lesid - lesid from file specification
 is_recode <- function(dt, code, lesid){
-  idCode <- code[LESID == lesid, .(KOL, FRA, TIL)]
+  LESID <- KOL <- FRA <- TIL <- NULL
+  i.to <- NULL
+
+  idCode <- code[LESID == lesid, list(KOL, FRA, TIL)]
   kols <- unique(idCode$KOL)
 
   for (i in seq_len(length(kols))){
@@ -39,8 +43,10 @@ is_recode <- function(dt, code, lesid){
 ## dt - Dataset
 ## code - From codebook
 is_recode_common <- function(dt, code){
+  LESID <- KOL <- FRA <- TIL <- NULL
+  i.to <- NULL
 
-  allCode <- code[is.na(LESID), .(KOL, FRA, TIL)]
+  allCode <- code[is.na(LESID), list(KOL, FRA, TIL)]
   kols <- unique(allCode$KOL)
 
   for (i in seq_len(length(kols))){
