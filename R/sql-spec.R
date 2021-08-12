@@ -22,11 +22,18 @@
 #'    For example the name of a \emph{filgruppe}.
 #' @param con Connection to database
 #' @param external If the SQL file is outside of the package. Default is \code{FALSE}.
+#' @param numeric Which value are numeric
+#' @param character Which value are character
 #' @return Out put will be a data.frame.
 #' @export
-find_spec <- function(file = NULL, value = NULL, con = NULL, external = FALSE) {
+find_spec <- function(file = NULL,
+                      value = NULL,
+                      con = NULL,
+                      external = FALSE,
+                      character = NULL,
+                      numeric = NULL) {
   is_null(con)
-  qs <- find_query(file, value, external)
+  qs <- find_query(file, value, external, character, numeric)
   DBI::dbGetQuery(con, qs)
 }
 
@@ -36,10 +43,14 @@ find_spec <- function(file = NULL, value = NULL, con = NULL, external = FALSE) {
 #' @examples
 #' \dontrun{
 #' qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
+#' qr2 <- find_query("your.sql", character = "BEFOLKNING", numeric = 14)
 #' }
-find_query <- function(file = NULL, value = NULL, external = FALSE) {
+find_query <- function(file = NULL,
+                       value = NULL,
+                       external = FALSE,
+                       character = NULL,
+                       numeric = NULL) {
   is_null(file)
-  is_null(value)
 
   path <- system.file(file, package = "orgdata")
 
@@ -49,7 +60,12 @@ find_query <- function(file = NULL, value = NULL, external = FALSE) {
 
   txt <- paste(readLines(path), collapse = "\n")
   is_sql_code(txt)
-  sprintf(txt, value)
+
+  if (!is.null(value)) {
+    sprintf(txt, value)
+  } else {
+    sprintf(txt, character, numeric)
+  }
 }
 
 # SQL code need sprintf for dynamic query

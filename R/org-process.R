@@ -13,16 +13,16 @@ is_org_process <- function(file, filespec, fgspec, con, verbose = getOption("org
   dt <- read_file(file = file)
 
   colSpec <- get_column_standard(spec = filespec)
-  dt <- do_column_standard(dt, colSpec)
+  dt <- do_column_standard(dt = dt, spec = colSpec)
   ## TODO Any extra args for file specific from INNLESARG
 
   splitSpec <- get_split(spec = fgspec)
   dt <- do_split(dt = dt, split = splitSpec)
 
-  yrSpec <- get_year(filespec, con)
-  dt <- do_year(dt, yrSpec)
+  yrSpec <- get_year(spec = filespec, con = con)
+  dt <- do_year(dt = dt, year = yrSpec)
 
   manSpec <- get_manheader(spec = filespec)
-  dt <- do_manheader(dt, manSpec)
+  dt <- do_manheader(dt = dt, manspec = manSpec)
 
 }

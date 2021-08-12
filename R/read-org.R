@@ -49,13 +49,13 @@ read_org <- function(group = NULL, koblid = NULL) {
   message(group, " has ", rowFile, " valid file(s).")
 
   # PROCESS ---------------------------------------------
-  verbose <- getOption("orgdata.verbose")
+
   DT <- vector(mode = "list", length = rowFile)
   for (i in seq_len(rowFile)) {
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
-    if (verbose){
+    if (getOption("orgdata.verbose")){
       koblid <- fileSpec$KOBLID
       fileN <- fileSpec$FILNAVN
       message("Koblid: ", koblid, " File: ", fileN)
@@ -65,9 +65,10 @@ read_org <- function(group = NULL, koblid = NULL) {
       file = filePath,
       filespec = fileSpec,
       fgspec = fgSpec,
-      con = kh$dbconn,
-      verbose = verbose
+      con = kh$dbconn
     )
+
+    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
 
     DT[[i]] <- dt
     gc()
