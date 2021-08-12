@@ -101,3 +101,32 @@ DFout <- structure(list(GEO = c(
   NA, NA, NA, NA, "C", "C", "B", NA,
   NA, "B"
 )), row.names = c(NA, -10L), class = "data.frame")
+
+
+### Data for test recode ----------------------------------
+
+recDT <- structure(list(AAR = c(2019L, 2019L, 2019L),
+                        GEO = c(3010105L, 3010105L, 3010202L),
+                        KJONN = c(1L, 1L, 1L),
+                        ALDER = c(67L, 71L, 69L),
+                        UTDANN = 1:3, LANDBAK = c("1B", "0", "0"),
+                        SIVILSTAND = c(2L, 4L, 1L),
+                        VAL = c(1L, 1L, 1L), LANDB = c("1", "0", "0"),
+                        LANDF = c("2", "1", "1")),
+                   row.names = c(NA, -3L), class = c("data.table", "data.frame"
+                                                     ))
+                                        # Codebook
+recCB <- structure(list(FILGRUPPE = c("Dode", "Dode"),
+                        LESID = c(NA, 16L), KOL = c("LANDF", "LANDB"),
+                        TYPE = c(1L, 1L), FRA = c("NA", "0"),
+                        TIL = c("1", "9")),
+                   class = c("data.table", "data.frame"), row.names = c(NA, -2L))
+
+recOut <- structure(list(AAR = c(2019L, 2019L, 2019L),
+                         GEO = c(3010105L, 3010105L, 3010202L),
+                         KJONN = c(1L, 1L, 1L), ALDER = c(67L, 71L, 69L),
+                         UTDANN = 1:3, LANDBAK = c("1B", "0", "0"),
+                         SIVILSTAND = c(2L, 4L, 1L),
+                         VAL = c(1L, 1L, 1L), LANDB = c("1", "9", "9"),
+                         LANDF = c("2", "1", "1")),
+                    row.names = c(NA, -3L), class = c("data.table", "data.frame"))
