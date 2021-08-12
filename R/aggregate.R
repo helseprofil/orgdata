@@ -46,11 +46,18 @@ do_aggregate <- function(dt = NULL,
     yr <- as.character(year)
   }
 
+  ## geoDT <- find_spec("geo-code-all.sql", value = source, con = geo$dbconn)
   geoDT <- find_spec("geo-code.sql", con = geo$dbconn, char = source, num = yr, opposite = TRUE)
   data.table::setDT(geoDT)
 
   intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
+
+  ## for (j in seq_len(length(intCols))){
+  ##   if(class(geoDT[[j]])== "character")
+  ##     data.table::set(geoDT, j = j, value = as.integer(geoDT[[j]]))
+  ## }
   geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
+
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
 

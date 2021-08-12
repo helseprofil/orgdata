@@ -21,7 +21,10 @@
 #' @aliases read_org lesorg
 #' @import data.table
 #' @export
-read_org <- function(group = NULL, koblid = NULL, aggregate = getOption("orgdata.aggregate"), year = NULL) {
+read_org <- function(group = NULL,
+                     koblid = NULL,
+                     aggregate = getOption("orgdata.aggregate"),
+                     year = NULL) {
   is_null(group, "Filgruppe is missing")
   dbFile <- is_path_db(db = getOption("orgdata.db"),
                        check = TRUE)
