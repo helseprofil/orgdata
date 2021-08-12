@@ -30,11 +30,9 @@ is_org_process(
 \item{con}{Connection to the database}
 
 \item{verbose}{Make processes explicit. Default is FALSE}
-
-\item{.env}{Enclosing environment}
 }
 \value{
-A dataset \code{.orgDT} with \code{data.table} format
+A dataset with \code{data.table} format
 
 A dataset with \code{data.table} format
 }

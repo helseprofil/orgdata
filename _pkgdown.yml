@@ -46,7 +46,6 @@ reference:
 - title: Main functions
   desc: >
     Functions to load rawdata into R and produce a `csv` file for the selected group (*filgruppe*).
-    These have `read_` prefix.
   contents:
   - starts_with("read_")
 - title: Action functions

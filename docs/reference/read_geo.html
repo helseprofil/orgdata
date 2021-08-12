@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Aggregate Data — do_aggregate • orgdata</title>
+<title>Create Georgraphical Codes — read_geo • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,10 @@
 
 
 
-<meta property="og:title" content="Aggregate Data — do_aggregate" />
-<meta property="og:description" content="Aggregate data according to the specification in tbl_Filgruppe." />
+<meta property="og:title" content="Create Georgraphical Codes — read_geo" />
+<meta property="og:description" content="Create a database for geographical codes to aggregate
+data accordingly. Implementation of this function is base on norgeo::cast_geo()
+function in norgeo package." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -153,48 +155,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Aggregate Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/aggregate.R'><code>R/aggregate.R</code></a></small>
-    <div class="hidden name"><code>do_aggregate.Rd</code></div>
+    <h1>Create Georgraphical Codes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/norgeo.R'><code>R/norgeo.R</code></a></small>
+    <div class="hidden name"><code>read_geo.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Aggregate data according to the specification in <code>tbl_Filgruppe</code>.</p>
+    <p>Create a database for geographical codes to aggregate
+data accordingly. Implementation of this function is base on <code><a href='https://rdrr.io/pkg/norgeo/man/cast_geo.html'>norgeo::cast_geo()</a></code>
+function in <a href='https://helseprofil.github.io/norgeo/'>norgeo</a> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_aggregate</span><span class='op'>(</span>
-  dt <span class='op'>=</span> <span class='cn'>NULL</span>,
-  source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
-  level <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>read_geo</span><span class='op'>(</span>year <span class='op'>=</span> <span class='cn'>NULL</span>, append <span class='op'>=</span> <span class='cn'>FALSE</span>, write <span class='op'>=</span> <span class='cn'>FALSE</span>, table <span class='op'>=</span> <span class='st'>"tblGeo"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dt</th>
-      <td><p>Input data created with <code><a href='read_org.html'>read_org()</a></code> function</p></td>
+      <th>year</th>
+      <td><p>Year for the valid geographical codes</p></td>
     </tr>
     <tr>
-      <th>source</th>
-      <td><p>What geographical granularity code that is available in the source data.
-This will be used for merging with the output from <code>do_norgeo()</code></p></td>
+      <th>append</th>
+      <td><p>Append the data to an existing table in the <code>orgdata.geo</code></p></td>
     </tr>
     <tr>
-      <th>level</th>
-      <td><p>Geographical granularity for aggregating data.</p></td>
+      <th>write</th>
+      <td><p>Write table to the <code>orgdata.geo</code> database. It will overwrite
+the table if it already exists</p></td>
+    </tr>
+    <tr>
+      <th>table</th>
+      <td><p>Table name to be created in the database. Default is <code>tblGeo</code></p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='co'># To aggregate source data with enumeration area codes ie. grunnkrets, to</span>
-  <span class='co'># manucipaltiy ie. kommune</span>
-  <span class='va'>dt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_org.html'>read_org</a></span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span><span class='op'>)</span>
-  <span class='va'>DT</span> <span class='op'>&lt;-</span> <span class='fu'>do_aggregate</span><span class='op'>(</span><span class='va'>dt</span>, source <span class='op'>=</span> <span class='st'>"grunnkrets"</span>, level <span class='op'>=</span> <span class='st'>"kommune"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

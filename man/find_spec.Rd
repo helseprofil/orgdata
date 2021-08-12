@@ -5,9 +5,22 @@
 \alias{find_query}
 \title{File Specifications in Registration Database}
 \usage{
-find_spec(file = NULL, value = NULL, con = NULL, external = FALSE)
+find_spec(
+  file = NULL,
+  value = NULL,
+  con = NULL,
+  external = FALSE,
+  character = NULL,
+  numeric = NULL
+)
 
-find_query(file = NULL, value = NULL, external = FALSE)
+find_query(
+  file = NULL,
+  value = NULL,
+  external = FALSE,
+  character = NULL,
+  numeric = NULL
+)
 }
 \arguments{
 \item{file}{SQL file. If external is TRUE then complete filepath must be specified.}
@@ -18,6 +31,10 @@ For example the name of a \emph{filgruppe}.}
 \item{con}{Connection to database}
 
 \item{external}{If the SQL file is outside of the package. Default is \code{FALSE}.}
+
+\item{character}{Which value are character}
+
+\item{numeric}{Which value are numeric}
 }
 \value{
 Out put will be a data.frame.
@@ -43,5 +60,6 @@ Which is saved in \code{C:/myfile.sql} and run as in the code example.
 \examples{
 \dontrun{
 qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
+qr2 <- find_query("your.sql", character = "BEFOLKNING", numeric = 14)
 }
 }

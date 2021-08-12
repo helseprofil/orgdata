@@ -190,9 +190,22 @@ Example of SQL code with <code>'%s'</code>:
 Which is saved in <code>C:/myfile.sql</code> and run as in the code example.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_spec</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, value <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, external <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>find_spec</span><span class='op'>(</span>
+  file <span class='op'>=</span> <span class='cn'>NULL</span>,
+  value <span class='op'>=</span> <span class='cn'>NULL</span>,
+  con <span class='op'>=</span> <span class='cn'>NULL</span>,
+  external <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  character <span class='op'>=</span> <span class='cn'>NULL</span>,
+  numeric <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
 
-<span class='fu'>find_query</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, value <span class='op'>=</span> <span class='cn'>NULL</span>, external <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+<span class='fu'>find_query</span><span class='op'>(</span>
+  file <span class='op'>=</span> <span class='cn'>NULL</span>,
+  value <span class='op'>=</span> <span class='cn'>NULL</span>,
+  external <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  character <span class='op'>=</span> <span class='cn'>NULL</span>,
+  numeric <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -214,6 +227,14 @@ For example the name of a <em>filgruppe</em>.</p></td>
       <th>external</th>
       <td><p>If the SQL file is outside of the package. Default is <code>FALSE</code>.</p></td>
     </tr>
+    <tr>
+      <th>character</th>
+      <td><p>Which value are character</p></td>
+    </tr>
+    <tr>
+      <th>numeric</th>
+      <td><p>Which value are numeric</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -223,6 +244,7 @@ For example the name of a <em>filgruppe</em>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='va'>qr</span> <span class='op'>&lt;-</span> <span class='fu'>find_query</span><span class='op'>(</span><span class='st'>"C:/myfile.sql"</span>, value <span class='op'>=</span> <span class='st'>"BEFOLKNING"</span>, external <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>qr2</span> <span class='op'>&lt;-</span> <span class='fu'>find_query</span><span class='op'>(</span><span class='st'>"your.sql"</span>, character <span class='op'>=</span> <span class='st'>"BEFOLKNING"</span>, numeric <span class='op'>=</span> <span class='fl'>14</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
