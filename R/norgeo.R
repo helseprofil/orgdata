@@ -9,7 +9,7 @@
 #' @param table Table name to be created in the database. Default is `tblGeo`
 #' @importFrom norgeo cast_geo
 #' @export
-do_norgeo <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo"){
+read_geo <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo"){
   is_null(year)
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
