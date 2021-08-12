@@ -15,10 +15,13 @@
 #' }
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
+#' @param aggregate Aggregate data according to the specification in registration database.
+#'    Default is FALSE. Use `options(orgdata.aggregate = TRUE)` to change globally.
+#' @inheritParams do_aggregate
 #' @aliases read_org lesorg
 #' @import data.table
 #' @export
-read_org <- function(group = NULL, koblid = NULL) {
+read_org <- function(group = NULL, koblid = NULL, aggregate = getOption("orgdata.aggregate"), year = NULL) {
   is_null(group, "Filgruppe is missing")
   dbFile <- is_path_db(db = getOption("orgdata.db"),
                        check = TRUE)
@@ -70,6 +73,10 @@ read_org <- function(group = NULL, koblid = NULL) {
 
     dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
 
+    if (aggregate){
+      dt <- is_aggregate(dt, fgspec = fgSpec, year = year)
+    }
+
     DT[[i]] <- dt
     gc()
   }
@@ -84,10 +91,44 @@ read_org <- function(group = NULL, koblid = NULL) {
 #' @rdname read_org
 lesorg <- read_org
 
+
+
 ## Helper functions ---------------------------------------------------------
+
+is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year){
+  if(verbose){
+    message("Aggregating data ...")
+  }
+
+  aggSpec <- get_aggregate(spec = fgspec)
+  source <- is_geo_level(dt$GEO[1])
+
+  nSpec <- length(aggSpec)
+  DT <- vector(mode = "list", length = nSpec)
+  for (i in seq_len(nSpec)){
+    dtt <- data.table::copy(dt)
+    dtt <- do_aggregate(dt=dtt, source = source, level = aggSpec[i], year = year)
+    DT[[i]] <- dtt
+    gc()
+  }
+  rm(dtt)
+  data.table::rbindlist(DT, use.names = TRUE, fill = TRUE)
+}
+
+## identify geo level
+is_geo_level <- function(x){
+  geo <- nchar(x)
+  data.table::fcase(geo %in% 7:8, "g",
+                    geo %in% 5:6, "b",
+                    geo %in% 3:4, "k",
+                    geo %in% 1:2, "f")
+
+}
+
+
 ## Create complete path to DB file
 is_path_db <- function(db, check = FALSE) {
-  # db - Database file
+                                        # db - Database file
   db <- file.path(
     getOption("orgdata.drive"),
     getOption("orgdata.folder.db"),
@@ -113,7 +154,7 @@ is_path_raw <- function(spec, check = FALSE) {
   return(filePath)
 }
 
-# Exclude files after KOBLID and IBRUKTIL
+                                        # Exclude files after KOBLID and IBRUKTIL
 is_org_files <- function(spec, id = NULL) {
   IBRUKTIL <- NULL
   koblid <- spec$KOBLID

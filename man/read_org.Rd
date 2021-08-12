@@ -5,14 +5,30 @@
 \alias{lesorg}
 \title{Read and Run the Specifications}
 \usage{
-read_org(group = NULL, koblid = NULL)
+read_org(
+  group = NULL,
+  koblid = NULL,
+  aggregate = getOption("orgdata.aggregate"),
+  year = NULL
+)
 
-lesorg(group = NULL, koblid = NULL)
+lesorg(
+  group = NULL,
+  koblid = NULL,
+  aggregate = getOption("orgdata.aggregate"),
+  year = NULL
+)
 }
 \arguments{
 \item{group}{The group of files (\emph{filgruppe})}
 
 \item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
+
+\item{aggregate}{Aggregate data according to the specification in registration database.
+Default is FALSE. Use \code{options(orgdata.aggregate = TRUE)} to change globally.}
+
+\item{year}{Which year the georaphical code is valid for. If not specified, then
+it will be base on the year in source data ie. column \code{AAR}}
 }
 \description{
 Read the specifications in the register database and implement them

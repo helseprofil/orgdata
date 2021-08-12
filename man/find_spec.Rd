@@ -10,16 +10,18 @@ find_spec(
   value = NULL,
   con = NULL,
   external = FALSE,
-  character = NULL,
-  numeric = NULL
+  char = NULL,
+  num = NULL,
+  opposite = FALSE
 )
 
 find_query(
   file = NULL,
   value = NULL,
   external = FALSE,
-  character = NULL,
-  numeric = NULL
+  char = NULL,
+  num = NULL,
+  opposite = FALSE
 )
 }
 \arguments{
@@ -32,9 +34,11 @@ For example the name of a \emph{filgruppe}.}
 
 \item{external}{If the SQL file is outside of the package. Default is \code{FALSE}.}
 
-\item{character}{Which value are character}
+\item{char}{Which value are character}
 
-\item{numeric}{Which value are numeric}
+\item{num}{Which value are numeric}
+
+\item{opposite}{TRUE if numeric value will be read before character}
 }
 \value{
 Out put will be a data.frame.
@@ -60,6 +64,6 @@ Which is saved in \code{C:/myfile.sql} and run as in the code example.
 \examples{
 \dontrun{
 qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
-qr2 <- find_query("your.sql", character = "BEFOLKNING", numeric = 14)
+qr2 <- find_query("your.sql", char = "BEFOLKNING", num = 14)
 }
 }

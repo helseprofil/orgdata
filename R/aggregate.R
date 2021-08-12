@@ -4,6 +4,8 @@
 #' @param source What geographical granularity code that is available in the source data.
 #'    This will be used for merging with the output from `do_norgeo()`
 #' @param level Geographical granularity for aggregating data.
+#' @param year Which year the georaphical code is valid for. If not specified, then
+#'   it will be base on the year in source data ie. column `AAR`
 #' @examples
 #' \dontrun{
 #'   # To aggregate source data with enumeration area codes ie. grunnkrets, to
@@ -21,11 +23,11 @@ do_aggregate <- function(dt = NULL,
                          level = c("grunnkrets",
                                    "fylke",
                                    "kommune",
-                                   "bydel")){
-  VAL <- NULL
+                                   "bydel"),
+                         year = NULL){
+  VAL <- GEO <- NULL
   is_null(dt)
   dtt <- data.table::copy(dt)
-  on.exit(rm(dtt, geoDT))
 
   source <- tolower(source)
   level <- tolower(level)
@@ -36,13 +38,26 @@ do_aggregate <- function(dt = NULL,
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoFile)
-  geoDT <- find_spec("geo-code.sql", source, geo$dbconn)
+
+  ## validTo in the database is a character
+  if (is.null(year)){
+    yr <- dtt$AAR[1]
+  } else {
+    yr <- as.character(year)
+  }
+
+  geoDT <- find_spec("geo-code.sql", con = geo$dbconn, char = source, num = yr, opposite = TRUE)
   data.table::setDT(geoDT)
 
   intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
   geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
+
+  ## TODO read_file should convert integer variables
+  if(class(dtt$GEO) == "character"){
+    dtt[, GEO := as.integer(GEO)]
+  }
 
   dtt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
 
@@ -51,12 +66,13 @@ do_aggregate <- function(dt = NULL,
 
   ## DT <- data.table::cube(dtt, j = c(VAL = sum(VAL, na.rm = TRUE)), by = aggCols)
   DT <- data.table::groupingsets(
-    dtt,
-    j = list(VAL = sum(VAL, na.rm = TRUE)),
-    by = aggCols,
-    sets = xCols
-  )
+                      dtt,
+                      j = list(VAL = sum(VAL, na.rm = TRUE)),
+                      by = aggCols,
+                      sets = xCols
+                    )
 
+  on.exit(rm(dtt, geoDT))
   gc()
   data.table::setnames(DT, level, "GEO")
 }
