@@ -10,3 +10,4 @@
 ^codecov\.yml$
 ^orgdata\.Rproj$
 ^\.Rproj\.user$
+^\.dir-locals-el$
