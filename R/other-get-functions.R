@@ -18,14 +18,14 @@ get_innlesarg <- function(group = NULL, con = NULL, spec = NULL) {
   is_null_both(group, spec)
 
   if (is.null(spec)) {
-    spec <- find_spec("specification.sql", group, con)
+    spec <- find_spec("specification.sql", value = group, con = con)
   }
 
-  input <- find_column_input(spec, "INNLESARG")
+  input <- find_column_input(spec = spec, col = "INNLESARG")
 
   if (!is.na(input)) {
-    args <- find_column_multi(spec, "INNLESARG", sep = ",")
-    input <- find_column_multi_input(args)
+    args <- find_column_multi(spec = spec, col = "INNLESARG", sep = ",")
+    input <- find_column_multi_input(input = args)
   }
   return(input)
 }
@@ -41,5 +41,5 @@ get_innlesarg <- function(group = NULL, con = NULL, spec = NULL) {
 #' }
 #' @export
 get_column_input <- function(spec, col) {
-  find_column_input(spec, col)
+  find_column_input(spec = spec, col = col)
 }

@@ -9,7 +9,7 @@
 do_recode <- function(dt = NULL, spec = NULL, con = NULL){
   grp <- spec$FILGRUPPE
   lesid <- spec$LESID
-  speCode <- find_spec("recode.sql", con=con, character = grp, numeric = lesid)
+  speCode <- find_spec("recode.sql", con=con, char = grp, num = lesid)
   data.table::setDT(speCode)
 
   dt <- is_recode_common(dt = dt, code = speCode)

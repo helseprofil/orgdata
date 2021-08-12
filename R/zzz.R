@@ -19,7 +19,8 @@ opt.orgdata <- list(
   orgdata.db = "org-innlesing.accdb",
   orgdata.geo = "org-norgeo.accdb",
   orgdata.verbose = FALSE,
-  orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL")
+  orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL"),
+  orgdata.aggregate = FALSE
 )
 
 .onLoad <- function(libname, pkgname) {

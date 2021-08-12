@@ -22,18 +22,20 @@
 #'    For example the name of a \emph{filgruppe}.
 #' @param con Connection to database
 #' @param external If the SQL file is outside of the package. Default is \code{FALSE}.
-#' @param numeric Which value are numeric
-#' @param character Which value are character
+#' @param num Which value are numeric
+#' @param char Which value are character
+#' @param opposite TRUE if numeric value will be read before character
 #' @return Out put will be a data.frame.
 #' @export
 find_spec <- function(file = NULL,
                       value = NULL,
                       con = NULL,
                       external = FALSE,
-                      character = NULL,
-                      numeric = NULL) {
+                      char = NULL,
+                      num = NULL,
+                      opposite = FALSE) {
   is_null(con)
-  qs <- find_query(file, value, external, character, numeric)
+  qs <- find_query(file, value, external, char, num, opposite)
   DBI::dbGetQuery(con, qs)
 }
 
@@ -43,13 +45,14 @@ find_spec <- function(file = NULL,
 #' @examples
 #' \dontrun{
 #' qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
-#' qr2 <- find_query("your.sql", character = "BEFOLKNING", numeric = 14)
+#' qr2 <- find_query("your.sql", char = "BEFOLKNING", num = 14)
 #' }
 find_query <- function(file = NULL,
                        value = NULL,
                        external = FALSE,
-                       character = NULL,
-                       numeric = NULL) {
+                       char = NULL,
+                       num = NULL,
+                       opposite = FALSE) {
   is_null(file)
 
   path <- system.file(file, package = "orgdata")
@@ -64,13 +67,23 @@ find_query <- function(file = NULL,
   if (!is.null(value)) {
     sprintf(txt, value)
   } else {
-    sprintf(txt, character, numeric)
+    is_opposite(txt, char, num, opposite)
   }
 }
 
-# SQL code need sprintf for dynamic query
+## Helper ----------------------------------------------------
+
+is_opposite <- function(txt, char, num, opposite){
+  if (opposite){
+    sprintf(txt, num, char)
+  } else {
+    sprintf(txt, char, num)
+  }
+}
+
+## SQL code need sprintf for dynamic query
 is_sql_code <- function(x) {
-  # x : file with sql code
+  ## x : file with sql code
   if (grepl("%", x) != 1) {
     stop("Missing `sprintf` reference in SQL code")
   }
