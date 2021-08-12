@@ -13,13 +13,13 @@ pkgdown::build_news(preview = TRUE)
 
 ## Start here ---------------------------------
 ## install.packages("renv")
-renv::init(bare = TRUE)
+#renv::init(bare = TRUE)
 renv::install("helseprofil/norgeo")
 renv::install(c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
-    "rmarkdown", "future", "foreach"
-  ))
+  "rmarkdown", "future", "foreach", "styler"
+))
 renv::snapshot()
 ## renv::restore()
 ## renv::remove("norgeo")
