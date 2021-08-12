@@ -1,2 +1,2 @@
 SELECT DEFAAR FROM tbl_Orgfile
-WHERE FILID = %d
+WHERE FILID=%d

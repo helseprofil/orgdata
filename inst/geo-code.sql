@@ -1,2 +1,2 @@
 SELECT * FROM tblGeo
-WHERE level = '%s'
+WHERE validTo='%s' AND level='%s'
