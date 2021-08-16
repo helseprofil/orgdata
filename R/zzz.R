@@ -20,6 +20,7 @@ opt.orgdata <- list(
   orgdata.geo = "org-norgeo.accdb",
   orgdata.verbose = FALSE,
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL"),
+  orgdata.int = c("GEO","AAR", "KJONN", "ALDER", "VAL"),
   orgdata.aggregate = FALSE
 )
 
