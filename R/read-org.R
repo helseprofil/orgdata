@@ -92,6 +92,10 @@ read_org <- function(group = NULL,
       message("Column(s) are deleted from the dataset: ", deleteVar)
     }
 
+    ## convert some columns to interger. Must be after
+    ## the variables are recoded eg. LANDF is string before recorded to number
+    dt <- is_col_int(dt)
+
     if (aggregate){
       dt <- is_aggregate(dt, fgspec = fgSpec, year = year, ...)
     }
@@ -126,7 +130,7 @@ is_data_cols <- function(fgspec = NULL){
   if (length(splitCols) == 2){
     vars$to <- splitCols$to
   }
-  varCols <- unlist(vars)
+  varCols <- unname(unlist(vars))
   c(varCols, stdCols)
 }
 
@@ -142,9 +146,9 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
 
   nSpec <- length(aggSpec)
   DT <- vector(mode = "list", length = nSpec)
-  for (i in seq_len(nSpec)){
+  for (i in seq_len(nSpec)) {
     dtt <- data.table::copy(dt)
-    dtt <- do_aggregate(dt=dtt, source = source, level = aggSpec[i], year = year, ...)
+    dtt <- do_aggregate(dt = dtt, source = source, level = aggSpec[i], year = year, ...)
     DT[[i]] <- dtt
     gc()
   }
@@ -210,4 +214,24 @@ is_org_files <- function(spec, id = NULL) {
     stop("No valid file to be processed!")
   }
   data.table::setDF(spec)
+}
+
+
+## Covert to integer for columns integer but only after
+## variables are recoded
+is_col_int <- function(dt){
+  cols <- getOption("orgdata.int")
+
+  ints <- c("UTDANN", "SIVILSTAND", "LANDB", "LANDF")
+  noExtra <- setdiff(names(dt), ints)
+  extraInts <- names(dt)[!(names(dt) %in% noExtra)]
+
+  colsInt <- c(cols, extraInts)
+
+  for(j in seq_len(length(colsInt))){
+    col <- colsInt[j]
+    if(class(dt[[col]]) == "character")
+      data.table::set(dt, j = col, value = as.integer(dt[[col]]))
+  }
+  return(dt)
 }
