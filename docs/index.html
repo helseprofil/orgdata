@@ -138,11 +138,22 @@
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_org.html">read_org</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">48</span><span class="op">)</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_org.html">read_org</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">48</span>, <span class="fl">72</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
+<div id="aggregate-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#aggregate-data" class="anchor"></a>Aggregate data</h2>
+<p>Data can be aggregated according to the specification in the registration database using the argument <code>aggregate</code> in <code><a href="reference/read_org.html">read_org()</a></code> function.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_org.html">read_org</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, aggregate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>You could also set the global options to <code>TRUE</code> with:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>orgdata.aggregate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_org.html">read_org</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></code></pre></div>
+</div>
 <div id="read-files" class="section level2">
 <h2 class="hasAnchor">
 <a href="#read-files" class="anchor"></a>Read files</h2>
 <p>The function <code><a href="reference/read_file.html">read_file()</a></code> can be used to check how a specific rawdata file will be read into R directly.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">file01</span> <span class="op">&lt;-</span> <span class="st">"F:/Path/To/File/Rawdata.csv"</span>
 <span class="va">file02</span> <span class="op">&lt;-</span> <span class="st">"F:/Path/To/File/Rawdata.xlsx"</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_file.html">read_file</a></span><span class="op">(</span><span class="va">file01</span><span class="op">)</span>

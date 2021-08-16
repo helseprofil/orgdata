@@ -45,6 +45,22 @@ dt <- read_org("BEFOLKNING", koblid = 48)
 dt <- read_org("BEFOLKNING", koblid = c(48, 72))
 ```
 
+## Aggregate data
+
+Data can be aggregated according to the specification in the registration database
+using the argument `aggregate` in `read_org()` function.
+
+```r
+DT <- read_org("BEFOLKNING", aggregate = TRUE)
+```
+
+You could also set the global options to `TRUE` with:
+
+```r
+options(orgdata.aggregate = TRUE)
+DT <- read_org("BEFOLKNING")
+```
+
 ## Read files
 
 The function `read_file()` can be used to check how a specific rawdata 
