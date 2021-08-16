@@ -149,6 +149,7 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
   for (i in seq_len(nSpec)) {
     dtt <- data.table::copy(dt)
     dtt <- do_aggregate(dt = dtt, source = source, level = aggSpec[i], year = year, ...)
+    dtt <- do_aggregate_recode(dt = dtt)
     DT[[i]] <- dtt
     gc()
   }

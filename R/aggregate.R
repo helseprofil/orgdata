@@ -1,6 +1,6 @@
 #' @title Aggregate Data
 #' @description Aggregate data according to the specification in `tbl_Filgruppe`.
-#' @param dt Input data created with `read_org()` function
+#' @inheritParams do_split
 #' @param source What geographical granularity code that is available in the source data.
 #'    This will be used for merging with the output from `do_norgeo()`
 #' @param level Geographical granularity for aggregating data.
@@ -96,6 +96,24 @@ do_aggregate <- function(dt = NULL,
   data.table::setnames(DT, level, "GEO")
 }
 
+#' @title Recode Aggregated Variables
+#' @description Recode aggregated variables to represent all values either as `0`
+#'  integer variables and `Tot` for string variables.
+#' @inheritParams do_split
+#' @export
+do_aggregate_recode <- function(dt){
+  intCols <- c("UTDANN", "SIVILSTAND", "LANDB", "LANDF")
+  chrCols <- "LANDBAK"
+
+  for (j in seq_len(length(intCols))){
+    col <- intCols[j]
+    data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = 0)
+  }
+
+  dt[is.na(get(chrCols)), (chrCols) := "Tot"]
+}
+
+
 #' @title Get Aggregate Specification
 #' @description
 #' Get the specification on how the data will be aggregated to
@@ -124,15 +142,17 @@ is_set_list <- function(level, srcCols){
 
   vars <- c("KJONN", "ALDER")
   vars2 <- c(level, "AAR")
-  var01 <- c(vars2, vars[1])
-  var02 <- c(vars2, vars[2])
+  ## var01 <- c(vars2, vars[1])
+  ## var02 <- c(vars2, vars[2])
   var03 <- c(vars2, vars)
 
   if (sum(cols) == 2){
-    list(var01, var02, var03, srcCols)
+    ## list(var01, var02, var03, srcCols)
+    list(var03, srcCols)
   } else {
-    col <- which(cols == 1)
-    list(c(vars2, vars[col]),
-         srcCols)
+    ## col <- which(cols == 1)
+    ## list(c(vars2, vars[col]),
+    ##      srcCols)
+    list(vars2, srcCols)
   }
 }
