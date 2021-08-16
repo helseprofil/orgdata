@@ -6,6 +6,8 @@
 #' @param level Geographical granularity for aggregating data.
 #' @param year Which year the georaphical code is valid for. If not specified, then
 #'   it will be base on the year in source data ie. column `AAR`
+#' @param check If TRUE then output will not be aggregated. This is useful to check
+#'   for geographical codes that are missing.
 #' @examples
 #' \dontrun{
 #'   # To aggregate source data with enumeration area codes ie. grunnkrets, to
@@ -24,7 +26,8 @@ do_aggregate <- function(dt = NULL,
                                    "fylke",
                                    "kommune",
                                    "bydel"),
-                         year = NULL){
+                         year = NULL,
+                         check = FALSE){
   VAL <- GEO <- NULL
   is_null(dt)
   dtt <- data.table::copy(dt)
@@ -67,6 +70,15 @@ do_aggregate <- function(dt = NULL,
   }
 
   dtt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
+
+  ## Breakpoint here to check the missing GEO when merging
+  if (check){
+    warning("Aggregating data isn't completed!")
+    return(dtt)
+  }
+
+  dtt[is.na(kommune), kommune := as.integer(gsub("\\d{4}$", "", GEO))]
+  dtt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))]
 
   xCols <- is_set_list(level = level,
                        srcCols = aggCols)

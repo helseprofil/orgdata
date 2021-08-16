@@ -18,13 +18,15 @@
 #' @param aggregate Aggregate data according to the specification in registration database.
 #'    Default is FALSE. Use `options(orgdata.aggregate = TRUE)` to change globally.
 #' @inheritParams do_aggregate
+#' @param ... Additional parameters
 #' @aliases read_org lesorg
 #' @import data.table
 #' @export
 read_org <- function(group = NULL,
                      koblid = NULL,
                      aggregate = getOption("orgdata.aggregate"),
-                     year = NULL) {
+                     year = NULL,
+                     ...) {
   is_null(group, "Filgruppe is missing")
   dbFile <- is_path_db(db = getOption("orgdata.db"),
                        check = TRUE)
@@ -77,7 +79,7 @@ read_org <- function(group = NULL,
     dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
 
     if (aggregate){
-      dt <- is_aggregate(dt, fgspec = fgSpec, year = year)
+      dt <- is_aggregate(dt, fgspec = fgSpec, year = year, ...)
     }
 
     DT[[i]] <- dt
@@ -98,7 +100,7 @@ lesorg <- read_org
 
 ## Helper functions ---------------------------------------------------------
 
-is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year){
+is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year, ...){
   if(verbose){
     message("Aggregating data ...")
   }
@@ -110,7 +112,7 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
   DT <- vector(mode = "list", length = nSpec)
   for (i in seq_len(nSpec)){
     dtt <- data.table::copy(dt)
-    dtt <- do_aggregate(dt=dtt, source = source, level = aggSpec[i], year = year)
+    dtt <- do_aggregate(dt=dtt, source = source, level = aggSpec[i], year = year, ...)
     DT[[i]] <- dtt
     gc()
   }
