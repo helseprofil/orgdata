@@ -34,7 +34,8 @@ find_data.csv <- function(file, ...) {
 #' @method find_data xls
 #' @export
 find_data.xls <- function(file, ...) {
-  readxl::read_excel(path = file, ...)
+  df <- readxl::read_excel(path = file, ...)
+  data.table::setDT(df)
 }
 
 #' @method find_data xlsx
