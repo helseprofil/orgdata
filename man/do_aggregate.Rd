@@ -13,7 +13,7 @@ do_aggregate(
 )
 }
 \arguments{
-\item{dt}{Input data created with \code{read_org()} function}
+\item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
 \item{source}{What geographical granularity code that is available in the source data.
 This will be used for merging with the output from \code{do_norgeo()}}
