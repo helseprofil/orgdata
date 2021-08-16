@@ -1,7 +1,7 @@
 # Check code ------------------------------------------
 # Arguments that are missing
-is_null <- function(arg = NULL, msg = NULL) {
-  # msg : Alternative message if not using default
+is_null <- function(arg = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
+  ## msg : Alternative message if not using default
   argchr <- deparse(substitute(arg))
 
   if (!is.null(msg)) {
@@ -10,12 +10,17 @@ is_null <- function(arg = NULL, msg = NULL) {
     msgTxt <- sprintf("Argument for `%s` is missing", argchr)
   }
 
+  if (verbose){
+    fun <- sys.calls()[[sys.nframe()-1]]
+    msgTxt <- paste0("\n",msgTxt, " in ", fun)
+  }
+
   if (is.null(arg)) {
     stop(msgTxt)
   }
 }
 
-is_null_also <- function(x = NULL, y = NULL, msg = NULL) {
+is_null_also <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
   xchr <- deparse(substitute(x))
   ychr <- deparse(substitute(y))
 
@@ -25,12 +30,17 @@ is_null_also <- function(x = NULL, y = NULL, msg = NULL) {
     msgTxt <- sprintf("Either `%s` or `%s` can't be empty", xchr, ychr)
   }
 
+  if (verbose){
+    fun <- sys.calls()[[sys.nframe()-1]]
+    msgTxt <- paste0("\n",msgTxt, " in ", fun)
+  }
+
   if (is.null(x) && is.null(y)) {
     stop(msgTxt)
   }
 }
 
-is_null_both <- function(x = NULL, y = NULL, msg = NULL) {
+is_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
   xchr <- deparse(substitute(x))
   ychr <- deparse(substitute(y))
 
@@ -38,6 +48,11 @@ is_null_both <- function(x = NULL, y = NULL, msg = NULL) {
     msgTxt <- msg
   } else {
     msgTxt <- sprintf("Either `%s` or `%s` can be used and not both", xchr, ychr)
+  }
+
+  if (verbose){
+    fun <- sys.calls()[[sys.nframe()-1]]
+    msgTxt <- paste0("\n",msgTxt, " in ", fun)
   }
 
   if (!is.null(x) && !is.null(y)) {
