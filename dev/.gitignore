@@ -16,3 +16,4 @@ dev-aggregate.R
 test-groupingset.R
 dev-recode.R
 dev-addcol.R
+dev-recode-aggregate.R
