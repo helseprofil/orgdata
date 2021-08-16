@@ -51,12 +51,15 @@ read_org <- function(group = NULL,
   )
   ## data.table::setDT(fgSpec)
 
-  # SELECT FILE ------------------------------------------
+  ## SELECT FILE ------------------------------------------
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
   message(group, " has ", rowFile, " valid file(s).")
 
-  # PROCESS ---------------------------------------------
+  ## COLUMNS ----------------------------------------------
+  dataCols <- is_data_cols(group = group, con = kh$dbconn)
+
+  ## PROCESS ---------------------------------------------
 
   DT <- vector(mode = "list", length = rowFile)
   for (i in seq_len(rowFile)) {
@@ -77,6 +80,10 @@ read_org <- function(group = NULL,
     )
 
     dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
+
+    ## Only columns defined in tbl_Filgruppe will be kept
+    deleteVar <- setdiff(names(dt), dataCols)
+    dt[, (deleteVar) := NULL]
 
     if (aggregate){
       dt <- is_aggregate(dt, fgspec = fgSpec, year = year, ...)
@@ -99,6 +106,11 @@ lesorg <- read_org
 
 
 ## Helper functions ---------------------------------------------------------
+## Get columnames to be kept
+is_data_cols <- function(group = NULL, con = NULL ){
+  cols <- get_addcols(group = group, con = con)
+  c(cols$new, getOption("orgdata.columns"))
+}
 
 is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year, ...){
   if(verbose){
@@ -133,7 +145,7 @@ is_geo_level <- function(x){
 
 ## Create complete path to DB file
 is_path_db <- function(db, check = FALSE) {
-                                        # db - Database file
+  ## db - Database file
   db <- file.path(
     getOption("orgdata.drive"),
     getOption("orgdata.folder.db"),
@@ -159,7 +171,7 @@ is_path_raw <- function(spec, check = FALSE) {
   return(filePath)
 }
 
-                                        # Exclude files after KOBLID and IBRUKTIL
+## Exclude files after KOBLID and IBRUKTIL
 is_org_files <- function(spec, id = NULL) {
   IBRUKTIL <- NULL
   koblid <- spec$KOBLID

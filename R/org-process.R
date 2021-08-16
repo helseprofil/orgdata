@@ -27,4 +27,7 @@ is_org_process <- function(file,
 
   manSpec <- get_manheader(spec = filespec)
   dt <- do_manheader(dt, manSpec)
+
+  dataCols <- get_addcols(spec = fgspec)
+  dt <- do_addcols(dt, cols = dataCols)
 }
