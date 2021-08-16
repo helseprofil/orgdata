@@ -28,7 +28,7 @@ do_aggregate <- function(dt = NULL,
                                    "bydel"),
                          year = NULL,
                          check = FALSE){
-  VAL <- GEO <- NULL
+  VAL <- GEO <- fylke <- kommune <- NULL
   is_null(dt)
   dtt <- data.table::copy(dt)
 
