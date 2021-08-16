@@ -9,14 +9,16 @@ read_org(
   group = NULL,
   koblid = NULL,
   aggregate = getOption("orgdata.aggregate"),
-  year = NULL
+  year = NULL,
+  ...
 )
 
 lesorg(
   group = NULL,
   koblid = NULL,
   aggregate = getOption("orgdata.aggregate"),
-  year = NULL
+  year = NULL,
+  ...
 )
 }
 \arguments{
@@ -29,6 +31,8 @@ Default is FALSE. Use \code{options(orgdata.aggregate = TRUE)} to change globall
 
 \item{year}{Which year the georaphical code is valid for. If not specified, then
 it will be base on the year in source data ie. column \code{AAR}}
+
+\item{...}{Additional parameters}
 }
 \description{
 Read the specifications in the register database and implement them

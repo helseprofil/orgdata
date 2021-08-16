@@ -8,7 +8,8 @@ do_aggregate(
   dt = NULL,
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
   level = c("grunnkrets", "fylke", "kommune", "bydel"),
-  year = NULL
+  year = NULL,
+  check = FALSE
 )
 }
 \arguments{
@@ -21,6 +22,9 @@ This will be used for merging with the output from \code{do_norgeo()}}
 
 \item{year}{Which year the georaphical code is valid for. If not specified, then
 it will be base on the year in source data ie. column \code{AAR}}
+
+\item{check}{If TRUE then output will not be aggregated. This is useful to check
+for geographical codes that are missing.}
 }
 \description{
 Aggregate data according to the specification in \code{tbl_Filgruppe}.
