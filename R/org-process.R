@@ -30,4 +30,21 @@ is_org_process <- function(file,
 
   dataCols <- get_addcols(spec = fgspec)
   dt <- do_addcols(dt, cols = dataCols)
+
+  dt <- is_col_int(dt)
+
+
+}
+
+## Helper -------------------------------------
+
+## Covert to integer for columns integer
+is_col_int <- function(dt){
+  colsInt <- getOption("orgdata.int")
+  for(j in seq_len(length(colsInt))){
+    col <- colsInt[j]
+    if(class(dt[[col]]) == "character")
+      data.table::set(dt, j = col, value = as.integer(dt[[col]]))
+  }
+  return(dt)
 }

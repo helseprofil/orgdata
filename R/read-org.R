@@ -31,7 +31,7 @@ read_org <- function(group = NULL,
   dbFile <- is_path_db(db = getOption("orgdata.db"),
                        check = TRUE)
 
-  # CONN ------------------------------------------
+  # CONNECTION--------------------------------------
   kh <- KHelse$new(dbFile)
 
   # SPECS -----------------------------------------
@@ -51,13 +51,13 @@ read_org <- function(group = NULL,
   )
   ## data.table::setDT(fgSpec)
 
-  ## SELECT FILE ------------------------------------------
+  ## SELECT FILES ------------------------------------------
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
   message(group, " has ", rowFile, " valid file(s).")
 
-  ## COLUMNS ----------------------------------------------
-  dataCols <- is_data_cols(group = group, con = kh$dbconn)
+  ## COLUMNS TO KEEP -------------------------------------
+  dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ---------------------------------------------
 
@@ -83,7 +83,14 @@ read_org <- function(group = NULL,
 
     ## Only columns defined in tbl_Filgruppe will be kept
     deleteVar <- setdiff(names(dt), dataCols)
-    dt[, (deleteVar) := NULL]
+    if (length(deleteVar)!=0) {
+      dt[, (deleteVar) := NULL]
+    }
+
+    if (length(deleteVar)!= 0 && isTRUE(getOption("orgdata.verbose"))){
+      deleteVar <- paste(deleteVar, collapse = ", ")
+      message("Column(s) are deleted from the dataset: ", deleteVar)
+    }
 
     if (aggregate){
       dt <- is_aggregate(dt, fgspec = fgSpec, year = year, ...)
@@ -95,7 +102,6 @@ read_org <- function(group = NULL,
 
   on.exit(kh$db_close(), add = TRUE)
   out <- data.table::rbindlist(DT, fill = TRUE)
-
 }
 
 
@@ -107,14 +113,28 @@ lesorg <- read_org
 
 ## Helper functions ---------------------------------------------------------
 ## Get columnames to be kept
-is_data_cols <- function(group = NULL, con = NULL ){
-  cols <- get_addcols(group = group, con = con)
-  c(cols$new, getOption("orgdata.columns"))
+is_data_cols <- function(fgspec = NULL){
+  stdCols <- getOption("orgdata.columns")
+  vars <- list()
+
+  newCols <- get_addcols(spec = fgspec)
+  if (length(newCols) == 2){
+    vars$new <- newCols$new
+  }
+
+  splitCols <- get_split(spec = fgspec)
+  if (length(splitCols) == 2){
+    vars$to <- splitCols$to
+  }
+  varCols <- unlist(vars)
+  c(varCols, stdCols)
 }
+
+
 
 is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year, ...){
   if(verbose){
-    message("Aggregating data ...")
+    message("Starts aggregating data ...")
   }
 
   aggSpec <- get_aggregate(spec = fgspec)

@@ -9,7 +9,10 @@ do_addcols <- function(dt = NULL, cols = NULL){
   is_null(dt)
   is_null(cols)
 
-  data.table::setnames(dt, old = cols[["old"]], new = cols[["new"]])
+  if (length(cols) == 2) {
+    data.table::setnames(dt, old = cols[["old"]], new = cols[["new"]])
+  }
+  return(dt)
 }
 
 #' @title Get New Columns
