@@ -39,8 +39,10 @@ is_write <- function(write, table, con){
 
   tblExist <- DBI::dbExistsTable(conn = con, name = table)
   if (isTRUE(write) && isTRUE(tblExist)){
-    msgs <- sprintf("Table `%s` exists. Do you want to overwrite?", table)
-    write <- utils::askYesNo(msg = msgs)
+    msgs <- sprintf("\nWoops!! Table `%s` allready exists. Do you want to overwrite?", table)
+    ## write <- utils::askYesNo(msg = msgs, )
+    yesNo <- utils::menu(c("Yes", "No"), title = msgs)
+    write <- ifelse(yesNo == 1, TRUE, FALSE)
   }
   return(write)
 }
