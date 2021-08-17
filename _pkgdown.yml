@@ -48,6 +48,7 @@ reference:
     Functions to load rawdata into R and produce a `csv` file for the selected group (*filgruppe*).
   contents:
   - starts_with("read_")
+  - save_file
 - title: Action functions
   desc: >
     Functions for doing the instructions specified such as `rename`, `recode` etc. These

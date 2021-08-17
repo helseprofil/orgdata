@@ -9,6 +9,7 @@ read_org(
   group = NULL,
   koblid = NULL,
   aggregate = getOption("orgdata.aggregate"),
+  save = FALSE,
   year = NULL,
   ...
 )
@@ -17,6 +18,7 @@ lesorg(
   group = NULL,
   koblid = NULL,
   aggregate = getOption("orgdata.aggregate"),
+  save = FALSE,
   year = NULL,
   ...
 )
@@ -28,6 +30,8 @@ lesorg(
 
 \item{aggregate}{Aggregate data according to the specification in registration database.
 Default is FALSE. Use \code{options(orgdata.aggregate = TRUE)} to change globally.}
+
+\item{save}{Save as \code{.csv} by activating \code{save_file()}. Default is \code{FALSE}}
 
 \item{year}{Which year the georaphical code is valid for. If not specified, then
 it will be base on the year in source data ie. column \code{AAR}}
