@@ -88,7 +88,7 @@ is_path_raw <- function(spec, check = FALSE) {
 
 ## Exclude files after KOBLID and IBRUKTIL
 is_org_files <- function(spec, id = NULL) {
-  IBRUKTIL <- NULL
+  IBRUKTIL <- KOBLID <- NULL
 
   koblid <- spec$KOBLID
 
