@@ -102,14 +102,18 @@ do_aggregate <- function(dt = NULL,
 #' @inheritParams do_split
 #' @export
 do_aggregate_recode <- function(dt){
-  intCols <- c("UTDANN", "SIVILSTAND", "LANDB", "LANDF")
+  ## Total is 0
+  intMin <- c("UTDANN", "SIVILSTAND", "LANDF")
+  ## Total is 10
+  intMax <- "LANDB"
+  ## Total is Tot
   chrCols <- "LANDBAK"
 
-  for (j in seq_len(length(intCols))){
-    col <- intCols[j]
+  for (j in seq_len(length(intMin))){
+    col <- intMin[j]
     data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = 0)
   }
-
+  dt[is.na(get(intMax)), (intMax) := 10]
   dt[is.na(get(chrCols)), (chrCols) := "Tot"]
 }
 
