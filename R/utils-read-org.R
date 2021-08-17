@@ -32,7 +32,12 @@ is_data_cols <- function(fgspec = NULL){
     vars$to <- splitCols$to
   }
   varCols <- unname(unlist(vars))
-  c(varCols, stdCols)
+
+  if (length(varCols) == 1 && is.na(varCols)) {
+    stdCols
+  } else {
+    c(stdCols, varCols)
+  }
 }
 
 
