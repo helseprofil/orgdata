@@ -18,6 +18,7 @@
 #' @param aggregate Aggregate data according to the specification in registration database.
 #'    Default is FALSE. Use `options(orgdata.aggregate = TRUE)` to change globally.
 #' @inheritParams do_aggregate
+#' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
 #' @param ... Additional parameters
 #' @aliases read_org lesorg
 #' @import data.table
@@ -25,6 +26,7 @@
 read_org <- function(group = NULL,
                      koblid = NULL,
                      aggregate = getOption("orgdata.aggregate"),
+                     save =FALSE,
                      year = NULL,
                      ...) {
   is_null(group, "Filgruppe is missing")
@@ -106,6 +108,10 @@ read_org <- function(group = NULL,
 
   on.exit(kh$db_close(), add = TRUE)
   out <- data.table::rbindlist(DT, fill = TRUE)
+
+  if (save) save_file(dt = out, group = group)
+
+  return(out)
 }
 
 
