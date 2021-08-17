@@ -27,8 +27,8 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
 get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
   GEO <- KJONN <- AAR <- ALDER <- UTDANN <- LANDBAK <- VAL <- NULL
 
-  is_null_also(group, spec)
   is_null_both(group, spec)
+  is_not_null_both(group, spec)
 
   if (is.null(spec)) {
     spec <- find_spec("filegroups.sql", group, con)

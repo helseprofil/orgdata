@@ -127,8 +127,8 @@ do_aggregate_recode <- function(dt){
 #' @inheritParams find_column_input
 #' @export
 get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
-  is_null_also(group, spec)
   is_null_both(group, spec)
+  is_not_null_both(group, spec)
 
   if (is.null(spec)) {
     spec <- find_spec("filegroups.sql", group, con)

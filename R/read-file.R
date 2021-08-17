@@ -17,7 +17,7 @@
 #' }
 #' @export
 read_file <- function(filid = NULL, file = NULL, ...) {
-  is_null_both(filid, file)
+  is_not_null_both(filid, file)
 
   if (!is.null(filid)){
     file <- is_id_file(filid = filid)

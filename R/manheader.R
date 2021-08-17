@@ -34,8 +34,8 @@ do_manheader <- function(dt = NULL, manspec = NULL) {
 #'     \code{$col} for the new name of the selected column index.
 #' @export
 get_manheader <- function(group = NULL, con = NULL, spec = NULL) {
-  is_null_also(group, spec)
   is_null_both(group, spec)
+  is_not_null_both(group, spec)
 
   if (is.null(spec)) {
     spec <- find_spec("specification.sql", group, con)

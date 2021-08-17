@@ -20,7 +20,7 @@ is_null <- function(arg = NULL, msg = NULL, verbose = getOption("orgdata.verbose
   }
 }
 
-is_null_also <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
+is_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
   xchr <- deparse(substitute(x))
   ychr <- deparse(substitute(y))
 
@@ -40,7 +40,7 @@ is_null_also <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("or
   }
 }
 
-is_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
+is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
   xchr <- deparse(substitute(x))
   ychr <- deparse(substitute(y))
 
