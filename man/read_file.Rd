@@ -4,12 +4,14 @@
 \alias{read_file}
 \title{Read Data File}
 \usage{
-read_file(file = NULL, ...)
+read_file(filid = NULL, file = NULL, ...)
 }
 \arguments{
+\item{filid}{File id as in \code{tbl_Orgfile} in the registration database}
+
 \item{file}{Input file}
 
-\item{...}{All other arguments to be passed related to the file format.}
+\item{...}{All other arguments to be passed related to the file format}
 }
 \description{
 Read rawdata. It uses the \code{\link[=find_data]{find_data()}} generic method.
@@ -19,7 +21,11 @@ for \code{fread} function can be used. For a \code{ xlsx } or \code{ .xls } file
 }
 \examples{
 \dontrun{
-rdata <- read_file("/file/path/mydata.xlsx", sheet = "S3", range = cell_rows(1:4))
-rdata <- read_file("/file/path/mydata.csv", sep = ",", header = FALSE)
+# With FILID
+DT <- read_file(filid = 5)
+
+# With filepath
+rdata <- read_file(file = "/file/path/mydata.xlsx", sheet = "S3", range = cell_rows(1:4))
+rdata <- read_file(file = "/file/path/mydata.csv", sep = ",", header = FALSE)
 }
 }
