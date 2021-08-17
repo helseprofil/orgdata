@@ -10,10 +10,9 @@ pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
 
-
 ## Start here ---------------------------------
 ## install.packages("renv")
-#renv::init(bare = TRUE)
+                                        #renv::init(bare = TRUE)
 renv::install("helseprofil/norgeo")
 renv::install(c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
