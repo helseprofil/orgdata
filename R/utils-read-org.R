@@ -89,12 +89,14 @@ is_path_raw <- function(spec, check = FALSE) {
 ## Exclude files after KOBLID and IBRUKTIL
 is_org_files <- function(spec, id = NULL) {
   IBRUKTIL <- NULL
+
   koblid <- spec$KOBLID
+
   ## TODO Implement spec as DT from parent.env
   data.table::setDT(spec)
   if (!is.null(id)) {
     koblid <- id
-    spec <- spec[spec$KOBLID %in% koblid, ]
+    spec <- spec[KOBLID %in% koblid, ]
   }
 
   spec[, IBRUKTIL := as.Date(IBRUKTIL, format = "%Y-%m-%d")]
