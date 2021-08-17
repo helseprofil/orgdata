@@ -13,10 +13,10 @@ sysDrive <- switch(OS,
 ## Options for Folkehelseprofiler
 opt.orgdata <- list(
   orgdata.drive = sysDrive,
-  orgdata.folder.db = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING",
+  orgdata.folder.db = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING/org-innlesing",
   orgdata.folder.raw = "F:/Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
-  orgdata.folder.output = "",
-  orgdata.db = "org-innlesing.accdb",
+  orgdata.folder.output = "F:/Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/CSV",
+  orgdata.db = "org-innlesing_BE.accdb",
   orgdata.geo = "org-norgeo.accdb",
   orgdata.verbose = FALSE,
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL"),
