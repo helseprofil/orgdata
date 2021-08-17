@@ -1,0 +1,2 @@
+SELECT FILNAVN FROM tbl_Orgfile
+WHERE FILID=%d
