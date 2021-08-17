@@ -71,3 +71,11 @@ test_that("Columns and class data", {
   expect_equal(is_data_cols(fgspec = fgspecMis), colmis)
 })
 
+
+test_that("Geo level", {
+  expect_equal(is_geo_level(2), "f")
+  expect_equal(is_geo_level(12345678), "g")
+  expect_equal(is_geo_level(1234567), "g")
+  expect_equal(is_geo_level(1234), "k")
+  expect_equal(is_geo_level(123), "k")
+})
