@@ -21,6 +21,12 @@ if(!require(remotes)) install.packages("remotes")
 remotes::install_github("helseprofil/orgdata")
 ```
 
+or use a user startup file by cloning from `user` branch
+
+``` sh
+git clone -b user https://github.com/helseprofil/orgdata
+```
+
 ## Usage
 
 To implement the specifications per file group as being registered in
@@ -51,6 +57,10 @@ You could also set the global options to `TRUE` with:
 ``` r
 options(orgdata.aggregate = TRUE)
 DT <- read_org("BEFOLKNING")
+save_file(DT, "BEFOLKNING")
+
+## to save file directly
+DT <- read_org("BEFOLKNING", save = TRUE)
 ```
 
 ## Read files
@@ -58,9 +68,16 @@ DT <- read_org("BEFOLKNING")
 The function `read_file()` can be used to check how a specific rawdata
 file will be read into R directly.
 
+You can use `filid` argument to select specific file or provide the
+complete file path with argument `file`.
+
 ``` r
+## with filid
+dt <- read_file(filid = 4)
+
+## with complete file path
 file01 <- "F:/Path/To/File/Rawdata.csv"
 file02 <- "F:/Path/To/File/Rawdata.xlsx"
-dt <- read_file(file01)
-dt <- read_file(file02)
+dt <- read_file(file = file01)
+dt <- read_file(file = file02)
 ```
