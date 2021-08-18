@@ -24,6 +24,6 @@ the table if it already exists}
 \description{
 Create a table of current year geographical codes against previous
 years geogprahical codes. This is used to recode the previous years codes to the
-current codes. Implementation of this function is base on \code{\link[norgeo:track_change]{norgeo::track_change()}}
+current codes. Implementation of this function is base on \code{\link[norgeo:get_change]{norgeo::get_change()}}
 function.
 }
