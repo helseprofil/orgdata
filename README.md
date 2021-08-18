@@ -37,7 +37,7 @@ library(orgdata)
 # All files under BEFOLKNING group
 dt <- read_org("BEFOLKNING")
 
-# For selected files only where id is KOBLID
+# For selected files with KOBLID
 dt <- read_org("BEFOLKNING", koblid = 48)
 dt <- read_org("BEFOLKNING", koblid = c(48, 72))
 ```
@@ -68,12 +68,12 @@ DT <- read_org("BEFOLKNING", save = TRUE)
 The function `read_file()` can be used to check how a specific rawdata
 file will be read into R directly.
 
-You can use `filid` argument to select specific file or provide the
-complete file path with argument `file`.
+You can use `FILID` value in `file` argument to select specific file or
+provide the complete file path to the `file` argument.
 
 ``` r
-## with filid
-dt <- read_file(filid = 4)
+## with FILID
+dt <- read_file(file = 4)
 
 ## with complete file path
 file01 <- "F:/Path/To/File/Rawdata.csv"

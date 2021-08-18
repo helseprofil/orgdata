@@ -4,17 +4,15 @@
 \alias{read_file}
 \title{Read Data File}
 \usage{
-read_file(filid = NULL, file = NULL, ...)
+read_file(file = NULL, ...)
 }
 \arguments{
-\item{filid}{File id as in \code{tbl_Orgfile} in the registration database}
-
 \item{file}{Input file}
 
 \item{...}{All other arguments to be passed related to the file format}
 }
 \description{
-Read rawdata. It uses the \code{\link[=find_data]{find_data()}} generic method.
+Read rawdata either using \code{filid} value or complete file path. It uses the \code{\link[=find_data]{find_data()}} generic method.
 For a \code{ .csv } file, \code{\link[data.table:fread]{data.table::fread()}} is used and all other arguments
 for \code{fread} function can be used. For a \code{ xlsx } or \code{ .xls } file
 \code{\link[readxl:read_excel]{readxl::read_excel()}} function and all of its arguments.
@@ -22,7 +20,7 @@ for \code{fread} function can be used. For a \code{ xlsx } or \code{ .xls } file
 \examples{
 \dontrun{
 # With FILID
-DT <- read_file(filid = 5)
+DT <- read_file(file = 5)
 
 # With filepath
 rdata <- read_file(file = "/file/path/mydata.xlsx", sheet = "S3", range = cell_rows(1:4))
