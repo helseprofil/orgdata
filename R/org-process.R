@@ -13,7 +13,14 @@ is_org_process <- function(file,
                            fgspec,
                            con,
                            verbose = getOption("orgdata.verbose")) {
-  dt <- read_file(file = file)
+
+  dots <- get_innlesarg(spec = filespec)
+
+  if (is.na(dots[1])){
+    dt <- read_file(file = file)
+  } else {
+    dt <- read_file(file = file, dots)
+  }
 
   colSpec <- get_column_standard(spec = filespec)
   dt <- do_column_standard(dt, colSpec)
