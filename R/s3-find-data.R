@@ -28,16 +28,65 @@ find_data.default <- function(file, ...) {
 #' @method find_data csv
 #' @export
 find_data.csv <- function(file, ...) {
-  data.table::fread(input = file, ...)
+  if(length(list(...))!=0){
+    dd <- list(...)[[1]]
+    dots <- is_dt_var(dd)
+  } else {
+    dots <- list()
+  }
+
+  dots$input <- file
+  do.call(data.table::fread, dots)
 }
 
 #' @method find_data xls
 #' @export
 find_data.xls <- function(file, ...) {
-  df <- readxl::read_excel(path = file, ...)
-  data.table::setDT(df)
+  if (length(list(...))!=0){
+    ## take it out from nested list
+    dd <- list(...)[[1]]
+    dots <- is_xls_var(dd)
+  } else {
+    dots <- list()
+  }
+
+  dots$path <- file
+  do.call(readxl::read_excel, dots)
 }
 
 #' @method find_data xlsx
 #' @export
 find_data.xlsx <- find_data.xls
+
+## Helper -------------------------------------------
+## For arguments in fread that have numeric input
+is_dt_var <- function(x){
+  argInt <- "nrows"
+  inx <- is.element(argInt, names(x))
+  elm <- argInt[inx]
+
+  if (sum(inx)>0){
+    x <- is_convert_var(x, elm)
+  }
+  return(x)
+}
+
+## For arguments in read_excel that have numeric input
+is_xls_var <- function(x){
+  argInt <- c("skip", "n_max")
+  inx <- is.element(argInt, names(x))
+  elm <- argInt[inx]
+
+  if (sum(inx)>0){
+    x <- is_convert_var(x, elm)
+  }
+  return(x)
+}
+
+is_convert_var <- function(x = NULL, elm = NULL){
+  for (i in seq_along(elm)){
+    val <- as.numeric(x[elm[i]][1])
+    x[elm[i]] <- val
+    }
+  return(x)
+}
