@@ -49,6 +49,13 @@ reference:
   contents:
   - starts_with("read_")
   - save_file
+- title: Geo codes
+  desc: >
+    Functions to get geographical codes for aggregating and recoding. The codes are fetched from
+    [SSB](https://www.ssb.no/klass/) via API. The [norgeo](https://helseprofil.github.io/norgeo/)
+    package is used behind the scene.
+  contents:
+  - starts_with("geo_")
 - title: Action functions
   desc: >
     Functions for doing the instructions specified such as `rename`, `recode` etc. These
