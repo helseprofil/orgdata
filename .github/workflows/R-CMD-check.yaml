@@ -55,6 +55,20 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
+      - name: Cache packages
+        uses: actions/cache@v1
+        with:
+         path: ${{ env.RENV_PATHS_ROOT }}
+         key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+         restore-keys: |
+            ${{ runner.os }}-renv-
+
+      - name: Restore packages
+        shell: Rscript {0}
+        run: |
+           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+           renv::restore()
+
       - name: Install system dependencies
         if: runner.os == 'Linux'
         run: |
