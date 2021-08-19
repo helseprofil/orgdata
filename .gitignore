@@ -44,3 +44,4 @@ vignettes/*.pdf
 /README.html
 /dev/logo.png
 /dev/logo02.png
+inst/doc

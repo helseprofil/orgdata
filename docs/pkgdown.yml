@@ -1,6 +1,7 @@
 pandoc: '2.13'
 pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2021-08-18T15:07Z
+articles:
+  get-started: get-started.html
+last_built: 2021-08-19T09:08Z
 

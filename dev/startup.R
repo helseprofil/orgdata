@@ -9,6 +9,7 @@ roxygen2::roxygenise(clean = TRUE)
 pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
+devtools::build() #only when you have unload the package
 
 ## Start here ---------------------------------
 ## install.packages("renv")
@@ -39,6 +40,8 @@ usethis::use_git_ignore()
 usethis::use_package_doc() # for package document roxygen style
 devtools::document()
 roxygen2::roxygenise(clean = TRUE) # to clean up old dirt
+usethis::use_vignette("get-started", "Get started")
+
 
 ## Development --------------------------
 devtools::load_all()
