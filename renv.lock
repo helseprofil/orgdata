@@ -3,12 +3,8 @@
     "Version": "4.1.0",
     "Repositories": [
       {
-        "Name": "cran",
+        "Name": "CRAN",
         "URL": "https://cloud.r-project.org"
-      },
-      {
-        "Name": "ropensci",
-        "URL": "https://ropensci.r-universe.dev"
       }
     ]
   },
@@ -22,10 +18,10 @@
     },
     "R6": {
       "Package": "R6",
-      "Version": "2.5.0",
+      "Version": "2.5.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "b203113193e70978a696b2809525649d"
+      "Hash": "470851b6d5d0ac559e9d01bb352b4021"
     },
     "RSQLite": {
       "Package": "RSQLite",
@@ -204,8 +200,8 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "norgeo",
       "RemoteRef": "master",
-      "RemoteSha": "928346126020c6fdeacbb5cca92d24657fefd69b",
-      "Hash": "cb8c05e4319f786da756a32ed328dd75"
+      "RemoteSha": "03f61f8c7112f30fb26cffbf40e26396ab1a0ec9",
+      "Hash": "6894c14a32f79431e6e04e4c5a885719"
     },
     "odbc": {
       "Package": "odbc",
@@ -237,9 +233,9 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "6f5a4e2b7bbf9150600c85b47e26647f0c55861f",
+      "RemoteSha": "6cee479c0fe2bdb674519e8083da6aa629d48313",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "6d0af0287f6b6fbabe40132c19dd7453"
+      "Hash": "65f90eca12708c6b93a0320bcb50258c"
     },
     "pillar": {
       "Package": "pillar",

@@ -11,6 +11,7 @@
 # R Environment Variables
 .Renviron
 
+README.html
 .DS_Store
 .idea
 *.log
