@@ -19,3 +19,6 @@ tmp/
 # Dev folder
 /dev/
 dev*
+
+# Folder
+/vignettes
