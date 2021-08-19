@@ -21,8 +21,7 @@ Imports:
     R6,
     readxl,
     tibble
-Remotes:
-    helseprofil/norgeo
+Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),
     renv,

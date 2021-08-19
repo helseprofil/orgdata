@@ -2,6 +2,7 @@
 devtools::load_all()
 devtools::test()
 devtools::check(vignettes = FALSE)
+devtools::check()
 devtools::document()
 roxygen2::roxygenise(clean = TRUE)
 
@@ -29,6 +30,8 @@ install.packages(pkgs = pkgs)
 install.packages("renv")
 remotes::install_github("rstudio/renv")
 renv::init(bare = TRUE)
+## install packages declared in DESCRIPTION
+renv::install()
 renv::install("helseprofil/norgeo")
 renv::install(pkgs)
 ## renv::install("callr")
@@ -101,12 +104,15 @@ usethis::use_git_remote("origin", url = "https://github.com/helseprofil/orgdata.
 usethis::use_github_action_check_standard()
 usethis::use_git_remote("origin", url = "git@work:helseprofil/orgdata.git", overwrite = TRUE)
 
+usethis::use_appveyor()
+usethis::use_appveyor_badge()
+
 ## COV ----------------------------
-# usethis::use_coverage()
-# usethis::use_github_action("test-coverage")
+## usethis::use_coverage()
+## usethis::use_github_action("test-coverage")
 
 ## In Windows. Unload package first
-# renv::install("DT")
+## renv::install("DT")
 library(covr)
 setwd(dir = "c:/Users/ybka/Git-fhi/orgdata")
 pkg <- covr::package_coverage(path = getwd())

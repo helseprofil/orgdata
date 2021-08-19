@@ -4,6 +4,7 @@
 ^dev$
 ^\.github$
 ^README\.Rmd$
+^README\.html$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
@@ -11,3 +12,4 @@
 ^orgdata\.Rproj$
 ^\.Rproj\.user$
 ^\.dir-locals-el$
+^appveyor\.yml$
