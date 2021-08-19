@@ -29,6 +29,9 @@ Alternatively is to clone user startup files ie. *seepafil.R* via terminal from
 git clone -b user https://github.com/helseprofil/orgdata
 ```
 
+```{r setup, include = FALSE}
+  devtools::load_all()
+```
 
 ## Aggregate all files
 
