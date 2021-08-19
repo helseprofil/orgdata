@@ -25,6 +25,10 @@ save_file <- function(dt = NULL, group = NULL){
   data.table::fwrite(dt, file = file, sep = ";")
 }
 
+#' @export
+#' @rdname save_file
+lagfil <- save_file
+
 
 ## Helper -----------------------------------------
 

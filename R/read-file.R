@@ -28,6 +28,10 @@ read_file <- function(file = NULL, ...) {
   find_data(file, ...)
 }
 
+#' @export
+#' @rdname read_file
+lesfil <- read_file
+
 
 ## Helper -------------------------------------
 
