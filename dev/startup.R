@@ -23,7 +23,7 @@ pkgs <- c(
 )
 
 install.packages(pkgs = pkgs)
-## devtools::install_github("helseprofil/norgeo")
+## devtools::install_github("helseprofil/norgeo", force = TRUE)
 
 ## renv --------------------------------
 ## Unload package before running these
@@ -34,7 +34,7 @@ renv::init(bare = TRUE)
 renv::install()
 renv::install("helseprofil/norgeo")
 renv::install(pkgs)
-## renv::install("callr")
+renv::install("pkgdown")
 ## renv::install("callr@3.3.0")
 renv::snapshot()
 renv::restore()

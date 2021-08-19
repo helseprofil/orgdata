@@ -8,8 +8,6 @@
 [![R-CMD-check](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://codecov.io/gh/helseprofil/orgdata?branch=main)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/helseprofil/orgdata?branch=main&svg=true)](https://ci.appveyor.com/project/helseprofil/orgdata)
 <!-- badges: end -->
 
 Aggregating **OR**i**G**inal **DATA** into a preferred data structure.
