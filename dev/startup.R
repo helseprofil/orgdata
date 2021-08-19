@@ -23,21 +23,20 @@ pkgs <- c(
 )
 
 install.packages(pkgs = pkgs)
-## devtools::install_github("helseprofil/norgeo", force = TRUE)
+devtools::install_github("helseprofil/norgeo", force = TRUE)
 
 ## renv --------------------------------
 ## Unload package before running these
-install.packages("renv")
-remotes::install_github("rstudio/renv")
-renv::init(bare = TRUE)
-## install packages declared in DESCRIPTION
-renv::install()
-renv::install("helseprofil/norgeo")
-renv::install(pkgs)
-renv::install("pkgdown")
-## renv::install("callr@3.3.0")
-renv::snapshot()
-renv::restore()
+## install.packages("renv")
+## remotes::install_github("rstudio/renv")
+## renv::init(bare = TRUE)
+## ## install packages declared in DESCRIPTION
+## renv::install()
+## renv::install("helseprofil/norgeo")
+## renv::install(pkgs)
+## renv::install("pkgdown")
+## renv::snapshot()
+## renv::restore()
 ## renv::remove("orgdata")
 ## devtools::install_github("helseprofil/norgeo")
 
@@ -104,8 +103,9 @@ usethis::use_git_remote("origin", url = "https://github.com/helseprofil/orgdata.
 usethis::use_github_action_check_standard()
 usethis::use_git_remote("origin", url = "git@work:helseprofil/orgdata.git", overwrite = TRUE)
 
-usethis::use_appveyor()
-usethis::use_appveyor_badge()
+usethis::use_lifecycle()
+usethis::use_lifecycle_badge(stage = "experimental")
+
 
 ## COV ----------------------------
 ## usethis::use_coverage()

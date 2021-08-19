@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 Presuming that `orgdata` package has been installed, this is how you can start
 using the main function. Otherwise you can run the code below.
+
 ```r
 if (!requireNamespace("remotes"))
   install.packages("remotes")
@@ -27,10 +28,6 @@ Alternatively is to clone user startup files ie. *seepafil.R* via terminal from
 
 ```shell
 git clone -b user https://github.com/helseprofil/orgdata
-```
-
-```{r setup, include = FALSE}
-  devtools::load_all()
 ```
 
 ## Aggregate all files
