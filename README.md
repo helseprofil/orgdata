@@ -17,11 +17,11 @@ Aggregating **OR**i**G**inal **DATA** into a preferred data structure.
 To install then run this code
 
 ``` r
-if(!require(remotes)) install.packages("remotes")
+if(!requireNamespace(remotes)) install.packages("remotes")
 remotes::install_github("helseprofil/orgdata")
 ```
 
-or use a user startup file by cloning from `user` branch
+or use a user startup file *sepaafil.R* by cloning it from `user` branch
 
 ``` sh
 git clone -b user https://github.com/helseprofil/orgdata
