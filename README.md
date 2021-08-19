@@ -10,7 +10,11 @@
 coverage](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://codecov.io/gh/helseprofil/orgdata?branch=main)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-<!-- badges: end -->
+![GitHub last
+commit](https://img.shields.io/github/last-commit/helseprofil/orgdata)
+![GitHub R package version (subdirectory of
+monorepo)](https://img.shields.io/github/r-package/v/helseprofil/orgdata)
+! <!-- badges: end -->
 
 Aggregating **OR**i**G**inal **DATA** into a preferred data structure.
 
