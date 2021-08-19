@@ -1,29 +1,37 @@
 ## Most used functions --------------------------
 devtools::load_all()
 devtools::test()
-devtools::check()
+devtools::check(vignettes = FALSE)
 devtools::document()
 roxygen2::roxygenise(clean = TRUE)
 
-## devtools::install()
 pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
-## devtools::build() #only when you have unload the package
+
+devtools::install()
+devtools::check_build() # only when you have unload the package
 
 
 ## Start here ---------------------------------
-## install.packages("renv")
-##renv::init(bare = TRUE)
-renv::install("helseprofil/orgdata")
-renv::install("helseprofil/norgeo")
-renv::install(c(
+pkgs <- c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
-  "rmarkdown", "future", "foreach", "styler"
-  ))
-renv::install("callr")
-                                        # renv::install("callr@3.3.0")
+  "rmarkdown", "future", "foreach", "styler", "remotes"
+)
+
+install.packages(pkgs = pkgs)
+## devtools::install_github("helseprofil/norgeo")
+
+## renv --------------------------------
+## Unload package before running these
+install.packages("renv")
+remotes::install_github("rstudio/renv")
+renv::init(bare = TRUE)
+renv::install("helseprofil/norgeo")
+renv::install(pkgs)
+## renv::install("callr")
+## renv::install("callr@3.3.0")
 renv::snapshot()
 renv::restore()
 ## renv::remove("orgdata")
