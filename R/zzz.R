@@ -21,7 +21,7 @@ opt.orgdata <- list(
   orgdata.verbose = FALSE,
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL"),
   orgdata.int = c("GEO","AAR", "KJONN", "ALDER", "VAL"),
-  orgdata.aggregate = FALSE
+  orgdata.aggregate = TRUE
 )
 
 .onLoad <- function(libname, pkgname) {
