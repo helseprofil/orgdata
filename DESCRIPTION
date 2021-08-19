@@ -16,6 +16,7 @@ RoxygenNote: 7.1.1
 Imports: 
     data.table,
     DBI,
+    lifecycle,
     norgeo,
     odbc,
     R6,
