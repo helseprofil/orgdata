@@ -1,0 +1,78 @@
+---
+title: "Get started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Presuming that `orgdata` package has been installed, this is how you can start
+using the main function. Otherwise you can follow the step for
+[installation](https://helseprofil.github.io/orgdata/#installation) or cloning
+user startup files ie. *seepafil.R* from `user` branch.
+
+## Aggregate all files
+
+To aggregate all files under a specific group such as *BEFOLKNING* group. 
+
+```r
+library(orgdata)
+df <- read_org("BEFOLKNING")
+df
+```
+
+If you are satisfy with the output and no error is shown during the process, you
+could save the output as a `.csv` file with:
+
+```r
+save_file(df, "BEFOLKNING")
+```
+
+If you are certain that the process has been controlled before and everything
+should be working correctly. You could save the output directly as a `.csv` file by:
+
+```r
+df <- read_org("BEFOLKNING", save = TRUE)
+```
+
+## Aggregate only selected files
+
+Aggregating the whole files in a group could take a long time when there are
+many files in the selected group. You could select only specific file or files
+by selecting the `KOBLID` instead. The example below is for selecting one and
+few files respectively.
+
+```r
+df <- read_org("BEFOLKNING", koblid = 4)
+df <- read_org("BEFOLKNING", c(4,10,15))
+```
+
+## Process files without aggregating
+
+When there is a need to look at the file prior to being aggregated. You could
+specify argument `aggregate` as `TRUE`. You could also activate it globally via `options`.
+
+```r
+df <- read_org("BEFOLKNING", aggregate = FALSE)
+
+# Global option
+op <- options() 
+options(orgdata.aggregate = FALSE)
+df <- read_org("BEFOLKNING")
+```
+
+By activating it globally using `options`, all proceeding processes will not be
+aggregated unless it's changed during function call or you reset the options if
+you have saved the default with `op <- options()`.
+
+```r
+options(op)
+```
