@@ -5,6 +5,7 @@ devtools::check(vignettes = FALSE)
 devtools::document()
 roxygen2::roxygenise(clean = TRUE)
 
+
 pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
