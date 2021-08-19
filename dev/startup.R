@@ -1,7 +1,7 @@
 ## Most used functions --------------------------
 devtools::load_all()
 devtools::test()
-devtools::check(vignettes = FALSE)
+## devtools::check(vignettes = FALSE)
 devtools::check()
 devtools::document()
 roxygen2::roxygenise(clean = TRUE)
