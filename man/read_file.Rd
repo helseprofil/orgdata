@@ -2,9 +2,12 @@
 % Please edit documentation in R/read-file.R
 \name{read_file}
 \alias{read_file}
+\alias{lesfil}
 \title{Read Data File}
 \usage{
 read_file(file = NULL, ...)
+
+lesfil(file = NULL, ...)
 }
 \arguments{
 \item{file}{Input file}

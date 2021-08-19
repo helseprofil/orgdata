@@ -9,24 +9,28 @@ roxygen2::roxygenise(clean = TRUE)
 pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
-devtools::build() #only when you have unload the package
+## devtools::build() #only when you have unload the package
+
 
 ## Start here ---------------------------------
 ## install.packages("renv")
-                                        #renv::init(bare = TRUE)
+##renv::init(bare = TRUE)
+renv::install("helseprofil/orgdata")
 renv::install("helseprofil/norgeo")
 renv::install(c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
   "rmarkdown", "future", "foreach", "styler"
-))
+  ))
+renv::install("callr")
+                                        # renv::install("callr@3.3.0")
 renv::snapshot()
-## renv::restore()
-## renv::remove("norgeo")
+renv::restore()
+## renv::remove("orgdata")
 ## devtools::install_github("helseprofil/norgeo")
 
 ## usethis::create_package("orgdata")
-devtools::load_all()
+## devtools::load_all()
 usethis::use_build_ignore("dev")
 usethis::use_build_ignore("README.Rmd")
 usethis::use_build_ignore("_pkgdown.yml")
