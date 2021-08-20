@@ -40,8 +40,9 @@ test_that("Column output as expected", {
 })
 
 test_that("Verbose message", {
-
+  op <- options()
+  options(orgdata.verbose = TRUE)
   expect_message(is_verbose("C:/File/Name", "File:"), "File: C:/File/Name")
   expect_message(is_verbose("C:/File/Name"), " C:/File/Name")
-
+  options(op)
 })
