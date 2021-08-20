@@ -5,6 +5,7 @@
 #'    to the output of [get_split()] function
 #' @export
 do_split <- function(dt = NULL, split = NULL) {
+  is_bugs()
   is_null(dt, "Data set not found!")
   is_null(split)
 

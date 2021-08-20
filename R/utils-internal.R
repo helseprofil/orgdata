@@ -10,9 +10,9 @@ is_null <- function(arg = NULL, msg = NULL, verbose = getOption("orgdata.verbose
     msgTxt <- sprintf("Argument for `%s` is missing", argchr)
   }
 
-  if (verbose){
-    fun <- sys.calls()[[sys.nframe()-1]]
-    msgTxt <- paste0("\n",msgTxt, " in ", fun)
+  if (verbose) {
+    fun <- deparse(sys.calls()[[sys.nframe() - 1]])
+    msgTxt <- paste0("\n", msgTxt, " in ", fun)
   }
 
   if (is.null(arg)) {
@@ -30,9 +30,9 @@ is_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("or
     msgTxt <- sprintf("Either `%s` or `%s` can't be empty", xchr, ychr)
   }
 
-  if (verbose){
-    fun <- sys.calls()[[sys.nframe()-1]]
-    msgTxt <- paste0("\n",msgTxt, " in ", fun)
+  if (verbose) {
+    fun <- deparse(sys.calls()[[sys.nframe() - 1]])
+    msgTxt <- paste0("\n", msgTxt, " in ", fun)
   }
 
   if (is.null(x) && is.null(y)) {
@@ -50,9 +50,9 @@ is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption
     msgTxt <- sprintf("Either `%s` or `%s` can be used and not both", xchr, ychr)
   }
 
-  if (verbose){
-    fun <- sys.calls()[[sys.nframe()-1]]
-    msgTxt <- paste0("\n",msgTxt, " in ", fun)
+  if (verbose) {
+    fun <- deparse(sys.calls()[[sys.nframe() - 1]])
+    msgTxt <- paste0("\n", msgTxt, " in ", fun)
   }
 
   if (!is.null(x) && !is.null(y)) {
@@ -95,15 +95,25 @@ is_logical <- function(x) {
 }
 
 
-is_verbose <- function(x = NULL, msg = NULL){
+is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning")) {
+  type <- match.arg(type)
 
-  if (!is.null(msg)){
-    msg <-  msg
+  if (!is.null(msg)) {
+    msg <- msg
   } else {
     msg <- ""
   }
 
-  if (getOption("orgdata.verbose")){
-    message(msg, " ", x)
+  if (getOption("orgdata.verbose")) {
+    switch(type,
+           message = message(msg, " ", x),
+           warning = warning(msg, " ", x)
+           )
+  }
+}
+
+is_bugs <- function() {
+  if (getOption("orgdata.bugs")) {
+    print(sys.calls()[[sys.nframe() - 1]])
   }
 }

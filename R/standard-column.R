@@ -4,6 +4,7 @@
 #' @param spec Specification data as list. See output from \code{get_column_standard}
 #' @export
 do_column_standard <- function(dt = NULL, spec = NULL) {
+  is_bugs()
   is_null(dt, "Data set not found!")
   is_null(spec, "Specification to rename columns is missing")
 

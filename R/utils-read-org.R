@@ -43,10 +43,8 @@ is_data_cols <- function(fgspec = NULL){
 
 
 is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year, ...){
-  if(verbose){
-    message("Starts aggregating data ...")
-  }
 
+  is_verbose("Starts aggregating data ...")
   aggSpec <- get_aggregate(spec = fgspec)
   source <- is_geo_level(dt$GEO[1])
 

@@ -6,10 +6,11 @@
 #' @inheritParams find_spec
 #' @import data.table
 #' @export
-do_recode <- function(dt = NULL, spec = NULL, con = NULL){
+do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
+  is_bugs()
   grp <- spec$FILGRUPPE
   lesid <- spec$LESID
-  speCode <- find_spec("recode.sql", con=con, char = grp, num = lesid)
+  speCode <- find_spec("recode.sql", con = con, char = grp, num = lesid)
   data.table::setDT(speCode)
 
   dt <- is_recode_common(dt = dt, code = speCode)
@@ -19,7 +20,7 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL){
 
 ## Helper -----------------------------------------------
 ## When LESID is specified in tbl_Kode
-is_recode <- function(dt, code, lesid){
+is_recode <- function(dt, code, lesid) {
   ## dt - Dataset
   ## code - From codebook
   ## lesid - lesid from file specification
@@ -29,9 +30,9 @@ is_recode <- function(dt, code, lesid){
   idCode <- code[LESID == lesid, list(KOL, FRA, TIL)]
   kols <- unique(idCode$KOL)
 
-  for (i in seq_len(length(kols))){
+  for (i in seq_len(length(kols))) {
     col <- kols[i]
-    sp <- idCode[KOL == col,]
+    sp <- idCode[KOL == col, ]
     dt <- is_NA(dt = dt, code = sp, col = col)
     sp[, KOL := NULL]
     data.table::setnames(sp, names(sp), c(col, "to"))
@@ -41,7 +42,7 @@ is_recode <- function(dt, code, lesid){
 }
 
 ## When LESID in tbl_Kode is empty ie. common
-is_recode_common <- function(dt, code){
+is_recode_common <- function(dt, code) {
   ## dt - Dataset
   ## code - From codebook
   LESID <- KOL <- FRA <- TIL <- NULL
@@ -50,9 +51,9 @@ is_recode_common <- function(dt, code){
   allCode <- code[is.na(LESID), list(KOL, FRA, TIL)]
   kols <- unique(allCode$KOL)
 
-  for (i in seq_len(length(kols))){
+  for (i in seq_len(length(kols))) {
     col <- kols[i]
-    sp <- allCode[KOL == col,]
+    sp <- allCode[KOL == col, ]
     dt <- is_NA(dt = dt, code = sp, col = col)
     sp[, KOL := NULL]
     data.table::setnames(sp, names(sp), c(col, "to"))
@@ -62,7 +63,7 @@ is_recode_common <- function(dt, code){
 }
 
 ## For easy converstion to find NA as string
-is_NA <- function(dt, code, col){
+is_NA <- function(dt, code, col) {
   ## dt - Dataset
   ## code - From codebook
   ## col - column to recode

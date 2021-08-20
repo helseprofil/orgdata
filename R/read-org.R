@@ -26,17 +26,21 @@
 read_org <- function(group = NULL,
                      koblid = NULL,
                      aggregate = getOption("orgdata.aggregate"),
-                     save =FALSE,
+                     save = FALSE,
                      year = NULL,
                      ...) {
   is_null(group, "Filgruppe is missing")
-  dbFile <- is_path_db(db = getOption("orgdata.db"),
-                       check = TRUE)
+  is_bugs()
 
-  # CONNECTION--------------------------------------
+  dbFile <- is_path_db(
+    db = getOption("orgdata.db"),
+    check = TRUE
+  )
+
+  ## CONNECTION--------------------------------------
   kh <- KHelse$new(dbFile)
 
-  # SPECS -----------------------------------------
+  ## SPECS -----------------------------------------
   spec <- find_spec(
     file = "specification.sql",
     value = group,
@@ -81,20 +85,22 @@ read_org <- function(group = NULL,
 
     ## Only columns defined in tbl_Filgruppe will be kept
     deleteVar <- setdiff(names(dt), dataCols)
-    if (length(deleteVar)!=0) {
+    if (length(deleteVar) != 0) {
       dt[, (deleteVar) := NULL]
     }
 
-    if (length(deleteVar)!= 0 && isTRUE(getOption("orgdata.verbose"))){
+    if (length(deleteVar) != 0) {
+      msgWarn <- "Some columns aren't defined in FILGRUPPE. They are now deleted"
+      is_verbose(x = msgWarn, type = "warning")
       deleteVar <- paste(deleteVar, collapse = ", ")
-      message("Column(s) are deleted from the dataset: ", deleteVar)
+      is_verbose(deleteVar, "Deleted column(s):", type = "message")
     }
 
     ## convert some columns to interger. Must be after
     ## the variables are recoded eg. LANDF is string before recorded to number
     dt <- is_col_int(dt)
 
-    if (aggregate){
+    if (aggregate) {
       dt <- is_aggregate(dt, fgspec = fgSpec, year = year, ...)
     }
 

@@ -5,7 +5,8 @@
 #' @param cols Old and new columns. See output from `get_addcols()`
 #' @export
 
-do_addcols <- function(dt = NULL, cols = NULL){
+do_addcols <- function(dt = NULL, cols = NULL) {
+  is_bugs()
   is_null(dt)
   is_null(cols)
 
@@ -25,18 +26,17 @@ do_addcols <- function(dt = NULL, cols = NULL){
 #'  indicating the old and new columnames
 #' @export
 
-get_addcols <- function(group = NULL, con = NULL, spec = NULL){
-
+get_addcols <- function(group = NULL, con = NULL, spec = NULL) {
   is_null_both(group, spec)
   is_not_null_both(group, spec)
 
-  if (is.null(spec)){
+  if (is.null(spec)) {
     spec <- find_spec(file = "filegroups.sql", value = group, con = con)
   }
 
   input <- find_column_input(spec = spec, "ADDKOL")
 
-  if (!is.na(input)){
+  if (!is.na(input)) {
     args <- is_separate(input, "=")
     lhs <- is_separate(args[1], ",")
     rhs <- is_separate(args[2], ",")

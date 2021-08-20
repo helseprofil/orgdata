@@ -10,25 +10,31 @@
 #'   for geographical codes that are missing.
 #' @examples
 #' \dontrun{
-#'   # To aggregate source data with enumeration area codes ie. grunnkrets, to
-#'   # manucipaltiy ie. kommune
-#'   dt <- read_org("BEFOLKNING")
-#'   DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
+#' # To aggregate source data with enumeration area codes ie. grunnkrets, to
+#' # manucipaltiy ie. kommune
+#' dt <- read_org("BEFOLKNING")
+#' DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
 #' }
 #' @import data.table
 #' @export
 do_aggregate <- function(dt = NULL,
-                         source = c("grunnkrets",
-                                    "fylke",
-                                    "kommune",
-                                    "bydel"),
-                         level = c("grunnkrets",
-                                   "fylke",
-                                   "kommune",
-                                   "bydel"),
+                         source = c(
+                           "grunnkrets",
+                           "fylke",
+                           "kommune",
+                           "bydel"
+                         ),
+                         level = c(
+                           "grunnkrets",
+                           "fylke",
+                           "kommune",
+                           "bydel"
+                         ),
                          year = NULL,
-                         check = FALSE){
+                         check = FALSE) {
   VAL <- GEO <- fylke <- kommune <- NULL
+
+  is_bugs()
   is_null(dt)
   dtt <- data.table::copy(dt)
 
@@ -37,42 +43,45 @@ do_aggregate <- function(dt = NULL,
   source <- match.arg(source)
   level <- match.arg(level)
 
-  aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL") ])
+  aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL")])
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoFile)
 
   ## validTo in the database is a character
-  if (is.null(year)){
+  if (is.null(year)) {
     yr <- dtt$AAR[1]
   } else {
     yr <- as.character(year)
   }
 
   ## geoDT <- find_spec("geo-code-all.sql", value = source, con = geo$dbconn)
-  geoDT <- find_spec("geo-code.sql", con = geo$dbconn, char = source, num = yr, opposite = TRUE)
+  geoDT <- find_spec(
+    "geo-code.sql",
+    con = geo$dbconn,
+    char = source,
+    num = yr,
+    opposite = TRUE
+  )
   data.table::setDT(geoDT)
 
+  ## Columns that are type integer
   intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
-
-  ## for (j in seq_len(length(intCols))){
-  ##   if(class(geoDT[[j]])== "character")
-  ##     data.table::set(geoDT, j = j, value = as.integer(geoDT[[j]]))
-  ## }
   geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
 
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
 
   ## TODO read_file should convert integer variables
-  if(class(dtt$GEO) == "character"){
+  if (class(dtt$GEO) == "character") {
     dtt[, GEO := as.integer(GEO)]
   }
 
+  ## is_verbose("Merging geo codes...", type = "message")
   dtt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
 
   ## Breakpoint here to check the missing GEO when merging
-  if (check){
+  if (check) {
     warning("Aggregating data isn't completed!")
     return(dtt)
   }
@@ -80,16 +89,18 @@ do_aggregate <- function(dt = NULL,
   dtt[is.na(kommune), kommune := as.integer(gsub("\\d{4}$", "", GEO))]
   dtt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))]
 
-  xCols <- is_set_list(level = level,
-                       srcCols = aggCols)
+  xCols <- is_set_list(
+    level = level,
+    srcCols = aggCols
+  )
 
   ## DT <- data.table::cube(dtt, j = c(VAL = sum(VAL, na.rm = TRUE)), by = aggCols)
   DT <- data.table::groupingsets(
-                      dtt,
-                      j = list(VAL = sum(VAL, na.rm = TRUE)),
-                      by = aggCols,
-                      sets = xCols
-                    )
+    dtt,
+    j = list(VAL = sum(VAL, na.rm = TRUE)),
+    by = aggCols,
+    sets = xCols
+  )
 
   on.exit(rm(dtt, geoDT))
   gc()
@@ -98,10 +109,13 @@ do_aggregate <- function(dt = NULL,
 
 #' @title Recode Aggregated Variables
 #' @description Recode aggregated variables to represent all values either as `0`
-#'  integer variables and `Tot` for string variables.
+#'  or `10` integer variables and `Tot` for string variables. Value `10` representing
+#'  total is only used for `LANDB` since it already has `0` as one of it's existing
+#'  value.
 #' @inheritParams do_split
 #' @export
-do_aggregate_recode <- function(dt){
+do_aggregate_recode <- function(dt) {
+  is_bugs()
   ## Total is 0
   intMin <- c("UTDANN", "SIVILSTAND", "LANDF")
   ## Total is 10
@@ -109,7 +123,7 @@ do_aggregate_recode <- function(dt){
   ## Total is Tot
   chrCols <- "LANDBAK"
 
-  for (j in seq_len(length(intMin))){
+  for (j in seq_len(length(intMin))) {
     col <- intMin[j]
     data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = 0)
   }
@@ -139,10 +153,10 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
 
 
 ## Helper ----------------------------------------
-is_set_list <- function(level, srcCols){
+is_set_list <- function(level, srcCols) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
-  cols <- is.element(c("KJONN","ALDER"), srcCols)
+  cols <- is.element(c("KJONN", "ALDER"), srcCols)
 
   vars <- c("KJONN", "ALDER")
   vars2 <- c(level, "AAR")
@@ -150,7 +164,7 @@ is_set_list <- function(level, srcCols){
   ## var02 <- c(vars2, vars[2])
   var03 <- c(vars2, vars)
 
-  if (sum(cols) == 2){
+  if (sum(cols) == 2) {
     ## list(var01, var02, var03, srcCols)
     list(var03, srcCols)
   } else {
