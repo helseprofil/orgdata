@@ -38,3 +38,10 @@ test_that("Column output as expected", {
   expect_equal(is_separate("3,5 = age,edu", sep = "=", keep = 1), "3,5")
   expect_equal(is_separate("3,5 = age,edu", sep = "=", keep = 2), "age,edu")
 })
+
+test_that("Verbose message", {
+
+  expect_message(is_verbose("C:/File/Name", "File:"), "File: C:/File/Name")
+  expect_message(is_verbose("C:/File/Name"), " C:/File/Name")
+
+})
