@@ -18,11 +18,11 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL){
 
 
 ## Helper -----------------------------------------------
-
-## dt - Dataset
-## code - From codebook
-## lesid - lesid from file specification
+## When LESID is specified in tbl_Kode
 is_recode <- function(dt, code, lesid){
+  ## dt - Dataset
+  ## code - From codebook
+  ## lesid - lesid from file specification
   LESID <- KOL <- FRA <- TIL <- NULL
   i.to <- NULL
 
@@ -40,9 +40,10 @@ is_recode <- function(dt, code, lesid){
   return(dt)
 }
 
-## dt - Dataset
-## code - From codebook
+## When LESID in tbl_Kode is empty ie. common
 is_recode_common <- function(dt, code){
+  ## dt - Dataset
+  ## code - From codebook
   LESID <- KOL <- FRA <- TIL <- NULL
   i.to <- NULL
 
@@ -60,10 +61,11 @@ is_recode_common <- function(dt, code){
   return(dt)
 }
 
-# dt - Dataset
-# code - From codebook
-# col - column to recode
+## For easy converstion to find NA as string
 is_NA <- function(dt, code, col){
+  ## dt - Dataset
+  ## code - From codebook
+  ## col - column to recode
   na <- is.element("NA", code$FRA)
   if (na) {
     dt[is.na(get(col)), (col) := "NA"]
