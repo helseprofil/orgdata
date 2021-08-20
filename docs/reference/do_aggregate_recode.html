@@ -48,7 +48,9 @@
 
 <meta property="og:title" content="Recode Aggregated Variables — do_aggregate_recode" />
 <meta property="og:description" content="Recode aggregated variables to represent all values either as 0
-integer variables and Tot for string variables." />
+or 10 integer variables and Tot for string variables. Value 10 representing
+total is only used for LANDB since it already has 0 as one of it's existing
+value." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -163,7 +165,9 @@ integer variables and Tot for string variables." />
 
     <div class="ref-description">
     <p>Recode aggregated variables to represent all values either as <code>0</code>
-integer variables and <code>Tot</code> for string variables.</p>
+or <code>10</code> integer variables and <code>Tot</code> for string variables. Value <code>10</code> representing
+total is only used for <code>LANDB</code> since it already has <code>0</code> as one of it's existing
+value.</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_aggregate_recode</span><span class='op'>(</span><span class='va'>dt</span><span class='op'>)</span></pre>

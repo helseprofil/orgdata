@@ -1,7 +1,7 @@
 test_that("Read rawdata", {
-  expect_error(find_data(file = "raw-data.spss"))
-  expect_error(read_file.default(file = "raw-data.spss"))
-  expect_error(read_file(file = "raw-data.spss"))
+  expect_error(find_data("raw-data.spss"))
+  expect_error(read_file.default("raw-data.spss"))
+  expect_error(read_file("raw-data.spss"))
 })
 
 test_that("Args for find_data", {

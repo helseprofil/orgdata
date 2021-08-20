@@ -11,5 +11,7 @@ do_aggregate_recode(dt)
 }
 \description{
 Recode aggregated variables to represent all values either as \code{0}
-integer variables and \code{Tot} for string variables.
+or \code{10} integer variables and \code{Tot} for string variables. Value \code{10} representing
+total is only used for \code{LANDB} since it already has \code{0} as one of it's existing
+value.
 }
