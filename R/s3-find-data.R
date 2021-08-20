@@ -21,7 +21,7 @@ find_data <- function(file = NULL, ...) {
 #' @export
 find_data.default <- function(file, ...) {
   ext <- tools::file_ext(file)
-  message(file)
+  message("File: ", file)
   stop(sprintf("Unable to read file `%s` format", ext))
 }
 
@@ -63,7 +63,7 @@ find_data.xlsx <- find_data.xls
 ## Helper -------------------------------------------
 ## For arguments in fread that have numeric input
 is_dt_var <- function(x){
-  argInt <- "nrows"
+  argInt <- c("skip", "nrows", "drop")
   inx <- is.element(argInt, names(x))
   elm <- argInt[inx]
 
