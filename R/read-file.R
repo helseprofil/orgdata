@@ -44,5 +44,5 @@ is_id_file <- function(filid = NULL, con = NULL){
   }
 
   file <- find_spec("org-file.sql", value = filid, con = con)
-  fileName <- file.path(getOption("orgdata.folder.raw"), file)
+  file.path(getOption("orgdata.folder.raw"), file)
 }

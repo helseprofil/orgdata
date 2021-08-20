@@ -68,11 +68,7 @@ read_org <- function(group = NULL,
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
-    if (getOption("orgdata.verbose")){
-      koblid <- fileSpec$KOBLID
-      fileN <- fileSpec$FILNAVN
-      message("Koblid: ", koblid, " File: ", fileN)
-    }
+    is_verbose(fileSpec$KOBLID, "Koblid:")
 
     dt <- is_org_process(
       file = filePath,

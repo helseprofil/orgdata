@@ -93,3 +93,17 @@ is_logical <- function(x) {
   }
   return(x)
 }
+
+
+is_verbose <- function(x = NULL, msg = NULL){
+
+  if (!is.null(msg)){
+    msg <-  msg
+  } else {
+    msg <- ""
+  }
+
+  if (getOption("orgdata.verbose")){
+    message(msg, " ", x)
+  }
+}

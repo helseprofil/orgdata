@@ -35,6 +35,7 @@ find_data.csv <- function(file, ...) {
     dots <- list()
   }
 
+  is_verbose(file, msg = "File:")
   dots$input <- file
   do.call(data.table::fread, dots)
 }
@@ -50,6 +51,7 @@ find_data.xls <- function(file, ...) {
     dots <- list()
   }
 
+  is_verbose(file, msg = "File:")
   dots$path <- file
   do.call(readxl::read_excel, dots)
 }
