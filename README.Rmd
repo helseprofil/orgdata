@@ -56,41 +56,8 @@ dt <- read_org("BEFOLKNING", koblid = 48)
 dt <- read_org("BEFOLKNING", koblid = c(48, 72))
 ```
 
-## Aggregate data
+## Documentation
 
-Data can be aggregated according to the specification in the registration database
-using the argument `aggregate` in `read_org()` function.
+- [Get started](https://helseprofil.github.io/orgdata/articles/get-started.html)
+- [Functions overview](https://helseprofil.github.io/orgdata/reference/index.html)
 
-```r
-DT <- read_org("BEFOLKNING", aggregate = TRUE)
-```
-
-You could also set the global options to `TRUE` with:
-
-```r
-options(orgdata.aggregate = TRUE)
-DT <- read_org("BEFOLKNING")
-save_file(DT, "BEFOLKNING")
-
-## to save file directly
-DT <- read_org("BEFOLKNING", save = TRUE)
-```
-
-## Read files
-
-The function `read_file()` can be used to check how a specific rawdata 
-file will be read into R directly. 
-
-You can use `FILID` value in `file` argument to select specific file or provide the complete file path
-to the `file` argument.
-
-```r
-## with FILID
-dt <- read_file(file = 4)
-
-## with complete file path
-file01 <- "F:/Path/To/File/Rawdata.csv"
-file02 <- "F:/Path/To/File/Rawdata.xlsx"
-dt <- read_file(file = file01)
-dt <- read_file(file = file02)
-```

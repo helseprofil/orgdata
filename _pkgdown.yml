@@ -15,26 +15,18 @@ navbar:
   left:
   - icon: fa-home fa-lg
     href: index.html
-  - text: Database
-    menu:
-    - text: Registration database
-      href:
-    - text: Geographical codes
-      href:
+  - text: Get started
+    href: articles/get-started.html
   - text: Articles
     menu:
-    - text: Get started
-      href: articles/get-started.html
-    - text: Another topic
+    - text:
       href:
-  - text: Reference
-    href: reference/index.html
-  - text: News
-    href: news/index.html
-  - text: Related
-    menu:
     - text: Make standard
       href: https://github.com/helseprofil/orgdata/blob/main/dev/standard.org
+  - text: Reference
+    href: reference/index.html
+  - text: ChangeLog
+    href: news/index.html
 
 reference:
 - title: Database connection

@@ -30,7 +30,7 @@ Alternatively is to clone user startup files ie. *seepafil.R* via terminal from
 git clone -b user https://github.com/helseprofil/orgdata
 ```
 
-When cloning the user startup, run the codes in *startup.R* file once before
+When cloning the user startup, run the codes in *setup.R* file once before
 using *seepafil.R*.
 
 ## Aggregate all files
