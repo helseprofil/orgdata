@@ -54,3 +54,5 @@ dt <- read_org("BEFOLKNING", koblid = c(48, 72))
     started](https://helseprofil.github.io/orgdata/articles/get-started.html)
 -   [Functions
     overview](https://helseprofil.github.io/orgdata/reference/index.html)
+-   [Presentation
+    slide](https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1)

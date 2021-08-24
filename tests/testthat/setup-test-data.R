@@ -14,7 +14,7 @@ df01 <- structure(list(
     "POSIXt"
   ), tzone = "UTC"),
   LESID = 18L, FILGRUPPE = "TEST01",
-  INNLESARG = "header=TRUE, skip=TRUE, ark=Sheet1", MANHEADER = "2,3=KJONN,ALDER",
+  INNLESARG = "header=TRUE | skip=TRUE | ark=Sheet1", MANHEADER = "2,3=KJONN,ALDER",
   GEO = NA_character_, AAR = "aar", KJONN = NA_character_, ALDER = NA_character_,
   UTDANN = NA_character_, LANDBAK = NA_character_, VAL = NA_character_,
   EXTRA = "sep=,"

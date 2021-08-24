@@ -48,10 +48,12 @@
 
 <meta property="og:title" content="Get INNLESARG Specifications — get_innlesarg" />
 <meta property="og:description" content="This function will access all possible arguments in columns INNLESARG
-in table tbl_Innlesing'. Comma &quot;,&quot; MUST be used to
-separate arguments if there are more than one argument.
+in table tbl_Innlesing'. Symbol &quot;|&quot; MUST be used to
+separate arguments if there are more than one arguments. This symbol is right on top
+of TAB button on the keyboard.
+Arguments that can be used here depends on the file type. Please refer to read_file().
 For example:
-header=TRUE, ark=Sheet1" />
+header=TRUE | sheet=Ark1 | sep=," />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -142,16 +144,18 @@ header=TRUE, ark=Sheet1" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get INNLESARG Specifications</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/other-get-functions.R'><code>R/other-get-functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/innlesarg.R'><code>R/innlesarg.R</code></a></small>
     <div class="hidden name"><code>get_innlesarg.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>This function will access all possible arguments in columns <code>INNLESARG</code>
-in table <em>tbl_Innlesing</em>'. Comma <code>","</code> <strong>MUST</strong> be used to
-separate arguments if there are more than one argument.
-For example:</p>
-<p><code>header=TRUE, ark=Sheet1</code></p>
+in table <em>tbl_Innlesing</em>'. Symbol <code>"|"</code> <strong>MUST</strong> be used to
+separate arguments if there are more than one arguments. This symbol is right on top
+of <code>TAB</code> button on the keyboard.</p>
+<p>Arguments that can be used here depends on the file type. Please refer to <code><a href='read_file.html'>read_file()</a></code>.</p>
+<p>For example:</p>
+<p><code>header=TRUE | sheet=Ark1 | sep=,</code></p>
     </div>
 
     <pre class="usage"><span class='fu'>get_innlesarg</span><span class='op'>(</span>group <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>

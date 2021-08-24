@@ -2,7 +2,7 @@
 % Please edit documentation in R/norgeo.R
 \name{geo_recode}
 \alias{geo_recode}
-\title{Geographical Code for Recode}
+\title{Geographical Codes}
 \usage{
 geo_recode(
   type = c("grunnkrets", "bydel", "kommune", "fylke"),

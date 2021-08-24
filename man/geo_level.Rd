@@ -2,7 +2,7 @@
 % Please edit documentation in R/norgeo.R
 \name{geo_level}
 \alias{geo_level}
-\title{Create Georgraphical Codes}
+\title{Granularity of Georgraphical Codes}
 \usage{
 geo_level(year = NULL, append = FALSE, write = FALSE, table = "tblGeo")
 }
@@ -17,7 +17,7 @@ the table if it already exists}
 \item{table}{Table name to be created in the database. Default is \code{tblGeo}}
 }
 \description{
-Create a database for geographical codes to aggregate
+Create a database granularity of geographical codes to aggregate
 data accordingly. Implementation of this function is base on \code{\link[norgeo:cast_geo]{norgeo::cast_geo()}}
 function in \href{https://helseprofil.github.io/norgeo/}{norgeo} package.
 }
