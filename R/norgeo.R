@@ -40,7 +40,7 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
 #' @title Geographical Codes
 #' @description Create a table of current year geographical codes against previous
 #'  years geogprahical codes. This is used to recode the previous years codes to the
-#'  current codes. Implementation of this function is base on [norgeo::get_change()]
+#'  current codes. Implementation of this function is base on [norgeo::track_change()]
 #'  function.
 #' @param type Type of regional granularity ie. enumeration area (grunnkrets)
 #' @param from Starting year for the range period. Current year is the default if left empty
@@ -67,7 +67,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   on.exit(geo$db_close(), add = TRUE)
 
   cat("..")
-  geo$tblvalue <- norgeo::get_change(type = type, from = from, to = to, quiet = TRUE)
+  geo$tblvalue <- norgeo::track_change(type = type, from = from, to = to)
   geo$tblname <- tblName
 
   write <- is_write(write, tblName, geo$dbconn)
