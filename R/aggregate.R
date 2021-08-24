@@ -38,10 +38,8 @@ do_aggregate <- function(dt = NULL,
   is_null(dt)
   dtt <- data.table::copy(dt)
 
-  source <- tolower(source)
-  level <- tolower(level)
-  source <- match.arg(source)
-  level <- match.arg(level)
+  source <- match.arg(tolower(source))
+  level <- match.arg(tolower(level))
 
   aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL")])
 

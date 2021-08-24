@@ -1,5 +1,5 @@
-#' @title Create Georgraphical Codes
-#' @description Create a database for geographical codes to aggregate
+#' @title Granularity of Georgraphical Codes
+#' @description Create a database granularity of geographical codes to aggregate
 #'   data accordingly. Implementation of this function is base on [norgeo::cast_geo()]
 #'   function in \href{https://helseprofil.github.io/norgeo/}{norgeo} package.
 #' @param year Year for the valid geographical codes
@@ -9,7 +9,7 @@
 #' @param table Table name to be created in the database. Default is `tblGeo`
 #' @importFrom norgeo cast_geo
 #' @export
-geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo"){
+geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo") {
   is_null(year)
 
   cat("\nFetching data ..")
@@ -22,13 +22,13 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
 
   cat("..")
   write <- is_write(write, table, geo$dbconn)
-  if (write){
+  if (write) {
     message("Start writing data ...")
     geo$db_write(write = write)
     message("Write table `", table, "` is completed in: \n", geoFile)
   }
 
-  if (append){
+  if (append) {
     message("Start appending data ...")
     geo$db_write(append = append)
     message("Append data to `", table, "` is completed in: \n", geoFile)
@@ -37,7 +37,7 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   invisible(geo$tblvalue)
 }
 
-#' @title Geographical Code for Recode
+#' @title Geographical Codes
 #' @description Create a table of current year geographical codes against previous
 #'  years geogprahical codes. This is used to recode the previous years codes to the
 #'  current codes. Implementation of this function is base on [norgeo::get_change()]
@@ -51,11 +51,10 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
 geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
                        from = NULL,
                        to = NULL,
-                       write = FALSE){
-
+                       write = FALSE) {
   type <- match.arg(type)
   yr <- to
-  if (is.null(to)){
+  if (is.null(to)) {
     yr <- as.integer(format(Sys.Date(), "%Y"))
   }
   tblName <- paste0(type, yr)
@@ -72,7 +71,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   geo$tblname <- tblName
 
   write <- is_write(write, tblName, geo$dbconn)
-  if (write){
+  if (write) {
     message("Start writing data ...")
     geo$db_write(write = write)
     message("Write table `", tblName, "` is completed in: \n", geoFile)
@@ -83,10 +82,9 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 
 ## Helper -----------------------------------------------------
 ## Warn user if table exists incase it's a mistake
-is_write <- function(write, table, con){
-
+is_write <- function(write, table, con) {
   tblExist <- DBI::dbExistsTable(conn = con, name = table)
-  if (isTRUE(write) && isTRUE(tblExist)){
+  if (isTRUE(write) && isTRUE(tblExist)) {
     msgs <- sprintf("\nWoops!! Table `%s` allready exists. Do you want to overwrite?", table)
     ## write <- utils::askYesNo(msg = msgs, )
     yesNo <- utils::menu(c("Yes", "No"), title = msgs)

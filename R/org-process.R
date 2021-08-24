@@ -13,10 +13,9 @@ is_org_process <- function(file,
                            fgspec,
                            con,
                            verbose = getOption("orgdata.verbose")) {
-
   dots <- get_innlesarg(spec = filespec)
 
-  if (is.na(dots[1])){
+  if (is.na(dots[1])) {
     dt <- read_file(file = file)
   } else {
     dt <- read_file(file = file, dots)
@@ -37,7 +36,6 @@ is_org_process <- function(file,
 
   dataCols <- get_addcols(spec = fgspec)
   dt <- do_addcols(dt, cols = dataCols)
-
 }
 
 ## Helper -------------------------------------
