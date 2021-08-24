@@ -45,3 +45,6 @@ vignettes/*.pdf
 /dev/logo.png
 /dev/logo02.png
 inst/doc
+
+# renv
+/renv/
