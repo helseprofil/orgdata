@@ -23,8 +23,9 @@
 #'    \item{`find_column_multi_input_arg` gives a single object with value from the selected argument}
 #' }
 #' @export
-find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", ":", ";")) {
+find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", "|", ":", ";")) {
   # Output is a vector of the INNLESARG input
+  is_bugs()
   is_null(spec)
   sep <- match.arg(sep)
 
@@ -40,6 +41,7 @@ find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", ":", ";")) {
 #' @rdname find_column_multi
 #' @param input Input argument(s) as a character vector
 find_column_multi_input <- function(input = NULL) {
+  is_bugs()
   is_null(input)
 
   inVar <- input[!is.na(input)]

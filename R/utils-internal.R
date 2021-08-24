@@ -78,7 +78,7 @@ is_separate <- function(x, sep = NULL, keep = NULL) {
   if (class(x) == "numeric") {
     x <- as.character(x)
   }
-  out <- unlist(strsplit(x, sep))
+  out <- unlist(strsplit(x, sep, fixed = TRUE))
   if (!is.null(keep)) {
     out <- out[keep]
   }
