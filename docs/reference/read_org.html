@@ -162,6 +162,8 @@ alias to <code>read_org()</code>.</p>
   aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
   save <span class='op'>=</span> <span class='cn'>FALSE</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  geo <span class='op'>=</span> <span class='cn'>NULL</span>,
+  val <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
 
@@ -171,6 +173,8 @@ alias to <code>read_org()</code>.</p>
   aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
   save <span class='op'>=</span> <span class='cn'>FALSE</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  geo <span class='op'>=</span> <span class='cn'>NULL</span>,
+  val <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -198,6 +202,16 @@ Default is FALSE. Use <code><a href='https://rdrr.io/r/base/options.html'>option
       <th>year</th>
       <td><p>Which year the georaphical code is valid for. If not specified, then
 it will be base on the year in source data ie. column <code>AAR</code></p></td>
+    </tr>
+    <tr>
+      <th>geo</th>
+      <td><p>Which columname has geo codes. Only use in inactive mode.
+Check status with <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.active")</a></code></p></td>
+    </tr>
+    <tr>
+      <th>val</th>
+      <td><p>Which colunames has the value for quantity. Only use in an inactive mode.
+Check status with <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.active")</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>

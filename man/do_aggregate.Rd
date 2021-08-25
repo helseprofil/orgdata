@@ -9,7 +9,9 @@ do_aggregate(
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
   level = c("grunnkrets", "fylke", "kommune", "bydel"),
   year = NULL,
-  check = FALSE
+  check = FALSE,
+  geo = NULL,
+  val = NULL
 )
 }
 \arguments{
@@ -25,6 +27,12 @@ it will be base on the year in source data ie. column \code{AAR}}
 
 \item{check}{If TRUE then output will not be aggregated. This is useful to check
 for geographical codes that are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
+
+\item{geo}{Which columname has geo codes. Only use in inactive mode.
+Check status with \code{getOption("orgdata.active")}}
+
+\item{val}{Which colunames has the value for quantity. Only use in an inactive mode.
+Check status with \code{getOption("orgdata.active")}}
 }
 \description{
 Aggregate data according to the specification in \code{tbl_Filgruppe}.

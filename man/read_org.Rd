@@ -11,6 +11,8 @@ read_org(
   aggregate = getOption("orgdata.aggregate"),
   save = FALSE,
   year = NULL,
+  geo = NULL,
+  val = NULL,
   ...
 )
 
@@ -20,6 +22,8 @@ lesorg(
   aggregate = getOption("orgdata.aggregate"),
   save = FALSE,
   year = NULL,
+  geo = NULL,
+  val = NULL,
   ...
 )
 }
@@ -35,6 +39,12 @@ Default is FALSE. Use \code{options(orgdata.aggregate = TRUE)} to change globall
 
 \item{year}{Which year the georaphical code is valid for. If not specified, then
 it will be base on the year in source data ie. column \code{AAR}}
+
+\item{geo}{Which columname has geo codes. Only use in inactive mode.
+Check status with \code{getOption("orgdata.active")}}
+
+\item{val}{Which colunames has the value for quantity. Only use in an inactive mode.
+Check status with \code{getOption("orgdata.active")}}
 
 \item{...}{Additional parameters}
 }
