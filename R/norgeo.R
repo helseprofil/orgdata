@@ -35,7 +35,7 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
     message("Append data to `", table, "` is completed in: \n", geoFile)
   }
 
-  invisible(return(geo$tblvalue))
+  invisible(geo$tblvalue)
 }
 
 #' @title Geographical Codes
@@ -77,7 +77,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
     geo$db_write(write = write)
     message("Write table `", tblName, "` is completed in: \n", geoFile)
   }
-  invisible(return(geo$tblvalue))
+  invisible(geo$tblvalue)
 }
 
 

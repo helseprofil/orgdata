@@ -7,7 +7,7 @@
 #' @param year Which year the georaphical code is valid for. If not specified, then
 #'   it will be base on the year in source data ie. column `AAR`
 #' @param check If TRUE then output will not be aggregated. This is useful to check
-#'   for geographical codes that are missing.
+#'   for geographical codes that are missing. Else use `options(orgdata.aggregate = FALSE)`
 #' @examples
 #' \dontrun{
 #' # To aggregate source data with enumeration area codes ie. grunnkrets, to
@@ -32,14 +32,16 @@ do_aggregate <- function(dt = NULL,
                          ),
                          year = NULL,
                          check = FALSE) {
-  VAL <- GEO <- fylke <- kommune <- NULL
+  VAL <- GEO <- AAR <- fylke <- kommune <- NULL
 
   is_bugs()
   is_null(dt)
   dtt <- data.table::copy(dt)
 
-  source <- match.arg(tolower(source))
-  level <- match.arg(tolower(level))
+  source <- tolower(source)
+  level <- tolower(level)
+  source <- match.arg(source)
+  level <- match.arg(level)
 
   aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL")])
 
@@ -47,11 +49,16 @@ do_aggregate <- function(dt = NULL,
   geo <- KHelse$new(geoFile)
 
   ## validTo in the database is a character
-  if (is.null(year)) {
-    yr <- dtt$AAR[1]
+  if (!is.null(year)) {
+    yr <- dtt[AAR == year, ][1]
   } else {
-    yr <- as.character(year)
+    yr <- as.integer(format(Sys.Date(), "%Y"))
   }
+
+  ## recode GEO
+  code <- get_geo_recode(con = geo$dbconn, type = source, year = yr)
+  dtt <- do_geo_recode(dt = dtt, code = code)
+
 
   ## geoDT <- find_spec("geo-code-all.sql", value = source, con = geo$dbconn)
   geoDT <- find_spec(
@@ -171,4 +178,9 @@ is_set_list <- function(level, srcCols) {
     ##      srcCols)
     list(vars2, srcCols)
   }
+}
+
+is_match_arg <- function(arg){
+  arg <- tolower(arg)
+  arg <- match.arg(arg)
 }
