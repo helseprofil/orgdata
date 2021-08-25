@@ -21,3 +21,4 @@ dev-innlesarg.R
 dev-read-org.R
 dev-read-file.R
 dev-org-recode.R
+dev-geo-recode.R

@@ -19,7 +19,8 @@ devtools::check_build() # only when you have unload the package
 pkgs <- c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
-  "rmarkdown", "future", "foreach", "styler", "remotes"
+  "rmarkdown", "future", "foreach", "styler", "remotes",
+  "digest", "rlang", "tibble", "cachem"
 )
 
 install.packages(pkgs = pkgs)

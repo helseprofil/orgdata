@@ -96,7 +96,13 @@ Reconnect to the database when \code{db_close} was used.
 \subsection{Method \code{db_write()}}{
 Write table to the database.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{KHelse$db_write(name = NULL, value = NULL, write = FALSE, append = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{KHelse$db_write(
+  name = NULL,
+  value = NULL,
+  write = FALSE,
+  append = FALSE,
+  field.types = NULL
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -110,6 +116,8 @@ Write table to the database.
 the table if it already exists}
 
 \item{\code{append}}{Append the data to an existing table in the database}
+
+\item{\code{field.types}}{Type of data in specified column. Must be named as vector}
 }
 \if{html}{\out{</div>}}
 }
