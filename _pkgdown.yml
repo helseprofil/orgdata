@@ -41,6 +41,7 @@ reference:
   contents:
   - starts_with("read_")
   - save_file
+  - make_file
 - title: Geo codes
   desc: >
     Functions to get geographical codes for aggregating and recoding. The codes are fetched from

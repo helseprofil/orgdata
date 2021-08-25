@@ -8,6 +8,10 @@
 #'   it will be base on the year in source data ie. column `AAR`
 #' @param check If TRUE then output will not be aggregated. This is useful to check
 #'   for geographical codes that are missing. Else use `options(orgdata.aggregate = FALSE)`
+#' @param geo Which columname has geo codes. Only use in inactive mode.
+#'  Check status with `getOption("orgdata.active")`
+#' @param val Which colunames has the value for quantity. Only use in an inactive mode.
+#'  Check status with `getOption("orgdata.active")`
 #' @examples
 #' \dontrun{
 #' # To aggregate source data with enumeration area codes ie. grunnkrets, to
@@ -31,7 +35,9 @@ do_aggregate <- function(dt = NULL,
                            "bydel"
                          ),
                          year = NULL,
-                         check = FALSE) {
+                         check = FALSE,
+                         geo = NULL,
+                         val = NULL) {
   VAL <- GEO <- AAR <- fylke <- kommune <- NULL
 
   is_bugs()
@@ -43,10 +49,15 @@ do_aggregate <- function(dt = NULL,
   source <- match.arg(source)
   level <- match.arg(level)
 
+  if (isFALSE(getOption("orgdata.active"))){
+    geo <- trimws(geo)
+    data.table::setnames(dtt, c(geo, val), c("GEO", "VAL"))
+  }
+
   aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL")])
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
-  geo <- KHelse$new(geoFile)
+  geoDB <- KHelse$new(geoFile)
 
   ## validTo in the database is a character
   if (!is.null(year)) {
@@ -56,14 +67,14 @@ do_aggregate <- function(dt = NULL,
   }
 
   ## recode GEO
-  code <- get_geo_recode(con = geo$dbconn, type = source, year = yr)
+  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
   dtt <- do_geo_recode(dt = dtt, code = code)
 
 
   ## geoDT <- find_spec("geo-code-all.sql", value = source, con = geo$dbconn)
   geoDT <- find_spec(
     "geo-code.sql",
-    con = geo$dbconn,
+    con = geoDB$dbconn,
     char = source,
     num = yr,
     opposite = TRUE
@@ -99,17 +110,11 @@ do_aggregate <- function(dt = NULL,
     srcCols = aggCols
   )
 
-  ## DT <- data.table::cube(dtt, j = c(VAL = sum(VAL, na.rm = TRUE)), by = aggCols)
-  DT <- data.table::groupingsets(
-    dtt,
-    j = list(VAL = sum(VAL, na.rm = TRUE)),
-    by = aggCols,
-    sets = xCols
-  )
-
   on.exit(rm(dtt, geoDT))
   gc()
-  data.table::setnames(DT, level, "GEO")
+
+  DT <- is_active()
+  invisible(DT)
 }
 
 #' @title Recode Aggregated Variables
@@ -183,4 +188,21 @@ is_set_list <- function(level, srcCols) {
 is_match_arg <- function(arg){
   arg <- tolower(arg)
   arg <- match.arg(arg)
+}
+
+is_active <- function(active = getOption("orgdata.active"), .env = parent.frame()){
+  VAL <- NULL
+  if (isFALSE(active)){
+    DT <- data.table::cube(.env$dtt, j = c(VAL = sum(VAL, na.rm = TRUE)), by = .env$aggCols)
+    data.table::setnames(DT, c("grunnkrets", "V1"), c(.env$geo, .env$val))
+  } else {
+    DT <- data.table::groupingsets(
+      .env$dtt,
+      j = list(VAL = sum(VAL, na.rm = TRUE)),
+      by = .env$aggCols,
+      sets = .env$xCols
+    )
+    data.table::setnames(DT, .env$level, "GEO")
+  }
+  invisible(DT)
 }

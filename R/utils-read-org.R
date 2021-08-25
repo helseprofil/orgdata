@@ -42,7 +42,7 @@ is_data_cols <- function(fgspec = NULL){
 
 
 
-is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year, ...){
+is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year, geo = geo, val = val, ...){
 
   is_verbose("Starts aggregating data ...")
   aggSpec <- get_aggregate(spec = fgspec)
@@ -52,7 +52,7 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
   DT <- vector(mode = "list", length = nSpec)
   for (i in seq_len(nSpec)) {
     dtt <- data.table::copy(dt)
-    dtt <- do_aggregate(dt = dtt, source = source, level = aggSpec[i], year = year, ...)
+    dtt <- do_aggregate(dt = dtt, source = source, level = aggSpec[i], year = year, geo = geo, val = val, ...)
     dtt <- do_aggregate_recode(dt = dtt)
     DT[[i]] <- dtt
     gc()

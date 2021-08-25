@@ -19,6 +19,7 @@
 #'    Default is FALSE. Use `options(orgdata.aggregate = TRUE)` to change globally.
 #' @inheritParams do_aggregate
 #' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
+#' @inheritParams do_aggregate
 #' @param ... Additional parameters
 #' @aliases read_org lesorg
 #' @import data.table
@@ -28,6 +29,8 @@ read_org <- function(group = NULL,
                      aggregate = getOption("orgdata.aggregate"),
                      save = FALSE,
                      year = NULL,
+                     geo = NULL,
+                     val = NULL,
                      ...) {
   is_null(group, "Filgruppe is missing")
   is_bugs()
@@ -101,7 +104,12 @@ read_org <- function(group = NULL,
     dt <- is_col_int(dt)
 
     if (aggregate) {
-      dt <- is_aggregate(dt, fgspec = fgSpec, year = year, ...)
+      dt <- is_aggregate(dt,
+                         fgspec = fgSpec,
+                         year = year,
+                         geo = geo,
+                         val = val,
+                         ...)
     }
 
     DT[[i]] <- dt

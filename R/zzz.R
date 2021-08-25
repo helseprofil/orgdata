@@ -22,7 +22,8 @@ opt.orgdata <- list(
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL"),
   orgdata.int = c("GEO", "AAR", "KJONN", "ALDER", "VAL"),
   orgdata.aggregate = TRUE,
-  orgdata.bugs = FALSE
+  orgdata.bugs = FALSE,
+  orgdata.active = TRUE
 )
 
 .onLoad <- function(libname, pkgname) {
