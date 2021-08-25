@@ -25,7 +25,6 @@ Imports:
 Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),
-    renv,
     covr,
     knitr,
     rmarkdown
