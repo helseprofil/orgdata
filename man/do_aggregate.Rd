@@ -24,7 +24,7 @@ This will be used for merging with the output from \code{do_norgeo()}}
 it will be base on the year in source data ie. column \code{AAR}}
 
 \item{check}{If TRUE then output will not be aggregated. This is useful to check
-for geographical codes that are missing.}
+for geographical codes that are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
 }
 \description{
 Aggregate data according to the specification in \code{tbl_Filgruppe}.
