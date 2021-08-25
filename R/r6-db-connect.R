@@ -69,7 +69,8 @@ KHelse <- R6::R6Class(
     #' @param write Write a table to the database. It will overwrite
     #'    the table if it already exists
     #' @param append Append the data to an existing table in the database
-    db_write = function(name = NULL, value=NULL, write = FALSE, append = FALSE) {
+    #' @param field.types Type of data in specified column. Must be named as vector
+    db_write = function(name = NULL, value=NULL, write = FALSE, append = FALSE, field.types = NULL) {
       if(!is.null(name)) { self$tblname <- name }
       if(!is.null(value)) { self$tblvalue <- value }
 
@@ -78,7 +79,8 @@ KHelse <- R6::R6Class(
                         self$tblvalue,
                         batch_rows = 1,
                         overwrite = write,
-                        append = append
+                        append = append,
+                        field.types = field.types
                         )
     },
 
