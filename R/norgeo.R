@@ -12,7 +12,9 @@
 geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo") {
   is_null(year)
 
-  cat("\nFetching data ..")
+  is_write_msg(msg = "fetch")
+  ## break msg before showing message from cast_geo
+  cat("..\n")
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoFile)
   on.exit(geo$db_close(), add = TRUE)
@@ -20,21 +22,20 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   geo$tblvalue <- norgeo::cast_geo(year = year)
   geo$tblname <- table
 
-  cat("..")
   write <- is_write(write, table, geo$dbconn)
   if (write) {
-    message("Start writing data ...")
+    is_write_msg(msg = "write")
     geo$db_write(write = write)
     message("Write table `", table, "` is completed in: \n", geoFile)
   }
 
   if (append) {
-    message("Start appending data ...")
+    is_write_msg(msg = "append")
     geo$db_write(append = append)
     message("Append data to `", table, "` is completed in: \n", geoFile)
   }
 
-  invisible(geo$tblvalue)
+  invisible(return(geo$tblvalue))
 }
 
 #' @title Geographical Codes
@@ -59,7 +60,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   }
   tblName <- paste0(type, yr)
 
-  cat("\nFetching data ..")
+  is_write_msg(msg = "fetch")
 
   ## Conn ----------------
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
@@ -72,11 +73,11 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 
   write <- is_write(write, tblName, geo$dbconn)
   if (write) {
-    message("Start writing data ...")
+    is_write_msg(msg = "write")
     geo$db_write(write = write)
     message("Write table `", tblName, "` is completed in: \n", geoFile)
   }
-  invisible(geo$tblvalue)
+  invisible(return(geo$tblvalue))
 }
 
 
@@ -91,4 +92,14 @@ is_write <- function(write, table, con) {
     write <- ifelse(yesNo == 1, TRUE, FALSE)
   }
   return(write)
+}
+
+
+is_write_msg <- function(msg = c("write", "append", "fetch")){
+  msg <- match.arg(msg)
+  switch(msg,
+         write = message("\nStart writing data ..."),
+         append = message("\nStart appending data ..."),
+         fetch = cat("\nFetching data ...")
+         )
 }
