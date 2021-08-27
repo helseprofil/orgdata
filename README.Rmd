@@ -44,16 +44,16 @@ git clone -b user https://github.com/helseprofil/orgdata
 ## Usage 
 
 To implement the specifications per file group as being registered in 
-the database use `read_org()` function.  
+the database use `read_raw()` function.  
 
 ```r
 library(orgdata)
 # All files under BEFOLKNING group
-dt <- read_org("BEFOLKNING")
+dt <- read_raw("BEFOLKNING")
 
 # For selected files with KOBLID
-dt <- read_org("BEFOLKNING", koblid = 48)
-dt <- read_org("BEFOLKNING", koblid = c(48, 72))
+dt <- read_raw("BEFOLKNING", koblid = 48)
+dt <- read_raw("BEFOLKNING", koblid = c(48, 72))
 ```
 
 ## Documentation

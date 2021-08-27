@@ -2,17 +2,17 @@
 #' @description Save data as a `.csv` format file with semicolon `;` as seperation.
 #' The file will be saved to the specified folder
 #' as in `getOption("orgdata.folder.output")`. Use argument `save = TRUE`
-#' in `read_org()` will activate `save_file()` directly. Else you can call
-#' `save_file()` to save the object output from `read_org()`
+#' in `read_raw()` will activate `save_file()` directly. Else you can call
+#' `save_file()` to save the object output from `read_raw()`
 #' @inheritParams do_split
-#' @inheritParams read_org
+#' @inheritParams read_raw
 #' @examples
 #' \dontrun{
 #'  opitions(orgdata.aggregate = TRUE)
-#'  DF <- read_org("BEFOLKNING", save = TRUE)
+#'  DF <- read_raw("BEFOLKNING", save = TRUE)
 #'
 #'  # Two steps
-#'  DF <- read_org("BEFOLKNING")
+#'  DF <- read_raw("BEFOLKNING")
 #'  save_file(DF, "BEFOLKNING")
 #' }
 #' @export

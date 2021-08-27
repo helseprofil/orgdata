@@ -23,9 +23,9 @@ navbar:
       href:
     - text: Make standard
       href: https://github.com/helseprofil/orgdata/blob/main/dev/standard.org
-  - text: Reference
+  - text: Functions
     href: reference/index.html
-  - text: ChangeLog
+  - text: Changelog
     href: news/index.html
 
 reference:
@@ -41,7 +41,6 @@ reference:
   contents:
   - starts_with("read_")
   - save_file
-  - make_file
 - title: Geo codes
   desc: >
     Functions to get geographical codes for aggregating and recoding. The codes are fetched from

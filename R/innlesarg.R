@@ -11,7 +11,7 @@
 #' For example:
 #'
 #' `header=TRUE | sheet=Ark1 | sep=,`
-#' @inheritParams read_org
+#' @inheritParams read_raw
 #' @inheritParams find_spec
 #' @inheritParams find_column_input
 #' @return A list with the names and value of arguments

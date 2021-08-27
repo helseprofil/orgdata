@@ -18,16 +18,16 @@ lagfil(dt = NULL, group = NULL)
 Save data as a \code{.csv} format file with semicolon \verb{;} as seperation.
 The file will be saved to the specified folder
 as in \code{getOption("orgdata.folder.output")}. Use argument \code{save = TRUE}
-in \code{read_org()} will activate \code{save_file()} directly. Else you can call
-\code{save_file()} to save the object output from \code{read_org()}
+in \code{read_raw()} will activate \code{save_file()} directly. Else you can call
+\code{save_file()} to save the object output from \code{read_raw()}
 }
 \examples{
 \dontrun{
  opitions(orgdata.aggregate = TRUE)
- DF <- read_org("BEFOLKNING", save = TRUE)
+ DF <- read_raw("BEFOLKNING", save = TRUE)
 
  # Two steps
- DF <- read_org("BEFOLKNING")
+ DF <- read_raw("BEFOLKNING")
  save_file(DF, "BEFOLKNING")
 }
 }

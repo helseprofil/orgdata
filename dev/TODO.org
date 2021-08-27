@@ -10,9 +10,9 @@ All files must be standardized to =data.table= class before merging.
 ** TODO Use =verbose=
 Implement in options ~verbose=FALSE~ for log and processes
 ** DONE Close connection
-=KHelse$db_close()= when =read_org()= ends
+=KHelse$db_close()= when =read_raw()= ends
 ** TODO =csv= output
-Use argument ~csv=TRUE~ in =read_org=
+Use argument ~csv=TRUE~ in =read_raw=
 ** TODO Debuging
 Function =fix()= for debugging
 ** TODO Log

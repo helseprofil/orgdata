@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find Rawdata — find_data • orgdata</title>
+<title>Aggregate Rawdata Asis — make_raw • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,8 @@
 
 
 
-<meta property="og:title" content="Find Rawdata — find_data" />
-<meta property="og:description" content="Find rawdata and load it into memory for further process.
-It requires the class attribute of the file is set prior to
-using find_data() method. Otherwise, use read_file() function
-instead unless you have specific reason not to." />
+<meta property="og:title" content="Aggregate Rawdata Asis — make_raw" />
+<meta property="og:description" content="Aggregate rawdata as it is ie. keeping the columnames unchanged." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -140,19 +137,16 @@ instead unless you have specific reason not to." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find Rawdata</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/s3-find-data.R'><code>R/s3-find-data.R</code></a></small>
-    <div class="hidden name"><code>find_data.Rd</code></div>
+    <h1>Aggregate Rawdata Asis</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/make-file.R'><code>R/make-file.R</code></a></small>
+    <div class="hidden name"><code>make_raw.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Find rawdata and load it into memory for further process.
-It requires the class attribute of the file is set prior to
-using <code>find_data()</code> method. Otherwise, use <code><a href='read_file.html'>read_file()</a></code> function
-instead unless you have specific reason not to.</p>
+    <p>Aggregate rawdata as it is ie. keeping the columnames unchanged.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_data</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>make_raw</span><span class='op'>(</span><span class='va'>file</span>, <span class='va'>geo</span>, <span class='va'>val</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,19 +156,18 @@ instead unless you have specific reason not to.</p>
       <td><p>Input file</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Other options relevant to the file type</p></td>
+      <th>geo</th>
+      <td><p>Which columname has geo codes. Only use in inactive mode.
+Check status with <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.active")</a></code></p></td>
+    </tr>
+    <tr>
+      <th>val</th>
+      <td><p>Which colunames has the value for quantity. Only use in an inactive mode.
+Check status with <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.active")</a></code></p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>file</span> <span class='op'>&lt;-</span> <span class='st'>"path/to/my-data.csv"</span>
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"csv"</span>
-<span class='va'>dt</span> <span class='op'>&lt;-</span> <span class='fu'>find_data</span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

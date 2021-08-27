@@ -1,4 +1,4 @@
-## Helper functions mainly for read_org
+## Helper functions mainly for read_raw
 ## -------------------------------------
 
 ## Create complete path to DB file

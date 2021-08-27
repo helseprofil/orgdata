@@ -19,7 +19,7 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
 #' @title Get Standard Columns
 #' @description Standard columns names in rawdata to will be checked against
 #'    the standard names in options as in `getOptions("orgdata.columns")`.
-#' @inheritParams read_org
+#' @inheritParams read_raw
 #' @inheritParams find_spec
 #' @param spec Specification of the standard columns in \code{tbl_Innlesing}
 #' @return A list with `old` and `new` columnnames

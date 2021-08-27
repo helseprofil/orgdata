@@ -24,8 +24,8 @@ dbfile <- "N:/Helseprofiler/DB_helseprofil/org-innlesing.accdb"
 options(op)
 getOption("orgdata.folder.db")
 getOption("orgdata.db")
-dd <- read_org("Dode")
-lesorg("TEST01")
+dd <- read_raw("Dode")
+lesraw("TEST01")
 
 ## Get Specification
 file <- "specification.sql"

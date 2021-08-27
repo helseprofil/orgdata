@@ -16,7 +16,7 @@
 #' \dontrun{
 #' # To aggregate source data with enumeration area codes ie. grunnkrets, to
 #' # manucipaltiy ie. kommune
-#' dt <- read_org("BEFOLKNING")
+#' dt <- read_raw("BEFOLKNING")
 #' DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
 #' }
 #' @import data.table
@@ -146,7 +146,7 @@ do_aggregate_recode <- function(dt) {
 #' @description
 #' Get the specification on how the data will be aggregated to
 #' different geographical levels ie. county, manucipality, town etc.
-#' @inheritParams read_org
+#' @inheritParams read_raw
 #' @inheritParams get_split
 #' @inheritParams find_column_input
 #' @export

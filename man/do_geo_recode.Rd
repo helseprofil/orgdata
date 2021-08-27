@@ -19,7 +19,7 @@ Codes is based \code{\link[norgeo:track_change]{norgeo::track_change()}} functio
 \examples{
 \dontrun{
 code <- get_geo_recode(con = geo$dbconn, type = "grunnkrets")
-dt <- read_org("BEFOLKNING", aggregate = FALSE)
+dt <- read_raw("BEFOLKNING", aggregate = FALSE)
 DT <- do_geo_recode(dt, code)
 }
 }

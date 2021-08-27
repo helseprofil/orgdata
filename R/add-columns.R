@@ -19,7 +19,7 @@ do_addcols <- function(dt = NULL, cols = NULL) {
 #' @title Get New Columns
 #' @description
 #' Get the old and new coloumnames to be added to the dataset.
-#' @inheritParams read_org
+#' @inheritParams read_raw
 #' @inheritParams find_spec
 #' @inheritParams get_split
 #' @return A list consist of two variables ie. `old` and `new`

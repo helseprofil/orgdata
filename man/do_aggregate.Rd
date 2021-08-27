@@ -41,7 +41,7 @@ Aggregate data according to the specification in \code{tbl_Filgruppe}.
 \dontrun{
 # To aggregate source data with enumeration area codes ie. grunnkrets, to
 # manucipaltiy ie. kommune
-dt <- read_org("BEFOLKNING")
+dt <- read_raw("BEFOLKNING")
 DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
 }
 }
