@@ -1,15 +1,22 @@
-## Aggregere filgruppe
+## Start
 library(orgdata)
 op <- options()
-df <- lesorg("BEFOLKNING")
+(options(orgdata.verbose = TRUE))
 
-## Lag CSV fil
-save_file(df, "BEFOLKNING")
+
+## Les original fil som det er ved å velge FILID
+lesfil(6)
 
 
 ## Aggregere utvalgte filer med KOBLID
 df <- lesorg("BEFOLKNING", koblid = 13)
 df
 
-## Se raw fil med FILID
-fil <- lesfil(file = 6)
+## Les filen og bruk oppsettet i Access
+df <- lesraw("BEFOLKNING")
+
+## Lag CSV fil
+save_file(df, "BEFOLKNING")
+
+## Evt. hvis alle filer har vært kontrollert
+lesraw("BEFOLKNING", save = TRUE)
