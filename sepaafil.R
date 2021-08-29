@@ -9,8 +9,7 @@ lesfil(6)
 
 
 ## Aggregere utvalgte filer med KOBLID
-df <- lesorg("BEFOLKNING", koblid = 13)
-df
+df <- lesraw("BEFOLKNING", koblid = 13)
 
 ## Les filen og bruk oppsettet i Access
 df <- lesraw("BEFOLKNING")
