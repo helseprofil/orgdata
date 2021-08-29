@@ -48,11 +48,12 @@ dt <- read_raw("BEFOLKNING", koblid = 48)
 dt <- read_raw("BEFOLKNING", koblid = c(48, 72))
 ```
 
-## Documentation
+## Resources
 
 -   [Get
     started](https://helseprofil.github.io/orgdata/articles/get-started.html)
 -   [Functions
     overview](https://helseprofil.github.io/orgdata/reference/index.html)
 -   [Presentation
-    slide](https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1)
+    slides](https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1)
+-   [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)

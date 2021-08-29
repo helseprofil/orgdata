@@ -23,3 +23,5 @@ Use =tryCatch= in loop files for error message
 Make seperate function =is_org_process=
 ** TODO Recoded variables
 Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.
+** TODO lesfil
+arg for =file= needs more info ie. either FILID or "full path"

@@ -128,9 +128,9 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_raw.html">read_raw</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="aggregate-only-selected-files" class="section level2">
+<div id="aggregate-selected-files-only" class="section level2">
 <h2 class="hasAnchor">
-<a href="#aggregate-only-selected-files" class="anchor"></a>Aggregate only selected files</h2>
+<a href="#aggregate-selected-files-only" class="anchor"></a>Aggregate selected files only</h2>
 <p>Aggregating the whole files in a group could take a long time when there are many files in the selected group. You could select only specific file or files by selecting the <code>KOBLID</code> instead. The example below is for selecting one and few files respectively.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_raw.html">read_raw</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>

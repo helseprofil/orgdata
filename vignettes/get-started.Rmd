@@ -57,7 +57,7 @@ should be working correctly. You could save the output directly as a `.csv` file
 df <- read_raw("BEFOLKNING", save = TRUE)
 ```
 
-## Aggregate only selected files
+## Aggregate selected files only
 
 Aggregating the whole files in a group could take a long time when there are
 many files in the selected group. You could select only specific file or files
