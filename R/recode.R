@@ -41,6 +41,8 @@ is_recode <- function(dt, code, lesid) {
   kols <- unique(idCode$KOL)
 
   for (i in seq_len(length(kols))) {
+    ## TODO check categories in cols dt is equal to
+    ## specification in codebook
     col <- kols[i]
     sp <- idCode[KOL == col, ]
     dt <- is_NA(dt = dt, code = sp, col = col)
@@ -62,6 +64,8 @@ is_recode_common <- function(dt, code) {
   kols <- unique(allCode$KOL)
 
   for (i in seq_len(length(kols))) {
+    ## TODO check categories in cols dt is equal to
+    ## specification in codebook
     col <- kols[i]
     sp <- allCode[KOL == col, ]
     dt <- is_NA(dt = dt, code = sp, col = col)
