@@ -16,7 +16,10 @@ Use argument ~csv=TRUE~ in =read_raw=
 ** TODO Debuging
 Function =is_bugs()= for debugging with =options("orgdata.bugs")=
 ** TODO Log
-Consider R6 class or =new.evn()=
+Consider R6 class.
+- Process
+  + Get info from table =tbl_Kode=
+  + Compare oldvar agaist newvar
 - public fields:
   + koblid
   + dt
