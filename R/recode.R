@@ -1,6 +1,7 @@
 #' @title Recode Variables
 #' @description
 #' Recode variables based on the specification in `tbl_Kode` ie. codebook.
+#' `LESID` is the unique reference to recode variables.
 #' @inheritParams do_split
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
@@ -8,15 +9,24 @@
 #' @export
 do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   is_bugs()
-  grp <- spec$FILGRUPPE
   lesid <- spec$LESID
-  speCode <- find_spec("recode.sql", con = con, char = grp, num = lesid)
-  data.table::setDT(speCode)
-
+  speCode <- get_codebok(spec = spec, con = con)
   dt <- is_recode_common(dt = dt, code = speCode)
   is_recode(dt = dt, code = speCode, lesid = lesid)
 }
 
+#' @title Codebook
+#' @description Get the codebook for recoding variables based on the
+#'  unique `LESID` number.
+#' @inheritParams find_column_input
+#' @inheritParams find_spec
+#' @export
+get_codebok <- function(spec = NULL, con = NULL){
+  grp <- spec$FILGRUPPE
+  lesid <- spec$LESID
+  speCode <- find_spec("recode.sql", con = con, char = grp, num = lesid)
+  data.table::setDT(speCode)
+}
 
 ## Helper -----------------------------------------------
 ## When LESID is specified in tbl_Kode

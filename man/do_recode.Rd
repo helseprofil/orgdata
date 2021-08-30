@@ -15,4 +15,5 @@ do_recode(dt = NULL, spec = NULL, con = NULL)
 }
 \description{
 Recode variables based on the specification in \code{tbl_Kode} ie. codebook.
+\code{LESID} is the unique reference to recode variables.
 }
