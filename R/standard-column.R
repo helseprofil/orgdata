@@ -12,6 +12,7 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
     stop("Input for `spec` must be a 'list' with `old` and `new` names")
   }
 
+  is_check_cols(x = spec$old, y = names(dt))
   data.table::setnames(dt, spec$old, spec$new)
 }
 
@@ -54,6 +55,15 @@ is_column_na <- function(spec, col) {
   dummy <- is_dummy(input)
   if (dummy) input <- NA
   list(col = col, input = input)
+}
+
+is_check_cols <- function(x, y){
+  ## x - the defined cols in register database
+  ## y - the existing cols in dt
+  cols <- setdiff(x, y)
+  if (length(cols) > 0){
+    is_stop("Can't find column:", var = cols)
+  }
 }
 
 ## TODO How to implement MANHEADER
