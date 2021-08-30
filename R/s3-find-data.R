@@ -40,21 +40,26 @@ find_data.csv <- function(file, ...) {
   do.call(data.table::fread, dots)
 }
 
+#' @method find_data fhi
+#' @export
+find_data.fhi <- find_data.csv
+
+
 #' @method find_data xls
 #' @export
 find_data.xls <- function(file, ...) {
   if (length(list(...))!=0){
     ## take it out from nested list
     dd <- list(...)[[1]]
-    dots <- is_xls_var(dd)
-  } else {
-    dots <- list()
-  }
+      dots <- is_xls_var(dd)
+    } else {
+      dots <- list()
+    }
 
-  is_verbose(file, msg = "File:")
-  dots$path <- file
-  do.call(readxl::read_excel, dots)
-}
+    is_verbose(file, msg = "File:")
+    dots$path <- file
+    do.call(readxl::read_excel, dots)
+  }
 
 #' @method find_data xlsx
 #' @export

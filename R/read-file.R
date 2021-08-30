@@ -1,9 +1,9 @@
 #' Read Data File
-#' @description Read rawdata either using `filid` value or complete file path. It uses the [find_data()] generic method.
+#' @description Read rawdata either using `FILID` value or complete file path. It uses the [find_data()] generic method.
 #'    For a \code{ .csv } file, [data.table::fread()] is used and all other arguments
 #'    for \code{fread} function can be used. For a \code{ xlsx } or \code{ .xls } file
 #'    [readxl::read_excel()] function and all of its arguments.
-#' @inheritParams find_data
+#' @param file Use FILID or a complete path of a filename
 #' @param ... All other arguments to be passed related to the file format
 #' @examples
 #' \dontrun{
