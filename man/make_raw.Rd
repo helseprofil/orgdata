@@ -7,7 +7,7 @@
 make_raw(file, geo, val)
 }
 \arguments{
-\item{file}{Input file}
+\item{file}{Use FILID or a complete path of a filename}
 
 \item{geo}{Which columname has geo codes. Only use in inactive mode.
 Check status with \code{getOption("orgdata.active")}}

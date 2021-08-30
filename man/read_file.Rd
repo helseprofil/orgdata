@@ -10,12 +10,12 @@ read_file(file = NULL, ...)
 lesfil(file = NULL, ...)
 }
 \arguments{
-\item{file}{Input file}
+\item{file}{Use FILID or a complete path of a filename}
 
 \item{...}{All other arguments to be passed related to the file format}
 }
 \description{
-Read rawdata either using \code{filid} value or complete file path. It uses the \code{\link[=find_data]{find_data()}} generic method.
+Read rawdata either using \code{FILID} value or complete file path. It uses the \code{\link[=find_data]{find_data()}} generic method.
 For a \code{ .csv } file, \code{\link[data.table:fread]{data.table::fread()}} is used and all other arguments
 for \code{fread} function can be used. For a \code{ xlsx } or \code{ .xls } file
 \code{\link[readxl:read_excel]{readxl::read_excel()}} function and all of its arguments.
