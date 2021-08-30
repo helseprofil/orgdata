@@ -9,6 +9,7 @@
 #' \dontrun{
 #' # With FILID
 #' DT <- read_file(file = 5)
+#' DT <- read_file(file = 5, fill = TRUE, nrows = 10)
 #'
 #' # With filepath
 #' rdata <- read_file(file = "/file/path/mydata.xlsx", sheet = "S3", range = cell_rows(1:4))

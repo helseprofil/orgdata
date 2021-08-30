@@ -12,8 +12,11 @@ test_that("Args for find_data", {
   outcsv <- list(header = TRUE, skip = 0, sheet = "Sheet1", nrows = 10)
   outxls <- list(header = TRUE, skip = 0, sheet = "Sheet1", n_max = 10)
 
-  expect_equal(is_convert_var(dotcsv, elm), outcsv)
+  expect_equal(is_numeric_var(dotcsv, elm), outcsv)
   expect_equal(is_dt_var(dotcsv), outcsv)
   expect_equal(is_xls_var(dotxls), outxls)
 
+  ut <- list(fill=TRUE)
+  expect_equal(is_args(list(fill=TRUE)), ut)
+  expect_equal(is_args(fill=TRUE), ut)
 })

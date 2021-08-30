@@ -28,9 +28,9 @@ find_data.default <- function(file, ...) {
 #' @method find_data csv
 #' @export
 find_data.csv <- function(file, ...) {
-  if(length(list(...))!=0){
-    dd <- list(...)[[1]]
-    dots <- is_dt_var(dd)
+  if(length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_dt_var(dots)
   } else {
     dots <- list()
   }
@@ -48,24 +48,35 @@ find_data.fhi <- find_data.csv
 #' @method find_data xls
 #' @export
 find_data.xls <- function(file, ...) {
-  if (length(list(...))!=0){
-    ## take it out from nested list
-    dd <- list(...)[[1]]
-      dots <- is_xls_var(dd)
-    } else {
-      dots <- list()
-    }
-
-    is_verbose(file, msg = "File:")
-    dots$path <- file
-    do.call(readxl::read_excel, dots)
+  if (length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_xls_var(dots)
+  } else {
+    dots <- list()
   }
+
+  is_verbose(file, msg = "File:")
+  dots$path <- file
+  do.call(readxl::read_excel, dots)
+}
 
 #' @method find_data xlsx
 #' @export
 find_data.xlsx <- find_data.xls
 
 ## Helper -------------------------------------------
+## Direct args or from registration database
+is_args <- function(...){
+  ## take it out from nested list
+  dd <- list(...)[[1]]
+  if (is.list(dd)){
+    dots <- dd
+  } else {
+    dots <- list(...)
+  }
+  return(dots)
+}
+
 ## For arguments in fread that have numeric input
 is_dt_var <- function(x){
   argInt <- c("skip", "nrows", "drop")
@@ -73,7 +84,7 @@ is_dt_var <- function(x){
   elm <- argInt[inx]
 
   if (sum(inx)>0){
-    x <- is_convert_var(x, elm)
+    x <- is_numeric_var(x, elm)
   }
   return(x)
 }
@@ -85,15 +96,15 @@ is_xls_var <- function(x){
   elm <- argInt[inx]
 
   if (sum(inx)>0){
-    x <- is_convert_var(x, elm)
+    x <- is_numeric_var(x, elm)
   }
   return(x)
 }
 
-is_convert_var <- function(x = NULL, elm = NULL){
+is_numeric_var <- function(x = NULL, elm = NULL){
   for (i in seq_along(elm)){
     val <- as.numeric(x[elm[i]][1])
     x[elm[i]] <- val
-    }
+  }
   return(x)
 }
