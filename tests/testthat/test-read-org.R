@@ -29,7 +29,7 @@ test_that("Select only valid files", {
 
   expect_equal(is_org_files(spec = specDT, id = NULL), data.table::setDF(brukDT))
   expect_equal(is_org_files(spec = specDT, 18), data.table::setDF(brukDT))
-  expect_error(is_org_files(spec = specDT, 14), "No valid file to be processed!")
+  expect_error(is_org_files(spec = specDT, 14), "No valid file found!")
 })
 
 

@@ -64,7 +64,7 @@ read_raw <- function(group = NULL,
   ## SELECT FILES ------------------------------------------
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
-  message(group, " has ", rowFile, " valid file(s).")
+  message(group, " has ", rowFile, " file(s) to be processed...")
 
   ## COLUMNS TO KEEP -------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)

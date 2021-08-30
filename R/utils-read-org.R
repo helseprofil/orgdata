@@ -11,7 +11,8 @@ is_path_db <- function(db, check = FALSE) {
   )
 
   if (isTRUE(check) && isFALSE(file.exists(db))) {
-    stop("Access database file does not exist! \n", db)
+    is_stop("Access database file does not exist! \n", var = db)
+
   }
 
   return(db)
@@ -78,7 +79,7 @@ is_path_raw <- function(spec, check = FALSE) {
   filePath <- file.path(getOption("orgdata.folder.raw"), filename)
 
   if (isTRUE(check) && isFALSE(file.exists(filePath))) {
-    stop("File does not exist! \n", filePath)
+    is_stop("File does not exist! \n", filePath)
   }
 
   return(filePath)
@@ -102,8 +103,9 @@ is_org_files <- function(spec, id = NULL) {
 
   nfile <- nrow(spec)
   if (nfile == 0) {
-    stop("No valid file to be processed!")
+    is_stop("No valid file found!")
   }
+
   data.table::setDF(spec)
 }
 

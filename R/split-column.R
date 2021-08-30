@@ -10,7 +10,7 @@ do_split <- function(dt = NULL, split = NULL) {
   is_null(split)
 
   if (isFALSE(is.list(split))) {
-    stop("Input for `split` must be a 'list' with `to` and `from`")
+    is_stop("Input for `split` must be a 'list' with `to` and `from`")
   }
 
   if (isFALSE(class(dt)[1] == "data.table")) data.table::setDT(dt)

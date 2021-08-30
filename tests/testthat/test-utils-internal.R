@@ -30,6 +30,9 @@ test_that("Column output as expected", {
   expect_identical(find_column_input(df, "head"), TRUE)
   expect_identical(find_column_input(df, "tail"), FALSE)
 
+  expect_error(is_stop("Stop"), "Stop")
+  expect_error(is_stop("Stop:", "B"), "Stop: B")
+
   expect_true(is_dummy("$Y"))
   expect_false(is_dummy("Y$"))
 

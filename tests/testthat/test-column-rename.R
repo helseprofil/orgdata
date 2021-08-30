@@ -31,6 +31,9 @@ test_that("Rename standard columns", {
   expect_equal(is_column_na(dfCol, "ALDER"), list(col = "ALDER", input = "age"))
   expect_equal(is_column_na(dfCol, "UTDANN"), list(col = "UTDANN", input = NA_character_))
 
+  expect_equal(is_check_cols(letters[1:3], letters[1:3]), NULL)
+  expect_error(is_check_cols(letters[1:4], letters[1:3]), "Can't find column: d")
+
   expect_equal(get_column_standard(spec = dfCol), output)
 
   expect_equal(do_column_standard(dt = rawdt, spec = output), data.table::setDT(rawOut))

@@ -117,3 +117,11 @@ is_bugs <- function() {
     print(sys.calls()[[sys.nframe() - 1]])
   }
 }
+
+
+is_stop <- function(msg, var = NULL){
+  if (!is.null(var)){
+    msg <- paste(msg, var, sep = " ")
+  }
+  stop(simpleError(msg))
+}
