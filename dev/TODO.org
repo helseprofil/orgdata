@@ -7,21 +7,36 @@ Check if =is_separate= works correctly when there is whitespace eg. ~3 = AGE~.
 Should give error message when MANHEADER isn't balance eg. ~3,5=AGE~
 ** DONE Read files
 All files must be standardized to =data.table= class before merging.
-** TODO Use =verbose=
+** DONE Use =verbose=
 Implement in options ~verbose=FALSE~ for log and processes
 ** DONE Close connection
 =KHelse$db_close()= when =read_raw()= ends
 ** TODO =csv= output
 Use argument ~csv=TRUE~ in =read_raw=
 ** TODO Debuging
-Function =fix()= for debugging
+Function =is_bugs()= for debugging with =options("orgdata.bugs")=
 ** TODO Log
 Consider R6 class or =new.evn()=
+- public fields:
+  + koblid
+  + dt
+  + group
+  + variable
+  + oldvar
+  + newvar
+  + freq
+  + status
+- public methods:
+  + aggregate()
+  + is_equal()
+
 ** TODO tryCatch
 Use =tryCatch= in loop files for error message
-** TODO Process files
+** DONE Process files
 Make seperate function =is_org_process=
 ** TODO Recoded variables
 Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.
-** TODO lesfil
+** DONE lesfil
 arg for =file= needs more info ie. either FILID or "full path"
+** TODO .fhi extention
+SSB uses extention =.fhi= for a =.csv= files. Need to add in =find_data=.
