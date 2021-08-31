@@ -22,7 +22,7 @@ find_data <- function(file = NULL, ...) {
 find_data.default <- function(file, ...) {
   ext <- tools::file_ext(file)
   message("File: ", file)
-  stop(sprintf("Unable to read file `%s` format", ext))
+  stop(sprintf("File not found! Unable to read file `%s` format", ext))
 }
 
 #' @method find_data csv
@@ -36,7 +36,7 @@ find_data.csv <- function(file, ...) {
   }
 
   is_verbose(file, msg = "File:")
-  dots$input <- file
+  dots$file <- file
   do.call(data.table::fread, dots)
 }
 
