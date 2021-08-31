@@ -43,3 +43,5 @@ Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded
 arg for =file= needs more info ie. either FILID or "full path"
 ** TODO .fhi extention
 SSB uses extention =.fhi= for a =.csv= files. Need to add in =find_data=.
+** TODO Warning duplicate filename
+Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
