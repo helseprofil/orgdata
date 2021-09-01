@@ -22,6 +22,7 @@ Consider R6 class.
   + Compare oldvar agaist newvar
 - public fields:
   + koblid
+  + lesid
   + dt
   + group
   + variable
@@ -41,7 +42,7 @@ Make seperate function =is_org_process=
 Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.
 ** DONE lesfil
 arg for =file= needs more info ie. either FILID or "full path"
-** TODO .fhi extention
+** DONE .fhi extention
 SSB uses extention =.fhi= for a =.csv= files. Need to add in =find_data=.
-** TODO Warning duplicate filename
+** DONE Warning duplicate filename
 Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
