@@ -46,3 +46,7 @@ arg for =file= needs more info ie. either FILID or "full path"
 SSB uses extention =.fhi= for a =.csv= files. Need to add in =find_data=.
 ** DONE Warning duplicate filename
 Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
+** TODO Keep columns as string
+When reading raw data, columns with digits converted to int. Problem happens
+with splitted geocodes such as file =.fhi= from SSB. When merging then the
+leading zero is missing.
