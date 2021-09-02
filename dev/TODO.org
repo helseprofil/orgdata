@@ -1,21 +1,22 @@
 #+TITLE: TODO list
-** DONE Input in =find_column_multi_input=
+** R functions
+*** DONE Input in =find_column_multi_input=
 The loop refers to the variable with =NA=. Should use =seq_len(length(inVar))=.
-** DONE Seperate with whitespace
+*** DONE Seperate with whitespace
 Check if =is_separate= works correctly when there is whitespace eg. ~3 = AGE~.
-** TODO Error for MANHEADER
+*** TODO Error for MANHEADER
 Should give error message when MANHEADER isn't balance eg. ~3,5=AGE~
-** DONE Read files
+*** DONE Read files
 All files must be standardized to =data.table= class before merging.
-** DONE Use =verbose=
+*** DONE Use =verbose=
 Implement in options ~verbose=FALSE~ for log and processes
-** DONE Close connection
+*** DONE Close connection
 =KHelse$db_close()= when =read_raw()= ends
-** TODO =csv= output
+*** TODO =csv= output
 Use argument ~csv=TRUE~ in =read_raw=
-** TODO Debuging
+*** TODO Debuging
 Function =is_bugs()= for debugging with =options("orgdata.bugs")=
-** TODO Log
+*** TODO Log
 Consider R6 class.
 - Process
   + Get info from table =tbl_Kode=
@@ -34,19 +35,28 @@ Consider R6 class.
   + aggregate()
   + is_equal()
 
-** TODO tryCatch
+*** TODO tryCatch
 Use =tryCatch= in loop files for error message
-** DONE Process files
+*** DONE Process files
 Make seperate function =is_org_process=
-** TODO Recoded variables
+*** TODO Recoded variables
 Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.
-** DONE lesfil
+*** DONE lesfil
 arg for =file= needs more info ie. either FILID or "full path"
-** DONE .fhi extention
+*** DONE .fhi extention
 SSB uses extention =.fhi= for a =.csv= files. Need to add in =find_data=.
-** DONE Warning duplicate filename
-Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
-** TODO Keep columns as string
+*** TODO Keep columns as string
 When reading raw data, columns with digits converted to int. Problem happens
 with splitted geocodes such as file =.fhi= from SSB. When merging then the
 leading zero is missing.
+*** TODO Implicit NULL
+Create category that are missing due to NULL based on the standard categories of the whole period. Steps:
+- Find the valid categories eg. age or educations levels for the whole period eg. 2016 to 2021
+- Create the reference categories from this
+- Find if any of the specific period has missing categories of the reference categories
+- Create the new missing category with value 0 and and geo 99999999
+** Access DB
+*** DONE Warning duplicate filename
+Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
+*** TODO Access original files
+Should be a table with files id and dates can be deactivated at once
