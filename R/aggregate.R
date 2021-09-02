@@ -126,19 +126,14 @@ do_aggregate <- function(dt = NULL,
 #' @export
 do_aggregate_recode <- function(dt) {
   is_bugs()
-  ## Total is 0
-  intMin <- c("UTDANN", "SIVILSTAND", "LANDF")
-  ## Total is 10
-  intMax <- "LANDB"
-  ## Total is Tot
-  chrCols <- "LANDBAK"
+  cols <- is_aggregate_standard_cols()
 
-  for (j in seq_len(length(intMin))) {
-    col <- intMin[j]
+  for (j in seq_len(length(cols$intMin))) {
+    col <- cols$intMin[j]
     data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = 0)
   }
-  dt[is.na(get(intMax)), (intMax) := 10]
-  dt[is.na(get(chrCols)), (chrCols) := "Tot"]
+  dt[is.na(get(cols$intMax)), (cols$intMax) := 10]
+  dt[is.na(get(cols$chrCols)), (cols$chrCols) := "Tot"]
 }
 
 
@@ -163,6 +158,19 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
 
 
 ## Helper ----------------------------------------
+
+is_aggregate_standard_cols <- function(){
+  ## Total is 0
+  intMin <- c("UTDANN", "SIVILSTAND", "LANDF")
+  ## Total is 10
+  intMax <- "LANDB"
+  ## Total is Tot
+  chrCols <- "LANDBAK"
+
+  list(intMin = intMin, intMax = intMax, chrCols = chrCols)
+}
+
+
 is_set_list <- function(level, srcCols) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
