@@ -58,5 +58,8 @@ Create category that are missing due to NULL based on the standard categories of
 ** Access DB
 *** DONE Warning duplicate filename
 Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
-*** TODO Access original files
-Should be a table with files id and dates can be deactivated at once
+*** DONE Access original files
+Should be a table with files id and dates can be deactivated at once. Steps:
+- Relationship should be 1 in tbl_Orgfile to many in tbl_Koble
+- Update query for koblid and filename
+- Update sub_frm_qrKoble in frm_Overview
