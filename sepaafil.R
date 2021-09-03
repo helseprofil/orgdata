@@ -5,7 +5,7 @@ op <- options()
 
 
 ## Les original fil som det er ved å velge FILID
-lesfil(6)
+lesfil(1)
 
 
 ## Aggregere utvalgte filer med KOBLID
@@ -19,3 +19,8 @@ save_file(df, "BEFOLKNING")
 
 ## Evt. hvis alle filer har vært kontrollert
 lesraw("BEFOLKNING", save = TRUE)
+
+
+## TIPS AND TRICKS ---------------------------
+## Lest bare en bestemt antall rader f.eks 5 rader
+lesfil(file = 1, nrows = 5) #for csv fil
