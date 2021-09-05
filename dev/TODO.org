@@ -15,7 +15,7 @@ Implement in options ~verbose=FALSE~ for log and processes
 *** TODO =csv= output
 Use argument ~csv=TRUE~ in =read_raw=
 *** TODO Debuging
-Function =is_bugs()= for debugging with =options("orgdata.bugs")=
+Function =is_debug()= for debugging with =options("orgdata.debug")=
 *** TODO Log
 Consider R6 class.
 - Process
