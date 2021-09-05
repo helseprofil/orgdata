@@ -40,7 +40,7 @@ do_aggregate <- function(dt = NULL,
                          val = NULL) {
   VAL <- GEO <- AAR <- fylke <- kommune <- NULL
 
-  is_bugs()
+  is_debug()
   is_null(dt)
   dtt <- data.table::copy(dt)
 
@@ -125,7 +125,7 @@ do_aggregate <- function(dt = NULL,
 #' @inheritParams do_split
 #' @export
 do_aggregate_recode <- function(dt) {
-  is_bugs()
+  is_debug()
   cols <- is_aggregate_standard_cols()
 
   for (j in seq_len(length(cols$intMin))) {

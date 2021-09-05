@@ -22,7 +22,7 @@ opt.orgdata <- list(
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "VAL"),
   orgdata.int = c("GEO", "AAR", "KJONN", "ALDER", "VAL"),
   orgdata.aggregate = TRUE,
-  orgdata.bugs = FALSE,
+  orgdata.debug = FALSE,
   orgdata.active = TRUE
 )
 

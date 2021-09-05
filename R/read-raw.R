@@ -34,7 +34,7 @@ read_raw <- function(group = NULL,
                      val = NULL,
                      ...) {
   is_null(group, "Filgruppe is missing")
-  is_bugs()
+  is_debug()
 
   dbFile <- is_path_db(
     db = getOption("orgdata.db"),
@@ -42,7 +42,7 @@ read_raw <- function(group = NULL,
   )
 
   ## CONNECTION--------------------------------------
-  kh <- KHelse$new(dbFile)
+  kh <- is_conn_db(dbFile)
 
   ## SPECS -----------------------------------------
   spec <- find_spec(
@@ -68,6 +68,9 @@ read_raw <- function(group = NULL,
 
   ## COLUMNS TO KEEP -------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
+
+  ## LOG -------------------------------------------------
+  logr <- is_logger()
 
   ## PROCESS ---------------------------------------------
 
@@ -122,6 +125,7 @@ read_raw <- function(group = NULL,
 
   if (save) save_file(dt = out, group = group)
 
+  assign("log", logr, pos = 1)
   return(out)
 }
 

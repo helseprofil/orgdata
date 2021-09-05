@@ -112,8 +112,8 @@ is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning")) {
   }
 }
 
-is_bugs <- function() {
-  if (getOption("orgdata.bugs")) {
+is_debug <- function() {
+  if (getOption("orgdata.debug")) {
     print(sys.calls()[[sys.nframe() - 1]])
   }
 }

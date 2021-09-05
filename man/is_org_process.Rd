@@ -9,7 +9,8 @@ is_org_process(
   filespec,
   fgspec,
   con,
-  verbose = getOption("orgdata.verbose")
+  verbose = getOption("orgdata.verbose"),
+  .log = parent.frame()
 )
 }
 \arguments{

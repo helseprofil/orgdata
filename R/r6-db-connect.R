@@ -1,5 +1,11 @@
-#' Connecting to Database
-#'
+#' @title Connect to Database
+#' @description Use R6 object to connect to database
+#' @keywords internal
+is_conn_db <- function(dbname = NULL){
+  KHelse$new(dbname = dbname)
+}
+
+#' @title Connecting to Database
 #' @description
 #' Connect to registration database to get all necessary information
 #' on data source and cleaning specification. The driver is only applicable
@@ -7,7 +13,6 @@
 #' will create an object of R6 Class. Please refer to the
 #' \href{https://helseprofil.github.io/orgdata/reference/KHelse.html#examples}{examples}.
 #' @export
-
 KHelse <- R6::R6Class(
   classname = "KHelse",
   cloneable = FALSE,
@@ -45,9 +50,9 @@ KHelse <- R6::R6Class(
         self$dbname <- dbname
         cs <- paste0(private$..drv, self$dbname)
         self$dbconn <- DBI::dbConnect(odbc::odbc(),
-          .connection_string = cs,
-          encoding = "latin1"
-        )
+                                      .connection_string = cs,
+                                      encoding = "latin1"
+                                      )
       }
     },
 
@@ -57,9 +62,9 @@ KHelse <- R6::R6Class(
       stopifnot(!is.null(self$dbname))
       cs <- paste0(private$..drv, self$dbname)
       self$dbconn <- DBI::dbConnect(odbc::odbc(),
-        .connection_string = cs,
-        encoding = "latin1"
-      )
+                                    .connection_string = cs,
+                                    encoding = "latin1"
+                                    )
     },
 
     #' @description

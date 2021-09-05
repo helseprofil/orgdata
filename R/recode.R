@@ -8,7 +8,7 @@
 #' @import data.table
 #' @export
 do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
-  is_bugs()
+  is_debug()
   lesid <- spec$LESID
   speCode <- get_codebok(spec = spec, con = con)
   dt <- is_recode_common(dt = dt, code = speCode)

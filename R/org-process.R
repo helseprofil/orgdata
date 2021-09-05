@@ -12,7 +12,9 @@ is_org_process <- function(file,
                            filespec,
                            fgspec,
                            con,
-                           verbose = getOption("orgdata.verbose")) {
+                           verbose = getOption("orgdata.verbose"),
+                           .log = parent.frame()
+                           ) {
   dots <- get_innlesarg(spec = filespec)
 
   if (is.na(dots[1])) {
@@ -20,6 +22,9 @@ is_org_process <- function(file,
   } else {
     dt <- read_file(file = file, dots)
   }
+
+  ## Logging
+  .log$logr$rawcat <- unique(dt[[4]])
 
   colSpec <- get_column_standard(spec = filespec)
   dt <- do_column_standard(dt, colSpec)

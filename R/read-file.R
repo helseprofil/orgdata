@@ -17,7 +17,7 @@
 #' }
 #' @export
 read_file <- function(file = NULL, ...) {
-  is_bugs()
+  is_debug()
   is_null(file)
 
   if (is.numeric(file)) {
@@ -38,13 +38,13 @@ lesfil <- read_file
 ## Helper -------------------------------------
 
 is_id_file <- function(filid = NULL, con = NULL) {
-  is_bugs()
+  is_debug()
   if (is.null(con)) {
     dbFile <- is_path_db(
       db = getOption("orgdata.db"),
       check = TRUE
     )
-    kh <- KHelse$new(dbFile)
+    kh <- is_conn_db(dbFile)
     con <- kh$dbconn
   }
 

@@ -18,7 +18,7 @@
 #' @export
 get_innlesarg <- function(group = NULL, con = NULL, spec = NULL) {
   # column INNLESARG must use '|' symbol as seperation btw arguments!
-  is_bugs()
+  is_debug()
   is_null_both(group, spec)
   is_not_null_both(group, spec)
 

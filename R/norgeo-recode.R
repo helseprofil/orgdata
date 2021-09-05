@@ -40,7 +40,7 @@ get_geo_recode <- function(con = NULL,
 
   changeOccurred <- NULL
 
-  is_bugs()
+  is_debug()
   is_null(con)
   is_null(year)
   type <- match.arg(type)

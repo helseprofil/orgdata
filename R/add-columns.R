@@ -6,7 +6,7 @@
 #' @export
 
 do_addcols <- function(dt = NULL, cols = NULL) {
-  is_bugs()
+  is_debug()
   is_null(dt)
   is_null(cols)
 
