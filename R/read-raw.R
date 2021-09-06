@@ -69,9 +69,6 @@ read_raw <- function(group = NULL,
   ## COLUMNS TO KEEP -------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
 
-  ## LOG -------------------------------------------------
-  logr <- is_logger()
-
   ## PROCESS ---------------------------------------------
 
   DT <- vector(mode = "list", length = rowFile)
@@ -125,7 +122,6 @@ read_raw <- function(group = NULL,
 
   if (save) save_file(dt = out, group = group)
 
-  assign("log", logr, pos = 1)
   return(out)
 }
 

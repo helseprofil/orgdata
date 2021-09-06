@@ -66,3 +66,7 @@ reference:
   - starts_with("find_")
 - title: Internal functions
   desc: Utility functions that are not exported. These have `is_` prefix.
+- title: Nice to have
+  desc: Some functions that are nice to have.
+  contents:
+    - website
