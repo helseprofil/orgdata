@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.0",
+    "Version": "4.1.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -212,10 +212,10 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "1.4.4",
+      "Version": "1.4.5",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f4dbc5a47fd93d3415249884d31d6791"
+      "Hash": "5406fd37ef0bf9b88c8a4f264d6ec220"
     },
     "openxlsx": {
       "Package": "openxlsx",
@@ -233,9 +233,9 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "d32cef8ffccc1d44ed43ad5e921a5748860c6876",
+      "RemoteSha": "bcfde565f3db4b492703d9da8cd6b84a23f2c58e",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "182d76851924905e0a1c46492b2c8c00"
+      "Hash": "de044dec327afeed53182b5a14d6dbf3"
     },
     "pillar": {
       "Package": "pillar",
@@ -302,10 +302,10 @@
     },
     "stringi": {
       "Package": "stringi",
-      "Version": "1.7.3",
+      "Version": "1.7.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "7943cfae120c77a255025e5f63856532"
+      "Hash": "ebaccb577da50829a3bb1b8296f318a5"
     },
     "sys": {
       "Package": "sys",
@@ -316,10 +316,10 @@
     },
     "tibble": {
       "Package": "tibble",
-      "Version": "3.1.3",
+      "Version": "3.1.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "038455513fde65e79c25e724e0c84ca2"
+      "Hash": "5e8ad5621e5c94b24ec07b88eee13df8"
     },
     "utf8": {
       "Package": "utf8",
