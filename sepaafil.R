@@ -1,7 +1,7 @@
 ## Start
 library(orgdata)
 op <- options()
-(options(orgdata.verbose = TRUE))
+options(orgdata.verbose = TRUE)
 
 
 ## Les original fil som det er ved å velge FILID
@@ -33,3 +33,6 @@ dt[, .N, keyby = landb] #kategori for landb i original data
 df <- lesraw("TEST01", koblid = 1)
 df[, .N, keyby = LANDB] #kategori i omkodet aggregerte data
 df[, .N, keyby = LANDF]
+
+## Åpne hjemmeside
+website()
