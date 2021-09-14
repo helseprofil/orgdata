@@ -66,11 +66,10 @@ read_raw <- function(group = NULL,
   rowFile <- nrow(spec)
   message(group, " has ", rowFile, " file(s) to be processed...")
 
-  ## COLUMNS TO KEEP -------------------------------------
+  ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
 
-  ## PROCESS ---------------------------------------------
-
+  ## PROCESS ON FILES IN A FILGRUPPE -----------------------
   DT <- vector(mode = "list", length = rowFile)
   for (i in seq_len(rowFile)) {
     fileSpec <- spec[i, ]
@@ -118,11 +117,17 @@ read_raw <- function(group = NULL,
   }
 
   on.exit(kh$db_close(), add = TRUE)
-  out <- data.table::rbindlist(DT, fill = TRUE)
+  ## DTT <- data.table::rbindlist(DT, fill = TRUE)
 
-  if (save) save_file(dt = out, group = group)
+  ## PROCESS ON FILGRUPPE ----------------------------------
+  grpCols <- get_addcols(spec = fgSpec)
+  outDT <- do_addcols(
+    data.table::rbindlist(DT, fill = TRUE),
+    cols = grpCols)
 
-  return(out)
+  if (save) save_file(dt = outDT, group = group)
+
+  return(outDT)
 }
 
 
