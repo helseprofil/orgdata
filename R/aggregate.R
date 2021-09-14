@@ -38,7 +38,7 @@ do_aggregate <- function(dt = NULL,
                          check = FALSE,
                          geo = NULL,
                          val = NULL) {
-  VAL <- GEO <- AAR <- fylke <- kommune <- NULL
+  VAL1 <- GEO <- AAR <- fylke <- kommune <- NULL
 
   is_debug()
   is_null(dt)
@@ -51,10 +51,10 @@ do_aggregate <- function(dt = NULL,
 
   if (isFALSE(getOption("orgdata.active"))){
     geo <- trimws(geo)
-    data.table::setnames(dtt, c(geo, val), c("GEO", "VAL"))
+    data.table::setnames(dtt, c(geo, val), c("GEO", "VAL1"))
   }
 
-  aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL")])
+  aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL1")])
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geoDB <- KHelse$new(geoFile)
@@ -114,7 +114,7 @@ do_aggregate <- function(dt = NULL,
   gc()
 
   DT <- is_active()
-  invisible(DT)
+
 }
 
 #' @title Recode Aggregated Variables
@@ -128,12 +128,17 @@ do_aggregate_recode <- function(dt) {
   is_debug()
   cols <- is_aggregate_standard_cols()
 
-  for (j in seq_len(length(cols$intMin))) {
-    col <- cols$intMin[j]
-    data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = 0)
-  }
-  dt[is.na(get(cols$intMax)), (cols$intMax) := 10]
-  dt[is.na(get(cols$chrCols)), (cols$chrCols) := "Tot"]
+  dt <- is_aggregate_recode(dt, cols$intMin, to = 0)
+  dt <- is_aggregate_recode(dt, cols$intMax, to = 10)
+  dt <- is_aggregate_recode(dt, cols$chrCols, to = "Tot")
+
+  ## for (j in seq_len(length(cols$intMin))) {
+  ##   col <- cols$intMin[j]
+  ##   data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = 0)
+  ## }
+  ## dt[is.na(get(cols$intMax)), (cols$intMax) := 10]
+  ## dt[is.na(get(cols$chrCols)), (cols$chrCols) := "Tot"]
+  invisible(dt)
 }
 
 
@@ -170,6 +175,17 @@ is_aggregate_standard_cols <- function(){
   list(intMin = intMin, intMax = intMax, chrCols = chrCols)
 }
 
+is_aggregate_recode <- function(dt, cols, to){
+  isCols <- sum(is.element(cols, names(dt))) > 0
+
+  if (isCols){
+    for (j in seq_along(cols)){
+      col <- cols[j]
+      data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = to)
+    }
+  }
+  invisible(dt)
+}
 
 is_set_list <- function(level, srcCols) {
   # level - Geo granularity to aggregate.R
@@ -199,14 +215,14 @@ is_match_arg <- function(arg){
 }
 
 is_active <- function(active = getOption("orgdata.active"), .env = parent.frame()){
-  VAL <- NULL
+  VAL1 <- NULL
   if (isFALSE(active)){
-    DT <- data.table::cube(.env$dtt, j = c(VAL = sum(VAL, na.rm = TRUE)), by = .env$aggCols)
+    DT <- data.table::cube(.env$dtt, j = c(VAL1 = sum(VAL1, na.rm = TRUE)), by = .env$aggCols)
     data.table::setnames(DT, c("grunnkrets", "V1"), c(.env$geo, .env$val))
   } else {
     DT <- data.table::groupingsets(
       .env$dtt,
-      j = list(VAL = sum(VAL, na.rm = TRUE)),
+      j = list(VAL1 = sum(VAL1, na.rm = TRUE)),
       by = .env$aggCols,
       sets = .env$xCols
     )
