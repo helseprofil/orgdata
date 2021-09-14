@@ -35,7 +35,9 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
     spec <- find_spec("filegroups.sql", group, con)
   }
 
-  vars <- getOption("orgdata.columns")
+  VARS <- getOption("orgdata.columns")
+  vars <- VARS[is.element(VARS, names(spec))]
+
   for (i in seq_along(vars)) {
     input <- is_column_na(spec, vars[i])
     assign(input[["col"]], input)
