@@ -1,7 +1,8 @@
 #' @title Recode Variables
 #' @description
 #' Recode variables based on the specification in `tbl_Kode` ie. codebook.
-#' `LESID` is the unique reference to recode variables.
+#' `LESID` must be combined with FILGRUPPE to create a unique reference to
+#' be able to recode variables.
 #' @inheritParams do_split
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
