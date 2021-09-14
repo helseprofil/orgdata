@@ -27,7 +27,6 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
 #' @import data.table
 #' @export
 get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
-  GEO <- KJONN <- AAR <- ALDER <- UTDANN <- LANDBAK <- VAL <- NULL
 
   is_null_both(group, spec)
   is_not_null_both(group, spec)
@@ -36,12 +35,12 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
     spec <- find_spec("filegroups.sql", group, con)
   }
 
-  ## There are 7 standard columns
-  for (i in seq_len(7)) {
-    input <- is_column_na(spec, getOption("orgdata.columns")[i])
+  vars <- getOption("orgdata.columns")
+  for (i in seq_along(vars)) {
+    input <- is_column_na(spec, vars[i])
     assign(input[["col"]], input)
   }
-  x <- data.table::rbindlist(list(GEO, AAR, KJONN, ALDER, UTDANN, LANDBAK, VAL))
+  x <- data.table::rbindlist(mget(vars))
 
   old <- x[!is.na(x$input), ]$input
   new <- x[!is.na(x$input), ]$col
