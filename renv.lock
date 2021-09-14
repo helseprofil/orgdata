@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.1",
+    "Version": "4.1.0",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -233,9 +233,9 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "bcfde565f3db4b492703d9da8cd6b84a23f2c58e",
+      "RemoteSha": "6ce44284dbd7790960b156b530e4de9e5c9292f2",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "de044dec327afeed53182b5a14d6dbf3"
+      "Hash": "45a230aa7467afe7d96fd32d0905b2ea"
     },
     "pillar": {
       "Package": "pillar",
