@@ -22,7 +22,7 @@ opt.orgdata <- list(
                       "TAB1", "TAB2", "TAB3", "VAL1", "VAL2", "VAL3"),
 
   ## Columns with integer values
-  orgdata.int = c("GEO", "AAR", "KJONN", "ALDER", "VAL"),
+  orgdata.int = c("GEO", "AAR", "KJONN", "ALDER", "VAL1"),
 
   ## Either to change columnames to standard names or keep as it's.
   ## Default is to change to standard
