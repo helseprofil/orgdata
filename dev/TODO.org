@@ -62,6 +62,8 @@ Create category that are missing due to NULL based on the standard categories of
 - Should read ~TAB1=DIAGNOSE, TAB2=ANTROB~ instead of ~TAB1, TAB2 = DIAGNOSE, ANTROB~ in the current style.
 *** TODO ADDVAL
 - Need example file to implement this column and what it's for
+*** TODO LESID changed
+- LESID is not unique. It should be combined with FILGRUPPE to make it a unique ID
 ** Access DB
 *** DONE Warning duplicate filename
 Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
