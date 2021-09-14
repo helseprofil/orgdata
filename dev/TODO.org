@@ -58,8 +58,6 @@ Create category that are missing due to NULL based on the standard categories of
 *** TODO TABS and VALS
 - None standards columns in =tbl_innlesing= that needs to be included to output
   table. These columns will again be renamed in =tbl_Filgruppe=.
-*** TODO raw-khelse_FE.accdb
-- Edited version for Frontend. Replace standard =raw-khelse.accdb=
 *** TODO ADDKOL
 - Should read ~TAB1=DIAGNOSE, TAB2=ANTROB~ instead of ~TAB1, TAB2 = DIAGNOSE, ANTROB~ in the current style.
 *** TODO ADDVAL
@@ -72,6 +70,8 @@ Should be a table with files id and dates can be deactivated at once. Steps:
 - Relationship should be 1 in tbl_Orgfile to many in tbl_Koble
 - Update query for koblid and filename
 - Update sub_frm_qrKoble in frm_Overview
-*** TODO Add TABS and VAL
+*** DONE Add TABS and VAL
 - Use VALS 1 to 3 for value columns or columns that have quantity
 - Use TABS 1 to 3 for category variable that aren't standard columns.
+*** TODO raw-khelse_FE.accdb
+- Edited version for Frontend. Replace standard =raw-khelse.accdb=
