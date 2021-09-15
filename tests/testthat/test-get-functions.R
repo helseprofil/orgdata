@@ -16,7 +16,8 @@ test_that("Output for singel column", {
 
 ## Manheader -------------------------
 test_that("Manheader return list", {
-  manOut <- list(index = c(2L, 3L), col = c("KJONN", "ALDER"))
+  manOut <- list(old = c('2', '3'),
+                 new = c("KJONN", "ALDER"))
 
   expect_identical(get_manheader(spec = df01), manOut)
   expect_identical(get_manheader(spec = dfna), NA_character_)
