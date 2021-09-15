@@ -10,8 +10,8 @@ do_manheader <- function(dt = NULL, manspec = NULL) {
 
   check <- length(manspec)
   if (check == 2) {
-    nameIndex <- manspec[["index"]]
-    data.table::setnames(dt, names(dt)[nameIndex], manspec[["col"]])
+    indx <- as.integer(manspec[["old"]])
+    data.table::setnames(dt, names(dt)[indx], manspec[["new"]])
   }
   return(dt)
 }
@@ -44,12 +44,8 @@ get_manheader <- function(group = NULL, con = NULL, spec = NULL) {
   input <- find_column_input(spec, "MANHEADER")
 
   if (!is.na(input)) {
-    args <- is_separate(input, "=")
-    lhs <- is_separate(args[1], ",")
-    ## lhs will always be int as it refers to column number in rawdata
-    lhs <- as.integer(lhs)
-    rhs <- is_separate(args[2], ",")
-    input <- list(index = lhs, col = rhs)
+    input <- is_col_separate(input = input, )
   }
   return(input)
 }
+
