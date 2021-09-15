@@ -35,15 +35,16 @@ is_input_type <- function(value, type = c("character", "double", "integer")) {
 }
 
 
-
+#' @keywords internal
+#' @title Multiple inputs style
+#' @description Multiple inputs separated by `,` as in ADDKOL and MANHEADER
+#' @param input The product from `find_column_input()`
 is_col_separate <- function(input, int = NULL){
-  # input : Product from find_column_input()
-  # int : Which colums to be converted to integer
   args <- is_separate(input, ",")
   dt <- vector(mode = "list", length = length(args))
 
   for (i in seq_along(args)){
-    x <- is_addcols_var(args[i])
+    x <- is_col_var(args[i])
     dt[[i]] <- x
   }
 
@@ -54,7 +55,7 @@ is_col_separate <- function(input, int = NULL){
   list(old = unname(lhs), new = unname(rhs))
 }
 
-is_addcols_var <- function(col){
+is_col_var <- function(col){
   lhs <- is_separate(col, "=")[1]
   rhs <- is_separate(col, "=")[2]
   list(old = lhs, new = rhs)
