@@ -6,6 +6,7 @@
 #' `save_file()` to save the object output from `read_raw()`
 #' @inheritParams do_split
 #' @inheritParams read_raw
+#' @param date Output file will be named with date and time
 #' @examples
 #' \dontrun{
 #'  opitions(orgdata.aggregate = TRUE)
@@ -17,11 +18,11 @@
 #' }
 #' @export
 
-save_file <- function(dt = NULL, group = NULL){
+save_file <- function(dt = NULL, group = NULL, date = FALSE){
   is_null(dt)
   is_null(group)
 
-  file <- is_file_csv(group = group)
+  file <- is_file_csv(group = group, date = date)
   data.table::fwrite(dt, file = file, sep = ";")
 }
 
@@ -32,9 +33,15 @@ lagfil <- save_file
 
 ## Helper -----------------------------------------
 
-is_file_csv <- function(group, verbose = getOption("orgdata.verbose")){
-  batch <- format(Sys.time(), format = "%Y%m%d_%H%M%S")
-  fileName <- paste0(group, "_", batch, ".csv")
+is_file_csv <- function(group, verbose = getOption("orgdata.verbose"), date){
+
+  if (date){
+    batch <- format(Sys.time(), format = "%Y%m%d_%H%M%S")
+    fileName <- paste0(group, "_", batch, ".csv")
+  } else {
+    fileName <- paste0(group, ".csv")
+  }
+
   fileOut <- file.path(getOption("orgdata.folder.output"), fileName)
 
   if (verbose){
