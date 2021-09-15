@@ -44,7 +44,7 @@ get_manheader <- function(group = NULL, con = NULL, spec = NULL) {
   input <- find_column_input(spec, "MANHEADER")
 
   if (!is.na(input)) {
-    input <- is_col_separate(input = input, )
+    input <- is_col_separate(input = input)
   }
   return(input)
 }
