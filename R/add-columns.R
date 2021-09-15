@@ -37,26 +37,9 @@ get_addcols <- function(group = NULL, con = NULL, spec = NULL) {
   input <- find_column_input(spec = spec, "ADDKOL")
 
   if (!is.na(input)) {
-    args <- is_separate(input, ",")
-
-    inDT <- vector(mode = "list", length = length(args))
-    for (i in seq_along(args)){
-      addDT <- is_addcols_var(args[i])
-      inDT[[i]] <- addDT
-    }
-
-    cols <- unlist(inDT)
-    lhs <- cols[names(cols) == "old"]
-    rhs <- cols[names(cols) == "new"]
-
-    input <- list(old = unname(lhs), new = unname(rhs))
+    input <- is_col_separate(input = input)
   }
   return(input)
 }
 
 ## Helper funciton ------------------------------
-is_addcols_var <- function(col){
-  lhs <- is_separate(col, "=")[1]
-  rhs <- is_separate(col, "=")[2]
-  list(old = lhs, new = rhs)
-}
