@@ -5,6 +5,7 @@
 #' @import data.table
 #' @export
 do_manheader <- function(dt = NULL, manspec = NULL) {
+  is_debug()
   is_null(dt, "Data set not found!")
   is_null(manspec)
 
