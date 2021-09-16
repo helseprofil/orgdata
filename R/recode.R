@@ -10,11 +10,12 @@
 #' @export
 do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   is_debug()
+  grp <- spec$FILGRUPPE
   lesid <- spec$LESID
   speCode <- get_codebok(spec = spec, con = con)
-  dt <- is_recode_all(dt = dt, code = speCode)
-  dt <- is_recode_common(dt = dt, code = speCode)
-  is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
+  dt <- is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
+  dt <- is_recode_common(dt = dt, code = speCode, group = grp)
+  is_recode_all(dt = dt, code = speCode)
 }
 
 #' @title Codebook
@@ -27,7 +28,7 @@ get_codebok <- function(spec = NULL, con = NULL){
   grp <- spec$FILGRUPPE
   lesid <- spec$LESID
   speCode <- find_spec("recode.sql", con = con, char = grp, num = lesid)
-  data.table::setDT(speCode)
+  is_codebook(cb = speCode)
 }
 
 ## Helper -----------------------------------------------
@@ -43,13 +44,13 @@ is_recode_lesid <- function(dt, code, lesid) {
   is_recode(dt = dt, code = idCode, cols = kols)
 }
 
-## When LESID in tbl_Kode is empty ie. common
-is_recode_common <- function(dt, code) {
+## When LESID in tbl_Kode is empty ie. common within the group
+is_recode_common <- function(dt, code, group) {
   ## dt - Dataset
   ## code - From codebook
-  LESID <- KOL <- FRA <- TIL <- NULL
+  FILGRUPPE <- LESID <- KOL <- FRA <- TIL <- NULL
 
-  allCode <- code[is.na(LESID), list(KOL, FRA, TIL)]
+  allCode <- code[FILGRUPPE == group & is.na(LESID), list(KOL, FRA, TIL)]
   kols <- unique(allCode$KOL)
   is_recode(dt, code = allCode, cols = kols)
 }
@@ -57,7 +58,7 @@ is_recode_common <- function(dt, code) {
 
 ## When FILGRUPPE in tbl_Kode is ALLE
 is_recode_all <- function(dt, code){
-  LESID <- KOL <- FRA <- TIL <- NULL
+  FILGRUPPE <- LESID <- KOL <- FRA <- TIL <- NULL
 
   allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA, TIL)]
   kols <- unique(allCode$KOL)
@@ -66,7 +67,7 @@ is_recode_all <- function(dt, code){
 
 ## Recode variable 1-to-1
 is_recode <- function(dt, code, cols){
-  i.to <- NULL
+  i.to <- KOL <- NULL
 
   for (i in seq_along(cols)){
     col <- cols[i]
@@ -79,8 +80,6 @@ is_recode <- function(dt, code, cols){
   invisible(dt)
 }
 
-
-
 ## For easy converstion to find NA as string
 is_NA <- function(dt, code, col) {
   ## dt - Dataset
@@ -91,4 +90,19 @@ is_NA <- function(dt, code, col) {
     dt[is.na(get(col)), (col) := "NA"]
   }
   return(dt)
+}
+
+## When has LESID needs FILGRUPPE too because
+## LESID is not unique
+is_codebook <- function(cb){
+  LESID <- FILGRUPPE <- NULL
+
+  data.table::setDT(cb)
+  cbErr <- cb[!is.na(LESID) & is.na(FILGRUPPE),]
+
+  if (nrow(cbErr) > 0){
+    is_stop("FILGRUPPE is not found for LESID:", cbErr$LESID)
+  }
+
+  invisible(cb)
 }
