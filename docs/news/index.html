@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -145,12 +145,30 @@
 <a href="#orgdata-development-version" class="anchor"></a>orgdata (development version)</h1>
 <p>Things in <code>dev</code> branch</p>
 <ul>
-<li>Bla.. bla.. bla..</li>
+<li>Implicit zero</li>
 </ul>
 </div>
-    <div id="orgdata-004---alpah" class="section level1">
+    <div id="orgdata-005---alpha" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.5">
+<a href="#orgdata-005---alpha" class="anchor"></a>orgdata 0.0.5 - alpha</h1>
+<ul>
+<li>
+<p>Recode variables from specification in <code>tbl_Kode</code> uses:</p>
+<ol>
+<li>FILGRUPPE as =ALLE= for common recode for all groups</li>
+<li>Specified FILGRUPPE with empty LESID for common recode within group</li>
+<li>Specified LESID to recode specific LESID</li>
+</ol>
+</li>
+<li><p>LESID will overrule empty LESID for similar columnames</p></li>
+<li><p>Specified FILGRUPPE will overrule FILGRUPPE =ALLE=</p></li>
+<li><p>Error if LESID without specifying FILGRUPPE</p></li>
+</ul>
+<p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/4'>#4</a></p>
+</div>
+    <div id="orgdata-004---alpha" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.4">
-<a href="#orgdata-004---alpah" class="anchor"></a>orgdata 0.0.4 - alpah</h1>
+<a href="#orgdata-004---alpha" class="anchor"></a>orgdata 0.0.4 - alpha</h1>
 <ul>
 <li>MANHEADER and ADDKOL uses common helper function <code><a href="../reference/is_col_separate.html">is_col_separate()</a></code>
 </li>
@@ -158,9 +176,9 @@
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/2'>#2</a></p>
 </div>
-    <div id="orgdata-003--alpha" class="section level1">
+    <div id="orgdata-003---alpha" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.3">
-<a href="#orgdata-003--alpha" class="anchor"></a>orgdata 0.0.3 -alpha</h1>
+<a href="#orgdata-003---alpha" class="anchor"></a>orgdata 0.0.3 - alpha</h1>
 <ul>
 <li>LESID is not unique id but a combination of LESID and FILGRUPPE</li>
 <li>Standard columns include 3 TABS and 3 VALS</li>
