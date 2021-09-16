@@ -35,3 +35,7 @@ opt.orgdata <- list(
   if (any(orgDT)) options(opt.orgdata[orgDT])
   invisible()
 }
+
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage("orgdata version 0.0.5 - alpha")
+}
