@@ -155,14 +155,14 @@
 <li>
 <p>Recode variables from specification in <code>tbl_Kode</code> uses:</p>
 <ol>
-<li>FILGRUPPE as =ALLE= for common recode for all groups</li>
+<li>FILGRUPPE as <code>ALLE</code> for common recode for all groups</li>
 <li>Specified FILGRUPPE with empty LESID for common recode within group</li>
 <li>Specified LESID to recode specific LESID</li>
 </ol>
 </li>
-<li><p>LESID will overrule empty LESID for similar columnames</p></li>
-<li><p>Specified FILGRUPPE will overrule FILGRUPPE =ALLE=</p></li>
-<li><p>Error if LESID without specifying FILGRUPPE</p></li>
+<li><p>Specified LESID will overrule empty LESID with specified FILGRUPPE for similar columnames</p></li>
+<li><p>Specified FILGRUPPE will overrule FILGRUPPE of type <code>ALLE</code></p></li>
+<li><p>Error message if LESID without specifying FILGRUPPE</p></li>
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/4'>#4</a></p>
 </div>

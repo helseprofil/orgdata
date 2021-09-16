@@ -8,15 +8,15 @@ Things in `dev` branch
 # orgdata 0.0.5 - alpha
 
 - Recode variables from specification in `tbl_Kode` uses:
-  1. FILGRUPPE as =ALLE= for common recode for all groups
+  1. FILGRUPPE as `ALLE` for common recode for all groups
   2. Specified FILGRUPPE with empty LESID for common recode within group 
   3. Specified LESID to recode specific LESID
   
 
-- LESID will overrule empty LESID for similar columnames
-- Specified FILGRUPPE will overrule FILGRUPPE =ALLE=
+- Specified LESID will overrule empty LESID with specified FILGRUPPE for similar columnames
+- Specified FILGRUPPE will overrule FILGRUPPE of type `ALLE`
   
-- Error if LESID without specifying FILGRUPPE
+- Error message if LESID without specifying FILGRUPPE
 
 Changes is in PR #4
 
