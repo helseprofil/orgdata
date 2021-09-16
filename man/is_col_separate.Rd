@@ -4,7 +4,7 @@
 \alias{is_col_separate}
 \title{Multiple inputs style}
 \usage{
-is_col_separate(input, int = NULL)
+is_col_separate(input)
 }
 \arguments{
 \item{input}{The product from \code{find_column_input()}}
