@@ -44,8 +44,9 @@ Use =tryCatch= in loop files for error message
 *** DONE Process files
 Make seperate function =is_org_process=
 *** TODO Recoded variables
-Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.
-*** NEXT Recode common variable
+- Not sure what I was thinking here :-(
+- Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.
+*** DONE Recode common variable
 - Use group =ALL= to recode variables that are applicable to all groups. But it
 should be deactivated if specification for the same columns is found in the
 specific FILGRUPPE
@@ -59,12 +60,13 @@ SSB uses extention =.fhi= for a =.csv= files. Need to add in =find_data=.
 When reading raw data, columns with digits converted to int. Problem happens
 with splitted geocodes such as file =.fhi= from SSB. When merging then the
 leading zero is missing.
-*** TODO Implicit NULL
+*** NEXT Implicit NULL
 Create category that are missing due to NULL based on the standard categories of the whole period. Steps:
 - Find the valid categories eg. age or educations levels for the whole period eg. 2016 to 2021
 - Create the reference categories from this
 - Find if any of the specific period has missing categories of the reference categories
 - Create the new missing category with value 0 and and geo 99999999
+- This should be implemented before aggregating to geographical levels
 *** DONE TABS and VALS
 - None standards columns in =tbl_innlesing= that needs to be included to output
   table. These columns will again be renamed in =tbl_Filgruppe=.
@@ -74,6 +76,20 @@ Create category that are missing due to NULL based on the standard categories of
 - Need example file to implement this column and what it's for
 *** DONE LESID changed
 - LESID is not unique. It should be combined with FILGRUPPE to make it a unique ID
+*** TODO Create new standard columns
+- Create standard columns when not available in the original rawdata by
+  specifying in the respective standard columns in Access.
+- eg. Column for gender isn't available but the whole dataset is for women ie.
+  code =2=. In Access you can specific under =KJONN= with ~<2>~ indicating that
+  standard column for =KJONN= should be created and the value is =2=.
+*** TODO Compute variables
+- Create a new categories in an existing column or a new columns consiting of a
+  new categories from selected column.
+- eg. Education has categories 1 to 5, and a new group consiting 1 and 2 is
+  needed. There will then be 6 categories for education after computing ie.
+  ~DT[edu %in% 1:2, edu := 6]~
+- New column can also be created if needed. In Access specify ~NYKOL=JA~ and the
+  code will be ~DT[, edu2 := edu ][edu %in% 1:2, edu2 := 6]~
 ** Access DB
 *** DONE Warning duplicate filename
 Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
