@@ -5,6 +5,7 @@
 #' @import data.table
 #' @export
 do_manheader <- function(dt = NULL, manspec = NULL) {
+  is_debug()
   is_null(dt, "Data set not found!")
   is_null(manspec)
 
@@ -44,7 +45,7 @@ get_manheader <- function(group = NULL, con = NULL, spec = NULL) {
   input <- find_column_input(spec, "MANHEADER")
 
   if (!is.na(input)) {
-    input <- is_col_separate(input = input, )
+    input <- is_col_separate(input = input)
   }
   return(input)
 }

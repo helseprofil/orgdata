@@ -39,7 +39,7 @@ is_input_type <- function(value, type = c("character", "double", "integer")) {
 #' @title Multiple inputs style
 #' @description Multiple inputs separated by `,` as in ADDKOL and MANHEADER
 #' @param input The product from `find_column_input()`
-is_col_separate <- function(input, int = NULL){
+is_col_separate <- function(input){
   args <- is_separate(input, ",")
   dt <- vector(mode = "list", length = length(args))
 
