@@ -11,7 +11,7 @@ test_that("Recode variables", {
                          TIL = c("2", "3", "1")),
                     row.names = c(NA, -3L), class = c("data.table", "data.frame"))
 
-  expect_equal(is_recode(dt = recDT, code = recCB, lesid = 16), recOut)
+  expect_equal(is_recode_lesid(dt = recDT, code = recCB, lesid = 16), recOut)
   expect_equal(is_recode_common(dt = recDT, code = recCB), recOut)
   expect_equal(is_NA(dt = dtt, code = code, col = "LANDF"), dtout)
 })

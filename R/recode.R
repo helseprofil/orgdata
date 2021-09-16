@@ -12,8 +12,9 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   is_debug()
   lesid <- spec$LESID
   speCode <- get_codebok(spec = spec, con = con)
+  dt <- is_recode_all(dt = dt, code = speCode)
   dt <- is_recode_common(dt = dt, code = speCode)
-  is_recode(dt = dt, code = speCode, lesid = lesid)
+  is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
 }
 
 #' @title Codebook
@@ -31,27 +32,15 @@ get_codebok <- function(spec = NULL, con = NULL){
 
 ## Helper -----------------------------------------------
 ## When LESID is specified in tbl_Kode
-is_recode <- function(dt, code, lesid) {
+is_recode_lesid <- function(dt, code, lesid) {
   ## dt - Dataset
   ## code - From codebook
   ## lesid - lesid from file specification
   LESID <- KOL <- FRA <- TIL <- NULL
-  i.to <- NULL
 
   idCode <- code[LESID == lesid, list(KOL, FRA, TIL)]
   kols <- unique(idCode$KOL)
-
-  for (i in seq_len(length(kols))) {
-    ## TODO check categories in cols dt is equal to
-    ## specification in codebook
-    col <- kols[i]
-    sp <- idCode[KOL == col, ]
-    dt <- is_NA(dt = dt, code = sp, col = col)
-    sp[, KOL := NULL]
-    data.table::setnames(sp, names(sp), c(col, "to"))
-    dt[sp, on = col, (col) := i.to]
-  }
-  return(dt)
+  is_recode(dt = dt, code = idCode, cols = kols)
 }
 
 ## When LESID in tbl_Kode is empty ie. common
@@ -59,23 +48,38 @@ is_recode_common <- function(dt, code) {
   ## dt - Dataset
   ## code - From codebook
   LESID <- KOL <- FRA <- TIL <- NULL
-  i.to <- NULL
 
   allCode <- code[is.na(LESID), list(KOL, FRA, TIL)]
   kols <- unique(allCode$KOL)
+  is_recode(dt, code = allCode, cols = kols)
+}
 
-  for (i in seq_len(length(kols))) {
-    ## TODO check categories in cols dt is equal to
-    ## specification in codebook
-    col <- kols[i]
-    sp <- allCode[KOL == col, ]
+
+## When FILGRUPPE in tbl_Kode is ALLE
+is_recode_all <- function(dt, code){
+  LESID <- KOL <- FRA <- TIL <- NULL
+
+  allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA, TIL)]
+  kols <- unique(allCode$KOL)
+  is_recode(dt = dt, code = allCode, cols = kols)
+}
+
+## Recode variable 1-to-1
+is_recode <- function(dt, code, cols){
+  i.to <- NULL
+
+  for (i in seq_along(cols)){
+    col <- cols[i]
+    sp <- code[KOL == col,]
     dt <- is_NA(dt = dt, code = sp, col = col)
     sp[, KOL := NULL]
     data.table::setnames(sp, names(sp), c(col, "to"))
     dt[sp, on = col, (col) := i.to]
   }
-  return(dt)
+  invisible(dt)
 }
+
+
 
 ## For easy converstion to find NA as string
 is_NA <- function(dt, code, col) {
