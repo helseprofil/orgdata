@@ -16,9 +16,9 @@ All files must be standardized to =data.table= class before merging.
 Implement in options ~verbose=FALSE~ for log and processes
 *** DONE Close connection
 =KHelse$db_close()= when =read_raw()= ends
-*** TODO =csv= output
-Use argument ~csv=TRUE~ in =read_raw=
-*** TODO Debuging
+*** DONE =csv= output
+Use argument ~csv=TRUE~ in =read_raw=. File output should not be dated
+*** DONE Debuging
 Function =is_debug()= for debugging with =options("orgdata.debug")=
 *** TODO Log
 Consider R6 class.
@@ -45,6 +45,12 @@ Use =tryCatch= in loop files for error message
 Make seperate function =is_org_process=
 *** TODO Recoded variables
 Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.
+*** NEXT Recode common variable
+- Use group =ALL= to recode variables that are applicable to all groups. But it
+should be deactivated if specification for the same columns is found in the
+specific FILGRUPPE
+- Let LESID empty or missing if common recoding values are within the group.
+  This is weighted more than the =ALL= option.
 *** DONE lesfil
 arg for =file= needs more info ie. either FILID or "full path"
 *** DONE .fhi extention
@@ -59,14 +65,14 @@ Create category that are missing due to NULL based on the standard categories of
 - Create the reference categories from this
 - Find if any of the specific period has missing categories of the reference categories
 - Create the new missing category with value 0 and and geo 99999999
-*** TODO TABS and VALS
+*** DONE TABS and VALS
 - None standards columns in =tbl_innlesing= that needs to be included to output
   table. These columns will again be renamed in =tbl_Filgruppe=.
-*** TODO ADDKOL
+*** DONE ADDKOL
 - Should read ~TAB1=DIAGNOSE, TAB2=ANTROB~ instead of ~TAB1, TAB2 = DIAGNOSE, ANTROB~ in the current style.
-*** TODO ADDVAL
+*** DONE ADDVAL
 - Need example file to implement this column and what it's for
-*** TODO LESID changed
+*** DONE LESID changed
 - LESID is not unique. It should be combined with FILGRUPPE to make it a unique ID
 ** Access DB
 *** DONE Warning duplicate filename
@@ -79,5 +85,5 @@ Should be a table with files id and dates can be deactivated at once. Steps:
 *** DONE Add TABS and VAL
 - Use VALS 1 to 3 for value columns or columns that have quantity
 - Use TABS 1 to 3 for category variable that aren't standard columns.
-*** TODO raw-khelse_FE.accdb
+*** DONE raw-khelse_FE.accdb
 - Edited version for Frontend. Replace standard =raw-khelse.accdb=
