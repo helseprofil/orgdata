@@ -5,14 +5,16 @@
 \alias{lagfil}
 \title{Save Data to CSV file}
 \usage{
-save_file(dt = NULL, group = NULL)
+save_file(dt = NULL, group = NULL, date = FALSE)
 
-lagfil(dt = NULL, group = NULL)
+lagfil(dt = NULL, group = NULL, date = FALSE)
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
 \item{group}{The group of files (\emph{filgruppe})}
+
+\item{date}{Output file will be named with date and time}
 }
 \description{
 Save data as a \code{.csv} format file with semicolon \verb{;} as seperation.
