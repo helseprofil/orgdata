@@ -85,9 +85,9 @@ is_NA <- function(dt, code, col) {
   ## dt - Dataset
   ## code - From codebook
   ## col - column to recode
-  na <- is.element("NA", code$FRA)
+  na <- is.element("<NA>", code$FRA)
   if (na) {
-    dt[is.na(get(col)), (col) := "NA"]
+    dt[is.na(get(col)), (col) := "<NA>"]
   }
   return(dt)
 }
