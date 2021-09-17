@@ -155,13 +155,24 @@
 <li>
 <p>Recode variables from specification in <code>tbl_Kode</code> uses:</p>
 <ol>
-<li>FILGRUPPE as <code>ALLE</code> for common recode for all groups</li>
-<li>Specified FILGRUPPE with empty LESID for common recode within group</li>
-<li>Specified LESID to recode specific LESID</li>
+<li>
+<strong>GENERAL</strong> variables are defined in FILGRUPPE as <code>ALLE</code> and are used to recode variables in all groups</li>
+<li>
+<strong>COMMON</strong> variables are when FILGRUPPE is specified but have empty LESID. This will recode variables within seleted group</li>
+<li>
+<strong>SPECIFIC</strong> variables are when FILGRUPPE and LESID are specified. This will recode variables in that specified FILGRUPPE of the specified FILID.</li>
 </ol>
 </li>
-<li><p>Specified LESID will overrule empty LESID with specified FILGRUPPE for similar columnames</p></li>
-<li><p>Specified FILGRUPPE will overrule FILGRUPPE of type <code>ALLE</code></p></li>
+<li>
+<p>When all these three exists in <code>tbl_Kode</code>:</p>
+<ul>
+<li>
+<strong>SPECIFIC</strong> variables will overrule <strong>COMMON</strong> variables</li>
+<li>
+<strong>COMMON</strong> variables will overrule <strong>GENERAL</strong> variables</li>
+</ul>
+</li>
+<li><p>Write as <code>&lt;NA&gt;</code> in codebook under column <code>FRA</code> when specifying missing variables indicating that a missing column to be recoded to column <code>TIL</code>. This will differentiate between real missing and a real column value of <code>NA</code>. (<a href='https://github.com/helseprofil/orgdata/issues/5'>#5</a>)</p></li>
 <li><p>Error message if LESID without specifying FILGRUPPE</p></li>
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/4'>#4</a></p>

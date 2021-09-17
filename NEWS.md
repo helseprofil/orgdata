@@ -8,13 +8,20 @@ Things in `dev` branch
 # orgdata 0.0.5 - alpha
 
 - Recode variables from specification in `tbl_Kode` uses:
-  1. FILGRUPPE as `ALLE` for common recode for all groups
-  2. Specified FILGRUPPE with empty LESID for common recode within group 
-  3. Specified LESID to recode specific LESID
-  
+  1. **GENERAL** variables are defined in FILGRUPPE as `ALLE` and are used to
+     recode variables in all groups
+  2. **COMMON** variables are when FILGRUPPE is specified but have empty LESID.
+     This will recode variables within seleted group
+  3. **SPECIFIC** variables are when FILGRUPPE and LESID are specified. This
+     will recode variables in that specified FILGRUPPE of the specified FILID.
 
-- Specified LESID will overrule empty LESID with specified FILGRUPPE for similar columnames
-- Specified FILGRUPPE will overrule FILGRUPPE of type `ALLE`
+- When all these three exists in `tbl_Kode`:
+   - **SPECIFIC** variables will overrule **COMMON** variables
+   - **COMMON** variables will overrule **GENERAL** variables
+
+- Write as `<NA>` in codebook under column `FRA` when specifying missing
+  variables indicating that a missing column to be recoded to column `TIL`. This
+  will differentiate between real missing and a real column value of `NA`. (#5)
   
 - Error message if LESID without specifying FILGRUPPE
 
