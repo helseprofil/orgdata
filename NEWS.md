@@ -9,21 +9,22 @@ Things in `dev` branch
 
 - Recode variables from specification in `tbl_Kode` uses:
   1. **GENERAL** variables are defined in FILGRUPPE as `ALLE` and are used to
-     recode variables in all groups
+     recode variables in all groups.
   2. **COMMON** variables are when FILGRUPPE is specified but have empty LESID.
-     This will recode variables within seleted group
+     This will recode variables within selected group.
   3. **SPECIFIC** variables are when FILGRUPPE and LESID are specified. This
      will recode variables in that specified FILGRUPPE of the specified FILID.
 
-- When all these three exists in `tbl_Kode`:
+- When all these three specification exist in `tbl_Kode`:
    - **SPECIFIC** variables will overrule **COMMON** variables
    - **COMMON** variables will overrule **GENERAL** variables
 
 - Write as `<NA>` in codebook under column `FRA` when specifying missing
-  variables indicating that a missing column to be recoded to column `TIL`. This
+  variables indicating that a missing column to be recoded to value in column `TIL`. This
   will differentiate between real missing and a real column value of `NA`. (#5)
   
-- Error message if LESID without specifying FILGRUPPE
+- Error message will be given if LESID is specified without FILGRUPPE since
+  LESID is not unique ID.
 
 Changes is in PR #4
 
