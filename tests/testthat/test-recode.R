@@ -4,12 +4,12 @@ test_that("Recode variables", {
   dtCB <- structure(list(AAR = c(2019L, 2019L, 2019L, 2019L),
                          LANDBAK = c("1B", "3C", "3B", "0"),
                          LANDB = c("1", "3", "3", "1"),
-                         LANDF = c("B", "C", "B", "NA")), row.names = c(NA, -4L),
+                         LANDF = c("B", "C", "B", NA_character_ )), row.names = c(NA, -4L),
                     class = c("data.table", "data.frame"))
 
   specCB <- structure(list(FILGRUPPE = c("ALLE", "test002", "ALLE", "test002", "test002", NA),
                            LESID = c(NA, NA, NA, "ver02", NA, "ver03"), KOL = c("LANDF", "LANDF", "LANDF", "LANDF", "LANDF", "LANDF"),
-                           TYPE = c(1L, 1L, 1L, 1L, 1L, 1L), FRA = c("B", "C", "NA", "B", "B", "B"),
+                           TYPE = c(1L, 1L, 1L, 1L, 1L, 1L), FRA = c("B", "C", "<NA>", "B", "B", "B"),
                            TIL = c("2", "3", "1", "8", "9", "9")), class = c("data.table", "data.frame"),
                       row.names = c(NA, -5L))
 
@@ -17,7 +17,7 @@ test_that("Recode variables", {
   outLesid <- structure(list(AAR = c(2019L, 2019L, 2019L, 2019L),
                              LANDBAK = c("1B", "3C", "3B", "0"),
                              LANDB = c("1", "3", "3", "1"),
-                             LANDF = c("8", "C", "8", "NA")),
+                             LANDF = c("8", "C", "8", NA_character_)),
                         row.names = c(NA, -4L),
                         class = c("data.table","data.frame"))
 
@@ -25,7 +25,7 @@ test_that("Recode variables", {
   outCommon <- structure(list(AAR = c(2019L, 2019L, 2019L, 2019L),
                               LANDBAK = c("1B", "3C", "3B", "0"),
                               LANDB = c("1", "3", "3", "1"),
-                              LANDF = c("9", "3", "9", "NA")),
+                              LANDF = c("9", "3", "9", NA_character_)),
                          row.names = c(NA, -4L),
                          class = c("data.table","data.frame"))
 
@@ -40,11 +40,11 @@ test_that("Recode variables", {
   dtt <- structure(list(VAL = c(1L, 1L), LANDB = c("1", "0"), LANDF = c("B", NA)),
                    row.names = c(NA, -2L), class = c("data.table", "data.frame"))
 
-  dtout <- structure(list(VAL = c(1L, 1L), LANDB = c("1", "0"), LANDF = c("B", "NA")),
+  dtout <- structure(list(VAL = c(1L, 1L), LANDB = c("1", "0"), LANDF = c("B", "<NA>")),
                      row.names = c(NA, -2L), class = c("data.table", "data.frame"))
 
   code <- structure(list(KOL = c("LANDF", "LANDF", "LANDF"),
-                         FRA = c("B", "C", "NA"),
+                         FRA = c("B", "C", "<NA>"),
                          TIL = c("2", "3", "1")),
                     row.names = c(NA, -3L), class = c("data.table", "data.frame"))
 
