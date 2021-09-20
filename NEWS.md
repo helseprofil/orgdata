@@ -3,6 +3,11 @@
 Things in `dev` branch
 
 - Implicit zero
+- Create GEO code from two separate columns. This has to be defined in Access
+  registration under `GEO` with comma separated eg. `nameGeoCol1, nameGeoCol2`.
+- Order standard columns in the output dataset with this order:
+    - `GEO`, `AAR`, `ALDER`, `KJONN`
+ 
 
 
 # orgdata 0.0.5 - alpha
