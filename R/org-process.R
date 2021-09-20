@@ -17,10 +17,23 @@ is_org_process <- function(file,
                            ) {
   dots <- get_innlesarg(spec = filespec)
 
+  ## For GEO codes that are derived from a combination of two columns
+  geoVals <- is_separate(filespec$GEO, ",")
+  geo2col <- length(geoVals) > 1
+  if (geo2col) {
+    dots <- is_geo_split(geo = geoVals, dots = dots)
+  }
+
   if (is.na(dots[1])) {
     dt <- read_file(file = file)
   } else {
     dt <- read_file(file = file, dots)
+  }
+
+  ## GEO codes from two columns needs to be joined
+  if (geo2col){
+    dt[, GEO := paste0(get(geoVals[1]), get( geoVals[2] ))]
+    dt[, (geoVals) := NULL]
   }
 
   ## Logging
@@ -44,3 +57,12 @@ is_org_process <- function(file,
 }
 
 ## Helper -------------------------------------
+
+## GEO of a combined two or more columns
+is_geo_split <- function(geo, dots){
+  ## fread style args
+  colStr <- rep("character", 2)
+  colStr <- setNames(colStr, geo)
+  dots$colClasses = colStr
+  return(dots)
+}

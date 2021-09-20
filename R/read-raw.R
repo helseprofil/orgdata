@@ -23,7 +23,7 @@
 #' @inheritParams do_aggregate
 #' @param ... Additional parameters
 #' @aliases read_raw lesraw
-#' @import data.table
+#' @importFrom data.table `:=` `%chin%`
 #' @export
 read_raw <- function(group = NULL,
                      koblid = NULL,
@@ -124,6 +124,11 @@ read_raw <- function(group = NULL,
   outDT <- do_addcols(
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
+
+
+  indCols <- getOption("orgdata.columns") %chin% names(outDT)
+  orderCols <- getOption("orgdata.columns")[indCols]
+  data.table::setcolorder(outDT, orderCols)
 
   if (save) save_file(dt = outDT, group = group)
 
