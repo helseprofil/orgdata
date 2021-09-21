@@ -117,7 +117,6 @@ read_raw <- function(group = NULL,
   }
 
   on.exit(kh$db_close(), add = TRUE)
-  ## DTT <- data.table::rbindlist(DT, fill = TRUE)
 
   ## PROCESS ON FILGRUPPE ----------------------------------
   grpCols <- get_addcols(spec = fgSpec)
@@ -125,9 +124,7 @@ read_raw <- function(group = NULL,
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
 
-
-  indCols <- getOption("orgdata.columns") %chin% names(outDT)
-  orderCols <- getOption("orgdata.columns")[indCols]
+  orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
   data.table::setcolorder(outDT, orderCols)
 
   if (save) save_file(dt = outDT, group = group)
