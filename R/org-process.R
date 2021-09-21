@@ -34,6 +34,7 @@ is_org_process <- function(file,
   if (geo2col){
     dt[, GEO := paste0(get(geoVals[1]), get( geoVals[2] ))]
     dt[, (geoVals) := NULL]
+    dt[, GEO := as.integer(GEO)]
   }
 
   ## Logging
