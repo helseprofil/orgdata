@@ -15,6 +15,8 @@ is_org_process <- function(file,
                            verbose = getOption("orgdata.verbose"),
                            .log = parent.frame()
                            ) {
+  GEO <- NULL
+
   dots <- get_innlesarg(spec = filespec)
 
   ## For GEO codes that are derived from a combination of two columns
@@ -63,7 +65,7 @@ is_org_process <- function(file,
 is_geo_split <- function(geo, dots){
   ## fread style args
   colStr <- rep("character", 2)
-  colStr <- setNames(colStr, geo)
+  colStr <- stats::setNames(colStr, geo)
   dots$colClasses = colStr
   return(dots)
 }
