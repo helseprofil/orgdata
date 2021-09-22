@@ -53,7 +53,7 @@ test_that("Columns and class data", {
                        row.names = c(NA, -3L), class = c("data.table", "data.frame"))
 
   fgspec <- structure(list(ID = 10L, FILGRUPPE = "Dode", AGGREGERE = "F,K",
-                           ADDKOL = "sivil = SIVILSTAND", ADDVAL = NA_character_,
+                           KOLNAVN = "sivil = SIVILSTAND", ADDVAL = NA_character_,
                            NAVAL = NA_character_, SPLITTFRA = "LANDBAK", SPLITTTIL = "LANDB, LANDF"),
                       class = "data.frame", row.names = c(NA, -1L))
 
@@ -62,7 +62,7 @@ test_that("Columns and class data", {
             "LANDF")
 
   fgspecMis <- structure(list(ID = 10L, FILGRUPPE = "Dode", AGGREGERE = "F,K",
-                              ADDKOL = NA_character_, ADDVAL = NA_character_,
+                              KOLNAVN = NA_character_, ADDVAL = NA_character_,
                               NAVAL = NA_character_, SPLITTFRA = NA_character_, SPLITTTIL = NA_character_),
                          class = "data.frame", row.names = c(NA,-1L))
   colmis <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "TAB1",

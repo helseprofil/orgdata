@@ -8,7 +8,7 @@ Check if =is_separate= works correctly when there is whitespace eg. ~3 = AGE~.
 This is not relevant after update input style
 Should give error message when MANHEADER isn't balance eg. ~3,5=AGE~
 *** DONE MANHEADER input style
-Should use the same style as in ADDKOL when there are more then one columns ie.
+Should use the same style as in KOLNAVN when there are more then one columns ie.
 ~5=EDU,6=GEO~ instead of ~5,6=EDU,GEO~
 *** DONE Read files
 All files must be standardized to =data.table= class before merging.
@@ -116,5 +116,5 @@ Should be a table with files id and dates can be deactivated at once. Steps:
 - Edited version for Frontend. Replace standard =raw-khelse.accdb=
 *** DONE Delete VALKOL and NAVAL
 - These columns is not needed
-*** DONE Rename ADDKOL to KOLNAVN
+*** DONE Rename KOLNAVN to KOLNAVN
 - More intuitive what the column is for

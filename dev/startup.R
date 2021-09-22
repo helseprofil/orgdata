@@ -2,9 +2,9 @@
 devtools::load_all()
 devtools::test()
 ## devtools::check(vignettes = FALSE)
+roxygen2::roxygenise(clean = TRUE)
 devtools::check()
 devtools::document()
-roxygen2::roxygenise(clean = TRUE)
 
 pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
@@ -15,7 +15,7 @@ devtools::check_build() # only when you have unload the package
 
 
 ## Start here ---------------------------------
-pkgs <- c(
+pkgs <- cAdd(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
   "rmarkdown", "future", "foreach", "styler", "remotes",

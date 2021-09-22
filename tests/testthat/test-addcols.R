@@ -15,11 +15,11 @@ test_that("Add columns", {
   output <-  list(old = "sivil", new = "SIVILSTAND")
 
   fgspec <- structure(list(ID = 10L, FILGRUPPE = "Dode", AGGREGERE = "F,K",
-                           ADDKOL = "sivil = SIVILSTAND", ADDVAL = NA_character_,
+                           KOLNAVN = "sivil = SIVILSTAND", ADDVAL = NA_character_,
                            NAVAL = NA_character_, SPLITTFRA = "LANDBAK", SPLITTTIL = "LANDB, LANDF"),
                       class = "data.frame", row.names = c(NA, -1L))
   ## TEST ------------------
-  expect_equal(get_addcols(spec = fgspec), output)
-  expect_equal(do_addcols(dtInn, output), dtOut )
+  expect_equal(get_colname(spec = fgspec), output)
+  expect_equal(do_colname(dtInn, output), dtOut )
 
 })
