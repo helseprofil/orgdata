@@ -15,7 +15,8 @@ Things in `dev` branch
 - Use column name `KOLNAVN` instead of `ADDKOL`.
 - Rename function `do_addcols` and `get_addcols` to `do_colname` and
   `get_colname` to be consistent with the changes in Access registration database.
-    
+
+Changes is in PR #8
 
 # orgdata 0.0.5 - alpha
 
