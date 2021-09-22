@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multiple inputs style — is_col_separate • orgdata</title>
+<title>Get Renamed Columns — get_colname • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Multiple inputs style — is_col_separate" />
-<meta property="og:description" content="Multiple inputs separated by , as in KOLNAVN and MANHEADER" />
+<meta property="og:title" content="Get Renamed Columns — get_colname" />
+<meta property="og:description" content="Get the old and new coloumnames to be renamed in the dataset." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,26 +137,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Multiple inputs style</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/utils-column.R'><code>R/utils-column.R</code></a></small>
-    <div class="hidden name"><code>is_col_separate.Rd</code></div>
+    <h1>Get Renamed Columns</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/rename-columns.R'><code>R/rename-columns.R</code></a></small>
+    <div class="hidden name"><code>get_colname.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Multiple inputs separated by <code>,</code> as in KOLNAVN and MANHEADER</p>
+    <p>Get the old and new coloumnames to be renamed in the dataset.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_col_separate</span><span class='op'>(</span><span class='va'>input</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_colname</span><span class='op'>(</span>group <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>input</th>
-      <td><p>The product from <code><a href='find_column_input.html'>find_column_input()</a></code></p></td>
+      <th>group</th>
+      <td><p>The group of files (<em>filgruppe</em>)</p></td>
+    </tr>
+    <tr>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
+    </tr>
+    <tr>
+      <th>spec</th>
+      <td><p>Specification from <code>tbl_Filgruppe</code></p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list consist of two variables ie. <code>old</code> and <code>new</code>
+indicating the old and new columnames</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

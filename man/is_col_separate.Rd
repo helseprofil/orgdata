@@ -10,6 +10,6 @@ is_col_separate(input)
 \item{input}{The product from \code{find_column_input()}}
 }
 \description{
-Multiple inputs separated by \verb{,} as in ADDKOL and MANHEADER
+Multiple inputs separated by \verb{,} as in KOLNAVN and MANHEADER
 }
 \keyword{internal}

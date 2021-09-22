@@ -21,8 +21,10 @@ opt.orgdata <- list(
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK",
                       "TAB1", "TAB2", "TAB3", "VAL1", "VAL2", "VAL3"),
 
-  ## Columns with integer values
-  orgdata.int = c("GEO", "AAR", "KJONN", "ALDER", "VAL1"),
+  ## Columns with integer values. GEO is not included because some geo codes has
+  ## to be a combination of 2 columns and need to keep the leading 0 on second
+  ## column before merging. GEO will only be converted to integer after merging
+  orgdata.int = c("AAR", "KJONN", "ALDER", "VAL1"),
 
   ## Either to change columnames to standard names or keep as it's.
   ## Default is to change to standard
@@ -37,5 +39,5 @@ opt.orgdata <- list(
 }
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("orgdata version 0.0.5 - alpha")
+  packageStartupMessage("orgdata version 0.0.6 - alpha")
 }

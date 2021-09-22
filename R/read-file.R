@@ -48,6 +48,7 @@ is_id_file <- function(filid = NULL, con = NULL) {
     con <- kh$dbconn
   }
 
+  on.exit(kh$db_close(), add = TRUE)
   file <- find_spec("org-file.sql", value = filid, con = con)
   file.path(getOption("orgdata.folder.raw"), file)
 }

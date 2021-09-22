@@ -1,11 +1,11 @@
-#' @title Add Columns
+#' @title Rename Columns
 #' @description
-#' Add columns to the dataset
+#' Rename standard columns in the dataset
 #' @inheritParams do_split
-#' @param cols Old and new columns. See output from `get_addcols()`
+#' @param cols Old and new columns. See output from `get_colname()`
 #' @export
 
-do_addcols <- function(dt = NULL, cols = NULL) {
+do_colname <- function(dt = NULL, cols = NULL) {
   is_debug()
   is_null(dt)
   is_null(cols)
@@ -16,9 +16,9 @@ do_addcols <- function(dt = NULL, cols = NULL) {
   return(dt)
 }
 
-#' @title Get New Columns
+#' @title Get Renamed Columns
 #' @description
-#' Get the old and new coloumnames to be added to the dataset.
+#' Get the old and new coloumnames to be renamed in the dataset.
 #' @inheritParams read_raw
 #' @inheritParams find_spec
 #' @inheritParams get_split
@@ -26,7 +26,7 @@ do_addcols <- function(dt = NULL, cols = NULL) {
 #'  indicating the old and new columnames
 #' @export
 
-get_addcols <- function(group = NULL, con = NULL, spec = NULL) {
+get_colname <- function(group = NULL, con = NULL, spec = NULL) {
   is_null_both(group, spec)
   is_not_null_both(group, spec)
 
@@ -34,7 +34,7 @@ get_addcols <- function(group = NULL, con = NULL, spec = NULL) {
     spec <- find_spec(file = "filegroups.sql", value = group, con = con)
   }
 
-  input <- find_column_input(spec = spec, "ADDKOL")
+  input <- find_column_input(spec = spec, "KOLNAVN")
 
   if (!is.na(input)) {
     input <- is_col_separate(input = input)

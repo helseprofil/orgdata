@@ -1,6 +1,6 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: 
     person(given = "Yusman",
            family = "Kamaleri",
@@ -21,7 +21,8 @@ Imports:
     odbc,
     R6,
     readxl,
-    tibble
+    tibble,
+    stats
 Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),

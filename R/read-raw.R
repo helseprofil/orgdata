@@ -23,7 +23,7 @@
 #' @inheritParams do_aggregate
 #' @param ... Additional parameters
 #' @aliases read_raw lesraw
-#' @import data.table
+#' @importFrom data.table `:=` `%chin%`
 #' @export
 read_raw <- function(group = NULL,
                      koblid = NULL,
@@ -117,13 +117,16 @@ read_raw <- function(group = NULL,
   }
 
   on.exit(kh$db_close(), add = TRUE)
-  ## DTT <- data.table::rbindlist(DT, fill = TRUE)
 
   ## PROCESS ON FILGRUPPE ----------------------------------
-  grpCols <- get_addcols(spec = fgSpec)
-  outDT <- do_addcols(
+  grpCols <- get_colname(spec = fgSpec)
+  outDT <- do_colname(
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
+
+  ## REORDER COLS --------------------------------------------
+  orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
+  data.table::setcolorder(outDT, orderCols)
 
   if (save) save_file(dt = outDT, group = group)
 

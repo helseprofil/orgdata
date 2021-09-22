@@ -39,7 +39,7 @@ df02 <- structure(list(
 ## BEFOLKNING spec
 befolk <- structure(list(
   ID = 11L, FILGRUPPE = "BEFOLKNING", AGGREGERE = "F,K",
-  ADDKOL = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
+  KOLNAVN = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
   SPLITTTIL = "landb, landf"
 ), class = "data.frame", row.names = c(
   NA,
@@ -70,7 +70,7 @@ DT01 <- structure(list(GEO = c(
 
 ## fspec <- structure(list(
 ##   ID = 11L, FILGRUPPE = "BEFOLKNING", AGGREGERE = "F,K",
-##   ADDKOL = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
+##   KOLNAVN = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
 ##   SPLITTTIL = "landb, landf"
 ## ), class = "data.frame", row.names = c(
 ##   NA,

@@ -18,8 +18,10 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
 
 
 #' @title Get Standard Columns
-#' @description Standard columns names in rawdata to will be checked against
+#' @description Standard columns names in rawdata will be checked against
 #'    the standard names in options as in `getOptions("orgdata.columns")`.
+#'    Nevertheless column `GEO` is a special case when geo codes are derived
+#'    from a combination of two columns.
 #' @inheritParams read_raw
 #' @inheritParams find_spec
 #' @param spec Specification of the standard columns in \code{tbl_Innlesing}
@@ -38,11 +40,19 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
   VARS <- getOption("orgdata.columns")
   vars <- VARS[is.element(VARS, names(spec))]
 
+  ## When GEO is a combination of two or more columns
+  geoVals <- is_separate(spec$GEO, ",")
+  if (length(geoVals) > 1){
+    vars <- vars[vars != "GEO"]
+  }
+
   for (i in seq_along(vars)) {
     input <- is_column_na(spec, vars[i])
     assign(input[["col"]], input)
   }
   x <- data.table::rbindlist(mget(vars))
+
+
 
   old <- x[!is.na(x$input), ]$input
   new <- x[!is.na(x$input), ]$col

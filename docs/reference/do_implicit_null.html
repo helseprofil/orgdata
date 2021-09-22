@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multiple inputs style — is_col_separate • orgdata</title>
+<title>Create Implicit NULL — do_implicit_null • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,13 @@
 
 
 
-<meta property="og:title" content="Multiple inputs style — is_col_separate" />
-<meta property="og:description" content="Multiple inputs separated by , as in KOLNAVN and MANHEADER" />
+<meta property="og:title" content="Create Implicit NULL — do_implicit_null" />
+<meta property="og:description" content="All variables except AAR and GEO must have equal number of
+categories. The data that is handled by this package is an aggregated
+rawdata. The categories for each variables might be different in different
+year. This does not elucidate non-existence of the category but rather a
+zero number belonging to that category. This function will standardize the
+categories across all year." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,23 +142,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Multiple inputs style</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/utils-column.R'><code>R/utils-column.R</code></a></small>
-    <div class="hidden name"><code>is_col_separate.Rd</code></div>
+    <h1>Create Implicit NULL</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/implicit-null.R'><code>R/implicit-null.R</code></a></small>
+    <div class="hidden name"><code>do_implicit_null.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Multiple inputs separated by <code>,</code> as in KOLNAVN and MANHEADER</p>
+    <p>All variables except <code>AAR</code> and <code>GEO</code> must have equal number of
+categories. The data that is handled by this package is an aggregated
+rawdata. The categories for each variables might be different in different
+year. This does not elucidate non-existence of the category but rather a
+zero number belonging to that category. This function will standardize the
+categories across all year.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_col_separate</span><span class='op'>(</span><span class='va'>input</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_implicit_null</span><span class='op'>(</span><span class='va'>dt</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>input</th>
-      <td><p>The product from <code><a href='find_column_input.html'>find_column_input()</a></code></p></td>
+      <th>dt</th>
+      <td><p>Dataset consisting all years</p></td>
     </tr>
     </table>
 

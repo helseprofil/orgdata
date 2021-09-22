@@ -28,7 +28,7 @@ save_file <- function(dt = NULL, group = NULL, date = FALSE){
 
 #' @export
 #' @rdname save_file
-lagfil <- save_file
+lagrefil <- save_file
 
 
 ## Helper -----------------------------------------

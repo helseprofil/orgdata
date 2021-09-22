@@ -17,6 +17,8 @@ get_column_standard(group = NULL, con = NULL, spec = NULL)
 A list with \code{old} and \code{new} columnnames
 }
 \description{
-Standard columns names in rawdata to will be checked against
+Standard columns names in rawdata will be checked against
 the standard names in options as in \code{getOptions("orgdata.columns")}.
+Nevertheless column \code{GEO} is a special case when geo codes are derived
+from a combination of two columns.
 }

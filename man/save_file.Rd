@@ -2,12 +2,12 @@
 % Please edit documentation in R/save-file.R
 \name{save_file}
 \alias{save_file}
-\alias{lagfil}
+\alias{lagrefil}
 \title{Save Data to CSV file}
 \usage{
 save_file(dt = NULL, group = NULL, date = FALSE)
 
-lagfil(dt = NULL, group = NULL, date = FALSE)
+lagrefil(dt = NULL, group = NULL, date = FALSE)
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
