@@ -119,11 +119,12 @@ read_raw <- function(group = NULL,
   on.exit(kh$db_close(), add = TRUE)
 
   ## PROCESS ON FILGRUPPE ----------------------------------
-  grpCols <- get_addcols(spec = fgSpec)
-  outDT <- do_addcols(
+  grpCols <- get_colname(spec = fgSpec)
+  outDT <- do_colname(
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
 
+  ## REORDER COLS --------------------------------------------
   orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
   data.table::setcolorder(outDT, orderCols)
 

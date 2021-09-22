@@ -23,7 +23,7 @@ is_data_cols <- function(fgspec = NULL){
   stdCols <- getOption("orgdata.columns")
   vars <- list()
 
-  newCols <- get_addcols(spec = fgspec)
+  newCols <- get_colname(spec = fgspec)
   if (length(newCols) == 2){
     vars$new <- newCols$new
   }
