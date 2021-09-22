@@ -82,6 +82,8 @@ Create category that are missing due to NULL based on the standard categories of
 - Need example file to implement this column and what it's for
 *** DONE LESID changed
 - LESID is not unique. It should be combined with FILGRUPPE to make it a unique ID
+*** TODO Change ADDKOL to KOLNAVN
+- ADDKOL is renamed to KOLNAVN and all functions that used this has to be replaced with the new name.
 *** TODO Create new standard columns
 - Create standard columns when not available in the original rawdata by
   specifying in the respective standard columns in Access.
@@ -112,3 +114,7 @@ Should be a table with files id and dates can be deactivated at once. Steps:
 - Use TABS 1 to 3 for category variable that aren't standard columns.
 *** DONE raw-khelse_FE.accdb
 - Edited version for Frontend. Replace standard =raw-khelse.accdb=
+*** DONE Delete VALKOL and NAVAL
+- These columns is not needed
+*** DONE Rename ADDKOL to KOLNAVN
+- More intuitive what the column is for

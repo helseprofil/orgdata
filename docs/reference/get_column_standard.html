@@ -47,8 +47,10 @@
 
 
 <meta property="og:title" content="Get Standard Columns — get_column_standard" />
-<meta property="og:description" content="Standard columns names in rawdata to will be checked against
-the standard names in options as in getOptions(&quot;orgdata.columns&quot;)." />
+<meta property="og:description" content="Standard columns names in rawdata will be checked against
+the standard names in options as in getOptions(&quot;orgdata.columns&quot;).
+Nevertheless column GEO is a special case when geo codes are derived
+from a combination of two columns." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -144,8 +146,10 @@ the standard names in options as in getOptions(&quot;orgdata.columns&quot;)." />
     </div>
 
     <div class="ref-description">
-    <p>Standard columns names in rawdata to will be checked against
-the standard names in options as in <code>getOptions("orgdata.columns")</code>.</p>
+    <p>Standard columns names in rawdata will be checked against
+the standard names in options as in <code>getOptions("orgdata.columns")</code>.
+Nevertheless column <code>GEO</code> is a special case when geo codes are derived
+from a combination of two columns.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_column_standard</span><span class='op'>(</span>group <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
