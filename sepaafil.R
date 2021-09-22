@@ -14,7 +14,7 @@ df <- lesraw("BEFOLKNING", koblid = 13)
 ## Les filen og bruk oppsettet i Access
 df <- lesraw("BEFOLKNING")
 
-## Lag CSV fil
+## Lagre CSV fil
 save_file(df, "BEFOLKNING")
 
 ## Evt. hvis alle filer har vært kontrollert
