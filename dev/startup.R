@@ -15,7 +15,7 @@ devtools::check_build() # only when you have unload the package
 
 
 ## Start here ---------------------------------
-pkgs <- cAdd(
+pkgs <- c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
   "rmarkdown", "future", "foreach", "styler", "remotes",
