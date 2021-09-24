@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create Implicit Null — do_implicit_null • orgdata</title>
+<title>Find Implicit Null Categories — find_implicit_col • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,16 +46,8 @@
 
 
 
-<meta property="og:title" content="Create Implicit Null — do_implicit_null" />
-<meta property="og:description" content="Implicit Null happens when a variable in a dataset has unequal
-number of categories in different years due to one or several of the categories
-have zero case.
-All variables except AAR and GEO must have equal number of
-categories. The data that is handled by this package is an aggregated
-rawdata. The categories for each variables might be different in different
-year. This does not elucidate non-existence of the category but rather a
-zero number belonging to that category. This function will standardize the
-categories across all year." />
+<meta property="og:title" content="Find Implicit Null Categories — find_implicit_col" />
+<meta property="og:description" content="Find implicit null categories for selected columns on every selected year" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -145,24 +137,16 @@ categories across all year." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create Implicit Null</h1>
+    <h1>Find Implicit Null Categories</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/implicit-null.R'><code>R/implicit-null.R</code></a></small>
-    <div class="hidden name"><code>do_implicit_null.Rd</code></div>
+    <div class="hidden name"><code>find_implicit_col.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Implicit Null happens when a variable in a dataset has unequal
-number of categories in different years due to one or several of the categories
-have zero case.</p>
-<p>All variables except <code>AAR</code> and <code>GEO</code> must have equal number of
-categories. The data that is handled by this package is an aggregated
-rawdata. The categories for each variables might be different in different
-year. This does not elucidate non-existence of the category but rather a
-zero number belonging to that category. This function will standardize the
-categories across all year.</p>
+    <p>Find implicit null categories for selected columns on every selected year</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_implicit_null</span><span class='op'>(</span><span class='va'>dt</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>find_implicit_col</span><span class='op'>(</span><span class='va'>dt</span>, <span class='va'>years</span>, <span class='va'>col</span>, <span class='va'>ref</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,12 +155,24 @@ categories across all year.</p>
       <th>dt</th>
       <td><p>Dataset consisting all years</p></td>
     </tr>
+    <tr>
+      <th>years</th>
+      <td><p>All years in the dataset</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>Selected column to be controlled for implicit null</p></td>
+    </tr>
+    <tr>
+      <th>ref</th>
+      <td><p>Reference values for the selected column</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other implicit-null functions: 
-<code><a href='find_implicit_col.html'>find_implicit_col</a>()</code>,
+<code><a href='do_implicit_null.html'>do_implicit_null</a>()</code>,
 <code><a href='find_implicit_null.html'>find_implicit_null</a>()</code>,
 <code><a href='get_implicit_col.html'>get_implicit_col</a>()</code>,
 <code><a href='get_implicit_per_year.html'>get_implicit_per_year</a>()</code>,
