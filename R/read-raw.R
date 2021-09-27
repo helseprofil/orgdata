@@ -99,14 +99,10 @@ read_raw <- function(group = NULL,
       is_verbose(deleteVar, "Deleted column(s):", type = "message")
     }
     
+    ## TODO - Not sure if this necessary
     ## convert some columns to interger. Must be after
-    ## the variables are recoded eg. LANDF is string before recorded to number
-    dt <- is_col_int(dt)
-
-    dnull <- do_implicit_null(dt)
-    if (nrow(dnull) > 0){
-      dt <- data.table::rbindlist(list(dt, dnull))
-    }
+    ## the variables are recoded eg. INNKAT is string before recorded to number
+    ## dt <- is_col_int(dt)
 
     if (aggregate) {
       dt <- is_aggregate(dt,
@@ -128,6 +124,11 @@ read_raw <- function(group = NULL,
   outDT <- do_colname(
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
+
+  dnull <- do_implicit_null(outDT)
+  if (nrow(dnull) > 0){
+    outDT <- data.table::rbindlist(list(outDT, dnull))
+  }
 
   ## REORDER COLS --------------------------------------------
   orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
