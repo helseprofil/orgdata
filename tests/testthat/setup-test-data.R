@@ -16,7 +16,7 @@ df01 <- structure(list(
   LESID = 18L, FILGRUPPE = "TEST01",
   INNLESARG = "header=TRUE | skip=TRUE | ark=Sheet1", MANHEADER = "2=KJONN,3=ALDER",
   GEO = NA_character_, AAR = "aar", KJONN = NA_character_, ALDER = NA_character_,
-  UTDANN = NA_character_, LANDBAK = NA_character_, VAL = NA_character_,
+  UTDANN = NA_character_, LANDSSB = NA_character_, VAL = NA_character_,
   EXTRA = "sep=,"
 ), class = "data.frame", row.names = c(NA, -1L))
 
@@ -30,7 +30,7 @@ df02 <- structure(list(
   ), tzone = "UTC"), LESID = 19L, FILGRUPPE = "TEST02",
   INNLESARG = "1 = AGE", MANHEADER = "3,5=AGE", GEO = "geo",
   AAR = "year", KJONN = "gender", ALDER = "age", UTDANN = "edu",
-  LANDBAK = "ethnic", VAL = "sum", EXTRA = NA_character_
+  LANDSSB = "ethnic", VAL = "sum", EXTRA = NA_character_
 ), class = "data.frame", row.names = c(
   NA,
   -1L
@@ -39,7 +39,7 @@ df02 <- structure(list(
 ## BEFOLKNING spec
 befolk <- structure(list(
   ID = 11L, FILGRUPPE = "BEFOLKNING", AGGREGERE = "F,K",
-  KOLNAVN = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
+  KOLNAVN = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDSSB",
   SPLITTTIL = "landb, landf"
 ), class = "data.frame", row.names = c(
   NA,
@@ -56,7 +56,7 @@ DT01 <- structure(list(GEO = c(
 ), ALDER = c(
   74L, 23L, 31L, 28L, 8L,
   9L, 34L, 20L, 12L, 37L
-), LANDBAK = c(
+), LANDSSB = c(
   "0", "0", "0", "0", "1C",
   "2C", "3B", "0", "0", "2B"
 ), VAL = c(
@@ -70,7 +70,7 @@ DT01 <- structure(list(GEO = c(
 
 ## fspec <- structure(list(
 ##   ID = 11L, FILGRUPPE = "BEFOLKNING", AGGREGERE = "F,K",
-##   KOLNAVN = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDBAK",
+##   KOLNAVN = NA_character_, ADDVAL = NA_character_, SPLITTFRA = "LANDSSB",
 ##   SPLITTTIL = "landb, landf"
 ## ), class = "data.frame", row.names = c(
 ##   NA,
@@ -88,7 +88,7 @@ DFout <- structure(list(GEO = c(
 ), ALDER = c(
   74L, 23L, 31L, 28L, 8L,
   9L, 34L, 20L, 12L, 37L
-), LANDBAK = c(
+), LANDSSB = c(
   "0", "0", "0", "0", "1C",
   "2C", "3B", "0", "0", "2B"
 ), VAL = c(

@@ -1,12 +1,12 @@
 test_that("Rename standard columns", {
   dfCol <- data.frame(
     GEO = "grunnkrets", AAR = "$Y", KJONN = "kjoenn",
-    ALDER = "age", UTDANN = NA_character_, LANDBAK = "landb", VAL1 = "total"
+    ALDER = "age", UTDANN = NA_character_, LANDSSB = "landb", VAL1 = "total"
   )
 
   output <- list(
     old = c("grunnkrets", "kjoenn", "age", "landb", "total"),
-    new = c("GEO", "KJONN", "ALDER", "LANDBAK", "VAL1")
+    new = c("GEO", "KJONN", "ALDER", "LANDSSB", "VAL1")
   )
 
 
@@ -21,7 +21,7 @@ test_that("Rename standard columns", {
   rawOut <- structure(list(GEO = c("0806", "210"), KJONN = 1:2, ALDER = c(
     74L,
     23L
-  ), LANDBAK = c("0", "0"), VAL1 = c(2L, 23L)), row.names = c(
+  ), LANDSSB = c("0", "0"), VAL1 = c(2L, 23L)), row.names = c(
     NA,
     -2L
   ), class = c("data.table", "data.frame"))
