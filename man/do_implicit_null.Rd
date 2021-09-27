@@ -2,7 +2,7 @@
 % Please edit documentation in R/implicit-null.R
 \name{do_implicit_null}
 \alias{do_implicit_null}
-\title{Create Implicit NULL}
+\title{Create Implicit Null}
 \usage{
 do_implicit_null(dt)
 }
@@ -10,6 +10,10 @@ do_implicit_null(dt)
 \item{dt}{Dataset consisting all years}
 }
 \description{
+Implicit Null happens when a variable in a dataset has unequal
+number of categories in different years due to one or several of the categories
+have zero case.
+
 All variables except \code{AAR} and \code{GEO} must have equal number of
 categories. The data that is handled by this package is an aggregated
 rawdata. The categories for each variables might be different in different
@@ -17,3 +21,12 @@ year. This does not elucidate non-existence of the category but rather a
 zero number belonging to that category. This function will standardize the
 categories across all year.
 }
+\seealso{
+Other implicit-null functions: 
+\code{\link{find_implicit_col}()},
+\code{\link{find_implicit_null}()},
+\code{\link{get_implicit_col}()},
+\code{\link{get_implicit_per_year}()},
+\code{\link{get_implicit_ref}()}
+}
+\concept{implicit-null functions}

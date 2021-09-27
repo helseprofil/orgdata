@@ -103,6 +103,9 @@ read_raw <- function(group = NULL,
     ## the variables are recoded eg. LANDF is string before recorded to number
     dt <- is_col_int(dt)
 
+    dnull <- do_implicit_null(dt)
+    dt <- data.table::rbindlist(list(dt, dnull))
+
     if (aggregate) {
       dt <- is_aggregate(dt,
                          fgspec = fgSpec,
