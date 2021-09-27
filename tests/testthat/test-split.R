@@ -1,5 +1,5 @@
 test_that("Get split input", {
-  fsplit <- list(from = "LANDBAK", to = c("landb", "landf"))
+  fsplit <- list(from = "LANDSSB", to = c("landb", "landf"))
   data.table::setDT(DT01)
 
   expect_equal(get_split(spec = befolk), fsplit)

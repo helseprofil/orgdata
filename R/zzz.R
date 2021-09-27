@@ -18,7 +18,7 @@ opt.orgdata <- list(
   orgdata.debug = FALSE,
 
   ## Standard columns
-  orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK",
+  orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB",
                       "TAB1", "TAB2", "TAB3", "VAL1", "VAL2", "VAL3"),
 
   ## Columns with integer values. GEO is not included because some geo codes has
