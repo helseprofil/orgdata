@@ -10,8 +10,10 @@ Things in `dev` branch
 - Use version specific for imported packages.
 - Rename standard column `LANDBAK` to `LANDSSB` for column in original data
   received from SSB containing information about country of origin.
+- Save file as specified in column `MAPPE` in Access registration database or
+  specify in `path` argument for function `save_file`. (#12)
 
-Changes is in PR #11
+Changes is in PR #11 and #12
 
 
 # orgdata 0.0.6 - alpha
