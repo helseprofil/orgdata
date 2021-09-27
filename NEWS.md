@@ -2,7 +2,12 @@
 
 Things in `dev` branch
 
-- Add new columns if one of the standard columns is missing in the original data
+# orgdata 0.0.8 - alpha
+- Add new columns if one of the standard columns is missing in the original
+  data. The value to be inserted to the new column must use symbol less than `<`
+  and more than `>`. For instance when column `KJONN` doesn't exist in the
+  original data, we can specify with `<2>` in under column `KJONN` in the Access
+  registration database. The output will add a new column `KJONN` with value `2`. (#15)
 
 # orgdata 0.0.7 - alpha
 

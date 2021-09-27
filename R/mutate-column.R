@@ -6,6 +6,7 @@
 #' @description This function is only applicable for columns `"GEO", "AAR",
 #'   "KJONN", "ALDER", "UTDANN", "LANDSSB"`.
 #' @inheritParams do_split
+#' @inheritParams find_column_input
 #' @family mutate-column functions
 #' @export
 do_mutate <- function(dt = NULL, spec = NULL){
