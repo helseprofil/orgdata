@@ -64,9 +64,14 @@ is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption
 
 # Standard dummy input starts with symbol $
 # eg. column AAR with $Y
-is_dummy <- function(x) {
-  grepl("^\\$", x)
+is_dummy <- function(col) {
+  expMutate <- "^<.*>$"
+  expYear <- "^\\$"
+  expr <- c(expMutate, expYear)
+  dummy <- sapply(expr, function(x) grepl(x, col))
+  sum(dummy) != 0
 }
+
 
 # To separate a string with selected sep symbol
 # Can keep both value ie. lhs and rhs or either one

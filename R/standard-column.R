@@ -52,8 +52,6 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
   }
   x <- data.table::rbindlist(mget(vars))
 
-
-
   old <- x[!is.na(x$input), ]$input
   new <- x[!is.na(x$input), ]$col
   list(old = old, new = new)
