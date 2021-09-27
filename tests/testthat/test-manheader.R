@@ -17,7 +17,7 @@ test_that("Manheader rename colume by index", {
     INNLESARG = "ark=Ark1, header=TRUE", EXTRA = NA_character_,
     MANHEADER = NA_character_, GEO = "grunnkrets1", AAR = "aar",
     KJONN = "kjoenn", ALDER = "d_aldh", UTDANN = "utdnivaa",
-    LANDBAK = "landb", VAL = "antall"
+    LANDSSB = "landb", VAL = "antall"
   ), row.names = 1L, class = "data.frame")
 
 

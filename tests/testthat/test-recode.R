@@ -2,7 +2,7 @@ test_that("Recode variables", {
 
   ## recode data and spec
   dtCB <- structure(list(AAR = c(2019L, 2019L, 2019L, 2019L),
-                         LANDBAK = c("1B", "3C", "3B", "0"),
+                         LANDSSB = c("1B", "3C", "3B", "0"),
                          LANDB = c("1", "3", "3", "1"),
                          LANDF = c("B", "C", "B", NA_character_ )), row.names = c(NA, -4L),
                     class = c("data.table", "data.frame"))
@@ -15,7 +15,7 @@ test_that("Recode variables", {
 
   ## output lesid
   outLesid <- structure(list(AAR = c(2019L, 2019L, 2019L, 2019L),
-                             LANDBAK = c("1B", "3C", "3B", "0"),
+                             LANDSSB = c("1B", "3C", "3B", "0"),
                              LANDB = c("1", "3", "3", "1"),
                              LANDF = c("8", "C", "8", NA_character_)),
                         row.names = c(NA, -4L),
@@ -23,7 +23,7 @@ test_that("Recode variables", {
 
   ## output recode_common
   outCommon <- structure(list(AAR = c(2019L, 2019L, 2019L, 2019L),
-                              LANDBAK = c("1B", "3C", "3B", "0"),
+                              LANDSSB = c("1B", "3C", "3B", "0"),
                               LANDB = c("1", "3", "3", "1"),
                               LANDF = c("9", "3", "9", NA_character_)),
                          row.names = c(NA, -4L),
@@ -31,7 +31,7 @@ test_that("Recode variables", {
 
   ## ouput recode_all
   outAll <- structure(list(AAR = c(2019L, 2019L, 2019L, 2019L),
-                           LANDBAK = c("1B", "3C", "3B", "0"),
+                           LANDSSB = c("1B", "3C", "3B", "0"),
                               LANDB = c("1", "3", "3", "1"),
                            LANDF = c("2", "C", "2", "1")),
                       row.names = c(NA, -4L),

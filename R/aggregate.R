@@ -170,7 +170,7 @@ is_aggregate_standard_cols <- function(){
   ## Total is 10
   intMax <- "LANDB"
   ## Total is Tot
-  chrCols <- "LANDBAK"
+  chrCols <- "LANDSSB"
 
   list(intMin = intMin, intMax = intMax, chrCols = chrCols)
 }

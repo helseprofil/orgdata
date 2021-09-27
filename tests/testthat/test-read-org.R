@@ -39,7 +39,7 @@ test_that("Columns and class data", {
   dataRaw <- structure(list(AAR = c(2019L, 2019L, 2019L),
                             GEO = c(3013421L, 50012111L, 50012219L),
                             KJONN = c("2", "2", "2"), ALDER = c(89L, 93L, 94L),
-                            UTDANN = c("2", "1", "1"), LANDBAK = c("0", "0", "0"),
+                            UTDANN = c("2", "1", "1"), LANDSSB = c("0", "0", "0"),
                             SIVILSTAND = c(3L, 3L, 3L), VAL1 = c(4L, 4L, 4L),
                             LANDB = c(9L, 9L, 9L), LANDF = c(1L, 1L, 1L)),
                     row.names = c(NA, -3L), class = c("data.table", "data.frame"))
@@ -47,17 +47,17 @@ test_that("Columns and class data", {
   dataOut <- structure(list(AAR = c(2019L, 2019L, 2019L),
                             GEO = c(3013421L, 50012111L, 50012219L),
                             KJONN = c(2L, 2L, 2L), ALDER = c(89L, 93L, 94L),
-                            UTDANN = c(2L, 1L, 1L), LANDBAK = c("0", "0", "0"),
+                            UTDANN = c(2L, 1L, 1L), LANDSSB = c("0", "0", "0"),
                             SIVILSTAND = c(3L, 3L, 3L), VAL1 = c(4L, 4L, 4L),
                             LANDB = c(9L, 9L, 9L), LANDF = c(1L, 1L, 1L)),
                        row.names = c(NA, -3L), class = c("data.table", "data.frame"))
 
   fgspec <- structure(list(ID = 10L, FILGRUPPE = "Dode", AGGREGERE = "F,K",
                            KOLNAVN = "sivil = SIVILSTAND", ADDVAL = NA_character_,
-                           NAVAL = NA_character_, SPLITTFRA = "LANDBAK", SPLITTTIL = "LANDB, LANDF"),
+                           NAVAL = NA_character_, SPLITTFRA = "LANDSSB", SPLITTTIL = "LANDB, LANDF"),
                       class = "data.frame", row.names = c(NA, -1L))
 
-  cols <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "TAB1",
+  cols <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB1",
             "TAB2", "TAB3", "VAL1", "VAL2", "VAL3", "SIVILSTAND", "LANDB",
             "LANDF")
 
@@ -65,7 +65,7 @@ test_that("Columns and class data", {
                               KOLNAVN = NA_character_, ADDVAL = NA_character_,
                               NAVAL = NA_character_, SPLITTFRA = NA_character_, SPLITTTIL = NA_character_),
                          class = "data.frame", row.names = c(NA,-1L))
-  colmis <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "TAB1",
+  colmis <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB1",
               "TAB2", "TAB3", "VAL1", "VAL2", "VAL3")
 
   ## TEST -------------------
