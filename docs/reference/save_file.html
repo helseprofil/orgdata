@@ -48,8 +48,8 @@
 
 <meta property="og:title" content="Save Data to CSV file — save_file" />
 <meta property="og:description" content="Save data as a .csv format file with semicolon ; as seperation.
-The file will be saved to the specified folder
-as in getOption(&quot;orgdata.folder.output&quot;). Use argument save = TRUE
+The file will be saved to the specified folder in path or as in Access regstration database
+with the root as in getOption(&quot;orgdata.folder.data&quot;). Use argument save = TRUE
 in read_raw() will activate save_file() directly. Else you can call
 save_file() to save the object output from read_raw()" />
 <meta property="og:image" content="/logo.png" />
@@ -148,15 +148,15 @@ save_file() to save the object output from read_raw()" />
 
     <div class="ref-description">
     <p>Save data as a <code>.csv</code> format file with semicolon <code>;</code> as seperation.
-The file will be saved to the specified folder
-as in <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.folder.output")</a></code>. Use argument <code>save = TRUE</code>
+The file will be saved to the specified folder in <code>path</code> or as in Access regstration database
+with the root as in <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.folder.data")</a></code>. Use argument <code>save = TRUE</code>
 in <code><a href='read_raw.html'>read_raw()</a></code> will activate <code>save_file()</code> directly. Else you can call
 <code>save_file()</code> to save the object output from <code><a href='read_raw.html'>read_raw()</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>save_file</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>save_file</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>FALSE</span>, fgSpec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>lagrefil</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+<span class='fu'>lagrefil</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>FALSE</span>, fgSpec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,16 +170,25 @@ in <code><a href='read_raw.html'>read_raw()</a></code> will activate <code>save_
       <td><p>The group of files (<em>filgruppe</em>)</p></td>
     </tr>
     <tr>
+      <th>path</th>
+      <td><p>Folder path to save the file. If not specified then the path
+must to be specified in Access registration database</p></td>
+    </tr>
+    <tr>
       <th>date</th>
       <td><p>Output file will be named with date and time</p></td>
+    </tr>
+    <tr>
+      <th>fgSpec</th>
+      <td><p>File group specification from Access registration database</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='fu'>opitions</span><span class='op'>(</span>orgdata.aggregate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
- <span class='va'>DF</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_raw.html'>read_raw</a></span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, save <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+ <span class='co'># Save file directly</span>
+ <span class='fu'><a href='read_raw.html'>read_raw</a></span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, save <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
  <span class='co'># Two steps</span>
  <span class='va'>DF</span> <span class='op'>&lt;-</span> <span class='fu'><a href='read_raw.html'>read_raw</a></span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span><span class='op'>)</span>
