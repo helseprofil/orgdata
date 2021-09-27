@@ -98,13 +98,15 @@ read_raw <- function(group = NULL,
       deleteVar <- paste(deleteVar, collapse = ", ")
       is_verbose(deleteVar, "Deleted column(s):", type = "message")
     }
-
+    
     ## convert some columns to interger. Must be after
     ## the variables are recoded eg. LANDF is string before recorded to number
     dt <- is_col_int(dt)
 
     dnull <- do_implicit_null(dt)
-    dt <- data.table::rbindlist(list(dt, dnull))
+    if (nrow(dnull) > 0){
+      dt <- data.table::rbindlist(list(dt, dnull))
+    }
 
     if (aggregate) {
       dt <- is_aggregate(dt,
@@ -131,7 +133,9 @@ read_raw <- function(group = NULL,
   orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
   data.table::setcolorder(outDT, orderCols)
 
-  if (save) save_file(dt = outDT, group = group)
+  if (save) {
+    save_file(dt = outDT, group = group, fgSpec = fgSpec)
+  }
 
   return(outDT)
 }

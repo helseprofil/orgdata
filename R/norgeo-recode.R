@@ -15,6 +15,13 @@
 do_geo_recode <- function(dt = NULL,
                           code = NULL){
   GEO <- i.to <- NULL
+
+  ## Ensure variables to be used to aggregate in type int
+  intVar <- c("GEO", "VAL1")
+  for (col in intVar){
+    data.table::set(dt, j = col, value = as.integer(dt[[col]]))
+  }
+
   dt[code, on = "GEO", GEO := i.to]
 
 }
