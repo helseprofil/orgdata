@@ -76,7 +76,7 @@ is_geo_level <- function(x){
 ## Create complete path to raw data file
 is_path_raw <- function(spec, check = FALSE) {
   filename <- find_column_input(spec, "FILNAVN")
-  filePath <- file.path(getOption("orgdata.folder.raw"), filename)
+  filePath <- file.path(getOption("orgdata.folder.data"), filename)
 
   if (isTRUE(check) && isFALSE(file.exists(filePath))) {
     is_stop("File does not exist! \n", filePath)
