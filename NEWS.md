@@ -3,6 +3,8 @@
 Things in `dev` branch
 
 - Implicit zero. Discussion is in [Gist](https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51 "implicit-null")
+- Use version specific for imported packages.
+- Add new columns if one of the standard columns is missing in the original data
 
 
 # orgdata 0.0.6 - alpha
