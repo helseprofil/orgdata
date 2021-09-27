@@ -2,11 +2,16 @@
 
 Things in `dev` branch
 
-- Implicit zero. Discussion is in [Gist](https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51 "implicit-null")
+- Add new columns if one of the standard columns is missing in the original data
+
+# orgdata 0.0.7 - alpha
+
+- Implicit zero (#11). Discussion is in [Gist](https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51 "implicit-null")
 - Use version specific for imported packages.
 - Rename standard column `LANDBAK` to `LANDSSB` for column in original data
   received from SSB containing information about country of origin.
-- Add new columns if one of the standard columns is missing in the original data
+
+Changes is in PR #11
 
 
 # orgdata 0.0.6 - alpha
