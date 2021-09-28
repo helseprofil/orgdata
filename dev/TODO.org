@@ -56,11 +56,11 @@ specific FILGRUPPE
 arg for =file= needs more info ie. either FILID or "full path"
 *** DONE .fhi extention
 SSB uses extention =.fhi= for a =.csv= files. Need to add in =find_data=.
-*** STRT Keep GEO as string
+*** DONE Keep GEO as string
 When reading raw data, columns with digits converted to integer including GEO.
 Problem happens with splitted geocodes such as file =.fhi= from SSB. When
 merging then the leading zero is missing.
-*** HOLD NEXT Implicit NULL
+*** DONE NEXT Implicit NULL
 Create category that are missing due to NULL based on the standard categories of the whole period. Steps:
 - Identify class type of all columns in the dataset
 - Find columns to be checked for implicit NULL
@@ -82,9 +82,9 @@ Create category that are missing due to NULL based on the standard categories of
 - Need example file to implement this column and what it's for
 *** DONE LESID changed
 - LESID is not unique. It should be combined with FILGRUPPE to make it a unique ID
-*** TODO Change ADDKOL to KOLNAVN
+*** DONE Change ADDKOL to KOLNAVN
 - ADDKOL is renamed to KOLNAVN and all functions that used this has to be replaced with the new name.
-*** TODO Create new standard columns
+*** DONE Create new standard columns
 - Create standard columns when not available in the original rawdata by
   specifying in the respective standard columns in Access.
 - eg. Column for gender isn't available but the whole dataset is for women ie.
@@ -101,6 +101,12 @@ Create category that are missing due to NULL based on the standard categories of
 *** TODO Replace =get= and =mget=
 - For global variable that uses =get= and =mget= should use standard data.table
   =env= to define global variables.
+*** STRT Add verbose and traceback to Implicit NULL
+- Add standard function for these
+*** TODO Recode for aggregate
+- Find option to recode total after aggregate a column
+- Could use Recode with specific FILGRUPPE name eg. AGGREGATE
+
 ** Access DB
 *** DONE Warning duplicate filename
 Give warning when filename is duplicated in Access register database under =tbl_Orgfile=
@@ -118,3 +124,5 @@ Should be a table with files id and dates can be deactivated at once. Steps:
 - These columns is not needed
 *** DONE Rename KOLNAVN to KOLNAVN
 - More intuitive what the column is for
+*** DONE Rename LANDBAK to LANDSSB
+- This is the column for country of origin received from SSB
