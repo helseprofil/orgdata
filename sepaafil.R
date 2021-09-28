@@ -1,12 +1,8 @@
 ## Start
 library(orgdata)
-op <- options()
-options(orgdata.verbose = TRUE)
-
 
 ## Les original fil som det er ved å velge FILID
-lesfil(1)
-
+df <- lesfil(1)
 
 ## Aggregere utvalgte filer med KOBLID
 df <- lesraw("BEFOLKNING", koblid = 13)
