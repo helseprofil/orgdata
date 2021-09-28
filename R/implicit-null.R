@@ -12,6 +12,7 @@
 #' @family implicit-null functions
 #' @export
 do_implicit_null <- function(dt){
+  is_debug()
 
   ignoreCols <- c("GEO", "AAR", "VAL1")
   dtCols <- names(dt)

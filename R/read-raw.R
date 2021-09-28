@@ -43,6 +43,7 @@ read_raw <- function(group = NULL,
 
   ## CONNECTION--------------------------------------
   kh <- is_conn_db(dbFile)
+  on.exit(kh$db_close(), add = TRUE)
 
   ## SPECS -----------------------------------------
   spec <- find_spec(
@@ -117,8 +118,6 @@ read_raw <- function(group = NULL,
     gc()
   }
 
-  on.exit(kh$db_close(), add = TRUE)
-
   ## PROCESS ON FILGRUPPE ----------------------------------
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(
@@ -127,7 +126,9 @@ read_raw <- function(group = NULL,
 
   dnull <- do_implicit_null(outDT)
   if (nrow(dnull) > 0){
+    is_verbose(x = nrow(dnull), msg = "Number of row(s) for implicit null:")
     outDT <- data.table::rbindlist(list(outDT, dnull))
+    data.table::setkeyv(outDT, "AAR")
   }
 
   ## REORDER COLS --------------------------------------------
