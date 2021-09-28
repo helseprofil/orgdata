@@ -8,6 +8,10 @@ Things in `dev` branch
   and more than `>`. For instance when column `KJONN` doesn't exist in the
   original data, we can specify with `<2>` in under column `KJONN` in the Access
   registration database. The output will add a new column `KJONN` with value `2`. (#15)
+- Fix #13 and #18
+- Default `orgdata.verbose` is `TRUE`.
+- Options for `orgdata.implicit.null` with default as `TRUE`. Use
+  `options(orgdata.implicit.null = FALSE)` to deactivate.
 
 # orgdata 0.0.7 - alpha
 

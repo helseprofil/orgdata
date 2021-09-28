@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8.1</span>
       </span>
     </div>
 
@@ -150,6 +150,9 @@
 <a href="#orgdata-008---alpha" class="anchor"></a>orgdata 0.0.8 - alpha</h1>
 <ul>
 <li>Add new columns if one of the standard columns is missing in the original data. The value to be inserted to the new column must use symbol less than <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;</a></code> and more than <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>. For instance when column <code>KJONN</code> doesn’t exist in the original data, we can specify with <code>&lt;2&gt;</code> in under column <code>KJONN</code> in the Access registration database. The output will add a new column <code>KJONN</code> with value <code>2</code>. (<a href='https://github.com/helseprofil/orgdata/issues/15'>#15</a>)</li>
+<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/13'>#13</a> and <a href='https://github.com/helseprofil/orgdata/issues/18'>#18</a></li>
+<li>Default <code>orgdata.verbose</code> is <code>TRUE</code>.</li>
+<li>Options for <code>orgdata.implicit.null</code> with default as <code>TRUE</code>. Use <code><a href="https://rdrr.io/r/base/options.html">options(orgdata.implicit.null = FALSE)</a></code> to deactivate.</li>
 </ul>
 </div>
     <div id="orgdata-007---alpha" class="section level1">
