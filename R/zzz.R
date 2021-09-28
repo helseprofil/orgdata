@@ -12,9 +12,10 @@ opt.orgdata <- list(
   orgdata.folder.data = "F:/Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
   orgdata.db = "raw-khelse_BE.accdb",
   orgdata.geo = "geo-koder.accdb",
-  orgdata.verbose = FALSE,
+  orgdata.verbose = TRUE,
   orgdata.aggregate = TRUE,
   orgdata.debug = FALSE,
+  orgdata.implicit.null = TRUE,
 
   ## Standard columns
   orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB",

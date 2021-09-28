@@ -105,6 +105,16 @@ read_raw <- function(group = NULL,
     ## the variables are recoded eg. INNKAT is string before recorded to number
     ## dt <- is_col_int(dt)
 
+    imp <- getOption("orgdata.implicit.null")
+    if (imp){
+      dnull <- do_implicit_null(dt)
+      if (nrow(dnull) > 0){
+        is_verbose(x = nrow(dnull), msg = "Number of row(s) for implicit null:")
+        dt <- data.table::rbindlist(list(dt, dnull))
+        data.table::setkeyv(dt, "AAR")
+      }
+    }
+
     if (aggregate) {
       dt <- is_aggregate(dt,
                          fgspec = fgSpec,
@@ -123,13 +133,6 @@ read_raw <- function(group = NULL,
   outDT <- do_colname(
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
-
-  dnull <- do_implicit_null(outDT)
-  if (nrow(dnull) > 0){
-    is_verbose(x = nrow(dnull), msg = "Number of row(s) for implicit null:")
-    outDT <- data.table::rbindlist(list(outDT, dnull))
-    data.table::setkeyv(outDT, "AAR")
-  }
 
   ## REORDER COLS --------------------------------------------
   orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
