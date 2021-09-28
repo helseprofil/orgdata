@@ -10,6 +10,8 @@
 #' @family mutate-column functions
 #' @export
 do_mutate <- function(dt = NULL, spec = NULL){
+  is_debug()
+
   dt <- copy(dt)
 
   cols <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB")
@@ -31,7 +33,7 @@ do_mutate <- function(dt = NULL, spec = NULL){
 get_mutate_value <- function(col){
   ja <- grepl("^<.*>$", col)
   if (ja){
-    ut <- gsub("<(.+)>$", "\\1", col)
+    ut <- gsub("^<(.+)>$", "\\1", col)
   } else {
     ut <- FALSE
   }
