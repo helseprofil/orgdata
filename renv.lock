@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.0",
+    "Version": "4.1.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -102,10 +102,10 @@
     },
     "data.table": {
       "Package": "data.table",
-      "Version": "1.14.0",
+      "Version": "1.14.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d1b8b1a821ee564a3515fa6c6d5c52dc"
+      "Hash": "36b67b5adf57b292923f5659f5f0c853"
     },
     "ellipsis": {
       "Package": "ellipsis",
@@ -226,16 +226,16 @@
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.0.6",
+      "Version": "0.0.8",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "391d09d6af928f81846614be79d2285b270fab6c",
+      "RemoteSha": "264b3572e0da8b76318d26afd45f0531206b73c5",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "bb4d5c19ec5a69830aa335ef48123bdb"
+      "Hash": "b76404fb3010ec5c916f7fbcc80418d8"
     },
     "pillar": {
       "Package": "pillar",
