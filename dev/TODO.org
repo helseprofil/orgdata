@@ -106,6 +106,13 @@ Create category that are missing due to NULL based on the standard categories of
 *** TODO Recode for aggregate
 - Find option to recode total after aggregate a column
 - Could use Recode with specific FILGRUPPE name eg. AGGREGATE
+*** TODO Unspecified /(Uoppgitt)/ bydel
+- How to aggregate bydel for those that are /uoppgitt/ from =norgeo::get_code("bydel")=
+- Options is to aggregate bydel for only those that can be map from grunnkrets
+  to bydel since grunnkrets to bydel isn't a direct 8 digits to 6 digits.
+*** TODO Clean all the =orgdata.active=
+- This was requested by Jørgen to keep the columnames as in the original data
+  but now is no more actual.
 
 ** Access DB
 *** DONE Warning duplicate filename
