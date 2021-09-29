@@ -2,6 +2,8 @@
 
 Things in `dev` branch
 
+- When MANHEADER is use then the newname must be specified in the respective standard column (#21) 
+
 # orgdata 0.0.8 - alpha
 - Add new columns if one of the standard columns is missing in the original
   data. The value to be inserted to the new column must use symbol less than `<`
@@ -11,7 +13,7 @@ Things in `dev` branch
 - Fix #13 and #18
 - Default `orgdata.verbose` is `TRUE`.
 - Options for `orgdata.implicit.null` with default as `TRUE`. Use
-  `options(orgdata.implicit.null = FALSE)` to deactivate.
+  `options(orgdata.implicit.null = FALSE)` to deactivate (#19)
 
 # orgdata 0.0.7 - alpha
 
