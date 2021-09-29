@@ -42,6 +42,9 @@ is_org_process <- function(file,
   ## Logging
   .log$logr$rawcat <- unique(dt[[4]])
 
+  manSpec <- get_manheader(spec = filespec)
+  dt <- do_manheader(dt, manSpec)
+
   colSpec <- get_column_standard(spec = filespec)
   dt <- do_column_standard(dt, colSpec)
   ## TODO Any extra args for file specific from INNLESARG
@@ -52,20 +55,15 @@ is_org_process <- function(file,
   yrSpec <- get_year(filespec, con)
   dt <- do_year(dt, yrSpec)
 
-  manSpec <- get_manheader(spec = filespec)
-  dt <- do_manheader(dt, manSpec)
-
   dt <- do_mutate(dt, spec = filespec)
 
-  ## dataCols <- get_colname(spec = fgspec)
-  ## dt <- do_colname(dt, cols = dataCols)
 }
 
 ## Helper -------------------------------------
 
 ## GEO of a combined two or more columns
 is_geo_split <- function(geo, dots){
-  ## fread style args
+  ## fread style args use colClasses
   colStr <- rep("character", 2)
   colStr <- stats::setNames(colStr, geo)
   dots$colClasses = colStr
