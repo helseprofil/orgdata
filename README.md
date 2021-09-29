@@ -23,7 +23,7 @@ Aggregating **OR**i**G**inal **DATA** into a preferred data structure.
 To install then run this code
 
 ``` r
-if(!requireNamespace(remotes)) install.packages("remotes")
+if(!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("helseprofil/orgdata")
 ```
 
