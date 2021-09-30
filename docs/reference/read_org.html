@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read and Run the Specifications — read_raw • orgdata</title>
+<title>Read and Run the Specifications — make_file • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,13 +46,13 @@
 
 
 
-<meta property="og:title" content="Read and Run the Specifications — read_raw" />
+<meta property="og:title" content="Read and Run the Specifications — make_file" />
 <meta property="og:description" content="Read the specifications in the register database and implement them
 to the selected group of files (filgruppe). All files under
 the selected group will be considered unless the KOBLID with
 argument koblid is specified. Specifying koblid is useful for testing.
 The function lesraw() is an
-alias to read_raw()." />
+alias to make_file()." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -144,7 +144,7 @@ alias to read_raw()." />
     <div class="page-header">
     <h1>Read and Run the Specifications</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/read-org.R'><code>R/read-org.R</code></a></small>
-    <div class="hidden name"><code>read_raw.Rd</code></div>
+    <div class="hidden name"><code>make_file.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -153,10 +153,10 @@ to the selected group of files (<em>filgruppe</em>). All files under
 the selected group will be considered unless the <code>KOBLID</code> with
 argument <code>koblid</code> is specified. Specifying <code>koblid</code> is useful for testing.</p>
 <p>The function <code>lesraw()</code> is an
-alias to <code>read_raw()</code>.</p>
+alias to <code>make_file()</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_raw</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>make_file</span><span class='op'>(</span>
   group <span class='op'>=</span> <span class='cn'>NULL</span>,
   koblid <span class='op'>=</span> <span class='cn'>NULL</span>,
   aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
@@ -222,8 +222,8 @@ Check status with <code><a href='https://rdrr.io/r/base/options.html'>getOption(
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>read_raw</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span><span class='op'>)</span>
-<span class='fu'>read_raw</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, koblid <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span>
+<span class='fu'>make_file</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span><span class='op'>)</span>
+<span class='fu'>make_file</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, koblid <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span>
 <span class='fu'>read_org</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, koblid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>

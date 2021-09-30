@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Aggregate Rawdata Asis — make_raw • orgdata</title>
+<title>Implement the Specifications — make_file • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,13 @@
 
 
 
-<meta property="og:title" content="Aggregate Rawdata Asis — make_raw" />
-<meta property="og:description" content="Aggregate rawdata as it is" />
+<meta property="og:title" content="Implement the Specifications — make_file" />
+<meta property="og:description" content="Make a csv file with the specifications in the register database and implement them
+to the raw data of the selected group of files (filgruppe). All files under
+the selected group will be affected unless the KOBLID with
+argument koblid is specified. Specifying koblid is useful
+especially for testing purposes.
+The function lag_fil() is an alias to make_file()." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -80,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
       </span>
     </div>
 
@@ -111,10 +116,10 @@
   </ul>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">Functions</a>
 </li>
 <li>
-  <a href="../news/index.html">ChangeLog</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -137,37 +142,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Aggregate Rawdata Asis</h1>
+    <h1>Implement the Specifications</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/make-file.R'><code>R/make-file.R</code></a></small>
-    <div class="hidden name"><code>make_raw.Rd</code></div>
+    <div class="hidden name"><code>make_file.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Aggregate rawdata as it is</p>
+    <p>Make a <code>csv</code> file with the specifications in the register database and implement them
+to the raw data of the selected group of files (<em>filgruppe</em>). All files under
+the selected group will be affected unless the <code>KOBLID</code> with
+argument <code>koblid</code> is specified. Specifying <code>koblid</code> is useful
+especially for testing purposes.</p>
+<p>The function <code>lag_fil()</code> is an alias to <code>make_file()</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_raw</span><span class='op'>(</span><span class='va'>file</span>, <span class='va'>geo</span>, <span class='va'>val</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>make_file</span><span class='op'>(</span>
+  group <span class='op'>=</span> <span class='cn'>NULL</span>,
+  koblid <span class='op'>=</span> <span class='cn'>NULL</span>,
+  aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
+  save <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='fu'>lag_fil</span><span class='op'>(</span>
+  group <span class='op'>=</span> <span class='cn'>NULL</span>,
+  koblid <span class='op'>=</span> <span class='cn'>NULL</span>,
+  aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
+  save <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>Input file</p></td>
+      <th>group</th>
+      <td><p>The group of files (<em>filgruppe</em>)</p></td>
     </tr>
     <tr>
-      <th>geo</th>
-      <td><p>Which columname has geo codes. Only use in inactive mode.
-Check status with <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.active")</a></code></p></td>
+      <th>koblid</th>
+      <td><p><code>KOBLID</code> from table <em>tbl_Koble</em></p></td>
     </tr>
     <tr>
-      <th>val</th>
-      <td><p>Which colunames has the value for quantity. Only use in an inactive mode.
-Check status with <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.active")</a></code></p></td>
+      <th>aggregate</th>
+      <td><p>Aggregate data according to the specification in registration database.
+Default is FALSE. Use <code><a href='https://rdrr.io/r/base/options.html'>options(orgdata.aggregate = TRUE)</a></code> to change globally.</p></td>
+    </tr>
+    <tr>
+      <th>save</th>
+      <td><p>Save as <code>.csv</code> by activating <code><a href='save_file.html'>save_file()</a></code>. Default is <code>FALSE</code></p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>Which year the georaphical code is valid for. If not specified, then
+it will be base on the year in source data ie. column <code>AAR</code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional parameters</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>make_file</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span><span class='op'>)</span>
+<span class='fu'>make_file</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, koblid <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span>
+<span class='fu'>make_file</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, koblid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

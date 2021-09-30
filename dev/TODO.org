@@ -15,9 +15,9 @@ All files must be standardized to =data.table= class before merging.
 *** DONE Use =verbose=
 Implement in options ~verbose=FALSE~ for log and processes
 *** DONE Close connection
-=KHelse$db_close()= when =read_raw()= ends
+=KHelse$db_close()= when =make_file()= ends
 *** DONE =csv= output
-Use argument ~csv=TRUE~ in =read_raw=. File output should not be dated
+Use argument ~csv=TRUE~ in =make_file=. File output should not be dated
 *** DONE Debuging
 Function =is_debug()= for debugging with =options("orgdata.debug")=
 *** TODO Log

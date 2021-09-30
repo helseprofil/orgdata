@@ -2,12 +2,12 @@
 % Please edit documentation in R/save-file.R
 \name{save_file}
 \alias{save_file}
-\alias{lagrefil}
+\alias{lagre_fil}
 \title{Save Data to CSV file}
 \usage{
 save_file(dt = NULL, group = NULL, path = NULL, date = FALSE, fgSpec = NULL)
 
-lagrefil(dt = NULL, group = NULL, path = NULL, date = FALSE, fgSpec = NULL)
+lagre_fil(dt = NULL, group = NULL, path = NULL, date = FALSE, fgSpec = NULL)
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
@@ -25,16 +25,16 @@ must to be specified in Access registration database}
 Save data as a \code{.csv} format file with semicolon \verb{;} as seperation.
 The file will be saved to the specified folder in \code{path} or as in Access regstration database
 with the root as in \code{getOption("orgdata.folder.data")}. Use argument \code{save = TRUE}
-in \code{read_raw()} will activate \code{save_file()} directly. Else you can call
-\code{save_file()} to save the object output from \code{read_raw()}
+in \code{make_file()} will activate \code{save_file()} directly. Else you can call
+\code{save_file()} to save the object output from \code{make_file()}
 }
 \examples{
 \dontrun{
  # Save file directly
- read_raw("BEFOLKNING", save = TRUE)
+ make_file("BEFOLKNING", save = TRUE)
 
  # Two steps
- DF <- read_raw("BEFOLKNING")
+ DF <- make_file("BEFOLKNING")
  save_file(DF, "BEFOLKNING")
 }
 }
