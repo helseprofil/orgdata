@@ -32,7 +32,7 @@ read_file <- function(file = NULL, ...) {
 
 #' @export
 #' @rdname read_file
-lesfil <- read_file
+les_fil <- read_file
 
 
 ## Helper -------------------------------------

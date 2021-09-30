@@ -61,7 +61,7 @@ get_aar <- get_year
 #' when column for year isn't available in the raw data. This is
 #' indicated with \code{$Y} in column \code{AAR} in table \emph{tbl_Innlesing}.
 #' @inheritParams find_spec
-#' @inheritParams read_raw
+#' @inheritParams make_file
 #' @return An integer
 is_defaar <- function(id = NULL, con = NULL) {
   is_null(id, "FILID is missing")

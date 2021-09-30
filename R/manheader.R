@@ -28,7 +28,7 @@ do_manheader <- function(dt = NULL, manspec = NULL) {
 #'
 #' means we want to rename column \code{3} to \code{AGE} and column \code{6}
 #' to \code{EDUCATION}.
-#' @inheritParams read_raw
+#' @inheritParams make_file
 #' @inheritParams find_spec
 #' @inheritParams find_column_input
 #' @return A list containing \code{$index} to refer to the column index and

@@ -76,9 +76,11 @@ test_that("Columns and class data", {
 
 
 test_that("Geo level", {
-  expect_equal(is_geo_level(2), "f")
-  expect_equal(is_geo_level(12345678), "g")
-  expect_equal(is_geo_level(1234567), "g")
-  expect_equal(is_geo_level(1234), "k")
-  expect_equal(is_geo_level(123), "k")
+  expect_equal(is_geo_level(2), "fylke")
+  expect_equal(is_geo_level(12345678), "grunnkrets")
+  expect_equal(is_geo_level(1234567), "grunnkrets")
+  expect_equal(is_geo_level(123456), "bydel")
+  expect_equal(is_geo_level(12345), "bydel")
+  expect_equal(is_geo_level(1234), "kommune")
+  expect_equal(is_geo_level(123), "kommune")
 })

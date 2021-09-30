@@ -22,7 +22,7 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
 #'    the standard names in options as in `getOptions("orgdata.columns")`.
 #'    Nevertheless column `GEO` is a special case when geo codes are derived
 #'    from a combination of two columns.
-#' @inheritParams read_raw
+#' @inheritParams make_file
 #' @inheritParams find_spec
 #' @param spec Specification of the standard columns in \code{tbl_Innlesing}
 #' @return A list with `old` and `new` columnnames

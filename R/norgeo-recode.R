@@ -7,7 +7,7 @@
 #' @examples
 #' \dontrun{
 #' code <- get_geo_recode(con = geo$dbconn, type = "grunnkrets")
-#' dt <- read_raw("BEFOLKNING", aggregate = FALSE)
+#' dt <- make_file("BEFOLKNING", aggregate = FALSE)
 #' DT <- do_geo_recode(dt, code)
 #' }
 #' @import data.table

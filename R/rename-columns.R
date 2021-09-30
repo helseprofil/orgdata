@@ -19,7 +19,7 @@ do_colname <- function(dt = NULL, cols = NULL) {
 #' @title Get Renamed Columns
 #' @description
 #' Get the old and new coloumnames to be renamed in the dataset.
-#' @inheritParams read_raw
+#' @inheritParams make_file
 #' @inheritParams find_spec
 #' @inheritParams get_split
 #' @return A list consist of two variables ie. `old` and `new`
