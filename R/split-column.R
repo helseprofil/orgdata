@@ -26,7 +26,7 @@ do_split <- function(dt = NULL, split = NULL) {
 #'   for the new splitted columns.
 #'   If you already have the specification from [find_spec()], then the arguments
 #'   for \code{group} and \code{con} must be \code{NULL}.
-#' @inheritParams read_raw
+#' @inheritParams make_file
 #' @inheritParams find_spec
 #' @param spec Specification from \code{tbl_Filgruppe}
 #' @return A list consist of two variables ie. \code{from} and \code{to}

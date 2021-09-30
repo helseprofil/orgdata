@@ -8,15 +8,11 @@
 #'   it will be base on the year in source data ie. column `AAR`
 #' @param check If TRUE then output will not be aggregated. This is useful to check
 #'   for geographical codes that are missing. Else use `options(orgdata.aggregate = FALSE)`
-#' @param geo Which columname has geo codes. Only use in inactive mode.
-#'  Check status with `getOption("orgdata.active")`
-#' @param val Which colunames has the value for quantity. Only use in an inactive mode.
-#'  Check status with `getOption("orgdata.active")`
 #' @examples
 #' \dontrun{
 #' # To aggregate source data with enumeration area codes ie. grunnkrets, to
 #' # manucipaltiy ie. kommune
-#' dt <- read_raw("BEFOLKNING")
+#' dt <- make_file("BEFOLKNING")
 #' DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
 #' }
 #' @import data.table
@@ -35,41 +31,36 @@ do_aggregate <- function(dt = NULL,
                            "bydel"
                          ),
                          year = NULL,
-                         check = FALSE,
-                         geo = NULL,
-                         val = NULL) {
-  VAL1 <- GEO <- AAR <- fylke <- kommune <- NULL
+                         check = FALSE) {
+
+  VAL1 <- GEO <- AAR <- fylke <- kommune <- LEVEL <- NULL
 
   is_debug()
   is_null(dt)
-  dtt <- data.table::copy(dt)
+  dt <- data.table::copy(dt)
 
   source <- tolower(source)
   level <- tolower(level)
   source <- match.arg(source)
   level <- match.arg(level)
 
-  if (isFALSE(getOption("orgdata.active"))){
-    geo <- trimws(geo)
-    data.table::setnames(dtt, c(geo, val), c("GEO", "VAL1"))
-  }
-
-  aggCols <- c(level, names(dt)[!names(dtt) %in% c("GEO", "VAL1")])
+  aggNot <- c("GEO", "VAL1")
+  aggYes <- setdiff(names(dt), aggNot)
+  aggCols <- c(level, aggYes)
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geoDB <- KHelse$new(geoFile)
 
   ## validTo in the database is a character
   if (!is.null(year)) {
-    yr <- dtt[AAR == year, ][1]
+    yr <- dt[AAR == year, ][1]
   } else {
     yr <- as.integer(format(Sys.Date(), "%Y"))
   }
 
   ## recode GEO
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
-  dtt <- do_geo_recode(dt = dtt, code = code)
-
+  dt <- do_geo_recode(dt = dt, code = code)
 
   ## geoDT <- find_spec("geo-code-all.sql", value = source, con = geo$dbconn)
   geoDT <- find_spec(
@@ -89,32 +80,35 @@ do_aggregate <- function(dt = NULL,
   keepVar <- setdiff(names(geoDT), deleteVar)
 
   ## TODO read_file should convert integer variables
-  if (class(dtt$GEO) == "character") {
-    dtt[, GEO := as.integer(GEO)]
+  if (class(dt$GEO) == "character") {
+    dt[, GEO := as.integer(GEO)]
   }
 
   ## is_verbose("Merging geo codes...", type = "message")
-  dtt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
+  dt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
 
   ## Breakpoint here to check the missing GEO when merging
   if (check) {
     warning("Aggregating data isn't completed!")
-    return(dtt)
+    return(dt)
   }
 
-  dtt[is.na(kommune), kommune := as.integer(gsub("\\d{4}$", "", GEO))]
-  dtt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))]
+  dt[is.na(kommune), kommune := as.integer(gsub("\\d{4}$", "", GEO))]
+  dt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))]
 
   xCols <- is_set_list(
     level = level,
     srcCols = aggCols
   )
 
-  on.exit(rm(dtt, geoDT))
-  gc()
-
-  DT <- is_active()
-
+  DT <- data.table::groupingsets(
+    dt,
+    j = list(VAL1 = sum(VAL1, na.rm = TRUE)),
+    by = aggCols,
+    sets = xCols
+  )
+  DT[, LEVEL := level]
+  data.table::setnames(DT, level, "GEO")
 }
 
 #' @title Recode Aggregated Variables
@@ -132,12 +126,6 @@ do_aggregate_recode <- function(dt) {
   dt <- is_aggregate_recode(dt, cols$intMax, to = 10)
   dt <- is_aggregate_recode(dt, cols$chrCols, to = "Tot")
 
-  ## for (j in seq_len(length(cols$intMin))) {
-  ##   col <- cols$intMin[j]
-  ##   data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = 0)
-  ## }
-  ## dt[is.na(get(cols$intMax)), (cols$intMax) := 10]
-  ## dt[is.na(get(cols$chrCols)), (cols$chrCols) := "Tot"]
   invisible(dt)
 }
 
@@ -146,7 +134,7 @@ do_aggregate_recode <- function(dt) {
 #' @description
 #' Get the specification on how the data will be aggregated to
 #' different geographical levels ie. county, manucipality, town etc.
-#' @inheritParams read_raw
+#' @inheritParams make_file
 #' @inheritParams get_split
 #' @inheritParams find_column_input
 #' @export
@@ -187,6 +175,7 @@ is_aggregate_recode <- function(dt, cols, to){
   invisible(dt)
 }
 
+## Create list to aggregate in groupingsets
 is_set_list <- function(level, srcCols) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
@@ -194,17 +183,11 @@ is_set_list <- function(level, srcCols) {
 
   vars <- c("KJONN", "ALDER")
   vars2 <- c(level, "AAR")
-  ## var01 <- c(vars2, vars[1])
-  ## var02 <- c(vars2, vars[2])
-  var03 <- c(vars2, vars)
+  vars3 <- c(vars2, vars)
 
   if (sum(cols) == 2) {
-    ## list(var01, var02, var03, srcCols)
-    list(var03, srcCols)
+    list(vars3, srcCols)
   } else {
-    ## col <- which(cols == 1)
-    ## list(c(vars2, vars[col]),
-    ##      srcCols)
     list(vars2, srcCols)
   }
 }
@@ -214,14 +197,25 @@ is_match_arg <- function(arg){
   arg <- match.arg(arg)
 }
 
+
+#' @title Use Original Columnames
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' This function is either to use original columnames or use the standard columnames.
+#' It's deprecated because output MUST use standard columnames.
+#' @keywords internal
 is_active <- function(active = getOption("orgdata.active"), .env = parent.frame()){
+
+  lifecycle::deprecate_warn("0.0.9", "is_active()")
+
   VAL1 <- NULL
   if (isFALSE(active)){
-    DT <- data.table::cube(.env$dtt, j = c(VAL1 = sum(VAL1, na.rm = TRUE)), by = .env$aggCols)
+    DT <- data.table::cube(.env$dt, j = c(VAL1 = sum(VAL1, na.rm = TRUE)), by = .env$aggCols)
     data.table::setnames(DT, c("grunnkrets", "V1"), c(.env$geo, .env$val))
   } else {
     DT <- data.table::groupingsets(
-      .env$dtt,
+      .env$dt,
       j = list(VAL1 = sum(VAL1, na.rm = TRUE)),
       by = .env$aggCols,
       sets = .env$xCols

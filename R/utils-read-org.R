@@ -1,4 +1,4 @@
-## Helper functions mainly for read_raw
+## Helper functions mainly for make_file
 ## -------------------------------------
 
 ## Create complete path to DB file
@@ -43,7 +43,7 @@ is_data_cols <- function(fgspec = NULL){
 
 
 
-is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year, geo = geo, val = val, ...){
+is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year){
 
   is_verbose("Starts aggregating data ...")
   aggSpec <- get_aggregate(spec = fgspec)
@@ -52,10 +52,9 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
   nSpec <- length(aggSpec)
   DT <- vector(mode = "list", length = nSpec)
   for (i in seq_len(nSpec)) {
-    dtt <- data.table::copy(dt)
-    dtt <- do_aggregate(dt = dtt, source = source, level = aggSpec[i], year = year, geo = geo, val = val, ...)
+    dtt <- do_aggregate(dt = dt, source = source, level = aggSpec[i], year = year)
     dtt <- do_aggregate_recode(dt = dtt)
-    DT[[i]] <- dtt
+    DT[[i]] <- data.table::copy(dtt)
     gc()
   }
   rm(dtt)
@@ -65,10 +64,10 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
 ## identify geo level
 is_geo_level <- function(x){
   geo <- nchar(x)
-  data.table::fcase(geo %in% 7:8, "g",
-                    geo %in% 5:6, "b",
-                    geo %in% 3:4, "k",
-                    geo %in% 1:2, "f")
+  data.table::fcase(geo %in% 7:8, "grunnkrets",
+                    geo %in% 5:6, "bydel",
+                    geo %in% 3:4, "kommune",
+                    geo %in% 1:2, "fylke")
 
 }
 

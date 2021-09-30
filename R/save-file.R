@@ -2,10 +2,10 @@
 #' @description Save data as a `.csv` format file with semicolon `;` as seperation.
 #' The file will be saved to the specified folder in `path` or as in Access regstration database
 #' with the root as in `getOption("orgdata.folder.data")`. Use argument `save = TRUE`
-#' in `read_raw()` will activate `save_file()` directly. Else you can call
-#' `save_file()` to save the object output from `read_raw()`
+#' in `make_file()` will activate `save_file()` directly. Else you can call
+#' `save_file()` to save the object output from `make_file()`
 #' @inheritParams do_split
-#' @inheritParams read_raw
+#' @inheritParams make_file
 #' @param path Folder path to save the file. If not specified then the path
 #'  must to be specified in Access registration database
 #' @param date Output file will be named with date and time
@@ -13,10 +13,10 @@
 #' @examples
 #' \dontrun{
 #'  # Save file directly
-#'  read_raw("BEFOLKNING", save = TRUE)
+#'  make_file("BEFOLKNING", save = TRUE)
 #'
 #'  # Two steps
-#'  DF <- read_raw("BEFOLKNING")
+#'  DF <- make_file("BEFOLKNING")
 #'  save_file(DF, "BEFOLKNING")
 #' }
 #' @export
@@ -35,7 +35,7 @@ save_file <- function(dt = NULL,
 
 #' @export
 #' @rdname save_file
-lagrefil <- save_file
+lagre_fil <- save_file
 
 
 ## Helper -----------------------------------------
