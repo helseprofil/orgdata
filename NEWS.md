@@ -2,11 +2,15 @@
 
 Things in `dev` branch
 
+- Give clear message and debug message.
+- Fix (#28) GEO derived from two columns with empty INNLESARG.
+
 # orgdata 0.0.9 - alpha
-- When MANHEADER is use then the newname must be specified in the respective standard column (#21) 
+- When MANHEADER is used then the new columname must be specified in the respective standard column (#21) 
 - Deprecated arguments `geo` and `val` in `make_file`. Output data must use standard
   columnames instead of keeping the columnames from original dataset.
 - Rename functions `read_raw` or `lesraw` to `make_file` or `lag_fil` (#27)
+- Alle functions uses underscore "_" for both english and norwegian.
 
 # orgdata 0.0.8 - alpha
 - Add new columns if one of the standard columns is missing in the original

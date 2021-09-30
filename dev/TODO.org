@@ -101,7 +101,7 @@ Create category that are missing due to NULL based on the standard categories of
 *** TODO Replace =get= and =mget=
 - For global variable that uses =get= and =mget= should use standard data.table
   =env= to define global variables.
-*** STRT Add verbose and traceback to Implicit NULL
+*** DONE Add verbose and traceback to Implicit NULL
 - Add standard function for these
 *** TODO Recode for aggregate
 - Find option to recode total after aggregate a column
@@ -110,9 +110,14 @@ Create category that are missing due to NULL based on the standard categories of
 - How to aggregate bydel for those that are /uoppgitt/ from =norgeo::get_code("bydel")=
 - Options is to aggregate bydel for only those that can be map from grunnkrets
   to bydel since grunnkrets to bydel isn't a direct 8 digits to 6 digits.
-*** TODO Clean all the =orgdata.active=
+*** DONE Clean all the =orgdata.active=
 - This was requested by Jørgen to keep the columnames as in the original data
   but now is no more actual.
+*** TODO Reshape file
+- For wide to long.
+- If RESHAPEVAR is used, then all variables not in the list will be excluded
+- If RESHAPENOT is used, then all the other variables not in the list will be used
+- Should use KASTKOL ie. delete columns that will not be included in the reshape
 
 ** Access DB
 *** DONE Warning duplicate filename
@@ -133,3 +138,7 @@ Should be a table with files id and dates can be deactivated at once. Steps:
 - More intuitive what the column is for
 *** DONE Rename LANDBAK to LANDSSB
 - This is the column for country of origin received from SSB
+*** TODO Add column for Rehape
+- RESHAPEVAR
+- RESHAPENOT
+- KASTKOL

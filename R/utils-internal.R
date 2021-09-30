@@ -101,6 +101,7 @@ is_logical <- function(x) {
 
 
 is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning")) {
+  ## x - Arg or object to show in the message
   type <- match.arg(type)
 
   if (!is.null(msg)) {
@@ -119,7 +120,8 @@ is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning")) {
 
 is_debug <- function() {
   if (getOption("orgdata.debug")) {
-    print(sys.calls()[[sys.nframe() - 1]])
+    fnc <- sys.calls()[[sys.nframe() - 1]][1]
+    message("Execute:  ", deparse(fnc))
   }
 }
 
