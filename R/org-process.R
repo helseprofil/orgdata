@@ -36,7 +36,6 @@ is_org_process <- function(file,
   if (geo2col){
     dt[, GEO := paste0(get(geoVals[1]), get( geoVals[2] ))]
     dt[, (geoVals) := NULL]
-    dt[, GEO := as.integer(GEO)]
   }
 
   ## Logging
@@ -47,7 +46,6 @@ is_org_process <- function(file,
 
   colSpec <- get_column_standard(spec = filespec)
   dt <- do_column_standard(dt, colSpec)
-  ## TODO Any extra args for file specific from INNLESARG
 
   splitSpec <- get_split(spec = fgspec)
   dt <- do_split(dt = dt, split = splitSpec)
@@ -66,6 +64,12 @@ is_geo_split <- function(geo, dots){
   ## fread style args use colClasses
   colStr <- rep("character", 2)
   colStr <- stats::setNames(colStr, geo)
-  dots$colClasses = colStr
+
+  if (is.na(dots)){
+    dots <- list(colClasses = colStr)
+  } else {
+    dots$colClasses = colStr
+  }
+
   return(dots)
 }
