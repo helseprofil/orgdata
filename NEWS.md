@@ -3,6 +3,7 @@
 Things in `dev` branch
 
 - Give clear message and debug message.
+- Fix (#28) GEO derived from two columns with empty INNLESARG.
 
 # orgdata 0.0.9 - alpha
 - When MANHEADER is used then the new columname must be specified in the respective standard column (#21) 
