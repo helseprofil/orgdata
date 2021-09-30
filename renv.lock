@@ -165,10 +165,10 @@
     },
     "lifecycle": {
       "Package": "lifecycle",
-      "Version": "1.0.0",
+      "Version": "1.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "3471fb65971f1a7b2d4ae7848cf2db8d"
+      "Hash": "a6b6d352e3ed897373ab19d8395c98d0"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -226,16 +226,16 @@
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.0.8.1",
+      "Version": "0.0.9",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "851791f0bfadad59c63e1094e7d0b46a8bbeec74",
+      "RemoteSha": "966ca39c507508e240461ead2b521ec5a0408dc3",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "4f17ab2af33ce15633b7778420d508ed"
+      "Hash": "56c24942a13fc355a42081c8f60b9bee"
     },
     "pillar": {
       "Package": "pillar",
