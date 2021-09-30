@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
       </span>
     </div>
 
@@ -119,34 +119,34 @@
 <p>To aggregate all files under a specific group such as <em>BEFOLKNING</em> group.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata">orgdata</a></span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_raw.html">read_raw</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span>
 <span class="va">df</span></code></pre></div>
 <p>If you are satisfy with the output and no error is shown during the process, you could save the output as a <code>.csv</code> file with:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"BEFOLKNING"</span><span class="op">)</span></code></pre></div>
 <p>If you are certain that the process has been controlled before and everything should be working correctly. You could save the output directly as a <code>.csv</code> file by:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_raw.html">read_raw</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="aggregate-selected-files-only" class="section level2">
 <h2 class="hasAnchor">
 <a href="#aggregate-selected-files-only" class="anchor"></a>Aggregate selected files only</h2>
 <p>Aggregating the whole files in a group could take a long time when there are many files in the selected group. You could select only specific file or files by selecting the <code>KOBLID</code> instead. The example below is for selecting one and few files respectively.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_raw.html">read_raw</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_raw.html">read_raw</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">10</span>,<span class="fl">15</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">10</span>,<span class="fl">15</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="process-files-without-aggregating" class="section level2">
 <h2 class="hasAnchor">
 <a href="#process-files-without-aggregating" class="anchor"></a>Process files without aggregating</h2>
 <p>When there is a need to look at the file prior to being aggregated. You could specify argument <code>aggregate</code> as <code>TRUE</code>. You could also activate it globally via <code>options</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_raw.html">read_raw</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="co"># Global option</span>
 <span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="op">)</span> 
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>orgdata.aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_raw.html">read_raw</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></code></pre></div>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></code></pre></div>
 <p>By activating it globally using <code>options</code>, all proceeding processes will not be aggregated unless it’s changed during function call or you reset the options if you have saved the default with <code>op &lt;- options()</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></code></pre></div>

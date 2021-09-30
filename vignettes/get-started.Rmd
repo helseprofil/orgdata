@@ -39,7 +39,7 @@ To aggregate all files under a specific group such as *BEFOLKNING* group.
 
 ```r
 library(orgdata)
-df <- read_raw("BEFOLKNING")
+df <- make_file("BEFOLKNING")
 df
 ```
 
@@ -54,7 +54,7 @@ If you are certain that the process has been controlled before and everything
 should be working correctly. You could save the output directly as a `.csv` file by:
 
 ```r
-df <- read_raw("BEFOLKNING", save = TRUE)
+df <- make_file("BEFOLKNING", save = TRUE)
 ```
 
 ## Aggregate selected files only
@@ -65,8 +65,8 @@ by selecting the `KOBLID` instead. The example below is for selecting one and
 few files respectively.
 
 ```r
-df <- read_raw("BEFOLKNING", koblid = 4)
-df <- read_raw("BEFOLKNING", c(4,10,15))
+df <- make_file("BEFOLKNING", koblid = 4)
+df <- make_file("BEFOLKNING", c(4,10,15))
 ```
 
 ## Process files without aggregating
@@ -75,12 +75,12 @@ When there is a need to look at the file prior to being aggregated. You could
 specify argument `aggregate` as `TRUE`. You could also activate it globally via `options`.
 
 ```r
-df <- read_raw("BEFOLKNING", aggregate = FALSE)
+df <- make_file("BEFOLKNING", aggregate = FALSE)
 
 # Global option
 op <- options() 
 options(orgdata.aggregate = FALSE)
-df <- read_raw("BEFOLKNING")
+df <- make_file("BEFOLKNING")
 ```
 
 By activating it globally using `options`, all proceeding processes will not be

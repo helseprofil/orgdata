@@ -2,12 +2,12 @@
 % Please edit documentation in R/read-file.R
 \name{read_file}
 \alias{read_file}
-\alias{lesfil}
+\alias{les_fil}
 \title{Read Data File}
 \usage{
 read_file(file = NULL, ...)
 
-lesfil(file = NULL, ...)
+les_fil(file = NULL, ...)
 }
 \arguments{
 \item{file}{Use FILID or a complete path of a filename}

@@ -39,7 +39,8 @@ reference:
   desc: >
     Functions to load rawdata into R and produce a `csv` file for the selected group (*filgruppe*).
   contents:
-  - starts_with("read_")
+  - read_file
+  - make_file
   - save_file
 - title: Geo codes
   desc: >
