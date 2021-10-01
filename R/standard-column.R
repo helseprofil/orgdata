@@ -16,6 +16,9 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
   data.table::setnames(dt, spec$old, spec$new)
 }
 
+is_column_equal <- function(dt, spec){
+
+}
 
 #' @title Get Standard Columns
 #' @description Standard columns names in rawdata will be checked against
@@ -71,8 +74,14 @@ is_check_cols <- function(x, y){
   ## y - the existing cols in dt
   cols <- setdiff(x, y)
   if (length(cols) > 0){
-    is_stop("Can't find column:", var = cols)
+    message("Column names: ", paste_cols(y))
+    message("Access specs: ", paste_cols(x))
+    is_stop("Column name(s) in Access specs are different than in the dataset!")
   }
+}
+
+paste_cols <- function(cols){
+  paste0('"', paste(cols, collapse = '", "'), '"')
 }
 
 ## TODO How to implement MANHEADER
