@@ -154,7 +154,7 @@ read_raw <- function(group = NULL,
                      save = FALSE,
                      year = NULL) {
 
-  lifecycle::deprecate_warn("0.0.9", "read_raw()", "make_file()")
+  lifecycle::deprecate_stop("0.0.9", "read_raw()", "make_file()")
   ## make_file(group, koblid, aggregate, save, year)
 }
 
@@ -162,12 +162,12 @@ read_raw <- function(group = NULL,
 #' @rdname read_raw
 lesraw <- function(group = NULL,
                    koblid = NULL,
-                     aggregate = getOption("orgdata.aggregate"),
-                     save = FALSE,
-                     year = NULL) {
+                   aggregate = getOption("orgdata.aggregate"),
+                   save = FALSE,
+                   year = NULL) {
 
-  lifecycle::deprecate_warn("0.0.9", "lesraw()", "lag_fil()")
-  make_file(group, koblid, aggregate, save, year)
+  lifecycle::deprecate_stop("0.0.9", "lesraw()", "lag_fil()")
+  ## make_file(group, koblid, aggregate, save, year)
 }
 
 
