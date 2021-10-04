@@ -2,8 +2,15 @@
 
 Things in `dev` branch
 
+- Standardize some most used arguments to `read_file()` such as `nrows`,
+  `header`, `skip`, `trimws` and `na`. Read details in `read_file()` function
+  description.
+- Output to `read_file()` as data.table class.
+- Use standard columnames with `V1`, `V2` etc when argment `header = FALSE` is specified.
+- Error message with list of unmatch columns in `do_column_standard()`
 - Give clear message and debug message.
 - Fix (#28) GEO derived from two columns with empty INNLESARG.
+
 
 # orgdata 0.0.9 - alpha
 - When MANHEADER is used then the new columname must be specified in the respective standard column (#21) 
