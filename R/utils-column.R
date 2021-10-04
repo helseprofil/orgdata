@@ -6,6 +6,7 @@
 #' @param type Type of object as output ie. double, integer or character.
 #'     Default is character.
 #' @param col Column name in the database table
+#' @family input-argument functions
 #' @export
 find_column_input <- function(spec = NULL, col = NULL, type = c("character", "double", "integer")) {
   # spec : Input data as data.frame

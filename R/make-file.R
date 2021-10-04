@@ -89,7 +89,7 @@ make_file <- function(group = NULL,
     }
 
     if (length(deleteVar) != 0) {
-      msgWarn <- "Some columns aren't defined in FILGRUPPE. They are now deleted"
+      msgWarn <- "OBS! Some columns aren't defined in FILGRUPPE. They are now deleted"
       is_verbose(x = msgWarn, type = "warning")
       deleteVar <- paste(deleteVar, collapse = ", ")
       is_verbose(deleteVar, "Deleted column(s):", type = "message")
