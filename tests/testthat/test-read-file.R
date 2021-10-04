@@ -6,15 +6,16 @@ test_that("Read rawdata", {
 
 test_that("Args for find_data", {
 
-  dotcsv <- list(header = TRUE, skip = "0", sheet = "Sheet1", nrows = "10")
-  dotxls <- list(header = TRUE, skip = "0", sheet = "Sheet1", n_max = "10")
+  dotcsv <- list(header = TRUE, skip = "0", nrows = "10", trimws = TRUE)
+  dotxls <- list(header = TRUE, skip = "0", sheet = "Sheet1", nrows = "10")
   elm <- c("skip", "nrows")
-  outcsv <- list(header = TRUE, skip = 0, sheet = "Sheet1", nrows = 10)
-  outxls <- list(header = TRUE, skip = 0, sheet = "Sheet1", n_max = 10)
+  outws <- list(header = TRUE, skip = 0, nrows = 10, trimws = TRUE)
+  outcsv <- list(header = TRUE, skip = 0, nrows = 10, strip.white = TRUE)
+  outxls <- list(col_names = TRUE, skip = 0, sheet = "Sheet1", n_max = 10)
 
-  expect_equal(is_numeric_var(dotcsv, elm), outcsv)
-  expect_equal(is_dt_var(dotcsv), outcsv)
-  expect_equal(is_xls_var(dotxls), outxls)
+  expect_equal(is_numeric_args(dotcsv, elm), outws)
+  expect_equal(is_dt_args(dotcsv), outcsv)
+  expect_equal(is_xls_args(dotxls), outxls)
 
   ut <- list(fill=TRUE)
   expect_equal(is_args(list(fill=TRUE)), ut)
