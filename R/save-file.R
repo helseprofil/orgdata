@@ -82,7 +82,7 @@ is_save_path <- function(group = NULL, fgSpec = NULL){
     )
   }
 
-  folder <- fgSpec$MAPPE
+  folder <- fgSpec$UTMAPPE
   fullPath <- file.path(getOption("orgdata.folder.data"), folder)
   ## fullPath <- normalizePath(fullPath, winslash = "/")
 
