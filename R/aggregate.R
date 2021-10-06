@@ -16,6 +16,7 @@
 #' DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
 #' }
 #' @import data.table
+#' @family aggregate functions
 #' @export
 do_aggregate <- function(dt = NULL,
                          source = c(
@@ -117,6 +118,7 @@ do_aggregate <- function(dt = NULL,
 #'  total is only used for `LANDB` since it already has `0` as one of it's existing
 #'  value.
 #' @inheritParams do_split
+#' @family aggregate functions
 #' @export
 do_aggregate_recode <- function(dt) {
   is_debug()
@@ -137,6 +139,7 @@ do_aggregate_recode <- function(dt) {
 #' @inheritParams make_file
 #' @inheritParams get_split
 #' @inheritParams find_column_input
+#' @family aggregate functions
 #' @export
 get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
   is_null_both(group, spec)
@@ -205,9 +208,9 @@ is_match_arg <- function(arg){
 #' This function is either to use original columnames or use the standard columnames.
 #' It's deprecated because output MUST use standard columnames.
 #' @keywords internal
-is_active <- function(active = getOption("orgdata.active"), .env = parent.frame()){
+is_active <- function(active = TRUE, .env = parent.frame()){
 
-  lifecycle::deprecate_warn("0.0.9", "is_active()")
+  lifecycle::deprecate_stop("0.0.9", "is_active()")
 
   VAL1 <- NULL
   if (isFALSE(active)){

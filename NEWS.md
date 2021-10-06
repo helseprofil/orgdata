@@ -2,8 +2,21 @@
 
 Things in `dev` branch
 
-- Give clear message and debug message.
-- Fix (#28) GEO derived from two columns with empty INNLESARG.
+# orgdata 0.1.0
+
+- Standardize some most used arguments to `read_file()` such as `nrows`,
+  `header`, `skip`, `trimws` and `na`. Read details in `read_file()` function
+  description.
+- Output to `read_file()` as data.table class.
+- Use standard columnames with `V1`, `V2` etc when argment `header = FALSE` is specified.
+- Error message with list of unmatch columns in `do_column_standard()`.
+- Give clearer message and debug message eg. `Execute: read_file()`.
+- Change `MAPPE` to `UTMAPPE` to make it more explicit for path specification to save file.  
+- Defun `orgdata.active` global options to use columnames from original dataset.
+- Use global options `options(orgdata.debug.nrow = TRUE)` to read only first 20 rows. Suitable for debug purposes.  
+- Fix (#28) GEO derived from two columns with empty INNLESARG. 
+- Add column `LEVEL` for granularity level ie. grunnkrets, fylke, kommune, bydel etc
+
 
 # orgdata 0.0.9 - alpha
 - When MANHEADER is used then the new columname must be specified in the respective standard column (#21) 

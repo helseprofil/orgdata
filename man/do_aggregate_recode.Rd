@@ -15,3 +15,9 @@ or \code{10} integer variables and \code{Tot} for string variables. Value \code{
 total is only used for \code{LANDB} since it already has \code{0} as one of it's existing
 value.
 }
+\seealso{
+Other aggregate functions: 
+\code{\link{do_aggregate}()},
+\code{\link{get_aggregate}()}
+}
+\concept{aggregate functions}

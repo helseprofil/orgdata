@@ -22,6 +22,7 @@
 #'    \item{`find_column_multi_input` gives a list of argument names and their values}
 #'    \item{`find_column_multi_input_arg` gives a single object with value from the selected argument}
 #' }
+#' @family input-argument functions
 #' @export
 find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", "|", ":", ";")) {
   # Output is a vector of the INNLESARG input
@@ -40,6 +41,7 @@ find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", "|", ":", ";
 #' @export
 #' @rdname find_column_multi
 #' @param input Input argument(s) as a character vector
+#' @family input-argument functions
 find_column_multi_input <- function(input = NULL) {
   is_debug()
   is_null(input)
@@ -62,7 +64,7 @@ find_column_multi_input <- function(input = NULL) {
 #' @rdname find_column_multi
 #' @param arg Name of a specific argument in the column
 #' @inheritParams find_column_multi_input
-
+#' @family input-argument functions
 find_column_multi_input_arg <- function(input = NULL, arg = NULL) {
   # arg : Name of arg in the column eg. header
   # input : the set of arguments in the columns INNLESARG as a vector via find_column_multi()
@@ -76,10 +78,11 @@ find_column_multi_input_arg <- function(input = NULL, arg = NULL) {
   return(input)
 }
 
+## HELPER -----------------------------
 is_one_arg <- function(x) {
   symbol <- gregexpr("=", x)
   many <- length(symbol[[1]])
   if (many > 1) {
-    stop("Too many arguments. Try `find_column_multi_inputs` function")
+    stop("Too many arguments. Try `find_column_multi_inputs()` function")
   }
 }

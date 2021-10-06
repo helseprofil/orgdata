@@ -47,3 +47,14 @@ vals <- find_column_multi_input(args)
 val <- find_column_multi_input_arg(args, "header")
 }
 }
+\seealso{
+Other input-argument functions: 
+\code{\link{find_column_input}()}
+
+Other input-argument functions: 
+\code{\link{find_column_input}()}
+
+Other input-argument functions: 
+\code{\link{find_column_input}()}
+}
+\concept{input-argument functions}

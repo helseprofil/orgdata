@@ -30,14 +30,15 @@ find_data.default <- function(file, ...) {
 find_data.csv <- function(file, ...) {
   if(length(list(...)) > 0){
     dots <- is_args(...)
-    dots <- is_dt_var(dots)
+    dots <- is_dt_args(dots)
   } else {
     dots <- list()
   }
 
   is_verbose(file, msg = "File:")
   dots$file <- file
-  do.call(data.table::fread, dots)
+  dt <- do.call(data.table::fread, dots)
+  invisible(dt)
 }
 
 #' @method find_data fhi
@@ -48,21 +49,46 @@ find_data.fhi <- find_data.csv
 #' @method find_data xls
 #' @export
 find_data.xls <- function(file, ...) {
+  headerRename <- is.element("header", names(list(...)))
+
   if (length(list(...)) > 0){
     dots <- is_args(...)
-    dots <- is_xls_var(dots)
+    dots <- is_xls_args(dots)
   } else {
     dots <- list()
   }
 
   is_verbose(file, msg = "File:")
   dots$path <- file
-  do.call(readxl::read_excel, dots)
+  dt <- do.call(readxl::read_xls, dots)
+
+  if (headerRename){
+    dt <- is_header_name(dt)
+  }
+  invisible(dt)
 }
 
-#' @method find_data xlsx
+#' @method find_data xls
 #' @export
-find_data.xlsx <- find_data.xls
+find_data.xlsx <- function(file, ...) {
+  headerRename <- is.element("header", names(list(...)))
+
+  if (length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_xls_args(dots)
+  } else {
+    dots <- list()
+  }
+
+  is_verbose(file, msg = "File:")
+  dots$path <- file
+  dt <- do.call(readxl::read_xlsx, dots)
+
+  if (headerRename){
+    dt <- is_header_name(dt)
+  }
+  invisible(dt)
+}
 
 ## Helper -------------------------------------------
 ## Direct args or from registration database
@@ -78,33 +104,54 @@ is_args <- function(...){
 }
 
 ## For arguments in fread that have numeric input
-is_dt_var <- function(x){
+is_dt_args <- function(x){
+  x <- is_rename_args(from = "trimws", to = "strip.white")
+  x <- is_rename_args(from = "na", to = "na.strings")
   argInt <- c("skip", "nrows", "drop")
   inx <- is.element(argInt, names(x))
   elm <- argInt[inx]
 
   if (sum(inx)>0){
-    x <- is_numeric_var(x, elm)
+    x <- is_numeric_args(x, elm)
   }
   return(x)
 }
 
 ## For arguments in read_excel that have numeric input
-is_xls_var <- function(x){
+is_xls_args <- function(x){
+  x <- is_rename_args(from = "nrows", to = "n_max")
+  x <- is_rename_args(from = "trimws", to = "trim_ws")
+  x <- is_rename_args(from = "header", to = "col_names")
   argInt <- c("skip", "n_max")
   inx <- is.element(argInt, names(x))
   elm <- argInt[inx]
 
   if (sum(inx)>0){
-    x <- is_numeric_var(x, elm)
+    x <- is_numeric_args(x, elm)
   }
   return(x)
 }
 
-is_numeric_var <- function(x = NULL, elm = NULL){
+## Use standard args in orgdata and rename it to the respective
+## read functions arguments
+is_rename_args <- function(from, to, .env = parent.frame()){
+  x <- .env$x
+  idx <- which(names(x) == from)
+  names(x)[idx] <- to
+  return(x)
+}
+
+is_numeric_args <- function(x = NULL, elm = NULL){
   for (i in seq_along(elm)){
     val <- as.numeric(x[elm[i]][1])
     x[elm[i]] <- val
   }
   return(x)
+}
+
+## standard readxl header style ...1 etc needs to be changed to V1 etc
+## like fread style
+is_header_name <- function(x){
+  vars <- paste0("V", 1:ncol(x))
+  data.table::setnames(x, old = names(x), new = vars)
 }

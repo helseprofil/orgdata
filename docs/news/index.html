@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -144,9 +144,23 @@
 <h1 class="page-header" data-toc-text="development version">
 <a href="#orgdata-development-version" class="anchor"></a>orgdata (development version)</h1>
 <p>Things in <code>dev</code> branch</p>
+</div>
+    <div id="orgdata-010" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#orgdata-010" class="anchor"></a>orgdata 0.1.0</h1>
 <ul>
-<li>Give clear message and debug message.</li>
+<li>Standardize some most used arguments to <code><a href="../reference/read_file.html">read_file()</a></code> such as <code>nrows</code>, <code>header</code>, <code>skip</code>, <code>trimws</code> and <code>na</code>. Read details in <code><a href="../reference/read_file.html">read_file()</a></code> function description.</li>
+<li>Output to <code><a href="../reference/read_file.html">read_file()</a></code> as data.table class.</li>
+<li>Use standard columnames with <code>V1</code>, <code>V2</code> etc when argment <code>header = FALSE</code> is specified.</li>
+<li>Error message with list of unmatch columns in <code><a href="../reference/do_column_standard.html">do_column_standard()</a></code>.</li>
+<li>Give clearer message and debug message eg. <code>Execute: read_file()</code>.</li>
+<li>Change <code>MAPPE</code> to <code>UTMAPPE</code> to make it more explicit for path specification to save file.<br>
+</li>
+<li>Defun <code>orgdata.active</code> global options to use columnames from original dataset.</li>
+<li>Use global options <code><a href="https://rdrr.io/r/base/options.html">options(orgdata.debug.nrow = TRUE)</a></code> to read only first 20 rows. Suitable for debug purposes.<br>
+</li>
 <li>Fix (<a href='https://github.com/helseprofil/orgdata/issues/28'>#28</a>) GEO derived from two columns with empty INNLESARG.</li>
+<li>Add column <code>LEVEL</code> for granularity level ie. grunnkrets, fylke, kommune, bydel etc</li>
 </ul>
 </div>
     <div id="orgdata-009---alpha" class="section level1">

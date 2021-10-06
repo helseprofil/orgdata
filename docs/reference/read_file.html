@@ -49,8 +49,16 @@
 <meta property="og:title" content="Read Data File — read_file" />
 <meta property="og:description" content="Read rawdata either using FILID value or complete file path. It uses the find_data() generic method.
 For a  .csv  file, data.table::fread() is used and all other arguments
-for fread function can be used. For a  xlsx  or  .xls  file
-readxl::read_excel() function and all of its arguments." />
+for fread function can be used. For a  .xlsx  or  .xls  file
+readxl::read_excel() function and all of its arguments.
+Nevertheless, some most used arguments are standardized for read_file() and there are:
+nrows to display maksimum numbers to read
+header FALSE to give default columnames as V1, V2 etc
+skip a specific number of raws before reading the data
+trimws to trim leading and trailing whitespace
+na for character value to be interpreted as NA
+
+" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -83,7 +91,7 @@ readxl::read_excel() function and all of its arguments." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -148,8 +156,16 @@ readxl::read_excel() function and all of its arguments." />
     <div class="ref-description">
     <p>Read rawdata either using <code>FILID</code> value or complete file path. It uses the <code><a href='find_data.html'>find_data()</a></code> generic method.
 For a <code> .csv </code> file, <code><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>data.table::fread()</a></code> is used and all other arguments
-for <code>fread</code> function can be used. For a <code> xlsx </code> or <code> .xls </code> file
+for <code>fread</code> function can be used. For a <code> .xlsx </code> or <code> .xls </code> file
 <code><a href='https://readxl.tidyverse.org/reference/read_excel.html'>readxl::read_excel()</a></code> function and all of its arguments.</p>
+<p>Nevertheless, some most used arguments are standardized for <code>read_file()</code> and there are:</p><ul>
+<li><p><code>nrows</code> to display maksimum numbers to read</p></li>
+<li><p><code>header</code> FALSE to give default columnames as <code>V1</code>, <code>V2</code> etc</p></li>
+<li><p><code>skip</code> a specific number of raws before reading the data</p></li>
+<li><p><code>trimws</code> to trim leading and trailing whitespace</p></li>
+<li><p><code>na</code> for character value to be interpreted as <code>NA</code></p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>read_file</span><span class='op'>(</span>file <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>

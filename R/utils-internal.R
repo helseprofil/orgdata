@@ -78,7 +78,7 @@ is_dummy <- function(col) {
 is_separate <- function(x, sep = NULL, keep = NULL) {
   # x : the string to be separated
   # sep : separate symbole like ",","=" etc.
-  # keep : Keep lhs or rhs eg. x[1] for lhs
+  # keep : Keep 1=lhs or 2=rhs eg. x[1] for lhs
   is_null(sep)
   if (class(x) == "numeric") {
     x <- as.character(x)

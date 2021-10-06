@@ -57,7 +57,7 @@ test_that("Columns and class data", {
                            NAVAL = NA_character_, SPLITTFRA = "LANDSSB", SPLITTTIL = "LANDB, LANDF"),
                       class = "data.frame", row.names = c(NA, -1L))
 
-  cols <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB1",
+  cols <- c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB1",
             "TAB2", "TAB3", "VAL1", "VAL2", "VAL3", "SIVILSTAND", "LANDB",
             "LANDF")
 
@@ -65,7 +65,7 @@ test_that("Columns and class data", {
                               KOLNAVN = NA_character_, ADDVAL = NA_character_,
                               NAVAL = NA_character_, SPLITTFRA = NA_character_, SPLITTTIL = NA_character_),
                          class = "data.frame", row.names = c(NA,-1L))
-  colmis <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB1",
+  colmis <- c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB1",
               "TAB2", "TAB3", "VAL1", "VAL2", "VAL3")
 
   ## TEST -------------------
