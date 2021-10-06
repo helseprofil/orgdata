@@ -7,8 +7,11 @@ Things in `dev` branch
   description.
 - Output to `read_file()` as data.table class.
 - Use standard columnames with `V1`, `V2` etc when argment `header = FALSE` is specified.
-- Error message with list of unmatch columns in `do_column_standard()`
-- Give clear message and debug message.
+- Error message with list of unmatch columns in `do_column_standard()`.
+- Give clearer message and debug message eg. `Execute: read_file()`.
+- Change `MAPPE` to `UTMAPPE` to make it more explicit for path specification to save file.  
+- Defun `orgdata.active` global options to use columnames from original dataset.
+- Use global options `options(orgdata.debug.nrow = TRUE)` to read only first 20 rows. Suitable for debug purposes.  
 - Fix (#28) GEO derived from two columns with empty INNLESARG.
 
 
