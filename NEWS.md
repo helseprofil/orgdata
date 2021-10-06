@@ -2,6 +2,8 @@
 
 Things in `dev` branch
 
+# orgdata 0.1.0
+
 - Standardize some most used arguments to `read_file()` such as `nrows`,
   `header`, `skip`, `trimws` and `na`. Read details in `read_file()` function
   description.
@@ -12,7 +14,8 @@ Things in `dev` branch
 - Change `MAPPE` to `UTMAPPE` to make it more explicit for path specification to save file.  
 - Defun `orgdata.active` global options to use columnames from original dataset.
 - Use global options `options(orgdata.debug.nrow = TRUE)` to read only first 20 rows. Suitable for debug purposes.  
-- Fix (#28) GEO derived from two columns with empty INNLESARG.
+- Fix (#28) GEO derived from two columns with empty INNLESARG. 
+- Add column `LEVEL` for granularity level ie. grunnkrets, fylke, kommune, bydel etc
 
 
 # orgdata 0.0.9 - alpha

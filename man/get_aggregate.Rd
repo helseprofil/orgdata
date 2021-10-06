@@ -17,3 +17,9 @@ get_aggregate(group = NULL, con = NULL, spec = NULL)
 Get the specification on how the data will be aggregated to
 different geographical levels ie. county, manucipality, town etc.
 }
+\seealso{
+Other aggregate functions: 
+\code{\link{do_aggregate_recode}()},
+\code{\link{do_aggregate}()}
+}
+\concept{aggregate functions}

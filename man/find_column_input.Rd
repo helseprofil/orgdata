@@ -21,3 +21,8 @@ Default is character.}
 \description{
 Get the value of a column when it's only one input is allowed.
 }
+\seealso{
+Other input-argument functions: 
+\code{\link{find_column_multi}()}
+}
+\concept{input-argument functions}

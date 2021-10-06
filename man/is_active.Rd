@@ -4,7 +4,7 @@
 \alias{is_active}
 \title{Use Original Columnames}
 \usage{
-is_active(active = getOption("orgdata.active"), .env = parent.frame())
+is_active(active = TRUE, .env = parent.frame())
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}

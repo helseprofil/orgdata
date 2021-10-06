@@ -17,8 +17,17 @@ les_fil(file = NULL, ...)
 \description{
 Read rawdata either using \code{FILID} value or complete file path. It uses the \code{\link[=find_data]{find_data()}} generic method.
 For a \code{ .csv } file, \code{\link[data.table:fread]{data.table::fread()}} is used and all other arguments
-for \code{fread} function can be used. For a \code{ xlsx } or \code{ .xls } file
+for \code{fread} function can be used. For a \code{ .xlsx } or \code{ .xls } file
 \code{\link[readxl:read_excel]{readxl::read_excel()}} function and all of its arguments.
+
+Nevertheless, some most used arguments are standardized for \code{read_file()} and there are:
+\itemize{
+\item \code{nrows} to display maksimum numbers to read
+\item \code{header} FALSE to give default columnames as \code{V1}, \code{V2} etc
+\item \code{skip} a specific number of raws before reading the data
+\item \code{trimws} to trim leading and trailing whitespace
+\item \code{na} for character value to be interpreted as \code{NA}
+}
 }
 \examples{
 \dontrun{

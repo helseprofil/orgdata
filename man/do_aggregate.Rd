@@ -37,3 +37,9 @@ dt <- make_file("BEFOLKNING")
 DT <- do_aggregate(dt, source = "grunnkrets", level = "kommune")
 }
 }
+\seealso{
+Other aggregate functions: 
+\code{\link{do_aggregate_recode}()},
+\code{\link{get_aggregate}()}
+}
+\concept{aggregate functions}

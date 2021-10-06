@@ -17,7 +17,7 @@ opt.orgdata <- list(
   orgdata.implicit.null = TRUE,
 
   ## Standard columns
-  orgdata.columns = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB",
+  orgdata.columns = c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB",
                       "TAB1", "TAB2", "TAB3", "VAL1", "VAL2", "VAL3"),
 
   ## Columns with integer values. GEO is not included because some geo codes has
@@ -38,5 +38,5 @@ opt.orgdata <- list(
 }
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("orgdata version 0.0.9.1 - alpha")
+  packageStartupMessage("orgdata version 0.1.0")
 }
