@@ -27,14 +27,14 @@ is_org_process <- function(file,
   }
 
   if (is.na(dots[1])) {
-    dt <- read_file(file = file)
+    dt <- is_read_file(file = file)
   } else {
-    dt <- read_file(file = file, dots)
+    dt <- is_read_file_dots(file = file, dots)
   }
 
   ## GEO codes from two columns needs to be joined
   if (geo2col){
-    dt[, GEO := paste0(get(geoVals[1]), get( geoVals[2] ))]
+    dt[, GEO := paste0(get(geoVals[1]), get(geoVals[2]))]
     dt[, (geoVals) := NULL]
   }
 
@@ -72,4 +72,23 @@ is_geo_split <- function(geo, dots){
   }
 
   return(dots)
+}
+
+is_read_file <- function(file, debug = getOption("orgdata.debug.nrow")){
+  if (debug) {
+    dt <- read_file(file = file, nrows = 20)
+  } else {
+    dt <- read_file(file = file)
+  }
+  invisible(dt)
+}
+
+is_read_file_dots <- function(file, dots, debug = getOption("orgdata.debug.nrow")){
+  if (debug){
+    dots$nrows <- 20
+    dt <- read_file(file = file, dots)
+  } else {
+    dt <- read_file(file = file, dots)
+  }
+  invisible(dt)
 }

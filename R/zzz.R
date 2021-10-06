@@ -14,7 +14,6 @@ opt.orgdata <- list(
   orgdata.geo = "geo-koder.accdb",
   orgdata.verbose = TRUE,
   orgdata.aggregate = TRUE,
-  orgdata.debug = FALSE,
   orgdata.implicit.null = TRUE,
 
   ## Standard columns
@@ -26,9 +25,9 @@ opt.orgdata <- list(
   ## column before merging. GEO will only be converted to integer after merging
   orgdata.int = c("AAR", "KJONN", "ALDER", "VAL1"),
 
-  ## Either to change columnames to standard names or keep as it's.
-  ## Default is to change to standard
-  orgdata.active = TRUE
+  ## Use for debuging purposes only
+  orgdata.debug = FALSE,
+  orgdata.debug.nrow = FALSE  #First 20 rows only if TRUE
 )
 
 .onLoad <- function(libname, pkgname) {
