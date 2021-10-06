@@ -205,9 +205,9 @@ is_match_arg <- function(arg){
 #' This function is either to use original columnames or use the standard columnames.
 #' It's deprecated because output MUST use standard columnames.
 #' @keywords internal
-is_active <- function(active = getOption("orgdata.active"), .env = parent.frame()){
+is_active <- function(active = TRUE, .env = parent.frame()){
 
-  lifecycle::deprecate_warn("0.0.9", "is_active()")
+  lifecycle::deprecate_stop("0.0.9", "is_active()")
 
   VAL1 <- NULL
   if (isFALSE(active)){
