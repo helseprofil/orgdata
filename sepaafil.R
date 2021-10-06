@@ -19,8 +19,8 @@ lag_fil("BEFOLKNING", save = TRUE)
 
 ## TIPS AND TRICKS ------------------------------------
 ## Lest bare en bestemt antall rader f.eks 5 rader
-les_fil(file = 1, nrows = 5) #for csv fil
-les_fil(file = 28, n_max = 5) #for excel fil
+## kan også brukes andre argumenter f.eks header = FALSE, skip = 0, sep = ; osv
+les_fil(file = 1, nrows = 5)
 
 ## Sjekk kategorier evt. omkoding
 dt <- les_fil(file = 1)
@@ -35,3 +35,6 @@ website()
 
 ## Sjekk versjon
 packageVersion("orgdata")
+
+## Se alle global options
+orgdata:::opt.orgdata
