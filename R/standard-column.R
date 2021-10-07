@@ -80,8 +80,5 @@ is_check_cols <- function(x, y){
   }
 }
 
-paste_cols <- function(cols){
-  paste0('"', paste(cols, collapse = '", "'), '"')
-}
 
 ## TODO How to implement MANHEADER

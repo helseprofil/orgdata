@@ -132,3 +132,10 @@ is_stop <- function(msg, var = NULL){
   }
   stop(simpleError(msg))
 }
+
+
+## For paste of long vectors ie. many columnames,
+## to be nicely displayed in a message
+paste_cols <- function(cols){
+  paste0('"', paste(cols, collapse = '", "'), '"')
+}

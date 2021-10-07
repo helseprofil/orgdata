@@ -113,10 +113,13 @@ do_aggregate <- function(dt = NULL,
 }
 
 #' @title Recode Aggregated Variables
-#' @description Recode aggregated variables to represent all values either as `0`
-#'  or `10` integer variables and `Tot` for string variables. Value `10` representing
+#' @description Recode standard aggregated variables to represent total category either as `0`
+#'  or `10` for integer variables and `Tot` for string variables. Value `10` representing
 #'  total is only used for `LANDB` since it already has `0` as one of it's existing
-#'  value.
+#'  value. Other columns that need to be recorded to represent total category must be defined
+#'  in \strong{Recode} form with FILGRUPPE as \strong{AGGREGATE}.
+#' @description Standard columns that is implemented by this function is:
+#' @description `UTDANN`, `SIVILSTAND`, `LANDB` and `LANDSSB`
 #' @inheritParams do_split
 #' @family aggregate functions
 #' @export
@@ -157,7 +160,7 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
 
 is_aggregate_standard_cols <- function(){
   ## Total is 0
-  intMin <- c("UTDANN", "SIVILSTAND", "LANDF")
+  intMin <- c("UTDANN", "SIVILSTAND")
   ## Total is 10
   intMax <- "LANDB"
   ## Total is Tot
