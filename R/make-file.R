@@ -124,6 +124,8 @@ make_file <- function(group = NULL,
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
 
+  outDT <- do_recode_aggregate(dt = outDT, con = kh$dbconn)
+
   ## REORDER COLS --------------------------------------------
   orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
   data.table::setcolorder(outDT, orderCols)
