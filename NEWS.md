@@ -2,6 +2,10 @@
 
 Things in `dev` branch
 
+- Recode for aggregated categories can be defined in *Recode* form and use
+  `AGGREGATE` in the specification under FILGRUPPE
+- 
+
 # orgdata 0.1.0
 
 - Standardize some most used arguments to `read_file()` such as `nrows`,
