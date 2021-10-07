@@ -15,7 +15,8 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   speCode <- get_codebok(spec = spec, con = con)
   dt <- is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
   dt <- is_recode_common(dt = dt, code = speCode, group = grp)
-  is_recode_all(dt = dt, code = speCode)
+  dt <- is_recode_all(dt = dt, code = speCode)
+  invisible(dt)
 }
 
 #' @title Codebook
@@ -58,12 +59,25 @@ is_recode_common <- function(dt, code, group) {
 
 ## When FILGRUPPE in tbl_Kode is ALLE
 is_recode_all <- function(dt, code){
-  FILGRUPPE <- LESID <- KOL <- FRA <- TIL <- NULL
+  FILGRUPPE <- KOL <- FRA <- TIL <- NULL
 
   allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA, TIL)]
   kols <- unique(allCode$KOL)
-  is_recode(dt = dt, code = allCode, cols = kols)
+
+  notCols <- setdiff(kols, names(dt))
+  if (length(notCols) > 0){
+    message("Columname(s) defined in ALLE for recoding not found: ", paste_cols(notCols))
+  }
+
+  yesCols <- intersect(kols, names(dt))
+  if (length(yesCols) > 0){
+    message("Columname(s) defined in ALLE for recoding: ", paste_cols(yesCols))
+    dt <- is_recode(dt = dt, code = allCode, cols = yesCols)
+  }
+
+  invisible(dt)
 }
+
 
 ## Recode variable 1-to-1
 is_recode <- function(dt, code, cols){
@@ -85,9 +99,13 @@ is_NA <- function(dt, code, col) {
   ## dt - Dataset
   ## code - From codebook
   ## col - column to recode
-  na <- is.element("<NA>", code$FRA)
+  isNA <- c("<NA>", "NA")
+  naIdx <- is.element(isNA, code$FRA)
+  chrNA <- isNA[naIdx]
+
+  na <- sum(naIdx) > 0
   if (na) {
-    dt[is.na(get(col)), (col) := "<NA>"]
+    dt[is.na(get(col)), (col) := chrNA]
   }
   return(dt)
 }
