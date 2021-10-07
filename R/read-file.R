@@ -37,7 +37,7 @@ read_file <- function(file = NULL, ...) {
 
   dt <- find_data(file, ...)
 
-  if (sum(is.element(class(dt), "data.table")) == 0){
+  if (isFALSE(is(dt, "data.table"))){
     data.table::setDT(dt)
   }
 
