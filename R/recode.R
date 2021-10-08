@@ -1,8 +1,9 @@
 #' @title Recode Variables
 #' @description
 #' Recode variables based on the specification in `tbl_Kode` ie. codebook.
-#' `LESID` must be combined with FILGRUPPE to create a unique reference to
-#' be able to recode variables.
+#' `LESID` must be combined with `FILGRUPPE` to create a unique reference to
+#' be able to recode the variables. Specification group `ALLE` will be
+#' used when neither `FILGRUPPE` nor `LESID` is specified.
 #' @inheritParams do_split
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
@@ -22,7 +23,8 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
 
 #' @title Codebook
 #' @description Get the codebook for recoding variables based on the
-#'  unique `LESID` number.
+#'  `FILGRUPPE` and `LESID` number. Specification group `ALLE` will be
+#'  used when neither `FILGRUPPE` nor `LESID` is specified.
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
 #' @family recode functions
