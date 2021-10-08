@@ -10,10 +10,15 @@ do_aggregate_recode(dt)
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 }
 \description{
-Recode aggregated variables to represent all values either as \code{0}
-or \code{10} integer variables and \code{Tot} for string variables. Value \code{10} representing
+Recode standard aggregated variables to represent total category either as \code{0}
+or \code{10} for integer variables and \code{Tot} for string variables. Value \code{10} representing
 total is only used for \code{LANDB} since it already has \code{0} as one of it's existing
-value.
+value. Other columns that need to be recorded to represent total category must be defined
+in \strong{Recode} form with FILGRUPPE as \strong{AGGREGATE}.
+
+Standard columns that is implemented by this function is:
+
+\code{UTDANN}, \code{SIVILSTAND}, \code{LANDB} and \code{LANDSSB}
 }
 \seealso{
 Other aggregate functions: 

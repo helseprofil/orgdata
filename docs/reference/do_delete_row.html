@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Aggregate Data — do_aggregate • orgdata</title>
+<title>Delete Selected Rows — do_delete_row • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Aggregate Data — do_aggregate" />
-<meta property="og:description" content="Aggregate data according to the specification in tbl_Filgruppe." />
+<meta property="og:title" content="Delete Selected Rows — do_delete_row" />
+<meta property="og:description" content="Delete selected rows in the dataset. The rows to be deleted can be specified directly
+in the Access registration database using minus symbol -" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,22 +138,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Aggregate Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/aggregate.R'><code>R/aggregate.R</code></a></small>
-    <div class="hidden name"><code>do_aggregate.Rd</code></div>
+    <h1>Delete Selected Rows</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/delete-row.R'><code>R/delete-row.R</code></a></small>
+    <div class="hidden name"><code>do_delete_row.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Aggregate data according to the specification in <code>tbl_Filgruppe</code>.</p>
+    <p>Delete selected rows in the dataset. The rows to be deleted can be specified directly
+in the Access registration database using minus symbol <code><a href='https://rdrr.io/r/base/Arithmetic.html'>-</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_aggregate</span><span class='op'>(</span>
-  dt <span class='op'>=</span> <span class='cn'>NULL</span>,
-  source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
-  level <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
-  year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  check <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_delete_row</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,40 +158,20 @@
       <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
     </tr>
     <tr>
-      <th>source</th>
-      <td><p>What geographical granularity code that is available in the source data.
-This will be used for merging with the output from <code>do_norgeo()</code></p></td>
+      <th>spec</th>
+      <td><p>Specifications data as a data.frame</p></td>
     </tr>
     <tr>
-      <th>level</th>
-      <td><p>Geographical granularity for aggregating data.</p></td>
-    </tr>
-    <tr>
-      <th>year</th>
-      <td><p>Which year the georaphical code is valid for. If not specified, then
-it will be base on the year in source data ie. column <code>AAR</code></p></td>
-    </tr>
-    <tr>
-      <th>check</th>
-      <td><p>If TRUE then output will not be aggregated. This is useful to check
-for geographical codes that are missing. Else use <code><a href='https://rdrr.io/r/base/options.html'>options(orgdata.aggregate = FALSE)</a></code></p></td>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other aggregate functions: 
-<code><a href='do_aggregate_recode.html'>do_aggregate_recode</a>()</code>,
-<code><a href='get_aggregate.html'>get_aggregate</a>()</code></p></div>
+    <div class='dont-index'><p>Other delete-raw functions: 
+<code><a href='get_delete_row_spec.html'>get_delete_row_spec</a>()</code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># To aggregate source data with enumeration area codes ie. grunnkrets, to</span>
-<span class='co'># manucipaltiy ie. kommune</span>
-<span class='va'>dt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='make_file.html'>make_file</a></span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span><span class='op'>)</span>
-<span class='va'>DT</span> <span class='op'>&lt;-</span> <span class='fu'>do_aggregate</span><span class='op'>(</span><span class='va'>dt</span>, source <span class='op'>=</span> <span class='st'>"grunnkrets"</span>, level <span class='op'>=</span> <span class='st'>"kommune"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

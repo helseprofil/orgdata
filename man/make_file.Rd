@@ -11,7 +11,7 @@ make_file(
   aggregate = getOption("orgdata.aggregate"),
   save = FALSE,
   year = NULL,
-  ...
+  implicitnull = getOption("orgdata.implicit.null")
 )
 
 lag_fil(
@@ -20,7 +20,7 @@ lag_fil(
   aggregate = getOption("orgdata.aggregate"),
   save = FALSE,
   year = NULL,
-  ...
+  implicitnull = getOption("orgdata.implicit.null")
 )
 }
 \arguments{
@@ -29,14 +29,15 @@ lag_fil(
 \item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
 
 \item{aggregate}{Aggregate data according to the specification in registration database.
-Default is FALSE. Use \code{options(orgdata.aggregate = TRUE)} to change globally.}
+Default is \code{TRUE}. Global options with \code{orgdata.aggregate}.}
 
 \item{save}{Save as \code{.csv} by activating \code{save_file()}. Default is \code{FALSE}}
 
 \item{year}{Which year the georaphical code is valid for. If not specified, then
 it will be base on the year in source data ie. column \code{AAR}}
 
-\item{...}{Additional parameters}
+\item{implicitnull}{Default is \code{TRUE} to add implicit null to the dataset. Global options
+with \code{orgdata.implicit.null}.}
 }
 \description{
 Make a \code{csv} file with the specifications in the register database and implement them

@@ -13,5 +13,12 @@ get_codebok(spec = NULL, con = NULL)
 }
 \description{
 Get the codebook for recoding variables based on the
-unique \code{LESID} number.
+\code{FILGRUPPE} and \code{LESID} number. Specification group \code{ALLE} will be
+used when neither \code{FILGRUPPE} nor \code{LESID} is specified.
 }
+\seealso{
+Other recode functions: 
+\code{\link{do_recode_aggregate}()},
+\code{\link{do_recode}()}
+}
+\concept{recode functions}
