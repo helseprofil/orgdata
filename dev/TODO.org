@@ -43,7 +43,7 @@ Consider R6 class.
 Use =tryCatch= in loop files for error message
 *** DONE Process files
 Make seperate function =is_org_process=
-*** TODO Recoded variables
+*** HOLD Recoded variables
 - Not sure what I was thinking here :-(
 - Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.
 *** DONE Recode common variable
@@ -103,7 +103,7 @@ Create category that are missing due to NULL based on the standard categories of
   =env= to define global variables.
 *** DONE Add verbose and traceback to Implicit NULL
 - Add standard function for these
-*** STRT Recode for aggregate
+*** DONE Recode for aggregate
 - Find option to recode total after aggregate a column
 - Could use Recode with specific FILGRUPPE name eg. AGGREGATE
 *** TODO Unspecified /(Uoppgitt)/ bydel
@@ -118,6 +118,15 @@ Create category that are missing due to NULL based on the standard categories of
 - If RESHAPEVAR is used, then all variables not in the list will be excluded
 - If RESHAPENOT is used, then all the other variables not in the list will be used
 - Should use KASTKOL ie. delete columns that will not be included in the reshape
+*** STRT Delete row
+- Specify in Recode form with "-" for what code in the dataset to be deleted.
+
+*** TODO Don't aggregate TABS
+- Options for not aggregating TABS
+*** TODO Check object class
+- Change all class check with =is()= or =inherits()=
+*** TODO Error message for split column
+- Give clear message when split column has more than the defined in SPLITTTIL
 
 ** Access DB
 *** DONE Warning duplicate filename

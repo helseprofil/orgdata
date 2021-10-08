@@ -1,10 +1,12 @@
-#' @title Recode for Total Category
-#' @description Recode the category for total after aggregating data based on the
-#'  specification in Codebook.
+#' @title Recode Category Representing All
+#' @description Recode the category for all after aggregating data based on the
+#'  specification in Codebook. For example when aggregating category type of diagnoses
+#'  `NA` will be produced to represent all type of diagnoses. This will basically
+#'  recode `NA` to a preferred value such as `ALL`.
 #' @inheritParams do_split
 #' @inheritParams find_spec
 #' @inheritParams make_file
-#' @family aggregate functions
+#' @family recode functions
 #' @export
 do_recode_aggregate <- function(dt = NULL,
                                 con = NULL,

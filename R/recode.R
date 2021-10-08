@@ -7,6 +7,7 @@
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
 #' @import data.table
+#' @family recode functions
 #' @export
 do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   is_debug()
@@ -24,6 +25,7 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
 #'  unique `LESID` number.
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
+#' @family recode functions
 #' @export
 get_codebok <- function(spec = NULL, con = NULL){
   grp <- spec$FILGRUPPE
