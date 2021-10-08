@@ -15,6 +15,8 @@ do_delete_row <- function(dt = NULL, spec = NULL, con = NULL) {
   speCode <- get_delete_row_spec(spec = spec, con = con)
 
   dt <- is_delete_lesid(dt = dt, code = speCode, lesid = lesid)
+  dt <- is_delete_common(dt = dt, code = speCode, group = grp)
+  dt <- is_delete_all(dt = dt, code = speCode)
   invisible(dt)
 }
 
@@ -41,10 +43,40 @@ is_delete_lesid <- function(dt, code, lesid){
 
   idCode <- code[LESID == lesid, list(KOL, FRA)]
   cols <- unique(idCode$KOL)
-
   dt <- is_delete_row(dt, code = code, cols = cols)
   invisible(dt)
 }
+
+
+is_delete_common <- function(dt, code, group){
+  FILGRUPPE <- LESID <- KOL <- FRA <- TIL <- NULL
+
+  allCode <- code[FILGRUPPE == group & is.na(LESID), list(KOL, FRA)]
+  cols <- unique(allCode$KOL)
+  dt <- is_delete_row(dt, code = allCode, cols = cols)
+  invisible(dt)
+}
+
+is_delete_all <- function(dt, code){
+  FILGRUPPE <- KOL <- FRA <- TIL <- NULL
+
+  allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA)]
+  cols <- unique(allCode$KOL)
+
+  notCols <- setdiff(cols, names(dt))
+  if (length(notCols) > 0){
+    is_verbose(paste_cols(notCols), "Columname(s) defined in ALLE for row deleting not found:")
+  }
+
+  yesCols <- intersect(cols, names(dt))
+  if (length(yesCols) > 0){
+    is_verbose(paste_cols(yesCols), "Columname(s) defined in ALLE for row deleting:")
+    dt <- is_delete_row(dt = dt, code = allCode, cols = yesCols)
+  }
+
+  invisible(dt)
+}
+
 
 is_delete_row <- function(dt, code, cols){
   KOL <- FRA <- NULL
