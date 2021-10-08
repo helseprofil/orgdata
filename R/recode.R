@@ -70,12 +70,12 @@ is_recode_all <- function(dt, code){
 
   notCols <- setdiff(kols, names(dt))
   if (length(notCols) > 0){
-    message("Columname(s) defined in ALLE for recoding not found: ", paste_cols(notCols))
+    is_verbose(paste_cols(notCols), "Columname(s) defined in ALLE for recoding not found:")
   }
 
   yesCols <- intersect(kols, names(dt))
   if (length(yesCols) > 0){
-    message("Columname(s) defined in ALLE for recoding: ", paste_cols(yesCols))
+    is_verbose(paste_cols(yesCols), "Columname(s) defined in ALLE for recoding:")
     dt <- is_recode(dt = dt, code = allCode, cols = yesCols)
   }
 
