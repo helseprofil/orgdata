@@ -226,16 +226,16 @@
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.1.0",
+      "Version": "0.2.0",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "a64afe8ff44caaabddc7196dd9c23c2959c773a6",
+      "RemoteSha": "b5d0e0bdb35fc92f8ca0e13ca802336c937f38d3",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "fe7f84c79996f73521ea8ddcc69be636"
+      "Hash": "3b68a30cd1fe98c844fcf70a9d768671"
     },
     "pillar": {
       "Package": "pillar",
