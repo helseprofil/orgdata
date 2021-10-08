@@ -47,6 +47,8 @@ is_org_process <- function(file,
   colSpec <- get_column_standard(spec = filespec)
   dt <- do_column_standard(dt, colSpec)
 
+  dt <- do_delete_row(dt = dt, spec = filespec, con = con)
+
   splitSpec <- get_split(spec = fgspec)
   dt <- do_split(dt = dt, split = splitSpec)
 

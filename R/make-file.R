@@ -16,10 +16,11 @@
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
 #' @param aggregate Aggregate data according to the specification in registration database.
-#'    Default is FALSE. Use `options(orgdata.aggregate = TRUE)` to change globally.
+#'    Default is `TRUE`. Global options with `orgdata.aggregate`.
 #' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
 #' @inheritParams do_aggregate
-#' @param ... Additional parameters
+#' @param implicitnull Default is `TRUE` to add implicit null to the dataset. Global options
+#'   with `orgdata.implicit.null`.
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @export
@@ -27,7 +28,9 @@ make_file <- function(group = NULL,
                       koblid = NULL,
                       aggregate = getOption("orgdata.aggregate"),
                       save = FALSE,
-                      year = NULL, ...) {
+                      year = NULL,
+                      implicitnull = getOption("orgdata.implicit.null")
+                      ) {
   is_null(group, "Filgruppe is missing")
   is_debug()
 
@@ -94,14 +97,13 @@ make_file <- function(group = NULL,
       deleteVar <- paste(deleteVar, collapse = ", ")
       is_verbose(deleteVar, "Deleted column(s):", type = "message")
     }
-    
+
     ## TODO - Not sure if this necessary
     ## convert some columns to interger. Must be after
     ## the variables are recoded eg. INNKAT is string before recorded to number
     ## dt <- is_col_int(dt)
 
-    imp <- getOption("orgdata.implicit.null")
-    if (imp){
+    if (implicitnull){
       dnull <- do_implicit_null(dt)
       if (nrow(dnull) > 0){
         is_verbose(x = nrow(dnull), msg = "Number of row(s) for implicit null:")
@@ -123,6 +125,8 @@ make_file <- function(group = NULL,
   outDT <- do_colname(
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
+
+  outDT <- do_recode_aggregate(dt = outDT, con = kh$dbconn)
 
   ## REORDER COLS --------------------------------------------
   orderCols <- intersect(getOption("orgdata.columns"), names(outDT))

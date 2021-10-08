@@ -3,6 +3,7 @@
 #' @param dt Input data preferrably in a \code{data.table} format but is not mandatory
 #' @param split Split specification as a list. Should be equivalent
 #'    to the output of [get_split()] function
+#' @importFrom methods is
 #' @export
 do_split <- function(dt = NULL, split = NULL) {
   is_debug()
@@ -13,7 +14,7 @@ do_split <- function(dt = NULL, split = NULL) {
     is_stop("Input for `split` must be a 'list' with `to` and `from`")
   }
 
-  if (isFALSE(class(dt)[1] == "data.table")) data.table::setDT(dt)
+  if (isFALSE(is(dt, "data.table"))) data.table::setDT(dt)
 
   if (!is.na(split$from)) {
     dt[, (split$to) := data.table::tstrsplit(get(split$from), split = "", fixed = TRUE)]

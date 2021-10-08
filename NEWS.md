@@ -2,6 +2,18 @@
 
 Things in `dev` branch
 
+
+# orgdata 0.2.0
+
+- Recode for aggregated categories can be defined in *Recode* form ie. codebook,
+  and use `AGGREGATE` in the specification under FILGRUPPE
+- Delete rows when defined in codebook using minus symbol under TIL column.
+  Similar principles is implemented for **GENERAL**, **COMMON** and **SPECIFIC**
+  feature as in recode. Read detail in [ver 0.0.5 - alpha](https://helseprofil.github.io/orgdata/news/index.html#orgdata-0-0-5-alpha).
+- Display both columnames to be recoded that are found in the dataset or those
+  that aren't found when defined as `ALLE` in the codebook so user will be aware
+  of its existence.
+
 # orgdata 0.1.0
 
 - Standardize some most used arguments to `read_file()` such as `nrows`,

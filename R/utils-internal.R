@@ -80,7 +80,7 @@ is_separate <- function(x, sep = NULL, keep = NULL) {
   # sep : separate symbole like ",","=" etc.
   # keep : Keep 1=lhs or 2=rhs eg. x[1] for lhs
   is_null(sep)
-  if (class(x) == "numeric") {
+  if (methods::is(x, "numeric")) {
     x <- as.character(x)
   }
   out <- unlist(strsplit(x, sep, fixed = TRUE))
@@ -131,4 +131,11 @@ is_stop <- function(msg, var = NULL){
     msg <- paste(msg, var, sep = " ")
   }
   stop(simpleError(msg))
+}
+
+
+## For paste of long vectors ie. many columnames,
+## to be nicely displayed in a message
+paste_cols <- function(cols){
+  paste0('"', paste(cols, collapse = '", "'), '"')
 }

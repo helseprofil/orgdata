@@ -15,6 +15,13 @@ do_recode(dt = NULL, spec = NULL, con = NULL)
 }
 \description{
 Recode variables based on the specification in \code{tbl_Kode} ie. codebook.
-\code{LESID} must be combined with FILGRUPPE to create a unique reference to
-be able to recode variables.
+\code{LESID} must be combined with \code{FILGRUPPE} to create a unique reference to
+be able to recode the variables. Specification group \code{ALLE} will be
+used when neither \code{FILGRUPPE} nor \code{LESID} is specified.
 }
+\seealso{
+Other recode functions: 
+\code{\link{do_recode_aggregate}()},
+\code{\link{get_codebok}()}
+}
+\concept{recode functions}

@@ -48,7 +48,8 @@
 
 <meta property="og:title" content="Codebook — get_codebok" />
 <meta property="og:description" content="Get the codebook for recoding variables based on the
-unique LESID number." />
+FILGRUPPE and LESID number. Specification group ALLE will be
+used when neither FILGRUPPE nor LESID is specified." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -81,7 +82,7 @@ unique LESID number." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -145,7 +146,8 @@ unique LESID number." />
 
     <div class="ref-description">
     <p>Get the codebook for recoding variables based on the
-unique <code>LESID</code> number.</p>
+<code>FILGRUPPE</code> and <code>LESID</code> number. Specification group <code>ALLE</code> will be
+used when neither <code>FILGRUPPE</code> nor <code>LESID</code> is specified.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_codebok</span><span class='op'>(</span>spec <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
@@ -163,6 +165,11 @@ unique <code>LESID</code> number.</p>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other recode functions: 
+<code><a href='do_recode_aggregate.html'>do_recode_aggregate</a>()</code>,
+<code><a href='do_recode.html'>do_recode</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

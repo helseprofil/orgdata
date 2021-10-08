@@ -49,7 +49,8 @@
 <meta property="og:title" content="Recode Variables — do_recode" />
 <meta property="og:description" content="Recode variables based on the specification in tbl_Kode ie. codebook.
 LESID must be combined with FILGRUPPE to create a unique reference to
-be able to recode variables." />
+be able to recode the variables. Specification group ALLE will be
+used when neither FILGRUPPE nor LESID is specified." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -82,7 +83,7 @@ be able to recode variables." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -146,8 +147,9 @@ be able to recode variables." />
 
     <div class="ref-description">
     <p>Recode variables based on the specification in <code>tbl_Kode</code> ie. codebook.
-<code>LESID</code> must be combined with FILGRUPPE to create a unique reference to
-be able to recode variables.</p>
+<code>LESID</code> must be combined with <code>FILGRUPPE</code> to create a unique reference to
+be able to recode the variables. Specification group <code>ALLE</code> will be
+used when neither <code>FILGRUPPE</code> nor <code>LESID</code> is specified.</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_recode</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
@@ -169,6 +171,11 @@ be able to recode variables.</p>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other recode functions: 
+<code><a href='do_recode_aggregate.html'>do_recode_aggregate</a>()</code>,
+<code><a href='get_codebok.html'>get_codebok</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -1,12 +1,14 @@
 #' @title Recode Variables
 #' @description
 #' Recode variables based on the specification in `tbl_Kode` ie. codebook.
-#' `LESID` must be combined with FILGRUPPE to create a unique reference to
-#' be able to recode variables.
+#' `LESID` must be combined with `FILGRUPPE` to create a unique reference to
+#' be able to recode the variables. Specification group `ALLE` will be
+#' used when neither `FILGRUPPE` nor `LESID` is specified.
 #' @inheritParams do_split
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
 #' @import data.table
+#' @family recode functions
 #' @export
 do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   is_debug()
@@ -15,14 +17,17 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   speCode <- get_codebok(spec = spec, con = con)
   dt <- is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
   dt <- is_recode_common(dt = dt, code = speCode, group = grp)
-  is_recode_all(dt = dt, code = speCode)
+  dt <- is_recode_all(dt = dt, code = speCode)
+  invisible(dt)
 }
 
 #' @title Codebook
 #' @description Get the codebook for recoding variables based on the
-#'  unique `LESID` number.
+#'  `FILGRUPPE` and `LESID` number. Specification group `ALLE` will be
+#'  used when neither `FILGRUPPE` nor `LESID` is specified.
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
+#' @family recode functions
 #' @export
 get_codebok <- function(spec = NULL, con = NULL){
   grp <- spec$FILGRUPPE
@@ -58,12 +63,25 @@ is_recode_common <- function(dt, code, group) {
 
 ## When FILGRUPPE in tbl_Kode is ALLE
 is_recode_all <- function(dt, code){
-  FILGRUPPE <- LESID <- KOL <- FRA <- TIL <- NULL
+  FILGRUPPE <- KOL <- FRA <- TIL <- NULL
 
   allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA, TIL)]
   kols <- unique(allCode$KOL)
-  is_recode(dt = dt, code = allCode, cols = kols)
+
+  notCols <- setdiff(kols, names(dt))
+  if (length(notCols) > 0){
+    is_verbose(paste_cols(notCols), "Columname(s) defined in ALLE for recoding not found:")
+  }
+
+  yesCols <- intersect(kols, names(dt))
+  if (length(yesCols) > 0){
+    is_verbose(paste_cols(yesCols), "Columname(s) defined in ALLE for recoding:")
+    dt <- is_recode(dt = dt, code = allCode, cols = yesCols)
+  }
+
+  invisible(dt)
 }
+
 
 ## Recode variable 1-to-1
 is_recode <- function(dt, code, cols){
@@ -85,9 +103,13 @@ is_NA <- function(dt, code, col) {
   ## dt - Dataset
   ## code - From codebook
   ## col - column to recode
-  na <- is.element("<NA>", code$FRA)
+  isNA <- c("<NA>", "NA")
+  naIdx <- is.element(isNA, code$FRA)
+  chrNA <- isNA[naIdx]
+
+  na <- sum(naIdx) > 0
   if (na) {
-    dt[is.na(get(col)), (col) := "<NA>"]
+    dt[is.na(get(col)), (col) := chrNA]
   }
   return(dt)
 }
