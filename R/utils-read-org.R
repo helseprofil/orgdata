@@ -122,7 +122,7 @@ is_col_int <- function(dt){
 
   for (j in seq_len(length(colsInt))){
     col <- colsInt[j]
-    if (is(dt[[col]], "character")) {
+    if (methods::is(dt[[col]], "character")) {
       data.table::set(dt, j = col, value = as.integer(dt[[col]]))
     }
   }
