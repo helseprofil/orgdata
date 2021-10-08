@@ -80,7 +80,7 @@ is_separate <- function(x, sep = NULL, keep = NULL) {
   # sep : separate symbole like ",","=" etc.
   # keep : Keep 1=lhs or 2=rhs eg. x[1] for lhs
   is_null(sep)
-  if (class(x) == "numeric") {
+  if (is(x, "numeric")) {
     x <- as.character(x)
   }
   out <- unlist(strsplit(x, sep, fixed = TRUE))

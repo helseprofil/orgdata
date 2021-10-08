@@ -114,16 +114,17 @@ is_org_files <- function(spec, id = NULL) {
 is_col_int <- function(dt){
   cols <- getOption("orgdata.int")
 
-  ints <- c("UTDANN", "SIVILSTAND", "LANDB", "INNKAT")
+  ints <- c("UTDANN", "SIVILSTAND", "LANDB", "LANDF", "INNKAT")
   noExtra <- setdiff(names(dt), ints)
   extraInts <- names(dt)[!(names(dt) %in% noExtra)]
 
   colsInt <- c(cols, extraInts)
 
-  for(j in seq_len(length(colsInt))){
+  for (j in seq_len(length(colsInt))){
     col <- colsInt[j]
-    if(class(dt[[col]]) == "character")
+    if (is(dt[[col]], "character")) {
       data.table::set(dt, j = col, value = as.integer(dt[[col]]))
+    }
   }
   return(dt)
 }
