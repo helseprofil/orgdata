@@ -1,6 +1,9 @@
 # orgdata (development version)
 
 Things in `dev` branch
+ 
+- Recode for aggregated variables uses `AG` in TYPE column in the codebook.
+- Change function name `do_aggregate_recode` to `do_aggregate_recode_standard` for standard variables.
 
 
 # orgdata 0.2.0
