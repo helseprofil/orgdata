@@ -112,7 +112,7 @@ do_aggregate <- function(dt = NULL,
   data.table::setnames(DT, level, "GEO")
 }
 
-#' @title Recode Aggregated Variables
+#' @title Recode Standard Aggregated Variables
 #' @description Recode standard aggregated variables to represent total category either as `0`
 #'  or `10` for integer variables and `Tot` for string variables. Value `10` representing
 #'  total is only used for `LANDB` since it already has `0` as one of it's existing
@@ -123,7 +123,7 @@ do_aggregate <- function(dt = NULL,
 #' @inheritParams do_split
 #' @family aggregate functions
 #' @export
-do_aggregate_recode <- function(dt) {
+do_aggregate_recode_standard <- function(dt) {
   is_debug()
   cols <- is_aggregate_standard_cols()
 
