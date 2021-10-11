@@ -5,8 +5,12 @@ Things in `dev` branch
 
 # orgdata 0.2.1
 
-- Recode for aggregated variables uses `AG` in TYPE column in the codebook.
-- Change function name `do_aggregate_recode` to `do_aggregate_recode_standard` for standard variables.
+- Recode for aggregated variables uses `AG` in TYPE column in the codebook
+  instead of FILGRUPPE with `AGGREGATE` as it was implemented in ver 0.2.0. This
+  will make it possible so specify FILGRUPPE and LESID to implement the
+  principle for **GENERAL**, **COMMON** and **SPECIFIC** variables.
+- Change function name `do_aggregate_recode` to `do_aggregate_recode_standard`
+  for standard variables.
 
 
 # orgdata 0.2.0
@@ -35,7 +39,7 @@ Things in `dev` branch
 - Fix (#28) GEO derived from two columns with empty INNLESARG. 
 - Add column `LEVEL` for granularity level ie. grunnkrets, fylke, kommune, bydel etc
 
-# orgdata 0.0.0 - alpha versjon
+# orgdata 0.0.1 - alpha version
 
 ## orgdata 0.0.9 - alpha
 - When MANHEADER is used then the new columname must be specified in the respective standard column (#21) 
