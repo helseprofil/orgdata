@@ -56,27 +56,43 @@ is_recode_common <- function(dt, code, group) {
   FILGRUPPE <- LESID <- KOL <- FRA <- TIL <- NULL
 
   allCode <- code[FILGRUPPE == group & is.na(LESID), list(KOL, FRA, TIL)]
-  kols <- unique(allCode$KOL)
-  is_recode(dt, code = allCode, cols = kols)
+
+  if (nrow(allCode) > 0){
+    kols <- unique(allCode$KOL)
+    dt <- is_recode(dt, code = allCode, cols = kols)
+  }
+
+  invisible(dt)
 }
 
 
 ## When FILGRUPPE in tbl_Kode is ALLE
-is_recode_all <- function(dt, code){
+is_recode_all <- function(dt, code, aggregate.msg = FALSE){
   FILGRUPPE <- KOL <- FRA <- TIL <- NULL
 
   allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA, TIL)]
-  kols <- unique(allCode$KOL)
 
-  notCols <- setdiff(kols, names(dt))
-  if (length(notCols) > 0){
-    is_verbose(paste_cols(notCols), "Columname(s) defined in ALLE for recoding not found:")
-  }
+  if (nrow(allCode) > 0) {
+    kols <- unique(allCode$KOL)
 
-  yesCols <- intersect(kols, names(dt))
-  if (length(yesCols) > 0){
-    is_verbose(paste_cols(yesCols), "Columname(s) defined in ALLE for recoding:")
-    dt <- is_recode(dt = dt, code = allCode, cols = yesCols)
+    if (aggregate.msg){
+      msgNotFound <- "Columname(s) defined in AGGREGERE for recoding not found:"
+      msgFound <- "Columname(s) defined in AGGREGERE for recoding:"
+    } else {
+      msgNotFound <- "Columname(s) defined in ALLE for recoding not found:"
+      msgFound <- "Columname(s) defined in ALLE for recoding:"
+    }
+
+    notCols <- setdiff(kols, names(dt))
+    if (length(notCols) > 0){
+      is_verbose(paste_cols(notCols), msgNotFound)
+    }
+
+    yesCols <- intersect(kols, names(dt))
+    if (length(yesCols) > 0){
+      is_verbose(paste_cols(yesCols), msgFound)
+      dt <- is_recode(dt = dt, code = allCode, cols = yesCols)
+    }
   }
 
   invisible(dt)

@@ -118,7 +118,7 @@ Create category that are missing due to NULL based on the standard categories of
 - If RESHAPEVAR is used, then all variables not in the list will be excluded
 - If RESHAPENOT is used, then all the other variables not in the list will be used
 - Should use KASTKOL ie. delete columns that will not be included in the reshape
-*** STRT Delete row
+*** DONE Delete row
 - Specify in Recode form with "-" for what code in the dataset to be deleted.
 
 *** TODO Don't aggregate TABS
@@ -127,6 +127,11 @@ Create category that are missing due to NULL based on the standard categories of
 - Change all class check with =is()= or =inherits()=
 *** TODO Error message for split column
 - Give clear message when split column has more than the defined in SPLITTTIL
+*** STRT Recode for aggregate
+- Use TYPE column with code =AG=
+- Update exsiting code using FILGRUPPE with code =AGGREGATE=
+*** TODO Uoppgitt bydel for 2021 og 2020
+- Bruk fire uoppgitt bydeler
 
 ** Access DB
 *** DONE Warning duplicate filename

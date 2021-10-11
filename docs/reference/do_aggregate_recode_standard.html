@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Type of object input — is_input_type • orgdata</title>
+<title>Recode Standard Aggregated Variables — do_aggregate_recode_standard • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,14 @@
 
 
 
-<meta property="og:title" content="Type of object input — is_input_type" />
-<meta property="og:description" content="Convert value to selected type ie. checked with typeof" />
+<meta property="og:title" content="Recode Standard Aggregated Variables — do_aggregate_recode_standard" />
+<meta property="og:description" content="Recode standard aggregated variables to represent total category either as 0
+or 10 for integer variables and Tot for string variables. Value 10 representing
+total is only used for LANDB since it already has 0 as one of it's existing
+value. Other columns that need to be recorded to represent total category must be defined
+in Recode form with FILGRUPPE as AGGREGATE.
+Standard columns that is implemented by this function is:
+UTDANN, SIVILSTAND, LANDB and LANDSSB" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,26 +143,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Type of object input</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/utils-column.R'><code>R/utils-column.R</code></a></small>
-    <div class="hidden name"><code>is_input_type.Rd</code></div>
+    <h1>Recode Standard Aggregated Variables</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/aggregate.R'><code>R/aggregate.R</code></a></small>
+    <div class="hidden name"><code>do_aggregate_recode_standard.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convert value to selected type ie. checked with <a href='https://rdrr.io/r/base/typeof.html'>typeof</a></p>
+    <p>Recode standard aggregated variables to represent total category either as <code>0</code>
+or <code>10</code> for integer variables and <code>Tot</code> for string variables. Value <code>10</code> representing
+total is only used for <code>LANDB</code> since it already has <code>0</code> as one of it's existing
+value. Other columns that need to be recorded to represent total category must be defined
+in <strong>Recode</strong> form with FILGRUPPE as <strong>AGGREGATE</strong>.</p>
+<p>Standard columns that is implemented by this function is:</p>
+<p><code>UTDANN</code>, <code>SIVILSTAND</code>, <code>LANDB</code> and <code>LANDSSB</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_input_type</span><span class='op'>(</span><span class='va'>value</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"character"</span>, <span class='st'>"double"</span>, <span class='st'>"integer"</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_aggregate_recode_standard</span><span class='op'>(</span><span class='va'>dt</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>value</th>
-      <td><p>Input value to be converted</p></td>
+      <th>dt</th>
+      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other aggregate functions: 
+<code><a href='do_aggregate.html'>do_aggregate</a>()</code>,
+<code><a href='get_aggregate.html'>get_aggregate</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

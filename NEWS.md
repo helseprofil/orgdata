@@ -3,6 +3,12 @@
 Things in `dev` branch
 
 
+# orgdata 0.2.1
+
+- Recode for aggregated variables uses `AG` in TYPE column in the codebook.
+- Change function name `do_aggregate_recode` to `do_aggregate_recode_standard` for standard variables.
+
+
 # orgdata 0.2.0
 
 - Recode for aggregated categories can be defined in *Recode* form ie. codebook,
@@ -29,15 +35,16 @@ Things in `dev` branch
 - Fix (#28) GEO derived from two columns with empty INNLESARG. 
 - Add column `LEVEL` for granularity level ie. grunnkrets, fylke, kommune, bydel etc
 
+# orgdata 0.0.0 - alpha versjon
 
-# orgdata 0.0.9 - alpha
+## orgdata 0.0.9 - alpha
 - When MANHEADER is used then the new columname must be specified in the respective standard column (#21) 
 - Deprecated arguments `geo` and `val` in `make_file`. Output data must use standard
   columnames instead of keeping the columnames from original dataset.
 - Rename functions `read_raw` or `lesraw` to `make_file` or `lag_fil` (#27)
 - Alle functions uses underscore "_" for both english and norwegian.
 
-# orgdata 0.0.8 - alpha
+## orgdata 0.0.8 - alpha
 - Add new columns if one of the standard columns is missing in the original
   data. The value to be inserted to the new column must use symbol less than `<`
   and more than `>`. For instance when column `KJONN` doesn't exist in the
@@ -48,7 +55,7 @@ Things in `dev` branch
 - Options for `orgdata.implicit.null` with default as `TRUE`. Use
   `options(orgdata.implicit.null = FALSE)` to deactivate (#19)
 
-# orgdata 0.0.7 - alpha
+## orgdata 0.0.7 - alpha
 
 - Implicit zero (#11). Discussion is in [Gist](https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51 "implicit-null")
 - Use version specific for imported packages.
@@ -60,7 +67,7 @@ Things in `dev` branch
 Changes is in PR #11 and #12
 
 
-# orgdata 0.0.6 - alpha
+## orgdata 0.0.6 - alpha
 
 - Create GEO code from two separate columns. This has to be defined in Access
   registration under `GEO` with comma separated eg. `nameGeoCol1, nameGeoCol2`.
@@ -73,7 +80,7 @@ Changes is in PR #11 and #12
 
 Changes is in PR #8
 
-# orgdata 0.0.5 - alpha
+## orgdata 0.0.5 - alpha
 
 - Recode variables from specification in `tbl_Kode` uses:
   1. **GENERAL** variables are defined in FILGRUPPE as `ALLE` and are used to
@@ -96,14 +103,14 @@ Changes is in PR #8
 
 Changes is in PR #4
 
-# orgdata 0.0.4 - alpha
+## orgdata 0.0.4 - alpha
 
 - MANHEADER and KOLNAVN uses common helper function `is_col_separate()`
 - MANHEADER `old` convert to integer and use and index for columns
 
 Changes is in PR #2
 
-# orgdata 0.0.3 - alpha
+## orgdata 0.0.3 - alpha
 
 - LESID is not unique id but a combination of LESID and FILGRUPPE
 - Standard columns include 3 TABS and 3 VALS
@@ -112,7 +119,7 @@ Changes is in PR #2
 Changes is in [PR #1](https://github.com/helseprofil/orgdata/pull/1)
 
 
-# orgdata 0.0.2 - alpha
+## orgdata 0.0.2 - alpha
 
 Things that are implemented
 
