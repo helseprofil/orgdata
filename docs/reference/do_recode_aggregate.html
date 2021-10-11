@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Recode Category Representing All — do_recode_aggregate • orgdata</title>
+<title>Recode Category Representing All Groups — do_recode_aggregate • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Recode Category Representing All — do_recode_aggregate" />
+<meta property="og:title" content="Recode Category Representing All Groups — do_recode_aggregate" />
 <meta property="og:description" content="Recode the category for all after aggregating data based on the
 specification in Codebook. For example when aggregating category type of diagnoses
 NA will be produced to represent all type of diagnoses. This will basically
@@ -83,7 +83,7 @@ recode NA to a preferred value such as ALL." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -140,7 +140,7 @@ recode NA to a preferred value such as ALL." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Recode Category Representing All</h1>
+    <h1>Recode Category Representing All Groups</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/recode-aggregate.R'><code>R/recode-aggregate.R</code></a></small>
     <div class="hidden name"><code>do_recode_aggregate.Rd</code></div>
     </div>
@@ -154,6 +154,7 @@ recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
 
     <pre class="usage"><span class='fu'>do_recode_aggregate</span><span class='op'>(</span>
   dt <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spec <span class='op'>=</span> <span class='cn'>NULL</span>,
   con <span class='op'>=</span> <span class='cn'>NULL</span>,
   aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
@@ -164,6 +165,10 @@ recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
     <tr>
       <th>dt</th>
       <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
+    </tr>
+    <tr>
+      <th>spec</th>
+      <td><p>Specifications data as a data.frame</p></td>
     </tr>
     <tr>
       <th>con</th>
@@ -180,6 +185,7 @@ Default is <code>TRUE</code>. Global options with <code>orgdata.aggregate</code>
 
     <div class='dont-index'><p>Other recode functions: 
 <code><a href='do_recode.html'>do_recode</a>()</code>,
+<code><a href='get_codebok_aggregate.html'>get_codebok_aggregate</a>()</code>,
 <code><a href='get_codebok.html'>get_codebok</a>()</code></p></div>
 
   </div>

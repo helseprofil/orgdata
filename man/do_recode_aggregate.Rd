@@ -2,16 +2,19 @@
 % Please edit documentation in R/recode-aggregate.R
 \name{do_recode_aggregate}
 \alias{do_recode_aggregate}
-\title{Recode Category Representing All}
+\title{Recode Category Representing All Groups}
 \usage{
 do_recode_aggregate(
   dt = NULL,
+  spec = NULL,
   con = NULL,
   aggregate = getOption("orgdata.aggregate")
 )
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
+
+\item{spec}{Specifications data as a data.frame}
 
 \item{con}{Connection to database}
 
@@ -27,6 +30,7 @@ recode \code{NA} to a preferred value such as \code{ALL}.
 \seealso{
 Other recode functions: 
 \code{\link{do_recode}()},
+\code{\link{get_codebok_aggregate}()},
 \code{\link{get_codebok}()}
 }
 \concept{recode functions}

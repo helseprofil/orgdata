@@ -4,6 +4,7 @@
 #'  `NA` will be produced to represent all type of diagnoses. This will basically
 #'  recode `NA` to a preferred value such as `ALL`.
 #' @inheritParams do_split
+#' @inheritParams find_column_input
 #' @inheritParams find_spec
 #' @inheritParams make_file
 #' @family recode functions

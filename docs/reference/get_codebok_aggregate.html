@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Type of object input — is_input_type • orgdata</title>
+<title>Codebook for Aggregate Columns — get_codebok_aggregate • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,10 @@
 
 
 
-<meta property="og:title" content="Type of object input — is_input_type" />
-<meta property="og:description" content="Convert value to selected type ie. checked with typeof" />
+<meta property="og:title" content="Codebook for Aggregate Columns — get_codebok_aggregate" />
+<meta property="og:description" content="Get the codebook for recoding of aggregated variables based on the
+FILGRUPPE and LESID number. Specification group ALLE will be
+used when neither FILGRUPPE nor LESID is specified." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,26 +139,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Type of object input</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/utils-column.R'><code>R/utils-column.R</code></a></small>
-    <div class="hidden name"><code>is_input_type.Rd</code></div>
+    <h1>Codebook for Aggregate Columns</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/recode-aggregate.R'><code>R/recode-aggregate.R</code></a></small>
+    <div class="hidden name"><code>get_codebok_aggregate.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convert value to selected type ie. checked with <a href='https://rdrr.io/r/base/typeof.html'>typeof</a></p>
+    <p>Get the codebook for recoding of aggregated variables based on the
+<code>FILGRUPPE</code> and <code>LESID</code> number. Specification group <code>ALLE</code> will be
+used when neither <code>FILGRUPPE</code> nor <code>LESID</code> is specified.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_input_type</span><span class='op'>(</span><span class='va'>value</span>, type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"character"</span>, <span class='st'>"double"</span>, <span class='st'>"integer"</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_codebok_aggregate</span><span class='op'>(</span>spec <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>value</th>
-      <td><p>Input value to be converted</p></td>
+      <th>spec</th>
+      <td><p>Specifications data as a data.frame</p></td>
+    </tr>
+    <tr>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other recode functions: 
+<code><a href='do_recode_aggregate.html'>do_recode_aggregate</a>()</code>,
+<code><a href='do_recode.html'>do_recode</a>()</code>,
+<code><a href='get_codebok.html'>get_codebok</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

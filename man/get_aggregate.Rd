@@ -19,7 +19,7 @@ different geographical levels ie. county, manucipality, town etc.
 }
 \seealso{
 Other aggregate functions: 
-\code{\link{do_aggregate_recode}()},
+\code{\link{do_aggregate_recode_standard}()},
 \code{\link{do_aggregate}()}
 }
 \concept{aggregate functions}

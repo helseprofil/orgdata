@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -144,6 +144,10 @@
 <h1 class="page-header" data-toc-text="development version">
 <a href="#orgdata-development-version" class="anchor"></a>orgdata (development version)</h1>
 <p>Things in <code>dev</code> branch</p>
+</div>
+    <div id="orgdata-021" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.1">
+<a href="#orgdata-021" class="anchor"></a>orgdata 0.2.1</h1>
 <ul>
 <li>Recode for aggregated variables uses <code>AG</code> in TYPE column in the codebook.</li>
 <li>Change function name <code>do_aggregate_recode</code> to <code>do_aggregate_recode_standard</code> for standard variables.</li>
@@ -176,9 +180,12 @@
 <li>Add column <code>LEVEL</code> for granularity level ie. grunnkrets, fylke, kommune, bydel etc</li>
 </ul>
 </div>
-    <div id="orgdata-009---alpha" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.9">
-<a href="#orgdata-009---alpha" class="anchor"></a>orgdata 0.0.9 - alpha</h1>
+    <div id="orgdata-000---alpha-versjon" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.0">
+<a href="#orgdata-000---alpha-versjon" class="anchor"></a>orgdata 0.0.0 - alpha versjon</h1>
+<div id="orgdata-009---alpha" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-009---alpha" class="anchor"></a>orgdata 0.0.9 - alpha</h2>
 <ul>
 <li>When MANHEADER is used then the new columname must be specified in the respective standard column (<a href='https://github.com/helseprofil/orgdata/issues/21'>#21</a>)</li>
 <li>Deprecated arguments <code>geo</code> and <code>val</code> in <code>make_file</code>. Output data must use standard columnames instead of keeping the columnames from original dataset.</li>
@@ -186,9 +193,9 @@
 <li>Alle functions uses underscore "_" for both english and norwegian.</li>
 </ul>
 </div>
-    <div id="orgdata-008---alpha" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.8">
-<a href="#orgdata-008---alpha" class="anchor"></a>orgdata 0.0.8 - alpha</h1>
+<div id="orgdata-008---alpha" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-008---alpha" class="anchor"></a>orgdata 0.0.8 - alpha</h2>
 <ul>
 <li>Add new columns if one of the standard columns is missing in the original data. The value to be inserted to the new column must use symbol less than <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;</a></code> and more than <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>. For instance when column <code>KJONN</code> doesn’t exist in the original data, we can specify with <code>&lt;2&gt;</code> in under column <code>KJONN</code> in the Access registration database. The output will add a new column <code>KJONN</code> with value <code>2</code>. (<a href='https://github.com/helseprofil/orgdata/issues/15'>#15</a>)</li>
 <li>Fix <a href='https://github.com/helseprofil/orgdata/issues/13'>#13</a> and <a href='https://github.com/helseprofil/orgdata/issues/18'>#18</a></li>
@@ -196,9 +203,9 @@
 <li>Options for <code>orgdata.implicit.null</code> with default as <code>TRUE</code>. Use <code><a href="https://rdrr.io/r/base/options.html">options(orgdata.implicit.null = FALSE)</a></code> to deactivate (<a href='https://github.com/helseprofil/orgdata/issues/19'>#19</a>)</li>
 </ul>
 </div>
-    <div id="orgdata-007---alpha" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.7">
-<a href="#orgdata-007---alpha" class="anchor"></a>orgdata 0.0.7 - alpha</h1>
+<div id="orgdata-007---alpha" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-007---alpha" class="anchor"></a>orgdata 0.0.7 - alpha</h2>
 <ul>
 <li>Implicit zero (<a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a>). Discussion is in <a href="https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51" title="implicit-null">Gist</a>
 </li>
@@ -208,9 +215,9 @@
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a> and <a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a></p>
 </div>
-    <div id="orgdata-006---alpha" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.6">
-<a href="#orgdata-006---alpha" class="anchor"></a>orgdata 0.0.6 - alpha</h1>
+<div id="orgdata-006---alpha" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-006---alpha" class="anchor"></a>orgdata 0.0.6 - alpha</h2>
 <ul>
 <li>Create GEO code from two separate columns. This has to be defined in Access registration under <code>GEO</code> with comma separated eg. <code>nameGeoCol1, nameGeoCol2</code>.</li>
 <li>Order standard columns in the output dataset with this order for the first four columns:
@@ -226,9 +233,9 @@
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/8'>#8</a></p>
 </div>
-    <div id="orgdata-005---alpha" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.5">
-<a href="#orgdata-005---alpha" class="anchor"></a>orgdata 0.0.5 - alpha</h1>
+<div id="orgdata-005---alpha" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-005---alpha" class="anchor"></a>orgdata 0.0.5 - alpha</h2>
 <ul>
 <li>
 <p>Recode variables from specification in <code>tbl_Kode</code> uses:</p>
@@ -255,9 +262,9 @@
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/4'>#4</a></p>
 </div>
-    <div id="orgdata-004---alpha" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.4">
-<a href="#orgdata-004---alpha" class="anchor"></a>orgdata 0.0.4 - alpha</h1>
+<div id="orgdata-004---alpha" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-004---alpha" class="anchor"></a>orgdata 0.0.4 - alpha</h2>
 <ul>
 <li>MANHEADER and KOLNAVN uses common helper function <code><a href="../reference/is_col_separate.html">is_col_separate()</a></code>
 </li>
@@ -265,9 +272,9 @@
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/2'>#2</a></p>
 </div>
-    <div id="orgdata-003---alpha" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.3">
-<a href="#orgdata-003---alpha" class="anchor"></a>orgdata 0.0.3 - alpha</h1>
+<div id="orgdata-003---alpha" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-003---alpha" class="anchor"></a>orgdata 0.0.3 - alpha</h2>
 <ul>
 <li>LESID is not unique id but a combination of LESID and FILGRUPPE</li>
 <li>Standard columns include 3 TABS and 3 VALS</li>
@@ -275,13 +282,14 @@
 </ul>
 <p>Changes is in <a href="https://github.com/helseprofil/orgdata/pull/1">PR <a href='https://github.com/helseprofil/orgdata/issues/1'>#1</a></a></p>
 </div>
-    <div id="orgdata-002---alpha" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.2">
-<a href="#orgdata-002---alpha" class="anchor"></a>orgdata 0.0.2 - alpha</h1>
+<div id="orgdata-002---alpha" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-002---alpha" class="anchor"></a>orgdata 0.0.2 - alpha</h2>
 <p>Things that are implemented</p>
 <ul>
 <li>Bla.. bla.. bla..</li>
 </ul>
+</div>
 </div>
   </div>
 
