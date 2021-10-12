@@ -11,10 +11,15 @@
 #' @export
 geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo") {
   is_null(year)
-
   is_write_msg(msg = "fetch")
   ## break msg before showing message from cast_geo
   cat("..\n")
+
+  ## if (is.null(table)){
+  ##   yr <- as.integer(format(Sys.Date(), "%Y"))
+  ##   table <- paste0("tblGeo", yr)
+  ## }
+
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoFile)
   on.exit(geo$db_close(), add = TRUE)
@@ -68,7 +73,13 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   on.exit(geo$db_close(), add = TRUE)
 
   cat("..")
-  geo$tblvalue <- norgeo::track_change(type = type, from = from, to = to)
+  if (type == "grunnkrets"){
+    dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
+    geo$tblvalue <- is_unknown_manucipalty(dt = dtGrunn, from = from, to = to)
+  } else                     {
+    geo$tblvalue <- norgeo::track_change(type = type, from = from, to = to)
+  }
+
   geo$tblname <- tblName
 
   write <- is_write(write, tblName, geo$dbconn)
@@ -102,4 +113,19 @@ is_write_msg <- function(msg = c("write", "append", "fetch")){
          append = message("\nStart appending data ..."),
          fetch = cat("\nFetching data ...")
          )
+}
+
+## Ensure that all manucipality have unknown grunnkrets because
+## sometime unknown grunnkrets doesn't exist in API
+is_unknown_manucipalty <- function(dt, from, to){
+  kom <- norgeo::track_change("kommune", from = from, to = to)
+  kom <- kom[!is.na(oldCode)]
+  kom <- kom[, `:=`(oldCode = paste0(oldCode, "9999"),
+                    currentCode = paste0(currentCode, "9999"))]
+
+  codes <- setdiff(kom$oldCode, dt$oldCode)
+  kom <- kom[oldCode %chin% codes, ]
+  kom[, c("oldName", "newName") := "Uoppgitt"]
+
+  data.table::rbindlist(list(dt, kom))
 }
