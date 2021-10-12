@@ -6,7 +6,7 @@ Things in `dev` branch
   *(grunnkrets)* for bydel is `XXXX9999` in function `geo_level()`.
 - Tablename for aggregating geo will be `tblGeoXXXX` where `XXXX` and current year.
 - Add unknown grunnkrets for kommune when not available since some of the
-  datasets have unknown grunnkrets that aren't listed in API downloaded data.
+  datasets have unknown grunnkrets that aren't listed in API downloaded data (#39).
 
 
 # orgdata 0.2.1
