@@ -144,6 +144,11 @@
 <h1 class="page-header" data-toc-text="development version">
 <a href="#orgdata-development-version" class="anchor"></a>orgdata (development version)</h1>
 <p>Things in <code>dev</code> branch</p>
+<ul>
+<li>Unknown bydel ie. <em>(uoppgitt)</em> is added when enumeration areas codes ie. <em>(grunnkrets)</em> for bydel is <code>XXXX9999</code> in function <code><a href="../reference/geo_level.html">geo_level()</a></code>.</li>
+<li>Tablename for aggregating geo will be <code>tblGeoXXXX</code> where <code>XXXX</code> and current year.</li>
+<li>Add unknown grunnkrets for kommune when not available since some of the datasets have unknown grunnkrets that aren’t listed in API downloaded data (<a href='https://github.com/helseprofil/orgdata/issues/39'>#39</a>).</li>
+</ul>
 </div>
     <div id="orgdata-021" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.1">
