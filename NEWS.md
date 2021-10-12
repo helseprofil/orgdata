@@ -2,6 +2,10 @@
 
 Things in `dev` branch
 
+- Unknown bydel ie. *(uoppgitt)* is added when enumeration areas codes ie.
+  *(grunnkrets)* for bydel is `XXXX9999` in function `geo_level()`.
+- Tablename for aggregating geo will be `tblGeoXXXX` where `XXXX` and current year.
+
 
 # orgdata 0.2.1
 
