@@ -74,8 +74,8 @@ is_check_cols <- function(x, y){
   ## y - the existing cols in dt
   cols <- setdiff(x, y)
   if (length(cols) > 0){
-    message("Column names: ", paste_cols(y))
-    message("Access specs: ", paste_cols(x))
+    message(crayon::green("Column names: "), paste_cols(y))
+    message(crayon::green("Access specs: "), paste_cols(x))
     is_stop("Column name(s) in Access specs are different than in the dataset!")
   }
 }

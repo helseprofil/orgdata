@@ -74,6 +74,7 @@ make_file <- function(group = NULL,
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
+    is_verbose(msg = "-------------------------", type = "others")
     is_verbose(fileSpec$KOBLID, "Koblid:")
 
     dt <- is_org_process(

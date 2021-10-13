@@ -100,7 +100,8 @@ is_logical <- function(x) {
 }
 
 
-is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning")) {
+
+is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning", "others")) {
   ## x - Arg or object to show in the message
   type <- match.arg(type)
 
@@ -112,8 +113,9 @@ is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning")) {
 
   if (getOption("orgdata.verbose")) {
     switch(type,
-           message = message(msg, " ", x),
-           warning = warning(msg, " ", x)
+           message = message(crayon::blue(msg), " ", x),
+           warning = warning(msg, " ", x),
+           others = message(crayon::yellow(msg))
            )
   }
 }
@@ -121,7 +123,7 @@ is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning")) {
 is_debug <- function() {
   if (getOption("orgdata.debug")) {
     fnc <- sys.calls()[[sys.nframe() - 1]][1]
-    message("Execute:  ", deparse(fnc))
+    message(crayon::green("Execute:  "), deparse(fnc))
   }
 }
 
