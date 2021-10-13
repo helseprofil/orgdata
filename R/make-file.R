@@ -23,6 +23,7 @@
 #'   with `orgdata.implicit.null`.
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
+#' @importFrom crayon `%+%`
 #' @export
 make_file <- function(group = NULL,
                       koblid = NULL,
@@ -63,7 +64,7 @@ make_file <- function(group = NULL,
   ## SELECT FILES ------------------------------------------
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
-  message(group, " has ", rowFile, " file(s) to be processed...")
+  message(crayon::blue(group, " has ", rowFile, " file(s) to be processed..."))
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
