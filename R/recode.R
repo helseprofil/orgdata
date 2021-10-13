@@ -109,6 +109,7 @@ is_recode <- function(dt, code, cols){
     dt <- is_NA(dt = dt, code = sp, col = col)
     sp[, KOL := NULL]
     data.table::setnames(sp, names(sp), c(col, "to"))
+    dt[, (col) := as.character(get(col))]
     dt[sp, on = col, (col) := i.to]
   }
   invisible(dt)
