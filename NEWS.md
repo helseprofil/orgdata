@@ -2,6 +2,9 @@
 
 Things in `dev` branch
 
+# orgdata 0.2.3
+- Request (#43) messages with specific colour
+
 # orgdata 0.2.2
 
 - Unknown bydel ie. *(uoppgitt)* is added when enumeration areas codes ie.
