@@ -7,7 +7,7 @@ Things in `dev` branch
 - Tablename for aggregating geo will be `tblGeoXXXX` where `XXXX` and current year.
 - Add unknown grunnkrets for kommune when not available since some of the
   datasets have unknown grunnkrets that aren't listed in API downloaded data (#39).
-- Exclude `TAB1`, `TAB2` and `TAB3` from being aggregated. 
+- Exclude `TAB1`, `TAB2` and `TAB3` from being aggregated. (#44) 
 
 # orgdata 0.2.2
 
