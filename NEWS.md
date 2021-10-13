@@ -2,6 +2,8 @@
 
 Things in `dev` branch
 
+# orgdata 0.2.2
+
 - Unknown bydel ie. *(uoppgitt)* is added when enumeration areas codes ie.
   *(grunnkrets)* for bydel is `XXXX9999` in function `geo_level()`.
 - Tablename for aggregating geo will be `tblGeoXXXX` where `XXXX` and current year.
@@ -9,7 +11,7 @@ Things in `dev` branch
   datasets have unknown grunnkrets that aren't listed in API downloaded data (#39).
 - Exclude `TAB1`, `TAB2` and `TAB3` from being aggregated. (#44) 
 
-# orgdata 0.2.2
+# orgdata 0.2.1
 
 - Recode for aggregated variables uses `AG` in TYPE column in the codebook
   instead of FILGRUPPE with `AGGREGATE` as it was implemented in ver 0.2.0. This
