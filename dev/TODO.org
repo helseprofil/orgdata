@@ -106,7 +106,7 @@ Create category that are missing due to NULL based on the standard categories of
 *** DONE Recode for aggregate
 - Find option to recode total after aggregate a column
 - Could use Recode with specific FILGRUPPE name eg. AGGREGATE
-*** TODO Unspecified /(Uoppgitt)/ bydel
+*** DONE Unspecified /(Uoppgitt)/ bydel
 - How to aggregate bydel for those that are /uoppgitt/ from =norgeo::get_code("bydel")=
 - Options is to aggregate bydel for only those that can be map from grunnkrets
   to bydel since grunnkrets to bydel isn't a direct 8 digits to 6 digits.
@@ -130,12 +130,12 @@ Create category that are missing due to NULL based on the standard categories of
 *** DONE Recode for aggregate
 - Use TYPE column with code =AG=
 - Update exsiting code using FILGRUPPE with code =AGGREGATE=
-*** TODO Uoppgitt bydel for 2021 og 2020
+*** DONE Uoppgitt bydel for 2021 og 2020
 - Bruk fire uoppgitt bydeler
-*** TODO Change name for FILGRUPPE
-- Able to edit FILGRUPPE name once for all
-*** TODO Recode with string
+*** NEXT Recode with string
 - Able to recode from int to string
+*** START Aggregate bydel NA
+- Some bydel has NA when aggregated
 
 ** Access DB
 *** DONE Warning duplicate filename
@@ -160,3 +160,5 @@ Should be a table with files id and dates can be deactivated at once. Steps:
 - RESHAPEVAR
 - RESHAPENOT
 - KASTKOL
+*** TODO Change name for FILGRUPPE
+- Able to edit FILGRUPPE name once for all
