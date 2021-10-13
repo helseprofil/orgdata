@@ -13,7 +13,7 @@
 #' @export
 do_implicit_null <- function(dt){
   is_debug()
-  is_verbose("Checking for implicit null ...")
+  is_verbose(msg = "Checking for implicit null ...")
 
   ignoreCols <- c("GEO", "AAR", "VAL1")
   dtCols <- names(dt)
