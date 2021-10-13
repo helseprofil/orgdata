@@ -1,13 +1,17 @@
 #' @title Aggregate Data
-#' @description Aggregate data according to the specification in `tbl_Filgruppe`.
+#' @description Aggregate data according to the specification in `tbl_Filgruppe`
+#'   in `AGGREGERE` column. The input in argument `source` must be a lower granularity
+#'   level than the `level` input.
 #' @inheritParams do_split
-#' @param source What geographical granularity code that is available in the source data.
-#'    This will be used for merging with the output from `do_norgeo()`
-#' @param level Geographical granularity for aggregating data.
-#' @param year Which year the georaphical code is valid for. If not specified, then
-#'   it will be base on the year in source data ie. column `AAR`
-#' @param check If TRUE then output will not be aggregated. This is useful to check
-#'   for geographical codes that are missing. Else use `options(orgdata.aggregate = FALSE)`
+#' @param source What geographical granularity codes that is available in the
+#'   source data. This will be used for merging with the output from
+#'   `geo_level()`
+#' @param level Geographical granularity for aggregating data to.
+#' @param year Which year the georaphical code is valid for. If not specified,
+#'   then it will be base on the year in source data ie. column `AAR`
+#' @param check If TRUE then output will not be aggregated. This is useful to
+#'   check for geographical codes that are missing. Else use
+#'   `options(orgdata.aggregate = FALSE)`
 #' @examples
 #' \dontrun{
 #' # To aggregate source data with enumeration area codes ie. grunnkrets, to
@@ -32,9 +36,9 @@ do_aggregate <- function(dt = NULL,
                            "bydel"
                          ),
                          year = NULL,
-                         check = FALSE) {
+                         check = getOption("orgdata.debug.aggregate")) {
 
-  VAL1 <- GEO <- AAR <- fylke <- kommune <- LEVEL <- NULL
+  VAL1 <- GEO <- AAR <- fylke <- kommune <- bydel <- LEVEL <- NULL
 
   is_debug()
   is_null(dt)
@@ -95,7 +99,14 @@ do_aggregate <- function(dt = NULL,
   }
 
   dt[is.na(kommune), kommune := as.integer(gsub("\\d{4}$", "", GEO))]
-  dt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))]
+
+  if (level == "fylke"){
+    dt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))]
+  }
+
+  if (level == "bydel"){
+    dt <- dt[!is.na(bydel)]
+  }
 
   xCols <- is_set_list(
     level = level,
@@ -185,17 +196,11 @@ is_aggregate_recode <- function(dt, cols, to){
 is_set_list <- function(level, srcCols) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
-  cols <- is.element(c("KJONN", "ALDER"), srcCols)
 
-  vars <- c("KJONN", "ALDER")
-  vars2 <- c(level, "AAR")
-  vars3 <- c(vars2, vars)
-
-  if (sum(cols) == 2) {
-    list(vars3, srcCols)
-  } else {
-    list(vars2, srcCols)
-  }
+  ## Dont aggregate these columns
+  aggNot <- c(level, "AAR", "KJONN", "ALDER", "TAB1", "TAB2", "TAB3")
+  vars <- intersect(aggNot, srcCols)
+  list(vars, srcCols)
 }
 
 is_match_arg <- function(arg){

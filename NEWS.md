@@ -7,9 +7,9 @@ Things in `dev` branch
 - Tablename for aggregating geo will be `tblGeoXXXX` where `XXXX` and current year.
 - Add unknown grunnkrets for kommune when not available since some of the
   datasets have unknown grunnkrets that aren't listed in API downloaded data (#39).
+- Exclude `TAB1`, `TAB2` and `TAB3` from being aggregated. 
 
-
-# orgdata 0.2.1
+# orgdata 0.2.2
 
 - Recode for aggregated variables uses `AG` in TYPE column in the codebook
   instead of FILGRUPPE with `AGGREGATE` as it was implemented in ver 0.2.0. This

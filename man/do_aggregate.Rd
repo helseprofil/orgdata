@@ -9,25 +9,29 @@ do_aggregate(
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
   level = c("grunnkrets", "fylke", "kommune", "bydel"),
   year = NULL,
-  check = FALSE
+  check = getOption("orgdata.debug.aggregate")
 )
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
-\item{source}{What geographical granularity code that is available in the source data.
-This will be used for merging with the output from \code{do_norgeo()}}
+\item{source}{What geographical granularity codes that is available in the
+source data. This will be used for merging with the output from
+\code{geo_level()}}
 
-\item{level}{Geographical granularity for aggregating data.}
+\item{level}{Geographical granularity for aggregating data to.}
 
-\item{year}{Which year the georaphical code is valid for. If not specified, then
-it will be base on the year in source data ie. column \code{AAR}}
+\item{year}{Which year the georaphical code is valid for. If not specified,
+then it will be base on the year in source data ie. column \code{AAR}}
 
-\item{check}{If TRUE then output will not be aggregated. This is useful to check
-for geographical codes that are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
+\item{check}{If TRUE then output will not be aggregated. This is useful to
+check for geographical codes that are missing. Else use
+\code{options(orgdata.aggregate = FALSE)}}
 }
 \description{
-Aggregate data according to the specification in \code{tbl_Filgruppe}.
+Aggregate data according to the specification in \code{tbl_Filgruppe}
+in \code{AGGREGERE} column. The input in argument \code{source} must be a lower granularity
+level than the \code{level} input.
 }
 \examples{
 \dontrun{

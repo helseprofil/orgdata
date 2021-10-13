@@ -47,7 +47,9 @@
 
 
 <meta property="og:title" content="Aggregate Data — do_aggregate" />
-<meta property="og:description" content="Aggregate data according to the specification in tbl_Filgruppe." />
+<meta property="og:description" content="Aggregate data according to the specification in tbl_Filgruppe
+in AGGREGERE column. The input in argument source must be a lower granularity
+level than the level input." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -80,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -143,7 +145,9 @@
     </div>
 
     <div class="ref-description">
-    <p>Aggregate data according to the specification in <code>tbl_Filgruppe</code>.</p>
+    <p>Aggregate data according to the specification in <code>tbl_Filgruppe</code>
+in <code>AGGREGERE</code> column. The input in argument <code>source</code> must be a lower granularity
+level than the <code>level</code> input.</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_aggregate</span><span class='op'>(</span>
@@ -151,7 +155,7 @@
   source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
   level <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  check <span class='op'>=</span> <span class='cn'>FALSE</span>
+  check <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.aggregate"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -163,22 +167,24 @@
     </tr>
     <tr>
       <th>source</th>
-      <td><p>What geographical granularity code that is available in the source data.
-This will be used for merging with the output from <code>do_norgeo()</code></p></td>
+      <td><p>What geographical granularity codes that is available in the
+source data. This will be used for merging with the output from
+<code><a href='geo_level.html'>geo_level()</a></code></p></td>
     </tr>
     <tr>
       <th>level</th>
-      <td><p>Geographical granularity for aggregating data.</p></td>
+      <td><p>Geographical granularity for aggregating data to.</p></td>
     </tr>
     <tr>
       <th>year</th>
-      <td><p>Which year the georaphical code is valid for. If not specified, then
-it will be base on the year in source data ie. column <code>AAR</code></p></td>
+      <td><p>Which year the georaphical code is valid for. If not specified,
+then it will be base on the year in source data ie. column <code>AAR</code></p></td>
     </tr>
     <tr>
       <th>check</th>
-      <td><p>If TRUE then output will not be aggregated. This is useful to check
-for geographical codes that are missing. Else use <code><a href='https://rdrr.io/r/base/options.html'>options(orgdata.aggregate = FALSE)</a></code></p></td>
+      <td><p>If TRUE then output will not be aggregated. This is useful to
+check for geographical codes that are missing. Else use
+<code><a href='https://rdrr.io/r/base/options.html'>options(orgdata.aggregate = FALSE)</a></code></p></td>
     </tr>
     </table>
 

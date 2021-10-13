@@ -27,7 +27,8 @@ opt.orgdata <- list(
 
   ## Use for debuging purposes only
   orgdata.debug = FALSE,
-  orgdata.debug.nrow = FALSE  #First 20 rows only if TRUE
+  orgdata.debug.nrow = 0,  #If other than 0 then x rows will be selected
+  orgdata.debug.aggregate = FALSE #Recode but don't aggregate if TRUE
 )
 
 .onLoad <- function(libname, pkgname) {
@@ -38,5 +39,5 @@ opt.orgdata <- list(
 }
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("orgdata version 0.2.1")
+  packageStartupMessage("orgdata version 0.2.2")
 }
