@@ -38,7 +38,7 @@ do_aggregate <- function(dt = NULL,
                          year = NULL,
                          check = getOption("orgdata.debug.aggregate")) {
 
-  VAL1 <- GEO <- AAR <- fylke <- kommune <- LEVEL <- NULL
+  VAL1 <- GEO <- AAR <- fylke <- kommune <- bydel <- LEVEL <- NULL
 
   is_debug()
   is_null(dt)
