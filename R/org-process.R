@@ -77,8 +77,8 @@ is_geo_split <- function(geo, dots){
 }
 
 is_read_file <- function(file, debug = getOption("orgdata.debug.nrow")){
-  if (debug) {
-    dt <- read_file(file = file, nrows = 20)
+  if (debug > 0) {
+    dt <- read_file(file = file, nrows = debug)
   } else {
     dt <- read_file(file = file)
   }
@@ -86,8 +86,8 @@ is_read_file <- function(file, debug = getOption("orgdata.debug.nrow")){
 }
 
 is_read_file_dots <- function(file, dots, debug = getOption("orgdata.debug.nrow")){
-  if (debug){
-    dots$nrows <- 20
+  if (debug > 0){
+    dots$nrows <- debug
     dt <- read_file(file = file, dots)
   } else {
     dt <- read_file(file = file, dots)

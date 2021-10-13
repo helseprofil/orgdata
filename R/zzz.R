@@ -27,7 +27,8 @@ opt.orgdata <- list(
 
   ## Use for debuging purposes only
   orgdata.debug = FALSE,
-  orgdata.debug.nrow = FALSE  #First 20 rows only if TRUE
+  orgdata.debug.nrow = 0,  #If other than 0 then x rows will be selected
+  orgdata.debug.aggregate = FALSE #Recode but don't aggregate if TRUE
 )
 
 .onLoad <- function(libname, pkgname) {
