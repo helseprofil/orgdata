@@ -118,6 +118,8 @@ is_write_msg <- function(msg = c("write", "append", "fetch")){
 ## Ensure that all manucipality have unknown grunnkrets because
 ## sometime unknown grunnkrets doesn't exist in API
 is_unknown_manucipalty <- function(dt, from, to){
+  oldCode <- currentCode <- NULL
+
   kom <- norgeo::track_change("kommune", from = from, to = to)
   kom <- kom[!is.na(oldCode)]
   kom <- kom[, `:=`(oldCode = paste0(oldCode, "9999"),

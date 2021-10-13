@@ -3,6 +3,7 @@ devtools::load_all()
 devtools::test()
 ## devtools::check(vignettes = FALSE)
 roxygen2::roxygenise(clean = TRUE)
+Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0) #avoid to verify file timestamp when check()
 devtools::check()
 devtools::document()
 
