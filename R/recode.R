@@ -100,6 +100,7 @@ is_recode_all <- function(dt, code, aggregate.msg = FALSE){
 
 
 ## Recode variable 1-to-1
+## Ensure column is string before recode
 is_recode <- function(dt, code, cols){
   i.to <- KOL <- NULL
 
