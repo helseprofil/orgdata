@@ -102,8 +102,7 @@ is_logical <- function(x) {
 
 
 is_verbose <- function(x = NULL, msg = NULL,
-                       type = c("note", "warn",
-                                "error", "other")) {
+                       type = c("note", "warn", "error", "other", "debug")) {
   ## x - Arg or object to show in the message
   type <- match.arg(type)
 
