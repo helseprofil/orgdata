@@ -89,7 +89,7 @@ do_aggregate <- function(dt = NULL,
     dt[, GEO := as.integer(GEO)]
   }
 
-  ## is_verbose("Merging geo codes...", type = "message")
+  ## is_verbose("Merging geo codes...", type = "note")
   dt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
 
   ## Breakpoint here to check the missing GEO when merging

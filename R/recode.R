@@ -100,6 +100,7 @@ is_recode_all <- function(dt, code, aggregate.msg = FALSE){
 
 
 ## Recode variable 1-to-1
+## Ensure column is string before recode
 is_recode <- function(dt, code, cols){
   i.to <- KOL <- NULL
 
@@ -109,6 +110,7 @@ is_recode <- function(dt, code, cols){
     dt <- is_NA(dt = dt, code = sp, col = col)
     sp[, KOL := NULL]
     data.table::setnames(sp, names(sp), c(col, "to"))
+    dt[, (col) := as.character(get(col))]
     dt[sp, on = col, (col) := i.to]
   }
   invisible(dt)

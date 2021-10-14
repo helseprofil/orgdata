@@ -23,6 +23,7 @@
 #'   with `orgdata.implicit.null`.
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
+#' @importFrom crayon `%+%`
 #' @export
 make_file <- function(group = NULL,
                       koblid = NULL,
@@ -63,7 +64,8 @@ make_file <- function(group = NULL,
   ## SELECT FILES ------------------------------------------
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
-  message(group, " has ", rowFile, " file(s) to be processed...")
+  grpMsg <- paste0("File(s) to be processed in ", group, ":")
+  is_colour(x = rowFile, grpMsg, type = "note")
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
@@ -74,7 +76,7 @@ make_file <- function(group = NULL,
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
-    is_verbose(msg = "-------------------------", type = "others")
+    is_verbose(msg = "----------------------------------", type = "other")
     is_verbose(fileSpec$KOBLID, "Koblid:")
 
     dt <- is_org_process(
@@ -93,10 +95,10 @@ make_file <- function(group = NULL,
     }
 
     if (length(deleteVar) != 0) {
-      msgWarn <- "OBS! Some columns aren't defined in FILGRUPPE. They are now deleted"
-      is_verbose(x = msgWarn, type = "warning")
+      msgWarn <- "Some columns aren't defined in FILGRUPPE. They are now deleted!"
+      is_verbose(x = msgWarn, type = "warn")
       deleteVar <- paste(deleteVar, collapse = ", ")
-      is_verbose(deleteVar, "Deleted column(s):", type = "message")
+      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "note")
     }
 
     ## TODO - Not sure if this necessary

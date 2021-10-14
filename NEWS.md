@@ -4,6 +4,7 @@ Things in `dev` branch
 
 # orgdata 0.2.3
 - Request (#43) messages with specific colour
+- Fix (#46) recode to string even though columns is type integer or numeric.
 
 # orgdata 0.2.2
 

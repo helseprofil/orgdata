@@ -132,9 +132,9 @@ Create category that are missing due to NULL based on the standard categories of
 - Update exsiting code using FILGRUPPE with code =AGGREGATE=
 *** DONE Uoppgitt bydel for 2021 og 2020
 - Bruk fire uoppgitt bydeler
-*** NEXT Recode with string
+*** START Recode with string
 - Able to recode from int to string
-*** START Aggregate bydel NA
+*** DONE Aggregate bydel NA
 - Some bydel has NA when aggregated
 
 ** Access DB
