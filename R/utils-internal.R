@@ -101,7 +101,9 @@ is_logical <- function(x) {
 
 
 
-is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning", "others")) {
+is_verbose <- function(x = NULL, msg = NULL,
+                       type = c("note", "warn",
+                                "error", "other")) {
   ## x - Arg or object to show in the message
   type <- match.arg(type)
 
@@ -112,18 +114,16 @@ is_verbose <- function(x = NULL, msg = NULL, type = c("message", "warning", "oth
   }
 
   if (getOption("orgdata.verbose")) {
-    switch(type,
-           message = message(crayon::blue(msg), " ", x),
-           warning = warning(msg, " ", x),
-           others = message(crayon::yellow(msg))
-           )
+    is_colour(x = x, msg = msg, type = type)
   }
 }
+
 
 is_debug <- function() {
   if (getOption("orgdata.debug")) {
     fnc <- sys.calls()[[sys.nframe() - 1]][1]
-    message(crayon::green("Execute:  "), deparse(fnc))
+    is_colour(x = deparse(fnc), msg = "Execute:", type = "debug")
+    ## cat(note(paste0("Execute:  ", deparse(fnc))))
   }
 }
 
@@ -140,4 +140,23 @@ is_stop <- function(msg, var = NULL){
 ## to be nicely displayed in a message
 paste_cols <- function(cols){
   paste0('"', paste(cols, collapse = '", "'), '"')
+}
+
+## Display message with selected colours
+is_colour <- function(x, msg, type = c("note", "warn", "error", "other", "debug")){
+  ## msg - Message to display
+  ## x - Object to display in the message
+  noteClr <- crayon::green
+  warnClr <- crayon::magenta
+  errorClr <- crayon::red
+  otherClr <- crayon::blue
+  debugClr <- crayon::silver
+
+  switch(type,
+         note = cat(noteClr(paste0(msg, " ", crayon::blue(x), "\n"))),
+         warn = cat(warnClr(paste0("Warning: ", msg, " ", x, "\n"))),
+         error = cat(errorClr(paste0(msg, " ", x, "\n"))),
+         other = cat(otherClr(paste0(msg, "\n"))),
+         debug = cat(debugClr(paste0(msg, " ", crayon::green(x), "\n"))))
+
 }

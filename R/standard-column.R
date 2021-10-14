@@ -74,14 +74,12 @@ is_check_cols <- function(x, y){
   ## y - the existing cols in dt
   cols <- setdiff(x, y)
   if (length(cols) > 0){
-    message(crayon::green("Column names: "), paste_cols(y))
-    message(crayon::green("Access specs: "), paste_cols(x))
+    ## message(crayon::green("Column names: "), paste_cols(y))
+    ## message(crayon::green("Access specs: "), paste_cols(x))
+    is_colour(x = paste_cols(y), msg = "Column names:", type = "note")
+    is_colour(x = paste_cols(x), msg = "Access specs:", type = "note")
     is_stop("Column name(s) in Access specs are different than in the dataset!")
   }
-}
-
-paste_cols <- function(cols){
-  paste0('"', paste(cols, collapse = '", "'), '"')
 }
 
 ## TODO How to implement MANHEADER
