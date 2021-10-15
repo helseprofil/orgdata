@@ -49,6 +49,13 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
     vars <- vars[vars != "GEO"]
   }
 
+  ## When RESHAPE_KOL exists, exclude TAB1 and VAL1
+  ## get which columns are defined since it can be few VAL
+  reshcol <- is.na(spec$RESHAPE_KOL)
+  if (isFALSE(reshcol)){
+    vars <- is_reshape_col(vars, spec)
+  }
+
   for (i in seq_along(vars)) {
     input <- is_column_na(spec, vars[i])
     assign(input[["col"]], input)
@@ -64,7 +71,7 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
 ## Change dummy input to NA for easy selection
 is_column_na <- function(spec, col) {
   input <- find_column_input(spec, col)
-  dummy <- is_dummy(input)
+  dummy <- is_col_dummy(input)
   if (dummy) input <- NA
   list(col = col, input = input)
 }
@@ -82,4 +89,22 @@ is_check_cols <- function(x, y){
   }
 }
 
-## TODO How to implement MANHEADER
+## Find RESHAPE_KOL to exclude from standard
+is_reshape_col <- function(vars, spec){
+  ## vars - standard variables or columnames
+  reshVars <- is_col_separate(spec$RESHAPE_KOL)$old
+
+  reshCols <- c("TAB1", paste0("VAL", 1:3))
+  reshNo <- setdiff(reshVars, reshCols)
+  if (length(reshNo) != 0){
+    is_stop("Check RESHAPE_KOL with variable:  ", reshNo)
+  }
+
+  rsh <- intersect(reshVars, vars)
+  if (length(rsh) > 0){
+    ## varx <- intersect(reshVars, vars)
+    vars <- setdiff(vars, reshVars)
+  }
+
+  return(vars)
+}
