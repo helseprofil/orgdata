@@ -68,7 +68,7 @@ usethis::use_r("r6-db-connect.R")
 
 
 ## Testing -------------------------------
-                                        # usethis::use_testthat()
+## usethis::use_testthat()
 usethis::use_test("specification")
 usethis::use_test("check")
 
@@ -89,10 +89,10 @@ usethis::use_package("readxl")
 usethis::use_package("norgeo")
 
 
-                                        # Run to build the website ----------------------------------
-                                        # Install development version from GitHub
-                                        # devtools::install_github("r-lib/pkgdown")
-                                        # usethis::use_pkgdown() # use only once to configure package to use pkgdown
+## Run to build the website ----------------------------------
+## Install development version from GitHub
+## devtools::install_github("r-lib/pkgdown")
+## usethis::use_pkgdown() # use only once to configure package to use pkgdown
 pkgdown::build_site()
 pkgdown::preview_site()
 pkgdown::build_news()

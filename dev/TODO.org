@@ -90,7 +90,7 @@ Create category that are missing due to NULL based on the standard categories of
 - eg. Column for gender isn't available but the whole dataset is for women ie.
   code =2=. In Access you can specific under =KJONN= with ~<2>~ indicating that
   standard column for =KJONN= should be created and the value is =2=.
-*** TODO Compute variables
+*** START Compute variables
 - Create a new categories in an existing column or a new columns consiting of a
   new categories from selected column.
 - eg. Education has categories 1 to 5, and a new group consiting 1 and 2 is
@@ -132,7 +132,7 @@ Create category that are missing due to NULL based on the standard categories of
 - Update exsiting code using FILGRUPPE with code =AGGREGATE=
 *** DONE Uoppgitt bydel for 2021 og 2020
 - Bruk fire uoppgitt bydeler
-*** START Recode with string
+*** DONE Recode with string
 - Able to recode from int to string
 *** DONE Aggregate bydel NA
 - Some bydel has NA when aggregated
@@ -160,5 +160,5 @@ Should be a table with files id and dates can be deactivated at once. Steps:
 - RESHAPEVAR
 - RESHAPENOT
 - KASTKOL
-*** TODO Change name for FILGRUPPE
+*** DONE Change name for FILGRUPPE
 - Able to edit FILGRUPPE name once for all
