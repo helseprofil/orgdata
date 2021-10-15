@@ -51,17 +51,19 @@
 For example where the orginal data is and how the data will be restructured
 and aggregated.. etc.. etc.. The specifications are registered in
 the following tables:
-tbl_Filgruppe
-tbl_Koble
-tbl_Orgfile
-tbl_Innlesing
+ tbl_Filgruppe  - File group specification for the output
+ tbl_Orgfile  - The original files
+ tbl_Innlesing  - How the file will be read into R
+ tbl_Koble  - Connection for original files to the file groups and how these will be read
+ tbl_Kode  - Code book to recode any value
+ tbl_Compute  - Code book to create a new category from the existing categories
 
 
-SQL file must be written with base::sprintf style ie. '%s','%d' etc.
-Please refer to base::sprintf documentation. In addition, SQL code must not contain comments.
-Example of SQL code with '%s':
-SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'
-Which is saved in C:/myfile.sql and run as in the code example." />
+SQL file must be written with base::sprintf style ie.
+'%s','%d' etc. Please refer to base::sprintf documentation.
+In addition, SQL code must not contain comments. Example of SQL code with
+'%s': SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s' Which is
+saved in C:/myfile.sql and run as in the code example." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -94,7 +96,7 @@ Which is saved in C:/myfile.sql and run as in the code example." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -161,17 +163,19 @@ Which is saved in C:/myfile.sql and run as in the code example." />
 For example where the orginal data is and how the data will be restructured
 and aggregated.. etc.. etc.. The specifications are registered in
 the following tables:</p><ol>
-<li><p>tbl_Filgruppe</p></li>
-<li><p>tbl_Koble</p></li>
-<li><p>tbl_Orgfile</p></li>
-<li><p>tbl_Innlesing</p></li>
+<li><p><strong> tbl_Filgruppe </strong> - File group specification for the output</p></li>
+<li><p><strong> tbl_Orgfile </strong> - The original files</p></li>
+<li><p><strong> tbl_Innlesing </strong> - How the file will be read into R</p></li>
+<li><p><strong> tbl_Koble </strong> - Connection for original files to the file groups and how these will be read</p></li>
+<li><p><strong> tbl_Kode </strong> - Code book to recode any value</p></li>
+<li><p><strong> tbl_Compute </strong> - Code book to create a new category from the existing categories</p></li>
 </ol>
 
-<p>SQL file must be written with <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> style ie. <code>'%s','%d'</code> etc.
-Please refer to <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> documentation. In addition, SQL code must not contain comments.
-Example of SQL code with <code>'%s'</code>:
-<code>SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'</code>
-Which is saved in <code>C:/myfile.sql</code> and run as in the code example.</p>
+<p>SQL file must be written with <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> style ie.
+<code>'%s','%d'</code> etc. Please refer to <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> documentation.
+In addition, SQL code must not contain comments. Example of SQL code with
+<code>'%s'</code>: <code>SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'</code> Which is
+saved in <code>C:/myfile.sql</code> and run as in the code example.</p>
     </div>
 
     <pre class="usage"><span class='fu'>find_spec</span><span class='op'>(</span>
@@ -180,16 +184,7 @@ Which is saved in <code>C:/myfile.sql</code> and run as in the code example.</p>
   con <span class='op'>=</span> <span class='cn'>NULL</span>,
   external <span class='op'>=</span> <span class='cn'>FALSE</span>,
   char <span class='op'>=</span> <span class='cn'>NULL</span>,
-  num <span class='op'>=</span> <span class='cn'>NULL</span>,
-  opposite <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span>
-
-<span class='fu'>find_query</span><span class='op'>(</span>
-  file <span class='op'>=</span> <span class='cn'>NULL</span>,
-  value <span class='op'>=</span> <span class='cn'>NULL</span>,
-  external <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  char <span class='op'>=</span> <span class='cn'>NULL</span>,
-  num <span class='op'>=</span> <span class='cn'>NULL</span>,
+  char2 <span class='op'>=</span> <span class='cn'>NULL</span>,
   opposite <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
@@ -198,12 +193,13 @@ Which is saved in <code>C:/myfile.sql</code> and run as in the code example.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file</th>
-      <td><p>SQL file. If external is TRUE then complete filepath must be specified.</p></td>
+      <td><p>SQL file. If external is TRUE then complete filepath must be
+specified.</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>The value for selection in SQL code with <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code> style.
-For example the name of a <em>filgruppe</em>.</p></td>
+      <td><p>The value for selection in SQL code with <code><a href='https://rdrr.io/r/base/sprintf.html'>base::sprintf</a></code>
+style. For example the name of a <em>filgruppe</em>.</p></td>
     </tr>
     <tr>
       <th>con</th>
@@ -211,19 +207,20 @@ For example the name of a <em>filgruppe</em>.</p></td>
     </tr>
     <tr>
       <th>external</th>
-      <td><p>If the SQL file is outside of the package. Default is <code>FALSE</code>.</p></td>
+      <td><p>If the SQL file is outside of the package. Default is
+<code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>char</th>
-      <td><p>Which value are character</p></td>
+      <td><p>First input value to be added in the query</p></td>
     </tr>
     <tr>
-      <th>num</th>
-      <td><p>Which value are numeric</p></td>
+      <th>char2</th>
+      <td><p>Second input value to be added in the query</p></td>
     </tr>
     <tr>
       <th>opposite</th>
-      <td><p>TRUE if numeric value will be read before character</p></td>
+      <td><p>TRUE if second input value will be read before first input value</p></td>
     </tr>
     </table>
 
@@ -233,8 +230,8 @@ For example the name of a <em>filgruppe</em>.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>qr</span> <span class='op'>&lt;-</span> <span class='fu'>find_query</span><span class='op'>(</span><span class='st'>"C:/myfile.sql"</span>, value <span class='op'>=</span> <span class='st'>"BEFOLKNING"</span>, external <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>qr2</span> <span class='op'>&lt;-</span> <span class='fu'>find_query</span><span class='op'>(</span><span class='st'>"your.sql"</span>, char <span class='op'>=</span> <span class='st'>"BEFOLKNING"</span>, num <span class='op'>=</span> <span class='fl'>14</span><span class='op'>)</span>
+<span class='va'>qr</span> <span class='op'>&lt;-</span> <span class='fu'>find_spec</span><span class='op'>(</span><span class='st'>"C:/myfile.sql"</span>, value <span class='op'>=</span> <span class='st'>"BEFOLKNING"</span>, con <span class='op'>=</span> <span class='va'>dbconn</span>, external <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>qr2</span> <span class='op'>&lt;-</span> <span class='fu'>find_spec</span><span class='op'>(</span><span class='st'>"your.sql"</span>, con <span class='op'>=</span> <span class='va'>dbconn</span>, char <span class='op'>=</span> <span class='st'>"BEFOLKNING"</span>, char2 <span class='op'>=</span> <span class='fl'>14</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

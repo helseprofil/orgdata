@@ -2,6 +2,11 @@
 
 Things in `dev` branch
 
+- Compute function to create a new category based on the existing categories eg.
+  UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
+  ie. group 5.
+
+
 # orgdata 0.2.3
 - Request (#43) messages with specific colour
 - Fix (#46) recode to string even though columns is type integer or numeric.
