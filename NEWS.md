@@ -6,6 +6,10 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.2.4
+- Change argument parameter for `find_spec()` function.
+- Update text document in several places.
+- Add colour type *warn2* for warning message without `Warning:` prefix.
 
 # orgdata 0.2.3
 - Request (#43) messages with specific colour
