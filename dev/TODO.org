@@ -98,6 +98,10 @@ Create category that are missing due to NULL based on the standard categories of
   ~DT[edu %in% 1:2, edu := 6]~
 - New column can also be created if needed. In Access specify ~NYKOL=JA~ and the
   code will be ~DT[, edu2 := edu ][edu %in% 1:2, edu2 := 6]~
+*** TODO Compute new column
+- When new column will be created, need parameter to specify the new columname
+- How this new columname will be handles as compared to standard columns. The
+  same issues with reshape.
 *** TODO Replace =get= and =mget=
 - For global variable that uses =get= and =mget= should use standard data.table
   =env= to define global variables.
