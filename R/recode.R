@@ -32,7 +32,7 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
 get_codebok <- function(spec = NULL, con = NULL){
   grp <- spec$FILGRUPPE
   lesid <- spec$LESID
-  speCode <- find_spec("recode.sql", con = con, char = grp, num = lesid)
+  speCode <- find_spec("recode.sql", con = con, char = grp, char2 = lesid)
   is_codebook(cb = speCode)
 }
 

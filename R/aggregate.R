@@ -72,7 +72,7 @@ do_aggregate <- function(dt = NULL,
     "geo-code.sql",
     con = geoDB$dbconn,
     char = source,
-    num = yr,
+    char2 = yr,
     opposite = TRUE
   )
   data.table::setDT(geoDT)

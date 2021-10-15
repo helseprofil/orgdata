@@ -2,7 +2,6 @@
 % Please edit documentation in R/sql-spec.R
 \name{find_spec}
 \alias{find_spec}
-\alias{find_query}
 \title{File Specifications in Registration Database}
 \usage{
 find_spec(
@@ -11,34 +10,27 @@ find_spec(
   con = NULL,
   external = FALSE,
   char = NULL,
-  num = NULL,
-  opposite = FALSE
-)
-
-find_query(
-  file = NULL,
-  value = NULL,
-  external = FALSE,
-  char = NULL,
-  num = NULL,
+  char2 = NULL,
   opposite = FALSE
 )
 }
 \arguments{
-\item{file}{SQL file. If external is TRUE then complete filepath must be specified.}
+\item{file}{SQL file. If external is TRUE then complete filepath must be
+specified.}
 
-\item{value}{The value for selection in SQL code with \code{base::sprintf} style.
-For example the name of a \emph{filgruppe}.}
+\item{value}{The value for selection in SQL code with \code{base::sprintf}
+style. For example the name of a \emph{filgruppe}.}
 
 \item{con}{Connection to database}
 
-\item{external}{If the SQL file is outside of the package. Default is \code{FALSE}.}
+\item{external}{If the SQL file is outside of the package. Default is
+\code{FALSE}.}
 
-\item{char}{Which value are character}
+\item{char}{First input value to be added in the query}
 
-\item{num}{Which value are numeric}
+\item{char2}{Second input value to be added in the query}
 
-\item{opposite}{TRUE if numeric value will be read before character}
+\item{opposite}{TRUE if second input value will be read before first input value}
 }
 \value{
 Out put will be a data.frame.
@@ -49,21 +41,23 @@ For example where the orginal data is and how the data will be restructured
 and aggregated.. etc.. etc.. The specifications are registered in
 the following tables:
 \enumerate{
-\item{tbl_Filgruppe}
-\item{tbl_Koble}
-\item{tbl_Orgfile}
-\item{tbl_Innlesing}
+\item{\strong{ tbl_Filgruppe }} - File group specification for the output
+\item{\strong{ tbl_Orgfile }} - The original files
+\item{\strong{ tbl_Innlesing }} - How the file will be read into R
+\item{\strong{ tbl_Koble }} - Connection for original files to the file groups and how these will be read
+\item{\strong{ tbl_Kode }} - Code book to recode any value
+\item{\strong{ tbl_Compute }} - Code book to create a new category from the existing categories
 }
 
-SQL file must be written with \code{base::sprintf} style ie. \code{'\%s','\%d'} etc.
-Please refer to \code{base::sprintf} documentation. In addition, SQL code must not contain comments.
-Example of SQL code with \code{'\%s'}:
-\code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '\%s'}
-Which is saved in \code{C:/myfile.sql} and run as in the code example.
+SQL file must be written with \code{base::sprintf} style ie.
+\code{'\%s','\%d'} etc. Please refer to \code{base::sprintf} documentation.
+In addition, SQL code must not contain comments. Example of SQL code with
+\code{'\%s'}: \code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '\%s'} Which is
+saved in \code{C:/myfile.sql} and run as in the code example.
 }
 \examples{
 \dontrun{
-qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
-qr2 <- find_query("your.sql", char = "BEFOLKNING", num = 14)
+qr <- find_spec("C:/myfile.sql", value = "BEFOLKNING", con = dbconn, external = TRUE)
+qr2 <- find_spec("your.sql", con = dbconn, char = "BEFOLKNING", char2 = 14)
 }
 }

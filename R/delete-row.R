@@ -32,7 +32,7 @@ do_delete_row <- function(dt = NULL, spec = NULL, con = NULL) {
 get_delete_row_spec <- function(spec = NULL, con = NULL){
   grp <- spec$FILGRUPPE
   lesid <- spec$LESID
-  speCode <- find_spec("delete-raw.sql", con = con, char = grp, num = lesid)
+  speCode <- find_spec("delete-raw.sql", con = con, char = grp, char2 = lesid)
   is_codebook(cb = speCode)
 }
 

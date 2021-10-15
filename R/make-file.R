@@ -86,6 +86,7 @@ make_file <- function(group = NULL,
       con = kh$dbconn
     )
 
+
     dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
 
     ## Only columns defined in tbl_Filgruppe will be kept
@@ -98,7 +99,7 @@ make_file <- function(group = NULL,
       msgWarn <- "Some columns aren't defined in FILGRUPPE. They are now deleted!"
       is_verbose(x = msgWarn, type = "warn")
       deleteVar <- paste(deleteVar, collapse = ", ")
-      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "note")
+      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2")
     }
 
     ## TODO - Not sure if this necessary

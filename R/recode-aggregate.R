@@ -38,7 +38,7 @@ do_recode_aggregate <- function(dt = NULL,
 get_codebok_aggregate <- function(spec = NULL, con = NULL){
     grp <- spec$FILGRUPPE
     lesid <- spec$LESID
-    speCode <- find_spec("recode-aggregate.sql", con = con, char = grp, num = lesid)
+    speCode <- find_spec("recode-aggregate.sql", con = con, char = grp, char2 = lesid)
     is_codebook(cb = speCode)
 }
 

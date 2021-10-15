@@ -102,7 +102,8 @@ is_logical <- function(x) {
 
 
 is_verbose <- function(x = NULL, msg = NULL,
-                       type = c("note", "warn", "error", "other", "debug")) {
+                       type = c("note", "warn", "warn2",
+                                "error", "other", "debug")) {
   ## x - Arg or object to show in the message
   type <- match.arg(type)
 
@@ -142,11 +143,17 @@ paste_cols <- function(cols){
 }
 
 ## Display message with selected colours
-is_colour <- function(x, msg, type = c("note", "warn", "error", "other", "debug")){
+is_colour <- function(x, msg, type = c("note", "warn", "warn2",
+                                       "error", "other", "debug")){
   ## msg - Message to display
   ## x - Object to display in the message
+
+  txtClr <- crayon::make_style("magenta")
+  txtBld <- crayon::make_style("bold")
+
   noteClr <- crayon::green
   warnClr <- crayon::magenta
+  warn2Clr <- crayon::combine_styles(txtClr, txtBld)
   errorClr <- crayon::red
   otherClr <- crayon::blue
   debugClr <- crayon::silver
@@ -154,6 +161,7 @@ is_colour <- function(x, msg, type = c("note", "warn", "error", "other", "debug"
   switch(type,
          note = cat(noteClr(paste0(msg, " ", crayon::blue(x), "\n"))),
          warn = cat(warnClr(paste0("Warning: ", msg, " ", x, "\n"))),
+         warn2 = cat(warn2Clr(paste0(msg, " ", crayon::blue(x), "\n"))),
          error = cat(errorClr(paste0(msg, " ", x, "\n"))),
          other = cat(otherClr(paste0(msg, "\n"))),
          debug = cat(debugClr(paste0(msg, " ", crayon::green(x), "\n"))))

@@ -1,4 +1,4 @@
-#' File Specifications in Registration Database
+#' @title File Specifications in Registration Database
 #'
 #' @description
 #' This function will find all specifications in the Access registration database via SQL code.
@@ -6,53 +6,58 @@
 #' and aggregated.. etc.. etc.. The specifications are registered in
 #' the following tables:
 #' \enumerate{
-#'   \item{tbl_Filgruppe}
-#'   \item{tbl_Koble}
-#'   \item{tbl_Orgfile}
-#'   \item{tbl_Innlesing}
+#'   \item{\strong{ tbl_Filgruppe }} - File group specification for the output
+#'   \item{\strong{ tbl_Orgfile }} - The original files
+#'   \item{\strong{ tbl_Innlesing }} - How the file will be read into R
+#'   \item{\strong{ tbl_Koble }} - Connection for original files to the file groups and how these will be read
+#'   \item{\strong{ tbl_Kode }} - Code book to recode any value
+#'   \item{\strong{ tbl_Compute }} - Code book to create a new category from the existing categories
 #' }
 #'
-#' SQL file must be written with \code{base::sprintf} style ie. \code{'%s','%d'} etc.
-#' Please refer to \code{base::sprintf} documentation. In addition, SQL code must not contain comments.
-#' Example of SQL code with \code{'%s'}:
-#' \code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'}
-#' Which is saved in \code{C:/myfile.sql} and run as in the code example.
-#' @param file SQL file. If external is TRUE then complete filepath must be specified.
-#' @param value The value for selection in SQL code with \code{base::sprintf} style.
-#'    For example the name of a \emph{filgruppe}.
+#' @description SQL file must be written with \code{base::sprintf} style ie.
+#'   \code{'%s','%d'} etc. Please refer to \code{base::sprintf} documentation.
+#'   In addition, SQL code must not contain comments. Example of SQL code with
+#'   \code{'%s'}: \code{SELECT * FROM tbl_Koble WHERE FILGRUPPE = '%s'} Which is
+#'   saved in \code{C:/myfile.sql} and run as in the code example.
+#' @param file SQL file. If external is TRUE then complete filepath must be
+#'   specified.
+#' @param value The value for selection in SQL code with \code{base::sprintf}
+#'   style. For example the name of a \emph{filgruppe}.
 #' @param con Connection to database
-#' @param external If the SQL file is outside of the package. Default is \code{FALSE}.
-#' @param num Which value are numeric
-#' @param char Which value are character
-#' @param opposite TRUE if numeric value will be read before character
+#' @param external If the SQL file is outside of the package. Default is
+#'   \code{FALSE}.
+#' @param char First input value to be added in the query
+#' @param char2 Second input value to be added in the query
+#' @param opposite TRUE if second input value will be read before first input value
 #' @return Out put will be a data.frame.
+#' @examples
+#' \dontrun{
+#' qr <- find_spec("C:/myfile.sql", value = "BEFOLKNING", con = dbconn, external = TRUE)
+#' qr2 <- find_spec("your.sql", con = dbconn, char = "BEFOLKNING", char2 = 14)
+#' }
 #' @export
 find_spec <- function(file = NULL,
                       value = NULL,
                       con = NULL,
                       external = FALSE,
                       char = NULL,
-                      num = NULL,
+                      char2 = NULL,
                       opposite = FALSE) {
   is_null(con)
-  qs <- find_query(file, value, external, char, num, opposite)
+  qs <- is_query(file, value, external, char, char2, opposite)
   DBI::dbGetQuery(con, qs)
 }
 
 
-#' @export
-#' @rdname find_spec
-#' @examples
-#' \dontrun{
-#' qr <- find_query("C:/myfile.sql", value = "BEFOLKNING", external = TRUE)
-#' qr2 <- find_query("your.sql", char = "BEFOLKNING", num = 14)
-#' }
-find_query <- function(file = NULL,
-                       value = NULL,
-                       external = FALSE,
-                       char = NULL,
-                       num = NULL,
-                       opposite = FALSE) {
+#' @keywords internal
+#' @title Create the SQL query
+#' @description Create the SQL query to get the data as specified
+is_query <- function(file = NULL,
+                     value = NULL,
+                     external = FALSE,
+                     char = NULL,
+                     char2 = NULL,
+                     opposite = FALSE) {
   is_null(file)
 
   path <- system.file(file, package = "orgdata")
@@ -67,17 +72,17 @@ find_query <- function(file = NULL,
   if (!is.null(value)) {
     sprintf(txt, value)
   } else {
-    is_opposite(txt, char, num, opposite)
+    is_opposite(txt, char, char2, opposite)
   }
 }
 
 ## Helper ----------------------------------------------------
 
-is_opposite <- function(txt, char, num, opposite){
+is_opposite <- function(txt, char, char2, opposite){
   if (opposite){
-    sprintf(txt, num, char)
+    sprintf(txt, char2, char)
   } else {
-    sprintf(txt, char, num)
+    sprintf(txt, char, char2)
   }
 }
 
@@ -85,6 +90,6 @@ is_opposite <- function(txt, char, num, opposite){
 is_sql_code <- function(x) {
   ## x : file with sql code
   if (grepl("%", x) != 1) {
-    stop("Missing `sprintf` reference in SQL code")
+    stop(simpleError("Missing `sprintf` reference in SQL code"))
   }
 }
