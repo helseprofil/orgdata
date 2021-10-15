@@ -38,7 +38,7 @@ do_year <- function(dt = NULL, year = NULL) {
 #' @export
 get_year <- function(spec = NULL, con = NULL) {
   year <- find_column_input(spec, "AAR")
-  dummy <- is_dummy(year)
+  dummy <- is_col_dummy(year)
 
   if (dummy) {
     fileID <- find_column_input(spec, "FILID", "int")

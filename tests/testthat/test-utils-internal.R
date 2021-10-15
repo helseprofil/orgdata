@@ -33,9 +33,9 @@ test_that("Column output as expected", {
   expect_error(is_stop("Stop"), "Stop")
   expect_error(is_stop("Stop:", "B"), "Stop: B")
 
-  expect_true(is_dummy("$Y"))
-  expect_false(is_dummy("Y$"))
-  expect_true(is_dummy("<2>"))
+  expect_true(is_col_dummy("$Y"))
+  expect_false(is_col_dummy("Y$"))
+  expect_true(is_col_dummy("<2>"))
 
   expect_error(is_separate("3"))
   expect_equal(is_separate("3,5 = age,edu", sep = "="), c("3,5", "age,edu"))
