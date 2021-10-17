@@ -22,6 +22,7 @@ do_geo_recode <- function(dt = NULL,
     data.table::set(dt, j = col, value = as.integer(dt[[col]]))
   }
 
+  dt <- is_geo_na(dt)
   dt[code, on = "GEO", GEO := i.to]
 
 }
@@ -66,4 +67,27 @@ get_geo_recode <- function(con = NULL,
   }
   geoDT[, changeOccurred := NULL]
   data.table::setnames(geoDT, c("oldCode", "currentCode"), c("GEO", "to"))
+}
+
+## Helper -----------------
+is_geo_na <- function(dt){
+  GEO <- AAR <- NULL
+
+  nrNA <- dt[is.na(GEO), .N]
+  if (nrNA > 0){
+    dt[is.na(GEO), GEO := 99999999]
+  }
+
+  nrMiss <- dt[GEO == "", .N]
+  if (nrMiss){
+    dt[GEO == "", GEO := 99999999]
+  }
+
+  nr <- nrNA + nrMiss
+  if (nr > 0){
+    is_colour(x = nr, msg = "Number of missing GEO with empty value or NA:", type = "note")
+    is_colour(x = 99999999, msg = "They are now recoded to ", type = "warn")
+  }
+
+  invisible(dt)
 }

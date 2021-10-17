@@ -147,6 +147,7 @@ is_colour <- function(x, msg, type = c("note", "warn", "warn2",
                                        "error", "other", "debug")){
   ## msg - Message to display
   ## x - Object to display in the message
+  type <- match.arg(arg = type)
 
   txtRed <- crayon::make_style("red")
   txtMagenta <- crayon::make_style("magenta")
@@ -168,3 +169,5 @@ is_colour <- function(x, msg, type = c("note", "warn", "warn2",
          debug = cat(debugClr(paste0(msg, " ", crayon::green(x), "\n"))))
 
 }
+
+is_color <- is_colour
