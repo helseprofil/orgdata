@@ -79,7 +79,7 @@ is_geo_na <- function(dt){
   }
 
   if (nrNA > 0){
-    is_colour(x = nr, msg = "Number of missing GEO with empty value or NA:", type = "note")
+    is_colour(x = nrNA, msg = "Number of missing GEO with empty value or NA:", type = "note")
     is_colour(x = 99999999, msg = "These are now recoded to", type = "warn")
   }
   invisible(dt)

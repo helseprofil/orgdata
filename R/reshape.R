@@ -32,6 +32,11 @@ do_reshape_rename_col <- function(dt = NULL, spec = NULL){
 do_reshape <- function(dt = NULL, respec = NULL){
 
   is_debug()
+
+  if (is.na(respec$id)){
+    return(dt)
+  }
+
   dt <- data.table::melt(dt, id.vars = respec$id, measure.vars = respec$var)
   invisible(dt)
 }
@@ -54,6 +59,10 @@ get_reshape_id_val <- function(dt = NULL, group = NULL, con = NULL, spec = NULL)
 
   if (is.null(spec)) {
     spec <- find_spec("specification.sql", value = group, con = con)
+  }
+
+  if (is.na(spec$RESHAPE_ID)){
+    return(list(id = NA))
   }
 
   dtNames <- names(dt)
