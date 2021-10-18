@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add Year to Data — do_year • orgdata</title>
+<title>Reshape from Wide to Long — do_reshape • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Add Year to Data — do_year" />
-<meta property="og:description" content="Add column for year if it doesn't exist in the rawdata" />
+<meta property="og:title" content="Reshape from Wide to Long — do_reshape" />
+<meta property="og:description" content="Reshape the dataset from wide format to long format." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,30 +137,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add Year to Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/year.R'><code>R/year.R</code></a></small>
-    <div class="hidden name"><code>do_year.Rd</code></div>
+    <h1>Reshape from Wide to Long</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/reshape.R'><code>R/reshape.R</code></a></small>
+    <div class="hidden name"><code>do_reshape.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add column for year if it doesn't exist in the rawdata</p>
+    <p>Reshape the dataset from wide format to long format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_year</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, year <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_reshape</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, respec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dt</th>
-      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
+      <td><p>Dataset to be reshaped</p></td>
     </tr>
     <tr>
-      <th>year</th>
-      <td><p>Output from <code><a href='get_year.html'>get_year()</a></code></p></td>
+      <th>respec</th>
+      <td><p>Reshape specification with <code>id</code> and <code>measure</code> variables. This
+is the output from <code><a href='get_reshape_id_val.html'>get_reshape_id_val()</a></code></p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other reshape functions: 
+<code><a href='do_reshape_rename_col.html'>do_reshape_rename_col</a>()</code>,
+<code><a href='get_reshape_id_val.html'>get_reshape_id_val</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

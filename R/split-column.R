@@ -16,6 +16,8 @@ do_split <- function(dt = NULL, split = NULL) {
 
   if (isFALSE(is(dt, "data.table"))) data.table::setDT(dt)
 
+  dt <- is_split_check(dt, split)
+
   if (!is.na(split$from)) {
     dt[, (split$to) := data.table::tstrsplit(get(split$from), split = "", fixed = TRUE)]
   }
@@ -48,4 +50,28 @@ get_split <- function(group = NULL, con = NULL, spec = NULL) {
   valto <- is_separate(to, ",")
 
   return(list(from = from, to = valto))
+}
+
+
+## Helper -------------------
+is_split_check <- function(dt, split){
+
+  frm <- split$from
+  fval <- unique(dt[[frm]])
+  fnr <- nchar(fval)
+
+  sto <- length(split$to)
+
+  if (sto < max(fnr, na.rm = TRUE)){
+    is_stop(msg = "SPLIFRA contains more variables then in SPLITTO. Check original file!")
+  }
+
+  valdx <- which(fnr < sto)
+  for (i in valdx){
+    val <- fval[i]
+    valDup <- paste(rep(val, sto), collapse = "")
+    dt[get(frm) == val, (frm) := valDup]
+  }
+
+  invisible(dt)
 }

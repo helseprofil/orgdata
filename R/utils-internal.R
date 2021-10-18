@@ -64,7 +64,7 @@ is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption
 
 # Standard dummy input starts with symbol $
 # eg. column AAR with $Y
-is_dummy <- function(col) {
+is_col_dummy <- function(col) {
   expMutate <- "^<.*>$"
   expYear <- "^\\$"
   expr <- c(expMutate, expYear)
@@ -147,13 +147,15 @@ is_colour <- function(x, msg, type = c("note", "warn", "warn2",
                                        "error", "other", "debug")){
   ## msg - Message to display
   ## x - Object to display in the message
+  type <- match.arg(arg = type)
 
-  txtClr <- crayon::make_style("magenta")
-  txtBld <- crayon::make_style("bold")
+  txtRed <- crayon::make_style("red")
+  txtMagenta <- crayon::make_style("magenta")
+  txtBold <- crayon::make_style("bold")
 
   noteClr <- crayon::green
   warnClr <- crayon::magenta
-  warn2Clr <- crayon::combine_styles(txtClr, txtBld)
+  warn2Clr <- crayon::combine_styles(txtRed, txtBold)
   errorClr <- crayon::red
   otherClr <- crayon::blue
   debugClr <- crayon::silver
@@ -167,3 +169,5 @@ is_colour <- function(x, msg, type = c("note", "warn", "warn2",
          debug = cat(debugClr(paste0(msg, " ", crayon::green(x), "\n"))))
 
 }
+
+is_color <- is_colour

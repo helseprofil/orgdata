@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add Year to Data — do_year • orgdata</title>
+<title>Rename Reshaped Column — do_reshape_rename_col • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,10 @@
 
 
 
-<meta property="og:title" content="Add Year to Data — do_year" />
-<meta property="og:description" content="Add column for year if it doesn't exist in the rawdata" />
+<meta property="og:title" content="Rename Reshaped Column — do_reshape_rename_col" />
+<meta property="og:description" content="Reshaping variables in the dataset from wide to long will
+produce ID and value columns. This function will rename these columns when
+specified under RESHAPE_KOL in the Access registration database." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,30 +139,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add Year to Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/year.R'><code>R/year.R</code></a></small>
-    <div class="hidden name"><code>do_year.Rd</code></div>
+    <h1>Rename Reshaped Column</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/reshape.R'><code>R/reshape.R</code></a></small>
+    <div class="hidden name"><code>do_reshape_rename_col.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add column for year if it doesn't exist in the rawdata</p>
+    <p>Reshaping variables in the dataset from wide to long will
+produce ID and value columns. This function will rename these columns when
+specified under <code>RESHAPE_KOL</code> in the Access registration database.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_year</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, year <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_reshape_rename_col</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dt</th>
-      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
+      <td><p>Dataset that has been reshaped</p></td>
     </tr>
     <tr>
-      <th>year</th>
-      <td><p>Output from <code><a href='get_year.html'>get_year()</a></code></p></td>
+      <th>spec</th>
+      <td><p>Specification in column <code>RESHAPE_KOL</code> as in <code>tbl_Innlesing</code></p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other reshape functions: 
+<code><a href='do_reshape.html'>do_reshape</a>()</code>,
+<code><a href='get_reshape_id_val.html'>get_reshape_id_val</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

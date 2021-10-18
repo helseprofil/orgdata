@@ -103,3 +103,11 @@ DFout <- structure(list(GEO = c(
 )), row.names = c(NA, -10L), class = "data.frame")
 
 
+## SPLITT DATA -----------------------------------------------
+dataSplit <- structure(list(GEO = c(3010102L, 3010102L, 3010102L, 3010102L, 3010102L),
+                            KJONN = c(1L, 1L, 1L, 1L, 1L), ALDER = c(0L, 1L, 4L, 6L, 18L),
+                            LANDSSB = c("1C", "0", "1C", "3B", "0"), VAL1 = c(1L, 1L, 1L, 1L, 1L)),
+                       row.names = c(NA, -5L), class = c("data.frame"))
+data.table::setDT(dataSplit)
+
+spt <- list(from = "LANDSSB", to = c("LANDB", "INNVKAT"))

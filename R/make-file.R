@@ -87,6 +87,8 @@ make_file <- function(group = NULL,
     )
 
 
+    ## TODO Recode reshape value to TAB or not??
+    dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
     dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
 
     ## Only columns defined in tbl_Filgruppe will be kept

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add Year to Data — do_year • orgdata</title>
+<title>Reshape Id and Measure — get_reshape_id_val • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,10 @@
 
 
 
-<meta property="og:title" content="Add Year to Data — do_year" />
-<meta property="og:description" content="Add column for year if it doesn't exist in the rawdata" />
+<meta property="og:title" content="Reshape Id and Measure — get_reshape_id_val" />
+<meta property="og:description" content="Get the id and measure variables for reshaping the dataset. For
+detail please read data.table::melt.data.table to understand id and
+mearsure variables." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,30 +139,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add Year to Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/year.R'><code>R/year.R</code></a></small>
-    <div class="hidden name"><code>do_year.Rd</code></div>
+    <h1>Reshape Id and Measure</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/reshape.R'><code>R/reshape.R</code></a></small>
+    <div class="hidden name"><code>get_reshape_id_val.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add column for year if it doesn't exist in the rawdata</p>
+    <p>Get the id and measure variables for reshaping the dataset. For
+detail please read <code><a href='https://Rdatatable.gitlab.io/data.table/reference/melt.data.table.html'>data.table::melt.data.table</a></code> to understand <code>id</code> and
+<code>mearsure</code> variables.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_year</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, year <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_reshape_id_val</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dt</th>
-      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
+      <td><p>Dataset to be reshaped</p></td>
     </tr>
     <tr>
-      <th>year</th>
-      <td><p>Output from <code><a href='get_year.html'>get_year()</a></code></p></td>
+      <th>group</th>
+      <td><p>The group of files (<em>filgruppe</em>)</p></td>
+    </tr>
+    <tr>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
+    </tr>
+    <tr>
+      <th>spec</th>
+      <td><p>Specification from <code>tbl_Filgruppe</code></p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other reshape functions: 
+<code><a href='do_reshape_rename_col.html'>do_reshape_rename_col</a>()</code>,
+<code><a href='do_reshape.html'>do_reshape</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

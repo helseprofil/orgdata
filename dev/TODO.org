@@ -90,7 +90,14 @@ Create category that are missing due to NULL based on the standard categories of
 - eg. Column for gender isn't available but the whole dataset is for women ie.
   code =2=. In Access you can specific under =KJONN= with ~<2>~ indicating that
   standard column for =KJONN= should be created and the value is =2=.
-*** START Compute variables
+*** HOLD Compute variables
+- State "HOLD"       from "START"      [2021-10-18 man. 13:20] \\
+  Må diskuteres:
+  - Gruppering gjøres i LagKUBE allerede. Er det nødvending å gjøre det her?
+  - Hvordan skal andre kolonner kategoriseres f.eks Alder. Skal det være min og maks av alder i den nye kategori?
+
+
+  Marie og Nora skal sjekke
 - Create a new categories in an existing column or a new columns consiting of a
   new categories from selected column.
 - eg. Education has categories 1 to 5, and a new group consiting 1 and 2 is
@@ -140,6 +147,11 @@ Create category that are missing due to NULL based on the standard categories of
 - Able to recode from int to string
 *** DONE Aggregate bydel NA
 - Some bydel has NA when aggregated
+*** TODO Recode INNVKAT
+- Total to 20
+*** START Split column duplicate if one value
+- Check if the value is only one, then duplicate before splitting
+
 
 ** Access DB
 *** DONE Warning duplicate filename
