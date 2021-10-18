@@ -1,5 +1,11 @@
-## TODO Create column dummy for TAB and VAL if RESHAPE_KOL exist
-
+#' @title Rename Reshaped Column
+#' @description Reshaping variables in the dataset from wide to long will
+#'   produce ID and value columns. This function will rename these columns when
+#'   specified under `RESHAPE_KOL` in the Access registration database.
+#' @param dt Dataset that has been reshaped
+#' @param spec Specification in column `RESHAPE_KOL` as in `tbl_Innlesing`
+#' @family reshape functions
+#' @export
 do_reshape_rename_col <- function(dt = NULL, spec = NULL){
   is_debug()
   input <- find_column_input(spec = spec, "RESHAPE_KOL")
@@ -16,13 +22,30 @@ do_reshape_rename_col <- function(dt = NULL, spec = NULL){
   invisible(dt)
 }
 
-do_reshape <- function(dt = NULL, idvar = NULL){
+#' @title Reshape from Wide to Long
+#' @description Reshape the dataset from wide format to long format.
+#' @param dt Dataset to be reshaped
+#' @param respec Reshape specification with `id` and `measure` variables. This
+#'   is the output from `get_reshape_id_val()`
+#' @family reshape functions
+#' @export
+do_reshape <- function(dt = NULL, respec = NULL){
 
   is_debug()
-  dt <- data.table::melt(dt, id.vars = idvar$id, measure.vars = idvar$var)
+  dt <- data.table::melt(dt, id.vars = respec$id, measure.vars = respec$var)
   invisible(dt)
 }
 
+#' @title Reshape Id and Measure
+#' @description Get the id and measure variables for reshaping the dataset. For
+#'   detail please read `data.table::melt.data.table` to understand `id` and
+#'   `mearsure` variables.
+#' @inheritParams do_reshape
+#' @inheritParams make_file
+#' @inheritParams get_split
+#' @inheritParams find_column_input
+#' @family reshape functions
+#' @export
 get_reshape_id_val <- function(dt = NULL, group = NULL, con = NULL, spec = NULL){
 
   is_debug()
@@ -34,8 +57,8 @@ get_reshape_id_val <- function(dt = NULL, group = NULL, con = NULL, spec = NULL)
   }
 
   dtNames <- names(dt)
-  reshapeID <- find_reshape_id(spec = spec)
-  resh <- find_reshape_type(spec)
+  reshapeID <- is_reshape_id(spec = spec)
+  resh <- is_reshape_type(spec)
 
   if (resh == "error"){
     is_stop("RESHAPE_VAL is not specified correctly or it has leading whitespace")
@@ -50,9 +73,9 @@ get_reshape_id_val <- function(dt = NULL, group = NULL, con = NULL, spec = NULL)
 }
 
 
-find_reshape_id <- function(group = NULL, con = NULL, spec = NULL){
+## HELPER ------------------------------
+is_reshape_id <- function(group = NULL, con = NULL, spec = NULL){
 
-  is_debug()
   is_null_both(group, spec)
   is_not_null_both(group, spec)
 
@@ -64,7 +87,8 @@ find_reshape_id <- function(group = NULL, con = NULL, spec = NULL){
 }
 
 
-find_reshape_type <- function(spec = NULL){
+is_reshape_type <- function(spec = NULL){
+
   input <- spec$RESHAPE_VAL
 
   if (!is.na(input)){
@@ -77,7 +101,6 @@ find_reshape_type <- function(spec = NULL){
 }
 
 
-## HELPER ------------------------------
 is_reshape_col_id <- function(input){
   tab1 <- "TAB1"
   var <- intersect(input$old, tab1)
