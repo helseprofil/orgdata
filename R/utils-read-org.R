@@ -45,7 +45,6 @@ is_data_cols <- function(fgspec = NULL){
 
 is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year){
 
-  is_verbose(msg = "Starts aggregating data ...")
   aggSpec <- get_aggregate(spec = fgspec)
   source <- is_geo_level(dt$GEO[1])
 
@@ -114,7 +113,7 @@ is_org_files <- function(spec, id = NULL) {
 is_col_int <- function(dt){
   cols <- getOption("orgdata.int")
 
-  ints <- c("UTDANN", "SIVILSTAND", "LANDB", "LANDF", "INNKAT")
+  ints <- c("UTDANN", "SIVILSTAND", "LANDBAK", "INNVKAT")
   noExtra <- setdiff(names(dt), ints)
   extraInts <- names(dt)[!(names(dt) %in% noExtra)]
 

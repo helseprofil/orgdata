@@ -76,11 +76,11 @@ is_recode_all <- function(dt, code, aggregate.msg = FALSE){
     kols <- unique(allCode$KOL)
 
     if (aggregate.msg){
-      msgNotFound <- "Columname(s) defined in AGGREGERE for recoding not found:"
-      msgFound <- "Columname(s) defined in AGGREGERE for recoding:"
+      msgNotFound <- "Columname(s) defined in codebook for type AGGREGERE (AG) not found:"
+      msgFound <- "Columname(s) defined in codebook for type AGGREGERE (AG):"
     } else {
-      msgNotFound <- "Columname(s) defined in ALLE for recoding not found:"
-      msgFound <- "Columname(s) defined in ALLE for recoding:"
+      msgNotFound <- "Columname(s) defined in codebook as ALLE not found:"
+      msgFound <- "Columname(s) defined in codebook as ALLE:"
     }
 
     notCols <- setdiff(kols, names(dt))

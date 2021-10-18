@@ -49,6 +49,9 @@ do_aggregate <- function(dt = NULL,
   source <- match.arg(source)
   level <- match.arg(level)
 
+  msg <- paste0("Starts aggregating data from ", source, " to")
+  is_verbose(x = level, msg = msg)
+
   aggNot <- c("GEO", "VAL1")
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
@@ -139,7 +142,7 @@ do_aggregate_recode_standard <- function(dt) {
   cols <- is_aggregate_standard_cols()
 
   dt <- is_aggregate_recode(dt, cols$intMin, to = 0)
-  dt <- is_aggregate_recode(dt, cols$intMax, to = 10)
+  dt <- is_aggregate_recode(dt, cols$intMax, to = 20)
   dt <- is_aggregate_recode(dt, cols$chrCols, to = "Tot")
 
   invisible(dt)
@@ -173,7 +176,7 @@ is_aggregate_standard_cols <- function(){
   ## Total is 0
   intMin <- c("UTDANN", "SIVILSTAND")
   ## Total is 10
-  intMax <- "LANDB"
+  intMax <- c("LANDBAK", "INNVKAT")
   ## Total is Tot
   chrCols <- "LANDSSB"
 
