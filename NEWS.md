@@ -6,6 +6,14 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.0
+- Reshape dataset from wide to long. Reshape can have more than one `measure
+  variables`. Please read how this is specified in Access registration database.
+- Split columns must have equal number of values to the defined `SPLITTIL`.
+  Duplicate the value if it is less than the maximum `SPLITTIL`. For example for
+  value `0` in column `LANDSSB` which will be split into `LANDBAK` and
+  `INNVKAT`, the value will be duplicated into `00` to avoid split with value `NA`.
+
 # orgdata 0.2.4
 - Change argument parameter for `find_spec()` function.
 - Update text document in several places.

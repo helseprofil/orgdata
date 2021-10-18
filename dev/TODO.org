@@ -149,7 +149,7 @@ Create category that are missing due to NULL based on the standard categories of
 - Some bydel has NA when aggregated
 *** TODO Recode INNVKAT
 - Total to 20
-*** TODO Split column duplicate if one value
+*** START Split column duplicate if one value
 - Check if the value is only one, then duplicate before splitting
 
 
