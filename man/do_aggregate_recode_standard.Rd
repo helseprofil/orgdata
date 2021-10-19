@@ -18,7 +18,7 @@ in \strong{Recode} form with FILGRUPPE as \strong{AGGREGATE}.
 
 Standard columns that is implemented by this function is:
 
-\code{UTDANN}, \code{SIVILSTAND}, \code{LANDB} and \code{LANDSSB}
+\code{UTDANN}, \code{SIVILSTAND}, \code{LANDSSB}, \code{LANDBAK} and \code{INNVKAT}
 }
 \seealso{
 Other aggregate functions: 

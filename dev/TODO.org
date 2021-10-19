@@ -147,12 +147,11 @@ Create category that are missing due to NULL based on the standard categories of
 - Able to recode from int to string
 *** DONE Aggregate bydel NA
 - Some bydel has NA when aggregated
-*** TODO Recode INNVKAT
+*** DONE Recode INNVKAT
 - Total to 20
 *** DONE Split column duplicate if one value
 - Check if the value is only one, then duplicate before splitting
-
-*** TODO Show geo level when aggregating
+*** DONE Show geo level when aggregating
 - When aggregating multiple geo levels, it would be nice to know which
   geo levels
 

@@ -133,7 +133,7 @@ do_aggregate <- function(dt = NULL,
 #'  value. Other columns that need to be recorded to represent total category must be defined
 #'  in \strong{Recode} form with FILGRUPPE as \strong{AGGREGATE}.
 #' @description Standard columns that is implemented by this function is:
-#' @description `UTDANN`, `SIVILSTAND`, `LANDB` and `LANDSSB`
+#' @description `UTDANN`, `SIVILSTAND`, `LANDSSB`, `LANDBAK` and `INNVKAT`
 #' @inheritParams do_split
 #' @family aggregate functions
 #' @export
