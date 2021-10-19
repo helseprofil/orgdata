@@ -63,7 +63,10 @@ is_split_check <- function(dt, split){
   sto <- length(split$to)
 
   if (sto < max(fnr, na.rm = TRUE)){
-    is_stop(msg = "SPLIFRA contains more variables then in SPLITTIL. Check original file!")
+    msgSplit <- paste0("Woops!!! SPLITTRA contains more than `", sto, "` variable when split. Check original file! \n")
+    msgCode <- "Update SPLITTTIL or you may use this command to check the original file:"
+
+    stop(is_colour_txt(x = sprintf("dt[, .N, by = %s]", frm), msg = paste0(msgSplit, msgCode), type = "error2"))
   }
 
   valdx <- which(fnr < sto)
