@@ -40,11 +40,11 @@ make_file <- function(group = NULL,
     check = TRUE
   )
 
-  ## CONNECTION--------------------------------------
+  ## CONNECTION --------------------------------------------
   kh <- is_conn_db(dbFile)
   on.exit(kh$db_close(), add = TRUE)
 
-  ## SPECS -----------------------------------------
+  ## SPECIFICATIONS ----------------------------------------
   spec <- find_spec(
     file = "specification.sql",
     value = group,
@@ -70,7 +70,7 @@ make_file <- function(group = NULL,
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
 
-  ## PROCESS ON FILES IN A FILGRUPPE -----------------------
+  ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
   DT <- vector(mode = "list", length = rowFile)
   for (i in seq_len(rowFile)) {
     fileSpec <- spec[i, ]
@@ -86,8 +86,8 @@ make_file <- function(group = NULL,
       con = kh$dbconn
     )
 
-
-    ## TODO Recode reshape value to TAB or not??
+    ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
+    ## aggregating uses the standard columnames for id and measure variables
     dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
     dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
 
@@ -126,7 +126,7 @@ make_file <- function(group = NULL,
     gc()
   }
 
-  ## PROCESS ON FILGRUPPE ----------------------------------
+  ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(
     data.table::rbindlist(DT, fill = TRUE),
@@ -134,7 +134,6 @@ make_file <- function(group = NULL,
 
   outDT <- do_recode_aggregate(dt = outDT, spec = fileSpec, con = kh$dbconn)
 
-  ## REORDER COLS --------------------------------------------
   orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
   data.table::setcolorder(outDT, orderCols)
 
