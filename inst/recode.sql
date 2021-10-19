@@ -5,3 +5,4 @@ where (FILGRUPPE = '%s' or FILGRUPPE = 'ALLE')
   and (LESID is NULL or LESID = '%s')
   and TIL <> '-'
   and TYPE <> 'AG'
+  and TYPE <> 'RE'
