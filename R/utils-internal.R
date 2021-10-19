@@ -16,7 +16,7 @@ is_null <- function(arg = NULL, msg = NULL, verbose = getOption("orgdata.verbose
   }
 
   if (is.null(arg)) {
-    stop(msgTxt)
+    is_stop(msgTxt)
   }
 }
 
@@ -36,7 +36,7 @@ is_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("or
   }
 
   if (is.null(x) && is.null(y)) {
-    stop(msgTxt)
+    is_stop(msgTxt)
   }
 }
 
@@ -56,7 +56,7 @@ is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption
   }
 
   if (!is.null(x) && !is.null(y)) {
-    stop(msgTxt)
+    is_stop(msgTxt)
   }
 }
 
@@ -114,7 +114,7 @@ is_verbose <- function(x = NULL, msg = NULL,
   }
 
   if (getOption("orgdata.verbose")) {
-    is_colour(x = x, msg = msg, type = type)
+    is_colour_txt(x = x, msg = msg, type = type)
   }
 }
 
@@ -122,7 +122,7 @@ is_verbose <- function(x = NULL, msg = NULL,
 is_debug <- function() {
   if (getOption("orgdata.debug")) {
     fnc <- sys.calls()[[sys.nframe() - 1]][1]
-    is_colour(x = deparse(fnc), msg = "Execute:", type = "debug")
+    is_colour_txt(x = deparse(fnc), msg = "Execute:", type = "debug")
     ## cat(note(paste0("Execute:  ", deparse(fnc))))
   }
 }
@@ -143,7 +143,7 @@ paste_cols <- function(cols){
 }
 
 ## Display message with selected colours
-is_colour <- function(x, msg, type = c("note", "warn", "warn2",
+is_colour_txt <- function(x, msg, type = c("note", "warn", "warn2",
                                        "error", "other", "debug")){
   ## msg - Message to display
   ## x - Object to display in the message
@@ -170,4 +170,4 @@ is_colour <- function(x, msg, type = c("note", "warn", "warn2",
 
 }
 
-is_color <- is_colour
+is_color_txt <- is_colour_txt

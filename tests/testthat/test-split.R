@@ -32,7 +32,7 @@ test_that("Duplicate split input", {
 
   erdata <- data.table::copy(dataSplit)
   erdata[LANDSSB == "1C", LANDSSB := "1CC"]
-  erMsg <- "SPLIFRA contains more variables then in SPLITTO. Check original file!"
+  erMsg <- "SPLIFRA contains more variables then in SPLITTIL. Check original file!"
 
   ## TEST -------------------
   expect_equal(is_split_check(dt = dSpt, split = spt), out)

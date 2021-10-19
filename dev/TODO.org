@@ -131,12 +131,11 @@ Create category that are missing due to NULL based on the standard categories of
 - Should use KASTKOL ie. delete columns that will not be included in the reshape
 *** DONE Delete row
 - Specify in Recode form with "-" for what code in the dataset to be deleted.
-
-*** TODO Don't aggregate TABS
+*** DONE Don't aggregate TABS
 - Options for not aggregating TABS
 *** TODO Check object class
 - Change all class check with =is()= or =inherits()=
-*** TODO Error message for split column
+*** DONE Error message for split column
 - Give clear message when split column has more than the defined in SPLITTTIL
 *** DONE Recode for aggregate
 - Use TYPE column with code =AG=
@@ -154,6 +153,8 @@ Create category that are missing due to NULL based on the standard categories of
 *** DONE Show geo level when aggregating
 - When aggregating multiple geo levels, it would be nice to know which
   geo levels
+*** TODO Recode with regexp
+- Use regular expression to recode variable
 
 ** Access DB
 *** DONE Warning duplicate filename

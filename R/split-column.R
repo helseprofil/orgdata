@@ -63,7 +63,7 @@ is_split_check <- function(dt, split){
   sto <- length(split$to)
 
   if (sto < max(fnr, na.rm = TRUE)){
-    is_stop(msg = "SPLIFRA contains more variables then in SPLITTO. Check original file!")
+    is_stop(msg = "SPLIFRA contains more variables then in SPLITTIL. Check original file!")
   }
 
   valdx <- which(fnr < sto)

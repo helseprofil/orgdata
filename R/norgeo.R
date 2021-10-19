@@ -31,13 +31,17 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   if (write) {
     is_write_msg(msg = "write")
     geo$db_write(write = write)
-    message("Write table `", table, "` is completed in: \n", geoFile)
+    msgWrite <- paste0("Write table `", table, "` is completed in: \n")
+    is_colour_txt(x = geoFile, msg = msgWrite, type = "note")
+    ## message("Write table `", table, "` is completed in: \n", geoFile)
   }
 
   if (append) {
     is_write_msg(msg = "append")
     geo$db_write(append = append)
-    message("Append data to `", table, "` is completed in: \n", geoFile)
+    msgAppend <- paste0("Append data to `", table, "` is completed in: \n")
+    is_colour_txt(x = geoFile, msg = msgAppend, type = "note")
+    ## message("Append data to `", table, "` is completed in: \n", geoFile)
   }
 
   invisible(geo$tblvalue)
@@ -86,7 +90,9 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   if (write) {
     is_write_msg(msg = "write")
     geo$db_write(write = write)
-    message("Write table `", tblName, "` is completed in: \n", geoFile)
+    msgWrite <- paste0("Write table `", tblName, "` is completed in: \n")
+    is_colour_txt(x = geoFile, msg = msgWrite, type = "note")
+    ## message("Write table `", tblName, "` is completed in: \n", geoFile)
   }
   invisible(geo$tblvalue)
 }
