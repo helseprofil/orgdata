@@ -153,8 +153,10 @@ Create category that are missing due to NULL based on the standard categories of
 *** DONE Show geo level when aggregating
 - When aggregating multiple geo levels, it would be nice to know which
   geo levels
-*** TODO Recode with regexp
+*** START Recode with regexp
 - Use regular expression to recode variable
+*** TODO Recode standard variable from codebook
+- Deactivate hardcoded recode for standard variables
 
 ** Access DB
 *** DONE Warning duplicate filename
