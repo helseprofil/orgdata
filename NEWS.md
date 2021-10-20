@@ -9,6 +9,7 @@ Things in `dev` branch
 # orgdata 0.3.2
 - Fix #55 to recode standard variables via codebook instead of hardcoded (#58)
 - Fix #52 skip split if not specified (#59)
+- Fix #57 split column with duplicated values will keep the original column (#60)
 
 # orgdata 0.3.1
 - Edit verbose messages
