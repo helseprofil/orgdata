@@ -6,6 +6,11 @@
 #' @importFrom methods is
 #' @export
 do_split <- function(dt = NULL, split = NULL) {
+
+  if (is.na(split$from)){
+    return(dt)
+  }
+
   is_debug()
   is_null(dt, "Data set not found!")
   is_null(split)
@@ -21,7 +26,7 @@ do_split <- function(dt = NULL, split = NULL) {
   if (!is.na(split$from)) {
     dt[, (split$to) := data.table::tstrsplit(get(split$from), split = "", fixed = TRUE)]
   }
-  return(dt)
+  invisible(dt)
 }
 
 #' @title Get Split Column
