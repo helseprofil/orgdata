@@ -155,6 +155,7 @@
 <li>Fix <a href='https://github.com/helseprofil/orgdata/issues/55'>#55</a> to recode standard variables via codebook instead of hardcoded (<a href='https://github.com/helseprofil/orgdata/issues/58'>#58</a>)</li>
 <li>Fix <a href='https://github.com/helseprofil/orgdata/issues/52'>#52</a> skip split if not specified (<a href='https://github.com/helseprofil/orgdata/issues/59'>#59</a>)</li>
 <li>Fix <a href='https://github.com/helseprofil/orgdata/issues/57'>#57</a> split column with duplicated values will keep the original column (<a href='https://github.com/helseprofil/orgdata/issues/60'>#60</a>)</li>
+<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/56'>#56</a> aggregate all VAL columns whenever specified and not only specific to <code>VAL1</code> (<a href='https://github.com/helseprofil/orgdata/issues/62'>#62</a>)</li>
 </ul>
 </div>
     <div id="orgdata-031" class="section level1">
@@ -173,52 +174,56 @@
 <li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code><a href="../reference/do_aggregate_recode_standard.html">do_aggregate_recode_standard()</a></code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_int()</code>.</li>
 </ul>
 </div>
-    <div id="orgdata-024" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.4">
-<a href="#orgdata-024" class="anchor"></a>orgdata 0.2.4</h1>
+    <div id="orgdata-02" class="section level1">
+<h1 class="page-header" data-toc-text="0.2">
+<a href="#orgdata-02" class="anchor"></a>orgdata 0.2</h1>
+<div id="orgdata-024" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-024" class="anchor"></a>orgdata 0.2.4</h2>
 <ul>
 <li>Change argument parameter for <code><a href="../reference/find_spec.html">find_spec()</a></code> function.</li>
 <li>Update text document in several places.</li>
 <li>Add colour type <em>warn2</em> for warning message without <code>Warning:</code> prefix.</li>
 </ul>
 </div>
-    <div id="orgdata-023" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.3">
-<a href="#orgdata-023" class="anchor"></a>orgdata 0.2.3</h1>
+<div id="orgdata-023" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-023" class="anchor"></a>orgdata 0.2.3</h2>
 <ul>
 <li>Request (<a href='https://github.com/helseprofil/orgdata/issues/43'>#43</a>) messages with specific colour</li>
 <li>Fix (<a href='https://github.com/helseprofil/orgdata/issues/46'>#46</a>) recode to string even though columns is type integer or numeric.</li>
 </ul>
 </div>
-    <div id="orgdata-022" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.2">
-<a href="#orgdata-022" class="anchor"></a>orgdata 0.2.2</h1>
+<div id="orgdata-022" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-022" class="anchor"></a>orgdata 0.2.2</h2>
 <ul>
 <li>Unknown bydel ie. <em>(uoppgitt)</em> is added when enumeration areas codes ie. <em>(grunnkrets)</em> for bydel is <code>XXXX9999</code> in function <code><a href="../reference/geo_level.html">geo_level()</a></code>.</li>
 <li>Add unknown grunnkrets for kommune when not available since some of the datasets have unknown grunnkrets that aren’t listed in API downloaded data (<a href='https://github.com/helseprofil/orgdata/issues/39'>#39</a>).</li>
 <li>Exclude <code>TAB1</code>, <code>TAB2</code> and <code>TAB3</code> from being aggregated. (<a href='https://github.com/helseprofil/orgdata/issues/44'>#44</a>)</li>
 </ul>
 </div>
-    <div id="orgdata-021" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.1">
-<a href="#orgdata-021" class="anchor"></a>orgdata 0.2.1</h1>
+<div id="orgdata-021" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-021" class="anchor"></a>orgdata 0.2.1</h2>
 <ul>
 <li>Recode for aggregated variables uses <code>AG</code> in TYPE column in the codebook instead of FILGRUPPE with <code>AGGREGATE</code> as it was implemented in ver 0.2.0. This will make it possible so specify FILGRUPPE and LESID to implement the principle for <strong>GENERAL</strong>, <strong>COMMON</strong> and <strong>SPECIFIC</strong> variables.</li>
 <li>Change function name <code>do_aggregate_recode</code> to <code>do_aggregate_recode_standard</code> for standard variables.</li>
 </ul>
 </div>
-    <div id="orgdata-020" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.0">
-<a href="#orgdata-020" class="anchor"></a>orgdata 0.2.0</h1>
+<div id="orgdata-020" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-020" class="anchor"></a>orgdata 0.2.0</h2>
 <ul>
 <li>Recode for aggregated categories can be defined in <em>Recode</em> form ie. codebook, and use <code>AGGREGATE</code> in the specification under FILGRUPPE</li>
 <li>Delete rows when defined in codebook using minus symbol under TIL column. Similar principles is implemented for <strong>GENERAL</strong>, <strong>COMMON</strong> and <strong>SPECIFIC</strong> feature as in recode. Read detail in <a href="https://helseprofil.github.io/orgdata/news/index.html#orgdata-0-0-5-alpha">ver 0.0.5 - alpha</a>.</li>
 <li>Display both columnames to be recoded that are found in the dataset or those that aren’t found when defined as <code>ALLE</code> in the codebook so user will be aware of its existence.</li>
 </ul>
 </div>
-    <div id="orgdata-010" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#orgdata-010" class="anchor"></a>orgdata 0.1.0</h1>
+</div>
+    <div id="orgdata-01" class="section level1">
+<h1 class="page-header" data-toc-text="0.1">
+<a href="#orgdata-01" class="anchor"></a>orgdata 0.1</h1>
 <ul>
 <li>Standardize some most used arguments to <code><a href="../reference/read_file.html">read_file()</a></code> such as <code>nrows</code>, <code>header</code>, <code>skip</code>, <code>trimws</code> and <code>na</code>. Read details in <code><a href="../reference/read_file.html">read_file()</a></code> function description.</li>
 <li>Output to <code><a href="../reference/read_file.html">read_file()</a></code> as data.table class.</li>

@@ -10,6 +10,8 @@ Things in `dev` branch
 - Fix #55 to recode standard variables via codebook instead of hardcoded (#58)
 - Fix #52 skip split if not specified (#59)
 - Fix #57 split column with duplicated values will keep the original column (#60)
+- Fix #56 aggregate all VAL columns whenever specified and not only specific to
+  `VAL1` (#62)
 
 # orgdata 0.3.1
 - Edit verbose messages
@@ -26,16 +28,18 @@ Things in `dev` branch
   eventuality for future change should also look other related functions such as
   `is_aggregate_standard_cols()` and `is_col_int()`.
 
-# orgdata 0.2.4
+# orgdata 0.2
+
+## orgdata 0.2.4
 - Change argument parameter for `find_spec()` function.
 - Update text document in several places.
 - Add colour type *warn2* for warning message without `Warning:` prefix.
 
-# orgdata 0.2.3
+## orgdata 0.2.3
 - Request (#43) messages with specific colour
 - Fix (#46) recode to string even though columns is type integer or numeric.
 
-# orgdata 0.2.2
+## orgdata 0.2.2
 
 - Unknown bydel ie. *(uoppgitt)* is added when enumeration areas codes ie.
   *(grunnkrets)* for bydel is `XXXX9999` in function `geo_level()`.
@@ -43,7 +47,7 @@ Things in `dev` branch
   datasets have unknown grunnkrets that aren't listed in API downloaded data (#39).
 - Exclude `TAB1`, `TAB2` and `TAB3` from being aggregated. (#44) 
 
-# orgdata 0.2.1
+## orgdata 0.2.1
 
 - Recode for aggregated variables uses `AG` in TYPE column in the codebook
   instead of FILGRUPPE with `AGGREGATE` as it was implemented in ver 0.2.0. This
@@ -53,7 +57,7 @@ Things in `dev` branch
   for standard variables.
 
 
-# orgdata 0.2.0
+## orgdata 0.2.0
 
 - Recode for aggregated categories can be defined in *Recode* form ie. codebook,
   and use `AGGREGATE` in the specification under FILGRUPPE
@@ -64,7 +68,7 @@ Things in `dev` branch
   that aren't found when defined as `ALLE` in the codebook so user will be aware
   of its existence.
 
-# orgdata 0.1.0
+# orgdata 0.1
 
 - Standardize some most used arguments to `read_file()` such as `nrows`,
   `header`, `skip`, `trimws` and `na`. Read details in `read_file()` function
