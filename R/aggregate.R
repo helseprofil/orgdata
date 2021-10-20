@@ -52,7 +52,8 @@ do_aggregate <- function(dt = NULL,
   msg <- paste0("Starts aggregating data from ", source, " to")
   is_verbose(x = level, msg = msg)
 
-  aggNot <- c("GEO", "VAL1")
+  colVals <- paste0("VAL", 1:3)
+  aggNot <- c("GEO", colVals)
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
 
@@ -108,11 +109,14 @@ do_aggregate <- function(dt = NULL,
     srcCols = aggCols
   )
 
+  colj <- intersect(colVals, names(dt))
+
   DT <- data.table::groupingsets(
     dt,
-    j = list(VAL1 = sum(VAL1, na.rm = TRUE)),
+    j = lapply(.SD, sum, na.rm = TRUE),
     by = aggCols,
-    sets = xCols
+    sets = xCols,
+    .SDcols = colj
   )
   DT[, LEVEL := level]
   data.table::setnames(DT, level, "GEO")
@@ -157,11 +161,21 @@ is_set_list <- function(level, srcCols) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
 
+  ## TODO Add column AGGNOT to specify column that not to aggregate
   ## Dont aggregate these columns
-  aggNot <- c(level, "AAR", "KJONN", "ALDER", "TAB1", "TAB2", "TAB3")
+  tabs <- paste0("TAB", 1:3)
+  aggNot <- c(level, "AAR", "KJONN", "ALDER", tabs)
   vars <- intersect(aggNot, srcCols)
-  list(vars, srcCols)
+
+  sameVars <- identical(vars, srcCols)
+
+  if (sameVars){
+    list(vars)
+  } else {
+    list(vars, srcCols)
+  }
 }
+
 
 is_match_arg <- function(arg){
   arg <- tolower(arg)
