@@ -52,7 +52,7 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
   DT <- vector(mode = "list", length = nSpec)
   for (i in seq_len(nSpec)) {
     dtt <- do_aggregate(dt = dt, source = source, level = aggSpec[i], year = year)
-    dtt <- do_aggregate_recode_standard(dt = dtt)
+    ## dtt <- do_aggregate_recode_standard(dt = dtt) #defunct
     DT[[i]] <- data.table::copy(dtt)
     gc()
   }
