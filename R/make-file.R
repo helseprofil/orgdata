@@ -141,7 +141,7 @@ make_file <- function(group = NULL,
     save_file(dt = outDT, group = group, fgSpec = fgSpec)
   }
 
-  return(outDT)
+  return(outDT[])
 }
 
 #' @export
