@@ -101,15 +101,7 @@ do_aggregate <- function(dt = NULL,
     return(dt)
   }
 
-  dt[is.na(kommune), kommune := as.integer(gsub("\\d{4}$", "", GEO))]
-
-  if (level == "fylke"){
-    dt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))]
-  }
-
-  if (level == "bydel"){
-    dt <- dt[!is.na(bydel)]
-  }
+  dt <- is_level_na(dt = dt, level = level)
 
   xCols <- is_set_list(
     level = level,
@@ -124,28 +116,6 @@ do_aggregate <- function(dt = NULL,
   )
   DT[, LEVEL := level]
   data.table::setnames(DT, level, "GEO")
-}
-
-#' @title Recode Standard Aggregated Variables
-#' @description Recode standard aggregated variables to represent total category either as `0`
-#'  or `10` for integer variables and `Tot` for string variables. Value `10` representing
-#'  total is only used for `LANDB` since it already has `0` as one of it's existing
-#'  value. Other columns that need to be recorded to represent total category must be defined
-#'  in \strong{Recode} form with FILGRUPPE as \strong{AGGREGATE}.
-#' @description Standard columns that is implemented by this function is:
-#' @description `UTDANN`, `SIVILSTAND`, `LANDSSB`, `LANDBAK` and `INNVKAT`
-#' @inheritParams do_split
-#' @family aggregate functions
-#' @export
-do_aggregate_recode_standard <- function(dt) {
-  is_debug()
-  cols <- is_aggregate_standard_cols()
-
-  dt <- is_aggregate_recode(dt, cols$intMin, to = 0)
-  dt <- is_aggregate_recode(dt, cols$intMax, to = 20)
-  dt <- is_aggregate_recode(dt, cols$chrCols, to = "Tot")
-
-  invisible(dt)
 }
 
 
@@ -170,29 +140,16 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
 }
 
 
-## Helper ----------------------------------------
+## Helper ----------------------------------------------------------------
 
-is_aggregate_standard_cols <- function(){
-  ## Total is 0
-  intMin <- c("UTDANN", "SIVILSTAND")
-  ## Total is 10
-  intMax <- c("LANDBAK", "INNVKAT")
-  ## Total is Tot
-  chrCols <- "LANDSSB"
-
-  list(intMin = intMin, intMax = intMax, chrCols = chrCols)
-}
-
-is_aggregate_recode <- function(dt, cols, to){
-  isCols <- sum(is.element(cols, names(dt))) > 0
-
-  if (isCols){
-    for (j in seq_along(cols)){
-      col <- cols[j]
-      data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = to)
-    }
-  }
-  invisible(dt)
+## Handling missing geo levels
+is_level_na <- function(dt, level){
+  GEO <- kommune <- fylke <- bydel <- NULL
+  switch(level,
+         kommune = dt[is.na(kommune), kommune := as.integer(gsub("\\d{4}$", "", GEO))],
+         fylke =  dt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))],
+         bydel = {dt <- dt[!is.na(bydel)]}
+         )
 }
 
 ## Create list to aggregate in groupingsets
@@ -211,6 +168,65 @@ is_match_arg <- function(arg){
   arg <- match.arg(arg)
 }
 
+
+## Deprecated functions --------------------------------------------------
+
+#' @title Recode Standard Aggregated Variables
+#' @description Recode standard aggregated variables to represent total category either as `0`
+#'  or `10` for integer variables and `Tot` for string variables. Value `10` representing
+#'  total is only used for `LANDB` since it already has `0` as one of it's existing
+#'  value. Other columns that need to be recorded to represent total category must be defined
+#'  in \strong{Recode} form with FILGRUPPE as \strong{AGGREGATE}.
+#' @description Standard columns that is implemented by this function is:
+#' @description `UTDANN`, `SIVILSTAND`, `LANDSSB`, `LANDBAK` and `INNVKAT`
+#' @inheritParams do_split
+#' @family aggregate functions
+#' @export
+do_aggregate_recode_standard <- function(dt) {
+
+  depMsg <- "Alle recode variable must be specified in codebook in Access registration database."
+  lifecycle::deprecate_stop("0.3.2", "do_aggregate_recode_standard()", details = depMsg)
+
+  is_debug()
+  cols <- is_aggregate_standard_cols()
+
+  ## HARD CODED!!
+  dt <- is_aggregate_recode(dt, cols$intMin, to = 0)
+  dt <- is_aggregate_recode(dt, cols$intMax, to = 20)
+  dt <- is_aggregate_recode(dt, cols$chrCols, to = "Tot")
+
+  invisible(dt)
+}
+
+
+is_aggregate_standard_cols <- function(){
+
+  lifecycle::deprecate_stop("0.3.2", "do_aggregate_recode_standard()")
+
+  ## Total is 0
+  intMin <- c("UTDANN", "SIVILSTAND")
+  ## Total is 10
+  intMax <- c("LANDBAK", "INNVKAT")
+  ## Total is Tot
+  chrCols <- "LANDSSB"
+
+  list(intMin = intMin, intMax = intMax, chrCols = chrCols)
+}
+
+is_aggregate_recode <- function(dt, cols, to){
+
+  lifecycle::deprecate_stop("0.3.2", "do_aggregate_recode_standard()")
+
+  isCols <- sum(is.element(cols, names(dt))) > 0
+
+  if (isCols){
+    for (j in seq_along(cols)){
+      col <- cols[j]
+      data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = to)
+    }
+  }
+  invisible(dt)
+}
 
 #' @title Use Original Columnames
 #' @description
