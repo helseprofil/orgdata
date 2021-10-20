@@ -24,8 +24,18 @@ do_split <- function(dt = NULL, split = NULL) {
   dt <- is_split_check(dt, split)
 
   if (!is.na(split$from)) {
-    dt[, (split$to) := data.table::tstrsplit(get(split$from), split = "", fixed = TRUE)]
+    colFrm <- split$from
+    colTo <- split$to
+    frmSplit <- paste0(colFrm, "_split")
+    colSplit <- data.table::fifelse(is.element(frmSplit, names(dt)), frmSplit, colFrm)
+
+    dt[, (colTo) := data.table::tstrsplit(get(colSplit), split = "", fixed = TRUE)]
+
+    if (identical(colSplit, frmSplit)){
+      dt[, (colSplit) := NULL]
+    }
   }
+
   invisible(dt)
 }
 
@@ -61,24 +71,30 @@ get_split <- function(group = NULL, con = NULL, spec = NULL) {
 ## Helper -------------------
 is_split_check <- function(dt, split){
 
-  frm <- split$from
-  fval <- unique(dt[[frm]])
-  fnr <- nchar(fval)
+  frm <- split$from #variable to be split
+  fval <- unique(dt[[frm]]) #values from variable to be split
+  fnr <- nchar(fval) #number of digits for each values
 
   sto <- length(split$to)
 
   if (sto < max(fnr, na.rm = TRUE)){
-    msgSplit <- paste0("Woops!!! SPLITTRA contains more than `", sto, "` variable when split. Check original file! \n")
+    msgSplit <- paste0("Woops!!! SPLITTRA contains more than `", sto, "` variables when split. Check original file! \n")
     msgCode <- "Update SPLITTTIL or you may use this command to check the original file:"
 
     stop(is_colour_txt(x = sprintf("dt[, .N, by = %s]", frm), msg = paste0(msgSplit, msgCode), type = "error2"))
   }
 
   valdx <- which(fnr < sto)
-  for (i in valdx){
-    val <- fval[i]
-    valDup <- paste(rep(val, sto), collapse = "")
-    dt[get(frm) == val, (frm) := valDup]
+
+  if (length(valdx) > 0){
+    frmSplit <- paste0(frm, "_split")
+    dt[, (frmSplit) := get(frm)]
+
+    for (i in valdx){
+      val <- fval[i]
+      valDup <- paste(rep(val, sto), collapse = "")
+      dt[get(frmSplit) == val, (frmSplit) := valDup]
+    }
   }
 
   invisible(dt)
