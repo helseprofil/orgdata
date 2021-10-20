@@ -5,7 +5,7 @@ test_that("Get split input", {
   dataInn <- data.table::copy(dataSplit)
   outSplit <- structure(list(GEO = c(3010102L, 3010102L, 3010102L, 3010102L, 3010102L),
                              KJONN = c(1L, 1L, 1L, 1L, 1L),
-                             ALDER = c(0L, 1L, 4L, 6L, 18L), LANDSSB = c("1C", "00", "1C", "3B", "00"),
+                             ALDER = c(0L, 1L, 4L, 6L, 18L), LANDSSB = c("1C", "0", "1C", "3B", "0"),
                              VAL1 = c(1L, 1L, 1L, 1L, 1L), LANDB = c("1", "0", "1", "3", "0"),
                              INNVKAT = c("C", "0", "C", "B", "0")),
                         row.names = c(NA, -5L), class = c("data.table"))
@@ -25,8 +25,9 @@ test_that("Duplicate split input", {
   out <- structure(list(GEO = c(3010102L, 3010102L, 3010102L, 3010102L, 3010102L),
                         KJONN = c(1L, 1L, 1L, 1L, 1L),
                         ALDER = c(0L, 1L, 4L, 6L, 18L),
-                        LANDSSB = c("1C", "00", "1C", "3B", "00"),
-                        VAL1 = c(1L, 1L, 1L, 1L, 1L)),
+                        LANDSSB = c("1C", "0", "1C", "3B", "0"),
+                        VAL1 = c(1L, 1L, 1L, 1L, 1L),
+                        LANDSSB_split = c("1C", "00", "1C", "3B", "00")),
                    row.names = c(NA, -5L), class = c("data.frame"))
   data.table::setDT(out)
 
