@@ -6,6 +6,12 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.2
+- Fix #55 to recode standard variables via codebook instead of hardcoded (#58)
+
+# orgdata 0.3.1
+- Edit verbose messages
+
 # orgdata 0.3.0
 - Reshape dataset from wide to long. Reshape can have more than one `measure
   variables`. Please read how this is specified in Access registration database.
