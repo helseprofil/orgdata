@@ -18,8 +18,12 @@ test_that("Implicit null", {
                           v6 = c(1, 1, 1, 2, 1, 1, 3),
                           VAL1 = c(0, 0, 0, 0, 0, 0, 0)),
                      row.names = c(NA, -7L), class = c("data.table", "data.frame"))
+
+  dtOutKom <- copy(dtOut)
+  dtOutKom[, GEO := gsub("^9999", "", GEO)]
   ## TEST --------------------------
 
-  expect_equal(do_implicit_null(dt = dtimp), dtOut)
+  expect_equal(do_implicit_null(dt = dtimp, level = "grunnkrets"), dtOut)
+  expect_equal(do_implicit_null(dt = dtimp, level = "kommune"), dtOutKom)
 
 })

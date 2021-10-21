@@ -9,9 +9,16 @@
 #'   zero number belonging to that category. This function will standardize the
 #'   categories across all year.
 #' @param dt Dataset consisting all years
+#' @inheritParams do_aggregate
 #' @family implicit-null functions
 #' @export
-do_implicit_null <- function(dt){
+do_implicit_null <- function(dt = NULL,
+                             level = c(
+                               "grunnkrets",
+                               "fylke",
+                               "kommune",
+                               "bydel"
+                             )){
   is_debug()
   is_verbose(msg = "Checking for implicit null ...")
 
@@ -33,6 +40,7 @@ do_implicit_null <- function(dt){
     data.table::set(dtImp, j=j, value = as.numeric(dtImp[[j]]))
   }
 
+  ## Fill in the first value from reference value if not an implicit null row
   for (j in seq_along(names(refs))){
     col <- names(refs)[j]
     val <- refs[[col]][1]
@@ -89,12 +97,12 @@ get_implicit_col <- function(dt, years, cols, refs){
 #' @param colstr Column structure or Class type
 #' @family implicit-null functions
 #' @export
-get_implicit_per_year <- function(imp, refs, years, colstr){
+get_implicit_per_year <- function(imp, refs, years, colstr, .env = parent.frame()){
   dty <- vector(mode = "list", length = length(years))
 
   for (i in seq_len(length(years))){
     yr <- as.character(years[i])
-    dd <- find_implicit_null(imp = imp, year = yr, colstr = colstr)
+    dd <- find_implicit_null(imp = imp, year = yr, colstr = colstr, level = .env$level)
     dt <- data.table::rbindlist(dd)
     dty[[i]] <- dt
   }
@@ -126,9 +134,10 @@ find_implicit_col <- function(dt, years, col, ref) {
 #' @description Create a dataset with implicit null for every selected columns
 #' @inheritParams get_implicit_per_year
 #' @param year Selected year from the dataset
+#' @inheritParams do_aggregate
 #' @family implicit-null functions
 #' @export
-find_implicit_null <- function(imp, year, colstr){
+find_implicit_null <- function(imp, year, colstr, level){
   nn <- vector(mode = "list", length = length(imp))
   yr <- as.character(year)
 
@@ -140,13 +149,23 @@ find_implicit_null <- function(imp, year, colstr){
     dtTemp <- data.table::setnames(data.table::data.table(matrix(
       nrow = length(vals), ncol = length(colstr))), names(colstr))
 
-    ## Need to be character to add new rows else all columns are logical and accept only 0/1
-    for (j in names(dtTemp)) {
-      data.table::set(dtTemp, j=j, value = as.character(dtTemp[[j]]))
-    }
+    geo99 <- switch(level,
+                    fylke = "99",
+                    kommune = "9999",
+                    bydel = "999999",
+                    "99999999")
 
-    dtTemp[, `:=`(GEO = "99999999", AAR = yr, VAL1 = "0")]
-    dtTemp[, (col) := vals]
+    valCol <- intersect(names(colstr), paste0("VAL", 1:getOption("orgdata.vals")))
+
+    ## Need to be character to add new rows else all columns are logical and accept only 0/1
+    if (nrow(dtTemp) > 0){
+      for (j in names(dtTemp)) {
+        data.table::set(dtTemp, j=j, value = as.character(dtTemp[[j]]))
+      }
+      dtTemp[, `:=`(GEO = geo99, AAR = yr)]
+      dtTemp[, (valCol) := "0"]
+      dtTemp[, (col) := vals]
+    }
 
     nn[[i]] <- dtTemp
     names(nn)[i] <- col
