@@ -20,7 +20,8 @@ is_path_db <- function(db, check = FALSE) {
 
 ## Get columnames to be kept
 is_data_cols <- function(fgspec = NULL){
-  stdCols <- getOption("orgdata.columns")
+
+  stdCols <- is_standard_cols()
   vars <- list()
 
   newCols <- get_colname(spec = fgspec)
@@ -111,7 +112,7 @@ is_org_files <- function(spec, id = NULL) {
 ## Covert to integer for columns integer but only after
 ## variables are recoded
 is_col_int <- function(dt){
-  cols <- getOption("orgdata.int")
+  cols <- getOption("orgdata.integer")
 
   ints <- c("UTDANN", "SIVILSTAND", "LANDBAK", "INNVKAT")
   noExtra <- setdiff(names(dt), ints)

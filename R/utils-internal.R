@@ -60,7 +60,12 @@ is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption
   }
 }
 
-
+## TABS and VALS should be extansible
+is_standard_cols <- function(){
+  c(getOption("orgdata.columns"),
+    paste0("TAB", 1:getOption("orgdata.tabs")),
+    paste0("VAL", 1:getOption("orgdata.vals")))
+}
 
 # Standard dummy input starts with symbol $
 # eg. column AAR with $Y

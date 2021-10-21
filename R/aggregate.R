@@ -52,7 +52,7 @@ do_aggregate <- function(dt = NULL,
   msg <- paste0("Starts aggregating data from ", source, " to")
   is_verbose(x = level, msg = msg)
 
-  colVals <- paste0("VAL", 1:3)
+  colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
   aggNot <- c("GEO", colVals)
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
@@ -89,7 +89,7 @@ do_aggregate <- function(dt = NULL,
   keepVar <- setdiff(names(geoDT), deleteVar)
 
   ## TODO read_file should convert integer variables
-  if (class(dt$GEO) == "character") {
+  if (is(dt$GEO, "character")) {
     dt[, GEO := as.integer(GEO)]
   }
 
@@ -152,8 +152,10 @@ is_level_na <- function(dt, level){
   switch(level,
          kommune = dt[is.na(kommune), kommune := as.integer(gsub("\\d{4}$", "", GEO))],
          fylke =  dt[is.na(fylke), fylke := as.integer(gsub("\\d{6}$", "", GEO))],
-         bydel = {dt <- dt[!is.na(bydel)]}
+         bydel = {dt <- dt[!is.na(bydel)]},
+         dt
          )
+
 }
 
 ## Create list to aggregate in groupingsets
@@ -161,7 +163,7 @@ is_set_list <- function(level, srcCols) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
 
-  ## TODO Add column AGGNOT to specify column that not to aggregate
+  ## TODO Add column AGGKOL to specify column that will be aggregated
   ## Dont aggregate these columns
   tabs <- paste0("TAB", 1:3)
   aggNot <- c(level, "AAR", "KJONN", "ALDER", tabs)
