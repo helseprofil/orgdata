@@ -32,6 +32,9 @@ make_file <- function(group = NULL,
                       year = NULL,
                       implicitnull = getOption("orgdata.implicit.null")
                       ) {
+
+  LEVEL <- NULL
+
   is_null(group, "Filgruppe is missing")
   is_debug()
 
@@ -109,15 +112,6 @@ make_file <- function(group = NULL,
     ## the variables are recoded eg. INNKAT is string before recorded to number
     ## dt <- is_col_int(dt)
 
-    if (implicitnull){
-      dnull <- do_implicit_null(dt)
-      if (nrow(dnull) > 0){
-        is_verbose(x = nrow(dnull), msg = "Number of row(s) for implicit null:")
-        dt <- data.table::rbindlist(list(dt, dnull))
-        data.table::setkeyv(dt, "AAR")
-      }
-    }
-
     if (aggregate) {
       dt <- is_aggregate(dt, fgspec = fgSpec, year = year)
     }
@@ -128,12 +122,34 @@ make_file <- function(group = NULL,
   }
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
-  grpCols <- get_colname(spec = fgSpec)
-  outDT <- do_colname(
-    data.table::rbindlist(DT, fill = TRUE),
-    cols = grpCols)
-
+  outDT <- data.table::rbindlist(DT, fill = TRUE)
   rm(DT)
+
+  geoLevel <- get_aggregate(spec = fgSpec)
+
+  if (implicitnull){
+    for(i in geoLevel){
+      gg <- switch(i,
+                   "F" = "fylke",
+                   "K" = "kommune",
+                   "B" = "bydel",
+                   "grunnkrets"
+                   )
+      dtsub <- outDT[LEVEL == gg]
+      dnull <- do_implicit_null(dtsub, level = gg)
+      if (nrow(dnull) > 0){
+        impMsg <- sprintf("Number of row(s) with implicit null for %s:", gg)
+        is_verbose(x = nrow(dnull), msg = impMsg)
+        outDT <- data.table::rbindlist(list(outDT, dnull))
+      }
+    }
+  }
+
+  data.table::setkeyv(outDT, c("GEO", "AAR"))
+
+  grpCols <- get_colname(spec = fgSpec)
+  outDT <- do_colname(dt = outDT, cols = grpCols)
+
   outDT <- do_recode_aggregate(dt = outDT, spec = fileSpec, con = kh$dbconn)
 
   standardCols <- is_standard_cols()

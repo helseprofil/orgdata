@@ -4,7 +4,7 @@
 \alias{find_implicit_null}
 \title{Dataset for Implicit Null}
 \usage{
-find_implicit_null(imp, year, colstr)
+find_implicit_null(imp, year, colstr, level)
 }
 \arguments{
 \item{imp}{A list of implicit null data derived from \link{get_implicit_col} function}
@@ -12,6 +12,8 @@ find_implicit_null(imp, year, colstr)
 \item{year}{Selected year from the dataset}
 
 \item{colstr}{Column structure or Class type}
+
+\item{level}{Geographical granularity for aggregating data to.}
 }
 \description{
 Create a dataset with implicit null for every selected columns
