@@ -113,9 +113,7 @@ is_org_files <- function(spec, id = NULL) {
 ## variables are recoded
 is_col_int <- function(dt){
   cols <- getOption("orgdata.integer")
-
-  ints <- c("UTDANN", "SIVILSTAND", "LANDBAK", "INNVKAT")
-  noExtra <- setdiff(names(dt), ints)
+  noExtra <- setdiff(names(dt), cols)
   extraInts <- names(dt)[!(names(dt) %in% noExtra)]
 
   colsInt <- c(cols, extraInts)

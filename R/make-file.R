@@ -104,8 +104,8 @@ make_file <- function(group = NULL,
       is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2")
     }
 
-    ## TODO - Not sure if this necessary
-    ## convert some columns to interger. Must be after
+    ## TODO - Not sure if this necessary. Turn of temporarily
+    ## Convert some columns to interger. Must be after
     ## the variables are recoded eg. INNKAT is string before recorded to number
     ## dt <- is_col_int(dt)
 
@@ -122,7 +122,8 @@ make_file <- function(group = NULL,
       dt <- is_aggregate(dt, fgspec = fgSpec, year = year)
     }
 
-    DT[[i]] <- dt
+    DT[[i]] <- copy(dt)
+    rm(dt)
     gc()
   }
 
@@ -132,6 +133,7 @@ make_file <- function(group = NULL,
     data.table::rbindlist(DT, fill = TRUE),
     cols = grpCols)
 
+  rm(DT)
   outDT <- do_recode_aggregate(dt = outDT, spec = fileSpec, con = kh$dbconn)
 
   standardCols <- is_standard_cols()
