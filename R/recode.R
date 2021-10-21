@@ -110,7 +110,7 @@ is_recode <- function(dt, code, cols){
     dt <- is_NA(dt = dt, code = sp, col = col)
     sp[, KOL := NULL]
     data.table::setnames(sp, names(sp), c(col, "to"))
-    dt[, (col) := as.character(get(col))]
+    dt <- is_column_char(dt, col)
     dt[sp, on = col, (col) := i.to]
   }
   invisible(dt)
@@ -127,9 +127,20 @@ is_NA <- function(dt, code, col) {
 
   na <- sum(naIdx) > 0
   if (na) {
+    dt <- is_column_char(dt, col)
     dt[is.na(get(col)), (col) := chrNA]
   }
   return(dt)
+}
+
+## To ensure recode works all the time especially
+## for aggregate (AG) with imposed "NA"
+is_column_char <- function(dt, col){
+  chrCol <- is(dt[[col]], "character")
+  if (isFALSE(chrCol)){
+    dt[, (col) := as.character(get(col))]
+  }
+  invisible(dt)
 }
 
 ## When has LESID needs FILGRUPPE too because
