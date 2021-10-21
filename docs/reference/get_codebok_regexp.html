@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find Implicit Null Categories — find_implicit_col • orgdata</title>
+<title>Codebook with Regular Expression — get_codebok_regexp • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,10 @@
 
 
 
-<meta property="og:title" content="Find Implicit Null Categories — find_implicit_col" />
-<meta property="og:description" content="Find implicit null categories for selected columns on every selected year" />
+<meta property="og:title" content="Codebook with Regular Expression — get_codebok_regexp" />
+<meta property="og:description" content="Get the codebook with regular expression to recode variables
+based on the FILGRUPPE and LESID number. Specification group ALLE
+will be used when neither FILGRUPPE nor LESID is specified." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,46 +139,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find Implicit Null Categories</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/implicit-null.R'><code>R/implicit-null.R</code></a></small>
-    <div class="hidden name"><code>find_implicit_col.Rd</code></div>
+    <h1>Codebook with Regular Expression</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/recode-regex.R'><code>R/recode-regex.R</code></a></small>
+    <div class="hidden name"><code>get_codebok_regexp.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Find implicit null categories for selected columns on every selected year</p>
+    <p>Get the codebook with regular expression to recode variables
+based on the <code>FILGRUPPE</code> and <code>LESID</code> number. Specification group <code>ALLE</code>
+will be used when neither <code>FILGRUPPE</code> nor <code>LESID</code> is specified.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_implicit_col</span><span class='op'>(</span><span class='va'>dt</span>, <span class='va'>years</span>, <span class='va'>col</span>, <span class='va'>ref</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_codebok_regexp</span><span class='op'>(</span>spec <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dt</th>
-      <td><p>Dataset consisting all years</p></td>
+      <th>spec</th>
+      <td><p>Specifications data as a data.frame</p></td>
     </tr>
     <tr>
-      <th>years</th>
-      <td><p>All years in the dataset</p></td>
-    </tr>
-    <tr>
-      <th>col</th>
-      <td><p>Selected column to be controlled for implicit null</p></td>
-    </tr>
-    <tr>
-      <th>ref</th>
-      <td><p>Reference values for the selected column</p></td>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other implicit-null functions: 
-<code><a href='do_implicit_null.html'>do_implicit_null</a>()</code>,
-<code><a href='find_implicit_null.html'>find_implicit_null</a>()</code>,
-<code><a href='get_implicit_col.html'>get_implicit_col</a>()</code>,
-<code><a href='get_implicit_per_year.html'>get_implicit_per_year</a>()</code>,
-<code><a href='get_implicit_ref.html'>get_implicit_ref</a>()</code></p></div>
+    <div class='dont-index'><p>Other recode functions: 
+<code><a href='do_recode_aggregate.html'>do_recode_aggregate</a>()</code>,
+<code><a href='do_recode.html'>do_recode</a>()</code>,
+<code><a href='get_codebok_aggregate.html'>get_codebok_aggregate</a>()</code>,
+<code><a href='get_codebok.html'>get_codebok</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

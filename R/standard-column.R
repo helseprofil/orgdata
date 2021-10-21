@@ -1,7 +1,9 @@
 #' @title Rename Standard Columns
-#' @description Renaming standard columns as in `getOption("orgdata.columns")`.
+#' @description Renaming standard columns. To see what are the standard columns
+#'   run `orgdata:::is_standard_cols()`.
 #' @inheritParams do_split
-#' @param spec Specification data as list. See output from \code{get_column_standard}
+#' @param spec Specification data as list. See output from
+#'   \code{get_column_standard}
 #' @export
 do_column_standard <- function(dt = NULL, spec = NULL) {
   is_debug()
@@ -22,7 +24,7 @@ is_column_equal <- function(dt, spec){
 
 #' @title Get Standard Columns
 #' @description Standard columns names in rawdata will be checked against
-#'    the standard names in options as in `getOptions("orgdata.columns")`.
+#'    the standard names in options as in `getOption("orgdata.columns")`.
 #'    Nevertheless column `GEO` is a special case when geo codes are derived
 #'    from a combination of two columns.
 #' @inheritParams make_file
@@ -40,7 +42,7 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
     spec <- find_spec("filegroups.sql", group, con)
   }
 
-  VARS <- getOption("orgdata.columns")
+  VARS <- is_standard_cols()
   vars <- VARS[is.element(VARS, names(spec))]
 
   ## When GEO is a combination of two or more columns
@@ -94,7 +96,7 @@ is_reshape_col <- function(vars, spec){
   ## vars - standard variables or columnames
   reshVars <- is_col_separate(spec$RESHAPE_KOL)$old
 
-  reshCols <- c("TAB1", paste0("VAL", 1:3))
+  reshCols <- c("TAB1", paste0("VAL", 1:getOption("orgdata.vals")))
   reshNo <- setdiff(reshVars, reshCols)
   if (length(reshNo) != 0){
     is_stop("Check RESHAPE_KOL with variable:  ", reshNo)

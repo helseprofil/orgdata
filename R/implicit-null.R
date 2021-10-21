@@ -15,7 +15,8 @@ do_implicit_null <- function(dt){
   is_debug()
   is_verbose(msg = "Checking for implicit null ...")
 
-  ignoreCols <- c("GEO", "AAR", "VAL1")
+  stdVals <- paste0("VAL", 1:getOption("orgdata.vals"))
+  ignoreCols <- c("GEO", "AAR", stdVals)
   dtCols <- names(dt)
   cols <- setdiff(dtCols, ignoreCols)
   years <- sort(unique(dt[["AAR"]]))

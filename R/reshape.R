@@ -122,6 +122,7 @@ is_reshape_col_id <- function(input){
 }
 
 is_reshape_col_val <- function(input){
+  ## TODO Should use getOption("orgdata.vals") and function
   vals <- c("VAL1", "VAL2", "VAL3")
   var <- intersect(input$old, vals)
   if (length(var) == 1){

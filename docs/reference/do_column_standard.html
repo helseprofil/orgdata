@@ -47,7 +47,8 @@
 
 
 <meta property="og:title" content="Rename Standard Columns — do_column_standard" />
-<meta property="og:description" content="Renaming standard columns as in getOption(&quot;orgdata.columns&quot;)." />
+<meta property="og:description" content="Renaming standard columns. To see what are the standard columns
+run orgdata:::is_standard_cols()." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -80,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -143,7 +144,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Renaming standard columns as in <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.columns")</a></code>.</p>
+    <p>Renaming standard columns. To see what are the standard columns
+run <code>orgdata:::is_standard_cols()</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_column_standard</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
@@ -157,7 +159,8 @@
     </tr>
     <tr>
       <th>spec</th>
-      <td><p>Specification data as list. See output from <code>get_column_standard</code></p></td>
+      <td><p>Specification data as list. See output from
+<code>get_column_standard</code></p></td>
     </tr>
     </table>
 

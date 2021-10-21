@@ -134,7 +134,8 @@ make_file <- function(group = NULL,
 
   outDT <- do_recode_aggregate(dt = outDT, spec = fileSpec, con = kh$dbconn)
 
-  orderCols <- intersect(getOption("orgdata.columns"), names(outDT))
+  standardCols <- is_standard_cols()
+  orderCols <- intersect(standardCols, names(outDT))
   data.table::setcolorder(outDT, orderCols)
 
   if (save) {

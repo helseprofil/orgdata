@@ -16,14 +16,17 @@ opt.orgdata <- list(
   orgdata.aggregate = TRUE,
   orgdata.implicit.null = TRUE,
 
+  ## Number of TABS and VALS
+  orgdata.tabs = 3,
+  orgdata.vals = 3,
+
   ## Standard columns
-  orgdata.columns = c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB",
-                      "TAB1", "TAB2", "TAB3", "VAL1", "VAL2", "VAL3"),
+  orgdata.columns = c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB"),
 
   ## Columns with integer values. GEO is not included because some geo codes has
   ## to be a combination of 2 columns and need to keep the leading 0 on second
   ## column before merging. GEO will only be converted to integer after merging
-  orgdata.int = c("AAR", "KJONN", "ALDER", "VAL1"),
+  orgdata.integer = c("AAR", "KJONN", "ALDER"),
 
   ## Use for debuging purposes only
   orgdata.debug = FALSE,
