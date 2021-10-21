@@ -9,8 +9,10 @@ do_column_standard(dt = NULL, spec = NULL)
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
-\item{spec}{Specification data as list. See output from \code{get_column_standard}}
+\item{spec}{Specification data as list. See output from
+\code{get_column_standard}}
 }
 \description{
-Renaming standard columns as in \code{getOption("orgdata.columns")}.
+Renaming standard columns. To see what are the standard columns
+run \code{orgdata:::is_standard_cols()}.
 }

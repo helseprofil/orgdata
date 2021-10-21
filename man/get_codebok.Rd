@@ -20,6 +20,7 @@ used when neither \code{FILGRUPPE} nor \code{LESID} is specified.
 Other recode functions: 
 \code{\link{do_recode_aggregate}()},
 \code{\link{do_recode}()},
-\code{\link{get_codebok_aggregate}()}
+\code{\link{get_codebok_aggregate}()},
+\code{\link{get_codebok_regexp}()}
 }
 \concept{recode functions}

@@ -31,6 +31,7 @@ recode \code{NA} to a preferred value such as \code{ALL}.
 Other recode functions: 
 \code{\link{do_recode}()},
 \code{\link{get_codebok_aggregate}()},
+\code{\link{get_codebok_regexp}()},
 \code{\link{get_codebok}()}
 }
 \concept{recode functions}
