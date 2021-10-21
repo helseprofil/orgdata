@@ -1,0 +1,10 @@
+#+TITLE: Description on how things are done
+#+Author: Yusman Kamaleri
+#+Date: 21 Oct 2021
+
+This document describes some of the procedure how things are done.
+
+* Implicit Null
+* Recode GEO
+* Recode Variables
+* Aggregate
