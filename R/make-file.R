@@ -32,6 +32,9 @@ make_file <- function(group = NULL,
                       year = NULL,
                       implicitnull = getOption("orgdata.implicit.null")
                       ) {
+
+  LEVEL <- NULL
+
   is_null(group, "Filgruppe is missing")
   is_debug()
 

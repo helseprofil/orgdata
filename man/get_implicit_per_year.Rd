@@ -4,7 +4,7 @@
 \alias{get_implicit_per_year}
 \title{Dataset for Implicit Null by Year}
 \usage{
-get_implicit_per_year(imp, refs, years, colstr)
+get_implicit_per_year(imp, refs, years, colstr, .env = parent.frame())
 }
 \arguments{
 \item{imp}{A list of implicit null data derived from \link{get_implicit_col} function}
@@ -14,6 +14,8 @@ get_implicit_per_year(imp, refs, years, colstr)
 \item{years}{All years in the dataset}
 
 \item{colstr}{Column structure or Class type}
+
+\item{.env}{Inherit object from parent frame}
 }
 \description{
 Create a dataset with implicit null for each available

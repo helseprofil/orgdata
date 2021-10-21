@@ -4,10 +4,15 @@
 \alias{do_implicit_null}
 \title{Create Implicit Null}
 \usage{
-do_implicit_null(dt)
+do_implicit_null(
+  dt = NULL,
+  level = c("grunnkrets", "fylke", "kommune", "bydel")
+)
 }
 \arguments{
 \item{dt}{Dataset consisting all years}
+
+\item{level}{Geographical granularity for aggregating data to.}
 }
 \description{
 Implicit Null happens when a variable in a dataset has unequal

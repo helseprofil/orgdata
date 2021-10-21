@@ -95,6 +95,7 @@ get_implicit_col <- function(dt, years, cols, refs){
 #' @param imp A list of implicit null data derived from [get_implicit_col] function
 #' @inheritParams get_implicit_col
 #' @param colstr Column structure or Class type
+#' @param .env Inherit object from parent frame
 #' @family implicit-null functions
 #' @export
 get_implicit_per_year <- function(imp, refs, years, colstr, .env = parent.frame()){
