@@ -9,6 +9,7 @@ do_aggregate(
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
   level = c("grunnkrets", "fylke", "kommune", "bydel"),
   year = NULL,
+  aggregate.col = NULL,
   check = getOption("orgdata.debug.aggregate")
 )
 }
@@ -24,14 +25,17 @@ source data. This will be used for merging with the output from
 \item{year}{Which year the georaphical code is valid for. If not specified,
 then it will be base on the year in source data ie. column \code{AAR}}
 
+\item{aggregate.col}{Other columns to aggregate other than the standard ie.
+\code{UTDANN}, \code{LANDSSB}, \code{LANDBAK} and \code{INNVKAT}}
+
 \item{check}{If TRUE then output will not be aggregated. This is useful to
 check for geographical codes that are missing. Else use
 \code{options(orgdata.aggregate = FALSE)}}
 }
 \description{
 Aggregate data according to the specification in \code{tbl_Filgruppe}
-in \code{AGGREGERE} column. The input in argument \code{source} must be a lower granularity
-level than the \code{level} input.
+in \code{AGGREGERE} column. The input in argument \code{source} must be a lower
+granularity level than the \code{level} input.
 }
 \examples{
 \dontrun{
