@@ -10,6 +10,7 @@ Things in `dev` branch
 
 - Fix #65 make TABS and VALS dynamic for easy extention for these columns (#66)
 - Fix #64 recode of variable that has different class (#68)
+- Fix #63 implicit null includes all possible VAL columns when exist (#69)
 
 # orgdata 0.3.2
 - Fix #55 to recode standard variables via codebook instead of hardcoded (#58)
