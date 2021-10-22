@@ -155,7 +155,6 @@ is_level_na <- function(dt, level){
          bydel = {dt <- dt[!is.na(bydel)]},
          dt
          )
-
 }
 
 ## Create list to aggregate in groupingsets
@@ -165,7 +164,7 @@ is_set_list <- function(level, srcCols) {
 
   ## TODO Add column AGGKOL to specify column that will be aggregated
   ## Dont aggregate these columns
-  tabs <- paste0("TAB", 1:3)
+  tabs <- paste0("TAB", 1:getOption("orgdata.tabs"))
   aggNot <- c(level, "AAR", "KJONN", "ALDER", tabs)
   vars <- intersect(aggNot, srcCols)
 
