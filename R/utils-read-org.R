@@ -48,11 +48,16 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
 
   aggSpec <- get_aggregate(spec = fgspec)
   source <- is_geo_level(dt$GEO[1])
+  aggCol <- find_column_multi(spec = fgspec, "AGGKOL") #Other columns to aggregate
 
   nSpec <- length(aggSpec)
   DT <- vector(mode = "list", length = nSpec)
   for (i in seq_len(nSpec)) {
-    dtt <- do_aggregate(dt = dt, source = source, level = aggSpec[i], year = year)
+    dtt <- do_aggregate(dt = dt,
+                        source = source,
+                        level = aggSpec[i],
+                        year = year,
+                        aggregate.col = aggCol)
     ## dtt <- do_aggregate_recode_standard(dt = dtt) #defunct
     DT[[i]] <- data.table::copy(dtt)
     gc()
@@ -61,7 +66,7 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
   data.table::rbindlist(DT, use.names = TRUE, fill = TRUE)
 }
 
-## identify geo level
+## identify geo level base on number of digits in codes
 is_geo_level <- function(x){
   geo <- nchar(x)
   data.table::fcase(geo %in% 7:8, "grunnkrets",

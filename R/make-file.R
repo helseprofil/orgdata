@@ -128,13 +128,13 @@ make_file <- function(group = NULL,
   geoLevel <- get_aggregate(spec = fgSpec)
 
   if (implicitnull){
-    for(i in geoLevel){
-      gg <- switch(i,
-                   "F" = "fylke",
-                   "K" = "kommune",
-                   "B" = "bydel",
-                   "grunnkrets"
-                   )
+    for(gg in geoLevel){
+      ## gg <- switch(i,
+      ##              "F" = "fylke",
+      ##              "K" = "kommune",
+      ##              "B" = "bydel",
+      ##              "grunnkrets"
+      ##              )
       dtsub <- outDT[LEVEL == gg]
       dnull <- do_implicit_null(dtsub, level = gg)
       if (nrow(dnull) > 0){

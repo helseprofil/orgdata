@@ -1,7 +1,7 @@
 #' @title Aggregate Data
 #' @description Aggregate data according to the specification in `tbl_Filgruppe`
-#'   in `AGGREGERE` column. The input in argument `source` must be a lower granularity
-#'   level than the `level` input.
+#'   in `AGGREGERE` column. The input in argument `source` must be a lower
+#'   granularity level than the `level` input.
 #' @inheritParams do_split
 #' @param source What geographical granularity codes that is available in the
 #'   source data. This will be used for merging with the output from
@@ -9,6 +9,8 @@
 #' @param level Geographical granularity for aggregating data to.
 #' @param year Which year the georaphical code is valid for. If not specified,
 #'   then it will be base on the year in source data ie. column `AAR`
+#' @param aggregate.col Other columns to aggregate other than the standard ie.
+#'   `UTDANN`, `LANDSSB`, `LANDBAK` and `INNVKAT`
 #' @param check If TRUE then output will not be aggregated. This is useful to
 #'   check for geographical codes that are missing. Else use
 #'   `options(orgdata.aggregate = FALSE)`
@@ -36,6 +38,7 @@ do_aggregate <- function(dt = NULL,
                            "bydel"
                          ),
                          year = NULL,
+                         aggregate.col = NULL,
                          check = getOption("orgdata.debug.aggregate")) {
 
   VAL1 <- GEO <- AAR <- fylke <- kommune <- bydel <- LEVEL <- NULL
@@ -106,7 +109,8 @@ do_aggregate <- function(dt = NULL,
 
   xCols <- is_set_list(
     level = level,
-    srcCols = aggCols
+    srcCols = aggCols,
+    colx = aggregate.col
   )
 
   colj <- intersect(colVals, names(dt))
@@ -139,8 +143,19 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
   if (is.null(spec)) {
     spec <- find_spec("filegroups.sql", group, con)
   }
-  input <- find_column_input(spec, "AGGREGERE")
-  is_separate(input, sep = ",")
+  input <- find_column_multi(spec, "AGGREGERE")
+  ## is_separate(input, sep = ",")
+  level <- vector(mode = "list", length = length(input))
+  for (i in seq_along(input)){
+    gg <- switch(input[i],
+                 "F" = "fylke",
+                 "K" = "kommune",
+                 "B" = "bydel",
+                 "grunnkrets"
+                 )
+    level[[i]] <- gg
+  }
+  unlist(level)
 }
 
 
@@ -158,15 +173,23 @@ is_level_na <- function(dt, level){
 }
 
 ## Create list to aggregate in groupingsets
-is_set_list <- function(level, srcCols) {
+is_set_list <- function(level, srcCols, colx = NULL) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
+  # colx - Colnames to aggregate other than standard
 
   ## TODO Add column AGGKOL to specify column that will be aggregated
+
   ## Dont aggregate these columns
   tabs <- paste0("TAB", 1:getOption("orgdata.tabs"))
   aggNot <- c(level, "AAR", "KJONN", "ALDER", tabs)
+  ## Find the columns that exist in the dataset
   vars <- intersect(aggNot, srcCols)
+
+  if (!is.null(colx)){
+    aggNot <- setdiff(aggNot, colx)
+    vars <- intersect(aggNot, srcCols)
+  }
 
   sameVars <- identical(vars, srcCols)
 
@@ -186,10 +209,6 @@ is_set_list <- function(level, srcCols) {
 }
 
 
-is_match_arg <- function(arg){
-  arg <- tolower(arg)
-  arg <- match.arg(arg)
-}
 
 
 ## Deprecated functions --------------------------------------------------
