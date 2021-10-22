@@ -39,7 +39,7 @@ is_org_process <- function(file,
   }
 
   ## Logging
-  .log$logr$rawcat <- unique(dt[[4]])
+  ## .log$logr$rawcat <- unique(dt[[4]])
 
   manSpec <- get_manheader(spec = filespec)
   dt <- do_manheader(dt, manSpec)
