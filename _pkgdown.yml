@@ -70,4 +70,5 @@ reference:
 - title: Nice to have
   desc: Some functions that are nice to have.
   contents:
+    - see_file
     - website

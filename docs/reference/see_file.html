@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>orgdata: Aggregating Original Data — orgdata-package • orgdata</title>
+<title>See Column Categories — see_file • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,8 @@
 
 
 
-<meta property="og:title" content="orgdata: Aggregating Original Data — orgdata-package" />
-<meta property="og:description" content="
-Aggretating original data usually with enumerical area codes to any geographical codes." />
+<meta property="og:title" content="See Column Categories — see_file" />
+<meta property="og:description" content="See what categories available in the data." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -138,34 +137,41 @@ Aggretating original data usually with enumerical area codes to any geographical
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>orgdata: Aggregating Original Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/orgdata-package.R'><code>R/orgdata-package.R</code></a></small>
-    <div class="hidden name"><code>orgdata-package.Rd</code></div>
+    <h1>See Column Categories</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/see-data.R'><code>R/see-data.R</code></a></small>
+    <div class="hidden name"><code>see_file.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><img src='figures/logo.png' align='right' alt='logo' width='120' /></p>
-<p>Aggretating original data usually with enumerical area codes to any geographical codes.</p>
+    <p>See what categories available in the data.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>see_file</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
 
+<span class='va'>se_fil</span></pre>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>dt</th>
+      <td><p>Dataset of type <code>data.frame</code> or <code>data.table</code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Columnames to be displayed</p></td>
+    </tr>
+    </table>
 
-    <p>Aggregating Original Data (raw data) into different geographical
-levels such as county, manucipality or town.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <div class='dont-index'><p>Useful links:</p><ul>
-<li><p><a href='https://github.com/helseprofil/orgdata'>https://github.com/helseprofil/orgdata</a></p></li>
-<li><p>Report bugs at <a href='https://github.com/helseprofil/orgdata/issues'>https://github.com/helseprofil/orgdata/issues</a></p></li>
-</ul>
+    <p>An object of class <code>list</code> of length 0.</p>
 
-</div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p><strong>Maintainer</strong>: Yusman Kamaleri <a href='mailto:ybka@fhi.no'>ybka@fhi.no</a> (<a href='https://orcid.org/0000-0001-5014-3665'>ORCID</a>)</p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>see_file</span><span class='op'>(</span><span class='va'>DT</span>, <span class='va'>KJONN</span>, <span class='va'>UTDANN</span>, <span class='va'>LANDSSB</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

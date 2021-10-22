@@ -6,6 +6,10 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.4
+
+- New feature for checking categories for variables with `see_file()` (#75)
+
 # orgdata 0.3.3
 
 - Fix #65 make TABS and VALS dynamic for easy extention for these columns (#66)
