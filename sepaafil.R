@@ -30,6 +30,11 @@ df <- lag_fil("TEST01", koblid = 1)
 df[, .N, keyby = LANDB] #kategori i omkodet aggregerte data
 df[, .N, keyby = LANDF]
 
+## Få å finne kategorier bare for kommune eller spesifik kjonn
+df[LEVEL == "kommune", .N, keyby = LANDBAK]
+df[KJONN == 1, .N, keyby = LANDBAK]
+
+
 ## Åpne hjemmeside
 website()
 
