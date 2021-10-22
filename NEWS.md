@@ -12,6 +12,10 @@ Things in `dev` branch
 - Fix #64 recode of variable that has different class (#68)
 - Fix #63 implicit null includes all possible VAL columns when exist (#69)
 - Fix #70 recode GEO of different object class (#71)
+- Fix #67 aggregate with total values for standard variables ie. `UTDANN`,
+  `LANDSSB`, `LANDBAK` and `INNVKAT` (#72)
+- Fix #61 use AGGKOL in Access registration database to specify other columns to
+  aggregate other than the standard eg. `KJONN`, `TAB1`, `TAB2` etc. (#73)
 
 # orgdata 0.3.2
 - Fix #55 to recode standard variables via codebook instead of hardcoded (#58)

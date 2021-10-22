@@ -48,8 +48,8 @@
 
 <meta property="og:title" content="Aggregate Data — do_aggregate" />
 <meta property="og:description" content="Aggregate data according to the specification in tbl_Filgruppe
-in AGGREGERE column. The input in argument source must be a lower granularity
-level than the level input." />
+in AGGREGERE column. The input in argument source must be a lower
+granularity level than the level input." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -146,8 +146,8 @@ level than the level input." />
 
     <div class="ref-description">
     <p>Aggregate data according to the specification in <code>tbl_Filgruppe</code>
-in <code>AGGREGERE</code> column. The input in argument <code>source</code> must be a lower granularity
-level than the <code>level</code> input.</p>
+in <code>AGGREGERE</code> column. The input in argument <code>source</code> must be a lower
+granularity level than the <code>level</code> input.</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_aggregate</span><span class='op'>(</span>
@@ -155,6 +155,7 @@ level than the <code>level</code> input.</p>
   source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
   level <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  aggregate.col <span class='op'>=</span> <span class='cn'>NULL</span>,
   check <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.aggregate"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
@@ -179,6 +180,11 @@ source data. This will be used for merging with the output from
       <th>year</th>
       <td><p>Which year the georaphical code is valid for. If not specified,
 then it will be base on the year in source data ie. column <code>AAR</code></p></td>
+    </tr>
+    <tr>
+      <th>aggregate.col</th>
+      <td><p>Other columns to aggregate other than the standard ie.
+<code>UTDANN</code>, <code>LANDSSB</code>, <code>LANDBAK</code> and <code>INNVKAT</code></p></td>
     </tr>
     <tr>
       <th>check</th>
