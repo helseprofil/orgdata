@@ -172,10 +172,18 @@ is_set_list <- function(level, srcCols) {
   sameVars <- identical(vars, srcCols)
 
   if (sameVars){
-    list(vars)
+    listSet <- list(vars)
   } else {
-    list(vars, srcCols)
+    aggCols <- setdiff(srcCols, vars)
+    listSet <- vector(mode = "list", length = length(aggCols)+1)
+    listSet[[1]] <- vars
+    for (i in seq_along(aggCols)){
+      x <- i + 1
+      listSet[[x]] <- c(vars, aggCols[i])
+    }
   }
+
+  return(listSet)
 }
 
 
