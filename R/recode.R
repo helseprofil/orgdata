@@ -122,10 +122,9 @@ is_NA <- function(dt, code, col) {
   ## code - From codebook
   ## col - column to recode
   isNA <- c("<NA>", "NA")
-  naIdx <- is.element(isNA, code$FRA)
-  chrNA <- isNA[naIdx]
+  chrNA <- intersect(isNA, code$FRA)
 
-  na <- sum(naIdx) > 0
+  na <- length(chrNA) > 0
   if (na) {
     dt <- is_column_char(dt, col)
     dt[is.na(get(col)), (col) := chrNA]
