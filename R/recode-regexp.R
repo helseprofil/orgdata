@@ -121,7 +121,7 @@ is_recode_regexp <- function(dt, code, cols){
 
 is_rex <- function(code){
 
-  rexExp <- grepl("rex\\(", code)
+  rexExp <- grepl("^rex\\(", code)
   if (rexExp){
     code <- eval(parse(text = paste0("rex::", code)))
   }
