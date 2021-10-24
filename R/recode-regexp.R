@@ -73,6 +73,8 @@ is_recode_common_regexp <- function(dt, code, group) {
 
 ## When FILGRUPPE in tbl_Kode is ALLE
 is_recode_all_regexp <- function(dt, code, aggregate.msg = FALSE){
+# aggregate.msg - Either it's KB/RE or AG. Default is KB/RE ie. FALSE
+
   FILGRUPPE <- KOL <- FRA <- TIL <- NULL
 
   allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA, TIL)]
@@ -120,7 +122,6 @@ is_recode_regexp <- function(dt, code, cols){
 }
 
 is_rex <- function(code){
-  rex::register_shortcuts()
   rexExp <- grepl("^rex\\(", code)
   if (rexExp){
     code <- eval(parse(text = paste0("rex::", code)))

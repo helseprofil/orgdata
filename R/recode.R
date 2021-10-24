@@ -68,6 +68,8 @@ is_recode_common <- function(dt, code, group) {
 
 ## When FILGRUPPE in tbl_Kode is ALLE
 is_recode_all <- function(dt, code, aggregate.msg = FALSE){
+  # aggregate.msg - If it's KB or AG
+
   FILGRUPPE <- KOL <- FRA <- TIL <- NULL
 
   allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA, TIL)]
