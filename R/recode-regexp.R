@@ -120,7 +120,7 @@ is_recode_regexp <- function(dt, code, cols){
 }
 
 is_rex <- function(code){
-
+  rex::register_shortcuts()
   rexExp <- grepl("^rex\\(", code)
   if (rexExp){
     code <- eval(parse(text = paste0("rex::", code)))

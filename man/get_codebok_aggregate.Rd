@@ -19,6 +19,7 @@ used when neither \code{FILGRUPPE} nor \code{LESID} is specified.
 \seealso{
 Other recode functions: 
 \code{\link{do_recode_aggregate}()},
+\code{\link{do_recode_regexp}()},
 \code{\link{do_recode}()},
 \code{\link{get_codebok_regexp}()},
 \code{\link{get_codebok}()}
