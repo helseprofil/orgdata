@@ -68,6 +68,8 @@ is_recode_common <- function(dt, code, group) {
 
 ## When FILGRUPPE in tbl_Kode is ALLE
 is_recode_all <- function(dt, code, aggregate.msg = FALSE){
+  # aggregate.msg - If it's KB or AG
+
   FILGRUPPE <- KOL <- FRA <- TIL <- NULL
 
   allCode <- code[FILGRUPPE == "ALLE", list(KOL, FRA, TIL)]
@@ -122,10 +124,9 @@ is_NA <- function(dt, code, col) {
   ## code - From codebook
   ## col - column to recode
   isNA <- c("<NA>", "NA")
-  naIdx <- is.element(isNA, code$FRA)
-  chrNA <- isNA[naIdx]
+  chrNA <- intersect(isNA, code$FRA)
 
-  na <- sum(naIdx) > 0
+  na <- length(chrNA) > 0
   if (na) {
     dt <- is_column_char(dt, col)
     dt[is.na(get(col)), (col) := chrNA]

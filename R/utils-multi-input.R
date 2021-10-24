@@ -33,7 +33,7 @@ find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", "|", ":", ";
   if (is.null(col)) {
     args <- is_separate(spec, sep)
   } else {
-    args <- is_separate(spec[, col], sep)
+    args <- is_separate(spec[[col]], sep)
   }
   return(args)
 }

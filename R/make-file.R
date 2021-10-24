@@ -93,6 +93,7 @@ make_file <- function(group = NULL,
     ## aggregating uses the standard columnames for id and measure variables
     dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
     dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
+    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
 
     ## Only columns defined in tbl_Filgruppe will be kept
     deleteVar <- setdiff(names(dt), dataCols)

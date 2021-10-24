@@ -25,6 +25,7 @@ Imports:
     fs (>= 1.5.0),
     lifecycle (>= 1.0.1),
     crayon (>= 1.4.1),
+    rex (>= 1.2.0),
     methods,
     utils
 Remotes: helseprofil/norgeo

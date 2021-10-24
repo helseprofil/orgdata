@@ -29,6 +29,7 @@ recode \code{NA} to a preferred value such as \code{ALL}.
 }
 \seealso{
 Other recode functions: 
+\code{\link{do_recode_regexp}()},
 \code{\link{do_recode}()},
 \code{\link{get_codebok_aggregate}()},
 \code{\link{get_codebok_regexp}()},
