@@ -4,14 +4,24 @@ test_that("Aggregate group list", {
   srcCols <- c("kommune", "AAR", "ALDER", "LANDSSB", "UTDANN", "TAB1", "LANDBAK",
                "INNVKAT")
 
-  output <- list(c("kommune", "AAR", "ALDER", "TAB1"),
-                 c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB"),
+  output <- list(c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB"),
                  c("kommune", "AAR", "ALDER", "TAB1", "UTDANN"),
                  c("kommune", "AAR", "ALDER", "TAB1", "LANDBAK"),
-                 c("kommune", "AAR", "ALDER", "TAB1", "INNVKAT"))
-
+                 c("kommune", "AAR", "ALDER", "TAB1", "INNVKAT"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB", "UTDANN"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB", "LANDBAK"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB", "INNVKAT"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "UTDANN", "LANDBAK"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "UTDANN", "INNVKAT"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "LANDBAK", "INNVKAT"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB", "UTDANN", "LANDBAK"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB", "UTDANN", "INNVKAT"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB", "LANDBAK", "INNVKAT"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "UTDANN", "LANDBAK", "INNVKAT"),
+                 c("kommune", "AAR", "ALDER", "TAB1", "LANDSSB", "UTDANN", "LANDBAK", "INNVKAT"),
+                 c("kommune", "AAR", "ALDER", "TAB1"))
   ## TEST --------------
-  expect_equal(is_set_list(level = "kommune", srcCols = srcCols), output)
+    expect_equal(is_set_list(level = "kommune", srcCols = srcCols), output)
 
 
 })

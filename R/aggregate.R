@@ -198,7 +198,7 @@ is_set_list <- function(level, srcCols, colx = NULL) {
   } else {
     aggCols <- setdiff(srcCols, vars)
     listSet <- unlist(lapply(seq_along(aggCols),
-                             combn,
+                             utils::combn,
                              x = aggCols,
                              simplify = FALSE),
                       recursive = FALSE)
