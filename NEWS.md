@@ -6,6 +6,10 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.5
+- Aggregate now give total to all dimensions including those specified in `AGGKOL` (#82)
+- Function `see_file()` accept column index as well (#83)
+
 # orgdata 0.3.4
 
 - Recode variables using regular expression when defined in codebook with type
