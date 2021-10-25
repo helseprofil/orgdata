@@ -44,4 +44,4 @@ see_file <- function(dt = NULL, ...){
 
 #' @export
 #' @rdname see_file
-se_fil <- see_file()
+se_fil <- see_file
