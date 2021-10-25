@@ -163,6 +163,13 @@
       "Repository": "CRAN",
       "Hash": "98138e0994d41508c7a6b84a0600cfcb"
     },
+    "lazyeval": {
+      "Package": "lazyeval",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d908914ae53b04d4c0c0fd72ecc35370"
+    },
     "lifecycle": {
       "Package": "lifecycle",
       "Version": "1.0.1",
@@ -226,16 +233,16 @@
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.3.3",
+      "Version": "0.3.4",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "8494163789bafc52e71bd34655fbdd6aa9667d26",
+      "RemoteSha": "af92e4d7ab4bc10fc7cd7936c5fc5454b2026564",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "cd59f3df4ff582360431463028935140"
+      "Hash": "f8533a59d63a40c367f4b1e7e713978c"
     },
     "pillar": {
       "Package": "pillar",
@@ -292,6 +299,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "30e5eba91b67f7f4d75d31de14bbfbdc"
+    },
+    "rex": {
+      "Package": "rex",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "093584b944440c5cd07a696b3c8e0e4c"
     },
     "rlang": {
       "Package": "rlang",
