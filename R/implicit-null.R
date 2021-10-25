@@ -20,7 +20,7 @@ do_implicit_null <- function(dt = NULL,
                                "bydel"
                              )){
   is_debug()
-  is_verbose(msg = "Checking for implicit null ...")
+  is_verbose(x = level, msg = "Checking for implicit null for:")
 
   stdVals <- paste0("VAL", 1:getOption("orgdata.vals"))
   ignoreCols <- c("GEO", "AAR", stdVals)
