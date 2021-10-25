@@ -12,5 +12,5 @@ test_that("See file", {
   ## TEST
   expect_equal(see_file(mtcars, cyl, gear), outpt)
   expect_equal(see_file(mtcars, "cyl", "gear"), outpt)
-
+  expect_equal(see_file(mtcars, c(2,10)), outpt)
 })

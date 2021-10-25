@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="See Column Categories — see_file" />
-<meta property="og:description" content="See what categories available in the data." />
+<meta property="og:description" content="See what categories available in the dataset." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -138,12 +138,12 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>See Column Categories</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/see-data.R'><code>R/see-data.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/see-file.R'><code>R/see-file.R</code></a></small>
     <div class="hidden name"><code>see_file.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See what categories available in the data.</p>
+    <p>See what categories available in the dataset.</p>
     </div>
 
     <pre class="usage"><span class='fu'>see_file</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
@@ -159,14 +159,20 @@
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Columnames to be displayed</p></td>
+      <td><p>Columnames or column index to be displayed</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># Use columnames</span>
 <span class='fu'>see_file</span><span class='op'>(</span><span class='va'>DT</span>, <span class='va'>KJONN</span>, <span class='va'>UTDANN</span>, <span class='va'>LANDSSB</span><span class='op'>)</span>
+
+<span class='co'># Use column index</span>
+<span class='fu'>see_file</span><span class='op'>(</span><span class='va'>DT</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>see_file</span><span class='op'>(</span><span class='va'>DT</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>see_file</span><span class='op'>(</span><span class='va'>DT</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>7</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
