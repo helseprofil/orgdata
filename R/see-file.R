@@ -1,10 +1,16 @@
 #' @title See Column Categories
-#' @description See what categories available in the data.
+#' @description See what categories available in the dataset.
 #' @param dt Dataset of type `data.frame` or `data.table`
-#' @param ... Columnames to be displayed
+#' @param ... Columnames or column index to be displayed
 #' @examples
 #' \dontrun{
+#' # Use columnames
 #' see_file(DT, KJONN, UTDANN, LANDSSB)
+#'
+#' # Use column index
+#' see_file(DT, c(2,5))
+#' see_file(DT, c(1:3))
+#' see_file(DT, c(2, 4, 7:8))
 #' }
 #' @export
 see_file <- function(dt = NULL, ...){
@@ -22,12 +28,7 @@ see_file <- function(dt = NULL, ...){
   cols <- eval(substitute(alist(...)))
 
   if (length(cols) > 0){
-    itm <- cols[[1]]
-    if (is(itm, "character")){
-      cols <- unlist(cols)
-    } else {
-      cols <- sapply(as.list(cols), deparse)
-    }
+    cols <- is_variables(dt, cols)
   }
 
   out <- vector(mode = "list", length = length(cols))
@@ -45,3 +46,19 @@ see_file <- function(dt = NULL, ...){
 #' @export
 #' @rdname see_file
 se_fil <- see_file
+
+## Helper -----------------------
+is_variables <- function(dt, cols){
+  itm <- cols[[1]]
+
+  if (is(itm, "character")){
+    cols <- unlist(cols)
+  } else if (is(itm, "call")) {
+    idx <- eval(itm)
+    cols <- names(dt)[idx]
+  } else {
+    cols <- sapply(as.list(cols), deparse)
+  }
+
+  return(cols)
+}
