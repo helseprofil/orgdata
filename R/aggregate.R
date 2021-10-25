@@ -122,6 +122,8 @@ do_aggregate <- function(dt = NULL,
     sets = xCols,
     .SDcols = colj
   )
+
+  ## DT <- DT[!is.na(get(level))]
   DT[, LEVEL := level]
   data.table::setnames(DT, level, "GEO")
 }
@@ -172,13 +174,11 @@ is_level_na <- function(dt, level){
          )
 }
 
-## Create list to aggregate in groupingsets
+## Create list of combination to aggregate in groupingsets
 is_set_list <- function(level, srcCols, colx = NULL) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
   # colx - Colnames to aggregate other than standard
-
-  ## TODO Add column AGGKOL to specify column that will be aggregated
 
   ## Dont aggregate these columns
   tabs <- paste0("TAB", 1:getOption("orgdata.tabs"))
@@ -197,12 +197,18 @@ is_set_list <- function(level, srcCols, colx = NULL) {
     listSet <- list(vars)
   } else {
     aggCols <- setdiff(srcCols, vars)
-    listSet <- vector(mode = "list", length = length(aggCols)+1)
-    listSet[[1]] <- vars
-    for (i in seq_along(aggCols)){
-      x <- i + 1
-      listSet[[x]] <- c(vars, aggCols[i])
+    listSet <- unlist(lapply(seq_along(aggCols),
+                             utils::combn,
+                             x = aggCols,
+                             simplify = FALSE),
+                      recursive = FALSE)
+
+    for (i in seq_along(listSet)){
+      listSet[[i]] <- c(vars, listSet[[i]])
     }
+
+    setNr <- length(listSet)
+    listSet[[setNr + 1]] <- vars
   }
 
   return(listSet)
