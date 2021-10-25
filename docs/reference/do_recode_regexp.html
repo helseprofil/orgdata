@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Recode Category Representing All Groups — do_recode_aggregate • orgdata</title>
+<title>Recode Variables with Regular Expression — do_recode_regexp • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,14 @@
 
 
 
-<meta property="og:title" content="Recode Category Representing All Groups — do_recode_aggregate" />
-<meta property="og:description" content="Recode the category for all after aggregating data based on the
-specification in Codebook. For example when aggregating category type of diagnoses
-NA will be produced to represent all type of diagnoses. This will basically
-recode NA to a preferred value such as ALL." />
+<meta property="og:title" content="Recode Variables with Regular Expression — do_recode_regexp" />
+<meta property="og:description" content="Recode variables with regular expression based on the
+specification in tbl_Kode with TYPE RE. The specification in the
+codebook can be specific, common or general. Specific is when both
+LESID and FILGRUPPE are specified to create a unique reference to be
+able to recode the variables. Common is when only FILGRUPPE is
+specified while LESID left empty and general is when FILGRUPPE
+is specified with ALLE while LESID left empty." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -140,24 +143,22 @@ recode NA to a preferred value such as ALL." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Recode Category Representing All Groups</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/recode-aggregate.R'><code>R/recode-aggregate.R</code></a></small>
-    <div class="hidden name"><code>do_recode_aggregate.Rd</code></div>
+    <h1>Recode Variables with Regular Expression</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/recode-regexp.R'><code>R/recode-regexp.R</code></a></small>
+    <div class="hidden name"><code>do_recode_regexp.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Recode the category for all after aggregating data based on the
-specification in Codebook. For example when aggregating category type of diagnoses
-<code>NA</code> will be produced to represent all type of diagnoses. This will basically
-recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
+    <p>Recode variables with regular expression based on the
+specification in <code>tbl_Kode</code> with TYPE <code>RE</code>. The specification in the
+codebook can be specific, common or general. <em>Specific</em> is when both
+<code>LESID</code> and <code>FILGRUPPE</code> are specified to create a unique reference to be
+able to recode the variables. <em>Common</em> is when only <code>FILGRUPPE</code> is
+specified while <code>LESID</code> left empty and <em>general</em> is when <code>FILGRUPPE</code>
+is specified with <code>ALLE</code> while <code>LESID</code> left empty.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_recode_aggregate</span><span class='op'>(</span>
-  dt <span class='op'>=</span> <span class='cn'>NULL</span>,
-  spec <span class='op'>=</span> <span class='cn'>NULL</span>,
-  con <span class='op'>=</span> <span class='cn'>NULL</span>,
-  aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_recode_regexp</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,17 +175,12 @@ recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
       <th>con</th>
       <td><p>Connection to database</p></td>
     </tr>
-    <tr>
-      <th>aggregate</th>
-      <td><p>Aggregate data according to the specification in registration database.
-Default is <code>TRUE</code>. Global options with <code>orgdata.aggregate</code>.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other recode functions: 
-<code><a href='do_recode_regexp.html'>do_recode_regexp</a>()</code>,
+<code><a href='do_recode_aggregate.html'>do_recode_aggregate</a>()</code>,
 <code><a href='do_recode.html'>do_recode</a>()</code>,
 <code><a href='get_codebok_aggregate.html'>get_codebok_aggregate</a>()</code>,
 <code><a href='get_codebok_regexp.html'>get_codebok_regexp</a>()</code>,

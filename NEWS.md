@@ -8,6 +8,9 @@ Things in `dev` branch
 
 # orgdata 0.3.4
 
+- Recode variables using regular expression when defined in codebook with type
+  `RE`. Finding pattern can either be written in ordinary regular expression ie.
+  `\\d{4}.*` or with `rex()` package. (#78)
 - New feature for checking categories for variables with `see_file()` (#75)
 
 # orgdata 0.3.3
