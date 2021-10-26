@@ -23,8 +23,9 @@ See what categories available in the dataset.
 see_file(DT, KJONN, UTDANN, LANDSSB)
 
 # Use column index
+see_file(DT) #all columns
 see_file(DT, c(2,5))
-see_file(DT, c(1:3))
-see_file(DT, c(2, 4, 7:8))
+see_file(DT, c(1:3)) #columns 1 to 3
+see_file(DT, c(2, 4, 7:9))
 }
 }

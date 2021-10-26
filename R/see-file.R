@@ -8,9 +8,10 @@
 #' see_file(DT, KJONN, UTDANN, LANDSSB)
 #'
 #' # Use column index
+#' see_file(DT) #all columns
 #' see_file(DT, c(2,5))
-#' see_file(DT, c(1:3))
-#' see_file(DT, c(2, 4, 7:8))
+#' see_file(DT, c(1:3)) #columns 1 to 3
+#' see_file(DT, c(2, 4, 7:9))
 #' }
 #' @export
 see_file <- function(dt = NULL, ...){
@@ -29,12 +30,14 @@ see_file <- function(dt = NULL, ...){
 
   if (length(cols) > 0){
     cols <- is_variables(dt, cols)
+  } else {
+    cols <- names(dt)
   }
 
   out <- vector(mode = "list", length = length(cols))
   for (i in seq_along(cols)){
     col <- cols[i]
-    grp <- dt[, .N, by = list(get(col))]
+    grp <- dt[, .N, keyby = list(get(col))]
     data.table::setnames(grp, "get", col)
     out[[i]] <- grp
     names(out)[i] <- col

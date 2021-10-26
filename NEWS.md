@@ -5,6 +5,9 @@ Things in `dev` branch
 - Compute function to create a new category based on the existing categories eg.
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
+  
+- Fix #85 `see_file()` list all the columns when not specified. The variables
+  are sorted whenever possible.
 
 # orgdata 0.3.5
 - Aggregate now give total to all dimensions including those specified in `AGGKOL` (#82)
