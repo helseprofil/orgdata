@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6</span>
       </span>
     </div>
 
@@ -148,6 +148,13 @@
 <li>Compute function to create a new category based on the existing categories eg. UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group ie. group 5.</li>
 </ul>
 </div>
+    <div id="orgdata-036" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.6">
+<a href="#orgdata-036" class="anchor"></a>orgdata 0.3.6</h1>
+<ul>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/85'>#85</a> <code><a href="../reference/see_file.html">see_file()</a></code> list all the columns when not specified. The variables are sorted whenever possible.</li>
+</ul>
+</div>
     <div id="orgdata-035" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.5">
 <a href="#orgdata-035" class="anchor"></a>orgdata 0.3.5</h1>
@@ -168,22 +175,22 @@
 <h1 class="page-header" data-toc-text="0.3.3">
 <a href="#orgdata-033" class="anchor"></a>orgdata 0.3.3</h1>
 <ul>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/65'>#65</a> make TABS and VALS dynamic for easy extention for these columns (<a href='https://github.com/helseprofil/orgdata/issues/66'>#66</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/64'>#64</a> recode of variable that has different class (<a href='https://github.com/helseprofil/orgdata/issues/68'>#68</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/63'>#63</a> implicit null includes all possible VAL columns when exist (<a href='https://github.com/helseprofil/orgdata/issues/69'>#69</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/70'>#70</a> recode GEO of different object class (<a href='https://github.com/helseprofil/orgdata/issues/71'>#71</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/67'>#67</a> aggregate with total values for standard variables ie. <code>UTDANN</code>, <code>LANDSSB</code>, <code>LANDBAK</code> and <code>INNVKAT</code> (<a href='https://github.com/helseprofil/orgdata/issues/72'>#72</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/61'>#61</a> use AGGKOL in Access registration database to specify other columns to aggregate other than the standard eg. <code>KJONN</code>, <code>TAB1</code>, <code>TAB2</code> etc. (<a href='https://github.com/helseprofil/orgdata/issues/73'>#73</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/65'>#65</a> make TABS and VALS dynamic for easy extention for these columns (<a href='https://github.com/helseprofil/orgdata/issues/66'>#66</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/64'>#64</a> recode of variable that has different class (<a href='https://github.com/helseprofil/orgdata/issues/68'>#68</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/63'>#63</a> implicit null includes all possible VAL columns when exist (<a href='https://github.com/helseprofil/orgdata/issues/69'>#69</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/70'>#70</a> recode GEO of different object class (<a href='https://github.com/helseprofil/orgdata/issues/71'>#71</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/67'>#67</a> aggregate with total values for standard variables ie. <code>UTDANN</code>, <code>LANDSSB</code>, <code>LANDBAK</code> and <code>INNVKAT</code> (<a href='https://github.com/helseprofil/orgdata/issues/72'>#72</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/61'>#61</a> use AGGKOL in Access registration database to specify other columns to aggregate other than the standard eg. <code>KJONN</code>, <code>TAB1</code>, <code>TAB2</code> etc. (<a href='https://github.com/helseprofil/orgdata/issues/73'>#73</a>)</li>
 </ul>
 </div>
     <div id="orgdata-032" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.2">
 <a href="#orgdata-032" class="anchor"></a>orgdata 0.3.2</h1>
 <ul>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/55'>#55</a> to recode standard variables via codebook instead of hardcoded (<a href='https://github.com/helseprofil/orgdata/issues/58'>#58</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/52'>#52</a> skip split if not specified (<a href='https://github.com/helseprofil/orgdata/issues/59'>#59</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/57'>#57</a> split column with duplicated values will keep the original column (<a href='https://github.com/helseprofil/orgdata/issues/60'>#60</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/56'>#56</a> aggregate all VAL columns whenever specified and not only specific to <code>VAL1</code> (<a href='https://github.com/helseprofil/orgdata/issues/62'>#62</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/55'>#55</a> to recode standard variables via codebook instead of hardcoded (<a href='https://github.com/helseprofil/orgdata/issues/58'>#58</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/52'>#52</a> skip split if not specified (<a href='https://github.com/helseprofil/orgdata/issues/59'>#59</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/57'>#57</a> split column with duplicated values will keep the original column (<a href='https://github.com/helseprofil/orgdata/issues/60'>#60</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/56'>#56</a> aggregate all VAL columns whenever specified and not only specific to <code>VAL1</code> (<a href='https://github.com/helseprofil/orgdata/issues/62'>#62</a>)</li>
 </ul>
 </div>
     <div id="orgdata-031" class="section level1">
@@ -219,7 +226,7 @@
 <a href="#orgdata-023" class="anchor"></a>orgdata 0.2.3</h2>
 <ul>
 <li>Request (<a href='https://github.com/helseprofil/orgdata/issues/43'>#43</a>) messages with specific colour</li>
-<li>Fix (<a href='https://github.com/helseprofil/orgdata/issues/46'>#46</a>) recode to string even though columns is type integer or numeric.</li>
+<li>Fixed (<a href='https://github.com/helseprofil/orgdata/issues/46'>#46</a>) recode to string even though columns is type integer or numeric.</li>
 </ul>
 </div>
 <div id="orgdata-022" class="section level2">

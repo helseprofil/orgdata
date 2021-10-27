@@ -41,7 +41,8 @@ do_aggregate <- function(dt = NULL,
                          aggregate.col = NULL,
                          check = getOption("orgdata.debug.aggregate")) {
 
-  VAL1 <- GEO <- AAR <- fylke <- kommune <- bydel <- LEVEL <- NULL
+  VAL1 <- GEO <- AAR <- NULL
+  fylke <- kommune <- bydel <- LEVEL <- LANDSSB <- NULL
 
   is_debug()
   is_null(dt)
@@ -51,6 +52,11 @@ do_aggregate <- function(dt = NULL,
   level <- tolower(level)
   source <- match.arg(source)
   level <- match.arg(level)
+
+  ## LANDSSB creates misunderstanding when aggregate due to the recode in
+  ## LANDBAK and INNVKAT where 0 becomes 20 while keeping 0 as total in LANDBAK
+  ## and INNVKAT
+  if (any(names(dt) == "LANDSSB")) dt[, LANDSSB := NULL]
 
   msg <- paste0("Starts aggregating data from ", source, " to")
   is_verbose(x = level, msg = msg)
