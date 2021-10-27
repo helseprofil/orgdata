@@ -25,3 +25,49 @@ test_that("Aggregate group list", {
 
 
 })
+
+
+test_that("Aggregate group list with AGGKOL", {
+
+
+  ## DATA ------------
+  level <- "bydel"
+  srcCols <- c("bydel", "AAR", "KJONN", "ALDER", "UTDANN", "LANDBAK", "INNVKAT")
+  colx <- "KJONN"
+
+  output <- list(c("bydel", "AAR", "ALDER", "KJONN"),
+                 c("bydel", "AAR", "ALDER", "UTDANN"),
+                 c("bydel", "AAR", "ALDER", "LANDBAK"),
+                 c("bydel", "AAR", "ALDER", "INNVKAT"),
+                 c("bydel", "AAR", "ALDER", "KJONN", "UTDANN"),
+                 c("bydel", "AAR", "ALDER", "KJONN", "LANDBAK"),
+                 c("bydel", "AAR", "ALDER", "KJONN", "INNVKAT"),
+                 c("bydel", "AAR", "ALDER", "UTDANN", "LANDBAK"),
+                 c("bydel", "AAR", "ALDER", "UTDANN", "INNVKAT"),
+                 c("bydel", "AAR", "ALDER", "LANDBAK", "INNVKAT"),
+                 c("bydel", "AAR", "ALDER", "KJONN", "UTDANN", "LANDBAK"),
+                 c("bydel", "AAR", "ALDER", "KJONN", "UTDANN", "INNVKAT"),
+                 c("bydel", "AAR", "ALDER", "KJONN", "LANDBAK", "INNVKAT"),
+                 c("bydel", "AAR", "ALDER", "UTDANN", "LANDBAK", "INNVKAT"),
+                 c("bydel", "AAR", "ALDER", "KJONN", "UTDANN", "LANDBAK", "INNVKAT"),
+                 c("bydel", "AAR", "ALDER"))
+  ##TEST -------------
+  expect_equal(is_set_list(level = level, srcCols = srcCols, colx = colx), output)
+})
+
+
+test_that("Get aggregate levels", {
+
+  #DATA -----------------------
+  spec <-structure(list(ID = 1L, FILGRUPPE = "TEST01", UTMAPPE = "SSB\\BEFOLKNING\\ORG\\2023",
+                        AGGREGERE = "B,F", AGGKOL = "KJONN", KOLNAVN = "VAL1=ANTALL",
+                        SPLITTFRA = "LANDSSB", SPLITTTIL = "LANDBAK, INNVKAT"),
+                   class = "data.frame", row.names = c(NA, -1L))
+
+  output <- c("bydel", "fylke")
+
+  ## TEST -------------
+  expect_equal(get_aggregate(spec = spec), output)
+
+
+})

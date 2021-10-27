@@ -129,7 +129,6 @@ do_aggregate <- function(dt = NULL,
     .SDcols = colj
   )
 
-  ## DT <- DT[!is.na(get(level))]
   DT[, LEVEL := level]
   data.table::setnames(DT, level, "GEO")
 }
