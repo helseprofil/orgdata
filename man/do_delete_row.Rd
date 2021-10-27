@@ -18,7 +18,7 @@ Delete selected rows in the dataset. The rows to be deleted can be specified dir
 in the Access registration database using minus symbol \code{-}
 }
 \seealso{
-Other delete-raw functions: 
+Other delete-row functions: 
 \code{\link{get_delete_row_spec}()}
 }
-\concept{delete-raw functions}
+\concept{delete-row functions}

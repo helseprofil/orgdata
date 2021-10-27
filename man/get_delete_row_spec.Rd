@@ -12,12 +12,12 @@ get_delete_row_spec(spec = NULL, con = NULL)
 \item{con}{Connection to database}
 }
 \description{
-Get the raws to be deleted as specified with minus \code{-} symbol
+Get the rows to be deleted as specified with minus \code{-} symbol
 in the codebook based on the \code{FILGRUPPE} and \code{LESID} number.
 Specification group \code{ALLE} will be used when neither \code{FILGRUPPE} nor \code{LESID} is specified.
 }
 \seealso{
-Other delete-raw functions: 
+Other delete-row functions: 
 \code{\link{do_delete_row}()}
 }
-\concept{delete-raw functions}
+\concept{delete-row functions}
