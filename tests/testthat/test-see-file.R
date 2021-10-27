@@ -35,4 +35,5 @@ test_that("See file", {
   expect_equal(see_file(mtcars, cyl, gear), outpt)
   expect_equal(see_file(mtcars, "cyl", "gear"), outpt)
   expect_equal(see_file(mtcars, c(2,10)), outpt)
+  expect_error(see_file(letters[1:5]))
 })
