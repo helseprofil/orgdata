@@ -53,6 +53,21 @@ test_that("Aggregate group list with AGGKOL", {
                  c("bydel", "AAR", "ALDER"))
   ##TEST -------------
   expect_equal(is_set_list(level = level, srcCols = srcCols, colx = colx), output)
+})
+
+
+test_that("Get aggregate levels", {
+
+  #DATA -----------------------
+  spec <-structure(list(ID = 1L, FILGRUPPE = "TEST01", UTMAPPE = "SSB\\BEFOLKNING\\ORG\\2023",
+                        AGGREGERE = "B,F", AGGKOL = "KJONN", KOLNAVN = "VAL1=ANTALL",
+                        SPLITTFRA = "LANDSSB", SPLITTTIL = "LANDBAK, INNVKAT"),
+                   class = "data.frame", row.names = c(NA, -1L))
+
+  output <- c("bydel", "fylke")
+
+  ## TEST -------------
+  expect_equal(get_aggregate(spec = spec), output)
 
 
 })
