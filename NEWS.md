@@ -8,7 +8,7 @@ Things in `dev` branch
 
 # orgdata 0.3.6
 - Fixed #85 `see_file()` list all the columns when not specified. The variables
-  are sorted whenever possible.
+  are sorted whenever possible. (#87)
 
 # orgdata 0.3.5
 - Aggregate now give total to all dimensions including those specified in `AGGKOL` (#82)
