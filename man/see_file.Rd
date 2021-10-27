@@ -12,19 +12,23 @@ se_fil(dt = NULL, ...)
 \arguments{
 \item{dt}{Dataset of type \code{data.frame} or \code{data.table}}
 
-\item{...}{Columnames or column index to be displayed}
+\item{...}{Columnames or column index to be displayed. If missing then all
+columns will be listed.}
 }
 \description{
 See what categories available in the dataset.
 }
 \examples{
 \dontrun{
+DT <- make_file("BEFOLKNING")
 # Use columnames
 see_file(DT, KJONN, UTDANN, LANDSSB)
 
+dt <- read_file(15)
 # Use column index
-see_file(DT, c(2,5))
-see_file(DT, c(1:3))
-see_file(DT, c(2, 4, 7:8))
+see_file(dt) #all columns
+see_file(dt , c(2,5))
+see_file(dt, c(1:3)) #columns 1 to 3
+see_file(dt, c(2, 4, 7:9))
 }
 }

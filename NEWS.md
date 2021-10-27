@@ -6,6 +6,10 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.6
+- Fixed #85 `see_file()` list all the columns when not specified. The variables
+  are sorted whenever possible.
+
 # orgdata 0.3.5
 - Aggregate now give total to all dimensions including those specified in `AGGKOL` (#82)
 - Function `see_file()` accept column index as well (#83)
@@ -19,20 +23,20 @@ Things in `dev` branch
 
 # orgdata 0.3.3
 
-- Fix #65 make TABS and VALS dynamic for easy extention for these columns (#66)
-- Fix #64 recode of variable that has different class (#68)
-- Fix #63 implicit null includes all possible VAL columns when exist (#69)
-- Fix #70 recode GEO of different object class (#71)
-- Fix #67 aggregate with total values for standard variables ie. `UTDANN`,
+- Fixed #65 make TABS and VALS dynamic for easy extention for these columns (#66)
+- Fixed #64 recode of variable that has different class (#68)
+- Fixed #63 implicit null includes all possible VAL columns when exist (#69)
+- Fixed #70 recode GEO of different object class (#71)
+- Fixed #67 aggregate with total values for standard variables ie. `UTDANN`,
   `LANDSSB`, `LANDBAK` and `INNVKAT` (#72)
-- Fix #61 use AGGKOL in Access registration database to specify other columns to
+- Fixed #61 use AGGKOL in Access registration database to specify other columns to
   aggregate other than the standard eg. `KJONN`, `TAB1`, `TAB2` etc. (#73)
 
 # orgdata 0.3.2
-- Fix #55 to recode standard variables via codebook instead of hardcoded (#58)
-- Fix #52 skip split if not specified (#59)
-- Fix #57 split column with duplicated values will keep the original column (#60)
-- Fix #56 aggregate all VAL columns whenever specified and not only specific to
+- Fixed #55 to recode standard variables via codebook instead of hardcoded (#58)
+- Fixed #52 skip split if not specified (#59)
+- Fixed #57 split column with duplicated values will keep the original column (#60)
+- Fixed #56 aggregate all VAL columns whenever specified and not only specific to
   `VAL1` (#62)
 
 # orgdata 0.3.1
@@ -59,7 +63,7 @@ Things in `dev` branch
 
 ## orgdata 0.2.3
 - Request (#43) messages with specific colour
-- Fix (#46) recode to string even though columns is type integer or numeric.
+- Fixed (#46) recode to string even though columns is type integer or numeric.
 
 ## orgdata 0.2.2
 
