@@ -109,7 +109,8 @@ is_reshape_type <- function(spec = NULL){
   return(resh)
 }
 
-
+## When reshape the data, columns containing the categories will be called
+## `variable`. This will be renamed to TAB1
 is_reshape_col_id <- function(input){
   tab1 <- "TAB1"
   var <- intersect(input$old, tab1)
@@ -121,27 +122,30 @@ is_reshape_col_id <- function(input){
   return(input)
 }
 
+## When reshape the data, column containing the values will be called `value` if
+## it's only one column and `value1` etc. when several columns with values. This
+## will be renamed to VAL1, VAL2 and VAL3 when relevant
 is_reshape_col_val <- function(input){
-  ## TODO Should use getOption("orgdata.vals") and function
-  vals <- c("VAL1", "VAL2", "VAL3")
+  vals <- paste0("VAL", 1:getOption("orgdata.vals"))
   var <- intersect(input$old, vals)
-  if (length(var) == 1){
+  is_reshape_val(input, var, vals)
+}
+
+is_reshape_val <- function(input, var, vals){
+  if (length(var) > 1){
+    for (i in seq_along(vals)){
+      idx <- which(input$old == vals[i])
+      input$old[idx] <- paste0("value", i)
+      input$new[idx] <- vals[i]
+    }
+  } else {
     idx <- which(input$old == vals[1])
     input$old[idx] <- "value"
     input$new[idx] <- vals[1]
-  } else if (length(var) > 1){
-    idx <- which(input$old == vals[1])
-    input$old[idx] <- "value1"
-    input$new[idx] <- vals[1]
-    idx <- which(input$old == vals[2])
-    input$old[idx] <- "value2"
-    input$new[idx] <- vals[2]
-    idx <- which(input$old == vals[3])
-    input$old[idx] <- "value3"
-    input$new[idx] <- vals[3]
   }
   return(input)
 }
+
 
 is_reshape_input <- function(input){
   if (grepl("^list", input)){

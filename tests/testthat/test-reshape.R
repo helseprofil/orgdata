@@ -1,4 +1,4 @@
-test_that("Reshape column dummy", {
+test_that("Reshape column ID and Value", {
 
   ## DATA -------------
   spec <- structure(list(KOBLID = 10L, FILID = 7L, FILGRUPPE = "TEST_DAAR",
@@ -19,17 +19,22 @@ test_that("Reshape column dummy", {
   result <- c("AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB2", "TAB3",
               "VAL2", "VAL3")
 
+
+  inCol <- list(old = c("variable", "VAL1"), new = c("TAB1", "N"))
+  outCol <- list(old = c("variable", "value"), new = c("TAB1", "VAL1"))
+
+
   ## TEST ------------
   expect_equal(is_reshape_col(vars = vars, spec = spec), result)
-
+  expect_equal(is_reshape_col_val(inCol), outCol)
 })
 
 
 test_that("Reshape rename column", {
 
   ## DATA -------------------
-  dt <- structure(list(GEO = c(1234, 1234, 1234, 1234, 1234),
-                       AAR = c(1994L, 1997L, 1992L, 1995L, 1994L),
+  dtt <- structure(list(GEO = c(1234, 1234, 1234, 1234, 1234),
+                        AAR = c(1994L, 1997L, 1992L, 1995L, 1994L),
                        KJONN = c("Mann", "Mann", "Kvinne", "Kvinne", "Mann"),
                        ALDER = c(91L, 91L, 90L, 93L, 92L),
                        UTDANN = c("0", "0", "0", "0", "0"),
@@ -55,8 +60,8 @@ test_that("Reshape rename column", {
                        value = c(0L, 0L, 0L, 0L, 0L)),
                   row.names = c(NA, -5L), class = c("data.table", "data.frame"))
 
-  spec <- structure(list(KOBLID = 10L, FILID = 7L, FILGRUPPE = "TEST_DAAR",
-                         FILNAVN = "DAAR\\ORG\\2022\\20210528_dar_1990_2020_grunnkrets.csv",
+  specDTT <- structure(list(KOBLID = 10L, FILID = 7L, FILGRUPPE = "TEST_DAAR",
+                            FILNAVN = "DAAR\\ORG\\2022\\20210528_dar_1990_2020_grunnkrets.csv",
                          IBRUKTIL = structure(2932532, class = "Date"), ID = 6L, LESID = "v1",
                          FILGRUPPE = "TEST_DAAR", INNLESARG = NA_character_, MANHEADER = NA_character_,
                          GEO = "BOKOMMUNE_1_1,GRUNNKRETS_1_1", AAR = "DAAR", KJONN = "KJONN",
@@ -66,12 +71,16 @@ test_that("Reshape rename column", {
                          RESHAPE_VAL = "!(FAAR, BOKOMMUNE_V_DOD, DODSKOMMUNE_K)",
                          RESHAPE_KOL = "TAB1 = hvorfor, VAL1 = N", EXTRA = NA_character_), row.names = 1L, class = "data.frame")
 
+  outVarId <- list(id = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN"),
+                   var = c("variable", "value"))
 
-  out <- copy(dt)
-  data.table::setDT(dt)
+  out <- copy(dtt)
+  data.table::setDT(dtt)
   data.table::setnames(out, c("variable", "value"), c("TAB1", "VAL1"))
 
   #TEST --------------------
-  expect_equal(do_reshape_rename_col(dt, spec), out)
-
+  expect_equal(do_reshape_rename_col(dt = copy(dtt), specDTT), out)
+  expect_equal(get_reshape_id_val(dt = copy(dtt), spec = specDTT), outVarId)
 })
+
+
