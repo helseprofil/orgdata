@@ -154,6 +154,7 @@
 <ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/85'>#85</a> <code><a href="../reference/see_file.html">see_file()</a></code> list all the columns when columnames or column indexes are not specified. The variables are sorted whenever possible. (<a href='https://github.com/helseprofil/orgdata/issues/87'>#87</a>)</li>
 <li>Add more function tests (<a href='https://github.com/helseprofil/orgdata/issues/88'>#88</a>)</li>
+<li>Exclude <code>LANDSSB</code> in aggregate when split to <code>LANDBAK</code> and <code>INNVKAT</code>. This is because code <code>0</code> will be recoded to <code>20</code> when split and causes unnecessary more rows (<a href='https://github.com/helseprofil/orgdata/issues/84'>#84</a>)</li>
 </ul>
 </div>
     <div id="orgdata-035" class="section level1">
@@ -176,7 +177,7 @@
 <h1 class="page-header" data-toc-text="0.3.3">
 <a href="#orgdata-033" class="anchor"></a>orgdata 0.3.3</h1>
 <ul>
-<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/65'>#65</a> make TABS and VALS dynamic for easy extention for these columns (<a href='https://github.com/helseprofil/orgdata/issues/66'>#66</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/65'>#65</a> make TABS and VALS dynamic for easy extension for these columns (<a href='https://github.com/helseprofil/orgdata/issues/66'>#66</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/64'>#64</a> recode of variable that has different class (<a href='https://github.com/helseprofil/orgdata/issues/68'>#68</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/63'>#63</a> implicit null includes all possible VAL columns when exist (<a href='https://github.com/helseprofil/orgdata/issues/69'>#69</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/70'>#70</a> recode GEO of different object class (<a href='https://github.com/helseprofil/orgdata/issues/71'>#71</a>)</li>
@@ -188,7 +189,7 @@
 <h1 class="page-header" data-toc-text="0.3.2">
 <a href="#orgdata-032" class="anchor"></a>orgdata 0.3.2</h1>
 <ul>
-<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/55'>#55</a> to recode standard variables via codebook instead of hardcoded (<a href='https://github.com/helseprofil/orgdata/issues/58'>#58</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/55'>#55</a> to recode standard variables via codebook instead of hard coded (<a href='https://github.com/helseprofil/orgdata/issues/58'>#58</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/52'>#52</a> skip split if not specified (<a href='https://github.com/helseprofil/orgdata/issues/59'>#59</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/57'>#57</a> split column with duplicated values will keep the original column (<a href='https://github.com/helseprofil/orgdata/issues/60'>#60</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/56'>#56</a> aggregate all VAL columns whenever specified and not only specific to <code>VAL1</code> (<a href='https://github.com/helseprofil/orgdata/issues/62'>#62</a>)</li>
@@ -305,7 +306,7 @@
 <li>Implicit zero (<a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a>). Discussion is in <a href="https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51" title="implicit-null">Gist</a>
 </li>
 <li>Use version specific for imported packages.</li>
-<li>Rename standard column <code>LANDBAK</code> to <code>LANDSSB</code> for column in original data received from SSB containing information about country of origin.</li>
+<li>Rename standard column <code>LANDBAK</code> to <code>LANDSSB</code> for column in original data received from SOB containing information about country of origin.</li>
 <li>Save file as specified in column <code>MAPPE</code> in Access registration database or specify in <code>path</code> argument for function <code>save_file</code>. (<a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a>)</li>
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a> and <a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a></p>

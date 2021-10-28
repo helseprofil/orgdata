@@ -10,6 +10,9 @@ Things in `dev` branch
 - Fixed #85 `see_file()` list all the columns when columnames or column indexes
   are not specified. The variables are sorted whenever possible. (#87)
 - Add more function tests (#88)
+- Exclude `LANDSSB` in aggregate when split to `LANDBAK` and `INNVKAT`. This is
+  because code `0` will be recoded to `20` when split and causes unnecessary more
+  rows (#84)
 
 # orgdata 0.3.5
 - Aggregate now give total to all dimensions including those specified in `AGGKOL` (#82)
@@ -24,7 +27,7 @@ Things in `dev` branch
 
 # orgdata 0.3.3
 
-- Fixed #65 make TABS and VALS dynamic for easy extention for these columns (#66)
+- Fixed #65 make TABS and VALS dynamic for easy extension for these columns (#66)
 - Fixed #64 recode of variable that has different class (#68)
 - Fixed #63 implicit null includes all possible VAL columns when exist (#69)
 - Fixed #70 recode GEO of different object class (#71)
@@ -34,7 +37,7 @@ Things in `dev` branch
   aggregate other than the standard eg. `KJONN`, `TAB1`, `TAB2` etc. (#73)
 
 # orgdata 0.3.2
-- Fixed #55 to recode standard variables via codebook instead of hardcoded (#58)
+- Fixed #55 to recode standard variables via codebook instead of hard coded (#58)
 - Fixed #52 skip split if not specified (#59)
 - Fixed #57 split column with duplicated values will keep the original column (#60)
 - Fixed #56 aggregate all VAL columns whenever specified and not only specific to
@@ -135,7 +138,7 @@ Things in `dev` branch
 - Implicit zero (#11). Discussion is in [Gist](https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51 "implicit-null")
 - Use version specific for imported packages.
 - Rename standard column `LANDBAK` to `LANDSSB` for column in original data
-  received from SSB containing information about country of origin.
+  received from SOB containing information about country of origin.
 - Save file as specified in column `MAPPE` in Access registration database or
   specify in `path` argument for function `save_file`. (#12)
 

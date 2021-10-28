@@ -81,3 +81,17 @@ test_that("Aggegate deprecated functions", {
   expect_error(is_active())
 
 })
+
+## test_that("Geo level NA", {
+
+##   dtf <- ata.table::data.table(fylke = c(12, NA), VAL = 1:2)
+##   dtk <- data.table::data.table(kommune = c(1234, NA), VAL = 1:2)
+##   dtb <- data.table::data.table(bydel = c(123456, NA), VAL = 1:2)
+
+##   dtfo <-
+
+##     ## TEST ------------
+##     expect_equal(is_level_na(dtf, "fylke"))
+
+
+## })
