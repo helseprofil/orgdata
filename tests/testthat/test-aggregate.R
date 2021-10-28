@@ -82,16 +82,35 @@ test_that("Aggegate deprecated functions", {
 
 })
 
-## test_that("Geo level NA", {
+test_that("Geo level NA", {
+  dt <- structure(list(GEO = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),
+                       UTDANN = c(1L, 1L, 3L, 2L, 3L), VAL2 = c(1L, 1L, 1L, 1L, 1L),
+                       grunnkrets = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),
+                       kommune = c(NA, 301L, 301L, 301L, 301L),
+                       fylke = c(3L, 3L, NA, 3L, 3L),
+                       bydel = c(30116L, 30116L, 30116L, 30116L, NA)),
+                  row.names = c(NA, -5L), class = c("data.table", "data.frame"))
 
-##   dtf <- ata.table::data.table(fylke = c(12, NA), VAL = 1:2)
-##   dtk <- data.table::data.table(kommune = c(1234, NA), VAL = 1:2)
-##   dtb <- data.table::data.table(bydel = c(123456, NA), VAL = 1:2)
+  dtoutk <- structure(list(GEO = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),
+                           UTDANN = c(1L, 1L, 3L, 2L, 3L), VAL2 = c(1L, 1L, 1L, 1L, 1L),
+                           grunnkrets = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),
+                           kommune = c(301L, 301L, 301L, 301L, 301L),
+                           fylke = c(3L, 3L, NA, 3L, 3L),
+                           bydel = c(30116L, 30116L, 30116L, 30116L, NA)),
+                      row.names = c(NA, -5L), class = c("data.table", "data.frame"))
 
-##   dtfo <-
+  dtoutf <- structure(list(GEO = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),
+                           UTDANN = c(1L, 1L, 3L, 2L, 3L), VAL2 = c(1L, 1L, 1L, 1L, 1L),
+                           grunnkrets = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),
+                           kommune = c(NA, 301L, 301L, 301L, 301L),
+                           fylke = c(3L, 3L, 3L, 3L, 3L),
+                           bydel = c(30116L, 30116L, 30116L, 30116L, NA)),
+                      row.names = c(NA, -5L), class = c("data.table", "data.frame"))
 
-##     ## TEST ------------
-##     expect_equal(is_level_na(dtf, "fylke"))
+  dtoutb <- dt[1:4]
 
-
-## })
+  ## TEST ------------
+  expect_equal(is_level_na(dt = data.table::copy(dt), "fylke"), dtoutf)
+  expect_equal(is_level_na(dt = data.table::copy(dt), "kommune"), dtoutk)
+  expect_equal(is_level_na(dt = data.table::copy(dt), "bydel"), dtoutb)
+})

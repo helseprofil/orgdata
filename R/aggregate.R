@@ -185,7 +185,7 @@ is_set_list <- function(level, srcCols, colx = NULL) {
   # srcCols - Colnames of source data to be aggregated
   # colx - Colnames to aggregate other than standard
 
-  ## Dont aggregate these columns
+  ## Don't aggregate these columns
   tabs <- paste0("TAB", 1:getOption("orgdata.tabs"))
   aggNot <- c(level, "AAR", "KJONN", "ALDER", tabs)
   ## Find the columns that exist in the dataset
