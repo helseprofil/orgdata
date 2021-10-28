@@ -73,14 +73,6 @@ test_that("Get aggregate levels", {
 })
 
 
-test_that("Aggegate deprecated functions", {
-
-  expect_error(do_aggregate_recode_standard(mtcars))
-  expect_error(is_aggregate_standard_cols())
-  expect_error(is_aggregate_recode(mtcars, "gear", "gear2"))
-  expect_error(is_active())
-
-})
 
 test_that("Geo level NA", {
   dt <- structure(list(GEO = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),

@@ -169,37 +169,5 @@ make_file <- function(group = NULL,
 lag_fil <- make_file
 
 
-#' @title Implement the Specifications
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' `read_raw` was renamed to `make_file()` to make it more clear
-#' what the function is doing.
-#' @keywords internal
-#' @export
-read_raw <- function(group = NULL,
-                     koblid = NULL,
-                     aggregate = getOption("orgdata.aggregate"),
-                     save = FALSE,
-                     year = NULL) {
-
-  lifecycle::deprecate_stop("0.0.9", "read_raw()", "make_file()")
-  ## make_file(group, koblid, aggregate, save, year)
-}
-
-#' @export
-#' @rdname read_raw
-lesraw <- function(group = NULL,
-                   koblid = NULL,
-                   aggregate = getOption("orgdata.aggregate"),
-                   save = FALSE,
-                   year = NULL) {
-
-  lifecycle::deprecate_stop("0.0.9", "lesraw()", "lag_fil()")
-  ## make_file(group, koblid, aggregate, save, year)
-}
-
-
-
 ## Helper -----------------------------------------
 ## Helper functions are in file utils-read-org.R
