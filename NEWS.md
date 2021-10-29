@@ -16,7 +16,7 @@ Things in `dev` branch
 - Delete deprecated functions.
 - Fixed #93 when source level can't be identified due to `NA`.
 - Fixed #95 for grunnkrets codes that aren't missing but have less number of
-  digits ie. less then 7 digits. Assuming these are codes for municipality than
+  digits ie. less than 7 digits. Assuming these are codes for municipality then
   `9999` is added at the end of these codes (#96)
 - Gives row number for GEO codes that get coerced as `NA` when converted to
   integer. This will make it easy to check in the original raw data (#96)
