@@ -13,6 +13,8 @@ Things in `dev` branch
 - Exclude `LANDSSB` in aggregate when split to `LANDBAK` and `INNVKAT`. This is
   because code `0` will be recoded to `20` when split and causes unnecessary more
   rows (#84)
+- Delete deprecated functions.
+- Fixed #93 when source level can't be identified due to `NA`.
 
 # orgdata 0.3.5
 - Aggregate now give total to all dimensions including those specified in `AGGKOL` (#82)
