@@ -81,10 +81,10 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "3.0.1",
+      "Version": "3.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "e3ae5d68dea0c55a12ea12a9fda02e61"
+      "Hash": "66a3834e54593c89d8beefb312347e58"
     },
     "crayon": {
       "Package": "crayon",
@@ -207,8 +207,8 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "norgeo",
       "RemoteRef": "master",
-      "RemoteSha": "d0564a79444a7fac43c192071d286f7d487e612c",
-      "Hash": "8ab691353ec4a2b2a07ff639080891f7"
+      "RemoteSha": "217a8e2557181b278ea2a9ce876d0c611ade5315",
+      "Hash": "d0c889e8fb3216efd315f870809eb40f"
     },
     "odbc": {
       "Package": "odbc",
@@ -233,16 +233,16 @@
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.3.5",
+      "Version": "0.3.6",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "72e69fb73dab7ce5cda94a82382661e11968b6b6",
+      "RemoteSha": "8f7b42259050c24a60ac8f92a15d139689efeb05",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "01cf2038186211e972e8072e13bcb497"
+      "Hash": "b13938de90b13ab085e36c3d552290c9"
     },
     "pillar": {
       "Package": "pillar",

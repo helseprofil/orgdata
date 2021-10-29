@@ -24,10 +24,10 @@ les_fil(file = 1, nrows = 5)
 
 ## Sjekk kategorier evt. omkoding
 dt <- les_fil(file = 1)
+se_fil(dt) #alle kolonner
 se_fil(dt, c(1:5))
 se_fil(dt, c(1,4,6))
 se_fil(dt, LANDBAK, INNVKAT)
-
 
 dt[, .N, keyby = landb] #kategori for landb i original data
 
