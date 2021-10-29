@@ -22,6 +22,7 @@ do_geo_recode <- function(dt = NULL,
     data.table::set(dt, j = col, value = as.integer(dt[[col]]))
   }
 
+  dt <- is_grunnkrets(dt)
   dt <- is_geo_na(dt)
   dt[code, on = "GEO", GEO := i.to]
 
@@ -75,12 +76,74 @@ is_geo_na <- function(dt){
 
   nrNA <- dt[is.na(GEO), .N]
   if (nrNA > 0){
+    idx <- dt[, .I[is.na(GEO)]]
     dt[is.na(GEO), GEO := 99999999]
   }
 
   if (nrNA > 0){
-    is_colour_txt(x = nrNA, msg = "Number of missing GEO with empty value or NA:", type = "note")
-    is_colour_txt(x = 99999999, msg = "Missing GEO are now recoded to", type = "warn")
+    is_colour_txt(x = nrNA, msg = "Number of missing GEO with empty value or NA:", type = "warn2")
+    is_colour_txt(x = 99999999, msg = "Missing GEO are now recoded to", type = "note")
+
+    ## Only first 10 rows are shown
+    if (length(idx) > 10){
+      idxNo <- c(idx[1:9], "...")
+    } else {
+      idxNo <- idx
     }
+
+    is_verbose(paste_cols(idxNo), "Check GEO codes for these rows:", type = "warn")
+
+  }
   invisible(dt)
+}
+
+## Some grunnkrets have less than 7 digits but not missing
+## This will add 9999 to these number accrodingly
+is_grunnkrets <- function(dt){
+  GEO <- dummy_grk <- NULL
+
+  dt[, dummy_grk := data.table::fifelse(nchar(GEO) > 6 , yes = 0, no = 1, na = 0)]
+
+  dummy <- dt[dummy_grk != 0, .N]
+  if (dummy == 0){
+    return(dt)
+  }
+
+  dt[dummy_grk != 0 , dummy_grk := nchar(GEO)]
+  idx <- dt[, .I[dummy_grk != 0]]
+
+  if (length(idx) > 10){
+    idxNo <- c(idx[1:6], "...")
+  } else {
+    idxNo <- idx
+  }
+
+  is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
+  is_verbose(paste_cols(idxNo), "Check GEO for these rows:", type = "warn")
+  is_verbose(msg = "9999 are added to the end of the code respectively")
+
+  for (i in idx){
+
+    val <- dt[i, dummy_grk]
+    addVal <- is_geo_oddeven(val)
+    val9 <- as.integer(paste(rep(9, addVal), collapse = ""))
+
+    dt[i, GEO := as.integer(paste0(GEO, val9))]
+  }
+
+  dt[, dummy_grk := NULL]
+
+  invisible(dt)
+
+}
+
+## Grunnkrets have btw 7 to 8 digits
+is_geo_oddeven <- function(x){
+
+  oddNo <- identical(x %% 2, 1)
+  if (oddNo){
+    7 - x
+  } else {
+    8 - x
+  }
 }
