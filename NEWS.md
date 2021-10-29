@@ -15,9 +15,15 @@ Things in `dev` branch
   rows (#84)
 - Delete deprecated functions.
 - Fixed #93 when source level can't be identified due to `NA`.
-
+- Fixed #95 for grunnkrets codes that aren't missing but have less number of
+  digits ie. less then 7 digits. Assuming these are codes for municipality than
+  `9999` is added at the end of these codes (#96)
+- Gives row number for GEO codes that get coerced as `NA` when converted to
+  integer. This will make it easy to check in the original raw data (#96)
+  
 # orgdata 0.3.5
-- Aggregate now give total to all dimensions including those specified in `AGGKOL` (#82)
+- Aggregate now give total to all dimensions including those specified in
+  `AGGKOL` (#82)
 - Function `see_file()` accept column index as well (#83)
 
 # orgdata 0.3.4
