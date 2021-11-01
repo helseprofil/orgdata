@@ -104,6 +104,8 @@ test_that("Geo level NA", {
 test_that("Column with NA", {
 
   ## DATA
+  n = 24L
+  set.seed(25)
   DTNA <- data.table::data.table(
     color = sample(c("green","yellow","red", NA), n, TRUE),
     year = as.Date(sample(paste0(2011:2015,"-01-01"), n, TRUE)),
