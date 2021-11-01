@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.7</span>
       </span>
     </div>
 
@@ -146,6 +146,13 @@
 <p>Things in <code>dev</code> branch</p>
 <ul>
 <li>Compute function to create a new category based on the existing categories eg. UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group ie. group 5.</li>
+</ul>
+</div>
+    <div id="orgdata-037" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.7">
+<a href="#orgdata-037" class="anchor"></a>orgdata 0.3.7</h1>
+<ul>
+<li>Check columns to aggregate for any possible <code>NA</code> (<a href='https://github.com/helseprofil/orgdata/issues/98'>#98</a>). Columns that have <code>NA</code> should be recoded to <code>uoppgitt</code> or something equivalent since leaving the category to <code>NA</code> will conflict with <code>NA</code> representing total value when aggregating.</li>
 </ul>
 </div>
     <div id="orgdata-036" class="section level1">

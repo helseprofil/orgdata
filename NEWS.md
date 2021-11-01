@@ -6,6 +6,12 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.7
+- Check columns to aggregate for any possible `NA` (#98). Columns that have `NA`
+  should be recoded to `uoppgitt` or something equivalent since leaving the
+  category to `NA` will conflict with `NA` representing total value when
+  aggregating.
+
 # orgdata 0.3.6
 - Fixed #85 `see_file()` list all the columns when columnames or column indexes
   are not specified. The variables are sorted whenever possible. (#87)
