@@ -181,7 +181,7 @@ is_level_na <- function(dt, level){
 }
 
 ## Create list of combination to aggregate in groupingsets
-is_set_list <- function(level, srcCols, colx = NULL, dt) {
+is_set_list <- function(level, srcCols, colx = NULL, dt = NULL) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
   # colx - Colnames to aggregate other than standard
@@ -231,7 +231,7 @@ is_validate_NA <- function(cols, dt){
     val <- dt[is.na(get(i)), .N]
 
     if (val > 0){
-      is_stop("This column has NA and need to recode:", val = i)
+      is_stop("This column has NA and need to recode:", var = paste_cols(i))
     }
   }
 }
