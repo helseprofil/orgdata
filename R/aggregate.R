@@ -116,7 +116,8 @@ do_aggregate <- function(dt = NULL,
   xCols <- is_set_list(
     level = level,
     srcCols = aggCols,
-    colx = aggregate.col
+    colx = aggregate.col,
+    dt
   )
 
   colj <- intersect(colVals, names(dt))
@@ -180,7 +181,7 @@ is_level_na <- function(dt, level){
 }
 
 ## Create list of combination to aggregate in groupingsets
-is_set_list <- function(level, srcCols, colx = NULL) {
+is_set_list <- function(level, srcCols, colx = NULL, dt) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
   # colx - Colnames to aggregate other than standard
@@ -199,9 +200,11 @@ is_set_list <- function(level, srcCols, colx = NULL) {
   sameVars <- identical(vars, srcCols)
 
   if (sameVars){
+    is_validate_NA(vars, dt)
     listSet <- list(vars)
   } else {
     aggCols <- setdiff(srcCols, vars)
+    is_validate_NA(aggCols, dt)
     listSet <- unlist(lapply(seq_along(aggCols),
                              utils::combn,
                              x = aggCols,
@@ -220,3 +223,15 @@ is_set_list <- function(level, srcCols, colx = NULL) {
 }
 
 
+## Check column to be aggregated doesn't have NA
+## since aggregating produce NA to represent total
+is_validate_NA <- function(cols, dt){
+
+  for (i in cols){
+    val <- dt[is.na(get(i)), .N]
+
+    if (val > 0){
+      is_stop("This column has NA and need to recode:", val = i)
+    }
+  }
+}
