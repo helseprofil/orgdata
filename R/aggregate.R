@@ -231,7 +231,7 @@ is_validate_NA <- function(cols, dt){
     val <- dt[is.na(get(i)), .N]
 
     if (val > 0){
-      is_stop("This column has NA and need to recode:", var = paste_cols(i))
+      is_stop("This column has NA and needs to recode:", var = paste_cols(i))
     }
   }
 }
