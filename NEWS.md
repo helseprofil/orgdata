@@ -11,6 +11,8 @@ Things in `dev` branch
   should be recoded to `uoppgitt` or something equivalent since leaving the
   category to `NA` will conflict with `NA` representing total value when
   aggregating.
+- Fixed #100 for grunnkrets that ends with `00` have no correspond codes from
+  SSB API. Need to add it manually (#101)
 
 # orgdata 0.3.6
 - Fixed #85 `see_file()` list all the columns when columnames or column indexes
