@@ -24,6 +24,12 @@ do_geo_recode <- function(dt = NULL,
 
   dt <- is_grunnkrets(dt)
   dt <- is_geo_na(dt)
+  dt <- is_geo_0000(dt)
+
+  xcode <- is_warn_geo_merge(dt, code, vector = FALSE)
+  xind <- dt[, .I[GEO %in% xcode]]
+  dt <- is_delete_index(dt, xind) #delete row that can't be merged
+
   dt[code, on = "GEO", GEO := i.to]
 }
 
@@ -89,6 +95,32 @@ is_geo_na <- function(dt){
   return(dt)
 }
 
+
+is_geo_0000 <- function(dt){
+
+  GEO <- AAR <- NULL
+
+  nr00 <- dt[GEO %like% "0000$", .N]
+  if (nr00 > 0){
+    idx <- dt[, .I[GEO %like% "0000$"]]
+    for (i in idx){
+      code <- sub("0{4}$", "", dt[i]$GEO)
+      grc <- paste0(code, "9999")
+      dt[i, GEO := as.integer(grc)]
+    }
+  }
+
+  if (nr00 > 0){
+    is_colour_txt(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
+    is_colour_txt(x = "xxxx9999", msg = "They are now recoded with ending:", type = "note")
+
+    idx <- is_check_geo(idx)
+  }
+
+  return(dt)
+}
+
+
 ## Some grunnkrets have less than 7 digits but not missing. This will add 99 or
 ## 9999 to these number accrodingly making grunnkrets standard with 8 or 7 digits.
 is_grunnkrets <- function(dt){
@@ -104,9 +136,8 @@ is_grunnkrets <- function(dt){
   dt[dummy_grk != 0 , dummy_grk := nchar(GEO)]
   idx <- dt[, .I[dummy_grk != 0]]
 
-  idx <- is_check_geo(idx)
-
   is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
+  idx <- is_check_geo(idx)
   is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
 
   for (i in idx){
@@ -135,13 +166,44 @@ is_geo_oddeven <- function(x){
 ## Don't overflood the console!
 is_check_geo <- function(idx){
   ## idx - Row index
-  ## Only first 10 rows are shown
-  if (length(idx) > 10){
-    idxNo <- c(idx[1:6], "...")
+  idxNo <- is_short_code(idx, n1 = 10, n2 = 7)
+  is_verbose(idxNo, "Check GEO codes in original data for rows:", type = "warn")
+  invisible(idx)
+}
+
+## Codes that can't be merged since it's not found in geo codebook database
+is_warn_geo_merge <- function(x, y, vector = FALSE){
+  GEO <- to <- NULL
+
+  if (vector){
+    x <- unique(x[!is.na(x)])
+    y <- unique(y[!is.na(y)])
   } else {
-    idxNo <- idx
+
+    dtc <- unique(x[!is.na(GEO)]$GEO)
+    x <- setdiff(dtc, unique(y[!is.na(to)]$to))
+    y <- unique(y[!is.na(GEO)]$GEO)
   }
 
-  is_verbose(paste_cols(idxNo), "Check GEO codes in original data for these rows:", type = "warn")
-  invisible(idx)
+  dcode <- setdiff(x, y)
+  if (length(dcode) > 0){
+    codes <- is_short_code(dcode, n1 = 10, n2 = 8)
+    is_verbose(x = length(dcode), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
+    is_verbose(x = codes, msg = "These are the codes:")
+  }
+
+  return(dcode)
+}
+
+
+is_short_code <- function(x, n1 = 10, n2 = 6){
+  ## n1 - maximum length before making cutoff
+  ## n2 - maximum codes to display
+  if (length(x) > n1){
+    codes <- c(x[1:n2], "...")
+  } else {
+    codes <- x
+  }
+
+  paste_cols(codes)
 }

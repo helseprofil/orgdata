@@ -80,7 +80,7 @@ do_aggregate <- function(dt = NULL,
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
   dt <- do_geo_recode(dt = dt, code = code)
 
-  ## geoDT <- find_spec("geo-code-all.sql", value = source, con = geo$dbconn)
+  ## Cast geo levels ie. aggregate to different geo levels
   geoDT <- find_spec(
     "geo-code.sql",
     con = geoDB$dbconn,
