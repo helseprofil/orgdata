@@ -146,7 +146,7 @@ is_unknown_manucipalty <- function(dt, from, to){
 ## Needs to do it manually comparing the second line with grunnkrets
 ## ends with 00 exist and has missing other geo levels
 is_grunnkrets_00 <- function(dt){
-
+  code <- level <- NULL
   is_verbose(msg = "Searching geo level with NA due to grunnkrets end with 00 ....")
 
   dt <- copy(dt)
