@@ -13,6 +13,11 @@ Things in `dev` branch
   aggregating.
 - Fixed #100 for grunnkrets that ends with `00` have no correspond codes from
   SSB API. Need to add it manually (#101)
+- Fixed #99 when geo codes fails to be recoded then the row index will be shown (#103)
+- Geo codes ends with 4 zeros `xxxx0000` neither have equivalent codes from SSB
+  nor representing a correct coding structure as so called `Delområde` that ends
+  with 2 zeros `xxxxxx00`. To avoid missing the information, these geo codes are
+  recoded to `xxxx9999` with function `is_geo_0000()` as in PR (#103).
 
 # orgdata 0.3.6
 - Fixed #85 `see_file()` list all the columns when columnames or column indexes

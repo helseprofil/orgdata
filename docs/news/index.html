@@ -154,6 +154,8 @@
 <ul>
 <li>Check columns to aggregate for any possible <code>NA</code> (<a href='https://github.com/helseprofil/orgdata/issues/98'>#98</a>). Columns that have <code>NA</code> should be recoded to <code>uoppgitt</code> or something equivalent since leaving the category to <code>NA</code> will conflict with <code>NA</code> representing total value when aggregating.</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/100'>#100</a> for grunnkrets that ends with <code>00</code> have no correspond codes from SSB API. Need to add it manually (<a href='https://github.com/helseprofil/orgdata/issues/101'>#101</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/99'>#99</a> when geo codes fails to be recoded then the row index will be shown (<a href='https://github.com/helseprofil/orgdata/issues/103'>#103</a>)</li>
+<li>Geo codes ends with 4 zeros <code>xxxx0000</code> neither have equivalent codes from SSB nor representing a correct coding structure as so called <code>Delområde</code> that ends with 2 zeros <code>xxxxxx00</code>. To avoid missing the information, these geo codes are recoded to <code>xxxx9999</code> with function <code>is_geo_0000()</code> as in PR (<a href='https://github.com/helseprofil/orgdata/issues/103'>#103</a>).</li>
 </ul>
 </div>
     <div id="orgdata-036" class="section level1">
