@@ -127,8 +127,6 @@ is_write_msg <- function(msg = c("write", "append", "fetch")){
 is_unknown_manucipalty <- function(dt, from, to){
   oldCode <- currentCode <- NULL
 
-  is_verbose(msg = "Searching for kommune with unknown grunnkrets ...")
-
   kom <- norgeo::track_change("kommune", from = from, to = to)
   kom <- kom[!is.na(oldCode)]
   kom <- kom[, `:=`(oldCode = paste0(oldCode, "9999"),
@@ -138,7 +136,8 @@ is_unknown_manucipalty <- function(dt, from, to){
   kom <- kom[oldCode %chin% codes, ]
   kom[, c("oldName", "newName") := "Uoppgitt"]
 
-  data.table::rbindlist(list(dt, kom))
+  dt <- data.table::rbindlist(list(dt, kom))
+  data.table::setkey(dt, currentCode)
 }
 
 
