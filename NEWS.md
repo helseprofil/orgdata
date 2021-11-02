@@ -18,6 +18,7 @@ Things in `dev` branch
   nor representing a correct coding structure as so called `Delområde` that ends
   with 2 zeros `xxxxxx00`. To avoid missing the information, these geo codes are
   recoded to `xxxx9999` with function `is_geo_0000()` as in PR (#103).
+- `see_file()` accepts just a single numeric as well.
 
 # orgdata 0.3.6
 - Fixed #85 `see_file()` list all the columns when columnames or column indexes
