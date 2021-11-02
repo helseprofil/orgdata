@@ -25,7 +25,6 @@ do_geo_recode <- function(dt = NULL,
   dt <- is_grunnkrets(dt)
   dt <- is_geo_na(dt)
   dt[code, on = "GEO", GEO := i.to]
-
 }
 
 #' @title Get Previous and Current Geo Codes
@@ -84,21 +83,14 @@ is_geo_na <- function(dt){
     is_colour_txt(x = nrNA, msg = "Number of missing GEO with empty value or NA:", type = "warn2")
     is_colour_txt(x = 99999999, msg = "Missing GEO are now recoded to", type = "note")
 
-    ## Only first 10 rows are shown
-    if (length(idx) > 10){
-      idxNo <- c(idx[1:9], "...")
-    } else {
-      idxNo <- idx
-    }
-
-    is_verbose(paste_cols(idxNo), "Check GEO codes for these rows:", type = "warn")
-
+    idx <- is_check_geo(idx)
   }
-  invisible(dt)
+
+  return(dt)
 }
 
-## Some grunnkrets have less than 7 digits but not missing
-## This will add 9999 to these number accrodingly
+## Some grunnkrets have less than 7 digits but not missing. This will add 99 or
+## 9999 to these number accrodingly making grunnkrets standard with 8 or 7 digits.
 is_grunnkrets <- function(dt){
   GEO <- dummy_grk <- NULL
 
@@ -112,15 +104,10 @@ is_grunnkrets <- function(dt){
   dt[dummy_grk != 0 , dummy_grk := nchar(GEO)]
   idx <- dt[, .I[dummy_grk != 0]]
 
-  if (length(idx) > 10){
-    idxNo <- c(idx[1:6], "...")
-  } else {
-    idxNo <- idx
-  }
+  idx <- is_check_geo(idx)
 
   is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
-  is_verbose(paste_cols(idxNo), "Check GEO for these rows:", type = "warn")
-  is_verbose(msg = "9999 are added to the end of the code respectively")
+  is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
 
   for (i in idx){
 
@@ -132,9 +119,6 @@ is_grunnkrets <- function(dt){
   }
 
   dt[, dummy_grk := NULL]
-
-  invisible(dt)
-
 }
 
 ## Grunnkrets have btw 7 to 8 digits
@@ -146,4 +130,18 @@ is_geo_oddeven <- function(x){
   } else {
     8 - x
   }
+}
+
+## Don't overflood the console!
+is_check_geo <- function(idx){
+  ## idx - Row index
+  ## Only first 10 rows are shown
+  if (length(idx) > 10){
+    idxNo <- c(idx[1:6], "...")
+  } else {
+    idxNo <- idx
+  }
+
+  is_verbose(paste_cols(idxNo), "Check GEO codes in original data for these rows:", type = "warn")
+  invisible(idx)
 }
