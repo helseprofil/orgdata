@@ -69,7 +69,7 @@ do_aggregate <- function(dt = NULL,
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geoDB <- KHelse$new(geoFile)
 
-  ## validTo in the database is a character
+  ## validTo in the database `tblGeo` is a character
   if (!is.null(year)) {
     yr <- dt[AAR == year, ][1]
   } else {

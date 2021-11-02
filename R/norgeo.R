@@ -15,10 +15,10 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   ## break msg before showing message from cast_geo
   cat("..\n")
 
-  ## if (is.null(table)){
-  ##   yr <- as.integer(format(Sys.Date(), "%Y"))
-  ##   table <- paste0("tblGeo", yr)
-  ## }
+  ## -----------------------------------------
+  ## Note: No need to create table with year eg. tblGeo2021
+  ## since column ValidTo will be used to select valid year to aggregate
+  ## -----------------------------------------
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoFile)
@@ -179,6 +179,5 @@ is_grunnkrets_00 <- function(dt){
   }
 
   cat("\n")
-
   return(dt)
 }
