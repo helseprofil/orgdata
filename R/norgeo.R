@@ -24,7 +24,8 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   geo <- KHelse$new(geoFile)
   on.exit(geo$db_close(), add = TRUE)
 
-  geo$tblvalue <- norgeo::cast_geo(year = year)
+  DT <- norgeo::cast_geo(year = year)
+  geo$tblvalue <- is_grunnkrets_00(DT)
   geo$tblname <- table
 
   write <- is_write(write, table, geo$dbconn)
@@ -126,6 +127,8 @@ is_write_msg <- function(msg = c("write", "append", "fetch")){
 is_unknown_manucipalty <- function(dt, from, to){
   oldCode <- currentCode <- NULL
 
+  is_verbose(msg = "Searching for kommune with unknown grunnkrets ...")
+
   kom <- norgeo::track_change("kommune", from = from, to = to)
   kom <- kom[!is.na(oldCode)]
   kom <- kom[, `:=`(oldCode = paste0(oldCode, "9999"),
@@ -136,4 +139,46 @@ is_unknown_manucipalty <- function(dt, from, to){
   kom[, c("oldName", "newName") := "Uoppgitt"]
 
   data.table::rbindlist(list(dt, kom))
+}
+
+
+## Grunnkrets that ends with 00 has no corresponds code from API
+## Needs to do it manually comparing the second line with grunnkrets
+## ends with 00 exist and has missing other geo levels
+is_grunnkrets_00 <- function(dt){
+  code <- level <- NULL
+  is_verbose(msg = "Searching geo level with NA due to grunnkrets end with 00 ....")
+
+  dt <- copy(dt)
+  data.table::setkey(dt, code)
+  idx <- dt[, .I[level == "grunnkrets" & code %like% "00$"]]
+  levels <- c("kommune", "fylke","bydel")
+
+  cax <- idx[seq(1, length(idx), 40)]
+  ## pb <- txtProgressBar(min = 0, max = length(idx), style = 3)
+
+  for (i in idx){
+    ## setTxtProgressBar(pb, i)
+    ixrange <- c(i, i + 1)
+    code01 <- sub("\\d{2}$", "", dt[ixrange[1], code])
+    code02 <- sub("\\d{2}$", "", dt[ixrange[2], code])
+
+    same <- identical(code01, code02)
+
+    if (same){
+      dtlike <- dt[ixrange]
+      dt <- is_delete_index(dt, ixrange)
+      for (j in levels) {
+        set(dtlike, which(is.na(dtlike[[j]])), j = j, value = dtlike[2, get(j)])
+      }
+      dt <- data.table::rbindlist(list(dt, dtlike))
+      data.table::setkey(dt, code)
+    }
+
+    if (is.element(i, cax)) cat(".")
+  }
+
+  cat("\n")
+
+  return(dt)
 }
