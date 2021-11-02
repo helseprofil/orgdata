@@ -169,7 +169,7 @@ is_grunnkrets_00 <- function(dt){
       dtlike <- dt[ixrange]
       dt <- is_delete_index(dt, ixrange)
       for (j in levels) {
-        set(dtlike, which(is.na(dtlike[[j]])), j = j, value = dtlike[2, get(j)])
+        data.table::set(dtlike, which(is.na(dtlike[[j]])), j = j, value = dtlike[2, get(j)])
       }
       dt <- data.table::rbindlist(list(dt, dtlike))
       data.table::setkey(dt, code)
