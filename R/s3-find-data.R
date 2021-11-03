@@ -38,7 +38,6 @@ find_data.csv <- function(file, ...) {
   is_verbose(file, msg = "File:")
   dots$file <- file
   dt <- do.call(data.table::fread, dots)
-  invisible(dt)
 }
 
 #' @method find_data fhi
@@ -65,7 +64,7 @@ find_data.xls <- function(file, ...) {
   if (headerRename){
     dt <- is_header_name(dt)
   }
-  invisible(dt)
+  return(dt)
 }
 
 #' @method find_data xls
@@ -87,7 +86,7 @@ find_data.xlsx <- function(file, ...) {
   if (headerRename){
     dt <- is_header_name(dt)
   }
-  invisible(dt)
+  return(dt)
 }
 
 ## Helper -------------------------------------------

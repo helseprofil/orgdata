@@ -21,7 +21,6 @@ do_recode_regexp <- function(dt = NULL, spec = NULL, con = NULL) {
   dt <- is_recode_lesid_regexp(dt = dt, code = speCode, lesid = lesid)
   dt <- is_recode_common_regexp(dt = dt, code = speCode, group = grp)
   dt <- is_recode_all_regexp(dt = dt, code = speCode)
-  invisible(dt)
 }
 
 #' @title Codebook with Regular Expression
@@ -67,7 +66,7 @@ is_recode_common_regexp <- function(dt, code, group) {
     dt <- is_recode_regexp(dt, code = allCode, cols = kols)
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 
@@ -102,7 +101,7 @@ is_recode_all_regexp <- function(dt, code, aggregate.msg = FALSE){
     }
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 
@@ -118,7 +117,8 @@ is_recode_regexp <- function(dt, code, cols){
 
     dt[, (col) := gsub(fra, til, get(col))]
   }
-  invisible(dt)
+
+  return(dt)
 }
 
 is_rex <- function(code){

@@ -18,7 +18,6 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   dt <- is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
   dt <- is_recode_common(dt = dt, code = speCode, group = grp)
   dt <- is_recode_all(dt = dt, code = speCode)
-  invisible(dt)
 }
 
 #' @title Codebook
@@ -62,7 +61,7 @@ is_recode_common <- function(dt, code, group) {
     dt <- is_recode(dt, code = allCode, cols = kols)
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 
@@ -97,7 +96,7 @@ is_recode_all <- function(dt, code, aggregate.msg = FALSE){
     }
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 
@@ -115,7 +114,7 @@ is_recode <- function(dt, code, cols){
     dt <- is_column_char(dt, col)
     dt[sp, on = col, (col) := i.to]
   }
-  invisible(dt)
+  return(dt)
 }
 
 ## For easy converstion to find NA as string
@@ -141,7 +140,7 @@ is_column_char <- function(dt, col){
   if (isFALSE(chrCol)){
     dt[, (col) := as.character(get(col))]
   }
-  invisible(dt)
+  return(dt)
 }
 
 ## When has LESID needs FILGRUPPE too because

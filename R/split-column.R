@@ -36,7 +36,7 @@ do_split <- function(dt = NULL, split = NULL) {
     }
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 #' @title Get Split Column
@@ -97,5 +97,5 @@ is_split_check <- function(dt, split){
     }
   }
 
-  invisible(dt)
+  return(dt)
 }

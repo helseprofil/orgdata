@@ -46,7 +46,8 @@ do_implicit_null <- function(dt = NULL,
     val <- refs[[col]][1]
     data.table::set(dtImp, which(is.na(dtImp[[col]])), j = col, value = val)
   }
-  invisible(dtImp)
+
+  return(dtImp)
 }
 
 
@@ -65,7 +66,8 @@ get_implicit_ref <- function(dt, cols){
     vcol[[i]] <- vUnik
     names(vcol)[i] <- as.character(var)
   }
-  invisible(vcol)
+
+  return(vcol)
 }
 
 #' @title Get Implicit Null Categories
@@ -85,7 +87,8 @@ get_implicit_col <- function(dt, years, cols, refs){
     nn[[i]] <- dtn
     names(nn)[i] <- col
   }
-  invisible(nn)
+
+  return(nn)
 }
 
 
@@ -107,9 +110,8 @@ get_implicit_per_year <- function(imp, refs, years, colstr, .env = parent.frame(
     dt <- data.table::rbindlist(dd)
     dty[[i]] <- dt
   }
-  DT <- data.table::rbindlist(dty)
-  invisible(DT)
 
+  DT <- data.table::rbindlist(dty)
 }
 
 #' @title Find Implicit Null Categories
@@ -128,7 +130,8 @@ find_implicit_col <- function(dt, years, col, ref) {
     nn[[i]] <- dd
     names(nn)[i] <- as.character(yr)
   }
-  invisible(nn)
+
+  return(nn)
 }
 
 #' @title Dataset for Implicit Null
@@ -172,5 +175,5 @@ find_implicit_null <- function(imp, year, colstr, level){
     names(nn)[i] <- col
   }
 
-  invisible(nn)
+  return(nn)
 }
