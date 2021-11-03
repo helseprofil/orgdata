@@ -23,7 +23,7 @@ do_recode_aggregate <- function(dt = NULL,
     dt <- is_recode_common(dt = dt, code = speCode, group = grp)
     dt <- is_recode_all(dt = dt, code = speCode, aggregate.msg = TRUE)
   }
-  invisible(dt)
+  return(dt)
 }
 
 

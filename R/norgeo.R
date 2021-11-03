@@ -95,6 +95,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
     is_colour_txt(x = geoFile, msg = msgWrite, type = "note")
     ## message("Write table `", tblName, "` is completed in: \n", geoFile)
   }
+
   invisible(geo$tblvalue)
 }
 

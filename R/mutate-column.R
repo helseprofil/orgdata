@@ -18,10 +18,9 @@ do_mutate <- function(dt = NULL, spec = NULL){
   for (i in cols){
     col <- spec[[i]]
     val <- get_mutate_value(col)
-    is_mutate(dt, spec, col, val)
+    dt <- is_mutate(dt, spec, col, val)
   }
-
-  invisible(dt)
+  return(dt)
 }
 
 #' @title Value for New Column
@@ -37,7 +36,6 @@ get_mutate_value <- function(col){
   } else {
     ut <- FALSE
   }
-  return(ut)
 }
 
 ## HELPER ------------------------------
@@ -46,5 +44,5 @@ is_mutate <- function(dt, spec, col, val){
     var <- names(spec)[spec %in% col]
     dt[, (var) := val]
   }
-  invisible(dt)
+  return(dt)
 }
