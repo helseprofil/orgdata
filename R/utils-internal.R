@@ -119,7 +119,7 @@ is_verbose <- function(x = NULL, msg = NULL,
   }
 
   if (getOption("orgdata.verbose")) {
-    is_colour_txt(x = x, msg = msg, type = type)
+    message(is_colour_txt(x = x, msg = msg, type = type))
   }
 }
 
@@ -166,13 +166,13 @@ is_colour_txt <- function(x, msg, type = c("note", "warn", "warn2",
   debugClr <- crayon::silver
 
   switch(type,
-         note = cat(noteClr(paste0(msg, " ", crayon::blue(x), "\n"))),
-         warn = cat(warnClr(paste0("Warning: ", msg, " ", x, "\n"))),
-         warn2 = cat(warn2Clr(paste0(msg, " ", crayon::blue(x), "\n"))),
-         error = cat(errorClr(paste0(msg, " ", x, "\n"))),
-         error2 = cat(errorClr(paste0(msg, " ", crayon::green(x), "\n"))),
-         other = cat(otherClr(paste0(msg, "\n"))),
-         debug = cat(debugClr(paste0(msg, " ", crayon::green(x), "\n"))))
+         note = cat(noteClr(paste0(msg, " ", crayon::blue(x)))),
+         warn = cat(warnClr(paste0("Warning: ", msg, " ", x))),
+         warn2 = cat(warn2Clr(paste0(msg, " ", crayon::blue(x)))),
+         error = cat(errorClr(paste0(msg, " ", x))),
+         error2 = cat(errorClr(paste0(msg, " ", crayon::green(x)))),
+         other = cat(otherClr(paste0(msg))),
+         debug = cat(debugClr(paste0(msg, " ", crayon::green(x)))))
 
 }
 

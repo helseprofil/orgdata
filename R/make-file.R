@@ -68,7 +68,7 @@ make_file <- function(group = NULL,
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
   grpMsg <- paste0("File(s) to be processed in ", group, ":")
-  is_colour_txt(x = rowFile, grpMsg, type = "note")
+  is_colour_txt(x = paste0(rowFile, "\n"), grpMsg, type = "note")
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
