@@ -27,3 +27,9 @@ years geogprahical codes. This is used to recode the previous years codes to the
 current codes. Implementation of this function is base on \code{\link[norgeo:track_change]{norgeo::track_change()}}
 function.
 }
+\seealso{
+Other geo codes functions: 
+\code{\link{geo_level}()},
+\code{\link{get_geo_dummy}()}
+}
+\concept{geo codes functions}
