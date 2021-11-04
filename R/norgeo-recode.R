@@ -82,14 +82,11 @@ is_geo_na <- function(dt){
   nrNA <- dt[is.na(GEO), .N]
   if (nrNA > 0){
     idx <- dt[, .I[is.na(GEO)]]
-    dt[is.na(GEO), GEO := 99999999]
-  }
+    idx <- is_check_geo(idx)
 
-  if (nrNA > 0){
+    dt[is.na(GEO), GEO := 99999999]
     is_colour_txt(x = nrNA, msg = "Number of missing GEO with empty value or NA:", type = "warn2")
     is_colour_txt(x = 99999999, msg = "Missing GEO are now recoded to", type = "note")
-
-    idx <- is_check_geo(idx)
   }
 
   return(dt)
@@ -103,18 +100,16 @@ is_geo_0000 <- function(dt){
   nr00 <- dt[GEO %like% "0000$", .N]
   if (nr00 > 0){
     idx <- dt[, .I[GEO %like% "0000$"]]
+    idx <- is_check_geo(idx)
+
     for (i in idx){
       code <- sub("0{4}$", "", dt[i]$GEO)
       grc <- paste0(code, "9999")
       dt[i, GEO := as.integer(grc)]
     }
-  }
 
-  if (nr00 > 0){
     is_colour_txt(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
     is_colour_txt(x = "xxxx9999", msg = "They are now recoded with ending:", type = "note")
-
-    idx <- is_check_geo(idx)
   }
 
   return(dt)
@@ -173,6 +168,9 @@ is_check_geo <- function(idx){
 
 ## Codes that can't be merged since it's not found in geo codebook database
 is_warn_geo_merge <- function(x, y, vector = FALSE){
+  ## x - dataset
+  ## y - geocodes
+  ## vector - Either a data.frame or vector
   GEO <- to <- NULL
 
   if (vector){
