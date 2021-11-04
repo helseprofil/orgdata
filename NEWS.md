@@ -6,6 +6,9 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.8
+- Fixed #106 split long messages (#107)
+
 # orgdata 0.3.7
 - Check columns to aggregate for any possible `NA` (#98). Columns that have `NA`
   should be recoded to `uoppgitt` or something equivalent since leaving the
