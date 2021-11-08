@@ -21,3 +21,9 @@ Create a database granularity of geographical codes to aggregate
 data accordingly. Implementation of this function is base on \code{\link[norgeo:cast_geo]{norgeo::cast_geo()}}
 function in \href{https://helseprofil.github.io/norgeo/}{norgeo} package.
 }
+\seealso{
+Other geo codes functions: 
+\code{\link{geo_recode}()},
+\code{\link{get_geo_dummy}()}
+}
+\concept{geo codes functions}

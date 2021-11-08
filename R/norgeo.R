@@ -8,6 +8,7 @@
 #' @param append Append the data to an existing table in the `orgdata.geo`
 #' @param table Table name to be created in the database. Default is `tblGeo`
 #' @importFrom norgeo cast_geo
+#' @family geo codes functions
 #' @export
 geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo") {
   is_null(year)
@@ -58,6 +59,7 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
 #' @param to End of year for the range period. Current year is the default if left empty
 #' @inheritParams geo_level
 #' @importFrom norgeo track_change
+#' @family geo codes functions
 #' @export
 geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
                        from = NULL,
@@ -80,7 +82,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   cat("..")
   if (type == "grunnkrets"){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    geo$tblvalue <- is_unknown_manucipalty(dt = dtGrunn, from = from, to = to)
+    geo$tblvalue <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
   } else                     {
     geo$tblvalue <- norgeo::track_change(type = type, from = from, to = to)
   }
@@ -99,6 +101,23 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   invisible(geo$tblvalue)
 }
 
+
+#' @title Create Dummy Enumeration Area Codes
+#' @description Some of the downloaded enumeration area codes from SSB lack
+#'   codes for missing ie. `xxxx9999`. In addition change for enumeration area
+#'   codes prior to 2002 aren't available. This function create these codes that
+#'   are needed for recoding older codes to current enumeration area codes.
+#' @param dt Downloaded data with norgeo::track_change()
+#' @inheritParams geo_recode
+#' @family geo codes functions
+#' @export
+get_geo_dummy <- function(dt, from, to){
+
+  kommune <- norgeo::track_change("kommune", from = from, to = to)
+  dt <- is_unknown_municipality(dt, kommune)
+  ## dt <- is_dummy_grunnkrets(dt, kommune)
+  dt <- is_grunnkrets_99(dt)
+}
 
 ## Helper -----------------------------------------------------
 ## Warn user if table exists incase it's a mistake
@@ -123,19 +142,19 @@ is_write_msg <- function(msg = c("write", "append", "fetch")){
          )
 }
 
+
+## Issue #39
 ## Ensure that all manucipality have unknown grunnkrets because
 ## sometime unknown grunnkrets doesn't exist in API
-is_unknown_manucipalty <- function(dt, from, to){
+is_unknown_municipality <- function(dt, kom){
+  # kom - municipality data from norgeo::track_change()
   oldCode <- currentCode <- NULL
 
-  kom <- norgeo::track_change("kommune", from = from, to = to)
+  kom <- data.table::copy(kom)
+
   kom <- kom[!is.na(oldCode)]
   kom <- kom[, `:=`(oldCode = paste0(oldCode, "9999"),
                     currentCode = paste0(currentCode, "9999"))]
-
-  codes <- setdiff(kom$oldCode, dt$oldCode)
-  kom <- kom[oldCode %chin% codes, ]
-  kom[, c("oldName", "newName") := "Uoppgitt"]
 
   dt <- data.table::rbindlist(list(dt, kom))
   data.table::setkey(dt, currentCode)
@@ -179,5 +198,22 @@ is_grunnkrets_00 <- function(dt){
   }
 
   cat("\n")
+  return(dt)
+}
+
+
+## To avoid error that recode not found
+is_grunnkrets_99 <- function(dt){
+
+  gr99 <- is.element("99999999", dt$oldCode)
+  yrs <- as.integer(unique(dt$changeOccurred))
+
+  if (isFALSE(gr99)){
+    dt99 <- data.table::data.table(changeOccurred = max(yrs))
+    dt99[, c("oldCode", "currentCode") := "99999999"]
+    dt99[, c("oldName", "newName") := "Uoppgitt"]
+    dt <- data.table::rbindlist(list(dt, dt99), use.names = TRUE)
+  }
+
   return(dt)
 }

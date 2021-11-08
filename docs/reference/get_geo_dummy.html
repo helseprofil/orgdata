@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Granularity of Georgraphical Codes — geo_level • orgdata</title>
+<title>Create Dummy Enumeration Area Codes — get_geo_dummy • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,11 @@
 
 
 
-<meta property="og:title" content="Granularity of Georgraphical Codes — geo_level" />
-<meta property="og:description" content="Create a database granularity of geographical codes to aggregate
-data accordingly. Implementation of this function is base on norgeo::cast_geo()
-function in norgeo package." />
+<meta property="og:title" content="Create Dummy Enumeration Area Codes — get_geo_dummy" />
+<meta property="og:description" content="Some of the downloaded enumeration area codes from SSB lack
+codes for missing ie. xxxx9999. In addition change for enumeration area
+codes prior to 2002 aren't available. This function create these codes that
+are needed for recoding older codes to current enumeration area codes." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -139,46 +140,42 @@ function in norgeo package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Granularity of Georgraphical Codes</h1>
+    <h1>Create Dummy Enumeration Area Codes</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/norgeo.R'><code>R/norgeo.R</code></a></small>
-    <div class="hidden name"><code>geo_level.Rd</code></div>
+    <div class="hidden name"><code>get_geo_dummy.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a database granularity of geographical codes to aggregate
-data accordingly. Implementation of this function is base on <code><a href='https://rdrr.io/pkg/norgeo/man/cast_geo.html'>norgeo::cast_geo()</a></code>
-function in <a href='https://helseprofil.github.io/norgeo/'>norgeo</a> package.</p>
+    <p>Some of the downloaded enumeration area codes from SSB lack
+codes for missing ie. <code>xxxx9999</code>. In addition change for enumeration area
+codes prior to 2002 aren't available. This function create these codes that
+are needed for recoding older codes to current enumeration area codes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>geo_level</span><span class='op'>(</span>year <span class='op'>=</span> <span class='cn'>NULL</span>, append <span class='op'>=</span> <span class='cn'>FALSE</span>, write <span class='op'>=</span> <span class='cn'>FALSE</span>, table <span class='op'>=</span> <span class='st'>"tblGeo"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_geo_dummy</span><span class='op'>(</span><span class='va'>dt</span>, <span class='va'>from</span>, <span class='va'>to</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>year</th>
-      <td><p>Year for the valid geographical codes</p></td>
+      <th>dt</th>
+      <td><p>Downloaded data with norgeo::track_change()</p></td>
     </tr>
     <tr>
-      <th>append</th>
-      <td><p>Append the data to an existing table in the <code>orgdata.geo</code></p></td>
+      <th>from</th>
+      <td><p>Starting year for the range period. Current year is the default if left empty</p></td>
     </tr>
     <tr>
-      <th>write</th>
-      <td><p>Write table to the <code>orgdata.geo</code> database. It will overwrite
-the table if it already exists</p></td>
-    </tr>
-    <tr>
-      <th>table</th>
-      <td><p>Table name to be created in the database. Default is <code>tblGeo</code></p></td>
+      <th>to</th>
+      <td><p>End of year for the range period. Current year is the default if left empty</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other geo codes functions: 
-<code><a href='geo_recode.html'>geo_recode</a>()</code>,
-<code><a href='get_geo_dummy.html'>get_geo_dummy</a>()</code></p></div>
+<code><a href='geo_level.html'>geo_level</a>()</code>,
+<code><a href='geo_recode.html'>geo_recode</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
