@@ -5,6 +5,7 @@
 #' @param code Code dataset of old and new codes in a `data.table` format.
 #' @param type The geographical granularity for recoding
 #'  The dataset is the output after running `get_geo_recode()` function.
+#' @inheritParams find_spec
 #' @examples
 #' \dontrun{
 #' code <- get_geo_recode(con = geo$dbconn, type = "grunnkrets")
@@ -19,7 +20,9 @@ do_geo_recode <- function(dt = NULL,
                             "grunnkrets",
                             "fylke",
                             "kommune",
-                            "bydel")
+                            "bydel"),
+                          year = NULL,
+                          con = NULL
                           ){
   GEO <- i.to <- NULL
 
@@ -31,8 +34,9 @@ do_geo_recode <- function(dt = NULL,
 
   if (type == "grunnkrets"){
     dt <- is_grunnkrets(dt)
-    dt <- is_geo_na(dt)
-    dt <- is_geo_0000(dt)
+    dt <- is_grunnkrets_na(dt)
+    dt <- is_grunnkrets_0000(dt)
+    dt <- is_grunnkrets_before_2002(dt, year, con)
   }
 
   xcode <- is_warn_geo_merge(dt, code, vector = FALSE)
@@ -85,7 +89,7 @@ get_geo_recode <- function(con = NULL,
 }
 
 ## Helper -----------------
-is_geo_na <- function(dt){
+is_grunnkrets_na <- function(dt){
   GEO <- AAR <- NULL
 
   nrNA <- dt[is.na(GEO), .N]
@@ -104,7 +108,7 @@ is_geo_na <- function(dt){
 
 ## Convert geo ends with 4 zeros ie. xxxx0000 to xxxx9999
 ## Can't aggregate grunnkrets ends with 4 zeros or 2 zeros as it only represents delområde
-is_geo_0000 <- function(dt){
+is_grunnkrets_0000 <- function(dt){
   GEO <- AAR <- NULL
 
   nr00 <- dt[GEO %like% "0000$", .N]
@@ -155,6 +159,29 @@ is_grunnkrets <- function(dt){
   }
 
   dt[, dummy_grk := NULL]
+}
+
+## Grunnkrets codes for change starts from 2002. All others before that need to
+## have dummy from municipality to be able to recode to current geo code
+is_grunnkrets_before_2002 <- function(dt, year, con){
+  GEO <- Geo_Dummy <- GEO_New <- NULL
+  yr <- unique(dt$AAR)
+
+  yrOld <- is.element(yr, 1990:2001)
+
+  if (yrOld){
+    geoTable <- paste0("kommune", year)
+    geoDT <- find_spec("geo-recode-dummy.sql", char = geoTable, con = con, char2 = 2002)
+    data.table::setDT(geoDT)
+
+    oldCodes <- as.integer(unique(geoDT$oldCode))
+    dt[ , Geo_Dummy := sub("\\d{4}$", "", GEO) ]
+    dt[, GEO_New := data.table::fcase(Geo_Dummy %in% oldCodes, sub("\\d{4}$", "9999", GEO),
+                                      default = NA)]
+    dt[!is.na(GEO_New), GEO := as.integer(GEO_New)]
+    dt[, c("Geo_Dummy", "GEO_New") := NULL]
+  }
+  return(dt)
 }
 
 ## Grunnkrets have btw 7 to 8 digits only
