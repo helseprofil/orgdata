@@ -68,7 +68,7 @@ make_file <- function(group = NULL,
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
   grpMsg <- paste0("File(s) to be processed in ", group, ":")
-  is_colour_txt(x = paste0(rowFile, "\n"), grpMsg, type = "note")
+  is_colour_txt(x = rowFile, grpMsg, type = "note")
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
@@ -79,7 +79,7 @@ make_file <- function(group = NULL,
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
-    is_verbose(msg = "----------------------------------", type = "other")
+    is_verbose(msg = is_line_long(), type = "other")
     is_verbose(fileSpec$KOBLID, "Koblid:")
 
     dt <- is_org_process(

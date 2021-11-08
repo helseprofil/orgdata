@@ -58,6 +58,7 @@ do_aggregate <- function(dt = NULL,
   ## and INNVKAT
   if (any(names(dt) == "LANDSSB")) dt[, LANDSSB := NULL]
 
+  is_verbose(msg = is_line_short(), type = "other")
   msg <- paste0("Starts aggregating data from ", source, " to")
   is_verbose(x = level, msg = msg)
 

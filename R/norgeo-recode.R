@@ -114,7 +114,6 @@ is_grunnkrets_0000 <- function(dt){
   nr00 <- dt[GEO %like% "0000$", .N]
   if (nr00 > 0){
     idx <- dt[, .I[GEO %like% "0000$"]]
-    idx <- is_check_geo(idx)
 
     for (i in idx){
       code <- sub("0{4}$", "", dt[i]$GEO)
@@ -123,6 +122,7 @@ is_grunnkrets_0000 <- function(dt){
     }
 
     is_colour_txt(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
+    idx <- is_check_geo(idx)
     is_colour_txt(x = "xxxx9999", msg = "They are now recoded with ending:", type = "note")
   }
 
@@ -167,7 +167,7 @@ is_grunnkrets_before_2002 <- function(dt, year, con){
   GEO <- Geo_Dummy <- GEO_New <- NULL
   yr <- unique(dt$AAR)
 
-  yrOld <- is.element(yr, 1990:2001)
+  yrOld <- is.element(yr, 1980:2001)
 
   if (yrOld){
     geoTable <- paste0("kommune", year)
@@ -199,6 +199,7 @@ is_geo_oddeven <- function(x){
 is_check_geo <- function(idx){
   ## idx - Row index
   idxNo <- is_short_code(idx, n1 = 10, n2 = 7)
+  ## is_verbose(msg = is_line_short(), type = "other")
   is_verbose(idxNo, "Check GEO codes in original data for row(s):", type = "warn")
   invisible(idx)
 }
@@ -223,6 +224,7 @@ is_warn_geo_merge <- function(x, y, vector = FALSE){
   dcode <- setdiff(x, y)
   if (length(dcode) > 0){
     codes <- is_short_code(dcode, n1 = 10, n2 = 8)
+    ## is_verbose(msg = is_line_short(), type = "other")
     is_verbose(x = length(dcode), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
     is_verbose(x = codes, msg = "These are the codes:")
   }
