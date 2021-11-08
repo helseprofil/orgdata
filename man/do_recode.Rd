@@ -14,7 +14,7 @@ do_recode(dt = NULL, spec = NULL, con = NULL)
 \item{con}{Connection to database}
 }
 \description{
-Recode variables based on the specification in \code{tbl_Kode} ie. codebook.
+Recode variables based on the specification in \code{tbl_KodeBok} ie. codebook.
 \code{LESID} must be combined with \code{FILGRUPPE} to create a unique reference to
 be able to recode the variables. Specification group \code{ALLE} will be
 used when neither \code{FILGRUPPE} nor \code{LESID} is specified.

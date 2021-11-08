@@ -185,7 +185,7 @@ Changes is in PR #8
 
 ## orgdata 0.0.5 - alpha
 
-- Recode variables from specification in `tbl_Kode` uses:
+- Recode variables from specification in `tbl_KodeBok` uses:
   1. **GENERAL** variables are defined in FILGRUPPE as `ALLE` and are used to
      recode variables in all groups.
   2. **COMMON** variables are when FILGRUPPE is specified but have empty LESID.
@@ -193,7 +193,7 @@ Changes is in PR #8
   3. **SPECIFIC** variables are when FILGRUPPE and LESID are specified. This
      will recode variables in that specified FILGRUPPE of the specified FILID.
 
-- When all these three specification exist in `tbl_Kode`:
+- When all these three specification exist in `tbl_KodeBok`:
    - **SPECIFIC** variables will overrule **COMMON** variables
    - **COMMON** variables will overrule **GENERAL** variables
 

@@ -1,6 +1,6 @@
 #' @title Recode Variables with Regular Expression
 #' @description Recode variables with regular expression based on the
-#'   specification in `tbl_Kode` with TYPE `RE`. The specification in the
+#'   specification in `tbl_KodeBok` with TYPE `RE`. The specification in the
 #'   codebook can be specific, common or general. \emph{Specific} is when both
 #'   `LESID` and `FILGRUPPE` are specified to create a unique reference to be
 #'   able to recode the variables. \emph{Common} is when only `FILGRUPPE` is
@@ -41,7 +41,7 @@ get_codebok_regexp <- function(spec = NULL, con = NULL){
 ## Helper -----------------------------------------------
 ## TODO Should combine the code with recode
 
-## When LESID is specified in tbl_Kode
+## When LESID is specified in tbl_KodeBok
 is_recode_lesid_regexp <- function(dt, code, lesid) {
   ## dt - Dataset
   ## code - From codebook
@@ -53,7 +53,7 @@ is_recode_lesid_regexp <- function(dt, code, lesid) {
   is_recode_regexp(dt = dt, code = idCode, cols = kols)
 }
 
-## When LESID in tbl_Kode is empty ie. common within the group
+## When LESID in tbl_KodeBok is empty ie. common within the group
 is_recode_common_regexp <- function(dt, code, group) {
   ## dt - Dataset
   ## code - From codebook
@@ -70,7 +70,7 @@ is_recode_common_regexp <- function(dt, code, group) {
 }
 
 
-## When FILGRUPPE in tbl_Kode is ALLE
+## When FILGRUPPE in tbl_KodeBok is ALLE
 is_recode_all_regexp <- function(dt, code, aggregate.msg = FALSE){
 # aggregate.msg - Either it's KB/RE or AG. Default is KB/RE ie. FALSE
 

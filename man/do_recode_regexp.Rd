@@ -15,7 +15,7 @@ do_recode_regexp(dt = NULL, spec = NULL, con = NULL)
 }
 \description{
 Recode variables with regular expression based on the
-specification in \code{tbl_Kode} with TYPE \code{RE}. The specification in the
+specification in \code{tbl_KodeBok} with TYPE \code{RE}. The specification in the
 codebook can be specific, common or general. \emph{Specific} is when both
 \code{LESID} and \code{FILGRUPPE} are specified to create a unique reference to be
 able to recode the variables. \emph{Common} is when only \code{FILGRUPPE} is

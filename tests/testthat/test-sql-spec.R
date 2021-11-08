@@ -14,7 +14,7 @@ test_that("Check missing arg and SQL error", {
 
 test_that("SQL query", {
 
-  sqQry <- "select FILGRUPPE, LESID, KOL, TYPE, FRA, TIL\nfrom tbl_Kode\nwhere (FILGRUPPE = 'TEST' or FILGRUPPE = 'ALLE')\n  and VERSJONTIL = #9999-01-01#\n  and (LESID is NULL or LESID = 'ver01')\n  and TYPE = 'AG'\n  and TIL <> '-'"
+  sqQry <- "select FILGRUPPE, LESID, KOL, TYPE, FRA, TIL\nfrom tbl_KodeBok\nwhere (FILGRUPPE = 'TEST' or FILGRUPPE = 'ALLE')\n  and VERSJONTIL = #9999-01-01#\n  and (LESID is NULL or LESID = 'ver01')\n  and TYPE = 'AG'\n  and TIL <> '-'"
   sqOpp <- "SELECT * FROM tblGeo\nWHERE validTo='1990' AND level='GRK'"
 
 
