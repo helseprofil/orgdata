@@ -172,7 +172,7 @@ is_geo_oddeven <- function(x){
 is_check_geo <- function(idx){
   ## idx - Row index
   idxNo <- is_short_code(idx, n1 = 10, n2 = 7)
-  is_verbose(idxNo, "Check GEO codes in original data for rows:", type = "warn")
+  is_verbose(idxNo, "Check GEO codes in original data for row(s):", type = "warn")
   invisible(idx)
 }
 
