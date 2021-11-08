@@ -3,6 +3,7 @@
 #'  Codes is based [norgeo::track_change()] function.
 #' @inheritParams do_split
 #' @param code Code dataset of old and new codes in a `data.table` format.
+#' @param type The geographical granularity for recoding
 #'  The dataset is the output after running `get_geo_recode()` function.
 #' @examples
 #' \dontrun{
@@ -13,7 +14,13 @@
 #' @import data.table
 #' @export
 do_geo_recode <- function(dt = NULL,
-                          code = NULL){
+                          code = NULL,
+                          type = c(
+                            "grunnkrets",
+                            "fylke",
+                            "kommune",
+                            "bydel")
+                          ){
   GEO <- i.to <- NULL
 
   ## Ensure variables to be used to aggregate in type int
@@ -22,9 +29,11 @@ do_geo_recode <- function(dt = NULL,
     data.table::set(dt, j = col, value = as.integer(dt[[col]]))
   }
 
-  dt <- is_grunnkrets(dt)
-  dt <- is_geo_na(dt)
-  dt <- is_geo_0000(dt)
+  if (type == "grunnkrets"){
+    dt <- is_grunnkrets(dt)
+    dt <- is_geo_na(dt)
+    dt <- is_geo_0000(dt)
+  }
 
   xcode <- is_warn_geo_merge(dt, code, vector = FALSE)
   xind <- dt[, .I[GEO %in% xcode]]
@@ -37,7 +46,7 @@ do_geo_recode <- function(dt = NULL,
 #' @description Get the geographical codes registered in `geo-database` which consist
 #'  of old and new codes that are applicable to the respective year.
 #' @inheritParams find_spec
-#' @param type The geographical granularity for recoding
+#' @inheritParams do_geo_recode
 #' @param year Which year the geograhical codes to be recoded to. If it
 #'  is empty then current year will be used.
 #' @return A dataset with columns `GEO` and `to` representing the GEO
@@ -63,8 +72,8 @@ get_geo_recode <- function(con = NULL,
     year <- as.integer(format(Sys.Date(), "%Y"))
   }
 
-  table <- paste0(type, year)
-  geoDT <- find_spec("geo-recode.sql", value = table, con = con)
+  geoTable <- paste0(type, year)
+  geoDT <- find_spec("geo-recode.sql", value = geoTable, con = con)
   data.table::setDT(geoDT)
 
   for (j in seq_len(ncol(geoDT))){
@@ -93,8 +102,9 @@ is_geo_na <- function(dt){
 }
 
 
+## Convert geo ends with 4 zeros ie. xxxx0000 to xxxx9999
+## Can't aggregate grunnkrets ends with 4 zeros or 2 zeros as it only represents delområde
 is_geo_0000 <- function(dt){
-
   GEO <- AAR <- NULL
 
   nr00 <- dt[GEO %like% "0000$", .N]
@@ -147,7 +157,7 @@ is_grunnkrets <- function(dt){
   dt[, dummy_grk := NULL]
 }
 
-## Grunnkrets have btw 7 to 8 digits
+## Grunnkrets have btw 7 to 8 digits only
 is_geo_oddeven <- function(x){
 
   oddNo <- identical(x %% 2, 1)

@@ -78,7 +78,7 @@ do_aggregate <- function(dt = NULL,
 
   ## recode GEO
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
-  dt <- do_geo_recode(dt = dt, code = code)
+  dt <- do_geo_recode(dt = dt, code = code, type = source)
 
   ## Cast geo levels ie. aggregate to different geo levels
   geoDT <- find_spec(
