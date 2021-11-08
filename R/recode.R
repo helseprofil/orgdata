@@ -1,6 +1,6 @@
 #' @title Recode Variables
 #' @description
-#' Recode variables based on the specification in `tbl_Kode` ie. codebook.
+#' Recode variables based on the specification in `tbl_KodeBok` ie. codebook.
 #' `LESID` must be combined with `FILGRUPPE` to create a unique reference to
 #' be able to recode the variables. Specification group `ALLE` will be
 #' used when neither `FILGRUPPE` nor `LESID` is specified.
@@ -36,7 +36,7 @@ get_codebok <- function(spec = NULL, con = NULL){
 }
 
 ## Helper -----------------------------------------------
-## When LESID is specified in tbl_Kode
+## When LESID is specified in tbl_KodeBok
 is_recode_lesid <- function(dt, code, lesid) {
   ## dt - Dataset
   ## code - From codebook
@@ -48,7 +48,7 @@ is_recode_lesid <- function(dt, code, lesid) {
   is_recode(dt = dt, code = idCode, cols = kols)
 }
 
-## When LESID in tbl_Kode is empty ie. common within the group
+## When LESID in tbl_KodeBok is empty ie. common within the group
 is_recode_common <- function(dt, code, group) {
   ## dt - Dataset
   ## code - From codebook
@@ -65,7 +65,7 @@ is_recode_common <- function(dt, code, group) {
 }
 
 
-## When FILGRUPPE in tbl_Kode is ALLE
+## When FILGRUPPE in tbl_KodeBok is ALLE
 is_recode_all <- function(dt, code, aggregate.msg = FALSE){
   # aggregate.msg - If it's KB or AG
 

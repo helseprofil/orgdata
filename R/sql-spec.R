@@ -10,7 +10,7 @@
 #'   \item{\strong{ tbl_Orgfile }} - The original files
 #'   \item{\strong{ tbl_Innlesing }} - How the file will be read into R
 #'   \item{\strong{ tbl_Koble }} - Connection for original files to the file groups and how these will be read
-#'   \item{\strong{ tbl_Kode }} - Code book to recode any value
+#'   \item{\strong{ tbl_KodeBok }} - Code book to recode any value
 #'   \item{\strong{ tbl_Compute }} - Code book to create a new category from the existing categories
 #' }
 #'
