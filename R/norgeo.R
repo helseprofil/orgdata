@@ -112,10 +112,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @family geo codes functions
 #' @export
 get_geo_dummy <- function(dt, from, to){
-
   kommune <- norgeo::track_change("kommune", from = from, to = to)
-  dt <- is_unknown_municipality(dt, kommune)
-  ## dt <- is_dummy_grunnkrets(dt, kommune)
+  dt <- is_unknown_grunnkrets(dt, kommune)
   dt <- is_grunnkrets_99(dt)
 }
 
@@ -146,7 +144,7 @@ is_write_msg <- function(msg = c("write", "append", "fetch")){
 ## Issue #39
 ## Ensure that all manucipality have unknown grunnkrets because
 ## sometime unknown grunnkrets doesn't exist in API
-is_unknown_municipality <- function(dt, kom){
+is_unknown_grunnkrets <- function(dt, kom){
   # kom - municipality data from norgeo::track_change()
   oldCode <- currentCode <- NULL
 
@@ -204,7 +202,6 @@ is_grunnkrets_00 <- function(dt){
 
 ## To avoid error that recode not found
 is_grunnkrets_99 <- function(dt){
-
   gr99 <- is.element("99999999", dt$oldCode)
   yrs <- as.integer(unique(dt$changeOccurred))
 
