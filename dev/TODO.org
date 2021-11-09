@@ -23,7 +23,7 @@ Function =is_debug()= for debugging with =options("orgdata.debug")=
 *** TODO Log
 Consider R6 class.
 - Process
-  + Get info from table =tbl_Kode=
+  + Get info from table =tbl_KodeBok=
   + Compare oldvar agaist newvar
 - public fields:
   + koblid

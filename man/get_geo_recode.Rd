@@ -13,7 +13,8 @@ get_geo_recode(
 \arguments{
 \item{con}{Connection to database}
 
-\item{type}{The geographical granularity for recoding}
+\item{type}{The geographical granularity for recoding
+The dataset is the output after running \code{get_geo_recode()} function.}
 
 \item{year}{Which year the geograhical codes to be recoded to. If it
 is empty then current year will be used.}

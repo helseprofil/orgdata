@@ -17,7 +17,6 @@ do_delete_row <- function(dt = NULL, spec = NULL, con = NULL) {
   dt <- is_delete_lesid(dt = dt, code = speCode, lesid = lesid)
   dt <- is_delete_common(dt = dt, code = speCode, group = grp)
   dt <- is_delete_all(dt = dt, code = speCode)
-  invisible(dt)
 }
 
 
@@ -44,7 +43,6 @@ is_delete_lesid <- function(dt, code, lesid){
   idCode <- code[LESID == lesid, list(KOL, FRA)]
   cols <- unique(idCode$KOL)
   dt <- is_delete_row(dt, code = code, cols = cols)
-  invisible(dt)
 }
 
 
@@ -54,7 +52,6 @@ is_delete_common <- function(dt, code, group){
   allCode <- code[FILGRUPPE == group & is.na(LESID), list(KOL, FRA)]
   cols <- unique(allCode$KOL)
   dt <- is_delete_row(dt, code = allCode, cols = cols)
-  invisible(dt)
 }
 
 is_delete_all <- function(dt, code){
@@ -74,7 +71,7 @@ is_delete_all <- function(dt, code){
     dt <- is_delete_row(dt = dt, code = allCode, cols = yesCols)
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 
@@ -89,7 +86,7 @@ is_delete_row <- function(dt, code, cols){
     dt <- is_delete_index(dt, delidx)
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 ## Ref https://github.com/Rdatatable/data.table/issues/635#issuecomment-261473829
@@ -105,5 +102,5 @@ is_delete_index <- function(dt, delidx){
     dt[, (col) := NULL]
   }
 
-  invisible(dtSub)
+  return(dtSub)
 }

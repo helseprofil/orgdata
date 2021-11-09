@@ -58,6 +58,7 @@ do_aggregate <- function(dt = NULL,
   ## and INNVKAT
   if (any(names(dt) == "LANDSSB")) dt[, LANDSSB := NULL]
 
+  is_verbose(msg = is_line_short(), type = "other")
   msg <- paste0("Starts aggregating data from ", source, " to")
   is_verbose(x = level, msg = msg)
 
@@ -69,7 +70,7 @@ do_aggregate <- function(dt = NULL,
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geoDB <- KHelse$new(geoFile)
 
-  ## validTo in the database is a character
+  ## validTo in the database `tblGeo` is a character
   if (!is.null(year)) {
     yr <- dt[AAR == year, ][1]
   } else {
@@ -78,9 +79,9 @@ do_aggregate <- function(dt = NULL,
 
   ## recode GEO
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
-  dt <- do_geo_recode(dt = dt, code = code)
+  dt <- do_geo_recode(dt = dt, code = code, type = source, year = yr, con = geoDB$dbconn)
 
-  ## geoDT <- find_spec("geo-code-all.sql", value = source, con = geo$dbconn)
+  ## Cast geo levels ie. aggregate to different geo levels
   geoDT <- find_spec(
     "geo-code.sql",
     con = geoDB$dbconn,
@@ -116,7 +117,8 @@ do_aggregate <- function(dt = NULL,
   xCols <- is_set_list(
     level = level,
     srcCols = aggCols,
-    colx = aggregate.col
+    colx = aggregate.col,
+    dt
   )
 
   colj <- intersect(colVals, names(dt))
@@ -180,12 +182,12 @@ is_level_na <- function(dt, level){
 }
 
 ## Create list of combination to aggregate in groupingsets
-is_set_list <- function(level, srcCols, colx = NULL) {
+is_set_list <- function(level, srcCols, colx = NULL, dt = NULL) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
   # colx - Colnames to aggregate other than standard
 
-  ## Dont aggregate these columns
+  ## Don't aggregate these columns
   tabs <- paste0("TAB", 1:getOption("orgdata.tabs"))
   aggNot <- c(level, "AAR", "KJONN", "ALDER", tabs)
   ## Find the columns that exist in the dataset
@@ -199,9 +201,11 @@ is_set_list <- function(level, srcCols, colx = NULL) {
   sameVars <- identical(vars, srcCols)
 
   if (sameVars){
+    is_validate_NA(vars, dt)
     listSet <- list(vars)
   } else {
     aggCols <- setdiff(srcCols, vars)
+    is_validate_NA(aggCols, dt)
     listSet <- unlist(lapply(seq_along(aggCols),
                              utils::combn,
                              x = aggCols,
@@ -220,90 +224,15 @@ is_set_list <- function(level, srcCols, colx = NULL) {
 }
 
 
+## Check column to be aggregated doesn't have NA
+## since aggregating produce NA to represent total
+is_validate_NA <- function(cols, dt){
 
+  for (i in cols){
+    val <- dt[is.na(get(i)), .N]
 
-## Deprecated functions --------------------------------------------------
-
-#' @title Recode Standard Aggregated Variables
-#' @description Recode standard aggregated variables to represent total category either as `0`
-#'  or `10` for integer variables and `Tot` for string variables. Value `10` representing
-#'  total is only used for `LANDB` since it already has `0` as one of it's existing
-#'  value. Other columns that need to be recorded to represent total category must be defined
-#'  in \strong{Recode} form with FILGRUPPE as \strong{AGGREGATE}.
-#' @description Standard columns that is implemented by this function is:
-#' @description `UTDANN`, `SIVILSTAND`, `LANDSSB`, `LANDBAK` and `INNVKAT`
-#' @inheritParams do_split
-#' @family aggregate functions
-#' @export
-do_aggregate_recode_standard <- function(dt) {
-
-  depMsg <- "Alle recode variable must be specified in codebook in Access registration database."
-  lifecycle::deprecate_stop("0.3.2", "do_aggregate_recode_standard()", details = depMsg)
-
-  is_debug()
-  cols <- is_aggregate_standard_cols()
-
-  ## HARD CODED!!
-  dt <- is_aggregate_recode(dt, cols$intMin, to = 0)
-  dt <- is_aggregate_recode(dt, cols$intMax, to = 20)
-  dt <- is_aggregate_recode(dt, cols$chrCols, to = "Tot")
-
-  invisible(dt)
-}
-
-
-is_aggregate_standard_cols <- function(){
-
-  lifecycle::deprecate_stop("0.3.2", "do_aggregate_recode_standard()")
-
-  ## Total is 0
-  intMin <- c("UTDANN", "SIVILSTAND")
-  ## Total is 10
-  intMax <- c("LANDBAK", "INNVKAT")
-  ## Total is Tot
-  chrCols <- "LANDSSB"
-
-  list(intMin = intMin, intMax = intMax, chrCols = chrCols)
-}
-
-is_aggregate_recode <- function(dt, cols, to){
-
-  lifecycle::deprecate_stop("0.3.2", "do_aggregate_recode_standard()")
-
-  isCols <- sum(is.element(cols, names(dt))) > 0
-
-  if (isCols){
-    for (j in seq_along(cols)){
-      col <- cols[j]
-      data.table::set(dt, i = which(is.na(dt[[col]])), j = col, value = to)
+    if (val > 0){
+      is_stop("This column has NA and needs to recode:", var = paste_cols(i))
     }
   }
-  invisible(dt)
-}
-
-#' @title Use Original Columnames
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' This function is either to use original columnames or use the standard columnames.
-#' It's deprecated because output MUST use standard columnames.
-#' @keywords internal
-is_active <- function(active = TRUE, .env = parent.frame()){
-
-  lifecycle::deprecate_stop("0.0.9", "is_active()")
-
-  VAL1 <- NULL
-  if (isFALSE(active)){
-    DT <- data.table::cube(.env$dt, j = c(VAL1 = sum(VAL1, na.rm = TRUE)), by = .env$aggCols)
-    data.table::setnames(DT, c("grunnkrets", "V1"), c(.env$geo, .env$val))
-  } else {
-    DT <- data.table::groupingsets(
-      .env$dt,
-      j = list(VAL1 = sum(VAL1, na.rm = TRUE)),
-      by = .env$aggCols,
-      sets = .env$xCols
-    )
-    data.table::setnames(DT, .env$level, "GEO")
-  }
-  invisible(DT)
 }

@@ -85,7 +85,6 @@ is_read_file <- function(file, debug = getOption("orgdata.debug.nrow")){
   } else {
     dt <- read_file(file = file)
   }
-  invisible(dt)
 }
 
 is_read_file_dots <- function(file, dots, debug = getOption("orgdata.debug.nrow")){
@@ -95,5 +94,4 @@ is_read_file_dots <- function(file, dots, debug = getOption("orgdata.debug.nrow"
   } else {
     dt <- read_file(file = file, dots)
   }
-  invisible(dt)
 }

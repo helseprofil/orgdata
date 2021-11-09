@@ -8,6 +8,7 @@
 #' @param append Append the data to an existing table in the `orgdata.geo`
 #' @param table Table name to be created in the database. Default is `tblGeo`
 #' @importFrom norgeo cast_geo
+#' @family geo codes functions
 #' @export
 geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo") {
   is_null(year)
@@ -15,16 +16,17 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   ## break msg before showing message from cast_geo
   cat("..\n")
 
-  ## if (is.null(table)){
-  ##   yr <- as.integer(format(Sys.Date(), "%Y"))
-  ##   table <- paste0("tblGeo", yr)
-  ## }
+  ## -----------------------------------------
+  ## Note: No need to create table with year eg. tblGeo2021
+  ## since column ValidTo will be used to select valid year to aggregate
+  ## -----------------------------------------
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoFile)
   on.exit(geo$db_close(), add = TRUE)
 
-  geo$tblvalue <- norgeo::cast_geo(year = year)
+  DT <- norgeo::cast_geo(year = year)
+  geo$tblvalue <- is_grunnkrets_00(DT)
   geo$tblname <- table
 
   write <- is_write(write, table, geo$dbconn)
@@ -57,6 +59,7 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
 #' @param to End of year for the range period. Current year is the default if left empty
 #' @inheritParams geo_level
 #' @importFrom norgeo track_change
+#' @family geo codes functions
 #' @export
 geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
                        from = NULL,
@@ -79,7 +82,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   cat("..")
   if (type == "grunnkrets"){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    geo$tblvalue <- is_unknown_manucipalty(dt = dtGrunn, from = from, to = to)
+    geo$tblvalue <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
   } else                     {
     geo$tblvalue <- norgeo::track_change(type = type, from = from, to = to)
   }
@@ -94,9 +97,27 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
     is_colour_txt(x = geoFile, msg = msgWrite, type = "note")
     ## message("Write table `", tblName, "` is completed in: \n", geoFile)
   }
+
   invisible(geo$tblvalue)
 }
 
+
+#' @title Create Dummy Enumeration Area Codes
+#' @description Some of the downloaded enumeration area codes from SSB lack
+#'   codes for missing ie. `xxxx9999`. In addition change for enumeration area
+#'   codes prior to 2002 aren't available. This function create these codes that
+#'   are needed for recoding older codes to current enumeration area codes.
+#' @param dt Downloaded data with norgeo::track_change()
+#' @inheritParams geo_recode
+#' @family geo codes functions
+#' @export
+get_geo_dummy <- function(dt, from, to){
+
+  kommune <- norgeo::track_change("kommune", from = from, to = to)
+  dt <- is_unknown_municipality(dt, kommune)
+  ## dt <- is_dummy_grunnkrets(dt, kommune)
+  dt <- is_grunnkrets_99(dt)
+}
 
 ## Helper -----------------------------------------------------
 ## Warn user if table exists incase it's a mistake
@@ -121,19 +142,78 @@ is_write_msg <- function(msg = c("write", "append", "fetch")){
          )
 }
 
+
+## Issue #39
 ## Ensure that all manucipality have unknown grunnkrets because
 ## sometime unknown grunnkrets doesn't exist in API
-is_unknown_manucipalty <- function(dt, from, to){
+is_unknown_municipality <- function(dt, kom){
+  # kom - municipality data from norgeo::track_change()
   oldCode <- currentCode <- NULL
 
-  kom <- norgeo::track_change("kommune", from = from, to = to)
+  kom <- data.table::copy(kom)
+
   kom <- kom[!is.na(oldCode)]
   kom <- kom[, `:=`(oldCode = paste0(oldCode, "9999"),
                     currentCode = paste0(currentCode, "9999"))]
 
-  codes <- setdiff(kom$oldCode, dt$oldCode)
-  kom <- kom[oldCode %chin% codes, ]
-  kom[, c("oldName", "newName") := "Uoppgitt"]
+  dt <- data.table::rbindlist(list(dt, kom))
+  data.table::setkey(dt, currentCode)
+}
 
-  data.table::rbindlist(list(dt, kom))
+
+## Grunnkrets that ends with 00 has no corresponds code from API
+## Needs to do it manually comparing the second line with grunnkrets
+## ends with 00 exist and has missing other geo levels
+is_grunnkrets_00 <- function(dt){
+  code <- level <- NULL
+  is_verbose(msg = "Searching geo level with NA due to grunnkrets end with 00 ....")
+
+  dt <- copy(dt)
+  data.table::setkey(dt, code)
+  idx <- dt[, .I[level == "grunnkrets" & code %like% "00$"]]
+  levels <- c("kommune", "fylke","bydel")
+
+  cax <- idx[seq(1, length(idx), 40)]
+  ## pb <- txtProgressBar(min = 0, max = length(idx), style = 3)
+
+  for (i in idx){
+    ## setTxtProgressBar(pb, i)
+    ixrange <- c(i, i + 1)
+    code01 <- sub("\\d{2}$", "", dt[ixrange[1], code])
+    code02 <- sub("\\d{2}$", "", dt[ixrange[2], code])
+
+    same <- identical(code01, code02)
+
+    if (same){
+      dtlike <- dt[ixrange]
+      dt <- is_delete_index(dt, ixrange)
+      for (j in levels) {
+        data.table::set(dtlike, which(is.na(dtlike[[j]])), j = j, value = dtlike[2, get(j)])
+      }
+      dt <- data.table::rbindlist(list(dt, dtlike))
+      data.table::setkey(dt, code)
+    }
+
+    if (is.element(i, cax)) cat(".")
+  }
+
+  cat("\n")
+  return(dt)
+}
+
+
+## To avoid error that recode not found
+is_grunnkrets_99 <- function(dt){
+
+  gr99 <- is.element("99999999", dt$oldCode)
+  yrs <- as.integer(unique(dt$changeOccurred))
+
+  if (isFALSE(gr99)){
+    dt99 <- data.table::data.table(changeOccurred = max(yrs))
+    dt99[, c("oldCode", "currentCode") := "99999999"]
+    dt99[, c("oldName", "newName") := "Uoppgitt"]
+    dt <- data.table::rbindlist(list(dt, dt99), use.names = TRUE)
+  }
+
+  return(dt)
 }

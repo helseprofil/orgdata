@@ -1,6 +1,6 @@
 #' @title Recode Variables
 #' @description
-#' Recode variables based on the specification in `tbl_Kode` ie. codebook.
+#' Recode variables based on the specification in `tbl_KodeBok` ie. codebook.
 #' `LESID` must be combined with `FILGRUPPE` to create a unique reference to
 #' be able to recode the variables. Specification group `ALLE` will be
 #' used when neither `FILGRUPPE` nor `LESID` is specified.
@@ -18,7 +18,6 @@ do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
   dt <- is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
   dt <- is_recode_common(dt = dt, code = speCode, group = grp)
   dt <- is_recode_all(dt = dt, code = speCode)
-  invisible(dt)
 }
 
 #' @title Codebook
@@ -37,7 +36,7 @@ get_codebok <- function(spec = NULL, con = NULL){
 }
 
 ## Helper -----------------------------------------------
-## When LESID is specified in tbl_Kode
+## When LESID is specified in tbl_KodeBok
 is_recode_lesid <- function(dt, code, lesid) {
   ## dt - Dataset
   ## code - From codebook
@@ -49,7 +48,7 @@ is_recode_lesid <- function(dt, code, lesid) {
   is_recode(dt = dt, code = idCode, cols = kols)
 }
 
-## When LESID in tbl_Kode is empty ie. common within the group
+## When LESID in tbl_KodeBok is empty ie. common within the group
 is_recode_common <- function(dt, code, group) {
   ## dt - Dataset
   ## code - From codebook
@@ -62,11 +61,11 @@ is_recode_common <- function(dt, code, group) {
     dt <- is_recode(dt, code = allCode, cols = kols)
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 
-## When FILGRUPPE in tbl_Kode is ALLE
+## When FILGRUPPE in tbl_KodeBok is ALLE
 is_recode_all <- function(dt, code, aggregate.msg = FALSE){
   # aggregate.msg - If it's KB or AG
 
@@ -97,7 +96,7 @@ is_recode_all <- function(dt, code, aggregate.msg = FALSE){
     }
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 
@@ -115,7 +114,7 @@ is_recode <- function(dt, code, cols){
     dt <- is_column_char(dt, col)
     dt[sp, on = col, (col) := i.to]
   }
-  invisible(dt)
+  return(dt)
 }
 
 ## For easy converstion to find NA as string
@@ -141,7 +140,7 @@ is_column_char <- function(dt, col){
   if (isFALSE(chrCol)){
     dt[, (col) := as.character(get(col))]
   }
-  invisible(dt)
+  return(dt)
 }
 
 ## When has LESID needs FILGRUPPE too because

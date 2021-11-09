@@ -19,7 +19,7 @@ do_reshape_rename_col <- function(dt = NULL, spec = NULL){
     data.table::setnames(dt, old = input[["old"]], new = input[["new"]])
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 #' @title Reshape from Wide to Long
@@ -38,7 +38,6 @@ do_reshape <- function(dt = NULL, respec = NULL){
   }
 
   dt <- data.table::melt(dt, id.vars = respec$id, measure.vars = respec$var)
-  invisible(dt)
 }
 
 #' @title Reshape Id and Measure
@@ -155,7 +154,6 @@ is_reshape_input <- function(input){
   } else {
     out <- "error"
   }
-  return(out)
 }
 
 is_reshape_var_all <- function(dtnames, reshapeid){

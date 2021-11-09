@@ -111,3 +111,22 @@ dataSplit <- structure(list(GEO = c(3010102L, 3010102L, 3010102L, 3010102L, 3010
 data.table::setDT(dataSplit)
 
 spt <- list(from = "LANDSSB", to = c("LANDB", "INNVKAT"))
+
+
+## DATA for aggregate -------------------------------------
+
+DTagg <- structure(list(AAR = c(2015L, 2015L, 2015L, 2015L, 2015L),
+                        GEO = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),
+                        ALDER = c(36L, 20L, 42L, 27L, 1L),
+                        UTDANN = c(1L, 1L, 3L, 2L, 3L),
+                        TAB1 = c("bor_trangt", "bor_trangt", "uoppgitt", "bor_trangt", "bor_trangt"),
+                        VAL1 = c(1L, 1L, 1L, 1L, 1L),
+                        VAL2 = c(1L, 1L, 1L, 1L, 1L),
+                        LANDBAK = c("20", "20", "20", "20", "1"),
+                        INNVKAT = c("0", "0", "0", "0", "3"),
+                        dummy_grk = c(0, 0, 0, 0, 0),
+                        grunnkrets = c(3010101L, 3010101L, 3010101L, 3010101L, 3010102L),
+                        kommune = c(301L, 301L, 301L, 301L, 301L),
+                        fylke = c(3L, 3L, 3L, 3L, 3L),
+                        bydel = c(30116L, 30116L, 30116L, 30116L, 30116L)),
+                   row.names = c(NA, -5L), class = c("data.table", "data.frame"))

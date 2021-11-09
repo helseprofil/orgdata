@@ -46,8 +46,10 @@ is_data_cols <- function(fgspec = NULL){
 
 is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year){
 
+  GEO <- NULL
+
   aggSpec <- get_aggregate(spec = fgspec)
-  source <- is_geo_level(dt$GEO[1])
+  source <- is_geo_level(dt[!is.na(GEO), GEO][1])
   aggCol <- find_column_multi(spec = fgspec, "AGGKOL") #Other columns to aggregate
 
   nSpec <- length(aggSpec)

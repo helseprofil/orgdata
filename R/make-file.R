@@ -79,7 +79,7 @@ make_file <- function(group = NULL,
     fileSpec <- spec[i, ]
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
-    is_verbose(msg = "----------------------------------", type = "other")
+    is_verbose(msg = is_line_long(), type = "other")
     is_verbose(fileSpec$KOBLID, "Koblid:")
 
     dt <- is_org_process(
@@ -167,38 +167,6 @@ make_file <- function(group = NULL,
 #' @export
 #' @rdname make_file
 lag_fil <- make_file
-
-
-#' @title Implement the Specifications
-#' @description
-#' `r lifecycle::badge("deprecated")`
-#'
-#' `read_raw` was renamed to `make_file()` to make it more clear
-#' what the function is doing.
-#' @keywords internal
-#' @export
-read_raw <- function(group = NULL,
-                     koblid = NULL,
-                     aggregate = getOption("orgdata.aggregate"),
-                     save = FALSE,
-                     year = NULL) {
-
-  lifecycle::deprecate_stop("0.0.9", "read_raw()", "make_file()")
-  ## make_file(group, koblid, aggregate, save, year)
-}
-
-#' @export
-#' @rdname read_raw
-lesraw <- function(group = NULL,
-                   koblid = NULL,
-                   aggregate = getOption("orgdata.aggregate"),
-                   save = FALSE,
-                   year = NULL) {
-
-  lifecycle::deprecate_stop("0.0.9", "lesraw()", "lag_fil()")
-  ## make_file(group, koblid, aggregate, save, year)
-}
-
 
 
 ## Helper -----------------------------------------

@@ -36,7 +36,7 @@ do_split <- function(dt = NULL, split = NULL) {
     }
   }
 
-  invisible(dt)
+  return(dt)
 }
 
 #' @title Get Split Column
@@ -78,10 +78,10 @@ is_split_check <- function(dt, split){
   sto <- length(split$to)
 
   if (sto < max(fnr, na.rm = TRUE)){
-    msgSplit <- paste0("Woops!!! SPLITTRA contains more than `", sto, "` variables when split. Check original file! \n")
+    msgSplit <- paste0("Woops!!! SPLITTRA contains more than `", sto, "` variables when split. Check original file! Use read_file() \n")
     msgCode <- "Update SPLITTTIL or you may use this command to check the original file:"
 
-    stop(is_colour_txt(x = sprintf("dt[, .N, by = %s]", frm), msg = paste0(msgSplit, msgCode), type = "error2"))
+    stop(is_colour_txt(x = sprintf("see_file(df, %s)", frm), msg = paste0(msgSplit, msgCode), type = "error2"))
   }
 
   valdx <- which(fnr < sto)
@@ -97,5 +97,5 @@ is_split_check <- function(dt, split){
     }
   }
 
-  invisible(dt)
+  return(dt)
 }

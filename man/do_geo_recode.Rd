@@ -4,13 +4,26 @@
 \alias{do_geo_recode}
 \title{Recode Geographical Codes}
 \usage{
-do_geo_recode(dt = NULL, code = NULL)
+do_geo_recode(
+  dt = NULL,
+  code = NULL,
+  type = c("grunnkrets", "fylke", "kommune", "bydel"),
+  year = NULL,
+  con = NULL
+)
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
-\item{code}{Code dataset of old and new codes in a \code{data.table} format.
+\item{code}{Code dataset of old and new codes in a \code{data.table} format.}
+
+\item{type}{The geographical granularity for recoding
 The dataset is the output after running \code{get_geo_recode()} function.}
+
+\item{year}{Which year the geograhical codes to be recoded to. If it
+is empty then current year will be used.}
+
+\item{con}{Connection to database}
 }
 \description{
 Recode geographical codes to the current year.

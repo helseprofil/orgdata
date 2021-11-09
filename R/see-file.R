@@ -62,6 +62,8 @@ is_variables <- function(dt, cols){
   } else if (is(itm, "call")) {
     idx <- eval(itm)
     cols <- names(dt)[idx]
+  } else if (is(itm, "numeric")){
+    cols <- names(dt)[itm]
   } else {
     cols <- sapply(as.list(cols), deparse)
   }

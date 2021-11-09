@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.8</span>
       </span>
     </div>
 
@@ -148,12 +148,38 @@
 <li>Compute function to create a new category based on the existing categories eg. UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group ie. group 5.</li>
 </ul>
 </div>
+    <div id="orgdata-038" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.8">
+<a href="#orgdata-038" class="anchor"></a>orgdata 0.3.8</h1>
+<ul>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/106'>#106</a> split long messages (<a href='https://github.com/helseprofil/orgdata/issues/107'>#107</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/108'>#108</a> <a href='https://github.com/helseprofil/orgdata/issues/112'>#112</a> grunnkrets codes that have changed before 2002 not available via API from SSB while code changes for municipality includes changes from 1977. Check from <a href="https://www.ssb.no/klass/klassifikasjoner/131/versjoner" title="SSB">SSB website</a>. We use the municipality codes to create uspesified grunnkrets codes for data before 2002 (<a href='https://github.com/helseprofil/orgdata/issues/109'>#109</a> <a href='https://github.com/helseprofil/orgdata/issues/113'>#113</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/110'>#110</a> updating SQL code for new table name for codebook (<a href='https://github.com/helseprofil/orgdata/issues/111'>#111</a>)</li>
+</ul>
+</div>
+    <div id="orgdata-037" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.7">
+<a href="#orgdata-037" class="anchor"></a>orgdata 0.3.7</h1>
+<ul>
+<li>Check columns to aggregate for any possible <code>NA</code> (<a href='https://github.com/helseprofil/orgdata/issues/98'>#98</a>). Columns that have <code>NA</code> should be recoded to <code>uoppgitt</code> or something equivalent since leaving the category to <code>NA</code> will conflict with <code>NA</code> representing total value when aggregating.</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/100'>#100</a> for grunnkrets that ends with <code>00</code> have no correspond codes from SSB API. Need to add it manually (<a href='https://github.com/helseprofil/orgdata/issues/101'>#101</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/99'>#99</a> when geo codes fails to be recoded then the row index will be shown (<a href='https://github.com/helseprofil/orgdata/issues/103'>#103</a>)</li>
+<li>Geo codes ends with 4 zeros <code>xxxx0000</code> neither have equivalent codes from SSB nor representing a correct coding structure as so called <code>Delområde</code> that ends with 2 zeros <code>xxxxxx00</code>. To avoid missing the information, these geo codes are recoded to <code>xxxx9999</code> with function <code>is_grunnkrets_0000()</code> as in PR (<a href='https://github.com/helseprofil/orgdata/issues/103'>#103</a>).</li>
+<li>
+<code><a href="../reference/see_file.html">see_file()</a></code> accepts just a single numeric as well.</li>
+</ul>
+</div>
     <div id="orgdata-036" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.6">
 <a href="#orgdata-036" class="anchor"></a>orgdata 0.3.6</h1>
 <ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/85'>#85</a> <code><a href="../reference/see_file.html">see_file()</a></code> list all the columns when columnames or column indexes are not specified. The variables are sorted whenever possible. (<a href='https://github.com/helseprofil/orgdata/issues/87'>#87</a>)</li>
 <li>Add more function tests (<a href='https://github.com/helseprofil/orgdata/issues/88'>#88</a>)</li>
+<li>Exclude <code>LANDSSB</code> in aggregate when split to <code>LANDBAK</code> and <code>INNVKAT</code>. This is because code <code>0</code> will be recoded to <code>20</code> when split and causes unnecessary more rows (<a href='https://github.com/helseprofil/orgdata/issues/84'>#84</a>)</li>
+<li>Delete deprecated functions.</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/93'>#93</a> when source level can’t be identified due to <code>NA</code>.</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/95'>#95</a> for grunnkrets codes that aren’t missing but have less number of digits ie. less than 7 digits. Assuming these are codes for municipality then <code>9999</code> is added at the end of these codes (<a href='https://github.com/helseprofil/orgdata/issues/96'>#96</a>)</li>
+<li>Gives row number for GEO codes that get coerced as <code>NA</code> when converted to integer. This will make it easy to check in the original raw data (<a href='https://github.com/helseprofil/orgdata/issues/96'>#96</a>)</li>
 </ul>
 </div>
     <div id="orgdata-035" class="section level1">
@@ -176,7 +202,7 @@
 <h1 class="page-header" data-toc-text="0.3.3">
 <a href="#orgdata-033" class="anchor"></a>orgdata 0.3.3</h1>
 <ul>
-<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/65'>#65</a> make TABS and VALS dynamic for easy extention for these columns (<a href='https://github.com/helseprofil/orgdata/issues/66'>#66</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/65'>#65</a> make TABS and VALS dynamic for easy extension for these columns (<a href='https://github.com/helseprofil/orgdata/issues/66'>#66</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/64'>#64</a> recode of variable that has different class (<a href='https://github.com/helseprofil/orgdata/issues/68'>#68</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/63'>#63</a> implicit null includes all possible VAL columns when exist (<a href='https://github.com/helseprofil/orgdata/issues/69'>#69</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/70'>#70</a> recode GEO of different object class (<a href='https://github.com/helseprofil/orgdata/issues/71'>#71</a>)</li>
@@ -188,7 +214,7 @@
 <h1 class="page-header" data-toc-text="0.3.2">
 <a href="#orgdata-032" class="anchor"></a>orgdata 0.3.2</h1>
 <ul>
-<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/55'>#55</a> to recode standard variables via codebook instead of hardcoded (<a href='https://github.com/helseprofil/orgdata/issues/58'>#58</a>)</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/55'>#55</a> to recode standard variables via codebook instead of hard coded (<a href='https://github.com/helseprofil/orgdata/issues/58'>#58</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/52'>#52</a> skip split if not specified (<a href='https://github.com/helseprofil/orgdata/issues/59'>#59</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/57'>#57</a> split column with duplicated values will keep the original column (<a href='https://github.com/helseprofil/orgdata/issues/60'>#60</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/56'>#56</a> aggregate all VAL columns whenever specified and not only specific to <code>VAL1</code> (<a href='https://github.com/helseprofil/orgdata/issues/62'>#62</a>)</li>
@@ -207,7 +233,7 @@
 <ul>
 <li>Reshape dataset from wide to long. Reshape can have more than one <code>measure   variables</code>. Please read how this is specified in Access registration database.</li>
 <li>Split columns must have equal number of values to the defined <code>SPLITTIL</code>. Duplicate the value if it is less than the maximum <code>SPLITTIL</code>. For example for value <code>0</code> in column <code>LANDSSB</code> which will be split into <code>LANDBAK</code> and <code>INNVKAT</code>, the value will be duplicated into <code>00</code> to avoid split with value <code>NA</code>.</li>
-<li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code><a href="../reference/do_aggregate_recode_standard.html">do_aggregate_recode_standard()</a></code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_int()</code>.</li>
+<li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code>do_aggregate_recode_standard()</code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_int()</code>.</li>
 </ul>
 </div>
     <div id="orgdata-02" class="section level1">
@@ -305,7 +331,7 @@
 <li>Implicit zero (<a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a>). Discussion is in <a href="https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51" title="implicit-null">Gist</a>
 </li>
 <li>Use version specific for imported packages.</li>
-<li>Rename standard column <code>LANDBAK</code> to <code>LANDSSB</code> for column in original data received from SSB containing information about country of origin.</li>
+<li>Rename standard column <code>LANDBAK</code> to <code>LANDSSB</code> for column in original data received from SOB containing information about country of origin.</li>
 <li>Save file as specified in column <code>MAPPE</code> in Access registration database or specify in <code>path</code> argument for function <code>save_file</code>. (<a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a>)</li>
 </ul>
 <p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a> and <a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a></p>
@@ -333,7 +359,7 @@
 <a href="#orgdata-005---alpha" class="anchor"></a>orgdata 0.0.5 - alpha</h2>
 <ul>
 <li>
-<p>Recode variables from specification in <code>tbl_Kode</code> uses:</p>
+<p>Recode variables from specification in <code>tbl_KodeBok</code> uses:</p>
 <ol>
 <li>
 <strong>GENERAL</strong> variables are defined in FILGRUPPE as <code>ALLE</code> and are used to recode variables in all groups.</li>
@@ -344,7 +370,7 @@
 </ol>
 </li>
 <li>
-<p>When all these three specification exist in <code>tbl_Kode</code>:</p>
+<p>When all these three specification exist in <code>tbl_KodeBok</code>:</p>
 <ul>
 <li>
 <strong>SPECIFIC</strong> variables will overrule <strong>COMMON</strong> variables</li>

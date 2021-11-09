@@ -10,7 +10,7 @@
 #'   \item{\strong{ tbl_Orgfile }} - The original files
 #'   \item{\strong{ tbl_Innlesing }} - How the file will be read into R
 #'   \item{\strong{ tbl_Koble }} - Connection for original files to the file groups and how these will be read
-#'   \item{\strong{ tbl_Kode }} - Code book to recode any value
+#'   \item{\strong{ tbl_KodeBok }} - Code book to recode any value
 #'   \item{\strong{ tbl_Compute }} - Code book to create a new category from the existing categories
 #' }
 #'
@@ -67,12 +67,12 @@ is_query <- function(file = NULL,
   }
 
   txt <- paste(readLines(path), collapse = "\n")
-  is_sql_code(txt)
+  txt <- is_sql_code(txt)
 
   if (!is.null(value)) {
-    sprintf(txt, value)
+    qry <- sprintf(txt, value)
   } else {
-    is_opposite(txt, char, char2, opposite)
+    qry <- is_opposite(txt, char, char2, opposite)
   }
 }
 
@@ -80,9 +80,9 @@ is_query <- function(file = NULL,
 
 is_opposite <- function(txt, char, char2, opposite){
   if (opposite){
-    sprintf(txt, char2, char)
+    out <- sprintf(txt, char2, char)
   } else {
-    sprintf(txt, char, char2)
+    out <- sprintf(txt, char, char2)
   }
 }
 
@@ -92,4 +92,6 @@ is_sql_code <- function(x) {
   if (grepl("%", x) != 1) {
     stop(simpleError("Missing `sprintf` reference in SQL code"))
   }
+
+  invisible(x)
 }

@@ -6,13 +6,48 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.8
+- Fixed #106 split long messages (#107)
+- Fixed #108 #112 grunnkrets codes that have changed before 2002 not available
+  via API from SSB while code changes for municipality includes changes
+  from 1977. Check from [SSB
+  website](https://www.ssb.no/klass/klassifikasjoner/131/versjoner "SSB"). We
+  use the municipality codes to create uspesified grunnkrets codes for data
+  before 2002 (#109 #113)
+- Fixed #110 updating SQL code for new table name for codebook (#111)
+
+# orgdata 0.3.7
+- Check columns to aggregate for any possible `NA` (#98). Columns that have `NA`
+  should be recoded to `uoppgitt` or something equivalent since leaving the
+  category to `NA` will conflict with `NA` representing total value when
+  aggregating.
+- Fixed #100 for grunnkrets that ends with `00` have no correspond codes from
+  SSB API. Need to add it manually (#101)
+- Fixed #99 when geo codes fails to be recoded then the row index will be shown (#103)
+- Geo codes ends with 4 zeros `xxxx0000` neither have equivalent codes from SSB
+  nor representing a correct coding structure as so called `Delområde` that ends
+  with 2 zeros `xxxxxx00`. To avoid missing the information, these geo codes are
+  recoded to `xxxx9999` with function `is_grunnkrets_0000()` as in PR (#103).
+- `see_file()` accepts just a single numeric as well.
+
 # orgdata 0.3.6
 - Fixed #85 `see_file()` list all the columns when columnames or column indexes
   are not specified. The variables are sorted whenever possible. (#87)
 - Add more function tests (#88)
-
+- Exclude `LANDSSB` in aggregate when split to `LANDBAK` and `INNVKAT`. This is
+  because code `0` will be recoded to `20` when split and causes unnecessary more
+  rows (#84)
+- Delete deprecated functions.
+- Fixed #93 when source level can't be identified due to `NA`.
+- Fixed #95 for grunnkrets codes that aren't missing but have less number of
+  digits ie. less than 7 digits. Assuming these are codes for municipality then
+  `9999` is added at the end of these codes (#96)
+- Gives row number for GEO codes that get coerced as `NA` when converted to
+  integer. This will make it easy to check in the original raw data (#96)
+  
 # orgdata 0.3.5
-- Aggregate now give total to all dimensions including those specified in `AGGKOL` (#82)
+- Aggregate now give total to all dimensions including those specified in
+  `AGGKOL` (#82)
 - Function `see_file()` accept column index as well (#83)
 
 # orgdata 0.3.4
@@ -24,7 +59,7 @@ Things in `dev` branch
 
 # orgdata 0.3.3
 
-- Fixed #65 make TABS and VALS dynamic for easy extention for these columns (#66)
+- Fixed #65 make TABS and VALS dynamic for easy extension for these columns (#66)
 - Fixed #64 recode of variable that has different class (#68)
 - Fixed #63 implicit null includes all possible VAL columns when exist (#69)
 - Fixed #70 recode GEO of different object class (#71)
@@ -34,7 +69,7 @@ Things in `dev` branch
   aggregate other than the standard eg. `KJONN`, `TAB1`, `TAB2` etc. (#73)
 
 # orgdata 0.3.2
-- Fixed #55 to recode standard variables via codebook instead of hardcoded (#58)
+- Fixed #55 to recode standard variables via codebook instead of hard coded (#58)
 - Fixed #52 skip split if not specified (#59)
 - Fixed #57 split column with duplicated values will keep the original column (#60)
 - Fixed #56 aggregate all VAL columns whenever specified and not only specific to
@@ -135,7 +170,7 @@ Things in `dev` branch
 - Implicit zero (#11). Discussion is in [Gist](https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51 "implicit-null")
 - Use version specific for imported packages.
 - Rename standard column `LANDBAK` to `LANDSSB` for column in original data
-  received from SSB containing information about country of origin.
+  received from SOB containing information about country of origin.
 - Save file as specified in column `MAPPE` in Access registration database or
   specify in `path` argument for function `save_file`. (#12)
 
@@ -157,7 +192,7 @@ Changes is in PR #8
 
 ## orgdata 0.0.5 - alpha
 
-- Recode variables from specification in `tbl_Kode` uses:
+- Recode variables from specification in `tbl_KodeBok` uses:
   1. **GENERAL** variables are defined in FILGRUPPE as `ALLE` and are used to
      recode variables in all groups.
   2. **COMMON** variables are when FILGRUPPE is specified but have empty LESID.
@@ -165,7 +200,7 @@ Changes is in PR #8
   3. **SPECIFIC** variables are when FILGRUPPE and LESID are specified. This
      will recode variables in that specified FILGRUPPE of the specified FILID.
 
-- When all these three specification exist in `tbl_Kode`:
+- When all these three specification exist in `tbl_KodeBok`:
    - **SPECIFIC** variables will overrule **COMMON** variables
    - **COMMON** variables will overrule **GENERAL** variables
 

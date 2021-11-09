@@ -12,7 +12,7 @@ pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
 
 devtools::install()
-devtools::check_build() # only when you have unload the package
+devtools::check_build() # only when you have unload the packag
 
 
 ## Start here ---------------------------------

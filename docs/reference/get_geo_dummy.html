@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Split Column — do_split • orgdata</title>
+<title>Create Dummy Enumeration Area Codes — get_geo_dummy • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,11 @@
 
 
 
-<meta property="og:title" content="Split Column — do_split" />
-<meta property="og:description" content="Split the columns as specified in the registration database." />
+<meta property="og:title" content="Create Dummy Enumeration Area Codes — get_geo_dummy" />
+<meta property="og:description" content="Some of the downloaded enumeration area codes from SSB lack
+codes for missing ie. xxxx9999. In addition change for enumeration area
+codes prior to 2002 aren't available. This function create these codes that
+are needed for recoding older codes to current enumeration area codes." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,31 +140,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Split Column</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/split-column.R'><code>R/split-column.R</code></a></small>
-    <div class="hidden name"><code>do_split.Rd</code></div>
+    <h1>Create Dummy Enumeration Area Codes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/norgeo.R'><code>R/norgeo.R</code></a></small>
+    <div class="hidden name"><code>get_geo_dummy.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Split the columns as specified in the registration database.</p>
+    <p>Some of the downloaded enumeration area codes from SSB lack
+codes for missing ie. <code>xxxx9999</code>. In addition change for enumeration area
+codes prior to 2002 aren't available. This function create these codes that
+are needed for recoding older codes to current enumeration area codes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_split</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, split <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_geo_dummy</span><span class='op'>(</span><span class='va'>dt</span>, <span class='va'>from</span>, <span class='va'>to</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dt</th>
-      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
+      <td><p>Downloaded data with norgeo::track_change()</p></td>
     </tr>
     <tr>
-      <th>split</th>
-      <td><p>Split specification as a list. Should be equivalent
-to the output of <code><a href='get_split.html'>get_split()</a></code> function</p></td>
+      <th>from</th>
+      <td><p>Starting year for the range period. Current year is the default if left empty</p></td>
+    </tr>
+    <tr>
+      <th>to</th>
+      <td><p>End of year for the range period. Current year is the default if left empty</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other geo codes functions: 
+<code><a href='geo_level.html'>geo_level</a>()</code>,
+<code><a href='geo_recode.html'>geo_recode</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
