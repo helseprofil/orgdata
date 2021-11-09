@@ -46,3 +46,27 @@ test_that("Grunnkrets ends with 00", {
   expect_equal(is_grunnkrets_00(input), output)
 
 })
+
+test_that("Grunnkrets lack 99999999 code", {
+
+  ## Data ------------
+
+  dt <- structure(list(oldCode = c("20300505", NA, NA),
+                       oldName = c("Øvre pasvik", NA, NA),
+                       currentCode = c("54440505", "54449900", "54449999"),
+                       newName = c("Øvre Pasvik", "Uoppgitt delområde", "Uoppgitt grunnkrets"),
+                       changeOccurred = c("2020", "2020", "2020")),
+                  row.names = c(NA, -3L),
+                  class = c("data.table", "data.frame"), sorted = "currentCode")
+
+  dtout <- structure(list(oldCode = c("20300505", NA, NA, "99999999"),
+                          oldName = c("Øvre pasvik", NA, NA, "Uoppgitt"),
+                          currentCode = c("54440505", "54449900", "54449999", "99999999"),
+                          newName = c("Øvre Pasvik", "Uoppgitt delområde", "Uoppgitt grunnkrets", "Uoppgitt"),
+                          changeOccurred = c("2020", "2020", "2020", "2020")),
+                     row.names = c(NA, -4L),
+                     class = c("data.table", "data.frame"))
+
+  ## Test ---------
+  expect_equal(is_grunnkrets_99(dt), dtout)
+})
