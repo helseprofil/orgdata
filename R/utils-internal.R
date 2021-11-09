@@ -178,3 +178,11 @@ is_colour_txt <- function(x, msg, type = c("note", "warn", "warn2",
 }
 
 is_color_txt <- is_colour_txt
+
+is_line_long <- function(){
+  paste0("\n===========================================================")
+}
+
+is_line_short <- function(){
+  paste0("---------------------------------")
+}

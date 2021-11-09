@@ -25,7 +25,7 @@ Things in `dev` branch
 - Geo codes ends with 4 zeros `xxxx0000` neither have equivalent codes from SSB
   nor representing a correct coding structure as so called `Delområde` that ends
   with 2 zeros `xxxxxx00`. To avoid missing the information, these geo codes are
-  recoded to `xxxx9999` with function `is_geo_0000()` as in PR (#103).
+  recoded to `xxxx9999` with function `is_grunnkrets_0000()` as in PR (#103).
 - `see_file()` accepts just a single numeric as well.
 
 # orgdata 0.3.6

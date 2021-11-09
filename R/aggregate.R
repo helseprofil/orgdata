@@ -58,6 +58,7 @@ do_aggregate <- function(dt = NULL,
   ## and INNVKAT
   if (any(names(dt) == "LANDSSB")) dt[, LANDSSB := NULL]
 
+  is_verbose(msg = is_line_short(), type = "other")
   msg <- paste0("Starts aggregating data from ", source, " to")
   is_verbose(x = level, msg = msg)
 
@@ -78,7 +79,7 @@ do_aggregate <- function(dt = NULL,
 
   ## recode GEO
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
-  dt <- do_geo_recode(dt = dt, code = code)
+  dt <- do_geo_recode(dt = dt, code = code, type = source, year = yr, con = geoDB$dbconn)
 
   ## Cast geo levels ie. aggregate to different geo levels
   geoDT <- find_spec(
