@@ -70,3 +70,36 @@ test_that("Grunnkrets lack 99999999 code", {
   ## Test ---------
   expect_equal(is_grunnkrets_99(dt), dtout)
 })
+
+
+test_that("Unknown grunnkrets from municipality", {
+
+  ## Data -----------
+
+  dt <- structure(list(oldCode = c(NA_character_, NA_character_, NA_character_),
+                       oldName = c(NA_character_, NA_character_, NA_character_),
+                       currentCode = c("11030100", "11030101", "11030102"),
+                       newName = c("Buøy", "Buøy 2", "Buøy 1"),
+                       changeOccurred = c("2020", "2020", "2020")),
+                  row.names = c(NA, -3L),
+                  class = c("data.table", "data.frame"), sorted = c("currentCode", "changeOccurred"))
+
+
+  kom <- structure(list(oldCode = c(NA, "1141", "1142", NA),
+                        oldName = c(NA, "Finnøy", "Rennesøy", NA),
+                        currentCode = c("1101", "1103", "1103", "1106"),
+                        newName = c("Eigersund", "Stavanger", "Stavanger", "Haugesund"),
+                        changeOccurred = c("2020", "2020", "2020", "2020")),
+                   row.names = c(NA, -4L), class = c("data.table", "data.frame"),
+                   sorted = c("currentCode", "changeOccurred"))
+
+  dtout <- structure(list(oldCode = c(NA, NA, NA, "11419999", "11429999"),
+                          oldName = c(NA, NA, NA, "Finnøy", "Rennesøy"),
+                          currentCode = c("11030100", "11030101", "11030102", "11039999", "11039999"),
+                          newName = c("Buøy", "Buøy 2", "Buøy 1", "Stavanger", "Stavanger"),
+                          changeOccurred = c("2020", "2020", "2020", "2020", "2020")),
+                     row.names = c(NA, -5L), class = c("data.table", "data.frame"), sorted = "currentCode")
+
+  ## test --------
+  expect_equal(is_unknown_grunnkrets(dt = dt, kom = kom), dtout)
+})
