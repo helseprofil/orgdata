@@ -8,10 +8,12 @@ Things in `dev` branch
 
 # orgdata 0.3.8
 - Fixed #106 split long messages (#107)
-- Fixed #108 grunnkrets codes that have changed before 2002 not available via
-  API from SSB while code changes for municipality includes changes from 1977.
-  We use the municipality codes to create uspesified grunnkrets codes for data
-  before 2002 (#109)
+- Fixed #108 #112 grunnkrets codes that have changed before 2002 not available
+  via API from SSB while code changes for municipality includes changes
+  from 1977. Check from [SSB
+  website](https://www.ssb.no/klass/klassifikasjoner/131/versjoner "SSB"). We
+  use the municipality codes to create uspesified grunnkrets codes for data
+  before 2002 (#109 #113)
 - Fixed #110 updating SQL code for new table name for codebook (#111)
 
 # orgdata 0.3.7
