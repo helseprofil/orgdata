@@ -10,7 +10,7 @@ opt.orgdata <- list(
   orgdata.drive = sysDrive,
   orgdata.folder.db = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING/raw-khelse",
   orgdata.folder.data = "F:/Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
-  orgdata.db = "raw-khelse_BE.accdb",
+  orgdata.db = "raw-database_BE.accdb",
   orgdata.geo = "geo-koder.accdb",
   orgdata.verbose = TRUE,
   orgdata.aggregate = TRUE,
@@ -42,5 +42,5 @@ opt.orgdata <- list(
 }
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("orgdata version 0.3.8")
+  packageStartupMessage("orgdata version 0.3.9")
 }

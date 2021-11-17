@@ -6,6 +6,9 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.3.9
+- Change database filename to **raw-database_BE.accdb**
+
 # orgdata 0.3.8
 - Fixed #106 split long messages (#107)
 - Fixed #108 #112 grunnkrets codes that have changed before 2002 not available
