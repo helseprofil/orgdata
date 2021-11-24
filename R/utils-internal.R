@@ -191,3 +191,7 @@ is_line_long <- function(){
 is_line_short <- function(){
   paste0("---------------------------------")
 }
+
+reset_options <- function(){
+  options(orgdata:::opt.orgdata)
+}
