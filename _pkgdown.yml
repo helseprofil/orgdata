@@ -19,10 +19,10 @@ navbar:
     href: articles/get-started.html
   - text: Articles
     menu:
-    - text:
-      href:
     - text: Make standard
       href: https://github.com/helseprofil/orgdata/blob/main/dev/standard.org
+    - text: Debugging
+      href: articles/debugging.html
   - text: Functions
     href: reference/index.html
   - text: Changelog
@@ -71,4 +71,5 @@ reference:
   desc: Some functions that are nice to have.
   contents:
     - see_file
+    - reset_options
     - website

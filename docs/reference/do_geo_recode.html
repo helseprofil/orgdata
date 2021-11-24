@@ -47,8 +47,10 @@
 
 
 <meta property="og:title" content="Recode Geographical Codes — do_geo_recode" />
-<meta property="og:description" content="Recode geographical codes to the current year.
-Codes is based norgeo::track_change() function." />
+<meta property="og:description" content="Recode geographical codes to the current year. Codes is based on
+norgeo::track_change() function. For a split geogaphical codes from
+previous year, the first code of the current year code in chronological order
+will be selected to recode." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -81,7 +83,7 @@ Codes is based norgeo::track_change() function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.10</span>
       </span>
     </div>
 
@@ -104,10 +106,10 @@ Codes is based norgeo::track_change() function." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a></a>
+      <a href="https://github.com/helseprofil/orgdata/blob/main/dev/standard.org">Make standard</a>
     </li>
     <li>
-      <a href="https://github.com/helseprofil/orgdata/blob/main/dev/standard.org">Make standard</a>
+      <a href="../articles/debugging.html">Debugging</a>
     </li>
   </ul>
 </li>
@@ -144,8 +146,10 @@ Codes is based norgeo::track_change() function." />
     </div>
 
     <div class="ref-description">
-    <p>Recode geographical codes to the current year.
-Codes is based <code><a href='https://rdrr.io/pkg/norgeo/man/track_change.html'>norgeo::track_change()</a></code> function.</p>
+    <p>Recode geographical codes to the current year. Codes is based on
+<code><a href='https://rdrr.io/pkg/norgeo/man/track_change.html'>norgeo::track_change()</a></code> function. For a split geogaphical codes from
+previous year, the first code of the current year code in chronological order
+will be selected to recode.</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_geo_recode</span><span class='op'>(</span>
@@ -153,7 +157,8 @@ Codes is based <code><a href='https://rdrr.io/pkg/norgeo/man/track_change.html'>
   code <span class='op'>=</span> <span class='cn'>NULL</span>,
   type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  con <span class='op'>=</span> <span class='cn'>NULL</span>
+  con <span class='op'>=</span> <span class='cn'>NULL</span>,
+  geo <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.geo"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -169,17 +174,21 @@ Codes is based <code><a href='https://rdrr.io/pkg/norgeo/man/track_change.html'>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>The geographical granularity for recoding
-The dataset is the output after running <code><a href='get_geo_recode.html'>get_geo_recode()</a></code> function.</p></td>
+      <td><p>The geographical granularity for recoding The dataset is the
+output after running <code><a href='get_geo_recode.html'>get_geo_recode()</a></code> function.</p></td>
     </tr>
     <tr>
       <th>year</th>
-      <td><p>Which year the geograhical codes to be recoded to. If it
-is empty then current year will be used.</p></td>
+      <td><p>Which year the geograhical codes to be recoded to. If it is empty
+then current year will be used.</p></td>
     </tr>
     <tr>
       <th>con</th>
       <td><p>Connection to database</p></td>
+    </tr>
+    <tr>
+      <th>geo</th>
+      <td><p>Keep old geographical code if TRUE. Default is FALSE.</p></td>
     </tr>
     </table>
 

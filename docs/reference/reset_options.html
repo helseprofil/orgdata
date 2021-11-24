@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Implicit Null Categories — get_implicit_col • orgdata</title>
+<title>Reset options — reset_options • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Get Implicit Null Categories — get_implicit_col" />
-<meta property="og:description" content="Get categories with implicit values for each selected columns" />
+<meta property="og:title" content="Reset options — reset_options" />
+<meta property="og:description" content="Reset orgdata options to default" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,47 +137,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Implicit Null Categories</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/implicit-null.R'><code>R/implicit-null.R</code></a></small>
-    <div class="hidden name"><code>get_implicit_col.Rd</code></div>
+    <h1>Reset options</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/utils-internal.R'><code>R/utils-internal.R</code></a></small>
+    <div class="hidden name"><code>reset_options.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get categories with implicit values for each selected columns</p>
+    <p>Reset orgdata options to default</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_implicit_col</span><span class='op'>(</span><span class='va'>dt</span>, <span class='va'>years</span>, <span class='va'>cols</span>, <span class='va'>refs</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>reset_options</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>dt</th>
-      <td><p>Dataset consisting all years</p></td>
-    </tr>
-    <tr>
-      <th>years</th>
-      <td><p>All years in the dataset</p></td>
-    </tr>
-    <tr>
-      <th>cols</th>
-      <td><p>Columns to be controlled for implicit null</p></td>
-    </tr>
-    <tr>
-      <th>refs</th>
-      <td><p>Reference values for the selected columns</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other implicit-null functions: 
-<code><a href='do_implicit_null.html'>do_implicit_null</a>()</code>,
-<code><a href='find_implicit_col.html'>find_implicit_col</a>()</code>,
-<code><a href='find_implicit_null.html'>find_implicit_null</a>()</code>,
-<code><a href='get_implicit_per_year.html'>get_implicit_per_year</a>()</code>,
-<code><a href='get_implicit_ref.html'>get_implicit_ref</a>()</code></p></div>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>reset_options</span><span class='op'>(</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
