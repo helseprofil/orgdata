@@ -6,10 +6,12 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
   
-# orgdata 0.4.10
-- Use `options(orgdata.debug.geo = TRUE)` to keep old geo codes for debuging.
+# orgdata 0.3.10
+- Use `options(orgdata.debug.geo = TRUE)` to keep old geo codes for debuging (#120)
 - Use `reset_options()` to reset to default options.
 - Warn when process discontinued due to debugging.
+- Add vignettes for **Standardize git** and **Debugging**
+- Fixed #121 recode geographical code for split codes (#120)
 
 # orgdata 0.3.9
 - Change database filename to **raw-database_BE.accdb**
