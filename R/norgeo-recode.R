@@ -1,12 +1,14 @@
 #' @title Recode Geographical Codes
-#' @description Recode geographical codes to the current year.
-#'  Codes is based on [norgeo::track_change()] function.
+#' @description Recode geographical codes to the current year. Codes is based on
+#'   [norgeo::track_change()] function. For a split geogaphical codes from
+#'   previous year, the first code of the current year code in chronological order
+#'   will be selected to recode.
 #' @inheritParams do_split
 #' @param code Code dataset of old and new codes in a `data.table` format.
-#' @param type The geographical granularity for recoding
-#'  The dataset is the output after running `get_geo_recode()` function.
-#' @param year Which year the geograhical codes to be recoded to. If it
-#'  is empty then current year will be used.
+#' @param type The geographical granularity for recoding The dataset is the
+#'   output after running `get_geo_recode()` function.
+#' @param year Which year the geograhical codes to be recoded to. If it is empty
+#'   then current year will be used.
 #' @inheritParams find_spec
 #' @param geo Keep old geographical code if TRUE. Default is FALSE.
 #' @examples
@@ -45,19 +47,21 @@ do_geo_recode <- function(dt = NULL,
     dt <- is_grunnkrets_before_2002(dt, year, con)
   }
 
+  data.table::setkey(dt, GEO)
+
   xcode <- is_warn_geo_merge(dt, code, vector = FALSE)
   xind <- dt[, .I[GEO %in% xcode]]
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
   if (geo){
     is_debug_warn("`orgdata.debug.geo`")
-    dt[code, on = "GEO", "geo2" := i.to]
+    dt[code[duplicated(GEO, fromLast = TRUE)], on = "GEO", "geo2" := i.to]
     geoVar <- c("rawGEO", "GEO")
     data.table::setnames(dt, c("GEO", "geo2"), geoVar)
     data.table::setcolorder(dt, c(geoVar, "AAR"))
     dt[, "dummy_grk" := NULL]
   } else {
-    dt[code, on = "GEO", GEO := i.to]
+    dt[code[duplicated(GEO, fromLast = TRUE)], on = "GEO", GEO := i.to]
   }
 }
 
@@ -99,7 +103,9 @@ get_geo_recode <- function(con = NULL,
   }
 
   geoDT[, changeOccurred := NULL]
-  data.table::setnames(geoDT, c("oldCode", "currentCode"), c("GEO", "to"))
+  geoCols <- c("GEO", "to")
+  data.table::setnames(geoDT, c("oldCode", "currentCode"), geoCols)
+  data.table::setkeyv(geoDT, geoCols)
 }
 
 ## Helper -----------------
