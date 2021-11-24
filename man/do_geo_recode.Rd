@@ -9,7 +9,8 @@ do_geo_recode(
   code = NULL,
   type = c("grunnkrets", "fylke", "kommune", "bydel"),
   year = NULL,
-  con = NULL
+  con = NULL,
+  geo = getOption("orgdata.debug.geo")
 )
 }
 \arguments{
@@ -24,10 +25,12 @@ The dataset is the output after running \code{get_geo_recode()} function.}
 is empty then current year will be used.}
 
 \item{con}{Connection to database}
+
+\item{geo}{Keep old geographical code if TRUE. Default is FALSE.}
 }
 \description{
 Recode geographical codes to the current year.
-Codes is based \code{\link[norgeo:track_change]{norgeo::track_change()}} function.
+Codes is based on \code{\link[norgeo:track_change]{norgeo::track_change()}} function.
 }
 \examples{
 \dontrun{
