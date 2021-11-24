@@ -60,7 +60,6 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
                         level = aggSpec[i],
                         year = year,
                         aggregate.col = aggCol)
-    ## dtt <- do_aggregate_recode_standard(dt = dtt) #defunct
     DT[[i]] <- data.table::copy(dtt)
     gc()
   }

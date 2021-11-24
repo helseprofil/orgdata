@@ -126,16 +126,14 @@ make_file <- function(group = NULL,
   outDT <- data.table::rbindlist(DT, fill = TRUE)
   rm(DT)
 
+  if (getOption("orgdata.debug.geo")){
+    return(outDT)
+  }
+
   geoLevel <- get_aggregate(spec = fgSpec)
 
   if (implicitnull){
     for(gg in geoLevel){
-      ## gg <- switch(i,
-      ##              "F" = "fylke",
-      ##              "K" = "kommune",
-      ##              "B" = "bydel",
-      ##              "grunnkrets"
-      ##              )
       dtsub <- outDT[LEVEL == gg]
       dnull <- do_implicit_null(dtsub, level = gg)
       if (nrow(dnull) > 0){

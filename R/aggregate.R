@@ -11,9 +11,9 @@
 #'   then it will be base on the year in source data ie. column `AAR`
 #' @param aggregate.col Other columns to aggregate other than the standard ie.
 #'   `UTDANN`, `LANDSSB`, `LANDBAK` and `INNVKAT`
-#' @param check If TRUE then output will not be aggregated. This is useful to
-#'   check for geographical codes that are missing. Else use
-#'   `options(orgdata.aggregate = FALSE)`
+#' @param check If TRUE then output will keep variables for geographical levels
+#'   without aggregating it. This is useful to check for geographical codes that
+#'   are missing. Else use `options(orgdata.aggregate = FALSE)`
 #' @examples
 #' \dontrun{
 #' # To aggregate source data with enumeration area codes ie. grunnkrets, to
@@ -81,6 +81,10 @@ do_aggregate <- function(dt = NULL,
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
   dt <- do_geo_recode(dt = dt, code = code, type = source, year = yr, con = geoDB$dbconn)
 
+  if (getOption("orgdata.debug.geo")){
+    return(dt)
+  }
+
   ## Cast geo levels ie. aggregate to different geo levels
   geoDT <- find_spec(
     "geo-code.sql",
@@ -108,7 +112,8 @@ do_aggregate <- function(dt = NULL,
 
   ## Breakpoint here to check the missing GEO when merging
   if (check) {
-    warning("Aggregating data isn't completed!")
+    txt <-"Aggregating data isn't completed!"
+    is_color_txt(x ="", msg = txt, type = "warn")
     return(dt)
   }
 

@@ -5,6 +5,9 @@ Things in `dev` branch
 - Compute function to create a new category based on the existing categories eg.
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
+  
+# orgdata 0.4.10
+- Use `options(orgdata.debug.geo = TRUE)` to keep old geo codes for debuging.
 
 # orgdata 0.3.9
 - Change database filename to **raw-database_BE.accdb**
