@@ -57,6 +57,7 @@ usethis::use_package_doc() # for package document roxygen style
 devtools::document()
 roxygen2::roxygenise(clean = TRUE) # to clean up old dirt
 usethis::use_vignette("get-started", "Get started")
+usethis::use_vignette("debugging", "How to debug")
 
 
 ## Development --------------------------
