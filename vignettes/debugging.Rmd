@@ -24,7 +24,7 @@ Debugging can be done via specification in `options()`. To check all the
 
 Warning will be given when debugging is active.
 
-![debug-warn](man/figures/debug-geo.png)
+![debug-warning](debug-geo.png)
 
 ## orgdata.debug
 
