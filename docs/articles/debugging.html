@@ -114,7 +114,7 @@
 </ul>
 <p>Warning will be given when debugging is active.</p>
 <div class="figure">
-<img src="reference/figures/debug-geo.png" alt=""><p class="caption">debug-warning</p>
+<img src="man/figures/debug-geo.png" alt=""><p class="caption">debug-warn</p>
 </div>
 <div id="orgdata-debug" class="section level2">
 <h2 class="hasAnchor">
@@ -140,7 +140,8 @@
 <div id="orgdata-debug-geo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#orgdata-debug-geo" class="anchor"></a>orgdata.debug.geo</h2>
-<p>This option is used to check how the recode of geographical codes from the original data to the current geographical codes. A new columns called <code>rawGEO</code> will be added consisting the geographical codes of the original data. Column <code>GEO</code> is the code to recode <code>rawGEO</code>. If the value is <code>NA</code> in column <code>GEO</code> then no recode will be done for the respective code. The reason is either the codes is still valid for the current year or no recode code available/valid and will be deleted. A warning will be given.</p>
+<p>This option is used to check the code to use for recoding geographical codes from the original data to the current geographical codes. A new columns called <code>rawGEO</code> will be added consisting the geographical codes of the original data as in the <a href="#expl">example</a>.</p>
+<p>Column <code>GEO</code> is the code to recode <code>rawGEO</code>. If the value is <code>NA</code> in column <code>GEO</code> then no recode will be done for the respective code. The reason is either the codes is still valid for the current year or no recode code available/valid and will be deleted. A warning will be given.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>orgdata.debug.geo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
@@ -151,9 +152,9 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/reset_options.html">reset_options</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="example-output" class="section level2">
+<div id="expl" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example-output" class="anchor"></a>Example output</h2>
+<a href="#expl" class="anchor"></a>Example output</h2>
 <p>Here is an example of output after activating <code>orgdata.debug.geo</code></p>
 <pre><code>          rawGEO      GEO  AAR KJONN UTDANN TAB1 TAB2 TAB3 TAB4   ANDRE   ANNEN
      1:  1010102 30010102 2019     0     01    2    8    1    1       1       2

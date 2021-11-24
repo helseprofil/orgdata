@@ -24,7 +24,7 @@ Debugging can be done via specification in `options()`. To check all the
 
 Warning will be given when debugging is active.
 
-![debug-warning](reference/figures/debug-geo.png)
+![debug-warn](man/figures/debug-geo.png)
 
 ## orgdata.debug
 
@@ -60,13 +60,15 @@ options(orgdata.debug.aggregate = TRUE)
 
 ## orgdata.debug.geo
 
-This option is used to check how the recode of geographical codes from the
-original data to the current geographical codes. A new columns called `rawGEO`
-will be added consisting the geographical codes of the original data. Column
-`GEO` is the code to recode `rawGEO`. If the value is `NA` in column `GEO` then
-no recode will be done for the respective code. The reason is either the codes
-is still valid for the current year or no recode code available/valid and will
-be deleted. A warning will be given.
+This option is used to check the code to use for recoding geographical codes
+from the original data to the current geographical codes. A new columns called
+`rawGEO` will be added consisting the geographical codes of the original data as
+in the [example](#expl).
+
+Column `GEO` is the code to recode `rawGEO`. If the value is
+`NA` in column `GEO` then no recode will be done for the respective code. The
+reason is either the codes is still valid for the current year or no recode code
+available/valid and will be deleted. A warning will be given.
 
 ```{r geo, eval = FALSE}
 options(orgdata.debug.geo = TRUE)
@@ -81,7 +83,7 @@ actively deactivate it or restart a new R session. You can deactivate it with:
 reset_options()
 ```
 
-## Example output
+## Example output {#expl}
 
 Here is an example of output after activating `orgdata.debug.geo`
 
