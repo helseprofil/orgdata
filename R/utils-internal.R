@@ -133,7 +133,7 @@ is_debug <- function() {
 }
 
 is_debug_warn <- function(opt){
-  txt <- "Data wrangling ceased! Debugging on:"
+  txt <- "Data wrangling discontinued! Debugging on:"
   is_color_txt(x = opt, msg = txt, type = "warn2")
 }
 
