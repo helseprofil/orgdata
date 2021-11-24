@@ -40,6 +40,13 @@ df[, .N, keyby = LANDF]
 df[LEVEL == "kommune", .N, keyby = LANDBAK]
 df[KJONN == 1, .N, keyby = LANDBAK]
 
+## Sjekk hvilke linje
+df[5] #Viser linje nr. 5
+df[c(1,5,6)] #Viser linjer 1,5 og 8
+df[c(2, 4:8)] #Viser linjer 2 og 4 til 8
+
+## Se alle rader i datasettet
+View(df)
 
 ## Åpne hjemmeside
 website()
