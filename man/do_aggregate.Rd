@@ -28,9 +28,9 @@ then it will be base on the year in source data ie. column \code{AAR}}
 \item{aggregate.col}{Other columns to aggregate other than the standard ie.
 \code{UTDANN}, \code{LANDSSB}, \code{LANDBAK} and \code{INNVKAT}}
 
-\item{check}{If TRUE then output will not be aggregated. This is useful to
-check for geographical codes that are missing. Else use
-\code{options(orgdata.aggregate = FALSE)}}
+\item{check}{If TRUE then output will keep variables for geographical levels
+without aggregating it. This is useful to check for geographical codes that
+are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
 }
 \description{
 Aggregate data according to the specification in \code{tbl_Filgruppe}

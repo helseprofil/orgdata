@@ -9,7 +9,8 @@ do_geo_recode(
   code = NULL,
   type = c("grunnkrets", "fylke", "kommune", "bydel"),
   year = NULL,
-  con = NULL
+  con = NULL,
+  geo = getOption("orgdata.debug.geo")
 )
 }
 \arguments{
@@ -17,17 +18,21 @@ do_geo_recode(
 
 \item{code}{Code dataset of old and new codes in a \code{data.table} format.}
 
-\item{type}{The geographical granularity for recoding
-The dataset is the output after running \code{get_geo_recode()} function.}
+\item{type}{The geographical granularity for recoding The dataset is the
+output after running \code{get_geo_recode()} function.}
 
-\item{year}{Which year the geograhical codes to be recoded to. If it
-is empty then current year will be used.}
+\item{year}{Which year the geograhical codes to be recoded to. If it is empty
+then current year will be used.}
 
 \item{con}{Connection to database}
+
+\item{geo}{Keep old geographical code if TRUE. Default is FALSE.}
 }
 \description{
-Recode geographical codes to the current year.
-Codes is based \code{\link[norgeo:track_change]{norgeo::track_change()}} function.
+Recode geographical codes to the current year. Codes is based on
+\code{\link[norgeo:track_change]{norgeo::track_change()}} function. For a split geogaphical codes from
+previous year, the first code of the current year code in chronological order
+will be selected to recode.
 }
 \examples{
 \dontrun{

@@ -132,6 +132,11 @@ is_debug <- function() {
   }
 }
 
+is_debug_warn <- function(opt){
+  txt <- "Process discontinued! Debugging on:"
+  is_color_txt(x = opt, msg = txt, type = "warn2")
+}
+
 
 is_stop <- function(msg, var = NULL){
   if (!is.null(var)){
@@ -185,4 +190,8 @@ is_line_long <- function(){
 
 is_line_short <- function(){
   paste0("---------------------------------")
+}
+
+reset_options <- function(){
+  options(opt.orgdata)
 }
