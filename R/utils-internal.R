@@ -193,5 +193,5 @@ is_line_short <- function(){
 }
 
 reset_options <- function(){
-  options(orgdata:::opt.orgdata)
+  options(opt.orgdata)
 }
