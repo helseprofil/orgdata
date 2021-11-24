@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 Debugging can be done via specification in `options()`. To check all the
-*options* available for `orgdata` use `orgdata:::opt.orgdata`. For options for debugging:
+*options* available for `orgdata` use `orgdata:::opt.orgdata`. Debugging options include:
 
  - `orgdata.debug`
  - `orgdata.debug.nrow`
@@ -24,7 +24,7 @@ Debugging can be done via specification in `options()`. To check all the
 
 Warning will be given when debugging is active.
 
-![debug-warning](man/features/debug-geo.png)
+![debug-warning](reference/figures/debug-geo.png)
 
 ## orgdata.debug
 
