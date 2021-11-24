@@ -8,6 +8,8 @@ Things in `dev` branch
   
 # orgdata 0.4.10
 - Use `options(orgdata.debug.geo = TRUE)` to keep old geo codes for debuging.
+- Use `reset_options()` to reset to default options.
+- Warn when process discontinued due to debugging.
 
 # orgdata 0.3.9
 - Change database filename to **raw-database_BE.accdb**
