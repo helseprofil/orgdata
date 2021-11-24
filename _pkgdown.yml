@@ -20,7 +20,7 @@ navbar:
   - text: Articles
     menu:
     - text: Make standard
-      href: https://github.com/helseprofil/orgdata/blob/main/dev/standard.org
+      href: articles/standard.html
     - text: Debugging
       href: articles/debugging.html
   - text: Functions
