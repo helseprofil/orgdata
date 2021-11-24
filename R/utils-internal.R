@@ -192,6 +192,10 @@ is_line_short <- function(){
   paste0("---------------------------------")
 }
 
+#' @title Reset options
+#' @description Reset orgdata options to default
+#' @examples reset_options()
+#' @export
 reset_options <- function(){
   options(opt.orgdata)
 }
