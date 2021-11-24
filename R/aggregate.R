@@ -112,8 +112,7 @@ do_aggregate <- function(dt = NULL,
 
   ## Breakpoint here to check the missing GEO when merging
   if (check) {
-    txt <-"Aggregating data isn't completed!"
-    is_color_txt(x ="", msg = txt, type = "warn")
+    is_debug_warn("`orgdata.debug.aggregate`")
     return(dt)
   }
 

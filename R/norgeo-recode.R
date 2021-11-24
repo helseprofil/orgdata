@@ -50,8 +50,7 @@ do_geo_recode <- function(dt = NULL,
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
   if (geo){
-    txt <- "Processes discontinue! Debuging on geo code ie. `orgdata.debug.geo = TRUE`"
-    is_color_txt(x="", msg = txt, type = "warn")
+    is_debug_warn("`orgdata.debug.geo`")
     dt[code, on = "GEO", "geo2" := i.to]
     geoVar <- c("rawGEO", "GEO")
     data.table::setnames(dt, c("GEO", "geo2"), geoVar)
