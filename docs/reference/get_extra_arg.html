@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rename Colname Manually — do_manheader • orgdata</title>
+<title>Extra Arguments — get_extra_arg • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,12 @@
 
 
 
-<meta property="og:title" content="Rename Colname Manually — do_manheader" />
-<meta property="og:description" content="Rename the columns manually based on column index." />
+<meta property="og:title" content="Extra Arguments — get_extra_arg" />
+<meta property="og:description" content="This is base on the input in EXTRA column from Access registration database.
+Arguments that can be used includes:
+delete.na.row : Delete any row with NA especially when using fill=TRUE in innlesarg
+
+" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -80,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.10</span>
       </span>
     </div>
 
@@ -137,30 +141,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rename Colname Manually</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/manheader.R'><code>R/manheader.R</code></a></small>
-    <div class="hidden name"><code>do_manheader.Rd</code></div>
+    <h1>Extra Arguments</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/extra-args.R'><code>R/extra-args.R</code></a></small>
+    <div class="hidden name"><code>get_extra_arg.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Rename the columns manually based on column index.</p>
+    <p>This is base on the input in <code>EXTRA</code> column from Access registration database.</p>
+<p>Arguments that can be used includes:</p><ul>
+<li><p>delete.na.row : Delete any row with NA especially when using <code>fill=TRUE</code> in <code>innlesarg</code></p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='fu'>do_manheader</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, manspec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_extra_arg</span><span class='op'>(</span>group <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dt</th>
-      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
+      <th>group</th>
+      <td><p>The group of files (<em>filgruppe</em>)</p></td>
     </tr>
     <tr>
-      <th>manspec</th>
-      <td><p>Specification from <code>MANHEADER</code> column in <code>tbl_Innlesing</code></p></td>
+      <th>con</th>
+      <td><p>Connection to database</p></td>
+    </tr>
+    <tr>
+      <th>spec</th>
+      <td><p>Specifications data as a data.frame</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list with the names and value of arguments</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

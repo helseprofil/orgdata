@@ -17,7 +17,7 @@ symbols less then \code{<} and more than \code{>} in the standard columns. For
 example when specified under \code{KJONN} as \verb{<2>}, a new column \code{KJONN} is
 created with value 2.
 
-This function is only applicable for columns \verb{"GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB"}.
+This function is applicable for columns \verb{"GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB"}, all \code{"TABS"} and all \code{"VALS"}.
 }
 \seealso{
 Other mutate-column functions: 

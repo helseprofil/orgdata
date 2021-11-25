@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rename Colname Manually — do_manheader • orgdata</title>
+<title>Execute Extra Arguments — do_extra_args • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,11 @@
 
 
 
-<meta property="og:title" content="Rename Colname Manually — do_manheader" />
-<meta property="og:description" content="Rename the columns manually based on column index." />
+<meta property="og:title" content="Execute Extra Arguments — do_extra_args" />
+<meta property="og:description" content="This is based on the input in EXTRA column from Access
+registration database. The arguments that are valid here can be expended
+whenever needed. See details section for valid arguments to be used.
+All argument names is written in CamelCase style." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,30 +140,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rename Colname Manually</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/manheader.R'><code>R/manheader.R</code></a></small>
-    <div class="hidden name"><code>do_manheader.Rd</code></div>
+    <h1>Execute Extra Arguments</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/extra-args.R'><code>R/extra-args.R</code></a></small>
+    <div class="hidden name"><code>do_extra_args.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Rename the columns manually based on column index.</p>
+    <p>This is based on the input in <code>EXTRA</code> column from Access
+registration database. The arguments that are valid here can be expended
+whenever needed. See details section for valid arguments to be used.
+All argument names is written in <code>CamelCase</code> style.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_manheader</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, manspec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_extra_args</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, args <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dt</th>
-      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
+      <td><p>Dataset</p></td>
     </tr>
     <tr>
-      <th>manspec</th>
-      <td><p>Specification from <code>MANHEADER</code> column in <code>tbl_Innlesing</code></p></td>
+      <th>args</th>
+      <td><p>Extra arguments as specified in details section below.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Currently, these arguments can be used:</p><ul>
+<li><p><code>DeleteNaRow</code> : Delete any row consisting only NA in all columns</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other extra arguments: 
+<code><a href='get_extra_args.html'>get_extra_args</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
