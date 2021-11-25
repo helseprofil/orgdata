@@ -8,7 +8,7 @@ Things in `dev` branch
  
 # orgdata 0.4.0
 - Fixed #119 able to mutate for TABS and VALS as well (#126)
-- Fixed #122 delete rows with NA via EXTRA column
+- Fixed #122 delete rows with NA via EXTRA column (#127)
 
 
 # orgdata 0.3
