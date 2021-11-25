@@ -102,7 +102,10 @@ make_file <- function(group = NULL,
     }
 
     if (length(deleteVar) != 0) {
-      msgWarn <- "Some columns aren't defined in FILGRUPPE. They are now deleted!"
+      ## What does this mean? Need to ask the senior people in the project :-)
+      msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
+      msg02 <- "Else aggregating will be incorrect. Defined it in FILGRUPPE and delete later"
+      msgWarn <- paste0(msg01, "\n", msg02)
       is_verbose(x = msgWarn, type = "warn")
       deleteVar <- paste(deleteVar, collapse = ", ")
       is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2")
