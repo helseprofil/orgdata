@@ -3,8 +3,8 @@
 #'   symbols less then `<` and more than `>` in the standard columns. For
 #'   example when specified under `KJONN` as `<2>`, a new column `KJONN` is
 #'   created with value 2.
-#' @description This function is only applicable for columns `"GEO", "AAR",
-#'   "KJONN", "ALDER", "UTDANN", "LANDSSB"`.
+#' @description This function is applicable for columns `"GEO", "AAR",
+#'   "KJONN", "ALDER", "UTDANN", "LANDSSB"`, all `"TABS"` and all `"VALS"`.
 #' @inheritParams do_split
 #' @inheritParams find_column_input
 #' @family mutate-column functions
@@ -14,7 +14,9 @@ do_mutate <- function(dt = NULL, spec = NULL){
 
   dt <- copy(dt)
 
-  cols <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB")
+  colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
+  colTabs <- paste0("TAB", 1:getOption("orgdata.tabs"))
+  cols <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", colTabs, colVals)
   for (i in cols){
     col <- spec[[i]]
     val <- get_mutate_value(col)

@@ -5,18 +5,24 @@ Things in `dev` branch
 - Compute function to create a new category based on the existing categories eg.
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
-  
-# orgdata 0.3.10
+ 
+# orgdata 0.4.0
+- Fixed #119 able to mutate for TABS and VALS as well
+
+
+# orgdata 0.3
+
+## orgdata 0.3.10
 - Use `options(orgdata.debug.geo = TRUE)` to keep old geo codes for debuging (#120)
 - Use `reset_options()` to reset to default options.
 - Warn when process discontinued due to debugging.
 - Add vignettes for **Standardize git** and **Debugging**
 - Fixed #121 recode geographical code for split codes (#120)
 
-# orgdata 0.3.9
+## orgdata 0.3.9
 - Change database filename to **raw-database_BE.accdb**
 
-# orgdata 0.3.8
+## orgdata 0.3.8
 - Fixed #106 split long messages (#107)
 - Fixed #108 #112 grunnkrets codes that have changed before 2002 not available
   via API from SSB while code changes for municipality includes changes
@@ -26,7 +32,7 @@ Things in `dev` branch
   before 2002 (#109 #113)
 - Fixed #110 updating SQL code for new table name for codebook (#111)
 
-# orgdata 0.3.7
+## orgdata 0.3.7
 - Check columns to aggregate for any possible `NA` (#98). Columns that have `NA`
   should be recoded to `uoppgitt` or something equivalent since leaving the
   category to `NA` will conflict with `NA` representing total value when
@@ -40,7 +46,7 @@ Things in `dev` branch
   recoded to `xxxx9999` with function `is_grunnkrets_0000()` as in PR (#103).
 - `see_file()` accepts just a single numeric as well.
 
-# orgdata 0.3.6
+## orgdata 0.3.6
 - Fixed #85 `see_file()` list all the columns when columnames or column indexes
   are not specified. The variables are sorted whenever possible. (#87)
 - Add more function tests (#88)
@@ -55,19 +61,19 @@ Things in `dev` branch
 - Gives row number for GEO codes that get coerced as `NA` when converted to
   integer. This will make it easy to check in the original raw data (#96)
   
-# orgdata 0.3.5
+## orgdata 0.3.5
 - Aggregate now give total to all dimensions including those specified in
   `AGGKOL` (#82)
 - Function `see_file()` accept column index as well (#83)
 
-# orgdata 0.3.4
+## orgdata 0.3.4
 
 - Recode variables using regular expression when defined in codebook with type
   `RE`. Finding pattern can either be written in ordinary regular expression ie.
   `\\d{4}.*` or with `rex()` package. (#78)
 - New feature for checking categories for variables with `see_file()` (#75)
 
-# orgdata 0.3.3
+## orgdata 0.3.3
 
 - Fixed #65 make TABS and VALS dynamic for easy extension for these columns (#66)
 - Fixed #64 recode of variable that has different class (#68)
@@ -78,17 +84,17 @@ Things in `dev` branch
 - Fixed #61 use AGGKOL in Access registration database to specify other columns to
   aggregate other than the standard eg. `KJONN`, `TAB1`, `TAB2` etc. (#73)
 
-# orgdata 0.3.2
+## orgdata 0.3.2
 - Fixed #55 to recode standard variables via codebook instead of hard coded (#58)
 - Fixed #52 skip split if not specified (#59)
 - Fixed #57 split column with duplicated values will keep the original column (#60)
 - Fixed #56 aggregate all VAL columns whenever specified and not only specific to
   `VAL1` (#62)
 
-# orgdata 0.3.1
+## orgdata 0.3.1
 - Edit verbose messages
 
-# orgdata 0.3.0
+## orgdata 0.3.0
 - Reshape dataset from wide to long. Reshape can have more than one `measure
   variables`. Please read how this is specified in Access registration database.
 - Split columns must have equal number of values to the defined `SPLITTIL`.
