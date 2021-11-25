@@ -38,6 +38,8 @@ make_file <- function(group = NULL,
   is_null(group, "Filgruppe is missing")
   is_debug()
 
+  group <- as.character(substitute(group))
+
   dbFile <- is_path_db(
     db = getOption("orgdata.db"),
     check = TRUE
