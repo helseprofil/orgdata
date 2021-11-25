@@ -9,7 +9,8 @@ Things in `dev` branch
 # orgdata 0.4.0
 - Fixed #119 able to mutate for TABS and VALS as well (#126)
 - Fixed #122 delete rows with NA via EXTRA column (#127)
-
+- Fixed #118 warning text when column(s) aren't defined in FILGRUPPE and will be
+  deleted (#128)
 
 # orgdata 0.3
 
