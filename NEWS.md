@@ -7,7 +7,7 @@ Things in `dev` branch
   ie. group 5.
  
 # orgdata 0.4.0
-- Fixed #119 able to mutate for TABS and VALS as well
+- Fixed #119 able to mutate for TABS and VALS as well (#126)
 
 
 # orgdata 0.3
