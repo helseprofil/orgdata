@@ -2,7 +2,7 @@
 #' @description This is based on the input in `EXTRA` column from Access
 #'   registration database. The arguments that are valid here can be expanded
 #'   whenever needed. See details section for valid arguments to be used.
-#'   All argument names is written in `CamelCase` style.
+#'   All argument names are written in `CamelCase` style.
 #'
 #' @details Currently, these arguments can be used:
 #'   - `DeleteNaRow` : Delete any row consisting only NA in all columns
@@ -16,7 +16,7 @@ do_extra_args <- function(dt = NULL, args = NULL){
 
 #' @title Get Extra Arguments
 #' @description This is based on the input in `EXTRA` column from Access registration database.
-#'   The arguments that are valid here can be expanded whenever needed. All argument names is written
+#'   The arguments that are valid here can be expanded whenever needed. All argument names are written
 #'   in `CamelCase` style. Use comma to seperate multiple arguments.
 #' @inheritParams make_file
 #' @inheritParams find_spec

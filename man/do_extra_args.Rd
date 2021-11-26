@@ -15,7 +15,7 @@ do_extra_args(dt = NULL, args = NULL)
 This is based on the input in \code{EXTRA} column from Access
 registration database. The arguments that are valid here can be expanded
 whenever needed. See details section for valid arguments to be used.
-All argument names is written in \code{CamelCase} style.
+All argument names are written in \code{CamelCase} style.
 }
 \details{
 Currently, these arguments can be used:
