@@ -236,7 +236,10 @@ is_validate_NA <- function(cols, dt){
     val <- dt[is.na(get(i)), .N]
 
     if (val > 0){
-      is_stop("This column has NA and needs to recode:", var = paste_cols(i))
+      msg01 <- "NA value is not allowed when aggregating selected column(s)!"
+      msg02 <- "This column has NA and must be recoded:"
+      msgAgg <- paste0(msg01, "\n", msg02)
+      is_stop(msg = msgAgg, var = paste_cols(i))
     }
   }
 }

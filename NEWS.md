@@ -11,6 +11,10 @@ Things in `dev` branch
 - Fixed #122 delete rows with NA via EXTRA column (#127)
 - Fixed #118 warning text when column(s) aren't defined in FILGRUPPE and will be
   deleted (#128)
+- Edit error message for columns with existing NA value before aggregating.
+  Total value will be NA and this will conflict with the allready existing NA
+  category in the aggregated column(s). Therefore existing NA value in the
+  selected column(s) must be recoded to a valid value.
 
 # orgdata 0.3
 

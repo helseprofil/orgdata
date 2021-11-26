@@ -104,7 +104,7 @@ make_file <- function(group = NULL,
     if (length(deleteVar) != 0) {
       ## What does this mean? Need to ask the senior people in the project :-)
       msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
-      msg02 <- "Else aggregating will be incorrect. Defined it in FILGRUPPE and delete later"
+      msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
       msgWarn <- paste0(msg01, "\n", msg02)
       is_verbose(x = msgWarn, type = "warn")
       deleteVar <- paste(deleteVar, collapse = ", ")
