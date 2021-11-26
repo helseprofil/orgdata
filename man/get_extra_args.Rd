@@ -18,7 +18,7 @@ A list with the names and value of arguments
 }
 \description{
 This is based on the input in \code{EXTRA} column from Access registration database.
-The arguments that are valid here can be expended whenever needed. All argument names is written
+The arguments that are valid here can be expanded whenever needed. All argument names is written
 in \code{CamelCase} style. Use comma to seperate multiple arguments.
 }
 \seealso{

@@ -13,7 +13,7 @@ do_extra_args(dt = NULL, args = NULL)
 }
 \description{
 This is based on the input in \code{EXTRA} column from Access
-registration database. The arguments that are valid here can be expended
+registration database. The arguments that are valid here can be expanded
 whenever needed. See details section for valid arguments to be used.
 All argument names is written in \code{CamelCase} style.
 }

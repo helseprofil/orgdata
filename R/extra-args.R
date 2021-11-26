@@ -1,6 +1,6 @@
 #' @title Execute Extra Arguments
 #' @description This is based on the input in `EXTRA` column from Access
-#'   registration database. The arguments that are valid here can be expended
+#'   registration database. The arguments that are valid here can be expanded
 #'   whenever needed. See details section for valid arguments to be used.
 #'   All argument names is written in `CamelCase` style.
 #'
@@ -16,7 +16,7 @@ do_extra_args <- function(dt = NULL, args = NULL){
 
 #' @title Get Extra Arguments
 #' @description This is based on the input in `EXTRA` column from Access registration database.
-#'   The arguments that are valid here can be expended whenever needed. All argument names is written
+#'   The arguments that are valid here can be expanded whenever needed. All argument names is written
 #'   in `CamelCase` style. Use comma to seperate multiple arguments.
 #' @inheritParams make_file
 #' @inheritParams find_spec
