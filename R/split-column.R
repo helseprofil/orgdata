@@ -26,6 +26,7 @@ do_split <- function(dt = NULL, split = NULL) {
   if (!is.na(split$from)) {
     colFrm <- split$from
     colTo <- split$to
+
     frmSplit <- paste0(colFrm, "_split")
     colSplit <- data.table::fifelse(is.element(frmSplit, names(dt)), frmSplit, colFrm)
 
@@ -89,12 +90,23 @@ is_split_check <- function(dt, split){
   if (length(valdx) > 0){
     frmSplit <- paste0(frm, "_split")
     dt[, (frmSplit) := get(frm)]
+    dt <- is_split_str(dt = dt, col = frmSplit)
 
     for (i in valdx){
       val <- fval[i]
       valDup <- paste(rep(val, sto), collapse = "")
       dt[get(frmSplit) == val, (frmSplit) := valDup]
     }
+  }
+
+  return(dt)
+}
+
+## Ensure split from column is a string
+is_split_str <- function(dt, col){
+
+  if (isFALSE(is(dt[[col]], "character"))){
+    dt[, (col) := as.character(get(col))]
   }
 
   return(dt)

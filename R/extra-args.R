@@ -52,10 +52,25 @@ is_delete_na_row <- function(dt = NULL, extra = NULL){
 
   delRow <- sum(is.element(extra, "DeleteNaRow"))
   if (delRow){
+    dt <- is_null_to_na(dt)
     nrCol <- ncol(dt)
     dt[, nrc := rowSums(is.na(.SD))]
     dt <- dt[nrc!=nrCol, ]
     dt[, nrc := NULL]
+  }
+
+  return(dt)
+}
+
+## Whitespace to NA
+is_null_to_na <- function(dt){
+  for (j in seq_len(ncol(dt))){
+    if(is(dt[[j]], "character"))
+      set(dt, j = j, value = trimws(dt[[j]]))
+  }
+
+  for(j in seq_len(ncol(dt))){
+    data.table::set(dt, i=which(dt[[j]]==""), j = j, value = NA)
   }
 
   return(dt)
