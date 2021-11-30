@@ -85,7 +85,7 @@ The function lag_fil() is an alias to make_file()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -162,7 +162,8 @@ especially for testing purposes.</p>
   aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
   save <span class='op'>=</span> <span class='cn'>FALSE</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  implicitnull <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.implicit.null"</span><span class='op'>)</span>
+  implicitnull <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.implicit.null"</span><span class='op'>)</span>,
+  row <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.row"</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>lag_fil</span><span class='op'>(</span>
@@ -171,7 +172,8 @@ especially for testing purposes.</p>
   aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
   save <span class='op'>=</span> <span class='cn'>FALSE</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  implicitnull <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.implicit.null"</span><span class='op'>)</span>
+  implicitnull <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.implicit.null"</span><span class='op'>)</span>,
+  row <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.row"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -203,6 +205,10 @@ then it will be base on the year in source data ie. column <code>AAR</code></p><
       <th>implicitnull</th>
       <td><p>Default is <code>TRUE</code> to add implicit null to the dataset. Global options
 with <code>orgdata.implicit.null</code>.</p></td>
+    </tr>
+    <tr>
+      <th>row</th>
+      <td><p>Select only specify row(s). Useful for debugging</p></td>
     </tr>
     </table>
 

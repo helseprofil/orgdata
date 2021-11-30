@@ -37,7 +37,8 @@ do_geo_recode <- function(dt = NULL,
   ## Ensure variables to be used to aggregate in type int
   intVar <- c("GEO", "VAL1")
   for (col in intVar){
-    data.table::set(dt, j = col, value = as.integer(dt[[col]]))
+    if (is(dt[[col]], "character"))
+      data.table::set(dt, j = col, value = as.integer(dt[[col]]))
   }
 
   if (type == "grunnkrets"){
@@ -53,15 +54,20 @@ do_geo_recode <- function(dt = NULL,
   xind <- dt[, .I[GEO %in% xcode]]
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
+  ## Select the first code for split code
+  codeGeo <- c("GEO", "to")
+  data.table::setkeyv(code, codeGeo)
+  code <- code[!duplicated(GEO) | duplicated(GEO, fromLast = TRUE)]
+
   if (geo){
     is_debug_warn("`orgdata.debug.geo`")
-    dt[code[duplicated(GEO, fromLast = TRUE)], on = "GEO", "geo2" := i.to]
+    dt[code, on = "GEO", "geo2" := i.to]
     geoVar <- c("rawGEO", "GEO")
     data.table::setnames(dt, c("GEO", "geo2"), geoVar)
     data.table::setcolorder(dt, c(geoVar, "AAR"))
     dt[, "dummy_grk" := NULL]
   } else {
-    dt[code[duplicated(GEO, fromLast = TRUE)], on = "GEO", GEO := i.to]
+    dt[code, on = "GEO", GEO := i.to]
   }
 }
 

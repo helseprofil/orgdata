@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -109,6 +109,7 @@
 <ul>
 <li><code>orgdata.debug</code></li>
 <li><code>orgdata.debug.nrow</code></li>
+<li><code>orgdata.debug.row</code></li>
 <li><code>orgdata.debug.aggregate</code></li>
 <li><code>orgdata.debug.geo</code></li>
 </ul>
@@ -130,26 +131,33 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>orgdata.debug.nrow <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></code></pre></div>
 </div>
+<div id="orgdata-debug-row" class="section level2">
+<h2 class="hasAnchor">
+<a href="#orgdata-debug-row" class="anchor"></a>orgdata.debug.row</h2>
+<p>To select only specific row(s) for further processing. This is very useful especially when activating <a href="#geo"><code>orgdata.debug.geo</code></a> option. To select only rows 20 to 50:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>orgdata.debug.row <span class="op">=</span> <span class="fl">20</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span></code></pre></div>
+</div>
 <div id="orgdata-debug-aggregate" class="section level2">
 <h2 class="hasAnchor">
 <a href="#orgdata-debug-aggregate" class="anchor"></a>orgdata.debug.aggregate</h2>
 <p>To check how the geographical codes in the original data will or could be aggregated to. For instance the original data that consist of enumeration area codes can be aggregated to municipality or county. Activating this options will add the columns to municipality and county to the data. The difference between this options and <code>aggreagate</code> argument in <code><a href="../reference/make_file.html">make_file()</a></code> is that the argument <code>aggregate = FALSE</code> will cease aggregating keeping the geographical level as in the original data. To use:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>orgdata.debug.aggregate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="orgdata-debug-geo" class="section level2">
+<div id="geo" class="section level2">
 <h2 class="hasAnchor">
-<a href="#orgdata-debug-geo" class="anchor"></a>orgdata.debug.geo</h2>
+<a href="#geo" class="anchor"></a>orgdata.debug.geo</h2>
 <p>This option is used to check the code to use for recoding geographical codes from the original data to the current geographical codes. A new columns called <code>rawGEO</code> will be added consisting the geographical codes of the original data as in the <a href="#expl">example</a>.</p>
 <p>Column <code>GEO</code> is the code to recode <code>rawGEO</code>. If the value is <code>NA</code> in column <code>GEO</code> then no recode will be done for the respective code. The reason is either the codes is still valid for the current year or no recode code available/valid and will be deleted. A warning will be given.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>orgdata.debug.geo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="reset" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reset" class="anchor"></a>reset</h2>
 <p>When activating any options for <code>orgdata</code>, it will be kept active until you actively deactivate it or restart a new R session. You can deactivate it with:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/reset_options.html">reset_options</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="expl" class="section level2">
