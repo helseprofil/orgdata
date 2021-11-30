@@ -55,3 +55,8 @@ make_file("BEFOLKNING", koblid = 19)
 make_file("BEFOLKNING", koblid = c(15, 50))
 }
 }
+\seealso{
+Other filegroups functions: 
+\code{\link{make_filegroup}()}
+}
+\concept{filegroups functions}
