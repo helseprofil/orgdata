@@ -16,6 +16,12 @@ save_file(df, "BEFOLKNING")
 ## Evt. hvis alle filer har vært kontrollert
 lag_fil("BEFOLKNING", save = TRUE)
 
+## Lager flere FILGRUPPER, velg måten du liker å skrive det
+## FILGRUPPE blir laget som csv direkte
+lag_filgruppe("BEFOLKNING", "NEET", "DODE") #med " "
+lag_filgruppe(BEFOLKNING, NEET, DODE) #uten
+
+
 
 ## TIPS AND TRICKS ------------------------------------
 ## Lest bare en bestemt antall rader f.eks 5 rader
