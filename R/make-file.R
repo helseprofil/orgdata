@@ -82,7 +82,7 @@ make_file <- function(group = NULL,
     filePath <- is_path_raw(fileSpec, check = TRUE)
 
     is_verbose(msg = is_line_long(), type = "other")
-    is_verbose(fileSpec$KOBLID, "Koblid:")
+    is_verbose(fileSpec$KOBLID, "KOBLID:")
 
     dt <- is_org_process(
       file = filePath,

@@ -35,6 +35,7 @@ is_org_process <- function(file,
     dt <- is_read_file_dots(file = file, dots = dots, extra = extra)
   }
 
+  ## From options(orgdata.debug.row)
   if (!is.null(row)){
     dt <- dt[row,]
   }
