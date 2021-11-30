@@ -65,11 +65,9 @@ is_delete_na_row <- function(dt = NULL, extra = NULL){
 ## Whitespace to NA
 is_null_to_na <- function(dt){
   for (j in seq_len(ncol(dt))){
-    if(is(dt[[j]], "character"))
-      set(dt, j = j, value = trimws(dt[[j]]))
-  }
-
-  for(j in seq_len(ncol(dt))){
+    if(is(dt[[j]], "character")){
+      data.table::set(dt, j = j, value = trimws(dt[[j]]))
+    }
     data.table::set(dt, i=which(dt[[j]]==""), j = j, value = NA)
   }
 
