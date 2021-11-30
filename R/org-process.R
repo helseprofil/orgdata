@@ -13,6 +13,7 @@ is_org_process <- function(file,
                            fgspec,
                            con,
                            verbose = getOption("orgdata.verbose"),
+                           row = getOption("orgdata.debug.row"),
                            .log = parent.frame()
                            ) {
   GEO <- NULL
@@ -32,6 +33,10 @@ is_org_process <- function(file,
     dt <- is_read_file(file = file, extra = extra)
   } else {
     dt <- is_read_file_dots(file = file, dots = dots, extra = extra)
+  }
+
+  if (!is.null(row)){
+    dt <- dt[row,]
   }
 
   ## GEO codes from two columns needs to be joined

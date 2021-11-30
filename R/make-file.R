@@ -21,6 +21,7 @@
 #' @inheritParams do_aggregate
 #' @param implicitnull Default is `TRUE` to add implicit null to the dataset. Global options
 #'   with `orgdata.implicit.null`.
+#' @param row Select only specify row(s). Useful for debugging
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
@@ -30,7 +31,8 @@ make_file <- function(group = NULL,
                       aggregate = getOption("orgdata.aggregate"),
                       save = FALSE,
                       year = NULL,
-                      implicitnull = getOption("orgdata.implicit.null")
+                      implicitnull = getOption("orgdata.implicit.null"),
+                      row = getOption("orgdata.debug.row")
                       ) {
 
   LEVEL <- NULL
@@ -86,7 +88,8 @@ make_file <- function(group = NULL,
       file = filePath,
       filespec = fileSpec,
       fgspec = fgSpec,
-      con = kh$dbconn
+      con = kh$dbconn,
+      row = row
     )
 
     ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
