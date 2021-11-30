@@ -10,6 +10,7 @@ is_org_process(
   fgspec,
   con,
   verbose = getOption("orgdata.verbose"),
+  row = getOption("orgdata.debug.row"),
   .log = parent.frame()
 )
 }
