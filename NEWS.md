@@ -6,6 +6,14 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.4.2
+
+- Use options `orgdata.debug.row` to select only specific row(s) for further
+  processing. It can be activated via global options with
+  `options(orgdata.debug.row = 20:50)` or via argument `row = 20:50` in
+  `make_file()` to select row 20 to 50.
+- Fixed #135 with incorrect geo recode.
+
 # orgdata 0.4.1
 - Fixed #132 LANDSSB must be string
 - Convert whitespace to NA to be able to delete all rows with NA

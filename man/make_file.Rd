@@ -11,7 +11,8 @@ make_file(
   aggregate = getOption("orgdata.aggregate"),
   save = FALSE,
   year = NULL,
-  implicitnull = getOption("orgdata.implicit.null")
+  implicitnull = getOption("orgdata.implicit.null"),
+  row = getOption("orgdata.debug.row")
 )
 
 lag_fil(
@@ -20,7 +21,8 @@ lag_fil(
   aggregate = getOption("orgdata.aggregate"),
   save = FALSE,
   year = NULL,
-  implicitnull = getOption("orgdata.implicit.null")
+  implicitnull = getOption("orgdata.implicit.null"),
+  row = getOption("orgdata.debug.row")
 )
 }
 \arguments{
@@ -38,6 +40,8 @@ then it will be base on the year in source data ie. column \code{AAR}}
 
 \item{implicitnull}{Default is \code{TRUE} to add implicit null to the dataset. Global options
 with \code{orgdata.implicit.null}.}
+
+\item{row}{Select only specify row(s). Useful for debugging}
 }
 \description{
 Make a \code{csv} file with the specifications in the register database and implement them

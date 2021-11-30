@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -146,6 +146,14 @@
 <p>Things in <code>dev</code> branch</p>
 <ul>
 <li>Compute function to create a new category based on the existing categories eg. UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group ie. group 5.</li>
+</ul>
+</div>
+    <div id="orgdata-042" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.2">
+<a href="#orgdata-042" class="anchor"></a>orgdata 0.4.2</h1>
+<ul>
+<li>Use options <code>orgdata.debug.row</code> to select only specific row(s) for further processing. It can be activated via global options with <code><a href="https://rdrr.io/r/base/options.html">options(orgdata.debug.row = 20:50)</a></code> or via argument <code>row = 20:50</code> in <code><a href="../reference/make_file.html">make_file()</a></code> to select row 20 to 50.</li>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/135'>#135</a> with incorrect geo recode.</li>
 </ul>
 </div>
     <div id="orgdata-041" class="section level1">

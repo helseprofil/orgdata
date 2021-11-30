@@ -19,6 +19,7 @@ Debugging can be done via specification in `options()`. To check all the
 
  - `orgdata.debug`
  - `orgdata.debug.nrow`
+ - `orgdata.debug.row`
  - `orgdata.debug.aggregate`
  - `orgdata.debug.geo`
 
@@ -44,6 +45,16 @@ activating this options. For instance, to load only the first 50 rows use:
 options(orgdata.debug.nrow = 50)
 ```
 
+## orgdata.debug.row 
+
+To select only specific row(s) for further processing. This is very useful
+especially when activating [`orgdata.debug.geo`](#geo) option. To select only
+rows 20 to 50:
+
+```{r eval = FALSE}
+options(orgdata.debug.row = 20:50)
+```
+
 ## orgdata.debug.aggregate
 
 To check how the geographical codes in the original data will or could be
@@ -58,7 +69,7 @@ the original data. To use:
 options(orgdata.debug.aggregate = TRUE)
 ```
 
-## orgdata.debug.geo
+## orgdata.debug.geo {#geo}
 
 This option is used to check the code to use for recoding geographical codes
 from the original data to the current geographical codes. A new columns called
