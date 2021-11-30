@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Implement the Specifications — make_file • orgdata</title>
+<title>Make Multiple Filegroups — make_filegroup • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,13 +46,11 @@
 
 
 
-<meta property="og:title" content="Implement the Specifications — make_file" />
-<meta property="og:description" content="Make a csv file with the specifications in the register database and implement them
-to the raw data of the selected group of files (filgruppe). All files under
-the selected group will be affected unless the KOBLID with
-argument koblid is specified. Specifying koblid is useful
-especially for testing purposes.
-The function lag_fil() is an alias to make_file()." />
+<meta property="og:title" content="Make Multiple Filegroups — make_filegroup" />
+<meta property="og:description" content="Implement the specification in registration database on several
+filegroups at once. This function will be only used when all selected
+filegroups have been controlled for any errors. The selected filegroups
+will be save as a .csv." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -142,86 +140,39 @@ The function lag_fil() is an alias to make_file()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Implement the Specifications</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/make-file.R'><code>R/make-file.R</code></a></small>
-    <div class="hidden name"><code>make_file.Rd</code></div>
+    <h1>Make Multiple Filegroups</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/make-group.R'><code>R/make-group.R</code></a></small>
+    <div class="hidden name"><code>make_filegroup.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Make a <code>csv</code> file with the specifications in the register database and implement them
-to the raw data of the selected group of files (<em>filgruppe</em>). All files under
-the selected group will be affected unless the <code>KOBLID</code> with
-argument <code>koblid</code> is specified. Specifying <code>koblid</code> is useful
-especially for testing purposes.</p>
-<p>The function <code>lag_fil()</code> is an alias to <code>make_file()</code>.</p>
+    <p>Implement the specification in registration database on several
+filegroups at once. This function will be only used when all selected
+filegroups have been controlled for any errors. The selected filegroups
+will be save as a <code>.csv</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_file</span><span class='op'>(</span>
-  group <span class='op'>=</span> <span class='cn'>NULL</span>,
-  koblid <span class='op'>=</span> <span class='cn'>NULL</span>,
-  aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
-  save <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  implicitnull <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.implicit.null"</span><span class='op'>)</span>,
-  row <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.row"</span><span class='op'>)</span>
-<span class='op'>)</span>
+    <pre class="usage"><span class='fu'>make_filegroup</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>lag_fil</span><span class='op'>(</span>
-  group <span class='op'>=</span> <span class='cn'>NULL</span>,
-  koblid <span class='op'>=</span> <span class='cn'>NULL</span>,
-  aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
-  save <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  implicitnull <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.implicit.null"</span><span class='op'>)</span>,
-  row <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.row"</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+<span class='fu'>lag_filgruppe</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>group</th>
-      <td><p>The group of files (<em>filgruppe</em>)</p></td>
-    </tr>
-    <tr>
-      <th>koblid</th>
-      <td><p><code>KOBLID</code> from table <em>tbl_Koble</em></p></td>
-    </tr>
-    <tr>
-      <th>aggregate</th>
-      <td><p>Aggregate data according to the specification in registration database.
-Default is <code>TRUE</code>. Global options with <code>orgdata.aggregate</code>.</p></td>
-    </tr>
-    <tr>
-      <th>save</th>
-      <td><p>Save as <code>.csv</code> by activating <code><a href='save_file.html'>save_file()</a></code>. Default is <code>FALSE</code></p></td>
-    </tr>
-    <tr>
-      <th>year</th>
-      <td><p>Which year the georaphical code is valid for. If not specified,
-then it will be base on the year in source data ie. column <code>AAR</code></p></td>
-    </tr>
-    <tr>
-      <th>implicitnull</th>
-      <td><p>Default is <code>TRUE</code> to add implicit null to the dataset. Global options
-with <code>orgdata.implicit.null</code>.</p></td>
-    </tr>
-    <tr>
-      <th>row</th>
-      <td><p>Select only specify row(s). Useful for debugging</p></td>
+      <th>...</th>
+      <td><p>Filegroup(s)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other filegroups functions: 
-<code><a href='make_filegroup.html'>make_filegroup</a>()</code></p></div>
+<code><a href='make_file.html'>make_file</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>make_file</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span><span class='op'>)</span>
-<span class='fu'>make_file</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, koblid <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span>
-<span class='fu'>make_file</span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, koblid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>make_filegroup</span><span class='op'>(</span><span class='va'>NEET</span>, <span class='va'>TRANGBODD</span>, <span class='va'>DODE</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
