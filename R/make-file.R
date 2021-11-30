@@ -25,6 +25,7 @@
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
+#' @family filegroups functions
 #' @export
 make_file <- function(group = NULL,
                       koblid = NULL,
