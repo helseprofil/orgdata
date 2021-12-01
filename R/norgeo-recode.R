@@ -1,3 +1,60 @@
+#' @title Recode Geo Code Without Aggregate
+#' @description Recode geo code without aggregating the data.
+#'   The input in argument `source` must be a lower
+#'   granularity level than the `level` input.
+#' @inheritParams do_split
+#' @param source What geographical granularity codes that is available in the
+#'   source data. This will be used for merging with the output from
+#'   `geo_level()`
+#' @param year Which year the georaphical code is valid for. If not specified,
+#'   then it will be base on the year in source data ie. column `AAR`
+#' @param check If TRUE then output will keep variables for geographical levels
+#'   without aggregating it. This is useful to check for geographical codes that
+#'   are missing. Else use `options(orgdata.aggregate = FALSE)`
+#' @examples
+#' \dontrun{
+#' # Source data with enumeration area codes ie. grunnkrets
+#' dt <- make_file("BEFOLKNING", aggregate = FALSE)
+#' }
+#' @import data.table
+#' @family geo recode functions
+#' @export
+do_recode_without_aggregate <- function(dt = NULL,
+                                        source = c(
+                                          "grunnkrets",
+                                          "fylke",
+                                          "kommune",
+                                          "bydel"
+                                        ),
+                                        year = NULL,
+                                        check = getOption("orgdata.debug.aggregate")){
+  AAR <- NULL
+  cat("..")
+
+  is_debug()
+  is_null(dt)
+  dt <- data.table::copy(dt)
+
+  source <- tolower(source)
+  source <- match.arg(source)
+
+  geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+  geoDB <- is_conn_db(geoFile)
+
+  cat("..")
+  ## validTo in the database `tblGeo` is a character
+  if (!is.null(year)) {
+    yr <- dt[AAR == year, ][1]
+  } else {
+    yr <- as.integer(format(Sys.Date(), "%Y"))
+  }
+
+  ## recode GEO codes
+  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
+  cat("..\n")
+  dt <- do_geo_recode(dt = dt, code = code, type = source, year = yr, con = geoDB$dbconn)
+}
+
 #' @title Recode Geographical Codes
 #' @description Recode geographical codes to the current year. Codes is based on
 #'   [norgeo::track_change()] function. For a split geogaphical codes from
@@ -18,6 +75,7 @@
 #' DT <- do_geo_recode(dt, code)
 #' }
 #' @import data.table
+#' @family geo recode functions
 #' @export
 do_geo_recode <- function(dt = NULL,
                           code = NULL,
@@ -81,6 +139,7 @@ do_geo_recode <- function(dt = NULL,
 #' @return A dataset with columns `GEO` and `to` representing the GEO
 #'  codes that will be recoded to a new code ie. `to`.
 #' @import data.table
+#' @family geo recode functions
 #' @export
 get_geo_recode <- function(con = NULL,
                            type = c(
@@ -148,10 +207,12 @@ is_grunnkrets_0000 <- function(dt){
       dt[i, GEO := as.integer(grc)]
     }
 
+    is_log(notCodes, "code00")
     is_verbose(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
     is_check_geo(notCodes)
     is_verbose(x = "xxxx9999", msg = "They are now recoded with ending:", type = "note")
-}
+    is_verbose(x = "log$code00", msg = "To see all codes, run command:")
+  }
 
   return(dt)
 }
@@ -173,9 +234,11 @@ is_grunnkrets <- function(dt){
   idx <- dt[, .I[dummy_grk != 0]]
   notCodes <- dt[idx]$GEO
 
+  is_log(value = notCodes, x = "codeShort")
   is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
   is_check_geo(notCodes)
   is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
+  is_verbose(x = "log$codeShort", msg = "To see all codes, run command:")
 
   for (i in idx){
 

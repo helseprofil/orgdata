@@ -120,9 +120,7 @@ make_file <- function(group = NULL,
     ## the variables are recoded eg. INNKAT is string before recorded to number
     ## dt <- is_col_int(dt)
 
-    if (aggregate) {
-      dt <- is_aggregate(dt, fgspec = fgSpec, year = year)
-    }
+    dt <- is_aggregate(dt, fgspec = fgSpec, year = year, aggregate = aggregate)
 
     DT[[i]] <- copy(dt)
     rm(dt)
