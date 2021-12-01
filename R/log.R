@@ -1,5 +1,5 @@
 #' Environment to store log info
-#' export log
+#' @export log
 log <- new.env()
 
 

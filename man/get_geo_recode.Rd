@@ -27,3 +27,9 @@ codes that will be recoded to a new code ie. \code{to}.
 Get the geographical codes registered in \code{geo-database} which consist
 of old and new codes that are applicable to the respective year.
 }
+\seealso{
+Other geo recode functions: 
+\code{\link{do_geo_recode}()},
+\code{\link{do_recode_without_aggregate}()}
+}
+\concept{geo recode functions}

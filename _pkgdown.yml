@@ -72,5 +72,6 @@ reference:
   desc: Some functions that are nice to have.
   contents:
     - see_file
+    - log
     - reset_options
     - website

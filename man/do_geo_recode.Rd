@@ -41,3 +41,9 @@ dt <- make_file("BEFOLKNING", aggregate = FALSE)
 DT <- do_geo_recode(dt, code)
 }
 }
+\seealso{
+Other geo recode functions: 
+\code{\link{do_recode_without_aggregate}()},
+\code{\link{get_geo_recode}()}
+}
+\concept{geo recode functions}
