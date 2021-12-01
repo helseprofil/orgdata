@@ -15,6 +15,8 @@ Things in `dev` branch
 - Save all codes that have problem in `log` environment for easy access. To list
   the codes is either with `log$code00` or `log$codeShort`
 - Recode geo even when argument `aggregate = FALSE` in `make_file()` function.
+- Rename `make_filegroup` and `lag_filgruppe` to plural ie. `make_filegroups`
+  and `lag_filgrupper`.
 
 # orgdata 0.4.2
 

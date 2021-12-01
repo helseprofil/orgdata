@@ -1,8 +1,9 @@
 #' @title Make Multiple Filegroups
 #' @description Implement the specification in registration database on several
-#'   filegroups at once. This function will be only used when all selected
+#'   filegroups at once. This function will only be used when all selected
 #'   filegroups have been controlled for any errors. The selected filegroups
-#'   will be save as a `.csv`.
+#'   will be saved as a `.csv` file with respective filegroup names and folder
+#'   as in registration database.
 #' @param ... Filegroup(s)
 #' @examples
 #' \dontrun{
@@ -10,19 +11,19 @@
 #' }
 #' @family filegroups functions
 #' @export
-make_filegroup <- function(...){
+make_filegroups <- function(...){
 
-  quo <- tryCatch(
+  dotDot <- tryCatch(
     unlist(list(...)),
     error = function(err){err}
   )
 
-  if (is(quo, "error")){
+  if (is(dotDot, "error")){
     dots <- deparse(substitute(list(...)))
     grp <- gsub(".*\\((.*)\\)", "\\1", dots)
     fgp <- unlist(strsplit(grp, split = ","))
   } else {
-    fgp <- quo
+    fgp <- dotDot
   }
 
   for (i in fgp){
@@ -32,5 +33,5 @@ make_filegroup <- function(...){
 }
 
 #' @export
-#' @rdname make_filegroup
-lag_filgruppe <- make_filegroup
+#' @rdname make_filegroups
+lag_filgrupper <- make_filegroups
