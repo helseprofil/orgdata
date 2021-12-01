@@ -13,17 +13,15 @@
 #' @export
 make_filegroups <- function(...){
 
-  dotDot <- tryCatch(
-    unlist(list(...)),
-    error = function(err){err}
+  fgp <- tryCatch({
+    unlist(list(...))
+  },
+  error = function(err){err}
   )
 
-  if (is(dotDot, "error")){
-    dots <- deparse(substitute(list(...)))
-    grp <- gsub(".*\\((.*)\\)", "\\1", dots)
-    fgp <- unlist(strsplit(grp, split = ","))
-  } else {
-    fgp <- dotDot
+  if (is(fgp, "error")){
+    dots <- eval(substitute(alist(...)))
+    fgp <- sapply(as.list(dots), deparse)
   }
 
   for (i in fgp){
