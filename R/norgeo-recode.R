@@ -122,12 +122,10 @@ is_grunnkrets_na <- function(dt){
 
   nrNA <- dt[is.na(GEO), .N]
   if (nrNA > 0){
-    idx <- dt[, .I[is.na(GEO)]]
-    idx <- is_check_geo(idx)
-
     dt[is.na(GEO), GEO := 99999999]
-    is_colour_txt(x = nrNA, msg = "Number of missing GEO with empty value or NA:", type = "warn2")
-    is_colour_txt(x = 99999999, msg = "Missing GEO are now recoded to", type = "note")
+    is_verbose(x = nrNA, msg = "Number of missing GEO with empty value or NA:", type = "warn2")
+    is_verbose(x = 99999999, msg = "Missing GEO are now recoded to", type = "note")
+    is_verbose(x = "`df[is.na(geoColName),]`", msg = "Check in the original data with", type = "note")
   }
 
   return(dt)
@@ -142,6 +140,7 @@ is_grunnkrets_0000 <- function(dt){
   nr00 <- dt[GEO %like% "0000$", .N]
   if (nr00 > 0){
     idx <- dt[, .I[GEO %like% "0000$"]]
+    notCodes <- dt[idx]$GEO
 
     for (i in idx){
       code <- sub("0{4}$", "", dt[i]$GEO)
@@ -149,10 +148,10 @@ is_grunnkrets_0000 <- function(dt){
       dt[i, GEO := as.integer(grc)]
     }
 
-    is_colour_txt(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
-    idx <- is_check_geo(idx)
-    is_colour_txt(x = "xxxx9999", msg = "They are now recoded with ending:", type = "note")
-  }
+    is_verbose(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
+    is_check_geo(notCodes)
+    is_verbose(x = "xxxx9999", msg = "They are now recoded with ending:", type = "note")
+}
 
   return(dt)
 }
@@ -172,9 +171,10 @@ is_grunnkrets <- function(dt){
 
   dt[dummy_grk != 0 , dummy_grk := nchar(GEO)]
   idx <- dt[, .I[dummy_grk != 0]]
+  notCodes <- dt[idx]$GEO
 
   is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
-  idx <- is_check_geo(idx)
+  is_check_geo(notCodes)
   is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
 
   for (i in idx){
@@ -201,13 +201,13 @@ is_geo_oddeven <- function(x){
 }
 
 ## Don't overflood the console!
-is_check_geo <- function(idx){
-  ## idx - Row index
-  idx <- data.table::copy(idx)
-  idxNo <- is_short_code(idx, n1 = 10, n2 = 7)
+is_check_geo <- function(codes){
+  ## codes - Codes to display
+  codes <- data.table::copy(codes)
+  codesNot <- is_short_code(codes, n1 = 10, n2 = 8)
   ## is_verbose(msg = is_line_short(), type = "other")
-  is_verbose(idxNo, "Check GEO codes in original data for row(s):", type = "warn")
-  invisible(idx)
+  is_verbose(codesNot, "Check GEO codes in original data:", type = "warn")
+  invisible(codes)
 }
 
 ## Codes that can't be merged since it's not found in geo codebook database
@@ -250,3 +250,4 @@ is_short_code <- function(x, n1 = 10, n2 = 6){
 
   paste_cols(codes)
 }
+
