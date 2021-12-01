@@ -42,7 +42,7 @@ do_geo_recode <- function(dt = NULL,
   }
 
   # keep original code for debug.geo
-  dt[, origin := GEO]
+  dt[, "origin" := GEO]
 
   if (type == "grunnkrets"){
     dt <- is_grunnkrets(dt)

@@ -9,7 +9,7 @@ Things in `dev` branch
 # orgdata 0.4.3
 
 - Fixed #139 for `orgdata.debug.geo` keep original geo codes for enumeration
-  areas before adding 9999.
+  areas before adding 9999. (#140)
 
 # orgdata 0.4.2
 
