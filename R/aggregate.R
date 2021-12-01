@@ -77,7 +77,7 @@ do_aggregate <- function(dt = NULL,
     yr <- as.integer(format(Sys.Date(), "%Y"))
   }
 
-  ## recode GEO
+  ## recode GEO codes
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
   dt <- do_geo_recode(dt = dt, code = code, type = source, year = yr, con = geoDB$dbconn)
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Recode Geographical Codes — do_geo_recode • orgdata</title>
+<title>Recode Geo Code Without Aggregate — do_recode_without_aggregate • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,10 @@
 
 
 
-<meta property="og:title" content="Recode Geographical Codes — do_geo_recode" />
-<meta property="og:description" content="Recode geographical codes to the current year. Codes is based on
-norgeo::track_change() function. For a split geogaphical codes from
-previous year, the first code of the current year code in chronological order
-will be selected to recode." />
+<meta property="og:title" content="Recode Geo Code Without Aggregate — do_recode_without_aggregate" />
+<meta property="og:description" content="Recode geo code without aggregating the data.
+The input in argument source must be a lower
+granularity level than the level input." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -140,25 +139,22 @@ will be selected to recode." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Recode Geographical Codes</h1>
+    <h1>Recode Geo Code Without Aggregate</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/norgeo-recode.R'><code>R/norgeo-recode.R</code></a></small>
-    <div class="hidden name"><code>do_geo_recode.Rd</code></div>
+    <div class="hidden name"><code>do_recode_without_aggregate.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Recode geographical codes to the current year. Codes is based on
-<code><a href='https://rdrr.io/pkg/norgeo/man/track_change.html'>norgeo::track_change()</a></code> function. For a split geogaphical codes from
-previous year, the first code of the current year code in chronological order
-will be selected to recode.</p>
+    <p>Recode geo code without aggregating the data.
+The input in argument <code>source</code> must be a lower
+granularity level than the <code>level</code> input.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_geo_recode</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>do_recode_without_aggregate</span><span class='op'>(</span>
   dt <span class='op'>=</span> <span class='cn'>NULL</span>,
-  code <span class='op'>=</span> <span class='cn'>NULL</span>,
-  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
+  source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  con <span class='op'>=</span> <span class='cn'>NULL</span>,
-  geo <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.geo"</span><span class='op'>)</span>
+  check <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.aggregate"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -169,40 +165,34 @@ will be selected to recode.</p>
       <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
     </tr>
     <tr>
-      <th>code</th>
-      <td><p>Code dataset of old and new codes in a <code>data.table</code> format.</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>The geographical granularity for recoding The dataset is the
-output after running <code><a href='get_geo_recode.html'>get_geo_recode()</a></code> function.</p></td>
+      <th>source</th>
+      <td><p>What geographical granularity codes that is available in the
+source data. This will be used for merging with the output from
+<code><a href='geo_level.html'>geo_level()</a></code></p></td>
     </tr>
     <tr>
       <th>year</th>
-      <td><p>Which year the geograhical codes to be recoded to. If it is empty
-then current year will be used.</p></td>
+      <td><p>Which year the georaphical code is valid for. If not specified,
+then it will be base on the year in source data ie. column <code>AAR</code></p></td>
     </tr>
     <tr>
-      <th>con</th>
-      <td><p>Connection to database</p></td>
-    </tr>
-    <tr>
-      <th>geo</th>
-      <td><p>Keep old geographical code if TRUE. Default is FALSE.</p></td>
+      <th>check</th>
+      <td><p>If TRUE then output will keep variables for geographical levels
+without aggregating it. This is useful to check for geographical codes that
+are missing. Else use <code><a href='https://rdrr.io/r/base/options.html'>options(orgdata.aggregate = FALSE)</a></code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other geo recode functions: 
-<code><a href='do_recode_without_aggregate.html'>do_recode_without_aggregate</a>()</code>,
+<code><a href='do_geo_recode.html'>do_geo_recode</a>()</code>,
 <code><a href='get_geo_recode.html'>get_geo_recode</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>code</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_geo_recode.html'>get_geo_recode</a></span><span class='op'>(</span>con <span class='op'>=</span> <span class='va'>geo</span><span class='op'>$</span><span class='va'>dbconn</span>, type <span class='op'>=</span> <span class='st'>"grunnkrets"</span><span class='op'>)</span>
+<span class='co'># Source data with enumeration area codes ie. grunnkrets</span>
 <span class='va'>dt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='make_file.html'>make_file</a></span><span class='op'>(</span><span class='st'>"BEFOLKNING"</span>, aggregate <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='va'>DT</span> <span class='op'>&lt;-</span> <span class='fu'>do_geo_recode</span><span class='op'>(</span><span class='va'>dt</span>, <span class='va'>code</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

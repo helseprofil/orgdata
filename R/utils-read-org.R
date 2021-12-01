@@ -43,8 +43,11 @@ is_data_cols <- function(fgspec = NULL){
 }
 
 
-
-is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), year = year){
+is_aggregate <- function(dt = NULL,
+                         fgspec = NULL,
+                         verbose = getOption("orgdata.verbose"),
+                         year = NULL,
+                         aggregate = getOption("orgdata.aggregate")){
 
   GEO <- NULL
 
@@ -52,19 +55,28 @@ is_aggregate <- function(dt, fgspec, verbose = getOption("orgdata.verbose"), yea
   source <- is_geo_level(dt[!is.na(GEO), GEO][1])
   aggCol <- find_column_multi(spec = fgspec, "AGGKOL") #Other columns to aggregate
 
-  nSpec <- length(aggSpec)
-  DT <- vector(mode = "list", length = nSpec)
-  for (i in seq_len(nSpec)) {
-    dtt <- do_aggregate(dt = dt,
-                        source = source,
-                        level = aggSpec[i],
-                        year = year,
-                        aggregate.col = aggCol)
-    DT[[i]] <- data.table::copy(dtt)
-    gc()
+  if (aggregate){
+    nSpec <- length(aggSpec)
+    DT <- vector(mode = "list", length = nSpec)
+    for (i in seq_len(nSpec)) {
+      dtt <- do_aggregate(dt = dt,
+                          source = source,
+                          level = aggSpec[i],
+                          year = year,
+                          aggregate.col = aggCol)
+      DT[[i]] <- data.table::copy(dtt)
+      gc()
+      rm(dtt)
+    }
+    dt <- data.table::rbindlist(DT, use.names = TRUE, fill = TRUE)
+  } else {
+    is_verbose(x = "", msg = "Dataset will not be aggregated!", type = "warn")
+    dt <- do_recode_without_aggregate(dt = dt,
+                                      source = source,
+                                      year = year)
   }
-  rm(dtt)
-  data.table::rbindlist(DT, use.names = TRUE, fill = TRUE)
+
+  return(dt)
 }
 
 ## identify geo level base on number of digits in codes

@@ -10,6 +10,11 @@ Things in `dev` branch
 
 - Fixed #139 for `orgdata.debug.geo` keep original geo codes for enumeration
   areas before adding 9999. (#140)
+- Fixed #142 show codes that have problem to recode directly instead of row
+  numbers (#144)
+- Save all codes that have problem in `log` environment for easy access. To list
+  the codes is either with `log$code00` or `log$codeShort`
+- Recode geo even when argument `aggregate = FALSE` in `make_file()` function.
 
 # orgdata 0.4.2
 
