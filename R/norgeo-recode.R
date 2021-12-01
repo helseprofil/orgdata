@@ -48,7 +48,6 @@ do_geo_recode <- function(dt = NULL,
     dt <- is_grunnkrets(dt)
     dt <- is_grunnkrets_na(dt)
     dt <- is_grunnkrets_0000(dt)
-    dt <- is_grunnkrets_before_2002(dt, year, con)
   }
 
   data.table::setkey(dt, GEO)
@@ -190,29 +189,6 @@ is_grunnkrets <- function(dt){
   dt[, dummy_grk := NULL]
 }
 
-## Grunnkrets codes for change starts from 2002. All others before that need to
-## have dummy from municipality to be able to recode to current geo code
-is_grunnkrets_before_2002 <- function(dt, year, con){
-  GEO <- Geo_Dummy <- GEO_New <- NULL
-  yr <- unique(dt$AAR)
-
-  yrOld <- is.element(yr, 1980:2001)
-
-  if (yrOld){
-    geoTable <- paste0("kommune", year)
-    geoDT <- find_spec("geo-recode-dummy.sql", char = geoTable, con = con, char2 = 2002)
-    data.table::setDT(geoDT)
-
-    oldCodes <- as.integer(unique(geoDT$oldCode))
-    dt[ , Geo_Dummy := sub("\\d{4}$", "", GEO) ]
-    dt[, GEO_New := data.table::fcase(Geo_Dummy %in% oldCodes, sub("\\d{4}$", "9999", GEO),
-                                      default = NA)]
-    dt[!is.na(GEO_New), GEO := as.integer(GEO_New)]
-    dt[, c("Geo_Dummy", "GEO_New") := NULL]
-  }
-  return(dt)
-}
-
 ## Grunnkrets have btw 7 to 8 digits only
 is_geo_oddeven <- function(x){
 
@@ -227,6 +203,7 @@ is_geo_oddeven <- function(x){
 ## Don't overflood the console!
 is_check_geo <- function(idx){
   ## idx - Row index
+  idx <- data.table::copy(idx)
   idxNo <- is_short_code(idx, n1 = 10, n2 = 7)
   ## is_verbose(msg = is_line_short(), type = "other")
   is_verbose(idxNo, "Check GEO codes in original data for row(s):", type = "warn")
