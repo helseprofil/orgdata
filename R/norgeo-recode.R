@@ -41,6 +41,9 @@ do_geo_recode <- function(dt = NULL,
       data.table::set(dt, j = col, value = as.integer(dt[[col]]))
   }
 
+  # keep original code for debug.geo
+  dt[, origin := GEO]
+
   if (type == "grunnkrets"){
     dt <- is_grunnkrets(dt)
     dt <- is_grunnkrets_na(dt)
@@ -62,10 +65,10 @@ do_geo_recode <- function(dt = NULL,
   if (geo){
     is_debug_warn("`orgdata.debug.geo`")
     dt[code, on = "GEO", "geo2" := i.to]
-    geoVar <- c("rawGEO", "GEO")
-    data.table::setnames(dt, c("GEO", "geo2"), geoVar)
+    dt[, c("GEO", "dummy_grk") := NULL]
+    geoVar <- c("oriGEO", "GEO")
+    data.table::setnames(dt, c("origin", "geo2"), geoVar)
     data.table::setcolorder(dt, c(geoVar, "AAR"))
-    dt[, "dummy_grk" := NULL]
   } else {
     dt[code, on = "GEO", GEO := i.to]
   }

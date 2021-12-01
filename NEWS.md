@@ -6,6 +6,11 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.4.3
+
+- Fixed #139 for `orgdata.debug.geo` keep original geo codes for enumeration
+  areas before adding 9999.
+
 # orgdata 0.4.2
 
 - Use options `orgdata.debug.row` to select only specific row(s) for further
