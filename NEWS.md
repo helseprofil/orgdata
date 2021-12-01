@@ -17,7 +17,8 @@ Things in `dev` branch
   processing. It can be activated via global options with
   `options(orgdata.debug.row = 20:50)` or via argument `row = 20:50` in
   `make_file()` to select row 20 to 50.
-- Fixed #135 with incorrect geo recode.
+- Fixed #135 with incorrect geo recode. (#131)
+- Make multiple filegroups via `make_filegroups`. (#137)
 
 # orgdata 0.4.1
 - Fixed #132 LANDSSB must be string
