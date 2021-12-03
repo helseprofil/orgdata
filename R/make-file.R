@@ -161,7 +161,7 @@ make_file <- function(group = NULL,
   data.table::setcolorder(outDT, orderCols)
 
   if (save) {
-    save_file(dt = outDT, group = group, fgSpec = fgSpec)
+    save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
 
   return(outDT[])
