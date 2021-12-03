@@ -5,6 +5,12 @@ Things in `dev` branch
 - Compute function to create a new category based on the existing categories eg.
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
+  
+# orgdata 0.4.4
+
+- Add `codeDelete` in `log` for geographical codes that aren't able to be
+  merged. The codes will be excluded in the dataset. To access all the deleted
+  codes use `log$codeDelete`. (#149)
 
 # orgdata 0.4.3
 

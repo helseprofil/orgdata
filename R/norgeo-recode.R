@@ -211,7 +211,7 @@ is_grunnkrets_0000 <- function(dt){
     is_verbose(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
     is_check_geo(notCodes)
     is_verbose(x = "xxxx9999", msg = "They are now recoded with ending:", type = "note")
-    is_verbose(x = "log$code00", msg = "To see all codes, run command:")
+    is_verbose(x = "log$code00", msg = "To see these codes, run command:")
   }
 
   return(dt)
@@ -238,7 +238,7 @@ is_grunnkrets <- function(dt){
   is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
   is_check_geo(notCodes)
   is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
-  is_verbose(x = "log$codeShort", msg = "To see all codes, run command:")
+  is_verbose(x = "log$codeShort", msg = "To see these codes, run command:")
 
   for (i in idx){
 
@@ -295,6 +295,7 @@ is_warn_geo_merge <- function(x, y, vector = FALSE){
     is_log(value = dcode, x = "codeDelete")
     is_verbose(x = length(dcode), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
     is_verbose(x = codes, msg = "These are the codes:")
+    is_verbose(x = "log$codeDelete", msg = "To see these codes, run command:")
   }
 
   return(dcode)
