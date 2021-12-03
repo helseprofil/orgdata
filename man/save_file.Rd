@@ -5,27 +5,29 @@
 \alias{lagre_fil}
 \title{Save Data to CSV file}
 \usage{
-save_file(dt = NULL, group = NULL, path = NULL, date = FALSE, fgSpec = NULL)
+save_file(dt = NULL, name = NULL, path = NULL, date = FALSE, fgSpec = NULL)
 
-lagre_fil(dt = NULL, group = NULL, path = NULL, date = FALSE, fgSpec = NULL)
+lagre_fil(dt = NULL, name = NULL, path = NULL, date = FALSE, fgSpec = NULL)
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
-\item{group}{The group of files (\emph{filgruppe})}
+\item{name}{Filename for the \code{.csv} file or filegroup name}
 
-\item{path}{Folder path to save the file. If not specified then the path
-must to be specified in Access registration database}
+\item{path}{Folder path to save the file. If not specified then \code{name} must
+be a valide filegroup \emph{(FILGRUPPE)} and the path must
+be specified in Access registration database}
 
-\item{date}{Output file will be named with date and time}
+\item{date}{Use date and time as part of the filename}
 
 \item{fgSpec}{File group specification from Access registration database}
 }
 \description{
-Save data as a \code{.csv} format file with semicolon \verb{;} as seperation.
-The file will be saved to the specified folder in \code{path} or as in Access regstration database
-with the root as in \code{getOption("orgdata.folder.data")}. Use argument \code{save = TRUE}
-in \code{make_file()} will activate \code{save_file()} directly. Else you can call
+Save data as a \code{.csv} format file with semicolon \verb{;} as
+seperation. The file will be saved to the specified folder in \code{path} or as
+in Access regstration database with the root as in
+\code{getOption("orgdata.folder.data")}. Use argument \code{save = TRUE} in
+\code{make_file()} will activate \code{save_file()} directly. Else you can call
 \code{save_file()} to save the object output from \code{make_file()}
 }
 \examples{

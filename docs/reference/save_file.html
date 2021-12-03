@@ -47,10 +47,11 @@
 
 
 <meta property="og:title" content="Save Data to CSV file — save_file" />
-<meta property="og:description" content="Save data as a .csv format file with semicolon ; as seperation.
-The file will be saved to the specified folder in path or as in Access regstration database
-with the root as in getOption(&quot;orgdata.folder.data&quot;). Use argument save = TRUE
-in make_file() will activate save_file() directly. Else you can call
+<meta property="og:description" content="Save data as a .csv format file with semicolon ; as
+seperation. The file will be saved to the specified folder in path or as
+in Access regstration database with the root as in
+getOption(&quot;orgdata.folder.data&quot;). Use argument save = TRUE in
+make_file() will activate save_file() directly. Else you can call
 save_file() to save the object output from make_file()" />
 <meta property="og:image" content="/logo.png" />
 
@@ -147,16 +148,17 @@ save_file() to save the object output from make_file()" />
     </div>
 
     <div class="ref-description">
-    <p>Save data as a <code>.csv</code> format file with semicolon <code>;</code> as seperation.
-The file will be saved to the specified folder in <code>path</code> or as in Access regstration database
-with the root as in <code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.folder.data")</a></code>. Use argument <code>save = TRUE</code>
-in <code><a href='make_file.html'>make_file()</a></code> will activate <code>save_file()</code> directly. Else you can call
+    <p>Save data as a <code>.csv</code> format file with semicolon <code>;</code> as
+seperation. The file will be saved to the specified folder in <code>path</code> or as
+in Access regstration database with the root as in
+<code><a href='https://rdrr.io/r/base/options.html'>getOption("orgdata.folder.data")</a></code>. Use argument <code>save = TRUE</code> in
+<code><a href='make_file.html'>make_file()</a></code> will activate <code>save_file()</code> directly. Else you can call
 <code>save_file()</code> to save the object output from <code><a href='make_file.html'>make_file()</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>save_file</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>FALSE</span>, fgSpec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>save_file</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>FALSE</span>, fgSpec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>lagre_fil</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>FALSE</span>, fgSpec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+<span class='fu'>lagre_fil</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>FALSE</span>, fgSpec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,17 +168,18 @@ in <code><a href='make_file.html'>make_file()</a></code> will activate <code>sav
       <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
     </tr>
     <tr>
-      <th>group</th>
-      <td><p>The group of files (<em>filgruppe</em>)</p></td>
+      <th>name</th>
+      <td><p>Filename for the <code>.csv</code> file or filegroup name</p></td>
     </tr>
     <tr>
       <th>path</th>
-      <td><p>Folder path to save the file. If not specified then the path
-must to be specified in Access registration database</p></td>
+      <td><p>Folder path to save the file. If not specified then <code>name</code> must
+be a valide filegroup <em>(FILGRUPPE)</em> and the path must
+be specified in Access registration database</p></td>
     </tr>
     <tr>
       <th>date</th>
-      <td><p>Output file will be named with date and time</p></td>
+      <td><p>Use date and time as part of the filename</p></td>
     </tr>
     <tr>
       <th>fgSpec</th>
