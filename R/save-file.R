@@ -1,14 +1,16 @@
 #' @title Save Data to CSV file
-#' @description Save data as a `.csv` format file with semicolon `;` as seperation.
-#' The file will be saved to the specified folder in `path` or as in Access regstration database
-#' with the root as in `getOption("orgdata.folder.data")`. Use argument `save = TRUE`
-#' in `make_file()` will activate `save_file()` directly. Else you can call
-#' `save_file()` to save the object output from `make_file()`
+#' @description Save data as a `.csv` format file with semicolon `;` as
+#'   seperation. The file will be saved to the specified folder in `path` or as
+#'   in Access regstration database with the root as in
+#'   `getOption("orgdata.folder.data")`. Use argument `save = TRUE` in
+#'   `make_file()` will activate `save_file()` directly. Else you can call
+#'   `save_file()` to save the object output from `make_file()`
 #' @inheritParams do_split
-#' @inheritParams make_file
-#' @param path Folder path to save the file. If not specified then the path
-#'  must to be specified in Access registration database
-#' @param date Output file will be named with date and time
+#' @param name Filename for the `.csv` file or filegroup name
+#' @param path Folder path to save the file. If not specified then `name` must
+#'   be a valide filegroup \emph{(FILGRUPPE)} and the path must
+#'   be specified in Access registration database
+#' @param date Use date and time as part of the filename
 #' @param fgSpec File group specification from Access registration database
 #' @examples
 #' \dontrun{
@@ -22,14 +24,14 @@
 #' @export
 
 save_file <- function(dt = NULL,
-                      group = NULL,
+                      name = NULL,
                       path = NULL,
                       date = FALSE,
                       fgSpec = NULL){
   is_null(dt)
-  is_null(group)
+  is_null(name)
 
-  file <- is_file_csv(group = group, path = path, date = date, fgSpec = fgSpec)
+  file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec)
   data.table::fwrite(dt, file = file, sep = ";")
 }
 
@@ -54,13 +56,16 @@ is_file_csv <- function(group, path, date, verbose = getOption("orgdata.verbose"
     fileOut <- file.path(fpath, fileName)
   } else {
     fileOut <- file.path(path, fileName)
-    if (!fs::dir_exists(path)) {stop(simpleError(message = "Folder not found!", call = path))}
+    if (!fs::dir_exists(path)) {
+      is_stop(msg = "Folder not found!", var = path)
+    }
   }
 
-  if (verbose){
-    message("Save file: ", fileOut)
-  }
-  invisible(fileOut)
+    if (verbose){
+      message("Save file: ", fileOut)
+    }
+
+    return(fileOut)
 }
 
 is_save_path <- function(group = NULL, fgSpec = NULL){
@@ -82,6 +87,10 @@ is_save_path <- function(group = NULL, fgSpec = NULL){
     )
   }
 
+  if (nrow(fgSpec) == 0){
+    is_stop("Invalid Filegroup or `path` is missing")
+  }
+
   folder <- fgSpec$UTMAPPE
   fullPath <- file.path(getOption("orgdata.folder.data"), folder)
   ## fullPath <- normalizePath(fullPath, winslash = "/")
@@ -91,5 +100,5 @@ is_save_path <- function(group = NULL, fgSpec = NULL){
     fs::dir_create(fullPath)
   }
 
-  invisible(fullPath)
+  return(fullPath)
 }
