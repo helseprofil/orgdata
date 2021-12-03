@@ -284,7 +284,6 @@ is_warn_geo_merge <- function(x, y, vector = FALSE){
     x <- unique(x[!is.na(x)])
     y <- unique(y[!is.na(y)])
   } else {
-
     dtc <- unique(x[!is.na(GEO)]$GEO)
     x <- setdiff(dtc, unique(y[!is.na(to)]$to))
     y <- unique(y[!is.na(GEO)]$GEO)
@@ -293,7 +292,7 @@ is_warn_geo_merge <- function(x, y, vector = FALSE){
   dcode <- setdiff(x, y)
   if (length(dcode) > 0){
     codes <- is_short_code(dcode, n1 = 10, n2 = 8)
-    ## is_verbose(msg = is_line_short(), type = "other")
+    is_log(value = dcode, x = "codeDelete")
     is_verbose(x = length(dcode), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
     is_verbose(x = codes, msg = "These are the codes:")
   }
