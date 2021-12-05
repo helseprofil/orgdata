@@ -140,11 +140,18 @@ is_debug_warn <- function(opt){
 
 is_stop <- function(msg, var = NULL){
   if (!is.null(var)){
+    var <- is_long_vector(var)
     msg <- paste(msg, var, sep = " ")
   }
   stop(simpleError(msg))
 }
 
+is_long_vector <- function(vec){
+  if (length(vec) > 1){
+    vec <- paste_cols(vec)
+  }
+  return(vec)
+}
 
 ## For paste of long vectors ie. many columnames,
 ## to be nicely displayed in a message

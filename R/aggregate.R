@@ -4,11 +4,11 @@
 #'   granularity level than the `level` input.
 #' @inheritParams do_split
 #' @param source What geographical granularity codes that is available in the
-#'   source data. This will be used for merging with the output from
-#'   `geo_level()`
-#' @param level Geographical granularity for aggregating data to.
-#' @param year Which year the georaphical code is valid for. If not specified,
-#'   then it will be base on the year in source data ie. column `AAR`
+#'   source data. This will be used for merging with the geo codebook generated
+#'   from `geo_level()`
+#' @param level Geographical granularity for aggregating data to
+#' @param year Which year of georaphical code to use for recoding and
+#'   aggregating. If not specified, then current year will be used
 #' @param aggregate.col Other columns to aggregate other than the standard ie.
 #'   `UTDANN`, `LANDSSB`, `LANDBAK` and `INNVKAT`
 #' @param check If TRUE then output will keep variables for geographical levels
@@ -71,15 +71,14 @@ do_aggregate <- function(dt = NULL,
   geoDB <- KHelse$new(geoFile)
 
   ## validTo in the database `tblGeo` is a character
-  if (!is.null(year)) {
-    yr <- dt[AAR == year, ][1]
-  } else {
-    yr <- as.integer(format(Sys.Date(), "%Y"))
+
+  if (is.null(year)){
+    year <- as.integer(format(Sys.Date(), "%Y"))
   }
 
   ## recode GEO codes
-  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
-  dt <- do_geo_recode(dt = dt, code = code, type = source, year = yr, con = geoDB$dbconn)
+  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = year)
+  dt <- do_geo_recode(dt = dt, code = code, type = source, year = year, con = geoDB$dbconn)
 
   if (getOption("orgdata.debug.geo")){
     return(dt)
@@ -90,7 +89,7 @@ do_aggregate <- function(dt = NULL,
     "geo-code.sql",
     con = geoDB$dbconn,
     char = source,
-    char2 = yr,
+    char2 = year,
     opposite = TRUE
   )
   data.table::setDT(geoDT)
