@@ -17,13 +17,13 @@ do_aggregate(
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
 \item{source}{What geographical granularity codes that is available in the
-source data. This will be used for merging with the output from
-\code{geo_level()}}
+source data. This will be used for merging with the geo codebook generated
+from \code{geo_level()}}
 
-\item{level}{Geographical granularity for aggregating data to.}
+\item{level}{Geographical granularity for aggregating data to}
 
-\item{year}{Which year the georaphical code is valid for. If not specified,
-then it will be base on the year in source data ie. column \code{AAR}}
+\item{year}{Which year of georaphical code to use for recoding and
+aggregating. If not specified, then current year will be used}
 
 \item{aggregate.col}{Other columns to aggregate other than the standard ie.
 \code{UTDANN}, \code{LANDSSB}, \code{LANDBAK} and \code{INNVKAT}}

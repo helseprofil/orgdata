@@ -169,17 +169,17 @@ granularity level than the <code>level</code> input.</p>
     <tr>
       <th>source</th>
       <td><p>What geographical granularity codes that is available in the
-source data. This will be used for merging with the output from
-<code><a href='geo_level.html'>geo_level()</a></code></p></td>
+source data. This will be used for merging with the geo codebook generated
+from <code><a href='geo_level.html'>geo_level()</a></code></p></td>
     </tr>
     <tr>
       <th>level</th>
-      <td><p>Geographical granularity for aggregating data to.</p></td>
+      <td><p>Geographical granularity for aggregating data to</p></td>
     </tr>
     <tr>
       <th>year</th>
-      <td><p>Which year the georaphical code is valid for. If not specified,
-then it will be base on the year in source data ie. column <code>AAR</code></p></td>
+      <td><p>Which year of georaphical code to use for recoding and
+aggregating. If not specified, then current year will be used</p></td>
     </tr>
     <tr>
       <th>aggregate.col</th>

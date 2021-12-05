@@ -11,6 +11,9 @@ Things in `dev` branch
 - Add `codeDelete` in `log` for geographical codes that aren't able to be
   merged. The codes will be excluded in the dataset. To access all the deleted
   codes use `log$codeDelete`. (#149)
+- Able to select any valid year to recode geographical codes and aggregate
+  accordingly. But recoding geographical codes backward isn't possible. (#153)
+- Error message will split a long vector if exist. (#153)
 
 # orgdata 0.4.3
 

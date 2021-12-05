@@ -13,7 +13,7 @@ find_implicit_null(imp, year, colstr, level)
 
 \item{colstr}{Column structure or Class type}
 
-\item{level}{Geographical granularity for aggregating data to.}
+\item{level}{Geographical granularity for aggregating data to}
 }
 \description{
 Create a dataset with implicit null for every selected columns
