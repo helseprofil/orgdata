@@ -5,7 +5,7 @@
 #' @inheritParams do_split
 #' @param source What geographical granularity codes that is available in the
 #'   source data. This will be used for merging with the output from
-#'   `geo_level()`
+#'   `geo_levels()`
 #' @param year Which year the georaphical code is valid for. If not specified,
 #'   then it will be base on the year in source data ie. column `AAR`
 #' @param check If TRUE then output will keep variables for geographical levels

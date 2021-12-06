@@ -32,7 +32,7 @@ geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblG
 
   DT <- norgeo::cast_geo(year = year)
   DT <- is_grunnkrets_00(DT)
-  geo$tblvalue <- DT[, batch := is_batch("date")]
+  geo$tblvalue <- DT[, "batch" := is_batch("date")]
   geo$tblname <- table
 
   is_write(write, table, geo$dbconn)
@@ -62,7 +62,7 @@ geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblG
 #' @param type Type of regional granularity ie. enumeration area (grunnkrets)
 #' @param from Starting year for the range period. Current year is the default if left empty
 #' @param to End of year for the range period. Current year is the default if left empty
-#' @inheritParams geo_level
+#' @inheritParams geo_levels
 #' @importFrom norgeo track_change
 #' @family geo codes functions
 #' @examples
@@ -76,6 +76,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
                        to = NULL,
                        write = FALSE,
                        append = FALSE) {
+
   type <- match.arg(type)
   yr <- to
   if (is.null(to)) {
@@ -94,10 +95,10 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   if (type == "grunnkrets"){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
     dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
-    geo$tblvalue <- dtGrunn[, batch := is_batch("date")]
+    geo$tblvalue <- dtGrunn[, "batch" := is_batch("date")]
   } else                     {
     dtLevels <- norgeo::track_change(type = type, from = from, to = to)
-    geo$tblvalue <- dtLevels[, batch := is_batch("date")]
+    geo$tblvalue <- dtLevels[, "batch" := is_batch("date")]
   }
 
   geo$tblname <- tblName
