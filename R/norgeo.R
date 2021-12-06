@@ -10,7 +10,7 @@
 #' @importFrom norgeo cast_geo
 #' @family geo codes functions
 #' @export
-geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo") {
+geo_level <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
   is_null(year)
   is_write_msg(msg = "fetch")
   ## break msg before showing message from cast_geo
@@ -30,24 +30,23 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   geo$tblvalue <- DT[, batch := is_batch("date")]
   geo$tblname <- table
 
-  write <- is_write(write, table, geo$dbconn)
+  is_write(write, table, geo$dbconn)
+
   if (write) {
     is_write_msg(msg = "write")
     geo$db_write(write = write)
     msgWrite <- paste0("Write table `", table, "` is completed in: \n")
-    is_colour_txt(x = geoFile, msg = msgWrite, type = "note")
-    ## message("Write table `", table, "` is completed in: \n", geoFile)
+    is_verbose(x = geoFile, msg = msgWrite, type = "note")
   }
 
   if (append) {
     is_write_msg(msg = "append")
     geo$db_write(append = append)
     msgAppend <- paste0("Append data to `", table, "` is completed in: \n")
-    is_colour_txt(x = geoFile, msg = msgAppend, type = "note")
-    ## message("Append data to `", table, "` is completed in: \n", geoFile)
+    is_verbose(x = geoFile, msg = msgAppend, type = "note")
   }
 
-  invisible(geo$tblvalue)
+  return(geo$tblvalue)
 }
 
 #' @title Geographical Codes
@@ -65,7 +64,8 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
 geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
                        from = NULL,
                        to = NULL,
-                       write = FALSE) {
+                       write = FALSE,
+                       append = FALSE) {
   type <- match.arg(type)
   yr <- to
   if (is.null(to)) {
@@ -92,16 +92,23 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 
   geo$tblname <- tblName
 
-  write <- is_write(write, tblName, geo$dbconn)
+  is_write(write, tblName, geo$dbconn)
+
   if (write) {
     is_write_msg(msg = "write")
     geo$db_write(write = write)
     msgWrite <- paste0("Write table `", tblName, "` is completed in: \n")
-    is_colour_txt(x = geoFile, msg = msgWrite, type = "note")
-    ## message("Write table `", tblName, "` is completed in: \n", geoFile)
+    is_verbose(x = geoFile, msg = msgWrite, type = "note")
   }
 
-  invisible(geo$tblvalue)
+  if (append) {
+    is_write_msg(msg = "append")
+    geo$db_write(append = append)
+    msgAppend <- paste0("Append data to `", tblName, "` is completed in: \n")
+    is_verbose(x = geoFile, msg = msgAppend, type = "note")
+  }
+
+  return(geo$tblvalue)
 }
 
 
@@ -124,12 +131,29 @@ get_geo_dummy <- function(dt, from, to){
 is_write <- function(write, table, con) {
   tblExist <- DBI::dbExistsTable(conn = con, name = table)
   if (isTRUE(write) && isTRUE(tblExist)) {
-    msgs <- sprintf("\nWoops!! Table `%s` allready exists. Do you want to overwrite?", table)
+    msgs <- sprintf("\nWoops!! Table `%s` allready exists. What will you do?", table)
     ## write <- utils::askYesNo(msg = msgs, )
-    yesNo <- utils::menu(c("Yes", "No"), title = msgs)
-    write <- ifelse(yesNo == 1, TRUE, FALSE)
+    answer <- utils::menu(c("Overwrite", "Append", "Cancel"), title = msgs)
   }
-  return(write)
+
+  if (answer == 1){
+    is_assign_var("write", TRUE)
+    is_assign_var("append", FALSE)
+  }
+
+  if (answer == 2){
+    is_assign_var("write", FALSE)
+    is_assign_var("append", TRUE)
+  }
+
+  if (answer == 3){
+    is_assign_var("write", FALSE)
+    is_assign_var("append", FALSE)
+  }
+}
+
+is_assign_var <- function(var, val){
+  assign(var, val, envir = sys.frames()[[1]])
 }
 
 
