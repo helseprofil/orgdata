@@ -45,7 +45,7 @@ lagre_fil <- save_file
 is_file_csv <- function(group, path, date, verbose = getOption("orgdata.verbose"), fgSpec){
 
   if (date){
-    batch <- format(Sys.time(), format = "%Y%m%d_%H%M%S")
+    batch <- is_batch("time")
     fileName <- paste0(group, "_", batch, ".csv")
   } else {
     fileName <- paste0(group, ".csv")

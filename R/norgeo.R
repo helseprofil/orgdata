@@ -9,8 +9,13 @@
 #' @param table Table name to be created in the database. Default is `tblGeo`
 #' @importFrom norgeo cast_geo
 #' @family geo codes functions
+#' @examples
+#' \dontrun{
+#' geo_levels(2020, write = TRUE)
+#' geo_levels(2021, append = TRUE)
+#' }
 #' @export
-geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGeo") {
+geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
   is_null(year)
   is_write_msg(msg = "fetch")
   ## break msg before showing message from cast_geo
@@ -26,27 +31,27 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   on.exit(geo$db_close(), add = TRUE)
 
   DT <- norgeo::cast_geo(year = year)
-  geo$tblvalue <- is_grunnkrets_00(DT)
+  DT <- is_grunnkrets_00(DT)
+  geo$tblvalue <- DT[, "batch" := is_batch("date")]
   geo$tblname <- table
 
-  write <- is_write(write, table, geo$dbconn)
+  is_write(write, table, geo$dbconn)
+
   if (write) {
     is_write_msg(msg = "write")
     geo$db_write(write = write)
     msgWrite <- paste0("Write table `", table, "` is completed in: \n")
-    is_colour_txt(x = geoFile, msg = msgWrite, type = "note")
-    ## message("Write table `", table, "` is completed in: \n", geoFile)
+    is_verbose(x = geoFile, msg = msgWrite, type = "note")
   }
 
   if (append) {
     is_write_msg(msg = "append")
     geo$db_write(append = append)
     msgAppend <- paste0("Append data to `", table, "` is completed in: \n")
-    is_colour_txt(x = geoFile, msg = msgAppend, type = "note")
-    ## message("Append data to `", table, "` is completed in: \n", geoFile)
+    is_verbose(x = geoFile, msg = msgAppend, type = "note")
   }
 
-  invisible(geo$tblvalue)
+  return(geo$tblvalue)
 }
 
 #' @title Geographical Codes
@@ -57,14 +62,21 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
 #' @param type Type of regional granularity ie. enumeration area (grunnkrets)
 #' @param from Starting year for the range period. Current year is the default if left empty
 #' @param to End of year for the range period. Current year is the default if left empty
-#' @inheritParams geo_level
+#' @inheritParams geo_levels
 #' @importFrom norgeo track_change
 #' @family geo codes functions
+#' @examples
+#' \dontrun{
+#' geo_recode(type = "grunnkrets", from = 2018, to = 2021, write = TRUE)
+#' geo_recode(type = "grunnkrets", from = 2018, to = 2021, append = TRUE)
+#' }
 #' @export
 geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
                        from = NULL,
                        to = NULL,
-                       write = FALSE) {
+                       write = FALSE,
+                       append = FALSE) {
+
   type <- match.arg(type)
   yr <- to
   if (is.null(to)) {
@@ -82,30 +94,38 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   cat("..")
   if (type == "grunnkrets"){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    geo$tblvalue <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
+    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
+    geo$tblvalue <- dtGrunn[, "batch" := is_batch("date")]
   } else                     {
-    geo$tblvalue <- norgeo::track_change(type = type, from = from, to = to)
+    dtLevels <- norgeo::track_change(type = type, from = from, to = to)
+    geo$tblvalue <- dtLevels[, "batch" := is_batch("date")]
   }
 
   geo$tblname <- tblName
 
-  write <- is_write(write, tblName, geo$dbconn)
+  is_write(write, tblName, geo$dbconn)
+
   if (write) {
     is_write_msg(msg = "write")
     geo$db_write(write = write)
     msgWrite <- paste0("Write table `", tblName, "` is completed in: \n")
-    is_colour_txt(x = geoFile, msg = msgWrite, type = "note")
-    ## message("Write table `", tblName, "` is completed in: \n", geoFile)
+    is_verbose(x = geoFile, msg = msgWrite, type = "note")
   }
 
-  invisible(geo$tblvalue)
+  if (append) {
+    is_write_msg(msg = "append")
+    geo$db_write(append = append)
+    msgAppend <- paste0("Append data to `", tblName, "` is completed in: \n")
+    is_verbose(x = geoFile, msg = msgAppend, type = "note")
+  }
+
+  return(geo$tblvalue)
 }
 
 
 #' @title Create Dummy Enumeration Area Codes
 #' @description Some of the downloaded enumeration area codes from SSB lack
-#'   codes for missing ie. `xxxx9999`. In addition change for enumeration area
-#'   codes prior to 2002 aren't available. This function create these codes that
+#'   codes for missing ie. `xxxx9999`. This function create these codes that
 #'   are needed for recoding older codes to current enumeration area codes.
 #' @param dt Downloaded data with norgeo::track_change()
 #' @inheritParams geo_recode
@@ -122,12 +142,29 @@ get_geo_dummy <- function(dt, from, to){
 is_write <- function(write, table, con) {
   tblExist <- DBI::dbExistsTable(conn = con, name = table)
   if (isTRUE(write) && isTRUE(tblExist)) {
-    msgs <- sprintf("\nWoops!! Table `%s` allready exists. Do you want to overwrite?", table)
+    msgs <- sprintf("\nWoops!! Table `%s` allready exists. What will you do?", table)
     ## write <- utils::askYesNo(msg = msgs, )
-    yesNo <- utils::menu(c("Yes", "No"), title = msgs)
-    write <- ifelse(yesNo == 1, TRUE, FALSE)
+    answer <- utils::menu(c("Overwrite", "Append", "Cancel"), title = msgs)
   }
-  return(write)
+
+  if (answer == 1){
+    is_assign_var("write", TRUE)
+    is_assign_var("append", FALSE)
+  }
+
+  if (answer == 2){
+    is_assign_var("write", FALSE)
+    is_assign_var("append", TRUE)
+  }
+
+  if (answer == 3){
+    is_assign_var("write", FALSE)
+    is_assign_var("append", FALSE)
+  }
+}
+
+is_assign_var <- function(var, val){
+  assign(var, val, envir = sys.frames()[[1]])
 }
 
 
@@ -159,19 +196,22 @@ is_unknown_grunnkrets <- function(dt, kom){
 }
 
 
-## Grunnkrets that ends with 00 has no corresponds code from API
-## Needs to do it manually comparing the second line with grunnkrets
-## ends with 00 exist and has missing other geo levels
+## Grunnkrets that ends with 00 has no corresponds code from API. Needs to do it
+## manually by comparing the second line of grunnkrets code. If grunnkrets code
+## ends with 00 exists but has missing for kommune, fylke and bydel then add the
+## code to these geo levels accordingly.
 is_grunnkrets_00 <- function(dt){
   code <- level <- NULL
-  is_verbose(msg = "Searching geo level with NA due to grunnkrets end with 00 ....")
+  is_verbose(msg = "Searching for geo level with NA due to grunnkrets code ends with 00")
 
   dt <- copy(dt)
   data.table::setkey(dt, code)
   idx <- dt[, .I[level == "grunnkrets" & code %like% "00$"]]
   levels <- c("kommune", "fylke","bydel")
 
+  #cat(".") for every 40th index number
   cax <- idx[seq(1, length(idx), 40)]
+
   ## pb <- txtProgressBar(min = 0, max = length(idx), style = 3)
 
   for (i in idx){
@@ -179,7 +219,7 @@ is_grunnkrets_00 <- function(dt){
     ixrange <- c(i, i + 1)
     code01 <- sub("\\d{2}$", "", dt[ixrange[1], code])
     code02 <- sub("\\d{2}$", "", dt[ixrange[2], code])
-
+    ## Similar codes indicate first and second line are of the same kommune
     same <- identical(code01, code02)
 
     if (same){

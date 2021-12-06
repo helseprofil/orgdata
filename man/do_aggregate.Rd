@@ -18,7 +18,7 @@ do_aggregate(
 
 \item{source}{What geographical granularity codes that is available in the
 source data. This will be used for merging with the geo codebook generated
-from \code{geo_level()}}
+from \code{geo_levels()}}
 
 \item{level}{Geographical granularity for aggregating data to}
 

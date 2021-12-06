@@ -15,13 +15,12 @@ get_geo_dummy(dt, from, to)
 }
 \description{
 Some of the downloaded enumeration area codes from SSB lack
-codes for missing ie. \code{xxxx9999}. In addition change for enumeration area
-codes prior to 2002 aren't available. This function create these codes that
+codes for missing ie. \code{xxxx9999}. This function create these codes that
 are needed for recoding older codes to current enumeration area codes.
 }
 \seealso{
 Other geo codes functions: 
-\code{\link{geo_level}()},
+\code{\link{geo_levels}()},
 \code{\link{geo_recode}()}
 }
 \concept{geo codes functions}

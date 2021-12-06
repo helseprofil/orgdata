@@ -155,6 +155,7 @@
 <li>Add <code>codeDelete</code> in <code>log</code> for geographical codes that aren’t able to be merged. The codes will be excluded in the dataset. To access all the deleted codes use <code>log$codeDelete</code>. (<a href='https://github.com/helseprofil/orgdata/issues/149'>#149</a>)</li>
 <li>Able to select any valid year to recode geographical codes and aggregate accordingly. But recoding geographical codes backward isn’t possible. (<a href='https://github.com/helseprofil/orgdata/issues/153'>#153</a>)</li>
 <li>Error message will split a long vector if exist. (<a href='https://github.com/helseprofil/orgdata/issues/153'>#153</a>)</li>
+<li>Add column with batch date when the geographical codes were downloaded form SSB. (<a href='https://github.com/helseprofil/orgdata/issues/156'>#156</a>)</li>
 </ul>
 </div>
     <div id="orgdata-043" class="section level1">
@@ -332,7 +333,7 @@
 <h2 class="hasAnchor">
 <a href="#orgdata-022" class="anchor"></a>orgdata 0.2.2</h2>
 <ul>
-<li>Unknown bydel ie. <em>(uoppgitt)</em> is added when enumeration areas codes ie. <em>(grunnkrets)</em> for bydel is <code>XXXX9999</code> in function <code><a href="../reference/geo_level.html">geo_level()</a></code>.</li>
+<li>Unknown bydel ie. <em>(uoppgitt)</em> is added when enumeration areas codes ie. <em>(grunnkrets)</em> for bydel is <code>XXXX9999</code> in function <code>geo_level()</code>.</li>
 <li>Add unknown grunnkrets for kommune when not available since some of the datasets have unknown grunnkrets that aren’t listed in API downloaded data (<a href='https://github.com/helseprofil/orgdata/issues/39'>#39</a>).</li>
 <li>Exclude <code>TAB1</code>, <code>TAB2</code> and <code>TAB3</code> from being aggregated. (<a href='https://github.com/helseprofil/orgdata/issues/44'>#44</a>)</li>
 </ul>
