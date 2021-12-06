@@ -9,8 +9,13 @@
 #' @param table Table name to be created in the database. Default is `tblGeo`
 #' @importFrom norgeo cast_geo
 #' @family geo codes functions
+#' @examples
+#' \dontrun{
+#' geo_levels(2020, write = TRUE)
+#' geo_levels(2021, append = TRUE)
+#' }
 #' @export
-geo_level <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
+geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
   is_null(year)
   is_write_msg(msg = "fetch")
   ## break msg before showing message from cast_geo
@@ -60,6 +65,11 @@ geo_level <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGe
 #' @inheritParams geo_level
 #' @importFrom norgeo track_change
 #' @family geo codes functions
+#' @examples
+#' \dontrun{
+#' geo_recode(type = "grunnkrets", from = 2018, to = 2021, write = TRUE)
+#' geo_recode(type = "grunnkrets", from = 2018, to = 2021, append = TRUE)
+#' }
 #' @export
 geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
                        from = NULL,
