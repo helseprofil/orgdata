@@ -199,6 +199,15 @@ is_line_short <- function(){
   paste0("---------------------------------")
 }
 
+is_batch <- function(type = c("date", "time")){
+  type <- match.arg(type)
+  switch(type,
+         time = format(Sys.time(), format = "%Y%m%d_%H%M%S"),
+         date = Sys.Date(),
+         Sys.Date()
+         )
+}
+
 #' @title Reset options
 #' @description Reset orgdata options to default
 #' @examples reset_options()

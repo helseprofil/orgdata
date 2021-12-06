@@ -26,7 +26,8 @@ geo_level <- function(year = NULL, append = FALSE, write = FALSE, table = "tblGe
   on.exit(geo$db_close(), add = TRUE)
 
   DT <- norgeo::cast_geo(year = year)
-  geo$tblvalue <- is_grunnkrets_00(DT)
+  DT <- is_grunnkrets_00(DT)
+  geo$tblvalue <- DT[, batch := is_batch("date")]
   geo$tblname <- table
 
   write <- is_write(write, table, geo$dbconn)
@@ -82,9 +83,11 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   cat("..")
   if (type == "grunnkrets"){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    geo$tblvalue <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
+    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
+    geo$tblvalue <- dtGrunn[, batch := is_batch("date")]
   } else                     {
-    geo$tblvalue <- norgeo::track_change(type = type, from = from, to = to)
+    dtLevels <- norgeo::track_change(type = type, from = from, to = to)
+    geo$tblvalue <- dtLevels[, batch := is_batch("date")]
   }
 
   geo$tblname <- tblName
@@ -104,8 +107,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 
 #' @title Create Dummy Enumeration Area Codes
 #' @description Some of the downloaded enumeration area codes from SSB lack
-#'   codes for missing ie. `xxxx9999`. In addition change for enumeration area
-#'   codes prior to 2002 aren't available. This function create these codes that
+#'   codes for missing ie. `xxxx9999`. This function create these codes that
 #'   are needed for recoding older codes to current enumeration area codes.
 #' @param dt Downloaded data with norgeo::track_change()
 #' @inheritParams geo_recode
@@ -159,19 +161,22 @@ is_unknown_grunnkrets <- function(dt, kom){
 }
 
 
-## Grunnkrets that ends with 00 has no corresponds code from API
-## Needs to do it manually comparing the second line with grunnkrets
-## ends with 00 exist and has missing other geo levels
+## Grunnkrets that ends with 00 has no corresponds code from API. Needs to do it
+## manually by comparing the second line of grunnkrets code. If grunnkrets code
+## ends with 00 exists but has missing for kommune, fylke and bydel then add the
+## code to these geo levels accordingly.
 is_grunnkrets_00 <- function(dt){
   code <- level <- NULL
-  is_verbose(msg = "Searching geo level with NA due to grunnkrets end with 00 ....")
+  is_verbose(msg = "Searching for geo level with NA due to grunnkrets code ends with 00")
 
   dt <- copy(dt)
   data.table::setkey(dt, code)
   idx <- dt[, .I[level == "grunnkrets" & code %like% "00$"]]
   levels <- c("kommune", "fylke","bydel")
 
+  #cat(".") for every 40th index number
   cax <- idx[seq(1, length(idx), 40)]
+
   ## pb <- txtProgressBar(min = 0, max = length(idx), style = 3)
 
   for (i in idx){
@@ -179,7 +184,7 @@ is_grunnkrets_00 <- function(dt){
     ixrange <- c(i, i + 1)
     code01 <- sub("\\d{2}$", "", dt[ixrange[1], code])
     code02 <- sub("\\d{2}$", "", dt[ixrange[2], code])
-
+    ## Similar codes indicate first and second line are of the same kommune
     same <- identical(code01, code02)
 
     if (same){
