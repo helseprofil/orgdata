@@ -14,6 +14,8 @@ Things in `dev` branch
 - Able to select any valid year to recode geographical codes and aggregate
   accordingly. But recoding geographical codes backward isn't possible. (#153)
 - Error message will split a long vector if exist. (#153)
+- Add column with batch date when the geographical codes were downloaded form
+  SSB. (#156)
 
 # orgdata 0.4.3
 

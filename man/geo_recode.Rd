@@ -8,7 +8,8 @@ geo_recode(
   type = c("grunnkrets", "bydel", "kommune", "fylke"),
   from = NULL,
   to = NULL,
-  write = FALSE
+  write = FALSE,
+  append = FALSE
 )
 }
 \arguments{
@@ -20,6 +21,8 @@ geo_recode(
 
 \item{write}{Write table to the \code{orgdata.geo} database. It will overwrite
 the table if it already exists}
+
+\item{append}{Append the data to an existing table in the \code{orgdata.geo}}
 }
 \description{
 Create a table of current year geographical codes against previous
@@ -27,9 +30,15 @@ years geogprahical codes. This is used to recode the previous years codes to the
 current codes. Implementation of this function is base on \code{\link[norgeo:track_change]{norgeo::track_change()}}
 function.
 }
+\examples{
+\dontrun{
+geo_recode(type = "grunnkrets", from = 2018, to = 2021, write = TRUE)
+geo_recode(type = "grunnkrets", from = 2018, to = 2021, append = TRUE)
+}
+}
 \seealso{
 Other geo codes functions: 
-\code{\link{geo_level}()},
+\code{\link{geo_levels}()},
 \code{\link{get_geo_dummy}()}
 }
 \concept{geo codes functions}
