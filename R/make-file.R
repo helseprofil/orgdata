@@ -22,6 +22,7 @@
 #' @param implicitnull Default is `TRUE` to add implicit null to the dataset. Global options
 #'   with `orgdata.implicit.null`.
 #' @param row Select only specify row(s). Useful for debugging
+#' @inheritParams do_geo_recode
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
@@ -33,7 +34,8 @@ make_file <- function(group = NULL,
                       save = FALSE,
                       year = NULL,
                       implicitnull = getOption("orgdata.implicit.null"),
-                      row = getOption("orgdata.debug.row")
+                      row = getOption("orgdata.debug.row"),
+                      base = getOption("orgdata.recode.base")
                       ) {
 
   LEVEL <- NULL
@@ -120,7 +122,11 @@ make_file <- function(group = NULL,
     ## the variables are recoded eg. INNKAT is string before recorded to number
     ## dt <- is_col_int(dt)
 
-    dt <- is_aggregate(dt, fgspec = fgSpec, year = year, aggregate = aggregate)
+    dt <- is_aggregate(dt = dt,
+                       fgspec = fgSpec,
+                       year = year,
+                       aggregate = aggregate,
+                       base = base)
 
     DT[[i]] <- copy(dt)
     rm(dt)

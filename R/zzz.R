@@ -15,6 +15,7 @@ opt.orgdata <- list(
   orgdata.verbose = TRUE,
   orgdata.aggregate = TRUE,
   orgdata.implicit.null = TRUE,
+  orgdata.recode.base = FALSE,
 
   ## Number of TABS and VALS
   orgdata.tabs = 3,

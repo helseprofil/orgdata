@@ -14,6 +14,7 @@
 #' @param check If TRUE then output will keep variables for geographical levels
 #'   without aggregating it. This is useful to check for geographical codes that
 #'   are missing. Else use `options(orgdata.aggregate = FALSE)`
+#' @inheritParams do_geo_recode
 #' @examples
 #' \dontrun{
 #' # To aggregate source data with enumeration area codes ie. grunnkrets, to
@@ -39,7 +40,8 @@ do_aggregate <- function(dt = NULL,
                          ),
                          year = NULL,
                          aggregate.col = NULL,
-                         check = getOption("orgdata.debug.aggregate")) {
+                         check = getOption("orgdata.debug.aggregate"),
+                         base = getOption("orgdata.recode.base")) {
 
   VAL1 <- GEO <- AAR <- NULL
   fylke <- kommune <- bydel <- LEVEL <- LANDSSB <- NULL
@@ -78,7 +80,12 @@ do_aggregate <- function(dt = NULL,
 
   ## recode GEO codes
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = year)
-  dt <- do_geo_recode(dt = dt, code = code, type = source, year = year, con = geoDB$dbconn)
+  dt <- do_geo_recode(dt = dt,
+                      code = code,
+                      type = source,
+                      year = year,
+                      con = geoDB$dbconn,
+                      base = base)
 
   if (getOption("orgdata.debug.geo")){
     return(dt)
