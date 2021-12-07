@@ -11,6 +11,7 @@
 #' @param check If TRUE then output will keep variables for geographical levels
 #'   without aggregating it. This is useful to check for geographical codes that
 #'   are missing. Else use `options(orgdata.aggregate = FALSE)`
+#' @inheritParams do_geo_recode
 #' @examples
 #' \dontrun{
 #' # Source data with enumeration area codes ie. grunnkrets
@@ -27,7 +28,8 @@ do_recode_without_aggregate <- function(dt = NULL,
                                           "bydel"
                                         ),
                                         year = NULL,
-                                        check = getOption("orgdata.debug.aggregate")){
+                                        check = getOption("orgdata.debug.aggregate"),
+                                        base = getOption("orgdata.recode.base")){
   AAR <- NULL
   cat("..")
 
@@ -52,7 +54,12 @@ do_recode_without_aggregate <- function(dt = NULL,
   ## recode GEO codes
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
   cat("..\n")
-  dt <- do_geo_recode(dt = dt, code = code, type = source, year = yr, con = geoDB$dbconn)
+  dt <- do_geo_recode(dt = dt,
+                      code = code,
+                      type = source,
+                      year = yr,
+                      con = geoDB$dbconn,
+                      base = base)
 }
 
 #' @title Recode Geographical Codes
@@ -68,6 +75,9 @@ do_recode_without_aggregate <- function(dt = NULL,
 #'   then current year will be used.
 #' @inheritParams find_spec
 #' @param geo Keep old geographical code if TRUE. Default is FALSE.
+#' @param base Logical. If `TRUE` then use year in the original data as the base
+#'   year to recode the geographical codes. Default is `FALSE` and use all
+#'   available codes in geo codebook
 #' @examples
 #' \dontrun{
 #' code <- get_geo_recode(con = geo$dbconn, type = "grunnkrets")
@@ -86,9 +96,10 @@ do_geo_recode <- function(dt = NULL,
                             "bydel"),
                           year = NULL,
                           con = NULL,
-                          geo = getOption("orgdata.debug.geo")
+                          geo = getOption("orgdata.debug.geo"),
+                          base = getOption("orgdata.recode.base")
                           ){
-  GEO <- i.to <- NULL
+  GEO <- i.to <- changeOccurred <- NULL
 
   dt <- data.table::copy(dt)
 
@@ -109,6 +120,13 @@ do_geo_recode <- function(dt = NULL,
   }
 
   data.table::setkey(dt, GEO)
+
+  if (base){
+    baseYear <- min(unique(dt$AAR))
+    code <- code[changeOccurred >= as.integer(baseYear)]
+  }
+
+  code[, changeOccurred := NULL]
 
   xcode <- is_warn_geo_merge(dt, code, vector = FALSE)
   xind <- dt[, .I[GEO %in% xcode]]
@@ -131,12 +149,12 @@ do_geo_recode <- function(dt = NULL,
 }
 
 #' @title Get Previous and Current Geo Codes
-#' @description Get the geographical codes registered in `geo-database` which consist
-#'  of old and new codes that are applicable to the respective year.
+#' @description Get the geographical codes registered in `geo-database` which
+#'   consist of old and new codes that are applicable to the respective year.
 #' @inheritParams find_spec
 #' @inheritParams do_geo_recode
-#' @return A dataset with columns `GEO` and `to` representing the GEO
-#'  codes that will be recoded to a new code ie. `to`.
+#' @return A dataset with columns `GEO` and `to` representing the GEO codes that
+#'   will be recoded to a new code ie. `to`.
 #' @import data.table
 #' @family geo recode functions
 #' @export
@@ -146,7 +164,8 @@ get_geo_recode <- function(con = NULL,
                              "fylke",
                              "kommune",
                              "bydel"),
-                           year = NULL){
+                           year = NULL
+                           ){
 
   changeOccurred <- NULL
 
@@ -168,7 +187,7 @@ get_geo_recode <- function(con = NULL,
       data.table::set(geoDT, j = j, value = as.integer(geoDT[[j]]))
   }
 
-  geoDT[, changeOccurred := NULL]
+  ## geoDT[, changeOccurred := NULL]
   geoCols <- c("GEO", "to")
   data.table::setnames(geoDT, c("oldCode", "currentCode"), geoCols)
   data.table::setkeyv(geoDT, geoCols)

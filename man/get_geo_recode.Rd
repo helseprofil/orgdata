@@ -20,12 +20,12 @@ output after running \code{get_geo_recode()} function.}
 then current year will be used.}
 }
 \value{
-A dataset with columns \code{GEO} and \code{to} representing the GEO
-codes that will be recoded to a new code ie. \code{to}.
+A dataset with columns \code{GEO} and \code{to} representing the GEO codes that
+will be recoded to a new code ie. \code{to}.
 }
 \description{
-Get the geographical codes registered in \code{geo-database} which consist
-of old and new codes that are applicable to the respective year.
+Get the geographical codes registered in \code{geo-database} which
+consist of old and new codes that are applicable to the respective year.
 }
 \seealso{
 Other geo recode functions: 

@@ -10,7 +10,8 @@ do_aggregate(
   level = c("grunnkrets", "fylke", "kommune", "bydel"),
   year = NULL,
   aggregate.col = NULL,
-  check = getOption("orgdata.debug.aggregate")
+  check = getOption("orgdata.debug.aggregate"),
+  base = getOption("orgdata.recode.base")
 )
 }
 \arguments{
@@ -31,6 +32,10 @@ aggregating. If not specified, then current year will be used}
 \item{check}{If TRUE then output will keep variables for geographical levels
 without aggregating it. This is useful to check for geographical codes that
 are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
+
+\item{base}{Logical. If \code{TRUE} then use year in the original data as the base
+year to recode the geographical codes. Default is \code{FALSE} and use all
+available codes in geo codebook}
 }
 \description{
 Aggregate data according to the specification in \code{tbl_Filgruppe}
