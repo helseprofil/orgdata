@@ -12,7 +12,8 @@ make_file(
   save = FALSE,
   year = NULL,
   implicitnull = getOption("orgdata.implicit.null"),
-  row = getOption("orgdata.debug.row")
+  row = getOption("orgdata.debug.row"),
+  base = getOption("orgdata.recode.base")
 )
 
 lag_fil(
@@ -22,7 +23,8 @@ lag_fil(
   save = FALSE,
   year = NULL,
   implicitnull = getOption("orgdata.implicit.null"),
-  row = getOption("orgdata.debug.row")
+  row = getOption("orgdata.debug.row"),
+  base = getOption("orgdata.recode.base")
 )
 }
 \arguments{
@@ -42,6 +44,10 @@ aggregating. If not specified, then current year will be used}
 with \code{orgdata.implicit.null}.}
 
 \item{row}{Select only specify row(s). Useful for debugging}
+
+\item{base}{Logical. If \code{TRUE} then use year in the original data as the base
+year to recode the geographical codes. Default is \code{FALSE} and use all
+available codes in geo codebook}
 }
 \description{
 Make a \code{csv} file with the specifications in the register database and implement them

@@ -10,7 +10,8 @@ do_geo_recode(
   type = c("grunnkrets", "fylke", "kommune", "bydel"),
   year = NULL,
   con = NULL,
-  geo = getOption("orgdata.debug.geo")
+  geo = getOption("orgdata.debug.geo"),
+  base = getOption("orgdata.recode.base")
 )
 }
 \arguments{
@@ -27,6 +28,10 @@ then current year will be used.}
 \item{con}{Connection to database}
 
 \item{geo}{Keep old geographical code if TRUE. Default is FALSE.}
+
+\item{base}{Logical. If \code{TRUE} then use year in the original data as the base
+year to recode the geographical codes. Default is \code{FALSE} and use all
+available codes in geo codebook}
 }
 \description{
 Recode geographical codes to the current year. Codes is based on
