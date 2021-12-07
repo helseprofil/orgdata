@@ -114,10 +114,9 @@ do_geo_recode <- function(dt = NULL,
   xind <- dt[, .I[GEO %in% xcode]]
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
-  ## Select the first code for split code
-  codeGeo <- c("GEO", "to")
-  data.table::setkeyv(code, codeGeo)
-  code <- code[!duplicated(GEO) | duplicated(GEO, fromLast = TRUE)]
+  ## Use the first code to recode to new geo codes if old geo codes were split
+  ## into multiple new codes
+  code <- code[!duplicated(GEO)][!is.na(GEO)]
 
   if (geo){
     is_debug_warn("`orgdata.debug.geo`")
