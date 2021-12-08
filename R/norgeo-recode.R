@@ -138,6 +138,11 @@ do_geo_recode <- function(dt = NULL,
 
   if (geo){
     is_debug_warn("`orgdata.debug.geo`")
+
+    ## inherit batch number from codebook when debug
+    srcBatch <- as.Date(code$batch[1])
+    dt[, "batch" := srcBatch]
+
     dt[code, on = "GEO", "geo2" := i.to]
     dt[, c("GEO", "dummy_grk") := NULL]
     geoVar <- c("oriGEO", "GEO")
@@ -182,14 +187,16 @@ get_geo_recode <- function(con = NULL,
   geoDT <- find_spec("geo-recode.sql", value = geoTable, con = con)
   data.table::setDT(geoDT)
 
-  for (j in seq_len(ncol(geoDT))){
+  colNames <- c("oldCode", "currentCode", "changeOccurred", "batch")
+
+  for (j in colNames[-4]){
     if (class(geoDT[[j]]) == 'character')
       data.table::set(geoDT, j = j, value = as.integer(geoDT[[j]]))
   }
 
   ## geoDT[, changeOccurred := NULL]
   geoCols <- c("GEO", "to")
-  data.table::setnames(geoDT, c("oldCode", "currentCode"), geoCols)
+  data.table::setnames(geoDT, colNames[c(1,2)], geoCols)
   data.table::setkeyv(geoDT, geoCols)
 }
 
