@@ -147,6 +147,10 @@ is_write <- function(write, table, con) {
     answer <- utils::menu(c("Overwrite", "Append", "Cancel"), title = msgs)
   }
 
+  if (write){
+    answer <- 0
+  }
+
   if (answer == 1){
     is_assign_var("write", TRUE)
     is_assign_var("append", FALSE)
