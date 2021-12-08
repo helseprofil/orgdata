@@ -153,9 +153,12 @@
 <a href="#orgdata-044" class="anchor"></a>orgdata 0.4.4</h1>
 <ul>
 <li>Add <code>codeDelete</code> in <code>log</code> for geographical codes that aren’t able to be merged. The codes will be excluded in the dataset. To access all the deleted codes use <code>log$codeDelete</code>. (<a href='https://github.com/helseprofil/orgdata/issues/149'>#149</a>)</li>
+<li>Give explicit error message when <code>path</code> is missing in <code><a href="../reference/save_file.html">save_file()</a></code>. (<a href='https://github.com/helseprofil/orgdata/issues/152'>#152</a>)</li>
 <li>Able to select any valid year to recode geographical codes and aggregate accordingly. But recoding geographical codes backward isn’t possible. (<a href='https://github.com/helseprofil/orgdata/issues/153'>#153</a>)</li>
 <li>Error message will split a long vector if exist. (<a href='https://github.com/helseprofil/orgdata/issues/153'>#153</a>)</li>
-<li>Add column with batch date when the geographical codes were downloaded form SSB. (<a href='https://github.com/helseprofil/orgdata/issues/156'>#156</a>)</li>
+<li>Add column with batch date when the geographical codes were downloaded form SSB when creating a geo codebook with <code><a href="../reference/geo_levels.html">geo_levels()</a></code> or <code><a href="../reference/geo_recode.html">geo_recode()</a></code>. (<a href='https://github.com/helseprofil/orgdata/issues/156'>#156</a>)</li>
+<li>Actively select only the first geo code when old geo code is split into multiple new geo codes. (<a href='https://github.com/helseprofil/orgdata/issues/159'>#159</a>)</li>
+<li>Able to select a base year for geo recode based on the year available in the original data. This is available in column <code>AAR</code> in the dataset. Use argument <code>base</code> or global option <code>orgdata.recode.base</code> with logical input. <code>TRUE</code> will select the base year for recoding geographical code from the year of the original file to the current year. Default is <code>FALSE</code> ie. include all available geographical codes available in the codebook. (<a href='https://github.com/helseprofil/orgdata/issues/157'>#157</a>)</li>
 </ul>
 </div>
     <div id="orgdata-043" class="section level1">

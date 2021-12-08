@@ -11,11 +11,20 @@ Things in `dev` branch
 - Add `codeDelete` in `log` for geographical codes that aren't able to be
   merged. The codes will be excluded in the dataset. To access all the deleted
   codes use `log$codeDelete`. (#149)
+- Give explicit error message when `path` is missing in `save_file()`. (#152)
 - Able to select any valid year to recode geographical codes and aggregate
   accordingly. But recoding geographical codes backward isn't possible. (#153)
 - Error message will split a long vector if exist. (#153)
 - Add column with batch date when the geographical codes were downloaded form
-  SSB. (#156)
+  SSB when creating a geo codebook with `geo_levels()` or `geo_recode()`. (#156)
+- Actively select only the first geo code when old geo code is split into
+  multiple new geo codes. (#159)
+- Able to select a base year for geo recode based on the year available in the
+  original data. This is available in column `AAR` in the dataset. Use argument
+  `base` or global option `orgdata.recode.base` with logical input. `TRUE` will
+  select the base year for recoding geographical code from the year of the
+  original file to the current year. Default is `FALSE` ie. include all
+  available geographical codes available in the codebook. (#157)
 
 # orgdata 0.4.3
 
