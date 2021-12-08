@@ -26,7 +26,7 @@ then it will be base on the year in source data ie. column \code{AAR}}
 without aggregating it. This is useful to check for geographical codes that
 are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
 
-\item{base}{Logical. If \code{TRUE} then use year in the original data as the base
+\item{base}{Logical argument. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
 }

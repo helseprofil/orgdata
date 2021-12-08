@@ -60,10 +60,12 @@ options(orgdata.debug.row = 20:50)
 To check how the geographical codes in the original data will or could be
 aggregated to. For instance the original data that consist of enumeration area
 codes can be aggregated to municipality or county. Activating this options will
-add the columns to municipality and county to the data. The difference between
-this options and `aggreagate` argument in `make_file()` is that the argument
-`aggregate = FALSE` will cease aggregating keeping the geographical level as in
-the original data. To use:
+add the columns of origin geographical codes and the codes to aggregate into
+municipality, county, city etc to the output data. 
+
+The difference between this options and `aggreagate` argument in `make_file()`
+is that the argument `aggregate = FALSE` will cease aggregating after recoding
+geographical codes in the original data. To use:
 
 ```{r aggregate, eval = FALSE}
 options(orgdata.debug.aggregate = TRUE)

@@ -29,7 +29,7 @@ then current year will be used.}
 
 \item{geo}{Keep old geographical code if TRUE. Default is FALSE.}
 
-\item{base}{Logical. If \code{TRUE} then use year in the original data as the base
+\item{base}{Logical argument. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
 }

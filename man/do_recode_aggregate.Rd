@@ -18,8 +18,9 @@ do_recode_aggregate(
 
 \item{con}{Connection to database}
 
-\item{aggregate}{Aggregate data according to the specification in registration database.
-Default is \code{TRUE}. Global options with \code{orgdata.aggregate}.}
+\item{aggregate}{Logical argument. Default is \code{TRUE}. Aggregate data according
+to the specification in registration database.
+Global options with \code{orgdata.aggregate}.}
 }
 \description{
 Recode the category for all after aggregating data based on the
