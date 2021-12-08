@@ -8,10 +8,11 @@ Things in `dev` branch
 
 # orgdata 0.4.5
 
-- Fixed #162 when saving geographical codebook in a new table creates error with
-  argument `write = TRUE`.
+- Fixed #162 when saving geographical codebook with `write = TRUE` and the table
+  doesn't exist in the *geo-code* database.
 - Stop loop the geographical level when `orgdata.debug.geo` or
   `orgdata.debug.aggregate` are active and make the default to `kommune`. (#166)
+- Add batch date from codebook as reference when debugging. (#168)
   
 # orgdata 0.4.4
 
