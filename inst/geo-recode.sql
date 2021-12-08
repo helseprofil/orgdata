@@ -1,2 +1,2 @@
-SELECT oldCode, currentCode, changeOccurred
+SELECT oldCode, currentCode, changeOccurred, batch
 FROM %s;
