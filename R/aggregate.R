@@ -174,6 +174,11 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
                  )
     level[[i]] <- gg
   }
+
+  if (isTRUE(getOption("orgdata.debug.geo")) | isTRUE(getOption("orgdata.debug.aggregate"))){
+    level <- list("kommune")
+  }
+
   unlist(level)
 }
 

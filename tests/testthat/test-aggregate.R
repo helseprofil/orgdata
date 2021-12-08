@@ -62,6 +62,13 @@ test_that("Get aggregate levels", {
   ## TEST -------------
   expect_equal(get_aggregate(spec = spec), output)
 
+  options(orgdata.debug.geo = TRUE)
+  expect_equal(get_aggregate(spec = spec), "kommune")
+  reset_options()
+
+  options(orgdata.debug.aggregate = TRUE)
+  expect_equal(get_aggregate(spec = spec), "kommune")
+  reset_options()
 
 })
 
