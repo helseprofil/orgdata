@@ -15,12 +15,13 @@
 #' }
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
-#' @param aggregate Aggregate data according to the specification in registration database.
-#'    Default is `TRUE`. Global options with `orgdata.aggregate`.
+#' @param aggregate Logical argument. Default is `TRUE`. Aggregate data according
+#'    to the specification in registration database.
+#'    Global options with `orgdata.aggregate`.
 #' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
 #' @inheritParams do_aggregate
-#' @param implicitnull Default is `TRUE` to add implicit null to the dataset. Global options
-#'   with `orgdata.implicit.null`.
+#' @param implicitnull Logical argument. Default is `TRUE` to add implicit
+#'   null to the dataset. Global options with `orgdata.implicit.null`.
 #' @param row Select only specify row(s). Useful for debugging
 #' @inheritParams do_geo_recode
 #' @aliases make_file lag_fil

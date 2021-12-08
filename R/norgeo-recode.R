@@ -75,7 +75,7 @@ do_recode_without_aggregate <- function(dt = NULL,
 #'   then current year will be used.
 #' @inheritParams find_spec
 #' @param geo Keep old geographical code if TRUE. Default is FALSE.
-#' @param base Logical. If `TRUE` then use year in the original data as the base
+#' @param base Logical argument. If `TRUE` then use year in the original data as the base
 #'   year to recode the geographical codes. Default is `FALSE` and use all
 #'   available codes in geo codebook
 #' @examples

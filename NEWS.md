@@ -5,6 +5,13 @@ Things in `dev` branch
 - Compute function to create a new category based on the existing categories eg.
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
+
+# orgdata 0.4.5
+
+- Fixed #162 when saving geographical codebook in a new table creates error with
+  argument `write = TRUE`.
+- Stop loop the geographical level when `orgdata.debug.geo` or
+  `orgdata.debug.aggregate` are active and make the default to `kommune`. (#166)
   
 # orgdata 0.4.4
 
