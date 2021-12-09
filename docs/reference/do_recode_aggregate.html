@@ -156,7 +156,8 @@ recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
   dt <span class='op'>=</span> <span class='cn'>NULL</span>,
   spec <span class='op'>=</span> <span class='cn'>NULL</span>,
   con <span class='op'>=</span> <span class='cn'>NULL</span>,
-  aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>
+  aggregate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.aggregate"</span><span class='op'>)</span>,
+  control <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -179,6 +180,11 @@ recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
       <td><p>Logical argument. Default is <code>TRUE</code>. Aggregate data according
 to the specification in registration database.
 Global options with <code>orgdata.aggregate</code>.</p></td>
+    </tr>
+    <tr>
+      <th>control</th>
+      <td><p>Logical value. <code>TRUE</code> if the file has been controlled for
+possible errors</p></td>
     </tr>
     </table>
 

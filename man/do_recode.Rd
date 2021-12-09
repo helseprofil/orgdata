@@ -4,7 +4,7 @@
 \alias{do_recode}
 \title{Recode Variables}
 \usage{
-do_recode(dt = NULL, spec = NULL, con = NULL)
+do_recode(dt = NULL, spec = NULL, con = NULL, control = FALSE)
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
@@ -12,6 +12,9 @@ do_recode(dt = NULL, spec = NULL, con = NULL)
 \item{spec}{Specifications data as a data.frame}
 
 \item{con}{Connection to database}
+
+\item{control}{Logical value. \code{TRUE} if the file has been controlled for
+possible errors}
 }
 \description{
 Recode variables based on the specification in \code{tbl_KodeBok} ie. codebook.
