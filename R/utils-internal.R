@@ -131,7 +131,7 @@ is_verbose <- function(x = NULL, msg = NULL,
   if (control){
     sign <- TRUE
     x <- ""
-    msg <- "File has been controlled for possible errors"
+    msg <- "File is clean"
     type <- "debug"
   }
 
@@ -204,9 +204,14 @@ is_colour_txt <- function(x, msg,
                    other = otherClr(paste0(msg)),
                    debug = debugClr(paste0(msg, " ", crayon::green(x))))
 
+  symb <- switch(getOption("orgdata.fun.sign"),
+                 tumb = "\U0001F44D",
+                 mark = "\U0002713",
+                 smile = "\U0001F60A"
+                   )
+
   if (sign){
-    tumb <- "\U0001F44D"
-    cat(tumb, clrMsg, "\n")
+    cat(symb, clrMsg, "\n")
   } else {
     cat(clrMsg, "\n")
   }

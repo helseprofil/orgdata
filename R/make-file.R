@@ -102,7 +102,7 @@ make_file <- function(group = NULL,
     ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
     ## aggregating uses the standard columnames for id and measure variables
     dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
-    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
+    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
     dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
 
     ## Only columns defined in tbl_Filgruppe will be kept
@@ -165,7 +165,10 @@ make_file <- function(group = NULL,
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(dt = outDT, cols = grpCols)
 
-  outDT <- do_recode_aggregate(dt = outDT, spec = fileSpec, con = kh$dbconn)
+  outDT <- do_recode_aggregate(dt = outDT,
+                               spec = fileSpec,
+                               con = kh$dbconn,
+                               control = fileCtrl)
 
   standardCols <- is_standard_cols()
   orderCols <- intersect(standardCols, names(outDT))
