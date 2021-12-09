@@ -204,11 +204,11 @@ is_colour_txt <- function(x, msg,
                    other = otherClr(paste0(msg)),
                    debug = debugClr(paste0(msg, " ", crayon::green(x))))
 
-  symb <- switch(getOption("orgdata.fun.sign"),
+  symb <- switch(getOption("orgdata.emoji"),
                  tumb = "\U0001F44D",
                  mark = "\U0002713",
                  smile = "\U0001F60A"
-                   )
+                 )
 
   if (sign){
     cat(symb, clrMsg, "\n")

@@ -37,7 +37,7 @@ opt.orgdata <- list(
   orgdata.debug.geo = FALSE, #Keep old geo if TRUE
 
   ## Just for fun
-  orgdata.fun.sign = "mark" #can choose mark, tumb or smile
+  orgdata.emoji = "mark" #can choose mark, tumb or smile
 )
 
 .onLoad <- function(libname, pkgname) {
