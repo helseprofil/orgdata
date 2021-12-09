@@ -7,17 +7,18 @@
 #' @inheritParams do_split
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
+#' @inheritParams do_geo_recode
 #' @import data.table
 #' @family recode functions
 #' @export
-do_recode <- function(dt = NULL, spec = NULL, con = NULL) {
+do_recode <- function(dt = NULL, spec = NULL, con = NULL, control = FALSE) {
   is_debug()
   grp <- spec$FILGRUPPE
   lesid <- spec$LESID
   speCode <- get_codebok(spec = spec, con = con)
   dt <- is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
   dt <- is_recode_common(dt = dt, code = speCode, group = grp)
-  dt <- is_recode_all(dt = dt, code = speCode)
+  dt <- is_recode_all(dt = dt, code = speCode, control = control)
 }
 
 #' @title Codebook
@@ -66,7 +67,7 @@ is_recode_common <- function(dt, code, group) {
 
 
 ## When FILGRUPPE in tbl_KodeBok is ALLE
-is_recode_all <- function(dt, code, aggregate.msg = FALSE){
+is_recode_all <- function(dt, code, aggregate.msg = FALSE, control = FALSE){
   # aggregate.msg - If it's KB or AG
 
   FILGRUPPE <- KOL <- FRA <- TIL <- NULL

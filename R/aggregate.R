@@ -41,7 +41,8 @@ do_aggregate <- function(dt = NULL,
                          year = NULL,
                          aggregate.col = NULL,
                          check = getOption("orgdata.debug.aggregate"),
-                         base = getOption("orgdata.recode.base")) {
+                         base = getOption("orgdata.recode.base"),
+                         control = FALSE) {
 
   VAL1 <- GEO <- AAR <- NULL
   fylke <- kommune <- bydel <- LEVEL <- LANDSSB <- NULL
@@ -60,9 +61,9 @@ do_aggregate <- function(dt = NULL,
   ## and INNVKAT
   if (any(names(dt) == "LANDSSB")) dt[, LANDSSB := NULL]
 
-  is_verbose(msg = is_line_short(), type = "other")
+  is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
   msg <- paste0("Starts aggregating data from ", source, " to")
-  is_verbose(x = level, msg = msg)
+  is_verbose(x = level, msg = msg, ctrl = FALSE)
 
   colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
   aggNot <- c("GEO", colVals)
@@ -85,7 +86,8 @@ do_aggregate <- function(dt = NULL,
                       type = source,
                       year = year,
                       con = geoDB$dbconn,
-                      base = base)
+                      base = base,
+                      control = control)
 
   if (getOption("orgdata.debug.geo")){
     return(dt)

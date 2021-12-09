@@ -88,18 +88,21 @@ make_file <- function(group = NULL,
     is_verbose(msg = is_line_long(), type = "other")
     is_verbose(fileSpec$KOBLID, "KOBLID:")
 
+    fileCtrl <- fileSpec[["KONTROLLERT"]] #if file has been checked for error
+
     dt <- is_org_process(
       file = filePath,
       filespec = fileSpec,
       fgspec = fgSpec,
       con = kh$dbconn,
-      row = row
+      row = row,
+      control = fileCtrl
     )
 
     ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
     ## aggregating uses the standard columnames for id and measure variables
     dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
-    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn)
+    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
     dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
 
     ## Only columns defined in tbl_Filgruppe will be kept
@@ -113,9 +116,9 @@ make_file <- function(group = NULL,
       msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
       msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
       msgWarn <- paste0(msg01, "\n", msg02)
-      is_verbose(x = msgWarn, type = "warn")
+      is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
       deleteVar <- paste(deleteVar, collapse = ", ")
-      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2")
+      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
     }
 
     ## TODO - Not sure if this necessary. Turn of temporarily
@@ -127,7 +130,8 @@ make_file <- function(group = NULL,
                        fgspec = fgSpec,
                        year = year,
                        aggregate = aggregate,
-                       base = base)
+                       base = base,
+                       control = fileCtrl)
 
     DT[[i]] <- copy(dt)
     rm(dt)
@@ -161,7 +165,10 @@ make_file <- function(group = NULL,
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(dt = outDT, cols = grpCols)
 
-  outDT <- do_recode_aggregate(dt = outDT, spec = fileSpec, con = kh$dbconn)
+  outDT <- do_recode_aggregate(dt = outDT,
+                               spec = fileSpec,
+                               con = kh$dbconn,
+                               control = fileCtrl)
 
   standardCols <- is_standard_cols()
   orderCols <- intersect(standardCols, names(outDT))

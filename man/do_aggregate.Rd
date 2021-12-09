@@ -11,7 +11,8 @@ do_aggregate(
   year = NULL,
   aggregate.col = NULL,
   check = getOption("orgdata.debug.aggregate"),
-  base = getOption("orgdata.recode.base")
+  base = getOption("orgdata.recode.base"),
+  control = FALSE
 )
 }
 \arguments{
@@ -33,9 +34,12 @@ aggregating. If not specified, then current year will be used}
 without aggregating it. This is useful to check for geographical codes that
 are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
 
-\item{base}{Logical argument. If \code{TRUE} then use year in the original data as the base
+\item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
+
+\item{control}{Logical value. \code{TRUE} if the file has been controlled for
+possible errors}
 }
 \description{
 Aggregate data according to the specification in \code{tbl_Filgruppe}

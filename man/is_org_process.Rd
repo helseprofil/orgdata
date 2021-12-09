@@ -11,6 +11,7 @@ is_org_process(
   con,
   verbose = getOption("orgdata.verbose"),
   row = getOption("orgdata.debug.row"),
+  control = FALSE,
   .log = parent.frame()
 )
 }
@@ -24,6 +25,12 @@ is_org_process(
 \item{con}{Connection to the database}
 
 \item{verbose}{Make processes explicit. Default is FALSE}
+
+\item{row}{Select specific row only}
+
+\item{control}{Logical value. If the file has been checked for possible errors}
+
+\item{.log}{For logbook}
 }
 \value{
 A dataset with \code{data.table} format

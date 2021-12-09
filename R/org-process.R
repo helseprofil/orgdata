@@ -6,6 +6,9 @@
 #' @param fgspec Specification for a file group
 #' @param con Connection to the database
 #' @param verbose Make processes explicit. Default is FALSE
+#' @param row Select specific row only
+#' @param control Logical value. If the file has been checked for possible errors
+#' @param .log For logbook
 #' @return A dataset with `data.table` format
 
 is_org_process <- function(file,
@@ -14,6 +17,7 @@ is_org_process <- function(file,
                            con,
                            verbose = getOption("orgdata.verbose"),
                            row = getOption("orgdata.debug.row"),
+                           control = FALSE,
                            .log = parent.frame()
                            ) {
   GEO <- NULL
