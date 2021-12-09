@@ -57,6 +57,31 @@ is_aggregate <- function(dt = NULL,
   source <- is_geo_level(dt[!is.na(GEO), GEO][1])
   aggCol <- find_column_multi(spec = fgspec, "AGGKOL") #Other columns to aggregate
 
+  geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+  geoDB <- is_conn_db(geoFile)
+
+  ## validTo in the database `tblGeo` is a character
+
+  if (is.null(year)){
+    year <- as.integer(format(Sys.Date(), "%Y"))
+  }
+
+  ## recode GEO codes
+  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = year)
+  dt <- do_geo_recode(dt = dt,
+                      code = code,
+                      type = source,
+                      year = year,
+                      con = geoDB$dbconn,
+                      base = base,
+                      control = control)
+
+  is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+
+  if (getOption("orgdata.debug.geo")){
+    return(dt)
+  }
+
   if (aggregate){
     nSpec <- length(aggSpec)
     DT <- vector(mode = "list", length = nSpec)
