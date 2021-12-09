@@ -13,6 +13,9 @@ Things in `dev` branch
 - Stop loop the geographical level when `orgdata.debug.geo` or
   `orgdata.debug.aggregate` are active and make the default to `kommune`. (#166)
 - Add batch date from codebook as reference when debugging. (#168)
+- Hide warning messages if file has been controlled for any possible errors. It
+  means the column *KONTROLLERT* in table for original files is marked for the
+  specific file. (#171)
   
 # orgdata 0.4.4
 
