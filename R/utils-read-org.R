@@ -48,7 +48,8 @@ is_aggregate <- function(dt = NULL,
                          verbose = getOption("orgdata.verbose"),
                          year = NULL,
                          aggregate = getOption("orgdata.aggregate"),
-                         base = getOption("orgdata.recode.base")){
+                         base = getOption("orgdata.recode.base"),
+                         control = FALSE){
 
   GEO <- NULL
 
@@ -65,7 +66,8 @@ is_aggregate <- function(dt = NULL,
                           level = aggSpec[i],
                           year = year,
                           aggregate.col = aggCol,
-                          base = base)
+                          base = base,
+                          control = control)
       DT[[i]] <- data.table::copy(dtt)
       gc()
       rm(dtt)

@@ -88,12 +88,15 @@ make_file <- function(group = NULL,
     is_verbose(msg = is_line_long(), type = "other")
     is_verbose(fileSpec$KOBLID, "KOBLID:")
 
+    fileCtrl <- fileSpec[["KONTROLLERT"]] #if file has been checked for error
+
     dt <- is_org_process(
       file = filePath,
       filespec = fileSpec,
       fgspec = fgSpec,
       con = kh$dbconn,
-      row = row
+      row = row,
+      control = control
     )
 
     ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
@@ -127,7 +130,8 @@ make_file <- function(group = NULL,
                        fgspec = fgSpec,
                        year = year,
                        aggregate = aggregate,
-                       base = base)
+                       base = base,
+                       control = fileCtrl)
 
     DT[[i]] <- copy(dt)
     rm(dt)

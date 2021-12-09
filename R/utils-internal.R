@@ -108,7 +108,9 @@ is_logical <- function(x) {
 
 is_verbose <- function(x = NULL, msg = NULL,
                        type = c("note", "warn", "warn2",
-                                "error", "error2", "other", "debug")) {
+                                "error", "error2", "other", "debug"),
+                       ctrl = parent.frame(),
+                       sign = FALSE) {
   ## x - Arg or object to show in the message
   type <- match.arg(type)
 
@@ -118,11 +120,25 @@ is_verbose <- function(x = NULL, msg = NULL,
     msg <- ""
   }
 
+  if (is.environment(ctrl)){
+    control <- ctrl[["control"]]
+  } else {
+    control <- ctrl
+  }
+
+  if(is.null(control)) control <- FALSE
+
+  if (control){
+    sign <- TRUE
+    x <- ""
+    msg <- "File has been controlled for possible errors"
+    type <- "debug"
+  }
+
   if (getOption("orgdata.verbose")) {
-    is_colour_txt(x = x, msg = msg, type = type)
+    is_colour_txt(x = x, msg = msg, type = type, sign = sign)
   }
 }
-
 
 is_debug <- function() {
   if (getOption("orgdata.debug")) {
@@ -160,8 +176,10 @@ paste_cols <- function(cols){
 }
 
 ## Display message with selected colours
-is_colour_txt <- function(x, msg, type = c("note", "warn", "warn2",
-                                           "error", "error2", "other", "debug")){
+is_colour_txt <- function(x, msg,
+                          type = c("note", "warn", "warn2",
+                                   "error", "error2", "other", "debug"),
+                          sign = FALSE){
   ## msg - Message to display
   ## x - Object to display in the message
   type <- match.arg(arg = type)
@@ -178,15 +196,20 @@ is_colour_txt <- function(x, msg, type = c("note", "warn", "warn2",
   debugClr <- crayon::silver
 
   clrMsg <- switch(type,
-                   note = cat(noteClr(paste0(msg, " ", crayon::blue(x)))),
-                   warn = cat(warnClr(paste0("Warning: ", msg, " ", x))),
-                   warn2 = cat(warn2Clr(paste0(msg, " ", crayon::blue(x)))),
-                   error = cat(errorClr(paste0(msg, " ", x))),
-                   error2 = cat(errorClr(paste0(msg, " ", crayon::green(x)))),
-                   other = cat(otherClr(paste0(msg))),
-                   debug = cat(debugClr(paste0(msg, " ", crayon::green(x)))))
+                   note = noteClr(paste0(msg, " ", crayon::blue(x))),
+                   warn = warnClr(paste0("Warning: ", msg, " ", x)),
+                   warn2 = warn2Clr(paste0(msg, " ", crayon::blue(x))),
+                   error = errorClr(paste0(msg, " ", x)),
+                   error2 = errorClr(paste0(msg, " ", crayon::green(x))),
+                   other = otherClr(paste0(msg)),
+                   debug = debugClr(paste0(msg, " ", crayon::green(x))))
 
-  message(clrMsg)
+  if (sign){
+    tumb <- "\U0001F44D"
+    cat(tumb, clrMsg, "\n")
+  } else {
+    cat(clrMsg, "\n")
+  }
 }
 
 is_color_txt <- is_colour_txt
