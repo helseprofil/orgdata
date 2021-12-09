@@ -96,7 +96,7 @@ make_file <- function(group = NULL,
       fgspec = fgSpec,
       con = kh$dbconn,
       row = row,
-      control = control
+      control = fileCtrl
     )
 
     ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
@@ -116,9 +116,9 @@ make_file <- function(group = NULL,
       msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
       msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
       msgWarn <- paste0(msg01, "\n", msg02)
-      is_verbose(x = msgWarn, type = "warn")
+      is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
       deleteVar <- paste(deleteVar, collapse = ", ")
-      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2")
+      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
     }
 
     ## TODO - Not sure if this necessary. Turn of temporarily
