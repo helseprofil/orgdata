@@ -7,12 +7,14 @@
 #' @inheritParams find_column_input
 #' @inheritParams find_spec
 #' @inheritParams make_file
+#' @inheritParams do_geo_recode
 #' @family recode functions
 #' @export
 do_recode_aggregate <- function(dt = NULL,
                                 spec = NULL,
                                 con = NULL,
-                                aggregate = getOption("orgdata.aggregate")) {
+                                aggregate = getOption("orgdata.aggregate"),
+                                control = FALSE) {
   is_debug()
 
   if (aggregate){
@@ -21,7 +23,7 @@ do_recode_aggregate <- function(dt = NULL,
     speCode <- get_codebok_aggregate(spec = spec, con = con)
     dt <- is_recode_lesid(dt = dt, code = speCode, lesid = lesid)
     dt <- is_recode_common(dt = dt, code = speCode, group = grp)
-    dt <- is_recode_all(dt = dt, code = speCode, aggregate.msg = TRUE)
+    dt <- is_recode_all(dt = dt, code = speCode, aggregate.msg = TRUE, control = control)
   }
   return(dt)
 }

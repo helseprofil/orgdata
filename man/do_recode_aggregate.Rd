@@ -8,7 +8,8 @@ do_recode_aggregate(
   dt = NULL,
   spec = NULL,
   con = NULL,
-  aggregate = getOption("orgdata.aggregate")
+  aggregate = getOption("orgdata.aggregate"),
+  control = FALSE
 )
 }
 \arguments{
@@ -21,6 +22,9 @@ do_recode_aggregate(
 \item{aggregate}{Logical argument. Default is \code{TRUE}. Aggregate data according
 to the specification in registration database.
 Global options with \code{orgdata.aggregate}.}
+
+\item{control}{Logical value. \code{TRUE} if the file has been controlled for
+possible errors}
 }
 \description{
 Recode the category for all after aggregating data based on the

@@ -74,10 +74,12 @@ do_recode_without_aggregate <- function(dt = NULL,
 #' @param year Which year the geograhical codes to be recoded to. If it is empty
 #'   then current year will be used.
 #' @inheritParams find_spec
-#' @param geo Keep old geographical code if TRUE. Default is FALSE.
-#' @param base Logical argument. If `TRUE` then use year in the original data as the base
+#' @param geo Logical value. Keep old geographical code if TRUE. Default is FALSE.
+#' @param base Logical value. If `TRUE` then use year in the original data as the base
 #'   year to recode the geographical codes. Default is `FALSE` and use all
 #'   available codes in geo codebook
+#' @param control Logical value. `TRUE` if the file has been controlled for
+#'   possible errors
 #' @examples
 #' \dontrun{
 #' code <- get_geo_recode(con = geo$dbconn, type = "grunnkrets")
@@ -97,7 +99,8 @@ do_geo_recode <- function(dt = NULL,
                           year = NULL,
                           con = NULL,
                           geo = getOption("orgdata.debug.geo"),
-                          base = getOption("orgdata.recode.base")
+                          base = getOption("orgdata.recode.base"),
+                          control = FALSE
                           ){
   GEO <- i.to <- changeOccurred <- NULL
 
@@ -114,7 +117,7 @@ do_geo_recode <- function(dt = NULL,
   dt[, "origin" := GEO]
 
   if (type == "grunnkrets"){
-    dt <- is_grunnkrets(dt)
+    dt <- is_grunnkrets(dt, control = control)
     dt <- is_grunnkrets_na(dt)
     dt <- is_grunnkrets_0000(dt)
   }
@@ -128,7 +131,7 @@ do_geo_recode <- function(dt = NULL,
 
   code[, changeOccurred := NULL]
 
-  xcode <- is_warn_geo_merge(dt, code, vector = FALSE)
+  xcode <- is_warn_geo_merge(dt, code, vector = FALSE, control = control)
   xind <- dt[, .I[GEO %in% xcode]]
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
@@ -201,7 +204,7 @@ get_geo_recode <- function(con = NULL,
 }
 
 ## Helper -----------------
-is_grunnkrets_na <- function(dt){
+is_grunnkrets_na <- function(dt, control = FALSE){
   GEO <- AAR <- NULL
 
   nrNA <- dt[is.na(GEO), .N]
@@ -218,7 +221,7 @@ is_grunnkrets_na <- function(dt){
 
 ## Convert geo ends with 4 zeros ie. xxxx0000 to xxxx9999
 ## Can't aggregate grunnkrets ends with 4 zeros or 2 zeros as it only represents delområde
-is_grunnkrets_0000 <- function(dt){
+is_grunnkrets_0000 <- function(dt, control = FALSE){
   GEO <- AAR <- NULL
 
   nr00 <- dt[GEO %like% "0000$", .N]
@@ -245,7 +248,7 @@ is_grunnkrets_0000 <- function(dt){
 
 ## Some grunnkrets have less than 7 digits but not missing. This will add 99 or
 ## 9999 to these number accrodingly making grunnkrets standard with 8 or 7 digits.
-is_grunnkrets <- function(dt){
+is_grunnkrets <- function(dt, control = FALSE){
   GEO <- dummy_grk <- NULL
 
   dt[, dummy_grk := data.table::fifelse(nchar(GEO) > 6 , yes = 0, no = 1, na = 0)]
@@ -299,7 +302,7 @@ is_check_geo <- function(codes){
 }
 
 ## Codes that can't be merged since it's not found in geo codebook database
-is_warn_geo_merge <- function(x, y, vector = FALSE){
+is_warn_geo_merge <- function(x, y, vector = FALSE, control = FALSE){
   ## x - dataset
   ## y - geocodes
   ## vector - Either a data.frame or vector

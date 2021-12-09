@@ -11,7 +11,8 @@ do_geo_recode(
   year = NULL,
   con = NULL,
   geo = getOption("orgdata.debug.geo"),
-  base = getOption("orgdata.recode.base")
+  base = getOption("orgdata.recode.base"),
+  control = FALSE
 )
 }
 \arguments{
@@ -27,11 +28,14 @@ then current year will be used.}
 
 \item{con}{Connection to database}
 
-\item{geo}{Keep old geographical code if TRUE. Default is FALSE.}
+\item{geo}{Logical value. Keep old geographical code if TRUE. Default is FALSE.}
 
-\item{base}{Logical argument. If \code{TRUE} then use year in the original data as the base
+\item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
+
+\item{control}{Logical value. \code{TRUE} if the file has been controlled for
+possible errors}
 }
 \description{
 Recode geographical codes to the current year. Codes is based on
