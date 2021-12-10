@@ -132,9 +132,9 @@ do_geo_recode <- function(dt = NULL,
   code[, changeOccurred := NULL]
 
   ## recode to unknown grunnkrets if not able to merge ie. xxxx9999
-  if (type == "grunnkrets"){
+  if (type %in% c("grunnkrets", "bydel")){
     codeProb <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "recode")
-    dt <- is_grunnkrets_problem(dt = dt, codes = codeProb)
+    dt <- is_geo_problem(dt = dt, codes = codeProb, type = type)
   }
 
   xcode <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "delete")
@@ -356,13 +356,19 @@ is_problem_message <- function(mode, codes, control = FALSE){
 
 ## Grunnkrets that aren't able to be merged will be checked against municipality
 ## codes with unkown grunnkrets ie. xxxx9999
-is_grunnkrets_problem <- function(dt, codes){
+is_geo_problem <- function(dt, codes, type){
   # codes - the problem codes from is_problem_geo_merge()
+  # type - type of granularity levels
+
+  to99 <- switch(type,
+                 bydel = "99",
+                 grunnkrets = "9999")
+
   GEO <- NULL
   idx <- dt[, .I[GEO %in% codes]]
   dt <- is_replace_geo(dt, idx = idx,
                        from = "\\d{4}$",
-                       to = "9999")
+                       to = to99)
 
   return(dt)
 }
