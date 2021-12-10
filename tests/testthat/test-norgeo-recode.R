@@ -130,3 +130,39 @@ test_that("Grunnkrets with 0000", {
   expect_equal(is_grunnkrets_0000(dtraw), dtout)
 
 })
+
+
+test_that("Recode geo", {
+
+  #DATA
+  code <- structure(list(GEO = c(50510310L, 50510311L, 50510312L, 50519999L, 99999999L),
+                         to = c(50600310L, 50600311L, 50600312L, 50609999L, 99999999L),
+                         changeOccurred = c(2020L, 2020L, 2020L, 2020L, 2021L),
+                         batch = structure(c(1638748800, 1638748800, 1638748800, 1638748800, 1638748800),
+                                           class = c("POSIXct", "POSIXt"), tzone = "UTC")),
+                    class = c("data.table", "data.frame"), row.names = c(NA, -5L),
+                    sorted = c("GEO", "to"))
+
+  dt <- structure(list(AAR = c("2017", "2017", "2017", "2017", "2017"),
+                       GEO = c(50510310L, 50510311L, 50510312L, 50519999L, 99999999L),
+                       ALDER = c("          18", "          22", "          23", "          24", "          25"),
+                       VAL1 = c(1L, 2L, 1L, 2L, 4L)),
+                  row.names = c(NA, -5L), class = c("data.table", "data.frame"))
+
+  dtout <- structure(list(AAR = c("2017", "2017", "2017", "2017", "2017"),
+                          GEO = c(50600310L, 50600311L, 50600312L, 50609999L, 99999999L),
+                          ALDER = c("          18", "          22", "          23", "          24", "          25"),
+                          VAL1 = c(1L, 2L, 1L, 2L, 4L),
+                          origin = c(50510310L, 50510311L, 50510312L, 50519999L, 99999999L),
+                          dummy_grk = c(0, 0, 0, 0, 0)),
+                     row.names = c(NA, -5L), class = c("data.table", "data.frame"))
+
+  ## TEST
+  expect_equal(do_geo_recode(dt = dt,
+                             code = code,
+                             type = "grunnkrets",
+                             year = 2021,
+                             geo = FALSE,
+                             base = FALSE,
+                             control = TRUE), dtout)
+})
