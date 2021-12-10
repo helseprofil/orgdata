@@ -16,7 +16,8 @@ Things in `dev` branch
 - Hide warning messages if file has been controlled for any possible errors. It
   means the column *KONTROLLERT* in table for original files is marked for the
   specific file. (#171)
-  
+- Refactoring function for recode of geographical codes. (#174)
+
 # orgdata 0.4.4
 
 - Add `codeDelete` in `log` for geographical codes that aren't able to be
