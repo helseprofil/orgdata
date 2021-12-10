@@ -61,37 +61,16 @@ do_aggregate <- function(dt = NULL,
   ## and INNVKAT
   if (any(names(dt) == "LANDSSB")) dt[, LANDSSB := NULL]
 
-  is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
   msg <- paste0("Starts aggregating data from ", source, " to")
   is_verbose(x = level, msg = msg, ctrl = FALSE)
 
   colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
-  aggNot <- c("GEO", colVals)
+  aggNot <- c("GEO", colVals, "origin", "dummy_grk")
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
-  geoDB <- KHelse$new(geoFile)
-
-  ## validTo in the database `tblGeo` is a character
-
-  if (is.null(year)){
-    year <- as.integer(format(Sys.Date(), "%Y"))
-  }
-
-  ## recode GEO codes
-  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = year)
-  dt <- do_geo_recode(dt = dt,
-                      code = code,
-                      type = source,
-                      year = year,
-                      con = geoDB$dbconn,
-                      base = base,
-                      control = control)
-
-  if (getOption("orgdata.debug.geo")){
-    return(dt)
-  }
+  geoDB <- is_conn_db(geoFile)
 
   ## Cast geo levels ie. aggregate to different geo levels
   geoDT <- find_spec(

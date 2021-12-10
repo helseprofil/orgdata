@@ -99,6 +99,8 @@ make_file <- function(group = NULL,
       control = fileCtrl
     )
 
+    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+
     ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
     ## aggregating uses the standard columnames for id and measure variables
     dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
@@ -148,6 +150,8 @@ make_file <- function(group = NULL,
 
   geoLevel <- get_aggregate(spec = fgSpec)
 
+  is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+
   if (implicitnull){
     for(gg in geoLevel){
       dtsub <- outDT[LEVEL == gg]
@@ -165,6 +169,7 @@ make_file <- function(group = NULL,
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(dt = outDT, cols = grpCols)
 
+  is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
   outDT <- do_recode_aggregate(dt = outDT,
                                spec = fileSpec,
                                con = kh$dbconn,
