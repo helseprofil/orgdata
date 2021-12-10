@@ -205,9 +205,10 @@ is_colour_txt <- function(x, msg,
                    debug = debugClr(paste0(msg, " ", crayon::green(x))))
 
   symb <- switch(getOption("orgdata.emoji"),
-                 tumb = "\U0001F44D",
+                 thumb = "\U0001F44D",
                  mark = "\U0002713",
-                 smile = "\U0001F60A"
+                 smile = "\U0001F60A",
+                 sad = "\U002639"
                  )
 
   if (sign){
@@ -236,10 +237,3 @@ is_batch <- function(type = c("date", "time")){
          )
 }
 
-#' @title Reset options
-#' @description Reset orgdata options to default
-#' @examples reset_options()
-#' @export
-reset_options <- function(){
-  options(opt.orgdata)
-}
