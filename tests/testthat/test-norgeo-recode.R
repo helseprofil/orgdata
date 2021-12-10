@@ -103,3 +103,30 @@ test_that("Unknown grunnkrets from municipality", {
   ## test --------
   expect_equal(is_unknown_grunnkrets(dt = dt, kom = kom), dtout)
 })
+
+
+test_that("Grunnkrets with 0000", {
+
+  ## DATA -----------
+  dtraw <- structure(list(AAR = c(2020L, 2020L, 2020L, 2020L, 2020L),
+                          GEO = c(54260000L, 55442233L, 54260000L, 54260000L, 54260000L),
+                          ALDER = c(0L, 1L, 2L, 3L, 3L),
+                          TAB1 = c("eier", "eier", "eier", "eier", "leier"),
+                          VAL1 = c(4L, 2L, 2L, 2L, 2L), VAL2 = c(4L, 2L, 2L, 4L, 4L),
+                          origin = c(54260000L, 55442233L, 54260000L, 54260000L, 54260000L),
+                          dummy_grk = c(0, 0, 0, 0, 0)), row.names = c(NA, -5L),
+                     class = c("data.table", "data.frame"))
+
+  dtout <- structure(list(AAR = c(2020L, 2020L, 2020L, 2020L, 2020L),
+                          GEO = c(54269999L, 55442233L, 54269999L, 54269999L, 54269999L),
+                          ALDER = c(0L, 1L, 2L, 3L, 3L),
+                          TAB1 = c("eier", "eier", "eier", "eier", "leier"),
+                          VAL1 = c(4L, 2L, 2L, 2L, 2L), VAL2 = c(4L, 2L, 2L, 4L, 4L),
+                          origin = c(54260000L, 55442233L, 54260000L, 54260000L, 54260000L),
+                          dummy_grk = c(0, 0, 0, 0, 0)),
+                     row.names = c(NA, -5L), class = c("data.table", "data.frame"))
+
+  ## TEST
+  expect_equal(is_grunnkrets_0000(dtraw), dtout)
+
+})
