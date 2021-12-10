@@ -131,7 +131,13 @@ do_geo_recode <- function(dt = NULL,
 
   code[, changeOccurred := NULL]
 
-  xcode <- is_warn_geo_merge(dt, code, vector = FALSE, control = control)
+  ## recode to unknown grunnkrets if not able to merge ie. xxxx9999
+  if (type %in% c("grunnkrets", "bydel")){
+    codeProb <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "recode")
+    dt <- is_geo_problem(dt = dt, codes = codeProb, type = type)
+  }
+
+  xcode <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "delete")
   xind <- dt[, .I[GEO %in% xcode]]
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
@@ -229,11 +235,10 @@ is_grunnkrets_0000 <- function(dt, control = FALSE){
     idx <- dt[, .I[GEO %like% "0000$"]]
     notCodes <- dt[idx]$GEO
 
-    for (i in idx){
-      code <- sub("0{4}$", "", dt[i]$GEO)
-      grc <- paste0(code, "9999")
-      dt[i, GEO := as.integer(grc)]
-    }
+    dt <- is_replace_geo(dt,
+                         idx = idx,
+                         from = "0{4}$",
+                         to = "9999")
 
     is_log(notCodes, "code00")
     is_verbose(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
@@ -264,7 +269,7 @@ is_grunnkrets <- function(dt, control = FALSE){
 
   is_log(value = notCodes, x = "codeShort")
   is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
-  is_check_geo(notCodes)
+  is_check_geo(notCodes, control = control)
   is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
   is_verbose(x = "log$codeShort", msg = "To see these codes, run command:")
 
@@ -292,7 +297,7 @@ is_geo_oddeven <- function(x){
 }
 
 ## Don't overflood the console!
-is_check_geo <- function(codes){
+is_check_geo <- function(codes, control = FALSE){
   ## codes - Codes to display
   codes <- data.table::copy(codes)
   codesNot <- is_short_code(codes, n1 = 10, n2 = 8)
@@ -302,10 +307,11 @@ is_check_geo <- function(codes){
 }
 
 ## Codes that can't be merged since it's not found in geo codebook database
-is_warn_geo_merge <- function(x, y, vector = FALSE, control = FALSE){
+is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c("recode", "delete")){
   ## x - dataset
   ## y - geocodes
   ## vector - Either a data.frame or vector
+  ## mode - to recode or to delete
   GEO <- to <- NULL
 
   if (vector){
@@ -318,15 +324,69 @@ is_warn_geo_merge <- function(x, y, vector = FALSE, control = FALSE){
   }
 
   dcode <- setdiff(x, y)
+
   if (length(dcode) > 0){
-    codes <- is_short_code(dcode, n1 = 10, n2 = 8)
-    is_log(value = dcode, x = "codeDelete")
-    is_verbose(x = length(dcode), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
-    is_verbose(x = codes, msg = "These are the codes:")
-    is_verbose(x = "log$codeDelete", msg = "To see these codes, run command:")
+    dcode <- is_problem_message(mode = mode, codes = dcode, control = control)
   }
 
   return(dcode)
+}
+
+is_problem_message <- function(mode, codes, control = FALSE){
+  # mode - Either recode or delete
+
+  scode <- is_short_code(codes, n1 = 10, n2 = 8)
+
+  if (mode == "recode"){
+    is_log(value = codes, x = "code99")
+    is_verbose(x = length(codes), msg = "Number of codes that fail to recode and became xxxx9999:", type = "warn2")
+    is_verbose(x = scode, msg = "The codes:")
+    is_verbose(x = "log$code99", msg = "To see the codes, run command:")
+  }
+
+  if (mode == "delete"){
+    is_log(value = codes, x = "codeDelete")
+    is_verbose(x = length(codes), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
+    is_verbose(x = scode, msg = "The codes:")
+    is_verbose(x = "log$codeDelete", msg = "To see these codes, run command:")
+  }
+
+  invisible(codes)
+}
+
+## Grunnkrets that aren't able to be merged will be checked against municipality
+## codes with unkown grunnkrets ie. xxxx9999
+is_geo_problem <- function(dt, codes, type){
+  # codes - the problem codes from is_problem_geo_merge()
+  # type - type of granularity levels
+
+  to99 <- switch(type,
+                 bydel = "99",
+                 grunnkrets = "9999")
+
+  GEO <- NULL
+  idx <- dt[, .I[GEO %in% codes]]
+  dt <- is_replace_geo(dt, idx = idx,
+                       from = "\\d{4}$",
+                       to = to99)
+
+  return(dt)
+}
+
+
+
+## Replace the code of selected index
+is_replace_geo <- function(dt, idx, from, to = "9999"){
+  # idx - Index row
+  # from - A regular expression of what to change
+  # to - what to replace with
+  GEO <- NULL
+  for (i in idx){
+    code <- sub(from, "", dt[i]$GEO)
+    grc <- paste0(code, to)
+    dt[i, GEO := as.integer(grc)]
+  }
+  return(dt)
 }
 
 
@@ -341,4 +401,3 @@ is_short_code <- function(x, n1 = 10, n2 = 6){
 
   paste_cols(codes)
 }
-
