@@ -7,9 +7,11 @@
 #'   `save_file()` to save the object output from `make_file()`
 #' @inheritParams do_split
 #' @param name Filename for the `.csv` file or filegroup name
-#' @param path Folder path to save the file. If not specified then `name` must
-#'   be a valide filegroup \emph{(FILGRUPPE)} and the path must
-#'   be specified in Access registration database
+#' @param path Folder path to save the file. If `name` is
+#'   a valide filegroup \emph{(FILGRUPPE)} then use the specified `UTMAPPE`
+#'   in Access registration database else file will be saved in default folder
+#'   `C:\Users\YourUserName\orgdata_files`. The default folder will be
+#'   created if not exist.
 #' @param date Use date and time as part of the filename
 #' @param fgSpec File group specification from Access registration database
 #' @examples
@@ -20,6 +22,9 @@
 #'  # Two steps
 #'  DF <- make_file("BEFOLKNING")
 #'  save_file(DF, "BEFOLKNING")
+#'
+#'  # Save with different name and specified folder
+#'  save_file(DF, name = "myCSVfile", path = "C:/MyFolder")
 #' }
 #' @export
 
@@ -88,8 +93,16 @@ is_save_path <- function(group = NULL, fgSpec = NULL){
   }
 
   if (nrow(fgSpec) == 0){
-    is_stop("Invalid Filegroup or `path` is missing")
+    is_verbose("Invalid Filegroup or `path` is missing")
+    outPath <- is_default_path()
+  } else {
+    outPath <- is_group_path(fgSpec)
   }
+
+  return(outPath)
+}
+
+is_group_path <- function(fgSpec){
 
   folder <- fgSpec$UTMAPPE
   fullPath <- file.path(getOption("orgdata.folder.data"), folder)
@@ -100,5 +113,21 @@ is_save_path <- function(group = NULL, fgSpec = NULL){
     fs::dir_create(fullPath)
   }
 
-  return(fullPath)
+  invisible(fullPath)
+}
+
+is_default_path <- function(user = NULL){
+
+  if (is.null(user)){
+    user <- Sys.info()[["user"]]
+  }
+
+  orgPath <- file.path("C:/Users", user, "orgdata_files")
+
+  if (!fs::dir_exists(orgPath)){
+    is_verbose(x = orgPath, msg = "Use default folder:")
+    fs::dir_create(orgPath)
+  }
+
+  invisible(orgPath)
 }

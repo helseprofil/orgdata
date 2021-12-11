@@ -14,9 +14,11 @@ lagre_fil(dt = NULL, name = NULL, path = NULL, date = FALSE, fgSpec = NULL)
 
 \item{name}{Filename for the \code{.csv} file or filegroup name}
 
-\item{path}{Folder path to save the file. If not specified then \code{name} must
-be a valide filegroup \emph{(FILGRUPPE)} and the path must
-be specified in Access registration database}
+\item{path}{Folder path to save the file. If \code{name} is
+a valide filegroup \emph{(FILGRUPPE)} then use the specified \code{UTMAPPE}
+in Access registration database else file will be saved in default folder
+\verb{C:\\Users\\YourUserName\\orgdata_files}. The default folder will be
+created if not exist.}
 
 \item{date}{Use date and time as part of the filename}
 
@@ -38,5 +40,8 @@ in Access regstration database with the root as in
  # Two steps
  DF <- make_file("BEFOLKNING")
  save_file(DF, "BEFOLKNING")
+
+ # Save with different name and specified folder
+ save_file(DF, name = "myCSVfile", path = "C:/MyFolder")
 }
 }
