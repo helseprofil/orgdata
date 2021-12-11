@@ -18,9 +18,9 @@ Things in `dev` branch
   specific file. (#171)
 - Refactoring function for recode of geographical codes. (#174)
 - Geo codes for enumeration areas and towns that aren't able to be merged will
-  be converted to `unknown` codes with either `xxxx9999` or `xxxx99`. (#176)
+  be converted to `unknown` codes with either `xxxx9999` or `xxxx99`. (#177)
 - Create default folder at `C:/Users/YourUserName/orgdata_files` when `path`
-  argument is not specified in `save_file()`. (#178)
+  argument is not specified in `save_file()`. (#179)
 
 # orgdata 0.4.4
 
