@@ -17,6 +17,10 @@ Things in `dev` branch
   means the column *KONTROLLERT* in table for original files is marked for the
   specific file. (#171)
 - Refactoring function for recode of geographical codes. (#174)
+- Geo codes for enumeration areas and towns that aren't able to be merged will
+  be converted to `unknown` codes with either `xxxx9999` or `xxxx99`. (#176)
+- Create default folder at `C:/Users/YourUserName/orgdata_files` when `path`
+  argument is not specified in `save_file()`. (#178)
 
 # orgdata 0.4.4
 
