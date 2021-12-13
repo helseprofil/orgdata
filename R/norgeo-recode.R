@@ -312,7 +312,7 @@ is_problem_geo_before_2002 <- function(dt, dcode, type, year, con){
   # dcode - Problem codes
   # type - grunnkrets or bydel
 
-  GEO <- Geo_Dummy <- NULL
+  GEO <- Geo_Dummy <- oldCode <- currentCode <- i.newGEO <- newGEO <- NULL
   yr <- unique(dt$AAR)
 
   yrOld <- any(yr < 2003)
