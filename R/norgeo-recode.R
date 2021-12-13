@@ -135,6 +135,7 @@ do_geo_recode <- function(dt = NULL,
   if (type %in% c("grunnkrets", "bydel")){
     codeProb <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "recode")
     dt <- is_geo_problem(dt = dt, codes = codeProb, type = type)
+    dt <- is_problem_geo_before_2002(dt, codeProb, type = type, year = year, con = con )
   }
 
   xcode <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "delete")
@@ -241,16 +242,14 @@ is_grunnkrets_0000 <- function(dt, control = FALSE){
                          to = "9999")
 
     is_log(notCodes, "code00")
-    is_verbose(x = nr00, msg = "Number of GEO codes inconsistence with geo coding:", type = "warn2")
+    is_verbose(x = nr00, msg = "Number of GEO codes end with `0000`:", type = "warn2")
     is_check_geo(notCodes)
-    is_verbose(x = "xxxx9999", msg = "They are now recoded with ending:", type = "note")
+    is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
     is_verbose(x = "log$code00", msg = "To see these codes, run command:")
   }
 
   return(dt)
 }
-
-
 ## Some grunnkrets have less than 7 digits but not missing. This will add 99 or
 ## 9999 to these number accrodingly making grunnkrets standard with 8 or 7 digits.
 is_grunnkrets <- function(dt, control = FALSE){
@@ -304,6 +303,48 @@ is_check_geo <- function(codes, control = FALSE){
   ## is_verbose(msg = is_line_short(), type = "other")
   is_verbose(codesNot, "Check GEO codes in original data:", type = "warn")
   invisible(codes)
+}
+
+
+## Grunnkrets codes for change starts from 2002. All others before that need to
+## have dummy from municipality to be able to recode to current geo code
+is_problem_geo_before_2002 <- function(dt, dcode, type, year, con){
+  # dcode - Problem codes
+  # type - grunnkrets or bydel
+
+  GEO <- Geo_Dummy <- NULL
+  yr <- unique(dt$AAR)
+
+  yrOld <- any(yr < 2003)
+
+  if (yrOld){
+    geoTable <- paste0("kommune", year)
+    # Kommune codes before 2003 only
+    geoDT <- find_spec("geo-recode-dummy.sql", char = geoTable, con = con, char2 = 2003)
+    data.table::setDT(geoDT)
+
+    for (j in seq_len(ncol(geoDT))){
+      data.table::set(geoDT, j = j, value = as.integer(geoDT[[j]]))
+    }
+
+    deleteLast <- switch(type,
+                         bydel = "\\d{2}$",
+                         grunnkrets = "\\d{4}$")
+
+    dcode <- unique(as.integer(sub(deleteLast, "", dcode)))
+    geoDT <- geoDT[oldCode %in% dcode]
+    add99 <- switch(type,
+                    bydel = "99",
+                    grunnkrets = "9999")
+
+    geoDT[, "newGEO" := paste0(currentCode, add99)]
+
+    dt[ , Geo_Dummy := as.integer(sub(deleteLast, "", GEO)) ]
+    dt[geoDT, on = c(Geo_Dummy = "oldCode"), "newGEO" := as.integer(i.newGEO)]
+    dt[!is.na(newGEO), "GEO" := newGEO]
+    dt[, c("Geo_Dummy", "newGEO") := NULL]
+  }
+  return(dt)
 }
 
 ## Codes that can't be merged since it's not found in geo codebook database
