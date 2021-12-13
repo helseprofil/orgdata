@@ -10,7 +10,7 @@ Things in `dev` branch
 
 - Fixed #162 when saving geographical codebook with `write = TRUE` and the table
   doesn't exist in the *geo-code* database.
-- Stop loop the geographical level when `orgdata.debug.geo` or
+- Stop looping the geographical levels when `orgdata.debug.geo` or
   `orgdata.debug.aggregate` are active and make the default to `kommune`. (#166)
 - Add batch date from codebook as reference when debugging. (#168)
 - Hide warning messages if file has been controlled for any possible errors. It
