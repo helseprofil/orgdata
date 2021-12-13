@@ -23,9 +23,9 @@ Things in `dev` branch
   argument is not specified in `save_file()`. (#179)
 - Create unknown codes for enumeration areas and town codes if not able to
   recode. Most probably is due to the enumeration codes before 2002. The Excel
-  file from SSB is not clean and unstable be used for recoding. The unknown codes
+  file from SSB is not clean and unstable to be used for recoding. The unknown codes
   are based on municipality codes with added `xxxx99` or `xxxx9999`. As in #177
-  but recode is done on municipality codes before added back to the original
+  but recode is done on municipality codes before merging back to the original
   dataset. (#182)
 
 # orgdata 0.4.4
