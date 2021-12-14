@@ -69,9 +69,16 @@ is_org_process <- function(file,
 
   dt <- do_mutate(dt, spec = filespec)
 
-  reshSpec <- get_reshape_id_val(dt, spec = filespec)
-  dt <- do_reshape(dt, reshSpec)
+  if (filespec$RESHAPE == 1){ # LONG
+    reshSpec <- get_reshape_id_val(dt, spec = filespec)
+    dt <- do_reshape(dt, reshSpec)
+  }
 
+  if (filespec$RESHAPE == 2){ # WIDE
+    reshSpec <- get_reshape_wide_id_val(dt, spec = filespec)
+  }
+
+  return(dt)
 }
 
 ## Helper -------------------------------------
