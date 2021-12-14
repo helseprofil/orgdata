@@ -99,6 +99,21 @@ make_file <- function(group = NULL,
       control = fileCtrl
     )
 
+    ## Reshape to wide need to keep object valCols from original file
+    ## to reshape it back to long if it's wide
+    reshapeWide <- fileSpec[["RESHAPE"]] == 2
+
+    if (reshapeWide){
+      meltSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
+      dt <- do_reshape_wide(dt, meltSpec)
+      resCol <- meltSpec$rescol
+      resVal <- meltSpec$resval
+      valCols <- meltSpec$valcols
+      idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
+      dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = resCol )
+    }
+
+
     is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
 
     ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
@@ -109,6 +124,10 @@ make_file <- function(group = NULL,
 
     ## Only columns defined in tbl_Filgruppe will be kept
     deleteVar <- setdiff(names(dt), dataCols)
+    if (reshapeWide){
+      deleteVar <- setdiff(deleteVar, valCols)
+    }
+
     if (length(deleteVar) != 0) {
       dt[, (deleteVar) := NULL]
     }

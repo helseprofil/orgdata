@@ -8,6 +8,10 @@
 #' @export
 do_reshape_rename_col <- function(dt = NULL, spec = NULL){
   is_debug()
+  if (spec[["RESHAPE"]] == 2){
+    return(dt)
+  }
+
   input <- find_column_input(spec = spec, "RESHAPE_KOL")
 
   if (!is.na(input)){

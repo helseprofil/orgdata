@@ -74,10 +74,6 @@ is_org_process <- function(file,
     dt <- do_reshape(dt, reshSpec)
   }
 
-  if (filespec$RESHAPE == 2){ # WIDE
-    reshSpec <- get_reshape_wide_id_val(dt, spec = filespec)
-  }
-
   return(dt)
 }
 
