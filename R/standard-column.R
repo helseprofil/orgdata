@@ -51,10 +51,10 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
     vars <- vars[vars != "GEO"]
   }
 
-  ## When RESHAPE_KOL exists, exclude TAB1 and VAL1
-  ## get which columns are defined since it can be few VAL
-  reshcol <- is.na(spec$RESHAPE_KOL)
-  if (isFALSE(reshcol)){
+  ## When RESHAPE is 2 = LONG exclude TAB1 and VAL1
+  ## but still need to get which columns are defined since it can be few VALs
+  reshcol <- spec$RESHAPE
+  if (reshcol == 1){
     vars <- is_reshape_col(vars, spec)
   }
 
