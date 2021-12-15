@@ -1,9 +1,9 @@
 ## Start
 library(orgdata)
 
-  ###   HUSK Å ALLTID TILORDNE ET OBJEKT for make_file og read_file ! ###
-  ###   dt <- make_file()
-  ### dvs. ^
+##   HUSK Å ALLTID TILORDNE ET OBJEKT for make_file og read_file ! ###
+##   dt <- make_file()
+## dvs. ^
 
 ## Les original fil som det er ved å velge FILID
 df <- les_fil(1)
@@ -16,6 +16,9 @@ dt <- lag_fil("BEFOLKNING")
 
 ## Lagre CSV fil
 save_file(dt, "BEFOLKNING")
+
+## Å lage det et annet sted
+save_file(dt, name = "MinFil", path = "C:\Navn\Til\Mappen")
 
 ## Evt. hvis alle filer har vært kontrollert
 lag_fil("BEFOLKNING", save = TRUE)
