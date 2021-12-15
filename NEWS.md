@@ -6,6 +6,18 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
+# orgdata 0.4.6
+
+- Fixed #147 to implement reshape wide format to create denominator. This
+  function is only applicable to certain file structure received from SSB. For
+  example filegroup *LESEFERD* where column `tot_elev` represents the total
+  number of student with `mestringsnivå` and not the grand total of students.
+  The number of students with `mestringsnivå` is represented in column
+  `ant_elev`. Therefore the long format for `mestringsnivå` needs to be
+  restructured to wide with value from the `ant_elev` to ensure summing up
+  `tot_elev` when creating denominator will not create a grand total of students
+  instead of the total number of students with `mestringsnivå`. (#184)
+  
 # orgdata 0.4.5
 
 - Fixed #162 when saving geographical codebook with `write = TRUE` and the table
