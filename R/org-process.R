@@ -33,6 +33,7 @@ is_org_process <- function(file,
 
   ## With or without dots or extra arguments
   extra <- get_extra_args(spec = filespec)
+  extra <- is_fake_NA(extra)
   if (is.na(dots[1])) {
     dt <- is_read_file(file = file, extra = extra)
   } else {
@@ -60,6 +61,9 @@ is_org_process <- function(file,
   dt <- do_column_standard(dt, colSpec)
 
   dt <- do_delete_row(dt = dt, spec = filespec, con = con)
+  if (nrow(dt) == 0){
+    is_stop("Dataset is empty after removing unwanted rows!")
+  }
 
   splitSpec <- get_split(spec = fgspec)
   dt <- do_split(dt = dt, split = splitSpec)
