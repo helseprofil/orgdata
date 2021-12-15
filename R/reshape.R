@@ -8,6 +8,7 @@
 #' @export
 do_reshape_rename_col <- function(dt = NULL, spec = NULL){
   is_debug()
+
   input <- find_column_input(spec = spec, "RESHAPE_KOL")
 
   if (!is.na(input)){
@@ -33,7 +34,7 @@ do_reshape <- function(dt = NULL, respec = NULL){
 
   is_debug()
 
-  if (is.na(respec$id)){
+  if (length(respec$id) == 0){
     return(dt)
   }
 

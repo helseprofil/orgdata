@@ -104,6 +104,17 @@ is_logical <- function(x) {
   return(x)
 }
 
+# When NA from Access is a character and not real NA
+is_fake_NA <- function(x){
+  isNA <- c("<NA>", "NA")
+  fake <- is.element(x, isNA)
+
+  if (fake){
+    x <- NA
+  }
+
+  return(x)
+}
 
 
 is_verbose <- function(x = NULL, msg = NULL,
