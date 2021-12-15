@@ -18,7 +18,7 @@ dt <- lag_fil("BEFOLKNING")
 save_file(dt, "BEFOLKNING")
 
 ## Å lage det et annet sted
-save_file(dt, name = "MinFil", path = "C:\Navn\Til\Mappen")
+save_file(dt, name = "MinFil", path = "C:/Navn/Til/Mappen")
 
 ## Evt. hvis alle filer har vært kontrollert
 lag_fil("BEFOLKNING", save = TRUE)
