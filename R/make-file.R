@@ -99,31 +99,30 @@ make_file <- function(group = NULL,
       control = fileCtrl
     )
 
-    ## Reshape to wide need to keep object valCols from original file
-    ## to reshape it back to long if it's wide
+    ## RESHAPE structure -----------------------------------------
+    reshapeLong <- fileSpec[["RESHAPE"]] == 1
     reshapeWide <- fileSpec[["RESHAPE"]] == 2
 
+    ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
+    ## defined in Access coz aggregating uses the standard columnames. Else it
+    ## will be deleted as undefined columns in Access database
+    if (reshapeLong){
+      dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
+    }
+
+    ## Reshape to wide needs to keep object valCols from original file
+    ## to reshape it back to long if it's wide
     if (reshapeWide){
       meltSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
-      dt <- do_reshape_wide(dt, meltSpec)
       resCol <- meltSpec$rescol
       resVal <- meltSpec$resval
       valCols <- meltSpec$valcols
-      idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
-      dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = resCol )
     }
 
-
-    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
-
-    ## Keep columname as TAB1 to 3 and VAL1 to 3 as defined in Access coz
-    ## aggregating uses the standard columnames for id and measure variables
-    dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
-    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
-    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
-
-    ## Only columns defined in tbl_Filgruppe will be kept
+    ## Only columns defined in tbl_Filgruppe will be kept. Deleting columns only
+    ## after renaming RESHAPE columns back to standard columnames.
     deleteVar <- setdiff(names(dt), dataCols)
+
     if (reshapeWide){
       deleteVar <- setdiff(deleteVar, valCols)
     }
@@ -141,6 +140,22 @@ make_file <- function(group = NULL,
       deleteVar <- paste(deleteVar, collapse = ", ")
       is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
     }
+
+    ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
+    ## make specification for column that should not be included in the formula
+    ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
+    if (reshapeWide){
+      dt <- do_reshape_wide(dt, meltSpec)
+      idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
+      dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = resCol )
+    }
+
+    ## RECODE ------------------------------------
+    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+
+    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
+    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
+
 
     ## TODO - Not sure if this necessary. Turn of temporarily
     ## Convert some columns to interger. Must be after
