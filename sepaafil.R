@@ -1,6 +1,10 @@
 ## Start
 library(orgdata)
 
+  ###   HUSK Å ALLTID TILORDNE ET OBJEKT for make_file og read_file ! ###
+  ###   dt <- make_file()
+  ### dvs. ^
+
 ## Les original fil som det er ved å velge FILID
 df <- les_fil(1)
 
