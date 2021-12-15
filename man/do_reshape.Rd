@@ -18,6 +18,8 @@ Reshape the dataset from wide format to long format.
 \seealso{
 Other reshape functions: 
 \code{\link{do_reshape_rename_col}()},
-\code{\link{get_reshape_id_val}()}
+\code{\link{do_reshape_wide}()},
+\code{\link{get_reshape_id_val}()},
+\code{\link{get_reshape_wide_spec}()}
 }
 \concept{reshape functions}

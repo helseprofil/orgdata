@@ -23,27 +23,27 @@ do_reshape_wide <- function(dt = NULL, respec = NULL){
 #'   understand `formula` and `value` variables.
 #' @inheritParams do_reshape
 #' @inheritParams make_file
-  #' @inheritParams get_split
-  #' @inheritParams find_column_input
-  #' @family reshape functions
-  #' @export
-  get_reshape_wide_spec <- function(dt = NULL, group = NULL, con = NULL, spec = NULL){
+#' @inheritParams get_split
+#' @inheritParams find_column_input
+#' @family reshape functions
+#' @export
+get_reshape_wide_spec <- function(dt = NULL, group = NULL, con = NULL, spec = NULL){
 
-    is_debug()
-    is_null_both(group, spec)
-    is_not_null_both(group, spec)
+  is_debug()
+  is_null_both(group, spec)
+  is_not_null_both(group, spec)
 
-    if (is.null(spec)) {
-      spec <- find_spec("specification.sql", value = group, con = con)
-    }
-
-    ## TODO Delete or exclude column that should not be included as in RESHAPE_ID
-
-    resCol <- spec[["RESHAPE_KOL"]]
-    resVal <- spec[["RESHAPE_VAL"]]
-    valCols <- as.character(unique(dt[[resCol]]))
-
-    return(list(rescol = resCol,
-                resval = resVal,
-                valcols = valCols))
+  if (is.null(spec)) {
+    spec <- find_spec("specification.sql", value = group, con = con)
   }
+
+  ## TODO Delete or exclude column that should not be included as in RESHAPE_ID
+
+  resCol <- spec[["RESHAPE_KOL"]]
+  resVal <- spec[["RESHAPE_VAL"]]
+  valCols <- as.character(unique(dt[[resCol]]))
+
+  return(list(rescol = resCol,
+              resval = resVal,
+              valcols = valCols))
+}

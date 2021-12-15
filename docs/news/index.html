@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6</span>
       </span>
     </div>
 
@@ -146,6 +146,13 @@
 <p>Things in <code>dev</code> branch</p>
 <ul>
 <li>Compute function to create a new category based on the existing categories eg. UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group ie. group 5.</li>
+</ul>
+</div>
+    <div id="orgdata-046" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.6">
+<a href="#orgdata-046" class="anchor"></a>orgdata 0.4.6</h1>
+<ul>
+<li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/147'>#147</a> to implement reshape wide format to create denominator. This function is only applicable to certain file structure received from SSB. For example filegroup <em>LESEFERD</em> where column <code>tot_elev</code> represents the total number of student with <code>mestringsnivå</code> and not the grand total of students. The number of students with <code>mestringsnivå</code> is represented in column <code>ant_elev</code>. Therefore the long format for <code>mestringsnivå</code> needs to be restructured to wide with value from the <code>ant_elev</code> to ensure summing up <code>tot_elev</code> when creating denominator will not create a grand total of students instead of the total number of students with <code>mestringsnivå</code>. (<a href='https://github.com/helseprofil/orgdata/issues/184'>#184</a>)</li>
 </ul>
 </div>
     <div id="orgdata-045" class="section level1">
