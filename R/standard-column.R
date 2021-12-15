@@ -54,7 +54,7 @@ get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
   ## When RESHAPE is 2 = LONG exclude TAB1 and VAL1
   ## but still need to get which columns are defined since it can be few VALs
   reshcol <- spec$RESHAPE
-  if (reshcol == 1){
+  if (!is.na(reshcol) && reshcol == 1){
     vars <- is_reshape_col(vars, spec)
   }
 

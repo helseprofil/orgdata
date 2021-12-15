@@ -1,6 +1,6 @@
 test_that("Rename standard columns", {
   dfCol <- data.frame(
-    GEO = "grunnkrets", AAR = "$Y", KJONN = "kjoenn",
+    GEO = "grunnkrets", AAR = "$Y", KJONN = "kjoenn", RESHAPE = NA_character_,
     ALDER = "age", UTDANN = NA_character_, LANDSSB = "landb", VAL1 = "total"
   )
 
