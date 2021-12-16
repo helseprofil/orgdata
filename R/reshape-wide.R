@@ -6,12 +6,23 @@
 #' @family reshape functions
 #' @export
 do_reshape_wide <- function(dt = NULL, respec = NULL){
+
+  dt <- copy(dt)
   resCol <- respec$rescol
   resVal <- respec$resval
 
   ## TODO select only specific folder as reshape id instead of all with ...
+  if (length(resCol) == 2){
+    dt <- data.table::dcast(data = dt,
+                            formula = paste0("...", "~", resCol[1], "+", resCol[2]),
+                            value.var = resVal, sep = ";")
+  } else {
+    dt <- data.table::dcast(data = dt,
+                            formula = paste0("...", "~", resCol),
+                            value.var = resVal)
+  }
 
-  data.table::dcast(dt, paste0("...", "~", resCol), value.var = resVal)
+  return(dt)
 }
 
 # 1 = LONG
@@ -38,12 +49,32 @@ get_reshape_wide_spec <- function(dt = NULL, group = NULL, con = NULL, spec = NU
   }
 
   ## TODO Delete or exclude column that should not be included as in RESHAPE_ID
-
-  resCol <- spec[["RESHAPE_KOL"]]
-  resVal <- spec[["RESHAPE_VAL"]]
-  valCols <- as.character(unique(dt[[resCol]]))
+  resCol <- find_column_multi(spec, "RESHAPE_KOL")
+  resVal <- find_column_input(spec, "RESHAPE_VAL")
+  valCols <- is_reshape_wide_cols(dt, resCol)
 
   return(list(rescol = resCol,
               resval = resVal,
               valcols = valCols))
+}
+
+## Helper ---------------------
+## All possible combination of unique vectors to create value columns
+## from when dt is turned to wide especially with multiple reshape columns
+is_reshape_wide_cols <- function(dt, col){
+  # col - Value columns in dataset when turn to wide
+
+  if (length(col) == 2){
+    col1 <- col[1]
+    col2 <- col[2]
+    colVal1 <- as.character(unique(dt[[col1]]))
+    colVal2 <- as.character(unique(dt[[col2]]))
+    idx <- data.table::CJ(colVal1, colVal2)
+    idx[, cols := paste0(colVal1, ";", colVal2)]
+    valCols <- idx[["cols"]]
+  } else {
+    valCols <- as.character(unique(dt[[col]]))
+  }
+
+  return(valCols)
 }

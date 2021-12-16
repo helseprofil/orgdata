@@ -100,9 +100,9 @@ make_file <- function(group = NULL,
     )
 
     ## RESHAPE structure -----------------------------------------
-    reshVal <- fileSpec[["RESHAPE"]]
-    reshapeLong <- fileSpec[["RESHAPE"]] == 1
-    reshapeWide <- fileSpec[["RESHAPE"]] == 2
+    reshVal <- find_column_input(fileSpec, "RESHAPE")
+    reshapeLong <- reshVal == 1
+    reshapeWide <- reshVal == 2
 
     ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
     ## defined in Access coz aggregating uses the standard columnames. Else it
@@ -125,8 +125,8 @@ make_file <- function(group = NULL,
     deleteVar <- setdiff(names(dt), dataCols)
 
     if (!is.na(reshVal) && reshapeWide){
-        deleteVar <- setdiff(deleteVar, valCols)
-      }
+      deleteVar <- setdiff(deleteVar, valCols)
+    }
 
       if (length(deleteVar) != 0) {
         dt[, (deleteVar) := NULL]
@@ -142,37 +142,39 @@ make_file <- function(group = NULL,
         is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
       }
 
-      ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
-      ## make specification for column that should not be included in the formula
-      ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
-      if (!is.na(reshVal) && reshapeWide){
-        dt <- do_reshape_wide(dt, meltSpec)
-        idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
-        dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = resCol )
-      }
+    ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
+    ## make specification for column that should not be included in the formula
+    ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
+    if (!is.na(reshVal) && reshapeWide){
+      dt <- do_reshape_wide(dt, meltSpec)
+      #identify exisiting measure var from all possible combinations
+      valCols <- intersect(valCols, names(dt))
+      idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
+      dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = "variable" )
+    }
 
-      ## RECODE ------------------------------------
-      is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+    ## RECODE ------------------------------------
+    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
 
-      dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
-      dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
+    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
+    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
 
 
-      ## TODO - Not sure if this necessary. Turn of temporarily
-      ## Convert some columns to interger. Must be after
-      ## the variables are recoded eg. INNKAT is string before recorded to number
-      ## dt <- is_col_int(dt)
+    ## TODO - Not sure if this necessary. Turn of temporarily
+    ## Convert some columns to interger. Must be after
+    ## the variables are recoded eg. INNKAT is string before recorded to number
+    ## dt <- is_col_int(dt)
 
-      dt <- is_aggregate(dt = dt,
-                         fgspec = fgSpec,
-                         year = year,
-                         aggregate = aggregate,
-                         base = base,
-                         control = fileCtrl)
+    dt <- is_aggregate(dt = dt,
+                       fgspec = fgSpec,
+                       year = year,
+                       aggregate = aggregate,
+                       base = base,
+                       control = fileCtrl)
 
-      DT[[i]] <- copy(dt)
-      rm(dt)
-      gc()
+    DT[[i]] <- copy(dt)
+    rm(dt)
+    gc()
   }
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
