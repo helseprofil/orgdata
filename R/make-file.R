@@ -123,24 +123,19 @@ make_file <- function(group = NULL,
     ## Only columns defined in tbl_Filgruppe will be kept. Deleting columns only
     ## after renaming RESHAPE columns back to standard columnames.
     deleteVar <- setdiff(names(dt), dataCols)
-
-    if (!is.na(reshVal) && reshapeWide){
-      deleteVar <- setdiff(deleteVar, valCols)
+    if (length(deleteVar) != 0) {
+      dt[, (deleteVar) := NULL]
     }
 
-      if (length(deleteVar) != 0) {
-        dt[, (deleteVar) := NULL]
-      }
-
-      if (length(deleteVar) != 0) {
-        ## What does this mean? Need to ask the senior people in the project :-)
-        msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
-        msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
-        msgWarn <- paste0(msg01, "\n", msg02)
-        is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
-        deleteVar <- paste(deleteVar, collapse = ", ")
-        is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
-      }
+    if (length(deleteVar) != 0) {
+      ## What does this mean? Need to ask the senior people in the project :-)
+      msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
+      msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
+      msgWarn <- paste0(msg01, "\n", msg02)
+      is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
+      deleteVar <- paste(deleteVar, collapse = ", ")
+      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
+    }
 
     ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
     ## make specification for column that should not be included in the formula
@@ -149,8 +144,10 @@ make_file <- function(group = NULL,
       dt <- do_reshape_wide(dt, meltSpec)
       #identify exisiting measure var from all possible combinations
       valCols <- intersect(valCols, names(dt))
-      idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
-      dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = "variable" )
+      dt <- do_reshape_long(dt = dt,
+                            resval = resVal,
+                            rescol = resCol,
+                            valcols = valCols)
     }
 
     ## RECODE ------------------------------------
