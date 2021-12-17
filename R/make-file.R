@@ -113,20 +113,17 @@ make_file <- function(group = NULL,
 
     ## Reshape to wide needs to keep object valCols from original file
     ## to reshape it back to long if it's wide
+    wideCols <- NULL
     if (!is.na(reshVal) && reshapeWide){
       meltSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
       resCol <- meltSpec$rescol
       resVal <- meltSpec$resval
-      valCols <- meltSpec$valcols
+      wideCols <- meltSpec$widecols
     }
 
     ## Only columns defined in tbl_Filgruppe will be kept. Deleting columns only
     ## after renaming RESHAPE columns back to standard columnames.
     deleteVar <- setdiff(names(dt), dataCols)
-
-    if (!is.na(reshVal) && reshapeWide){
-      deleteVar <- setdiff(deleteVar, valCols)
-    }
 
     if (length(deleteVar) != 0) {
       dt[, (deleteVar) := NULL]
@@ -147,7 +144,7 @@ make_file <- function(group = NULL,
     ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
     if (!is.na(reshVal) && reshapeWide){
       dt <- do_reshape_wide(dt, meltSpec)
-      wideCols <- intersect(names(dt), valCols)
+      wideCols <- intersect(names(dt), wideCols)
     }
 
     ## RECODE ------------------------------------
@@ -171,9 +168,10 @@ make_file <- function(group = NULL,
                        wide = wideCols)
 
 
+    ## RESHAPE LONG SPECIAL CASES --------------------------------------
     if (!is.na(reshVal) && reshapeWide){
       idvar <- setdiff(names(dt), wideCols)
-      dt <- do_reshape_long(dt, resval = resVal, rescol = resCol, valcols = wideCols)
+      dt <- do_reshape_long(dt = dt, resval = resVal, rescol = resCol, widecols = wideCols)
     }
 
     DT[[i]] <- copy(dt)

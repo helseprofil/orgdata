@@ -4,17 +4,17 @@
 #' @param dt An output dataset from `do_reshape_wide()`
 #' @param resval Column value to be reshaped from
 #' @param rescol Column(s) dimension where the value derived from
-#' @param valcols Column(s) names created in the dataset
+#' @param widecols Column(s) names created for wide reshape in the dataset
 #' @family reshape functions
 #' @export
-do_reshape_long <- function(dt, resval, rescol, valcols){
+do_reshape_long <- function(dt, resval, rescol, widecols){
 
   is_debug()
 
-  idvar <- setdiff(names(dt), valcols)
+  idvar <- setdiff(names(dt), widecols)
   dt <- data.table::melt(data = dt,
                          id.vars = idvar,
-                         measure.vars = valcols,
+                         measure.vars = widecols,
                          value.name = resval,
                          variable.name = "variable")
 
@@ -108,11 +108,11 @@ get_reshape_wide_spec <- function(dt = NULL, group = NULL, con = NULL, spec = NU
   ## TODO Delete or exclude column that should not be included as in RESHAPE_ID
   resCol <- find_column_multi(spec, "RESHAPE_KOL")
   resVal <- find_column_input(spec, "RESHAPE_VAL")
-  valCols <- is_reshape_wide_cols(dt, resCol)
+  wideCols <- is_reshape_wide_cols(dt, resCol)
 
   return(list(rescol = resCol,
               resval = resVal,
-              valcols = valCols))
+              widecols = wideCols))
 }
 
 ## Helper ---------------------
@@ -131,7 +131,7 @@ is_reshape_wide_cols <- function(dt, col){
     colVal3 <- as.character(unique(dt[[col3]]))
     idx <- data.table::CJ(colVal1, colVal2, colVal3)
     idx[, cols := paste0(colVal1, ";", colVal2, ";", colVal3)]
-    valCols <- idx[["cols"]]
+    wideCols <- idx[["cols"]]
   }
 
   if (length(col) == 2){
@@ -141,10 +141,10 @@ is_reshape_wide_cols <- function(dt, col){
     colVal2 <- as.character(unique(dt[[col2]]))
     idx <- data.table::CJ(colVal1, colVal2)
     idx[, cols := paste0(colVal1, ";", colVal2)]
-    valCols <- idx[["cols"]]
+    wideCols <- idx[["cols"]]
   } else {
-    valCols <- as.character(unique(dt[[col]]))
+    wideCols <- as.character(unique(dt[[col]]))
   }
 
-  return(valCols)
+  return(wideCols)
 }
