@@ -57,16 +57,16 @@ test_that("Columns and class data", {
                            NAVAL = NA_character_, SPLITTFRA = "LANDSSB", SPLITTTIL = "LANDB, LANDF"),
                       class = "data.frame", row.names = c(NA, -1L))
 
-  cols <- c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB1",
-            "TAB2", "TAB3", "VAL1", "VAL2", "VAL3", "SIVILSTAND", "LANDB",
-            "LANDF")
+  cols <- c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB",
+            "LANDBAK", "INNVKAT", "TAB1", "TAB2", "TAB3", "VAL1", "VAL2", "VAL3",
+            "SIVILSTAND", "LANDB", "LANDF")
 
   fgspecMis <- structure(list(ID = 10L, FILGRUPPE = "Dode", AGGREGERE = "F,K",
                               KOLNAVN = NA_character_, ADDVAL = NA_character_,
                               NAVAL = NA_character_, SPLITTFRA = NA_character_, SPLITTTIL = NA_character_),
                          class = "data.frame", row.names = c(NA,-1L))
-  colmis <- c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "TAB1",
-              "TAB2", "TAB3", "VAL1", "VAL2", "VAL3")
+  colmis <- c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", "LANDBAK", "INNVKAT",
+              "TAB1", "TAB2", "TAB3", "VAL1", "VAL2", "VAL3")
 
   ## TEST -------------------
   ## expect_equal(is_col_int(dataRaw), dataOut) #function not activated
