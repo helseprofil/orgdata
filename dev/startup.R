@@ -73,6 +73,9 @@ usethis::use_r("r6-db-connect.R")
 usethis::use_test("specification")
 usethis::use_test("check")
 
+testdt <- readRDS(file = system.file("testdata", "dt-test.rds", package = "orgdata"))
+
+
 ## Tinytest approach
 ## tinytest::setup_tinytest(getwd())
 ## tinytest::test_all(getwd()) # run all test files

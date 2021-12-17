@@ -18,6 +18,7 @@ specified under \code{RESHAPE_KOL} in the Access registration database.
 }
 \seealso{
 Other reshape functions: 
+\code{\link{do_reshape_long}()},
 \code{\link{do_reshape_wide}()},
 \code{\link{do_reshape}()},
 \code{\link{get_reshape_id_val}()},

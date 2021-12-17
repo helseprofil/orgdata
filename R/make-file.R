@@ -100,9 +100,9 @@ make_file <- function(group = NULL,
     )
 
     ## RESHAPE structure -----------------------------------------
-    reshVal <- fileSpec[["RESHAPE"]]
-    reshapeLong <- fileSpec[["RESHAPE"]] == 1
-    reshapeWide <- fileSpec[["RESHAPE"]] == 2
+    reshVal <- find_column_input(fileSpec, "RESHAPE")
+    reshapeLong <- reshVal == 1
+    reshapeWide <- reshVal == 2
 
     ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
     ## defined in Access coz aggregating uses the standard columnames. Else it
@@ -113,66 +113,70 @@ make_file <- function(group = NULL,
 
     ## Reshape to wide needs to keep object valCols from original file
     ## to reshape it back to long if it's wide
+    wideCols <- NULL
     if (!is.na(reshVal) && reshapeWide){
       meltSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
       resCol <- meltSpec$rescol
       resVal <- meltSpec$resval
-      valCols <- meltSpec$valcols
+      wideCols <- meltSpec$widecols
     }
 
     ## Only columns defined in tbl_Filgruppe will be kept. Deleting columns only
     ## after renaming RESHAPE columns back to standard columnames.
     deleteVar <- setdiff(names(dt), dataCols)
 
+    if (length(deleteVar) != 0) {
+      dt[, (deleteVar) := NULL]
+    }
+
+    if (length(deleteVar) != 0) {
+      ## What does this mean? Need to ask the senior people in the project :-)
+      msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
+      msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
+      msgWarn <- paste0(msg01, "\n", msg02)
+      is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
+      deleteVar <- paste(deleteVar, collapse = ", ")
+      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
+    }
+
+    ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
+    ## make specification for column that should not be included in the formula
+    ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
     if (!is.na(reshVal) && reshapeWide){
-        deleteVar <- setdiff(deleteVar, valCols)
-      }
+      dt <- do_reshape_wide(dt, meltSpec)
+      wideCols <- intersect(names(dt), wideCols)
+    }
 
-      if (length(deleteVar) != 0) {
-        dt[, (deleteVar) := NULL]
-      }
+    ## RECODE ------------------------------------
+    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
 
-      if (length(deleteVar) != 0) {
-        ## What does this mean? Need to ask the senior people in the project :-)
-        msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
-        msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
-        msgWarn <- paste0(msg01, "\n", msg02)
-        is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
-        deleteVar <- paste(deleteVar, collapse = ", ")
-        is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
-      }
-
-      ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
-      ## make specification for column that should not be included in the formula
-      ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
-      if (!is.na(reshVal) && reshapeWide){
-        dt <- do_reshape_wide(dt, meltSpec)
-        idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
-        dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = resCol )
-      }
-
-      ## RECODE ------------------------------------
-      is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
-
-      dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
-      dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
+    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
+    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
 
 
-      ## TODO - Not sure if this necessary. Turn of temporarily
-      ## Convert some columns to interger. Must be after
-      ## the variables are recoded eg. INNKAT is string before recorded to number
-      ## dt <- is_col_int(dt)
+    ## TODO - Not sure if this necessary. Turn of temporarily
+    ## Convert some columns to interger. Must be after
+    ## the variables are recoded eg. INNKAT is string before recorded to number
+    ## dt <- is_col_int(dt)
 
-      dt <- is_aggregate(dt = dt,
-                         fgspec = fgSpec,
-                         year = year,
-                         aggregate = aggregate,
-                         base = base,
-                         control = fileCtrl)
+    dt <- is_aggregate(dt = dt,
+                       fgspec = fgSpec,
+                       year = year,
+                       aggregate = aggregate,
+                       base = base,
+                       control = fileCtrl,
+                       wide = wideCols)
 
-      DT[[i]] <- copy(dt)
-      rm(dt)
-      gc()
+
+    ## RESHAPE LONG SPECIAL CASES --------------------------------------
+    if (!is.na(reshVal) && reshapeWide){
+      idvar <- setdiff(names(dt), wideCols)
+      dt <- do_reshape_long(dt = dt, resval = resVal, rescol = resCol, widecols = wideCols)
+    }
+
+    DT[[i]] <- copy(dt)
+    rm(dt)
+    gc()
   }
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------

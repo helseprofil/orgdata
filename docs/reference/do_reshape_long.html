@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reshape Wide Specification — get_reshape_wide_spec • orgdata</title>
+<title>Special Need Reshape to Long — do_reshape_long • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,9 @@
 
 
 
-<meta property="og:title" content="Reshape Wide Specification — get_reshape_wide_spec" />
-<meta property="og:description" content="Get the formula and value variables for reshaping a long dataset
-to wide. For detail please read data.table::dcast.data.table to
-understand formula and value variables." />
+<meta property="og:title" content="Special Need Reshape to Long — do_reshape_long" />
+<meta property="og:description" content="This function is only applicable to reshape data that was
+reshaped to wide via Access specification in RESHAPE columns." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -139,48 +138,47 @@ understand formula and value variables." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Reshape Wide Specification</h1>
+    <h1>Special Need Reshape to Long</h1>
     <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/reshape-wide.R'><code>R/reshape-wide.R</code></a></small>
-    <div class="hidden name"><code>get_reshape_wide_spec.Rd</code></div>
+    <div class="hidden name"><code>do_reshape_long.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the formula and value variables for reshaping a long dataset
-to wide. For detail please read <code><a href='https://Rdatatable.gitlab.io/data.table/reference/dcast.data.table.html'>data.table::dcast.data.table</a></code> to
-understand <code>formula</code> and <code>value</code> variables.</p>
+    <p>This function is only applicable to reshape data that was
+reshaped to wide via Access specification in <code>RESHAPE</code> columns.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_reshape_wide_spec</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, con <span class='op'>=</span> <span class='cn'>NULL</span>, spec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_reshape_long</span><span class='op'>(</span><span class='va'>dt</span>, <span class='va'>resval</span>, <span class='va'>rescol</span>, <span class='va'>widecols</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dt</th>
-      <td><p>Dataset to be reshaped</p></td>
+      <td><p>An output dataset from <code><a href='do_reshape_wide.html'>do_reshape_wide()</a></code></p></td>
     </tr>
     <tr>
-      <th>group</th>
-      <td><p>The group of files (<em>filgruppe</em>)</p></td>
+      <th>resval</th>
+      <td><p>Column value to be reshaped from</p></td>
     </tr>
     <tr>
-      <th>con</th>
-      <td><p>Connection to database</p></td>
+      <th>rescol</th>
+      <td><p>Column(s) dimension where the value derived from</p></td>
     </tr>
     <tr>
-      <th>spec</th>
-      <td><p>Specification from <code>tbl_Filgruppe</code></p></td>
+      <th>widecols</th>
+      <td><p>Column(s) names created for wide reshape in the dataset</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other reshape functions: 
-<code><a href='do_reshape_long.html'>do_reshape_long</a>()</code>,
 <code><a href='do_reshape_rename_col.html'>do_reshape_rename_col</a>()</code>,
 <code><a href='do_reshape_wide.html'>do_reshape_wide</a>()</code>,
 <code><a href='do_reshape.html'>do_reshape</a>()</code>,
-<code><a href='get_reshape_id_val.html'>get_reshape_id_val</a>()</code></p></div>
+<code><a href='get_reshape_id_val.html'>get_reshape_id_val</a>()</code>,
+<code><a href='get_reshape_wide_spec.html'>get_reshape_wide_spec</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
