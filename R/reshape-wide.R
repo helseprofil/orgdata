@@ -1,3 +1,50 @@
+#' @title Special Need Reshape to Long
+#' @description This function is only applicable to reshape data that was
+#'   reshaped to wide via Access specification in `RESHAPE` columns.
+#' @param dt An output dataset from `do_reshape_wide()`
+#' @param resval Column value to be reshaped from
+#' @param rescol Column(s) dimension where the value derived from
+#' @param valcols Column(s) names created in the dataset
+#' @family reshape functions
+#' @export
+do_reshape_long <- function(dt, resval, rescol, valcols){
+
+  is_debug()
+
+  idvar <- setdiff(names(dt), valcols)
+  dt <- data.table::melt(data = dt,
+                         id.vars = idvar,
+                         measure.vars = valcols,
+                         value.name = resval,
+                         variable.name = "variable")
+
+  if (length(rescol) > 3){
+    is_stop("Too many reshape columns! Max is 3 columns")
+  }
+
+  ## TODO Need to refactor this! Too many repeatition!
+  if (length(rescol) == 3){
+    col1 <- rescol[1]
+    col2 <- rescol[2]
+    col3 <- rescol[3]
+    dt[, (col1) := sub("(.*);(.*);(.*)", "\\1", variable)]
+    dt[, (col2) := sub("(.*);(.*);(.*)", "\\2", variable)]
+    dt[, (col3) := sub("(.*);(.*);(.*)", "\\3", variable)]
+  }
+
+  if (length(rescol) == 2){
+    col1 <- rescol[1]
+    col2 <- rescol[2]
+    dt[, (col1) := sub("(.*);(.*)", "\\1", variable)]
+    dt[, (col2) := sub("(.*);(.*)", "\\2", variable)]
+  } else {
+    dt[, (rescol) := variable]
+  }
+
+  dt[, variable := NULL]
+}
+
+
 #' @title Reshape from Long to Wide
 #' @description Reshape the dataset from long format to wide format.
 #' @param dt Dataset to be reshaped
