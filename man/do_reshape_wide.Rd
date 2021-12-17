@@ -17,6 +17,7 @@ Reshape the dataset from long format to wide format.
 }
 \seealso{
 Other reshape functions: 
+\code{\link{do_reshape_long}()},
 \code{\link{do_reshape_rename_col}()},
 \code{\link{do_reshape}()},
 \code{\link{get_reshape_id_val}()},

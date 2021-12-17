@@ -12,7 +12,8 @@ do_aggregate(
   aggregate.col = NULL,
   check = getOption("orgdata.debug.aggregate"),
   base = getOption("orgdata.recode.base"),
-  control = FALSE
+  control = FALSE,
+  wide = NULL
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ available codes in geo codebook}
 
 \item{control}{Logical value. \code{TRUE} if the file has been controlled for
 possible errors}
+
+\item{wide}{Column(s) from reshape wide}
 }
 \description{
 Aggregate data according to the specification in \code{tbl_Filgruppe}
