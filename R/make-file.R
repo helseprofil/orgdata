@@ -205,9 +205,6 @@ make_file <- function(group = NULL,
 
   data.table::setkeyv(outDT, c("GEO", "AAR"))
 
-  grpCols <- get_colname(spec = fgSpec)
-  outDT <- do_colname(dt = outDT, cols = grpCols)
-
   is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
   outDT <- do_recode_aggregate(dt = outDT,
                                spec = fileSpec,
@@ -217,6 +214,9 @@ make_file <- function(group = NULL,
   standardCols <- is_standard_cols()
   orderCols <- intersect(standardCols, names(outDT))
   data.table::setcolorder(outDT, orderCols)
+
+  grpCols <- get_colname(spec = fgSpec)
+  outDT <- do_colname(dt = outDT, cols = grpCols)
 
   if (save) {
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
