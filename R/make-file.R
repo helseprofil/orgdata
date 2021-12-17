@@ -125,54 +125,54 @@ make_file <- function(group = NULL,
     deleteVar <- setdiff(names(dt), dataCols)
 
     if (!is.na(reshVal) && reshapeWide){
-        deleteVar <- setdiff(deleteVar, valCols)
-      }
+      deleteVar <- setdiff(deleteVar, valCols)
+    }
 
-      if (length(deleteVar) != 0) {
-        dt[, (deleteVar) := NULL]
-      }
+    if (length(deleteVar) != 0) {
+      dt[, (deleteVar) := NULL]
+    }
 
-      if (length(deleteVar) != 0) {
-        ## What does this mean? Need to ask the senior people in the project :-)
-        msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
-        msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
-        msgWarn <- paste0(msg01, "\n", msg02)
-        is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
-        deleteVar <- paste(deleteVar, collapse = ", ")
-        is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
-      }
+    if (length(deleteVar) != 0) {
+      ## What does this mean? Need to ask the senior people in the project :-)
+      msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
+      msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
+      msgWarn <- paste0(msg01, "\n", msg02)
+      is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
+      deleteVar <- paste(deleteVar, collapse = ", ")
+      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
+    }
 
-      ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
-      ## make specification for column that should not be included in the formula
-      ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
-      if (!is.na(reshVal) && reshapeWide){
-        dt <- do_reshape_wide(dt, meltSpec)
-        idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
-        dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = resCol )
-      }
+    ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
+    ## make specification for column that should not be included in the formula
+    ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
+    if (!is.na(reshVal) && reshapeWide){
+      dt <- do_reshape_wide(dt, meltSpec)
+      idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
+      dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = resCol )
+    }
 
-      ## RECODE ------------------------------------
-      is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+    ## RECODE ------------------------------------
+    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
 
-      dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
-      dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
+    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
+    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
 
 
-      ## TODO - Not sure if this necessary. Turn of temporarily
-      ## Convert some columns to interger. Must be after
-      ## the variables are recoded eg. INNKAT is string before recorded to number
-      ## dt <- is_col_int(dt)
+    ## TODO - Not sure if this necessary. Turn of temporarily
+    ## Convert some columns to interger. Must be after
+    ## the variables are recoded eg. INNKAT is string before recorded to number
+    ## dt <- is_col_int(dt)
 
-      dt <- is_aggregate(dt = dt,
-                         fgspec = fgSpec,
-                         year = year,
-                         aggregate = aggregate,
-                         base = base,
-                         control = fileCtrl)
+    dt <- is_aggregate(dt = dt,
+                       fgspec = fgSpec,
+                       year = year,
+                       aggregate = aggregate,
+                       base = base,
+                       control = fileCtrl)
 
-      DT[[i]] <- copy(dt)
-      rm(dt)
-      gc()
+    DT[[i]] <- copy(dt)
+    rm(dt)
+    gc()
   }
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
