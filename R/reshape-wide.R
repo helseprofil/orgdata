@@ -8,7 +8,7 @@
 #' @family reshape functions
 #' @export
 do_reshape_long <- function(dt, resval, rescol, widecols){
-
+  variable <- NULL
   is_debug()
 
   idvar <- setdiff(names(dt), widecols)
@@ -120,6 +120,7 @@ get_reshape_wide_spec <- function(dt = NULL, group = NULL, con = NULL, spec = NU
 ## from when dt is turned to wide especially with multiple reshape columns
 is_reshape_wide_cols <- function(dt, col){
   # col - Value columns in dataset when turn to wide
+  cols <- NULL
 
   ## TODO Need to refactor this! Too many repeatition!
   if (length(col) == 3){
