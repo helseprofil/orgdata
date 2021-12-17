@@ -167,7 +167,14 @@ make_file <- function(group = NULL,
                        year = year,
                        aggregate = aggregate,
                        base = base,
-                       control = fileCtrl)
+                       control = fileCtrl,
+                       wide = wideCols)
+
+
+    if (!is.na(reshVal) && reshapeWide){
+      idvar <- setdiff(names(dt), wideCols)
+      dt <- do_reshape_long(dt, resval = resVal, rescol = resCol, valcols = wideCols)
+    }
 
     DT[[i]] <- copy(dt)
     rm(dt)

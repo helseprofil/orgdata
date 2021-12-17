@@ -15,6 +15,7 @@
 #'   without aggregating it. This is useful to check for geographical codes that
 #'   are missing. Else use `options(orgdata.aggregate = FALSE)`
 #' @inheritParams do_geo_recode
+#' @param wide Column(s) from reshape wide
 #' @examples
 #' \dontrun{
 #' # To aggregate source data with enumeration area codes ie. grunnkrets, to
@@ -42,7 +43,8 @@ do_aggregate <- function(dt = NULL,
                          aggregate.col = NULL,
                          check = getOption("orgdata.debug.aggregate"),
                          base = getOption("orgdata.recode.base"),
-                         control = FALSE) {
+                         control = FALSE,
+                         wide = NULL) {
 
   VAL1 <- GEO <- AAR <- NULL
   fylke <- kommune <- bydel <- LEVEL <- LANDSSB <- NULL
@@ -65,6 +67,12 @@ do_aggregate <- function(dt = NULL,
   is_verbose(x = level, msg = msg, ctrl = FALSE)
 
   colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
+
+  # Don't aggregate columns reshape wide
+  if (!is.null(wide)){
+    colVals <- c(colVals, wide)
+  }
+
   aggNot <- c("GEO", colVals, "origin", "dummy_grk")
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
