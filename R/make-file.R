@@ -100,9 +100,9 @@ make_file <- function(group = NULL,
     )
 
     ## RESHAPE structure -----------------------------------------
-    reshVal <- fileSpec[["RESHAPE"]]
-    reshapeLong <- fileSpec[["RESHAPE"]] == 1
-    reshapeWide <- fileSpec[["RESHAPE"]] == 2
+    reshVal <- find_column_input(fileSpec, "RESHAPE")
+    reshapeLong <- reshVal == 1
+    reshapeWide <- reshVal == 2
 
     ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
     ## defined in Access coz aggregating uses the standard columnames. Else it
@@ -147,8 +147,7 @@ make_file <- function(group = NULL,
     ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
     if (!is.na(reshVal) && reshapeWide){
       dt <- do_reshape_wide(dt, meltSpec)
-      idvar <- setdiff(names(dt), c(resCol, resVal, valCols))
-      dt <- melt.data.table(dt, id.vars = idvar, measure.vars = valCols, value.name = resVal, variable.name = resCol )
+      wideCols <- intersect(names(dt), valCols)
     }
 
     ## RECODE ------------------------------------
