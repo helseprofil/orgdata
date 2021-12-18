@@ -2,9 +2,12 @@
 % Please edit documentation in R/utils-misc.R
 \name{reset_options}
 \alias{reset_options}
+\alias{reset_opt}
 \title{Reset options}
 \usage{
 reset_options()
+
+reset_opt()
 }
 \description{
 Reset orgdata options to default

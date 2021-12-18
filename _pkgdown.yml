@@ -73,5 +73,7 @@ reference:
   contents:
     - see_file
     - log
+    - debug_opt
     - reset_options
     - website
+    - emoji
