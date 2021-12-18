@@ -53,11 +53,13 @@ debug_opt <- function(opt = c("fun", "nrow", "row", "aggregate", "geo"), val = N
 #' @param x Emoji to choose ie. thumb, smile or sad
 #' @examples emoji("smile")
 #' @export
-emoji <- function(x = c("thumb", "smile", "sad")){
+emoji <- function(x = c("mark", "thumb", "smile", "sad", "santa")){
   x <- match.arg(x)
   switch(x,
+         mark = options(orgdata.emoji = "mark"),
          thumb = options(orgdata.emoji = "thumb"),
          smile = options(orgdata.emoji = "smile"),
-         sad = options(orgdata.emoji = "sad")
+         sad = options(orgdata.emoji = "sad"),
+         santa = options(orgdata.emoji = "santa")
          )
 }

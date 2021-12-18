@@ -221,7 +221,8 @@ is_colour_txt <- function(x, msg,
                  thumb = "\U0001F44D",
                  mark = "\U0002713",
                  smile = "\U0001F60A",
-                 sad = "\U002639"
+                 sad = "\U002639",
+                 santa = "\U0001F385"
                  )
 
   if (sign){
