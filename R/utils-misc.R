@@ -15,3 +15,27 @@ website <- function(url = NULL){
 reset_options <- function(){
   options(opt.orgdata)
 }
+
+#' @title Debugging options
+#' @description A wrapper for debugging options.
+#' @details Options available:
+#'   - "fun"       : Activating options `orgdata.debug`
+#'   - "nrow"      : For `orgdata.debug.nrow`. Default value is 20 if `val` argument is missing
+#'   - "row"       : For `orgdata.debug.row`. Default value is 1:50 if `val` argument is missing
+#'   - "aggregate" : Activating `orgdata.debug.aggregate`
+#'   - "geo"       : Activating `orgdata.debug.geo`
+#' @examples
+#' \dontrun{
+#' debug_opt("geo")
+#' debug_opt("nrow", 30)
+#' }
+#' @export
+debug_opt <- function(opt = c("fun", "nrow", "row", "aggregate", "geo"), val = NULL){
+  opt <- match.arg(opt)
+  switch(opt,
+         fun = options(orgdata.debug = TRUE),
+         nrow = options(orgdata.debug.nrow = ifelse(is.null(val), 20, val)),
+         row = options(orgdata.debug.row = ifelse(is.null(val), 1:50, val)),
+         aggregate = options(orgdata.debug.aggregate = TRUE),
+         geo = options(orgdata.debug.geo = TRUE))
+}
