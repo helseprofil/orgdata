@@ -14,8 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-Debugging can be done via specification in `options()`. To check all the
-*options* available for `orgdata` use `orgdata:::opt.orgdata`. Debugging options include:
+Debugging can be done via specification in `options()` or a wrapper
+`debug_opt()`. To check all the *options* available for `orgdata` use
+`orgdata:::opt.orgdata`. Debugging options include:
 
  - `orgdata.debug`
  - `orgdata.debug.nrow`
@@ -34,6 +35,8 @@ useful to know which process creates problems during troubleshoot. To activate:
 
 ```{r debug, eval = FALSE}
 options(orgdata.debug = TRUE)
+# OR
+debug_opt("fun")
 ```
 
 ## orgdata.debug.nrow
@@ -43,6 +46,8 @@ activating this options. For instance, to load only the first 50 rows use:
 
 ```{r row, eval = FALSE}
 options(orgdata.debug.nrow = 50)
+# OR
+debug_opt("nrow", 50)
 ```
 
 ## orgdata.debug.row 
@@ -53,6 +58,8 @@ rows 20 to 50:
 
 ```{r eval = FALSE}
 options(orgdata.debug.row = 20:50)
+# OR
+debug_opt("row", 20:50)
 ```
 
 ## orgdata.debug.aggregate
@@ -69,6 +76,8 @@ geographical codes in the original data. To use:
 
 ```{r aggregate, eval = FALSE}
 options(orgdata.debug.aggregate = TRUE)
+# OR
+debug_opt("aggregate")
 ```
 
 ## orgdata.debug.geo {#geo}
@@ -85,6 +94,8 @@ available/valid and will be deleted. A warning will be given.
 
 ```{r geo, eval = FALSE}
 options(orgdata.debug.geo = TRUE)
+# OR
+debug_opt("geo")
 ```
 
 ## reset
@@ -93,7 +104,7 @@ When activating any options for `orgdata`, it will be kept active until you
 actively deactivate it or restart a new R session. You can deactivate it with:
 
 ```{r reset, eval = FALSE}
-reset_options()
+reset_opt()
 ```
 
 ## Example output {#expl}
