@@ -111,8 +111,13 @@ make_file <- function(group = NULL,
       dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
     }
 
-    ## Reshape to wide needs to keep object valCols from original file
-    ## to reshape it back to long if it's wide
+    ## Recode must happen before reshape wide as reshape wide will use selected TAB
+    ## of reshape column creating columns of unique value of TAB ie. wideCols object
+    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
+    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
+
+    ## Reshape to wide needs to keep object wideCols from original file
+    ## to reshape it back to long if it's wide and became TAB
     wideCols <- NULL
     if (!is.na(reshVal) && reshapeWide){
       meltSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
@@ -147,12 +152,8 @@ make_file <- function(group = NULL,
       wideCols <- intersect(names(dt), wideCols)
     }
 
-    ## RECODE ------------------------------------
+    ## AGGREGATE ------------------------------------
     is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
-
-    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
-    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
-
 
     ## TODO - Not sure if this necessary. Turn of temporarily
     ## Convert some columns to interger. Must be after
