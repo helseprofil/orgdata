@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -146,6 +146,15 @@
 <p>Things in <code>dev</code> branch</p>
 <ul>
 <li>Compute function to create a new category based on the existing categories eg. UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group ie. group 5.</li>
+</ul>
+</div>
+    <div id="orgdata-047" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.7">
+<a href="#orgdata-047" class="anchor"></a>orgdata 0.4.7</h1>
+<ul>
+<li>Reshape to wide format can now implement multiple reshape dimensions which are usually one or multiple TAB columns. For instance for <em>LESEFERD</em> of <code>tot_elev</code> is the product of both <code>mestringsnivå</code> and <code>klassetrinn</code>. (<a href='https://github.com/helseprofil/orgdata/issues/188'>#188</a>)</li>
+<li>The output will be arrange on a standard column order. (<a href='https://github.com/helseprofil/orgdata/issues/190'>#190</a>)</li>
+<li>Debugging will be easier with a wrapper function <code><a href="../reference/debug_opt.html">debug_opt()</a></code>. (<a href='https://github.com/helseprofil/orgdata/issues/196'>#196</a>)</li>
 </ul>
 </div>
     <div id="orgdata-046" class="section level1">

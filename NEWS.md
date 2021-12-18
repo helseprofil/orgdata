@@ -5,6 +5,14 @@ Things in `dev` branch
 - Compute function to create a new category based on the existing categories eg.
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
+  
+# orgdata 0.4.7
+
+- Reshape to wide format can now implement multiple reshape dimensions which are
+  usually one or multiple TAB columns. For instance for *LESEFERD* of `tot_elev`
+  is the product of both `mestringsnivå` and `klassetrinn`. (#188)
+- The output will be arrange on a standard column order. (#190)
+- Debugging will be easier with a wrapper function `debug_opt()`. (#196)
 
 # orgdata 0.4.6
 
