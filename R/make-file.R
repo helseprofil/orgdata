@@ -153,7 +153,7 @@ make_file <- function(group = NULL,
     }
 
     ## AGGREGATE ------------------------------------
-    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+    ## is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
 
     ## TODO - Not sure if this necessary. Turn of temporarily
     ## Convert some columns to interger. Must be after

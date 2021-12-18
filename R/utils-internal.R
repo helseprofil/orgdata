@@ -234,11 +234,11 @@ is_colour_txt <- function(x, msg,
 is_color_txt <- is_colour_txt
 
 is_line_long <- function(){
-  paste0("\n===========================================================")
+  paste0("==============================================================")
 }
 
 is_line_short <- function(){
-  paste0("---------------------------------")
+  paste0("------------------------------------------")
 }
 
 is_batch <- function(type = c("date", "time")){
