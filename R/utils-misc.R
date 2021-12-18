@@ -16,6 +16,11 @@ reset_options <- function(){
   options(opt.orgdata)
 }
 
+
+#' @export
+#' @rdname reset_options
+reset_opt <- reset_options
+
 #' @title Debugging options
 #' @description A wrapper for debugging options.
 #' @param opt Debug options
