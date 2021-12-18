@@ -83,10 +83,10 @@ orgdata:::opt.orgdata
 
 ## DEBUGGING ----------------------------
 ## For å se original kode og hva det skal bli kodet til
-options(orgdata.debug.geo = TRUE)
+debug_opt("geo")
 
-## For å se hva kodene blir aggregert til
-options(orgdata.debug.aggregate = TRUE)
+## For å se hva kodene skal bli aggregert til
+debug_opt("aggregate")
 
 ## HUSK å nullstille etter bruk av debug funksjon
-reset_options()
+reset_opt()
