@@ -4,7 +4,7 @@
 \alias{emoji}
 \title{Emoji}
 \usage{
-emoji(x = c("thumb", "smile", "sad"))
+emoji(x = c("mark", "thumb", "smile", "sad", "santa"))
 }
 \arguments{
 \item{x}{Emoji to choose ie. thumb, smile or sad}
