@@ -34,3 +34,11 @@ test_that("Reshape wide", {
   expect_equal(is_reshape_wide_cols(dt = wideDT, col = col), spec2[["widecols"]])
   expect_equal(do_reshape_long(dt = longDT, resval = "VAL1", rescol = col, widecols = cols), longOut)
 })
+
+test_that("Reshape wide bracket", {
+  b1 <- "^(.*)"
+  b3 <- "^(.*);(.*);(.*)"
+
+  expect_equal(is_bracket(1), b1)
+  expect_equal(is_bracket(3), b3)
+})
