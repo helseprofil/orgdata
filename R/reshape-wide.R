@@ -18,27 +18,18 @@ do_reshape_long <- function(dt, resval, rescol, widecols){
                          value.name = resval,
                          variable.name = "variable")
 
+  ## TODO Deactivate when all are refactored in reshape wide flow
   if (length(rescol) > 3){
     is_stop("Too many reshape columns! Max is 3 columns")
   }
 
-  ## TODO Need to refactor this! Too many repeatition!
-  if (length(rescol) == 3){
-    col1 <- rescol[1]
-    col2 <- rescol[2]
-    col3 <- rescol[3]
-    dt[, (col1) := sub("(.*);(.*);(.*)", "\\1", variable)]
-    dt[, (col2) := sub("(.*);(.*);(.*)", "\\2", variable)]
-    dt[, (col3) := sub("(.*);(.*);(.*)", "\\3", variable)]
-  }
+  resNr <- length(rescol)
+  brc <- is_bracket(resNr)
 
-  if (length(rescol) == 2){
-    col1 <- rescol[1]
-    col2 <- rescol[2]
-    dt[, (col1) := sub("(.*);(.*)", "\\1", variable)]
-    dt[, (col2) := sub("(.*);(.*)", "\\2", variable)]
-  } else {
-    dt[, (rescol) := variable]
+  for (i in seq_len(resNr)){
+    col <- rescol[i]
+    subChoose <- paste0("\\", i)
+    dt[, (col) := sub(brc, subChoose, variable)]
   }
 
   dt[, variable := NULL]
@@ -61,25 +52,13 @@ do_reshape_wide <- function(dt = NULL, respec = NULL){
   resCol <- respec$rescol
   resVal <- respec$resval
 
+  forCols <- paste0(resCol, collapse = "+")
+
   ## TODO select only specific folder as reshape id instead of all with ...
-  ## TODO Need to refactor this! Too many repeatition!
-  if (length(resCol) == 3){
-    dt <- data.table::dcast(data = dt,
-                            formula = paste0("...", "~", resCol[1], "+", resCol[2], "+", resCol[3]),
-                            value.var = resVal, sep = ";")
-  }
-
-  if (length(resCol) == 2){
-    dt <- data.table::dcast(data = dt,
-                            formula = paste0("...", "~", resCol[1], "+", resCol[2]),
-                            value.var = resVal, sep = ";")
-  } else {
-    dt <- data.table::dcast(data = dt,
-                            formula = paste0("...", "~", resCol),
-                            value.var = resVal)
-  }
-
-  return(dt)
+  dt <- data.table::dcast(data = dt,
+                          formula = paste0("...", "~", forCols),
+                          value.var = resVal,
+                          sep = ";")
 }
 
 # 1 = LONG
@@ -148,4 +127,27 @@ is_reshape_wide_cols <- function(dt, col){
   }
 
   return(wideCols)
+}
+
+
+is_bracket <- function(x){
+  # x : Length of reshape columns
+  b1 <- "^(.*)"
+  b2 <- ";(.*)"
+
+  if (x > 1){
+    b3 <- paste0(rep(b2, x - 1), collapse = "")
+    b4 <- paste0(b1, b3, collapse = "")
+  } else {
+    b4 <- b1
+  }
+
+  return(b4)
+}
+
+is_formula <- function(rescol){
+  resNr <- length(rescol)
+
+
+
 }
