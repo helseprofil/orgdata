@@ -52,25 +52,13 @@ do_reshape_wide <- function(dt = NULL, respec = NULL){
   resCol <- respec$rescol
   resVal <- respec$resval
 
+  forCols <- paste0(resCol, collapse = "+")
+
   ## TODO select only specific folder as reshape id instead of all with ...
-  ## TODO Need to refactor this! Too many repeatition!
-  if (length(resCol) == 3){
-    dt <- data.table::dcast(data = dt,
-                            formula = paste0("...", "~", resCol[1], "+", resCol[2], "+", resCol[3]),
-                            value.var = resVal, sep = ";")
-  }
-
-  if (length(resCol) == 2){
-    dt <- data.table::dcast(data = dt,
-                            formula = paste0("...", "~", resCol[1], "+", resCol[2]),
-                            value.var = resVal, sep = ";")
-  } else {
-    dt <- data.table::dcast(data = dt,
-                            formula = paste0("...", "~", resCol),
-                            value.var = resVal)
-  }
-
-  return(dt)
+  dt <- data.table::dcast(data = dt,
+                          formula = paste0("...", "~", forCols),
+                          value.var = resVal,
+                          sep = ";")
 }
 
 # 1 = LONG
@@ -155,4 +143,11 @@ is_bracket <- function(x){
   }
 
   return(b4)
+}
+
+is_formula <- function(rescol){
+  resNr <- length(rescol)
+
+
+
 }
