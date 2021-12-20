@@ -7,7 +7,10 @@
 #' @param ... Filegroup(s)
 #' @examples
 #' \dontrun{
-#' make_filegroup(NEET, TRANGBODD, DODE)
+#' make_filegroups(NEET, TRANGBODD, DODE)
+#'
+#' fgp <- c("NEET", "TRANGBODD","DODE")
+#' make_filegroups(fgp)
 #' }
 #' @family filegroups functions
 #' @export
