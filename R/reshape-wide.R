@@ -18,11 +18,6 @@ do_reshape_long <- function(dt, resval, rescol, widecols){
                          value.name = resval,
                          variable.name = "variable")
 
-  ## TODO Deactivate when all are refactored in reshape wide flow
-  if (length(rescol) > 3){
-    is_stop("Too many reshape columns! Max is 3 columns")
-  }
-
   resNr <- length(rescol)
   brc <- is_bracket(resNr)
 
@@ -101,29 +96,25 @@ is_reshape_wide_cols <- function(dt, col){
   # col - Value columns in dataset when turn to wide
   cols <- NULL
 
-  ## TODO Need to refactor this! Too many repeatition!
-  if (length(col) == 3){
-    col1 <- col[1]
-    col2 <- col[2]
-    col3 <- col[3]
-    colVal1 <- as.character(unique(dt[[col1]]))
-    colVal2 <- as.character(unique(dt[[col2]]))
-    colVal3 <- as.character(unique(dt[[col3]]))
-    idx <- data.table::CJ(colVal1, colVal2, colVal3)
-    idx[, cols := paste0(colVal1, ";", colVal2, ";", colVal3)]
-    wideCols <- idx[["cols"]]
-  }
-
-  if (length(col) == 2){
-    col1 <- col[1]
-    col2 <- col[2]
-    colVal1 <- as.character(unique(dt[[col1]]))
-    colVal2 <- as.character(unique(dt[[col2]]))
-    idx <- data.table::CJ(colVal1, colVal2)
-    idx[, cols := paste0(colVal1, ";", colVal2)]
-    wideCols <- idx[["cols"]]
-  } else {
+  if (length(col) == 1){
     wideCols <- as.character(unique(dt[[col]]))
+  } else {
+    vals <- vector(mode = "list", length = length(col))
+    for (i in seq_along(col)){
+      selCol <- col[i]
+      val <- as.character(unique(dt[[selCol]]))
+      vals[[i]] <- val
+    }
+
+    idx <- do.call(data.table::CJ, vals)
+    idCols <- names(idx)
+    refCols <- data.table::copy(idCols)
+
+    for (i in seq_len(nrow(idx))){
+      idCols <- data.table::copy(refCols)
+      idx[i, cols := paste0(.SD, collapse = ";"), .SDcols = idCols]
+    }
+    wideCols <- idx[["cols"]]
   }
 
   return(wideCols)
@@ -145,9 +136,3 @@ is_bracket <- function(x){
   return(b4)
 }
 
-is_formula <- function(rescol){
-  resNr <- length(rescol)
-
-
-
-}

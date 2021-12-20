@@ -24,6 +24,7 @@ test_that("Reshape wide", {
 
   wideDT <- readRDS(system.file("testdata", "dt-wide.rds", package = "orgdata"))
   wideOut <- readRDS(system.file("testdata", "dt-wide-out.rds", package = "orgdata"))
+  wideColDT <- readRDS(system.file("testdata", "dt-reshape-col.rds", package = "orgdata"))
 
   longDT <- readRDS(system.file("testdata", "dt-long.rds", package = "orgdata"))
   longOut <- readRDS(system.file("testdata", "dt-long-out.rds", package = "orgdata"))
@@ -32,6 +33,7 @@ test_that("Reshape wide", {
   expect_equal(do_reshape_wide(dt = dt, respec = spec), output)
   expect_equal(do_reshape_wide(dt = wideDT, respec = spec2), wideOut)
   expect_equal(is_reshape_wide_cols(dt = wideDT, col = col), spec2[["widecols"]])
+  expect_equal(is_reshape_wide_cols(dt = wideColDT, col = "TAB1"), c("1", "3", "4", "2", "5"))
   expect_equal(do_reshape_long(dt = longDT, resval = "VAL1", rescol = col, widecols = cols), longOut)
 })
 
