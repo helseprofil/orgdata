@@ -21,7 +21,10 @@ as in registration database.
 }
 \examples{
 \dontrun{
-make_filegroup(NEET, TRANGBODD, DODE)
+make_filegroups(NEET, TRANGBODD, DODE)
+
+fgp <- c("NEET", "TRANGBODD","DODE")
+make_filegroups(fgp)
 }
 }
 \seealso{
