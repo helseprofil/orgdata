@@ -20,7 +20,7 @@ used. All argument names are written in \code{CamelCase} style.
 \details{
 Currently, these arguments can be used:
 \itemize{
-\item \code{DeleteOldBydel} : Delete any row consisting only NA in all columns
+\item \code{DeleteOldBydel} : Delete bydel codes before 2003, except for Oslo
 }
 }
 \seealso{

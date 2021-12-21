@@ -6,7 +6,7 @@
 #'   used. All argument names are written in `CamelCase` style.
 #'
 #' @details Currently, these arguments can be used:
-#'   - `DeleteOldBydel` : Delete any row consisting only NA in all columns
+#'   - `DeleteOldBydel` : Delete bydel codes before 2003, except for Oslo
 #' @param dt Dataset
 #' @param args Extra arguments as specified in details section below.
 #' @family extra arguments
