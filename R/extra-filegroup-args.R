@@ -51,7 +51,7 @@ get_extra_args_group <- function(group = NULL, con = NULL, spec = NULL){
 is_delete_bydel_before_2003 <- function(dt = NULL, extra = NULL){
 
   dt <- data.table::copy(dt)
-  idx <- dd[, .I[LEVEL == "bydel" & AAR < 2003 & !(GEO %like% "^3")]]
+  idx <- dt[, .I[LEVEL == "bydel" & AAR < 2003 & !(GEO %like% "^3")]]
   dt <- is_delete_index(dt, idx)
   return(dt)
 }
