@@ -6,7 +6,7 @@ Things in `dev` branch
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
 
-# orgdata 0.4.7
+# orgdata 0.4.8
 - Get feedback for successful and unsuccessful filegroups when running
   `make_filegroups()`. (#199)
 - Reshape wide is not limited to only 3 reshape columns as it was. (#200 #201)

@@ -25,6 +25,8 @@ Currently, these arguments can be used:
 }
 \seealso{
 Other extra arguments: 
+\code{\link{do_extra_args_group}()},
+\code{\link{get_extra_args_group}()},
 \code{\link{get_extra_args}()}
 }
 \concept{extra arguments}
