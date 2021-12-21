@@ -50,7 +50,7 @@ get_extra_args <- function(group = NULL, con = NULL, spec = NULL){
 is_delete_na_row <- function(dt = NULL, extra = NULL){
   nrc <- NULL
 
-  delRow <- sum(is.element(extra, "DeleteNaRow"))
+  delRow <- any(extra == "DeleteNaRow")
   if (delRow){
     dt <- is_null_to_na(dt)
     nrCol <- ncol(dt)
