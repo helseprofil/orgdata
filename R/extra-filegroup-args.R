@@ -49,9 +49,13 @@ get_extra_args_group <- function(group = NULL, con = NULL, spec = NULL){
 
 ## Arguments ----------------
 is_delete_bydel_before_2003 <- function(dt = NULL, extra = NULL){
-  LEVEL <- AAR <- GEO <- NULL
-  dt <- data.table::copy(dt)
-  idx <- dt[, .I[LEVEL == "bydel" & AAR < 2003 & !(GEO %like% "^3")]]
-  dt <- is_delete_index(dt, idx)
+  delBydel <- any(extra == "DeleteOldBydel")
+
+  if (delBydel){
+    LEVEL <- AAR <- GEO <- NULL
+    dt <- data.table::copy(dt)
+    idx <- dt[, .I[LEVEL == "bydel" & AAR < 2003 & !(GEO %like% "^3")]]
+    dt <- is_delete_index(dt, idx)
+  }
   return(dt)
 }
