@@ -240,9 +240,9 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "40109f309aa9726e66e554c38c81ed5bd8aefaff",
+      "RemoteSha": "f667c1ca8ce529e5beaca1baa70b25984354249d",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "97e266b8c25563b7b27be63ae581dadd"
+      "Hash": "d4be62dd5272cbc71f0c9ddf58579fe4"
     },
     "pillar": {
       "Package": "pillar",
