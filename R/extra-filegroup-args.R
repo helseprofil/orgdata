@@ -6,7 +6,7 @@
 #'   used. All argument names are written in `CamelCase` style.
 #'
 #' @details Currently, these arguments can be used:
-#'   - `DeleteOldBydel` : Delete any row consisting only NA in all columns
+#'   - `DeleteOldBydel` : Delete bydel codes before 2003, except for Oslo
 #' @param dt Dataset
 #' @param args Extra arguments as specified in details section below.
 #' @family extra arguments
@@ -49,7 +49,7 @@ get_extra_args_group <- function(group = NULL, con = NULL, spec = NULL){
 
 ## Arguments ----------------
 is_delete_bydel_before_2003 <- function(dt = NULL, extra = NULL){
-
+  LEVEL <- AAR <- GEO <- NULL
   dt <- data.table::copy(dt)
   idx <- dt[, .I[LEVEL == "bydel" & AAR < 2003 & !(GEO %like% "^3")]]
   dt <- is_delete_index(dt, idx)
