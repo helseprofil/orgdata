@@ -10,6 +10,10 @@ Things in `dev` branch
 - Get feedback for successful and unsuccessful filegroups when running
   `make_filegroups()`. (#199)
 - Reshape wide is not limited to only 3 reshape columns as it was. (#200 #201)
+- Create log files in default orgdata folder instead of occupying the REM. (#202)
+- Delete old bydel codes ie. before 2003, except for Oslo. This is due to the
+  unstable geographical recoding of bydel. Use `EXTRA` column on filegroup level
+  with arguement `DeleteOldBydel`. (#204)
 
 # orgdata 0.4.7
 
