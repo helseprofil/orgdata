@@ -35,6 +35,15 @@ is_log_write <- function(value = NULL, x = NULL){
 
   orgpath <- is_orgdata_path()
   nameFile <- paste0(x, ".csv")
-  data.table::fwrite(x = list(value), file = file.path(orgpath, nameFile))
-}
 
+  outCmd <- tryCatch({
+    data.table::fwrite(x = list(value), file = file.path(orgpath, nameFile))
+    paste0('`', 'read_log("', x, '")`')
+  },
+  error = function(err){
+    is_log(value = value, x = x)
+    paste0("log$", x)
+  })
+
+  invisible(outCmd)
+}
