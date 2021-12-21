@@ -241,11 +241,11 @@ is_grunnkrets_0000 <- function(dt, control = FALSE){
                          from = "0{4}$",
                          to = "9999")
 
-    is_log(notCodes, "code00")
+    logCmd <- is_log_write(value = notCodes, x = "code00")
     is_verbose(x = nr00, msg = "Number of GEO codes end with `0000`:", type = "warn2")
     is_check_geo(notCodes)
     is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
-    is_verbose(x = "log$code00", msg = "To see these codes, run command:")
+    is_verbose(x = logCmd, msg = "To see these codes, run command:")
   }
 
   return(dt)
@@ -266,11 +266,11 @@ is_grunnkrets <- function(dt, control = FALSE){
   idx <- dt[, .I[dummy_grk != 0]]
   notCodes <- dt[idx]$GEO
 
-  is_log(value = notCodes, x = "codeShort")
+  logCmd <- is_log_write(value = notCodes, x = "codeShort")
   is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
   is_check_geo(notCodes, control = control)
   is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
-  is_verbose(x = "log$codeShort", msg = "To see these codes, run command:")
+  is_verbose(x = logCmd, msg = "To see these codes, run command:")
 
   for (i in idx){
 
@@ -379,17 +379,17 @@ is_problem_message <- function(mode, codes, control = FALSE){
   scode <- is_short_code(codes, n1 = 10, n2 = 8)
 
   if (mode == "recode"){
-    is_log(value = codes, x = "code99")
+    logCmd <- is_log_write(value = codes, x = "code99")
     is_verbose(x = length(codes), msg = "Number of codes that fail to recode and became xxxx9999:", type = "warn2")
     is_verbose(x = scode, msg = "The codes:")
-    is_verbose(x = "log$code99", msg = "To see the codes, run command:")
+    is_verbose(x = logCmd, msg = "To see the codes, run command:")
   }
 
   if (mode == "delete"){
-    is_log(value = codes, x = "codeDelete")
+    logCmd <- is_log_write(value = codes, x = "codeDelete")
     is_verbose(x = length(codes), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
     is_verbose(x = scode, msg = "The codes:")
-    is_verbose(x = "log$codeDelete", msg = "To see these codes, run command:")
+    is_verbose(x = logCmd, msg = "To see these codes, run command:")
   }
 
   invisible(codes)

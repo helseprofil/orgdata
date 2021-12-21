@@ -188,6 +188,25 @@ paste_cols <- function(cols){
   paste0('"', paste(cols, collapse = '", "'), '"')
 }
 
+## Default orgdata path is used to save file when not using filegroup
+## or log files
+is_orgdata_path <- function(dir = c("home", "temp")){
+
+  dir <- match.arg(dir)
+  userPath <- switch(dir,
+                     home = fs::path_home(),
+                     temp = fs::path_temp())
+
+  orgPath <- file.path(userPath, "orgdata_files")
+
+  if (!fs::dir_exists(orgPath)){
+    is_verbose(x = orgPath, msg = "Use default folder:")
+    fs::dir_create(orgPath)
+  }
+
+  invisible(orgPath)
+}
+
 ## Display message with selected colours
 is_colour_txt <- function(x, msg,
                           type = c("note", "warn", "warn2",

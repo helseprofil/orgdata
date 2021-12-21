@@ -94,7 +94,7 @@ is_save_path <- function(group = NULL, fgSpec = NULL){
 
   if (nrow(fgSpec) == 0){
     is_verbose("Invalid Filegroup or `path` is missing")
-    outPath <- is_default_path()
+    outPath <- is_orgdata_path()
   } else {
     outPath <- is_group_path(fgSpec)
   }
@@ -116,18 +116,3 @@ is_group_path <- function(fgSpec){
   invisible(fullPath)
 }
 
-is_default_path <- function(user = NULL){
-
-  if (is.null(user)){
-    user <- Sys.info()[["user"]]
-  }
-
-  orgPath <- file.path("C:/Users", user, "orgdata_files")
-
-  if (!fs::dir_exists(orgPath)){
-    is_verbose(x = orgPath, msg = "Use default folder:")
-    fs::dir_create(orgPath)
-  }
-
-  invisible(orgPath)
-}
