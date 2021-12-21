@@ -43,7 +43,7 @@ do_reshape_wide <- function(dt = NULL, respec = NULL){
   is_debug()
   is_null(respec)
 
-  dt <- copy(dt)
+  dt <- data.table::copy(dt)
   resCol <- respec$rescol
   resVal <- respec$resval
 
