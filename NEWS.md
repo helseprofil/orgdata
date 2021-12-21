@@ -13,7 +13,7 @@ Things in `dev` branch
 - Create log files in default orgdata folder instead of occupying the REM. (#202)
 - Delete old bydel codes ie. before 2003, except for Oslo. This is due to the
   unstable geographical recoding of bydel. Use `EXTRA` column on filegroup level
-  with argument `DeleteOldBydel`. (#204)
+  with argument `DeleteOldBydel`. (#204 #206)
 
 # orgdata 0.4.7
 
