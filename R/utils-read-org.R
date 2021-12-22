@@ -50,7 +50,7 @@ is_aggregate <- function(dt = NULL,
                          aggregate = getOption("orgdata.aggregate"),
                          base = getOption("orgdata.recode.base"),
                          control = FALSE,
-                         wide = NULL){
+                         wide = NULL, ...){
 
   GEO <- NULL
 
@@ -75,7 +75,7 @@ is_aggregate <- function(dt = NULL,
                       year = year,
                       con = geoDB$dbconn,
                       base = base,
-                      control = control)
+                      control = control, ...)
 
   is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
 

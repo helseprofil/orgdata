@@ -51,7 +51,7 @@ is_delete_na_row <- function(dt = NULL, extra = NULL){
   nrc <- NULL
 
   delRow <- any(extra == "DeleteNaRow")
-  if (delRow){
+  if (isTRUE(delRow)){
     dt <- is_null_to_na(dt)
     nrCol <- ncol(dt)
     dt[, nrc := rowSums(is.na(.SD))]

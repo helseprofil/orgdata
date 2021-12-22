@@ -100,7 +100,8 @@ do_geo_recode <- function(dt = NULL,
                           con = NULL,
                           geo = getOption("orgdata.debug.geo"),
                           base = getOption("orgdata.recode.base"),
-                          control = FALSE
+                          control = FALSE,
+                          ...
                           ){
   GEO <- i.to <- changeOccurred <- NULL
 
@@ -117,9 +118,9 @@ do_geo_recode <- function(dt = NULL,
   dt[, "origin" := GEO]
 
   if (type == "grunnkrets"){
-    dt <- is_grunnkrets(dt, control = control)
+    dt <- is_grunnkrets(dt, control = control, ...)
     dt <- is_grunnkrets_na(dt)
-    dt <- is_grunnkrets_0000(dt)
+    dt <- is_grunnkrets_0000(dt, ...)
   }
 
   data.table::setkey(dt, GEO)
