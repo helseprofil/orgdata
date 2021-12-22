@@ -29,12 +29,12 @@ is_log <- function(value = NULL, x = NULL){
   assign(x = x, value = value, envir = log)
 }
 
-is_log_write <- function(value = NULL, x = NULL){
+is_log_write <- function(value = NULL, x = NULL, fileid = NULL){
   # value - Object to put in log
   # x  - name the object
 
   orgpath <- is_orgdata_path()
-  nameFile <- paste0(x, ".csv")
+  nameFile <- paste0(x, "_filid", fileid, ".csv")
 
   outCmd <- tryCatch({
     data.table::fwrite(x = list(value), file = file.path(orgpath, nameFile))
