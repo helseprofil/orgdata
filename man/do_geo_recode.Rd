@@ -12,7 +12,8 @@ do_geo_recode(
   con = NULL,
   geo = getOption("orgdata.debug.geo"),
   base = getOption("orgdata.recode.base"),
-  control = FALSE
+  control = FALSE,
+  ...
 )
 }
 \arguments{
@@ -36,6 +37,8 @@ available codes in geo codebook}
 
 \item{control}{Logical value. \code{TRUE} if the file has been controlled for
 possible errors}
+
+\item{...}{Any additional arguments}
 }
 \description{
 Recode geographical codes to the current year. Codes is based on

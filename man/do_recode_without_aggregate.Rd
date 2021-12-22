@@ -9,7 +9,8 @@ do_recode_without_aggregate(
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
   year = NULL,
   check = getOption("orgdata.debug.aggregate"),
-  base = getOption("orgdata.recode.base")
+  base = getOption("orgdata.recode.base"),
+  ...
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
+
+\item{...}{Any additional arguments}
 }
 \description{
 Recode geo code without aggregating the data.
