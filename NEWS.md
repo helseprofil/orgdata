@@ -14,6 +14,7 @@ Things in `dev` branch
 - Delete old bydel codes ie. before 2003, except for Oslo. This is due to the
   unstable geographical recoding of bydel. Use `EXTRA` column on filegroup level
   with argument `DeleteOldBydel`. (#204 #206)
+- Log files use `KOBLID` to be more specific. (#208)
 
 # orgdata 0.4.7
 
