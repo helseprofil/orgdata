@@ -29,7 +29,8 @@ do_recode_without_aggregate <- function(dt = NULL,
                                         ),
                                         year = NULL,
                                         check = getOption("orgdata.debug.aggregate"),
-                                        base = getOption("orgdata.recode.base")){
+                                        base = getOption("orgdata.recode.base"),
+                                        ...){
   AAR <- NULL
   cat("..")
 
@@ -59,7 +60,7 @@ do_recode_without_aggregate <- function(dt = NULL,
                       type = source,
                       year = yr,
                       con = geoDB$dbconn,
-                      base = base)
+                      base = base, ...)
 }
 
 #' @title Recode Geographical Codes
@@ -80,6 +81,7 @@ do_recode_without_aggregate <- function(dt = NULL,
 #'   available codes in geo codebook
 #' @param control Logical value. `TRUE` if the file has been controlled for
 #'   possible errors
+#' @param ... Any additional arguments
 #' @examples
 #' \dontrun{
 #' code <- get_geo_recode(con = geo$dbconn, type = "grunnkrets")

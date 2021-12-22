@@ -76,6 +76,8 @@ make_file <- function(group = NULL,
   grpMsg <- paste0("File(s) to be processed in ", group, ":")
   is_colour_txt(x = rowFile, grpMsg, type = "note")
 
+  is_verbose(x = is_orgdata_path(), msg = "Log files can be found in")
+
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
 

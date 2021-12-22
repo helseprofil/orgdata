@@ -10,7 +10,8 @@ log <- new.env()
 #' @param koblid Connecting ID or `KOBLID`
 #' @examples
 #' \dontrun{
-#' read_log("code99")
+#' # To list codes with xxxx9999 of koblid 67
+#' read_log("code99", 67)
 #' }
 #' @export
 read_log <- function(name = NULL, koblid = NULL){
