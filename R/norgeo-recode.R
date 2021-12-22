@@ -228,7 +228,7 @@ is_grunnkrets_na <- function(dt, control = FALSE){
 
 ## Convert geo ends with 4 zeros ie. xxxx0000 to xxxx9999
 ## Can't aggregate grunnkrets ends with 4 zeros or 2 zeros as it only represents delområde
-is_grunnkrets_0000 <- function(dt, control = FALSE){
+is_grunnkrets_0000 <- function(dt, control = FALSE, ...){
   GEO <- AAR <- NULL
 
   nr00 <- dt[GEO %like% "0000$", .N]
@@ -241,7 +241,7 @@ is_grunnkrets_0000 <- function(dt, control = FALSE){
                          from = "0{4}$",
                          to = "9999")
 
-    logCmd <- is_log_write(value = notCodes, x = "code00")
+    logCmd <- is_log_write(value = notCodes, x = "code00", ...)
     is_verbose(x = nr00, msg = "Number of GEO codes end with `0000`:", type = "warn2")
     is_check_geo(notCodes)
     is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
@@ -252,7 +252,7 @@ is_grunnkrets_0000 <- function(dt, control = FALSE){
 }
 ## Some grunnkrets have less than 7 digits but not missing. This will add 99 or
 ## 9999 to these number accrodingly making grunnkrets standard with 8 or 7 digits.
-is_grunnkrets <- function(dt, control = FALSE){
+is_grunnkrets <- function(dt, control = FALSE, ...){
   GEO <- dummy_grk <- NULL
 
   dt[, dummy_grk := data.table::fifelse(nchar(GEO) > 6 , yes = 0, no = 1, na = 0)]
@@ -266,7 +266,7 @@ is_grunnkrets <- function(dt, control = FALSE){
   idx <- dt[, .I[dummy_grk != 0]]
   notCodes <- dt[idx]$GEO
 
-  logCmd <- is_log_write(value = notCodes, x = "codeShort")
+  logCmd <- is_log_write(value = notCodes, x = "codeShort", ...)
   is_verbose(length(idx), "Number of GEO codes need to be checked:", type = "warn2")
   is_check_geo(notCodes, control = control)
   is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
@@ -373,20 +373,20 @@ is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c
   return(dcode)
 }
 
-is_problem_message <- function(mode, codes, control = FALSE){
+is_problem_message <- function(mode, codes, control = FALSE, ...){
   # mode - Either recode or delete
 
   scode <- is_short_code(codes, n1 = 10, n2 = 8)
 
   if (mode == "recode"){
-    logCmd <- is_log_write(value = codes, x = "code99")
+    logCmd <- is_log_write(value = codes, x = "code99", ...)
     is_verbose(x = length(codes), msg = "Number of codes that fail to recode and became xxxx9999:", type = "warn2")
     is_verbose(x = scode, msg = "The codes:")
     is_verbose(x = logCmd, msg = "To see the codes, run command:")
   }
 
   if (mode == "delete"){
-    logCmd <- is_log_write(value = codes, x = "codeDelete")
+    logCmd <- is_log_write(value = codes, x = "codeDelete", ...)
     is_verbose(x = length(codes), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
     is_verbose(x = scode, msg = "The codes:")
     is_verbose(x = logCmd, msg = "To see these codes, run command:")
