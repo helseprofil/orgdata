@@ -11,8 +11,7 @@ is_org_process(
   con,
   verbose = getOption("orgdata.verbose"),
   row = getOption("orgdata.debug.row"),
-  control = FALSE,
-  .log = parent.frame()
+  control = FALSE
 )
 }
 \arguments{
@@ -29,8 +28,6 @@ is_org_process(
 \item{row}{Select specific row only}
 
 \item{control}{Logical value. If the file has been checked for possible errors}
-
-\item{.log}{For logbook}
 }
 \value{
 A dataset with \code{data.table} format

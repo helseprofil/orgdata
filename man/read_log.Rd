@@ -4,10 +4,12 @@
 \alias{read_log}
 \title{Read Log File}
 \usage{
-read_log(name = NULL)
+read_log(name = NULL, koblid = NULL)
 }
 \arguments{
 \item{name}{Log filename without file extention}
+
+\item{koblid}{Connecting ID or \code{KOBLID}}
 }
 \description{
 Read the log file from orgdata default path. To check the
@@ -15,6 +17,7 @@ default path use \code{orgdata:::is_orgdata_path()}.
 }
 \examples{
 \dontrun{
-read_log("code99")
+# To list codes with xxxx9999 of koblid 67
+read_log("code99", 67)
 }
 }

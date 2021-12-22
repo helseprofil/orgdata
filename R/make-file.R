@@ -76,6 +76,8 @@ make_file <- function(group = NULL,
   grpMsg <- paste0("File(s) to be processed in ", group, ":")
   is_colour_txt(x = rowFile, grpMsg, type = "note")
 
+  is_verbose(x = is_orgdata_path(), msg = "Log files can be found in")
+
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
 
@@ -88,7 +90,8 @@ make_file <- function(group = NULL,
     is_verbose(msg = is_line_long(), type = "other")
     is_verbose(fileSpec$KOBLID, "KOBLID:")
 
-    fileCtrl <- fileSpec[["KONTROLLERT"]] #if file has been checked for error
+    fileCtrl <- get_column_input(fileSpec, "KONTROLLERT")
+    koblID <- get_column_input(fileSpec, "KOBLID")
 
     dt <- is_org_process(
       file = filePath,
@@ -166,7 +169,8 @@ make_file <- function(group = NULL,
                        aggregate = aggregate,
                        base = base,
                        control = fileCtrl,
-                       wide = wideCols)
+                       wide = wideCols,
+                       koblid = koblID)
 
 
     ## RESHAPE LONG SPECIAL CASES --------------------------------------
@@ -178,7 +182,7 @@ make_file <- function(group = NULL,
     DT[[i]] <- copy(dt)
     rm(dt)
     gc()
-  }
+}
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)

@@ -8,7 +8,6 @@
 #' @param verbose Make processes explicit. Default is FALSE
 #' @param row Select specific row only
 #' @param control Logical value. If the file has been checked for possible errors
-#' @param .log For logbook
 #' @return A dataset with `data.table` format
 
 is_org_process <- function(file,
@@ -17,8 +16,7 @@ is_org_process <- function(file,
                            con,
                            verbose = getOption("orgdata.verbose"),
                            row = getOption("orgdata.debug.row"),
-                           control = FALSE,
-                           .log = parent.frame()
+                           control = FALSE
                            ) {
   GEO <- NULL
 
@@ -50,9 +48,6 @@ is_org_process <- function(file,
     dt[, GEO := paste0(get(geoVals[1]), get(geoVals[2]))]
     dt[, (geoVals) := NULL]
   }
-
-  ## Logging
-  ## .log$logr$rawcat <- unique(dt[[4]])
 
   manSpec <- get_manheader(spec = filespec)
   dt <- do_manheader(dt, manSpec)
