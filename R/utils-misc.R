@@ -63,3 +63,17 @@ emoji <- function(x = c("mark", "thumb", "smile", "sad", "santa")){
          santa = options(orgdata.emoji = "santa")
          )
 }
+
+
+## TESTTHAT ----------------
+## Skip when no database file are found eg. in CRAN or CI
+skip_error_db <- function(){
+
+  dbFile <- fs::file_exists(is_path_db(getOption("orgdata.db")))
+
+  if (isFALSE(dbFile)){
+    return(invisible(TRUE))
+  }
+
+  skip("DB not found")
+}
