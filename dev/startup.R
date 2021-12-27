@@ -44,13 +44,15 @@ devtools::install_github("helseprofil/norgeo", force = TRUE)
 ## usethis::create_package("orgdata")
 ## devtools::load_all()
 usethis::use_build_ignore("dev")
+usethis::use_build_ignore("inst/testdata_dev")
 usethis::use_build_ignore("README.Rmd")
 usethis::use_build_ignore("_pkgdown.yml")
 usethis::use_build_ignore("renv.lock")
 usethis::use_build_ignore("orgdata.Rproj")
 usethis::use_build_ignore(".dir-locals-el")
 ## usethis::use_testthat()
-usethis::use_git_ignore()
+usethis::use_git_ignore("inst/testdata_dev")
+usethis::use_git_ignore("dev/testdata_dev")
 
 ## Document ------------------------------------
 usethis::use_package_doc() # for package document roxygen style

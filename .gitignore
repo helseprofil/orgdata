@@ -45,6 +45,9 @@ vignettes/*.pdf
 /dev/logo.png
 /dev/logo02.png
 inst/doc
+/inst/testdata-dev
 
 # renv
 /renv/
+inst/testdata_dev
+dev/testdata_dev
