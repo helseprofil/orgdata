@@ -3,8 +3,9 @@
 #' @param dbname Database filename with complete path
 #' @param db Database file `kh` (Kommunehelse) and `geo` (Geo code)
 #' @param .test Use for testing only
+#' @param ... Other arguments
 #' @keywords internal
-is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE){
+is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...){
 
   db <- match.arg(db)
   dbfile <- switch(db,
@@ -13,10 +14,7 @@ is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE){
                    getOption("orgdata.db"))
 
   if (is.null(dbname)){
-    dbname <- is_path_db(
-      db = dbfile,
-      check = TRUE
-    )
+    dbname <- is_path_db(db = dbfile, ...)
   }
 
   if (.test){
