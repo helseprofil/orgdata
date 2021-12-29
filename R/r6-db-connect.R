@@ -2,8 +2,31 @@
 #' @description Use R6 object to connect to database
 #' @keywords internal
 is_conn_db <- function(dbname = NULL){
+  if (is.null(dbname)){
+    dbname <- is_path_db(
+      db = getOption("orgdata.db"),
+      check = TRUE
+    )
+  }
+
   KHelse$new(dbname = dbname)
 }
+
+
+#' @title Connect to Geo Database
+#' @description Use R6 object to connect to database
+#' @keywords internal
+is_conn_geo <- function(dbname = NULL){
+  if (is.null(dbname)){
+    dbname <- is_path_db(
+      db = getOption("orgdata.geo"),
+      check = TRUE
+    )
+  }
+
+  KHelse$new(dbname = dbname)
+}
+
 
 #' @title Connecting to Database
 #' @description
