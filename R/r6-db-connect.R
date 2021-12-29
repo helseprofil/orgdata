@@ -25,6 +25,7 @@ is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE){
   KHelse$new(dbname = dbname)
 }
 
+
 #' @title Connecting to Database
 #' @description
 #' Connect to registration database to get all necessary information
