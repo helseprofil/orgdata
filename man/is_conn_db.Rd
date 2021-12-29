@@ -4,7 +4,16 @@
 \alias{is_conn_db}
 \title{Connect to Database}
 \usage{
-is_conn_db(dbname = NULL)
+is_conn_db(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...)
+}
+\arguments{
+\item{dbname}{Database filename with complete path}
+
+\item{db}{Database file \code{kh} (Kommunehelse) and \code{geo} (Geo code)}
+
+\item{.test}{Use for testing only}
+
+\item{...}{Other arguments}
 }
 \description{
 Use R6 object to connect to database

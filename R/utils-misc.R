@@ -75,5 +75,5 @@ skip_error_db <- function(){
     return(invisible(TRUE))
   }
 
-  skip("DB not found")
+  testthat::skip("DB not found")
 }

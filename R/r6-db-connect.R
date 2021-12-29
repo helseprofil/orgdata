@@ -1,27 +1,24 @@
 #' @title Connect to Database
 #' @description Use R6 object to connect to database
+#' @param dbname Database filename with complete path
+#' @param db Database file `kh` (Kommunehelse) and `geo` (Geo code)
+#' @param .test Use for testing only
+#' @param ... Other arguments
 #' @keywords internal
-is_conn_db <- function(dbname = NULL){
+is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...){
+
+  db <- match.arg(db)
+  dbfile <- switch(db,
+                   kh = getOption("orgdata.db"),
+                   geo = getOption("orgdata.geo"),
+                   getOption("orgdata.db"))
+
   if (is.null(dbname)){
-    dbname <- is_path_db(
-      db = getOption("orgdata.db"),
-      check = TRUE
-    )
+    dbname <- is_path_db(db = dbfile, ...)
   }
 
-  KHelse$new(dbname = dbname)
-}
-
-
-#' @title Connect to Geo Database
-#' @description Use R6 object to connect to database
-#' @keywords internal
-is_conn_geo <- function(dbname = NULL){
-  if (is.null(dbname)){
-    dbname <- is_path_db(
-      db = getOption("orgdata.geo"),
-      check = TRUE
-    )
+  if (.test){
+    return(dbname)
   }
 
   KHelse$new(dbname = dbname)
