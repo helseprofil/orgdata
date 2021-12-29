@@ -1,5 +1,6 @@
 #' @title Connect to Database
 #' @description Use R6 object to connect to database
+#' @param dbname Database filename with complete path
 #' @param db Database file `kh` (Kommunehelse) and `geo` (Geo code)
 #' @param .test Use for testing only
 #' @keywords internal
