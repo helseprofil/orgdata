@@ -1,6 +1,16 @@
 ## Helper functions mainly for make_file
 ## -------------------------------------
 
+#' Pipe operator for future
+#' @name %<-%
+#' @rdname pipe
+#' @keywords internal
+#' @export
+#' @importFrom future %<-%
+#' @usage lhs \%<-\% rhs
+NULL
+
+
 ## Create complete path to DB file
 is_path_db <- function(db, check = FALSE) {
   ## db - Database file

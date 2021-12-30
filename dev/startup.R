@@ -93,7 +93,8 @@ usethis::use_package("odbc")
 usethis::use_package("tibble")
 usethis::use_package("readxl")
 usethis::use_package("norgeo")
-
+usethis::use_package("future")
+usethis::use_package("listenv")
 
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub

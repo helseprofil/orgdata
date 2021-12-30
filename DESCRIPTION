@@ -27,7 +27,9 @@ Imports:
     crayon (>= 1.4.1),
     rex (>= 1.2.0),
     methods,
-    utils
+    utils,
+    future,
+    listenv
 Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),
