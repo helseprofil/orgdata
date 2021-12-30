@@ -59,6 +59,8 @@ is_query <- function(file = NULL,
                      char2 = NULL,
                      opposite = FALSE) {
   is_null(file)
+  is_not_null_both(value, char)
+  is_not_null_both(value, char2)
 
   path <- system.file(file, package = "orgdata")
 
