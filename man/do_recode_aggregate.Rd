@@ -15,7 +15,7 @@ do_recode_aggregate(
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
-\item{spec}{Specifications data as a data.frame}
+\item{spec}{Specification from \code{tbl_Filgruppe}}
 
 \item{con}{Connection to database}
 
@@ -30,7 +30,7 @@ possible errors}
 Recode the category for all after aggregating data based on the
 specification in Codebook. For example when aggregating category type of diagnoses
 \code{NA} will be produced to represent all type of diagnoses. This will basically
-recode \code{NA} to a preferred value such as \code{ALL}.
+recode \code{NA} to a preferred value such as \code{0} or \code{Total}.
 }
 \seealso{
 Other recode functions: 

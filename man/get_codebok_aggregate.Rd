@@ -12,9 +12,9 @@ get_codebok_aggregate(spec = NULL, con = NULL)
 \item{con}{Connection to database}
 }
 \description{
-Get the codebook for recoding of aggregated variables based on the
-\code{FILGRUPPE} and \code{LESID} number. Specification group \code{ALLE} will be
-used when neither \code{FILGRUPPE} nor \code{LESID} is specified.
+Get the codebook for recoding of aggregated variables based on
+the \code{FILGRUPPE}. Specification group \code{ALLE} will be used when \code{FILGRUPPE}
+is not specified.
 }
 \seealso{
 Other recode functions: 
