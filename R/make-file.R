@@ -27,6 +27,7 @@
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
+#' @importFrom future `%<-%`
 #' @import future
 #' @family filegroups functions
 #' @export
@@ -83,10 +84,20 @@ make_file <- function(group = NULL,
   dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
-  future::plan(multisession)
+  future::plan(future::sequential)
   DT <- listenv::listenv()
+
   for (i in seq_len(rowFile)) {
-    DT[[i]] <- is_make_file_each(i = i,
+    ##   DT[[i]] %<-% { do.call(is_make_file_each, c(i = i,
+    ##                                               list(spec = spec,
+    ##                                                    fgspec = fgSpec,
+    ##                                                    aggregate = aggregate,
+    ##                                                    datacols = dataCols,
+    ##                                                    year = year,
+    ##                                                    row = row,
+    ##                                                    base = base))) }
+
+    DT[[i]] <- do_make_file_each(i = i,
                                  spec = spec,
                                  fgspec = fgSpec,
                                  aggregate = aggregate,
