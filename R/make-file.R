@@ -85,6 +85,7 @@ make_file <- function(group = NULL,
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
   future::plan(future::sequential)
+  ## future::plan(future::multisession)
   DT <- listenv::listenv()
 
   for (i in seq_len(rowFile)) {
@@ -97,16 +98,17 @@ make_file <- function(group = NULL,
     ##                                                    row = row,
     ##                                                    base = base))) }
 
-    DT[[i]] <- do_make_file_each(i = i,
-                                 spec = spec,
-                                 fgspec = fgSpec,
-                                 aggregate = aggregate,
-                                 datacols = dataCols,
-                                 year = year,
-                                 row = row,
-                                 base = base)
+    DT[[i]] <- future::future({
+      do_make_file_each(i = i,
+                        spec = spec,
+                        fgspec = fgSpec,
+                        aggregate = aggregate,
+                        datacols = dataCols,
+                        year = year,
+                        row = row,
+                        base = base)})
   }
-  DT <- as.list(DT)
+  DT <- lapply(DT, future::value)
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
