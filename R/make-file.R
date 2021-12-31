@@ -20,10 +20,10 @@
 #' @inheritParams do_geo_recode
 #' @param parallel Logical argument. Either to run with parallel or not. Default
 #'   is `FALSE`
+#' @param .test For testing purpose only
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
-#' @import future
 #' @family filegroups functions
 #' @export
 make_file <- function(group = NULL,
@@ -34,7 +34,8 @@ make_file <- function(group = NULL,
                       implicitnull = getOption("orgdata.implicit.null"),
                       row = getOption("orgdata.debug.row"),
                       base = getOption("orgdata.recode.base"),
-                      parallel = FALSE
+                      parallel = FALSE,
+                      .test = FALSE
                       ) {
 
   LEVEL <- NULL
@@ -80,60 +81,80 @@ make_file <- function(group = NULL,
   dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
-  if (parallel){
-    future::plan(future::multisession)
-  } else {
-    future::plan(future::sequential)
-  }
+  future::plan(future::multisession)
 
-  ## DT <- future.apply::future_lapply(nrow(spec),
-  ##                                   function(x) do_make_file_each(i = x,
-  ##                                                                 spec = spec,
-  ##                                                                 fgspec = fgSpec,
-  ##                                                                 aggregate = aggregate,
-  ##                                                                 datacols = dataCols,
-  ##                                                                 year = year,
-  ##                                                                 row = row,
-  ##                                                                 base = base),
-  ##                                   future.seed = TRUE)
-
-
-  DT <- listenv::listenv()
   `%<-%` <- future::`%<-%`
   `%seed%` <- future::`%seed%`
+  p <- progressr::progressor(along = seq_len(rowFile))
+  ## progressr::handlers(global = TRUE) #to enable progressor globally
 
-  for (i in seq_len(rowFile)) {
-    ## DT[[i]] %<-% { do.call(do_make_file_each, c(i = i,
-    ##                                             list(spec = spec,
-    ##                                                  fgspec = fgSpec,
-    ##                                                  aggregate = aggregate,
-    ##                                                  datacols = dataCols,
-    ##                                                  year = year,
-    ##                                                  row = row,
-    ##                                                  base = base))) }
+  if (.test){
+    if (parallel){
+      DT <- future.apply::future_lapply(seq_len(rowFile),
+                                        function(x) {
+                                          Sys.sleep(0.001)
+                                          p()
+                                          do_make_file_each(i = x,
+                                                            spec = spec,
+                                                            fgspec = fgSpec,
+                                                            aggregate = aggregate,
+                                                            datacols = dataCols,
+                                                            year = year,
+                                                            row = row,
+                                                            base = base) },
+                                        future.seed = TRUE)
+    } else {
 
-    DT[[i]] %<-% {do_make_file_each(i = i,
-                                    spec = spec,
-                                    fgspec = fgSpec,
-                                    aggregate = aggregate,
-                                    datacols = dataCols,
-                                    year = year,
-                                    row = row,
-                                    base = base)} %seed% TRUE
+      DT <- listenv::listenv()
+      for (i in seq_len(rowFile)) {
+        DT[[i]] <- do_make_file_each(i = i,
+                                     spec = spec,
+                                     fgspec = fgSpec,
+                                     aggregate = aggregate,
+                                     datacols = dataCols,
+                                     year = year,
+                                     row = row,
+                                     base = base)
 
-    ##   DT[[i]] <- future::future({
-    ##     do_make_file_each(i = i,
-    ##                       spec = spec,
-    ##                       fgspec = fgSpec,
-    ##                       aggregate = aggregate,
-    ##                       datacols = dataCols,
-    ##                       year = year,
-    ##                       row = row,
-    ##                       base = base)})
+      }
+      DT <- as.list(DT)
+    }
+
   }
 
-  DT <- as.list(DT)
-  ## DT <- lapply(DT, future::value)
+  ## ## TEST ---------
+  if (isFALSE(.test)){
+    DT <- listenv::listenv()
+    for (i in seq_len(rowFile)) {
+      if (parallel){
+        Sys.sleep(0.001)
+        p()
+        DT[[i]] %<-% {
+          do_make_file_each(i = i,
+                            spec = spec,
+                            fgspec = fgSpec,
+                            aggregate = aggregate,
+                            datacols = dataCols,
+                            year = year,
+                            row = row,
+                            base = base)
+
+        } %seed% TRUE
+
+      } else {
+
+        DT[[i]] <- do_make_file_each(i = i,
+                                     spec = spec,
+                                     fgspec = fgSpec,
+                                     aggregate = aggregate,
+                                     datacols = dataCols,
+                                     year = year,
+                                     row = row,
+                                     base = base)
+      }
+    }
+    DT <- as.list(DT)
+  }
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
