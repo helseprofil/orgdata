@@ -212,7 +212,7 @@ make_file <- function(group = NULL,
 
   is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
   outDT <- do_recode_aggregate(dt = outDT,
-                               spec = fileSpec,
+                               spec = fgSpec,
                                con = kh$dbconn,
                                control = fileCtrl)
 
