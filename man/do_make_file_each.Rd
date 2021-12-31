@@ -9,11 +9,13 @@ do_make_file_each(i, spec, fgspec, aggregate, datacols, year, row, base)
 \arguments{
 \item{i}{File specification}
 
+\item{spec}{File specification}
+
 \item{fgspec}{Filegroup specification}
 
-\item{aggregate}{Logical argument. Default is \code{TRUE}. Aggregate data according
-to the specification in registration database.
-Global options with \code{orgdata.aggregate}.}
+\item{aggregate}{Logical argument. Default is \code{TRUE}. Aggregate data
+according to the specification in registration database. Global options
+with \code{orgdata.aggregate}.}
 
 \item{datacols}{Columnames to be kept}
 

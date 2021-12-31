@@ -1,6 +1,7 @@
 #' @title Process Each File
 #' @description Process each file parallelly
 #' @param i File specification
+#' @param spec File specification
 #' @param fgspec Filegroup specification
 #' @param datacols Columnames to be kept
 #' @inheritParams make_file

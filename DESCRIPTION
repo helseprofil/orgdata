@@ -30,7 +30,8 @@ Imports:
     utils,
     future,
     listenv,
-    future.apply
+    future.apply,
+    progressr
 Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),
