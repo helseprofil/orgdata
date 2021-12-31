@@ -96,8 +96,6 @@ make_file <- function(group = NULL,
                                  base = base)
   }
   DT <- as.list(DT)
-  ##:ess-bp-start::browser@nil:##
-  browser(expr=is.null(.ESSBP.[["@5@"]]));##:ess-bp-end:##
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
@@ -128,8 +126,7 @@ make_file <- function(group = NULL,
   is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
   outDT <- do_recode_aggregate(dt = outDT,
                                spec = fgSpec,
-                               con = kh$dbconn,
-                               control = fileCtrl)
+                               con = kh$dbconn)
 
   standardCols <- is_standard_cols()
   orderCols <- intersect(standardCols, names(outDT))
