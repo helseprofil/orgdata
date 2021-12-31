@@ -1,33 +1,28 @@
 #' Implement the Specifications
-#' @description
-#' Make a `csv` file with the specifications in the register database and implement them
-#' to the raw data of the selected group of files (\emph{filgruppe}). All files under
-#' the selected group will be affected unless the \code{KOBLID} with
-#' argument \code{koblid} is specified. Specifying \code{koblid} is useful
-#' especially for testing purposes.
-#' @description
-#' The function [lag_fil()] is an alias to [make_file()].
-#' @examples
-#' \dontrun{
-#' make_file("BEFOLKNING")
-#' make_file("BEFOLKNING", koblid = 19)
-#' make_file("BEFOLKNING", koblid = c(15, 50))
-#' }
+#' @description Make a `csv` file with the specifications in the register
+#'   database and implement them to the raw data of the selected group of files
+#'   (\emph{filgruppe}). All files under the selected group will be affected
+#'   unless the \code{KOBLID} with argument \code{koblid} is specified.
+#'   Specifying \code{koblid} is useful especially for testing purposes.
+#' @description The function [lag_fil()] is an alias to [make_file()].
+#' @examples \dontrun{ make_file("BEFOLKNING") make_file("BEFOLKNING", koblid =
+#'   19) make_file("BEFOLKNING", koblid = c(15, 50)) }
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
-#' @param aggregate Logical argument. Default is `TRUE`. Aggregate data according
-#'    to the specification in registration database.
-#'    Global options with `orgdata.aggregate`.
+#' @param aggregate Logical argument. Default is `TRUE`. Aggregate data
+#'   according to the specification in registration database. Global options
+#'   with `orgdata.aggregate`.
 #' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
 #' @inheritParams do_aggregate
-#' @param implicitnull Logical argument. Default is `TRUE` to add implicit
-#'   null to the dataset. Global options with `orgdata.implicit.null`.
+#' @param implicitnull Logical argument. Default is `TRUE` to add implicit null
+#'   to the dataset. Global options with `orgdata.implicit.null`.
 #' @param row Select only specify row(s). Useful for debugging
 #' @inheritParams do_geo_recode
+#' @param parallel Logical argument. Either to run with parallel or not. Default
+#'   is `FALSE`
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
-#' @importFrom future `%<-%`
 #' @import future
 #' @family filegroups functions
 #' @export
@@ -38,7 +33,8 @@ make_file <- function(group = NULL,
                       year = NULL,
                       implicitnull = getOption("orgdata.implicit.null"),
                       row = getOption("orgdata.debug.row"),
-                      base = getOption("orgdata.recode.base")
+                      base = getOption("orgdata.recode.base"),
+                      parallel = FALSE
                       ) {
 
   LEVEL <- NULL
@@ -84,31 +80,60 @@ make_file <- function(group = NULL,
   dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
-  future::plan(future::sequential)
-  ## future::plan(future::multisession)
+  if (parallel){
+    future::plan(future::multisession)
+  } else {
+    future::plan(future::sequential)
+  }
+
+  ## DT <- future.apply::future_lapply(nrow(spec),
+  ##                                   function(x) do_make_file_each(i = x,
+  ##                                                                 spec = spec,
+  ##                                                                 fgspec = fgSpec,
+  ##                                                                 aggregate = aggregate,
+  ##                                                                 datacols = dataCols,
+  ##                                                                 year = year,
+  ##                                                                 row = row,
+  ##                                                                 base = base),
+  ##                                   future.seed = TRUE)
+
+
   DT <- listenv::listenv()
+  `%<-%` <- future::`%<-%`
+  `%seed%` <- future::`%seed%`
 
   for (i in seq_len(rowFile)) {
-    ##   DT[[i]] %<-% { do.call(is_make_file_each, c(i = i,
-    ##                                               list(spec = spec,
-    ##                                                    fgspec = fgSpec,
-    ##                                                    aggregate = aggregate,
-    ##                                                    datacols = dataCols,
-    ##                                                    year = year,
-    ##                                                    row = row,
-    ##                                                    base = base))) }
+    ## DT[[i]] %<-% { do.call(do_make_file_each, c(i = i,
+    ##                                             list(spec = spec,
+    ##                                                  fgspec = fgSpec,
+    ##                                                  aggregate = aggregate,
+    ##                                                  datacols = dataCols,
+    ##                                                  year = year,
+    ##                                                  row = row,
+    ##                                                  base = base))) }
 
-    DT[[i]] <- future::future({
-      do_make_file_each(i = i,
-                        spec = spec,
-                        fgspec = fgSpec,
-                        aggregate = aggregate,
-                        datacols = dataCols,
-                        year = year,
-                        row = row,
-                        base = base)})
+    DT[[i]] %<-% {do_make_file_each(i = i,
+                                    spec = spec,
+                                    fgspec = fgSpec,
+                                    aggregate = aggregate,
+                                    datacols = dataCols,
+                                    year = year,
+                                    row = row,
+                                    base = base)} %seed% TRUE
+
+    ##   DT[[i]] <- future::future({
+    ##     do_make_file_each(i = i,
+    ##                       spec = spec,
+    ##                       fgspec = fgSpec,
+    ##                       aggregate = aggregate,
+    ##                       datacols = dataCols,
+    ##                       year = year,
+    ##                       row = row,
+    ##                       base = base)})
   }
-  DT <- lapply(DT, future::value)
+
+  DT <- as.list(DT)
+  ## DT <- lapply(DT, future::value)
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
@@ -158,10 +183,10 @@ make_file <- function(group = NULL,
   }
 
   return(outDT[])
-}
+  }
 
-#' @export
-#' @rdname make_file
+  #' @export
+  #' @rdname make_file
 lag_fil <- make_file
 
 

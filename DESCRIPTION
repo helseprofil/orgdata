@@ -29,7 +29,8 @@ Imports:
     methods,
     utils,
     future,
-    listenv
+    listenv,
+    future.apply
 Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),
