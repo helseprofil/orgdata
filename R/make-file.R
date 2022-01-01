@@ -30,12 +30,12 @@ make_file <- function(group = NULL,
                       koblid = NULL,
                       aggregate = getOption("orgdata.aggregate"),
                       save = FALSE,
-                      year = NULL,
+                      year = getOption("orgdata.year"),
                       implicitnull = getOption("orgdata.implicit.null"),
                       row = getOption("orgdata.debug.row"),
                       base = getOption("orgdata.recode.base"),
                       parallel = FALSE,
-                      .test = FALSE
+                      .test = TRUE
                       ) {
 
   LEVEL <- NULL
@@ -81,80 +81,41 @@ make_file <- function(group = NULL,
   dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
-  future::plan(future::multisession)
-
-  `%<-%` <- future::`%<-%`
-  `%seed%` <- future::`%seed%`
-  p <- progressr::progressor(rowFile)
-  ## p <- progressr::progressor(along = seq_len(rowFile))
-  ## progressr::handlers(global = TRUE) #to enable progressor globally
-
-  ## ## TEST TRUE ----------------
-  if (.test){
-    if (parallel){
-      DT <- future.apply::future_lapply(seq_len(rowFile),
-                                        function(x) {
-                                          Sys.sleep(6.0 - x)
-                                          khfile <- do_make_file_each(i = x,
-                                                                      spec = spec,
-                                                            fgspec = fgSpec,
-                                                            aggregate = aggregate,
-                                                            datacols = dataCols,
-                                                            year = year,
-                                                            row = row,
-                                                            base = base)
-                                          p(sprintf("Process file no. %d", as.integer(x)))
-                                          khfile
-                                        },
-                                        future.seed = TRUE)
-    } else {
-
-      DT <- listenv::listenv()
-      for (i in seq_len(rowFile)) {
-        DT[[i]] <- do_make_file_each(i = i,
-                                     spec = spec,
-                                     fgspec = fgSpec,
-                                     aggregate = aggregate,
-                                     datacols = dataCols,
-                                     year = year,
-                                     row = row,
-                                     base = base)
-
-      }
-      DT <- as.list(DT)
-    }
-
+  if(parallel){
+    is_verbose(msg = "Start parallel processing ...")
+    future::plan(future::multisession)
+    p <- progressr::progressor(steps = rowFile)
+    ## p <- progressr::progressor(along = seq_len(rowFile))
+    ## progressr::handlers(global = TRUE) #to enable progressor globally
   }
 
-  ## ## TEST FALSE ----------------
-  if (isFALSE(.test)){
+  if (parallel){
+    DT <- future.apply::future_lapply(seq_len(rowFile),
+                                      function(x) {
+                                        p()
+                                        do_make_file_each(i = x,
+                                                          spec = spec,
+                                                          fgspec = fgSpec,
+                                                          aggregate = aggregate,
+                                                          datacols = dataCols,
+                                                          year = year,
+                                                          row = row,
+                                                          base = base)},
+                                      future.seed = TRUE)
+  } else {
+
     DT <- listenv::listenv()
     for (i in seq_len(rowFile)) {
-      if (parallel){
-        p("Processing files ....")
-        DT[[i]] %<-% {
-          do_make_file_each(i = i,
-                            spec = spec,
-                            fgspec = fgSpec,
-                            aggregate = aggregate,
-                            datacols = dataCols,
-                            year = year,
-                            row = row,
-                            base = base)
+      DT[[i]] <- do_make_file_each(i = i,
+                                   spec = spec,
+                                   fgspec = fgSpec,
+                                   aggregate = aggregate,
+                                   datacols = dataCols,
+                                   year = year,
+                                   row = row,
+                                   base = base)
 
-        } %seed% TRUE
 
-      } else {
-
-        DT[[i]] <- do_make_file_each(i = i,
-                                     spec = spec,
-                                     fgspec = fgSpec,
-                                     aggregate = aggregate,
-                                     datacols = dataCols,
-                                     year = year,
-                                     row = row,
-                                     base = base)
-      }
     }
     DT <- as.list(DT)
   }
