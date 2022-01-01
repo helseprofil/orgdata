@@ -8,7 +8,7 @@ do_geo_recode(
   dt = NULL,
   code = NULL,
   type = c("grunnkrets", "fylke", "kommune", "bydel"),
-  year = NULL,
+  year = getOption("orgdata.year"),
   con = NULL,
   geo = getOption("orgdata.debug.geo"),
   base = getOption("orgdata.recode.base"),

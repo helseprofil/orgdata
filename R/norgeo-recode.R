@@ -6,11 +6,6 @@
 #' @param source What geographical granularity codes that is available in the
 #'   source data. This will be used for merging with the output from
 #'   `geo_levels()`
-#' @param year Which year the georaphical code is valid for. If not specified,
-#'   then it will be base on the year in source data ie. column `AAR`
-#' @param check If TRUE then output will keep variables for geographical levels
-#'   without aggregating it. This is useful to check for geographical codes that
-#'   are missing. Else use `options(orgdata.aggregate = FALSE)`
 #' @inheritParams do_geo_recode
 #' @examples
 #' \dontrun{
@@ -27,8 +22,7 @@ do_recode_without_aggregate <- function(dt = NULL,
                                           "kommune",
                                           "bydel"
                                         ),
-                                        year = NULL,
-                                        check = getOption("orgdata.debug.aggregate"),
+                                        year = getOption("orgdata.year"),
                                         base = getOption("orgdata.recode.base"),
                                         ...){
   AAR <- NULL
@@ -46,9 +40,7 @@ do_recode_without_aggregate <- function(dt = NULL,
 
   cat("..")
   ## validTo in the database `tblGeo` is a character
-  if (!is.null(year)) {
-    yr <- dt[AAR == year, ][1]
-  } else {
+  if (is.null(year)) {
     yr <- as.integer(format(Sys.Date(), "%Y"))
   }
 
@@ -98,7 +90,7 @@ do_geo_recode <- function(dt = NULL,
                             "fylke",
                             "kommune",
                             "bydel"),
-                          year = NULL,
+                          year = getOption("orgdata.year"),
                           con = NULL,
                           geo = getOption("orgdata.debug.geo"),
                           base = getOption("orgdata.recode.base"),
@@ -182,7 +174,7 @@ get_geo_recode <- function(con = NULL,
                              "fylke",
                              "kommune",
                              "bydel"),
-                           year = NULL
+                           year = getOption("orgdata.year")
                            ){
 
   changeOccurred <- NULL
