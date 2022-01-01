@@ -7,6 +7,7 @@ sysDrive <- switch(OS,
 
 ## Options for Folkehelseprofiler
 opt.orgdata <- list(
+  orgdata.year = NULL, # which year of geo codes for recoding should refer to
   orgdata.drive = sysDrive,
   orgdata.folder.db = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING/raw-khelse",
   orgdata.folder.data = "F:/Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA",
