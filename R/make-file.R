@@ -85,23 +85,27 @@ make_file <- function(group = NULL,
 
   `%<-%` <- future::`%<-%`
   `%seed%` <- future::`%seed%`
-  p <- progressr::progressor(along = seq_len(rowFile))
+  p <- progressr::progressor(rowFile)
+  ## p <- progressr::progressor(along = seq_len(rowFile))
   ## progressr::handlers(global = TRUE) #to enable progressor globally
 
+  ## ## TEST TRUE ----------------
   if (.test){
     if (parallel){
       DT <- future.apply::future_lapply(seq_len(rowFile),
                                         function(x) {
-                                          Sys.sleep(0.001)
-                                          p()
-                                          do_make_file_each(i = x,
-                                                            spec = spec,
+                                          Sys.sleep(6.0 - x)
+                                          khfile <- do_make_file_each(i = x,
+                                                                      spec = spec,
                                                             fgspec = fgSpec,
                                                             aggregate = aggregate,
                                                             datacols = dataCols,
                                                             year = year,
                                                             row = row,
-                                                            base = base) },
+                                                            base = base)
+                                          p(sprintf("Process file no. %d", as.integer(x)))
+                                          khfile
+                                        },
                                         future.seed = TRUE)
     } else {
 
@@ -122,13 +126,12 @@ make_file <- function(group = NULL,
 
   }
 
-  ## ## TEST ---------
+  ## ## TEST FALSE ----------------
   if (isFALSE(.test)){
     DT <- listenv::listenv()
     for (i in seq_len(rowFile)) {
       if (parallel){
-        Sys.sleep(0.001)
-        p()
+        p("Processing files ....")
         DT[[i]] %<-% {
           do_make_file_each(i = i,
                             spec = spec,
@@ -204,7 +207,7 @@ make_file <- function(group = NULL,
   }
 
   return(outDT[])
-  }
+}
 
   #' @export
   #' @rdname make_file
