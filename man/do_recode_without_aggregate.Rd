@@ -7,8 +7,7 @@
 do_recode_without_aggregate(
   dt = NULL,
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
-  year = NULL,
-  check = getOption("orgdata.debug.aggregate"),
+  year = getOption("orgdata.year"),
   base = getOption("orgdata.recode.base"),
   ...
 )
@@ -20,12 +19,8 @@ do_recode_without_aggregate(
 source data. This will be used for merging with the output from
 \code{geo_levels()}}
 
-\item{year}{Which year the georaphical code is valid for. If not specified,
-then it will be base on the year in source data ie. column \code{AAR}}
-
-\item{check}{If TRUE then output will keep variables for geographical levels
-without aggregating it. This is useful to check for geographical codes that
-are missing. Else use \code{options(orgdata.aggregate = FALSE)}}
+\item{year}{Which year the geograhical codes to be recoded to. If it is empty
+then current year will be used.}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
