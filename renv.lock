@@ -144,10 +144,10 @@
     },
     "fs": {
       "Package": "fs",
-      "Version": "1.5.0",
+      "Version": "1.5.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "44594a07a42e5f91fac9f93fda6d0109"
+      "Hash": "7c89603d81793f0d5486d91ab1fc6f1d"
     },
     "future": {
       "Package": "future",
@@ -271,13 +271,13 @@
       "Version": "0.5.0",
       "Source": "GitHub",
       "RemoteType": "github",
-      "Remotes": "helseprofil/norgeo",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "orgdata",
       "RemoteUsername": "helseprofil",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "c7d4b82678ccc6ba9d1e0e92a4a7b486d3513bd1",
-      "Hash": "bfaab00cbbb222a719523abfb002d6cc"
+      "RemoteRepo": "orgdata",
+      "RemoteRef": "main",
+      "RemoteSha": "da72b545fdefe53da67baef734eb684b35301083",
+      "Remotes": "helseprofil/norgeo",
+      "Hash": "3282c6dc14bbff3528ec76f58cc07747"
     },
     "parallelly": {
       "Package": "parallelly",

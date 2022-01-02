@@ -1,6 +1,9 @@
-## Start
+## Kjør alle herfra -------------------
 library(orgdata)
 options(orgdata.year = 2021) #Hvilket årgang til å omkode geo
+progressr::handlers(global = TRUE)
+## til hit som oppsett ----------------
+
 
 ##   HUSK Å ALLTID TILORDNE ET OBJEKT for make_file og read_file ! ###
 ##   dt <- make_file()
