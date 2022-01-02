@@ -1,29 +1,25 @@
 #' Implement the Specifications
-#' @description
-#' Make a `csv` file with the specifications in the register database and implement them
-#' to the raw data of the selected group of files (\emph{filgruppe}). All files under
-#' the selected group will be affected unless the \code{KOBLID} with
-#' argument \code{koblid} is specified. Specifying \code{koblid} is useful
-#' especially for testing purposes.
-#' @description
-#' The function [lag_fil()] is an alias to [make_file()].
-#' @examples
-#' \dontrun{
-#' make_file("BEFOLKNING")
-#' make_file("BEFOLKNING", koblid = 19)
-#' make_file("BEFOLKNING", koblid = c(15, 50))
-#' }
+#' @description Make a `csv` file with the specifications in the register
+#'   database and implement them to the raw data of the selected group of files
+#'   (\emph{filgruppe}). All files under the selected group will be affected
+#'   unless the \code{KOBLID} with argument \code{koblid} is specified.
+#'   Specifying \code{koblid} is useful especially for testing purposes.
+#' @description The function [lag_fil()] is an alias to [make_file()].
+#' @examples \dontrun{ make_file("BEFOLKNING") make_file("BEFOLKNING", koblid =
+#'   19) make_file("BEFOLKNING", koblid = c(15, 50)) }
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
-#' @param aggregate Logical argument. Default is `TRUE`. Aggregate data according
-#'    to the specification in registration database.
-#'    Global options with `orgdata.aggregate`.
+#' @param aggregate Logical argument. Default is `TRUE`. Aggregate data
+#'   according to the specification in registration database. Global options
+#'   with `orgdata.aggregate`.
 #' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
 #' @inheritParams do_aggregate
-#' @param implicitnull Logical argument. Default is `TRUE` to add implicit
-#'   null to the dataset. Global options with `orgdata.implicit.null`.
+#' @param implicitnull Logical argument. Default is `TRUE` to add implicit null
+#'   to the dataset. Global options with `orgdata.implicit.null`.
 #' @param row Select only specify row(s). Useful for debugging
 #' @inheritParams do_geo_recode
+#' @param parallel Logical argument. Either to run with parallel or not. Default
+#'   is `FALSE`
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
@@ -33,10 +29,11 @@ make_file <- function(group = NULL,
                       koblid = NULL,
                       aggregate = getOption("orgdata.aggregate"),
                       save = FALSE,
-                      year = NULL,
+                      year = getOption("orgdata.year"),
                       implicitnull = getOption("orgdata.implicit.null"),
                       row = getOption("orgdata.debug.row"),
-                      base = getOption("orgdata.recode.base")
+                      base = getOption("orgdata.recode.base"),
+                      parallel = FALSE
                       ) {
 
   LEVEL <- NULL
@@ -82,107 +79,46 @@ make_file <- function(group = NULL,
   dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
-  DT <- vector(mode = "list", length = rowFile)
-  for (i in seq_len(rowFile)) {
-    fileSpec <- spec[i, ]
-    filePath <- is_path_raw(fileSpec, check = TRUE)
+  if(parallel){
+    is_verbose(msg = "Start parallel processing ...")
+    future::plan(future::multisession)
+    p <- progressr::progressor(steps = rowFile)
+    ## p <- progressr::progressor(along = seq_len(rowFile))
+    ## progressr::handlers(global = TRUE) #to enable progressor globally
+  }
 
-    is_verbose(msg = is_line_long(), type = "other")
-    is_verbose(fileSpec$KOBLID, "KOBLID:")
-
-    fileCtrl <- get_column_input(fileSpec, "KONTROLLERT")
-    koblID <- get_column_input(fileSpec, "KOBLID")
-
-    dt <- is_org_process(
-      file = filePath,
-      filespec = fileSpec,
-      fgspec = fgSpec,
-      con = kh$dbconn,
-      row = row,
-      control = fileCtrl
+  if (parallel){
+    progressr::with_progress(
+      DT <- future.apply::future_lapply(seq_len(rowFile),
+                                        function(x) {
+                                          p()
+                                          do_make_file_each(i = x,
+                                                            spec = spec,
+                                                            fgspec = fgSpec,
+                                                            aggregate = aggregate,
+                                                            datacols = dataCols,
+                                                            year = year,
+                                                            row = row,
+                                                            base = base)},
+                                        future.seed = TRUE)
     )
+  } else {
 
-    ## RESHAPE structure -----------------------------------------
-    reshVal <- find_column_input(fileSpec, "RESHAPE")
-    reshapeLong <- reshVal == 1
-    reshapeWide <- reshVal == 2
+    DT <- listenv::listenv()
+    for (i in seq_len(rowFile)) {
+      DT[[i]] <- do_make_file_each(i = i,
+                                   spec = spec,
+                                   fgspec = fgSpec,
+                                   aggregate = aggregate,
+                                   datacols = dataCols,
+                                   year = year,
+                                   row = row,
+                                   base = base)
 
-    ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
-    ## defined in Access coz aggregating uses the standard columnames. Else it
-    ## will be deleted as undefined columns in Access database
-    if (!is.na(reshVal) && reshapeLong){
-      dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
+
     }
-
-    ## Recode must happen before reshape wide as reshape wide will use selected TAB
-    ## of reshape column creating columns of unique value of TAB ie. wideCols object
-    dt <- do_recode(dt = dt, spec = fileSpec, con = kh$dbconn, control = fileCtrl)
-    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = kh$dbconn)
-
-    ## Reshape to wide needs to keep object wideCols from original file
-    ## to reshape it back to long if it's wide and became TAB
-    wideCols <- NULL
-    if (!is.na(reshVal) && reshapeWide){
-      meltSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
-      resCol <- meltSpec$rescol
-      resVal <- meltSpec$resval
-      wideCols <- meltSpec$widecols
-    }
-
-    ## Only columns defined in tbl_Filgruppe will be kept. Deleting columns only
-    ## after renaming RESHAPE columns back to standard columnames.
-    deleteVar <- setdiff(names(dt), dataCols)
-
-    if (length(deleteVar) != 0) {
-      dt[, (deleteVar) := NULL]
-    }
-
-    if (length(deleteVar) != 0) {
-      ## What does this mean? Need to ask the senior people in the project :-)
-      msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
-      msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
-      msgWarn <- paste0(msg01, "\n", msg02)
-      is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
-      deleteVar <- paste(deleteVar, collapse = ", ")
-      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
-    }
-
-    ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
-    ## make specification for column that should not be included in the formula
-    ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
-    if (!is.na(reshVal) && reshapeWide){
-      dt <- do_reshape_wide(dt, meltSpec)
-      wideCols <- intersect(names(dt), wideCols)
-    }
-
-    ## AGGREGATE ------------------------------------
-    ## is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
-
-    ## TODO - Not sure if this necessary. Turn of temporarily
-    ## Convert some columns to interger. Must be after
-    ## the variables are recoded eg. INNKAT is string before recorded to number
-    ## dt <- is_col_int(dt)
-
-    dt <- is_aggregate(dt = dt,
-                       fgspec = fgSpec,
-                       year = year,
-                       aggregate = aggregate,
-                       base = base,
-                       control = fileCtrl,
-                       wide = wideCols,
-                       koblid = koblID)
-
-
-    ## RESHAPE LONG SPECIAL CASES --------------------------------------
-    if (!is.na(reshVal) && reshapeWide){
-      idvar <- setdiff(names(dt), wideCols)
-      dt <- do_reshape_long(dt = dt, resval = resVal, rescol = resCol, widecols = wideCols)
-    }
-
-    DT[[i]] <- copy(dt)
-    rm(dt)
-    gc()
-}
+    DT <- as.list(DT)
+  }
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
@@ -213,8 +149,7 @@ make_file <- function(group = NULL,
   is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
   outDT <- do_recode_aggregate(dt = outDT,
                                spec = fgSpec,
-                               con = kh$dbconn,
-                               control = fileCtrl)
+                               con = kh$dbconn)
 
   standardCols <- is_standard_cols()
   orderCols <- intersect(standardCols, names(outDT))
@@ -235,8 +170,8 @@ make_file <- function(group = NULL,
   return(outDT[])
 }
 
-#' @export
-#' @rdname make_file
+  #' @export
+  #' @rdname make_file
 lag_fil <- make_file
 
 

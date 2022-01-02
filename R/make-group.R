@@ -16,6 +16,9 @@
 #' @export
 make_filegroups <- function(...){
 
+  options(orgdata.verbose = FALSE)
+  on.exit(reset_opt())
+
   fgp <- tryCatch({
     unlist(list(...))
   },
@@ -33,28 +36,31 @@ make_filegroups <- function(...){
   for (i in fgp){
     i <- trimws(i)
 
-    FGP <- tryCatch({make_file(i, save = TRUE)},
-                    error = function(err) err)
+    FGP <- tryCatch({
+      is_color_txt(i, msg = "Processing:")
+      make_file(i, save = TRUE, parallel = TRUE)
+    },
+      error = function(err) err)
 
-    if (is(FGP, "error")){
-      fgpKO[i] <- i
-      next
-    } else {
-      fgpOK[i] <- i
+      if (is(FGP, "error")){
+        fgpKO[i] <- i
+        next
+      } else {
+        fgpOK[i] <- i
+      }
     }
-  }
 
-  is_line_short()
-  msgOK <- paste0("Done ", length(fgpOK), " group(s):")
-  is_color_txt(fgpOK, msg = msgOK, type = "note")
-  is_color_txt(x = "`log$ok`", msg = "Check all the filegroups with:")
-
-  if (length(fgpKO) > 0) {
     is_line_short()
-    msgKO <- paste0("Error ", length(fgpKO), " group(s):")
-    is_color_txt(fgpKO, msg = msgKO, type = "error")
-    is_color_txt(x = "`log$ko`", msg = "Check all the filegroups with:")
-  }
+    msgOK <- paste0("Done ", length(fgpOK), " group(s):")
+    is_color_txt(fgpOK, msg = msgOK, type = "note")
+    is_color_txt(x = "`log$ok`", msg = "Check all the filegroups with:")
+
+    if (length(fgpKO) > 0) {
+      is_line_short()
+      msgKO <- paste0("Error ", length(fgpKO), " group(s):")
+      is_color_txt(fgpKO, msg = msgKO, type = "error")
+      is_color_txt(x = "`log$ko`", msg = "Check all the filegroups with:")
+    }
 }
 
 #' @export

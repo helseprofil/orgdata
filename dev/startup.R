@@ -1,6 +1,7 @@
 ## Most used functions --------------------------
 devtools::load_all()
 devtools::test()
+
 ## devtools::check(vignettes = FALSE)
 roxygen2::roxygenise(clean = TRUE)
 Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0) #avoid to verify file timestamp when check()
@@ -11,6 +12,7 @@ pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
 
+## When using parallel
 devtools::install()
 devtools::check_build() # only when you have unload the packag
 
@@ -93,7 +95,10 @@ usethis::use_package("odbc")
 usethis::use_package("tibble")
 usethis::use_package("readxl")
 usethis::use_package("norgeo")
-
+usethis::use_package("future")
+usethis::use_package("future.apply")
+usethis::use_package("listenv")
+usethis::use_package("progressr")
 
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub

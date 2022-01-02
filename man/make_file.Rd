@@ -10,10 +10,11 @@ make_file(
   koblid = NULL,
   aggregate = getOption("orgdata.aggregate"),
   save = FALSE,
-  year = NULL,
+  year = getOption("orgdata.year"),
   implicitnull = getOption("orgdata.implicit.null"),
   row = getOption("orgdata.debug.row"),
-  base = getOption("orgdata.recode.base")
+  base = getOption("orgdata.recode.base"),
+  parallel = FALSE
 )
 
 lag_fil(
@@ -21,10 +22,11 @@ lag_fil(
   koblid = NULL,
   aggregate = getOption("orgdata.aggregate"),
   save = FALSE,
-  year = NULL,
+  year = getOption("orgdata.year"),
   implicitnull = getOption("orgdata.implicit.null"),
   row = getOption("orgdata.debug.row"),
-  base = getOption("orgdata.recode.base")
+  base = getOption("orgdata.recode.base"),
+  parallel = FALSE
 )
 }
 \arguments{
@@ -32,39 +34,39 @@ lag_fil(
 
 \item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
 
-\item{aggregate}{Logical argument. Default is \code{TRUE}. Aggregate data according
-to the specification in registration database.
-Global options with \code{orgdata.aggregate}.}
+\item{aggregate}{Logical argument. Default is \code{TRUE}. Aggregate data
+according to the specification in registration database. Global options
+with \code{orgdata.aggregate}.}
 
 \item{save}{Save as \code{.csv} by activating \code{save_file()}. Default is \code{FALSE}}
 
 \item{year}{Which year of georaphical code to use for recoding and
 aggregating. If not specified, then current year will be used}
 
-\item{implicitnull}{Logical argument. Default is \code{TRUE} to add implicit
-null to the dataset. Global options with \code{orgdata.implicit.null}.}
+\item{implicitnull}{Logical argument. Default is \code{TRUE} to add implicit null
+to the dataset. Global options with \code{orgdata.implicit.null}.}
 
 \item{row}{Select only specify row(s). Useful for debugging}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
+
+\item{parallel}{Logical argument. Either to run with parallel or not. Default
+is \code{FALSE}}
 }
 \description{
-Make a \code{csv} file with the specifications in the register database and implement them
-to the raw data of the selected group of files (\emph{filgruppe}). All files under
-the selected group will be affected unless the \code{KOBLID} with
-argument \code{koblid} is specified. Specifying \code{koblid} is useful
-especially for testing purposes.
+Make a \code{csv} file with the specifications in the register
+database and implement them to the raw data of the selected group of files
+(\emph{filgruppe}). All files under the selected group will be affected
+unless the \code{KOBLID} with argument \code{koblid} is specified.
+Specifying \code{koblid} is useful especially for testing purposes.
 
 The function \code{\link[=lag_fil]{lag_fil()}} is an alias to \code{\link[=make_file]{make_file()}}.
 }
 \examples{
-\dontrun{
-make_file("BEFOLKNING")
-make_file("BEFOLKNING", koblid = 19)
-make_file("BEFOLKNING", koblid = c(15, 50))
-}
+\dontrun{ make_file("BEFOLKNING") make_file("BEFOLKNING", koblid =
+  19) make_file("BEFOLKNING", koblid = c(15, 50)) }
 }
 \seealso{
 Other filegroups functions: 
