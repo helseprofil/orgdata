@@ -65,8 +65,10 @@ Specifying \code{koblid} is useful especially for testing purposes.
 The function \code{\link[=lag_fil]{lag_fil()}} is an alias to \code{\link[=make_file]{make_file()}}.
 }
 \examples{
-\dontrun{ make_file("BEFOLKNING") make_file("BEFOLKNING", koblid =
-  19) make_file("BEFOLKNING", koblid = c(15, 50)) }
+\dontrun{
+dt <- make_file("ENPERSON")
+dt <- make_file("ENPERSON", koblid = 120:125, parallel = TRUE) #with parallel processing
+}
 }
 \seealso{
 Other filegroups functions: 
