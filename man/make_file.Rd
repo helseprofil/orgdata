@@ -14,8 +14,7 @@ make_file(
   implicitnull = getOption("orgdata.implicit.null"),
   row = getOption("orgdata.debug.row"),
   base = getOption("orgdata.recode.base"),
-  parallel = FALSE,
-  .test = TRUE
+  parallel = FALSE
 )
 
 lag_fil(
@@ -27,8 +26,7 @@ lag_fil(
   implicitnull = getOption("orgdata.implicit.null"),
   row = getOption("orgdata.debug.row"),
   base = getOption("orgdata.recode.base"),
-  parallel = FALSE,
-  .test = TRUE
+  parallel = FALSE
 )
 }
 \arguments{
@@ -56,8 +54,6 @@ available codes in geo codebook}
 
 \item{parallel}{Logical argument. Either to run with parallel or not. Default
 is \code{FALSE}}
-
-\item{.test}{For testing purpose only}
 }
 \description{
 Make a \code{csv} file with the specifications in the register

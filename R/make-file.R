@@ -20,7 +20,6 @@
 #' @inheritParams do_geo_recode
 #' @param parallel Logical argument. Either to run with parallel or not. Default
 #'   is `FALSE`
-#' @param .test For testing purpose only
 #' @aliases make_file lag_fil
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
@@ -34,8 +33,7 @@ make_file <- function(group = NULL,
                       implicitnull = getOption("orgdata.implicit.null"),
                       row = getOption("orgdata.debug.row"),
                       base = getOption("orgdata.recode.base"),
-                      parallel = FALSE,
-                      .test = TRUE
+                      parallel = FALSE
                       ) {
 
   LEVEL <- NULL
@@ -90,18 +88,20 @@ make_file <- function(group = NULL,
   }
 
   if (parallel){
-    DT <- future.apply::future_lapply(seq_len(rowFile),
-                                      function(x) {
-                                        p()
-                                        do_make_file_each(i = x,
-                                                          spec = spec,
-                                                          fgspec = fgSpec,
-                                                          aggregate = aggregate,
-                                                          datacols = dataCols,
-                                                          year = year,
-                                                          row = row,
-                                                          base = base)},
-                                      future.seed = TRUE)
+    progressr::with_progress(
+      DT <- future.apply::future_lapply(seq_len(rowFile),
+                                        function(x) {
+                                          p()
+                                          do_make_file_each(i = x,
+                                                            spec = spec,
+                                                            fgspec = fgSpec,
+                                                            aggregate = aggregate,
+                                                            datacols = dataCols,
+                                                            year = year,
+                                                            row = row,
+                                                            base = base)},
+                                        future.seed = TRUE)
+    )
   } else {
 
     DT <- listenv::listenv()
