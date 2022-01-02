@@ -91,20 +91,18 @@ make_file <- function(group = NULL,
   }
 
   if (parallel){
-    progressr::with_progress(
-      DT <- future.apply::future_lapply(seq_len(rowFile),
-                                        function(x) {
-                                          p()
-                                          do_make_file_each(i = x,
-                                                            spec = spec,
-                                                            fgspec = fgSpec,
-                                                            aggregate = aggregate,
-                                                            datacols = dataCols,
-                                                            year = year,
-                                                            row = row,
-                                                            base = base)},
-                                        future.seed = TRUE)
-    )
+    DT <- future.apply::future_lapply(seq_len(rowFile),
+                                      function(x) {
+                                        p()
+                                        do_make_file_each(i = x,
+                                                          spec = spec,
+                                                          fgspec = fgSpec,
+                                                          aggregate = aggregate,
+                                                          datacols = dataCols,
+                                                          year = year,
+                                                          row = row,
+                                                          base = base)},
+                                      future.seed = TRUE)
   } else {
 
     DT <- listenv::listenv()
@@ -117,9 +115,8 @@ make_file <- function(group = NULL,
                                    year = year,
                                    row = row,
                                    base = base)
-
-
     }
+
     DT <- as.list(DT)
   }
 
