@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rename Columns — do_colname • orgdata</title>
+<title>Process Each File — do_make_file_each • orgdata</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Rename Columns — do_colname" />
-<meta property="og:description" content="Rename standard columns in the dataset" />
+<meta property="og:title" content="Process Each File — do_make_file_each" />
+<meta property="og:description" content="Process each file parallelly" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -137,27 +137,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rename Columns</h1>
-    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/rename-columns.R'><code>R/rename-columns.R</code></a></small>
-    <div class="hidden name"><code>do_colname.Rd</code></div>
+    <h1>Process Each File</h1>
+    <small class="dont-index">Source: <a href='https://github.com/helseprofil/orgdata/blob/master/R/make-file-each.R'><code>R/make-file-each.R</code></a></small>
+    <div class="hidden name"><code>do_make_file_each.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Rename standard columns in the dataset</p>
+    <p>Process each file parallelly</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_colname</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, cols <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_make_file_each</span><span class='op'>(</span><span class='va'>i</span>, <span class='va'>spec</span>, <span class='va'>fgspec</span>, <span class='va'>aggregate</span>, <span class='va'>datacols</span>, <span class='va'>year</span>, <span class='va'>row</span>, <span class='va'>base</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dt</th>
-      <td><p>Input data preferrably in a <code>data.table</code> format but is not mandatory</p></td>
+      <th>i</th>
+      <td><p>File specification</p></td>
     </tr>
     <tr>
-      <th>cols</th>
-      <td><p>Old and new columns. See output from <code><a href='get_colname.html'>get_colname()</a></code></p></td>
+      <th>spec</th>
+      <td><p>File specification</p></td>
+    </tr>
+    <tr>
+      <th>fgspec</th>
+      <td><p>Filegroup specification</p></td>
+    </tr>
+    <tr>
+      <th>aggregate</th>
+      <td><p>Logical argument. Default is <code>TRUE</code>. Aggregate data
+according to the specification in registration database. Global options
+with <code>orgdata.aggregate</code>.</p></td>
+    </tr>
+    <tr>
+      <th>datacols</th>
+      <td><p>Columnames to be kept</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>Which year of georaphical code to use for recoding and
+aggregating. If not specified, then current year will be used</p></td>
+    </tr>
+    <tr>
+      <th>row</th>
+      <td><p>Select only specify row(s). Useful for debugging</p></td>
+    </tr>
+    <tr>
+      <th>base</th>
+      <td><p>Logical value. If <code>TRUE</code> then use year in the original data as the base
+year to recode the geographical codes. Default is <code>FALSE</code> and use all
+available codes in geo codebook</p></td>
     </tr>
     </table>
 
