@@ -1,5 +1,6 @@
 ## Start
 library(orgdata)
+options(orgdata.year = 2021) #Hvilket årgang til å omkode geo
 
 ##   HUSK Å ALLTID TILORDNE ET OBJEKT for make_file og read_file ! ###
 ##   dt <- make_file()
@@ -13,6 +14,8 @@ dt <- lag_fil("BEFOLKNING", koblid = 13)
 
 ## Les filen og bruk oppsettet i Access
 dt <- lag_fil("BEFOLKNING")
+dt <- lag_fil("BEFOLKNING", parallel = TRUE) #bruk parallel prosessing
+
 
 ## Lagre CSV fil
 save_file(dt, "BEFOLKNING")
