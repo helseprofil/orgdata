@@ -82,7 +82,7 @@ granularity level than the level input." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -153,8 +153,7 @@ granularity level than the <code>level</code> input.</p>
     <pre class="usage"><span class='fu'>do_recode_without_aggregate</span><span class='op'>(</span>
   dt <span class='op'>=</span> <span class='cn'>NULL</span>,
   source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grunnkrets"</span>, <span class='st'>"fylke"</span>, <span class='st'>"kommune"</span>, <span class='st'>"bydel"</span><span class='op'>)</span>,
-  year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  check <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.debug.aggregate"</span><span class='op'>)</span>,
+  year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.year"</span><span class='op'>)</span>,
   base <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"orgdata.recode.base"</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -174,14 +173,8 @@ source data. This will be used for merging with the output from
     </tr>
     <tr>
       <th>year</th>
-      <td><p>Which year the georaphical code is valid for. If not specified,
-then it will be base on the year in source data ie. column <code>AAR</code></p></td>
-    </tr>
-    <tr>
-      <th>check</th>
-      <td><p>If TRUE then output will keep variables for geographical levels
-without aggregating it. This is useful to check for geographical codes that
-are missing. Else use <code><a href='https://rdrr.io/r/base/options.html'>options(orgdata.aggregate = FALSE)</a></code></p></td>
+      <td><p>Which year the geograhical codes to be recoded to. If it is empty
+then current year will be used.</p></td>
     </tr>
     <tr>
       <th>base</th>

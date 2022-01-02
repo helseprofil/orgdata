@@ -73,6 +73,7 @@ reference:
   contents:
     - see_file
     - log
+    - read_log
     - debug_opt
     - reset_options
     - website

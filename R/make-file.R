@@ -5,8 +5,6 @@
 #'   unless the \code{KOBLID} with argument \code{koblid} is specified.
 #'   Specifying \code{koblid} is useful especially for testing purposes.
 #' @description The function [lag_fil()] is an alias to [make_file()].
-#' @examples \dontrun{ make_file("BEFOLKNING") make_file("BEFOLKNING", koblid =
-#'   19) make_file("BEFOLKNING", koblid = c(15, 50)) }
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
 #' @param aggregate Logical argument. Default is `TRUE`. Aggregate data
@@ -21,6 +19,11 @@
 #' @param parallel Logical argument. Either to run with parallel or not. Default
 #'   is `FALSE`
 #' @aliases make_file lag_fil
+#' @examples
+#' \dontrun{
+#' dt <- make_file("ENPERSON")
+#' dt <- make_file("ENPERSON", koblid = 120:125, parallel = TRUE) #with parallel processing
+#' }
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
 #' @family filegroups functions

@@ -50,7 +50,7 @@
 <meta property="og:description" content="Recode the category for all after aggregating data based on the
 specification in Codebook. For example when aggregating category type of diagnoses
 NA will be produced to represent all type of diagnoses. This will basically
-recode NA to a preferred value such as ALL." />
+recode NA to a preferred value such as 0 or Total." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -83,7 +83,7 @@ recode NA to a preferred value such as ALL." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@ recode NA to a preferred value such as ALL." />
     <p>Recode the category for all after aggregating data based on the
 specification in Codebook. For example when aggregating category type of diagnoses
 <code>NA</code> will be produced to represent all type of diagnoses. This will basically
-recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
+recode <code>NA</code> to a preferred value such as <code>0</code> or <code>Total</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>do_recode_aggregate</span><span class='op'>(</span>
@@ -169,7 +169,7 @@ recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
     </tr>
     <tr>
       <th>spec</th>
-      <td><p>Specifications data as a data.frame</p></td>
+      <td><p>Specification from <code>tbl_Filgruppe</code></p></td>
     </tr>
     <tr>
       <th>con</th>
@@ -177,9 +177,9 @@ recode <code>NA</code> to a preferred value such as <code>ALL</code>.</p>
     </tr>
     <tr>
       <th>aggregate</th>
-      <td><p>Logical argument. Default is <code>TRUE</code>. Aggregate data according
-to the specification in registration database.
-Global options with <code>orgdata.aggregate</code>.</p></td>
+      <td><p>Logical argument. Default is <code>TRUE</code>. Aggregate data
+according to the specification in registration database. Global options
+with <code>orgdata.aggregate</code>.</p></td>
     </tr>
     <tr>
       <th>control</th>

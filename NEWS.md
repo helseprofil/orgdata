@@ -5,8 +5,16 @@ Things in `dev` branch
 - Compute function to create a new category based on the existing categories eg.
   UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
   ie. group 5.
+  
+# orgdata 0.5.0
+- Connect to both database with common function. (#212)
+- Use global options `orgdata.year` to specify production year if not using
+  current year. (#216)
+- Use parallel processing in `make_file()` with argument `parallel = TRUE`.
+  (#217)
 
-# orgdata 0.4.8
+# orgdata 0.4
+## orgdata 0.4.8
 - Get feedback for successful and unsuccessful filegroups when running
   `make_filegroups()`. (#199)
 - Reshape wide is not limited to only 3 reshape columns as it was. (#200 #201)
@@ -16,7 +24,7 @@ Things in `dev` branch
   with argument `DeleteOldBydel`. (#204 #206)
 - Log files use `KOBLID` to be more specific. (#208)
 
-# orgdata 0.4.7
+## orgdata 0.4.7
 
 - Reshape to wide format can now implement multiple reshape dimensions which are
   usually one or multiple TAB columns. For instance for *LESEFERD* of `tot_elev`
@@ -24,7 +32,7 @@ Things in `dev` branch
 - The output will be arrange on a standard column order. (#190)
 - Debugging will be easier with a wrapper function `debug_opt()`. (#196)
 
-# orgdata 0.4.6
+## orgdata 0.4.6
 
 - Fixed #147 to implement reshape wide format to create denominator. This
   function is only applicable to certain file structure received from SSB. For
@@ -36,7 +44,7 @@ Things in `dev` branch
   `tot_elev` when creating denominator will not create a grand total of students
   instead of the total number of students with `mestringsnivå`. (#184)
   
-# orgdata 0.4.5
+## orgdata 0.4.5
 
 - Fixed #162 when saving geographical codebook with `write = TRUE` and the table
   doesn't exist in the *geo-code* database.
@@ -58,7 +66,7 @@ Things in `dev` branch
   but recode is done on municipality codes before merging back to the original
   dataset. (#182)
 
-# orgdata 0.4.4
+## orgdata 0.4.4
 
 - Add `codeDelete` in `log` for geographical codes that aren't able to be
   merged. The codes will be excluded in the dataset. To access all the deleted
@@ -78,7 +86,7 @@ Things in `dev` branch
   original file to the current year. Default is `FALSE` ie. include all
   available geographical codes available in the codebook. (#157)
 
-# orgdata 0.4.3
+## orgdata 0.4.3
 
 - Fixed #139 for `orgdata.debug.geo` keep original geo codes for enumeration
   areas before adding 9999. (#140)
@@ -90,7 +98,7 @@ Things in `dev` branch
 - Rename `make_filegroup` and `lag_filgruppe` to plural ie. `make_filegroups`
   and `lag_filgrupper`.
 
-# orgdata 0.4.2
+## orgdata 0.4.2
 
 - Use options `orgdata.debug.row` to select only specific row(s) for further
   processing. It can be activated via global options with
@@ -99,11 +107,11 @@ Things in `dev` branch
 - Fixed #135 with incorrect geo recode. (#131)
 - Make multiple filegroups via `make_filegroups`. (#137)
 
-# orgdata 0.4.1
+## orgdata 0.4.1
 - Fixed #132 LANDSSB must be string
 - Convert whitespace to NA to be able to delete all rows with NA
 
-# orgdata 0.4.0
+## orgdata 0.4.0
 - Fixed #119 able to mutate for TABS and VALS as well (#126)
 - Fixed #122 delete rows with NA via EXTRA column (#127)
 - Fixed #118 warning text when column(s) aren't defined in FILGRUPPE and will be
