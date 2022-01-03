@@ -1,13 +1,12 @@
 #' @title Process Each File
 #' @description Process each file parallelly
-#' @param i File specification
 #' @param spec File specification
 #' @param fgspec Filegroup specification
 #' @param datacols Columnames to be kept
 #' @inheritParams make_file
 #' @export
-do_make_file_each <- function(i, spec, fgspec, aggregate, datacols, year, row, base){
-  fileSpec <- spec[i, ]
+do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base){
+  fileSpec <- spec
   filePath <- is_path_raw(fileSpec, check = TRUE)
 
   is_verbose(msg = is_line_long(), type = "other")

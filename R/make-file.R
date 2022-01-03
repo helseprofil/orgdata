@@ -94,21 +94,21 @@ make_file <- function(group = NULL,
     DT <- future.apply::future_lapply(seq_len(rowFile),
                                       function(x) {
                                         p()
-                                        do_make_file_each(i = x,
-                                                          spec = spec,
-                                                          fgspec = fgSpec,
-                                                          aggregate = aggregate,
-                                                          datacols = dataCols,
-                                                          year = year,
-                                                          row = row,
-                                                          base = base)},
+                                        Sys.sleep(0.01)
+                                        do_make_file_each(
+                                          spec = spec[x,],
+                                          fgspec = fgSpec,
+                                          aggregate = aggregate,
+                                          datacols = dataCols,
+                                          year = year,
+                                          row = row,
+                                          base = base)},
                                       future.seed = TRUE)
   } else {
 
     DT <- listenv::listenv()
     for (i in seq_len(rowFile)) {
-      DT[[i]] <- do_make_file_each(i = i,
-                                   spec = spec,
+      DT[[i]] <- do_make_file_each(spec = spec[i,],
                                    fgspec = fgSpec,
                                    aggregate = aggregate,
                                    datacols = dataCols,
