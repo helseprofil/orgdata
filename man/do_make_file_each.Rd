@@ -4,11 +4,9 @@
 \alias{do_make_file_each}
 \title{Process Each File}
 \usage{
-do_make_file_each(i, spec, fgspec, aggregate, datacols, year, row, base)
+do_make_file_each(spec, fgspec, aggregate, datacols, year, row, base)
 }
 \arguments{
-\item{i}{File specification}
-
 \item{spec}{File specification}
 
 \item{fgspec}{Filegroup specification}
