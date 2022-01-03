@@ -200,7 +200,7 @@ is_orgdata_path <- function(dir = c("home", "temp")){
   orgPath <- file.path(userPath, "orgdata_files")
 
   if (!fs::dir_exists(orgPath)){
-    is_verbose(x = orgPath, msg = "Use default folder:")
+    is_verbose(x = orgPath, msg = "Create folder for log:")
     fs::dir_create(orgPath)
   }
 
