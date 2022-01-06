@@ -99,6 +99,9 @@ do_geo_recode <- function(dt = NULL,
                           ){
   GEO <- i.to <- changeOccurred <- NULL
 
+  withr::with_options(list(orgdata.emoji = "write"),
+                      is_color_txt(x = "", msg = "Recode geo codes ...", emoji = TRUE))
+
   dt <- data.table::copy(dt)
 
   ## Ensure variables to be used to aggregate in type int
@@ -113,8 +116,8 @@ do_geo_recode <- function(dt = NULL,
 
   if (type == "grunnkrets"){
     dt <- is_grunnkrets(dt, control = control, ...)
-    dt <- is_grunnkrets_na(dt)
-    dt <- is_grunnkrets_0000(dt, ...)
+    dt <- is_grunnkrets_na(dt, control)
+    dt <- is_grunnkrets_0000(dt, control = control, ...)
   }
 
   data.table::setkey(dt, GEO)
@@ -128,8 +131,8 @@ do_geo_recode <- function(dt = NULL,
 
   ## recode to unknown grunnkrets if not able to merge ie. xxxx9999
   if (type %in% c("grunnkrets", "bydel")){
-    codeProb <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "recode")
-    dt <- is_geo_problem(dt = dt, codes = codeProb, type = type)
+    codeProb <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "recode", ...)
+    dt <- is_problem_geo(dt = dt, codes = codeProb, type = type)
     dt <- is_problem_geo_before_2002(dt, codeProb, type = type, year = year, con = con )
   }
 
@@ -238,7 +241,7 @@ is_grunnkrets_0000 <- function(dt, control = FALSE, ...){
 
     logCmd <- is_log_write(value = notCodes, x = "code00", ...)
     is_verbose(x = nr00, msg = "Number of GEO codes end with `0000`:", type = "warn2")
-    is_check_geo(notCodes)
+    is_check_geo(notCodes, control)
     is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
     is_verbose(x = logCmd, msg = "To see these codes, run command:")
   }
@@ -294,9 +297,9 @@ is_geo_oddeven <- function(x){
 is_check_geo <- function(codes, control = FALSE){
   ## codes - Codes to display
   codes <- data.table::copy(codes)
-  codesNot <- is_short_code(codes, n1 = 10, n2 = 8)
+  codesNot <- is_short_code(codes, n1 = 10, n2 = 6)
   ## is_verbose(msg = is_line_short(), type = "other")
-  is_verbose(codesNot, "Check GEO codes in original data:", type = "warn")
+  is_verbose(codesNot, "The codes:", type = "note")
   invisible(codes)
 }
 
@@ -343,7 +346,7 @@ is_problem_geo_before_2002 <- function(dt, dcode, type, year, con){
 }
 
 ## Codes that can't be merged since it's not found in geo codebook database
-is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c("recode", "delete")){
+is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c("recode", "delete"), ...){
   ## x - dataset
   ## y - geocodes
   ## vector - Either a data.frame or vector
@@ -362,7 +365,7 @@ is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c
   dcode <- setdiff(x, y)
 
   if (length(dcode) > 0){
-    dcode <- is_problem_message(mode = mode, codes = dcode, control = control)
+    dcode <- is_problem_message(mode = mode, codes = dcode, control = control, ...)
   }
 
   return(dcode)
@@ -371,13 +374,14 @@ is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c
 is_problem_message <- function(mode, codes, control = FALSE, ...){
   # mode - Either recode or delete
 
-  scode <- is_short_code(codes, n1 = 10, n2 = 8)
+  scode <- is_short_code(codes, n1 = 10, n2 = 6)
 
   if (mode == "recode"){
     logCmd <- is_log_write(value = codes, x = "code99", ...)
-    is_verbose(x = length(codes), msg = "Number of codes that fail to recode and became xxxx9999:", type = "warn2")
+    is_verbose(x = length(codes), msg = "Number of codes that fail to recode:", type = "warn2")
     is_verbose(x = scode, msg = "The codes:")
-    is_verbose(x = logCmd, msg = "To see the codes, run command:")
+    is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
+    is_verbose(x = logCmd, msg = "To see these codes, run command:")
   }
 
   if (mode == "delete"){
@@ -392,7 +396,7 @@ is_problem_message <- function(mode, codes, control = FALSE, ...){
 
 ## Grunnkrets that aren't able to be merged will be checked against municipality
 ## codes with unkown grunnkrets ie. xxxx9999
-is_geo_problem <- function(dt, codes, type){
+is_problem_geo <- function(dt, codes, type){
   # codes - the problem codes from is_problem_geo_merge()
   # type - type of granularity levels
 
@@ -430,7 +434,8 @@ is_short_code <- function(x, n1 = 10, n2 = 6){
   ## n1 - maximum length before making cutoff
   ## n2 - maximum codes to display
   if (length(x) > n1){
-    codes <- c(x[1:n2], "...")
+    y <- sample(x, n2)
+    codes <- c(y, "...")
   } else {
     codes <- x
   }

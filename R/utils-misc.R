@@ -53,14 +53,20 @@ debug_opt <- function(opt = c("fun", "nrow", "row", "aggregate", "geo"), val = N
 #' @param x Emoji to choose ie. thumb, smile or sad
 #' @examples emoji("smile")
 #' @export
-emoji <- function(x = c("mark", "thumb", "smile", "sad", "santa")){
+emoji <- function(x = c("mark", "thumb", "write",
+                        "smile", "sad", "santa",
+                        "search", "folder", "book")){
   x <- match.arg(x)
   switch(x,
          mark = options(orgdata.emoji = "mark"),
          thumb = options(orgdata.emoji = "thumb"),
+         write = options(orgdata.emoji = "write"),
          smile = options(orgdata.emoji = "smile"),
          sad = options(orgdata.emoji = "sad"),
-         santa = options(orgdata.emoji = "santa")
+         santa = options(orgdata.emoji = "santa"),
+         search = options(orgdata.emoji = "search"),
+         folder = options(orgdata.emoji = "folder"),
+         book = options(orgdata.emoji = "book")
          )
 }
 
@@ -69,11 +75,20 @@ emoji <- function(x = c("mark", "thumb", "smile", "sad", "santa")){
 ## Skip when no database file are found eg. in CRAN or CI
 skip_error_db <- function(){
 
-  dbFile <- fs::file_exists(is_path_db(getOption("orgdata.db")))
+  dbFile <- fs::file_exists(orgdata:::is_path_db(getOption("orgdata.db")))
 
   if (isFALSE(dbFile)){
     return(invisible(TRUE))
   }
 
   testthat::skip("DB not found")
+}
+
+## Skip test when running R CMD check
+skip_if_check <- function(){
+  if (identical(Sys.getenv("ORGDATA_TEST", unset = "TRUE"), "TRUE")){
+    return(invisible(TRUE))
+  }
+
+  testthat::skip("Not run when CMD check")
 }

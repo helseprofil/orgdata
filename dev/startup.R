@@ -5,7 +5,9 @@ devtools::test()
 ## devtools::check(vignettes = FALSE)
 roxygen2::roxygenise(clean = TRUE)
 Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0) #avoid to verify file timestamp when check()
-devtools::check()
+## Skip test that only relevant to run locally eg. need access to DB
+## Use function skip_if_check(). See example in test-make-file.R
+devtools::check(env_vars = c(ORGDATA_TEST = "true"))
 devtools::document()
 
 pkgdown::build_site(new_process = FALSE)
@@ -99,6 +101,7 @@ usethis::use_package("future")
 usethis::use_package("future.apply")
 usethis::use_package("listenv")
 usethis::use_package("progressr")
+usethis::use_package("withr")
 
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub
