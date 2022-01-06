@@ -1,11 +1,10 @@
-# orgdata (development version)
+# orgdata 0.5.1
+- Log files for `code99` also include koblid. The files will be named as
+  `code99_koblidxxx` (#222)
+- Running parallel processing is unstable. Not sure if the process crash due to
+  MS Access that can't handle constant requests or ... Anyway, running parallel
+  now will only use 50% of the available cores (#224)
 
-Things in `dev` branch
-
-- Compute function to create a new category based on the existing categories eg.
-  UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group
-  ie. group 5.
-  
 # orgdata 0.5.0
 - Connect to both database with common function. (#212)
 - Use global options `orgdata.year` to specify production year if not using

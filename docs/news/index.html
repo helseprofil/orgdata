@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -140,12 +140,12 @@
       <small>Source: <a href='https://github.com/helseprofil/orgdata/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="orgdata-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#orgdata-development-version" class="anchor"></a>orgdata (development version)</h1>
-<p>Things in <code>dev</code> branch</p>
+    <div id="orgdata-051" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.1">
+<a href="#orgdata-051" class="anchor"></a>orgdata 0.5.1</h1>
 <ul>
-<li>Compute function to create a new category based on the existing categories eg. UTDANN has categories 0 to 4. Compute can regroup category 1 to 3 into 1 group ie. group 5.</li>
+<li>Log files for <code>code99</code> also include koblid. The files will be named as <code>code99_koblidxxx</code> (<a href='https://github.com/helseprofil/orgdata/issues/222'>#222</a>)</li>
+<li>Running parallel processing is unstable. Not sure if the process crash due to MS Access that can’t handle constant requests or … Anyway, running parallel now will only use 50% of the available cores (<a href='https://github.com/helseprofil/orgdata/issues/224'>#224</a>)</li>
 </ul>
 </div>
     <div id="orgdata-050" class="section level1">
