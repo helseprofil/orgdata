@@ -118,7 +118,6 @@ is_fake_NA <- function(x){
   return(x)
 }
 
-
 is_verbose <- function(x = NULL, msg = NULL,
                        type = c("note", "warn", "warn2",
                                 "error", "error2", "other", "debug"),
@@ -133,6 +132,7 @@ is_verbose <- function(x = NULL, msg = NULL,
     msg <- ""
   }
 
+  # Use parant.frame to find object "control"
   if (is.environment(ctrl)){
     control <- ctrl[["control"]]
   } else {
@@ -144,7 +144,7 @@ is_verbose <- function(x = NULL, msg = NULL,
   if (control){
     sign <- TRUE
     x <- ""
-    msg <- "File is clean"
+    msg <- "File has been checked"
     type <- "debug"
   }
 
@@ -214,6 +214,8 @@ is_colour_txt <- function(x, msg,
                           sign = FALSE){
   ## msg - Message to display
   ## x - Object to display in the message
+  ## sign - Add emoji
+
   type <- match.arg(arg = type)
 
   txtRed <- crayon::make_style("red")
@@ -238,10 +240,12 @@ is_colour_txt <- function(x, msg,
 
   symb <- switch(getOption("orgdata.emoji"),
                  thumb = "\U0001F44D",
+                 write = "\U00270D",
                  mark = "\U0002713",
                  smile = "\U0001F60A",
                  sad = "\U002639",
-                 santa = "\U0001F385"
+                 santa = "\U0001F385",
+                 search = "\U001F50D"
                  )
 
   if (sign){
