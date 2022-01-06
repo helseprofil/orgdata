@@ -29,9 +29,12 @@ save_file(dt, name = "MinFil", path = "C:/Navn/Til/Mappen")
 ## Evt. hvis alle filer har vært kontrollert
 lag_fil("BEFOLKNING", save = TRUE)
 
-## Lager flere FILGRUPPER, velg måten du liker å skrive det
-## FILGRUPPE blir laget som csv direkte
-lag_filgrupper("BEFOLKNING", "NEET", "DODE") #med " "
+## Hvis filene har blitt kontrollert så kan man lage flere
+## FILGRUPPER med en gang, du velg selv måten du liker å gjøre det.
+## FILGRUPPE blir laget som csv direkte. Ingen feilmelding er gitt.
+fgp <- ("BEFOLKNING", "NEET", "DODE") #med " "
+lag_filgrupper(fgp)
+# Eller
 lag_filgrupper(BEFOLKNING, NEET, DODE) #uten
 
 
@@ -85,7 +88,8 @@ website()
 packageVersion("orgdata")
 
 ## Se alle global options
-orgdata:::opt.orgdata
+names(orgdata:::opt.orgdata)
+orgdata:::opt.orgdata #default verdi
 
 ## DEBUGGING ----------------------------
 ## For å se original kode og hva det skal bli kodet til

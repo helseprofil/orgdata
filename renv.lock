@@ -268,16 +268,16 @@
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.5.0",
+      "Version": "0.5.1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "04e27f991b3f358d1e5430d2bebf727bdcc99026",
+      "RemoteSha": "3a5a5d027ba2d408ea101cc28bd23f8d986ce6dd",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "06972f76193332cc89a5be2e0569ae21"
+      "Hash": "14ca7634f26d5c17ab8106e015aef946"
     },
     "parallelly": {
       "Package": "parallelly",
@@ -390,6 +390,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ecf749a1b39ea72bd9b51b76292261f1"
+    },
+    "withr": {
+      "Package": "withr",
+      "Version": "2.4.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a376b424c4817cda4920bbbeb3364e85"
     },
     "writexl": {
       "Package": "writexl",
