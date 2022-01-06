@@ -75,7 +75,7 @@ emoji <- function(x = c("mark", "thumb", "write",
 ## Skip when no database file are found eg. in CRAN or CI
 skip_error_db <- function(){
 
-  dbFile <- fs::file_exists(orgdata:::is_path_db(getOption("orgdata.db")))
+  dbFile <- fs::file_exists(is_path_db(getOption("orgdata.db")))
 
   if (isFALSE(dbFile)){
     return(invisible(TRUE))
