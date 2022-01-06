@@ -122,7 +122,7 @@ is_verbose <- function(x = NULL, msg = NULL,
                        type = c("note", "warn", "warn2",
                                 "error", "error2", "other", "debug"),
                        ctrl = parent.frame(),
-                       sign = FALSE) {
+                       emoji = FALSE) {
   ## x - Arg or object to show in the message
   type <- match.arg(type)
 
@@ -142,14 +142,14 @@ is_verbose <- function(x = NULL, msg = NULL,
   if(is.null(control)) control <- FALSE
 
   if (control){
-    sign <- TRUE
+    emoji <- TRUE
     x <- ""
     msg <- "File has been checked"
     type <- "debug"
   }
 
   if (getOption("orgdata.verbose")) {
-    is_colour_txt(x = x, msg = msg, type = type, sign = sign)
+    is_colour_txt(x = x, msg = msg, type = type, emoji = emoji)
   }
 }
 
@@ -211,10 +211,10 @@ is_orgdata_path <- function(dir = c("home", "temp")){
 is_colour_txt <- function(x, msg,
                           type = c("note", "warn", "warn2",
                                    "error", "error2", "other", "debug"),
-                          sign = FALSE){
+                          emoji = FALSE){
   ## msg - Message to display
   ## x - Object to display in the message
-  ## sign - Add emoji
+  ## emoji - Add emoji
 
   type <- match.arg(arg = type)
 
@@ -245,10 +245,12 @@ is_colour_txt <- function(x, msg,
                  smile = "\U0001F60A",
                  sad = "\U002639",
                  santa = "\U0001F385",
-                 search = "\U001F50D"
+                 search = "\U001F50D",
+                 folder = "\U001F4C1",
+                 book = "\U0001F4DA"
                  )
 
-  if (sign){
+  if (emoji){
     cat(symb, clrMsg, "\n")
   } else {
     cat(clrMsg, "\n")

@@ -74,9 +74,11 @@ make_file <- function(group = NULL,
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
   grpMsg <- paste0("File(s) to be processed in ", group, ":")
-  is_colour_txt(x = rowFile, grpMsg, type = "note")
+  withr::with_options(list(orgdata.emoji = "book"),
+                      is_colour_txt(x = rowFile, grpMsg, type = "note", emoji = TRUE))
 
-  is_verbose(x = is_orgdata_path(), msg = "Log files can be found in")
+  withr::with_options(list(orgdata.emoji = "folder"),
+                      is_verbose(x = is_orgdata_path(), msg = "Log files can be found in", emoji = TRUE))
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)

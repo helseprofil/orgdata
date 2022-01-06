@@ -100,7 +100,7 @@ do_geo_recode <- function(dt = NULL,
   GEO <- i.to <- changeOccurred <- NULL
 
   withr::with_options(list(orgdata.emoji = "write"),
-                      is_color_txt(x = "", msg = "Recode geo codes ... might take time ", sign = TRUE))
+                      is_color_txt(x = "", msg = "Recode geo codes ...", emoji = TRUE))
 
   dt <- data.table::copy(dt)
 
@@ -297,7 +297,7 @@ is_geo_oddeven <- function(x){
 is_check_geo <- function(codes, control = FALSE){
   ## codes - Codes to display
   codes <- data.table::copy(codes)
-  codesNot <- is_short_code(codes, n1 = 10, n2 = 8)
+  codesNot <- is_short_code(codes, n1 = 10, n2 = 6)
   ## is_verbose(msg = is_line_short(), type = "other")
   is_verbose(codesNot, "The codes:", type = "note")
   invisible(codes)
@@ -374,14 +374,14 @@ is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c
 is_problem_message <- function(mode, codes, control = FALSE, ...){
   # mode - Either recode or delete
 
-  scode <- is_short_code(codes, n1 = 10, n2 = 8)
+  scode <- is_short_code(codes, n1 = 10, n2 = 6)
 
   if (mode == "recode"){
     logCmd <- is_log_write(value = codes, x = "code99", ...)
     is_verbose(x = length(codes), msg = "Number of codes that fail to recode:", type = "warn2")
-    is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
     is_verbose(x = scode, msg = "The codes:")
-    is_verbose(x = logCmd, msg = "To see the codes, run command:")
+    is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
+    is_verbose(x = logCmd, msg = "To see these codes, run command:")
   }
 
   if (mode == "delete"){
@@ -434,7 +434,8 @@ is_short_code <- function(x, n1 = 10, n2 = 6){
   ## n1 - maximum length before making cutoff
   ## n2 - maximum codes to display
   if (length(x) > n1){
-    codes <- c(x[1:n2], "...")
+    y <- sample(x, n2)
+    codes <- c(y, "...")
   } else {
     codes <- x
   }
