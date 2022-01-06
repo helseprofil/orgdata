@@ -7,16 +7,16 @@
 #' @description The function [lag_fil()] is an alias to [make_file()].
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
-#' @param aggregate Logical argument. Default is `TRUE`. Aggregate data
+#' @param aggregate Logical value. Default is `TRUE`. Aggregate data
 #'   according to the specification in registration database. Global options
 #'   with `orgdata.aggregate`.
 #' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
 #' @inheritParams do_aggregate
-#' @param implicitnull Logical argument. Default is `TRUE` to add implicit null
+#' @param implicitnull Logical value. Default is `TRUE` to add implicit null
 #'   to the dataset. Global options with `orgdata.implicit.null`.
 #' @param row Select only specify row(s). Useful for debugging
 #' @inheritParams do_geo_recode
-#' @param parallel Logical argument. Either to run with parallel or not. Default
+#' @param parallel Logical value. Either to run with parallel or not. Default
 #'   is `FALSE`
 #' @aliases make_file lag_fil
 #' @examples
@@ -36,7 +36,7 @@ make_file <- function(group = NULL,
                       implicitnull = getOption("orgdata.implicit.null"),
                       row = getOption("orgdata.debug.row"),
                       base = getOption("orgdata.recode.base"),
-                      parallel = FALSE
+                      parallel = getOption("orgdata.parallel")
                       ) {
 
   LEVEL <- NULL
@@ -85,7 +85,17 @@ make_file <- function(group = NULL,
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
   if(parallel){
-    is_verbose(msg = "Start parallel processing ...")
+
+    ## Use 50% of the cores on the system
+    options(parallelly.availableCores.custom = function() {
+      ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
+      ncores <- min(as.integer(0.50 * ncores))
+      max(1L, ncores)
+    })
+    paraMsg1 <- paste0("Start parallel processing ... \U001F680")
+    paraMsg <- paste0("Start parallel processing with ", parallelly::availableCores(), " cores \U001F680")
+    is_verbose(msg = paraMsg)
+
     future::plan(future::multisession)
     p <- progressr::progressor(steps = rowFile)
     ## p <- progressr::progressor(along = seq_len(rowFile))

@@ -1,6 +1,6 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 0.5.0
+Version: 0.5.1
 Authors@R:
     person(given = "Yusman",
            family = "Kamaleri",
@@ -32,6 +32,7 @@ Imports:
     listenv (>= 0.8.0),
     future.apply (>= 1.8.1),
     progressr (>= 0.10.0),
+    parallel (>= 4.1.1),
     parallelly (>= 1.30.0),
     withr (>= 2.4.3)
 Remotes: helseprofil/norgeo

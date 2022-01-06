@@ -3,7 +3,7 @@ test_that("Make file simple", {
   testthat::skip_on_covr()
   testthat::skip_on_ci()
   testthat::skip_on_cran()
-  skip_if_check(local = )
+  skip_if_check()
   simpleDT <- readRDS(system.file("testdata_dev", "make-file-dt.rds", package = "orgdata"))
   leseOUT <- readRDS(system.file("testdata_dev", "make-file2-dt.rds", package = "orgdata"))
   debug_opt("nrow", 500)
