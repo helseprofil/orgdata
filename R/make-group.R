@@ -19,6 +19,11 @@ make_filegroups <- function(...){
   options(orgdata.verbose = FALSE)
   on.exit(reset_opt())
 
+  para <- utils::askYesNo("Do you want to run parallelly?")
+  if (para){
+    withr::local_options(list(orgdata.parallel = TRUE))
+  }
+
   fgp <- tryCatch({
     unlist(list(...))
   },
@@ -38,7 +43,7 @@ make_filegroups <- function(...){
 
     FGP <- tryCatch({
       is_color_txt(i, msg = "Processing:")
-      make_file(i, save = TRUE, parallel = TRUE)
+      make_file(i, save = TRUE, parallel = getOption("orgdata.parallel"))
     },
       error = function(err) err)
 

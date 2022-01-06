@@ -17,6 +17,7 @@ opt.orgdata <- list(
   orgdata.aggregate = TRUE,
   orgdata.implicit.null = TRUE,
   orgdata.recode.base = FALSE,
+  orgdata.parallel = FALSE,
 
   ## Number of TABS and VALS
   orgdata.tabs = 3,
@@ -50,5 +51,5 @@ opt.orgdata <- list(
 }
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("orgdata version 0.5.0")
+  packageStartupMessage("orgdata version 0.5.1")
 }

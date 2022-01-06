@@ -14,7 +14,7 @@ make_file(
   implicitnull = getOption("orgdata.implicit.null"),
   row = getOption("orgdata.debug.row"),
   base = getOption("orgdata.recode.base"),
-  parallel = FALSE
+  parallel = getOption("orgdata.parallel")
 )
 
 lag_fil(
@@ -26,7 +26,7 @@ lag_fil(
   implicitnull = getOption("orgdata.implicit.null"),
   row = getOption("orgdata.debug.row"),
   base = getOption("orgdata.recode.base"),
-  parallel = FALSE
+  parallel = getOption("orgdata.parallel")
 )
 }
 \arguments{
@@ -34,7 +34,7 @@ lag_fil(
 
 \item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
 
-\item{aggregate}{Logical argument. Default is \code{TRUE}. Aggregate data
+\item{aggregate}{Logical value. Default is \code{TRUE}. Aggregate data
 according to the specification in registration database. Global options
 with \code{orgdata.aggregate}.}
 
@@ -43,7 +43,7 @@ with \code{orgdata.aggregate}.}
 \item{year}{Which year of georaphical code to use for recoding and
 aggregating. If not specified, then current year will be used}
 
-\item{implicitnull}{Logical argument. Default is \code{TRUE} to add implicit null
+\item{implicitnull}{Logical value. Default is \code{TRUE} to add implicit null
 to the dataset. Global options with \code{orgdata.implicit.null}.}
 
 \item{row}{Select only specify row(s). Useful for debugging}
@@ -52,7 +52,7 @@ to the dataset. Global options with \code{orgdata.implicit.null}.}
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
 
-\item{parallel}{Logical argument. Either to run with parallel or not. Default
+\item{parallel}{Logical value. Either to run with parallel or not. Default
 is \code{FALSE}}
 }
 \description{

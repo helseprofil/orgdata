@@ -19,7 +19,7 @@ do_recode_aggregate(
 
 \item{con}{Connection to database}
 
-\item{aggregate}{Logical argument. Default is \code{TRUE}. Aggregate data
+\item{aggregate}{Logical value. Default is \code{TRUE}. Aggregate data
 according to the specification in registration database. Global options
 with \code{orgdata.aggregate}.}
 
