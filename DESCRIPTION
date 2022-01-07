@@ -28,6 +28,7 @@ Imports:
     rex (>= 1.2.0),
     methods,
     utils,
+    listenv (>= 0.8.0),
     future (>= 1.23.0),
     future.apply (>= 1.8.1),
     progressr (>= 0.10.0),

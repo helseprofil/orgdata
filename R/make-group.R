@@ -37,8 +37,8 @@ make_filegroups <- function(...){
     fgp <- sapply(as.list(dots), deparse)
   }
 
-  fgpKO <- list()
-  fgpOK <- list()
+  fgpKO <- listenv::listenv()
+  fgpOK <- listenv::listenv()
 
   for (i in fgp){
     i <- trimws(i)
@@ -50,24 +50,27 @@ make_filegroups <- function(...){
     error = function(err) err)
 
     if (is(FGP, "error")){
-      fgpKO[i] <- i
+      fgpKO[[i]] <- i
       next
     } else {
-      fgpOK[i] <- i
+      fgpOK[[i]] <- i
     }
   }
 
+  log[["ok"]] <- unlist(names(fgpOK))
+  log[["ko"]] <- unlist(names(fgpKO))
+
   is_line_short()
   msgOK <- paste0("Done ", length(fgpOK), " group(s):")
-  is_color_txt(fgpOK, msg = msgOK, type = "note")
+  is_color_txt(log$ok, msg = msgOK, type = "note")
   is_color_txt(x = "`log$ok`", msg = "Check all the filegroups with:")
 
   if (length(fgpKO) > 0) {
     is_line_short()
     msgKO <- paste0("Error ", length(fgpKO), " group(s):")
-    is_color_txt(fgpKO, msg = msgKO, type = "error")
+    is_color_txt(log$ko, msg = msgKO, type = "error")
     is_color_txt(x = "`log$ko`", msg = "Check all the filegroups with:")
-  }
+}
 }
 
 #' @export
