@@ -36,7 +36,7 @@ git clone -b user https://github.com/helseprofil/orgdata
 ## Usage
 
 To implement the specifications per file group as being registered in
-the database use `make_file()` function. Parallel processing can be use
+the database use `make_file()` function. Parallel processing can be used
 if needed.
 
 ``` r
