@@ -127,19 +127,16 @@ make_file <- function(group = NULL,
                                           base = base)},
                                       future.seed = TRUE)
   } else {
-
-    DT <- listenv::listenv()
-    for (i in seq_len(rowFile)) {
-      DT[[i]] <- do_make_file_each(spec = spec[i,],
-                                   fgspec = fgSpec,
-                                   aggregate = aggregate,
-                                   datacols = dataCols,
-                                   year = year,
-                                   row = row,
-                                   base = base)
-    }
-
-    DT <- as.list(DT)
+    DT <- lapply(seq_len(rowFile),
+                 function(x) {
+                   do_make_file_each(spec = spec[x,],
+                                     fgspec = fgSpec,
+                                     aggregate = aggregate,
+                                     datacols = dataCols,
+                                     year = year,
+                                     row = row,
+                                     base = base)
+                 })
   }
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
