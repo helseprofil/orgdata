@@ -32,7 +32,7 @@ lag_fil("BEFOLKNING", save = TRUE)
 ## Hvis filene har blitt kontrollert så kan man lage flere
 ## FILGRUPPER med en gang, du velg selv måten du liker å gjøre det.
 ## FILGRUPPE blir laget som csv direkte. Ingen feilmelding er gitt.
-fgp <- ("BEFOLKNING", "NEET", "DODE") #med " "
+fgp <- c("BEFOLKNING", "NEET", "DODE") #med " "
 lag_filgrupper(fgp)
 # Eller
 lag_filgrupper(BEFOLKNING, NEET, DODE) #uten
