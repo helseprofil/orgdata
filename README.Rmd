@@ -44,17 +44,20 @@ git clone -b user https://github.com/helseprofil/orgdata
 ## Usage 
 
 To implement the specifications per file group as being registered in 
-the database use `make_file()` function.  
+the database use `make_file()` function. Parallel processing can be use if needed.
 
 ```r
 library(orgdata)
 # All files under BEFOLKNING group
 dt <- make_file("BEFOLKNING")
+dt <- make_file("BEFOLKNING", parallel = TRUE)
 
 # For selected files with KOBLID
 dt <- make_file("BEFOLKNING", koblid = 48)
 dt <- make_file("BEFOLKNING", koblid = c(48, 72))
 ```
+
+Use function `make_filegroups()` to process multiple file groups at once.
 
 ## Resources
 

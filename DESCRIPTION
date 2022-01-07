@@ -29,7 +29,6 @@ Imports:
     methods,
     utils,
     future (>= 1.23.0),
-    listenv (>= 0.8.0),
     future.apply (>= 1.8.1),
     progressr (>= 0.10.0),
     parallel (>= 4.1.1),
