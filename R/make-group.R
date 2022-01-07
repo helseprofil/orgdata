@@ -19,9 +19,11 @@ make_filegroups <- function(...){
   options(orgdata.verbose = FALSE)
   on.exit(reset_opt())
 
-  para <- utils::askYesNo("Do you want to run parallelly?")
-  if (para){
-    withr::local_options(list(orgdata.parallel = TRUE))
+  if (isFALSE(getOption("orgdata.parallel"))){
+    para <- utils::askYesNo("Do you want to run parallelly?")
+    if (para){
+      withr::local_options(list(orgdata.parallel = TRUE))
+    }
   }
 
   fgp <- tryCatch({
@@ -45,27 +47,27 @@ make_filegroups <- function(...){
       is_color_txt(i, msg = "Processing:")
       make_file(i, save = TRUE, parallel = getOption("orgdata.parallel"))
     },
-      error = function(err) err)
+    error = function(err) err)
 
-      if (is(FGP, "error")){
-        fgpKO[i] <- i
-        next
-      } else {
-        fgpOK[i] <- i
-      }
+    if (is(FGP, "error")){
+      fgpKO[i] <- i
+      next
+    } else {
+      fgpOK[i] <- i
     }
+  }
 
+  is_line_short()
+  msgOK <- paste0("Done ", length(fgpOK), " group(s):")
+  is_color_txt(fgpOK, msg = msgOK, type = "note")
+  is_color_txt(x = "`log$ok`", msg = "Check all the filegroups with:")
+
+  if (length(fgpKO) > 0) {
     is_line_short()
-    msgOK <- paste0("Done ", length(fgpOK), " group(s):")
-    is_color_txt(fgpOK, msg = msgOK, type = "note")
-    is_color_txt(x = "`log$ok`", msg = "Check all the filegroups with:")
-
-    if (length(fgpKO) > 0) {
-      is_line_short()
-      msgKO <- paste0("Error ", length(fgpKO), " group(s):")
-      is_color_txt(fgpKO, msg = msgKO, type = "error")
-      is_color_txt(x = "`log$ko`", msg = "Check all the filegroups with:")
-    }
+    msgKO <- paste0("Error ", length(fgpKO), " group(s):")
+    is_color_txt(fgpKO, msg = msgKO, type = "error")
+    is_color_txt(x = "`log$ko`", msg = "Check all the filegroups with:")
+  }
 }
 
 #' @export
