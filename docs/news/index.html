@@ -146,6 +146,7 @@
 <ul>
 <li>Log files for <code>code99</code> also include koblid. The files will be named as <code>code99_koblidxxx</code> (<a href='https://github.com/helseprofil/orgdata/issues/222'>#222</a>)</li>
 <li>Running parallel processing is unstable. Not sure if the process crash due to MS Access that can’t handle constant requests or … Anyway, running parallel now will only use 50% of the available cores (<a href='https://github.com/helseprofil/orgdata/issues/224'>#224</a>)</li>
+<li>User can specify more or less cores than 50% if needed. To use 75% cores by specifying <code>parallel = 0.75</code> in the argment <code><a href="../reference/make_file.html">make_file()</a></code> or in the global options <code>orgdata.parallel</code> (<a href='https://github.com/helseprofil/orgdata/issues/225'>#225</a>)</li>
 </ul>
 </div>
     <div id="orgdata-050" class="section level1">

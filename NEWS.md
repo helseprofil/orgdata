@@ -4,6 +4,9 @@
 - Running parallel processing is unstable. Not sure if the process crash due to
   MS Access that can't handle constant requests or ... Anyway, running parallel
   now will only use 50% of the available cores (#224)
+- User can specify more or less cores than 50% if needed. To use 75% cores by
+  specifying `parallel = 0.75` in the argment `make_file()` or in the global
+  options `orgdata.parallel` (#225)
 
 # orgdata 0.5.0
 - Connect to both database with common function. (#212)

@@ -34,17 +34,17 @@ lag_fil(
 
 \item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
 
-\item{aggregate}{Logical value. Default is \code{TRUE}. Aggregate data
-according to the specification in registration database. Global options
-with \code{orgdata.aggregate}.}
+\item{aggregate}{Logical value. Default is \code{TRUE}. Aggregate data according
+to the specification in registration database. Global options with
+\code{orgdata.aggregate}.}
 
 \item{save}{Save as \code{.csv} by activating \code{save_file()}. Default is \code{FALSE}}
 
 \item{year}{Which year of georaphical code to use for recoding and
 aggregating. If not specified, then current year will be used}
 
-\item{implicitnull}{Logical value. Default is \code{TRUE} to add implicit null
-to the dataset. Global options with \code{orgdata.implicit.null}.}
+\item{implicitnull}{Logical value. Default is \code{TRUE} to add implicit null to
+the dataset. Global options with \code{orgdata.implicit.null}.}
 
 \item{row}{Select only specify row(s). Useful for debugging}
 
@@ -52,8 +52,11 @@ to the dataset. Global options with \code{orgdata.implicit.null}.}
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
 
-\item{parallel}{Logical value. Either to run with parallel or not. Default
-is \code{FALSE}}
+\item{parallel}{Logical or numeric value. With logical value \code{TRUE} it will
+run with parallel using 50\% ie. 0.5 of local cores. User can decide other
+percentage if needed. For example to use 75\% of the cores then specify as
+\code{parallel = 0.75}. Nevertheless, maximum cores allowed is only 80\%.
+Default value is \code{FALSE} ie. to use sequential processing}
 }
 \description{
 Make a \code{csv} file with the specifications in the register

@@ -193,9 +193,9 @@ Specifying <code>koblid</code> is useful especially for testing purposes.</p>
     </tr>
     <tr>
       <th>aggregate</th>
-      <td><p>Logical value. Default is <code>TRUE</code>. Aggregate data
-according to the specification in registration database. Global options
-with <code>orgdata.aggregate</code>.</p></td>
+      <td><p>Logical value. Default is <code>TRUE</code>. Aggregate data according
+to the specification in registration database. Global options with
+<code>orgdata.aggregate</code>.</p></td>
     </tr>
     <tr>
       <th>save</th>
@@ -208,8 +208,8 @@ aggregating. If not specified, then current year will be used</p></td>
     </tr>
     <tr>
       <th>implicitnull</th>
-      <td><p>Logical value. Default is <code>TRUE</code> to add implicit null
-to the dataset. Global options with <code>orgdata.implicit.null</code>.</p></td>
+      <td><p>Logical value. Default is <code>TRUE</code> to add implicit null to
+the dataset. Global options with <code>orgdata.implicit.null</code>.</p></td>
     </tr>
     <tr>
       <th>row</th>
@@ -223,8 +223,11 @@ available codes in geo codebook</p></td>
     </tr>
     <tr>
       <th>parallel</th>
-      <td><p>Logical value. Either to run with parallel or not. Default
-is <code>FALSE</code></p></td>
+      <td><p>Logical or numeric value. With logical value <code>TRUE</code> it will
+run with parallel using 50% ie. 0.5 of local cores. User can decide other
+percentage if needed. For example to use 75% of the cores then specify as
+<code>parallel = 0.75</code>. Nevertheless, maximum cores allowed is only 80%.
+Default value is <code>FALSE</code> ie. to use sequential processing</p></td>
     </tr>
     </table>
 

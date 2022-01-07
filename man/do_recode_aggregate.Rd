@@ -19,9 +19,9 @@ do_recode_aggregate(
 
 \item{con}{Connection to database}
 
-\item{aggregate}{Logical value. Default is \code{TRUE}. Aggregate data
-according to the specification in registration database. Global options
-with \code{orgdata.aggregate}.}
+\item{aggregate}{Logical value. Default is \code{TRUE}. Aggregate data according
+to the specification in registration database. Global options with
+\code{orgdata.aggregate}.}
 
 \item{control}{Logical value. \code{TRUE} if the file has been controlled for
 possible errors}
