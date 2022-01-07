@@ -7,17 +7,20 @@
 #' @description The function [lag_fil()] is an alias to [make_file()].
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
-#' @param aggregate Logical value. Default is `TRUE`. Aggregate data
-#'   according to the specification in registration database. Global options
-#'   with `orgdata.aggregate`.
+#' @param aggregate Logical value. Default is `TRUE`. Aggregate data according
+#'   to the specification in registration database. Global options with
+#'   `orgdata.aggregate`.
 #' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
 #' @inheritParams do_aggregate
-#' @param implicitnull Logical value. Default is `TRUE` to add implicit null
-#'   to the dataset. Global options with `orgdata.implicit.null`.
+#' @param implicitnull Logical value. Default is `TRUE` to add implicit null to
+#'   the dataset. Global options with `orgdata.implicit.null`.
 #' @param row Select only specify row(s). Useful for debugging
 #' @inheritParams do_geo_recode
-#' @param parallel Logical value. Either to run with parallel or not. Default
-#'   is `FALSE`
+#' @param parallel Logical or numeric value. With logical value `TRUE` it will
+#'   run with parallel using 50% ie. 0.5 of local cores. User can decide other
+#'   percentage if needed. For example to use 75% of the cores then specify as
+#'   `parallel = 0.75`. Nevertheless, maximum cores allowed is only 80%.
+#'   Default value is `FALSE` ie. to use sequential processing
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
@@ -84,12 +87,21 @@ make_file <- function(group = NULL,
   dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
-  if(parallel){
 
-    ## Use 50% of the cores on the system
+  ## Parallel uses 50% of the cores but not more than 80%
+  useCore <- 0.5
+  if (is.numeric(parallel)){
+    useParallel <- TRUE
+    useCore <- min(parallel, 0.8)
+  } else {
+    useParallel <- parallel
+  }
+
+  if(useParallel){
+
     options(parallelly.availableCores.custom = function() {
       ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
-      ncores <- min(as.integer(0.50 * ncores))
+      ncores <- min(as.integer(useCore * ncores))
       max(1L, ncores)
     })
     paraMsg1 <- paste0("Start parallel processing ... \U001F680")
@@ -98,11 +110,9 @@ make_file <- function(group = NULL,
 
     future::plan(future::multisession)
     p <- progressr::progressor(steps = rowFile)
-    ## p <- progressr::progressor(along = seq_len(rowFile))
-    ## progressr::handlers(global = TRUE) #to enable progressor globally
   }
 
-  if (parallel){
+  if (useParallel){
     DT <- future.apply::future_lapply(seq_len(rowFile),
                                       function(x) {
                                         p()
