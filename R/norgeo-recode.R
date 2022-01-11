@@ -445,7 +445,7 @@ is_geo_int <- function(dt){
       dt[, "GEO" := as.integer(GEO)]
     },
     warning = function(x){
-      warning("\U0026A0 Check GEO codes!!! NAs introduced by coercion!!!\n")
+      warning("Check GEO codes!!! NAs introduced by coercion!!!\n")
     },
     finally = {
       suppressWarnings(dt[, "GEO" := as.integer(GEO)])
