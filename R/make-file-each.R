@@ -85,7 +85,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   ## TODO - Not sure if this necessary. Turn of temporarily
   ## Convert some columns to interger. Must be after
   ## the variables are recoded eg. INNKAT is string before recorded to number
-  ## dt <- is_col_int(dt)
+  ## dt <- is_col_num(dt)
 
   dt <- is_aggregate(dt = dt,
                      fgspec = fgspec,

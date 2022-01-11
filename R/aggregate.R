@@ -97,10 +97,10 @@ do_aggregate <- function(dt = NULL,
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
 
-  ## TODO read_file should convert integer variables
-  if (is(dt$GEO, "character")) {
-    dt[, GEO := as.integer(GEO)]
-  }
+  ## ## TODO read_file should convert integer variables
+  ## if (is(dt$GEO, "character")) {
+  ##   dt[, GEO := as.integer(GEO)]
+  ## }
 
   ## is_verbose("Merging geo codes...", type = "note")
   dt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]

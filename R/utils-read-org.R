@@ -67,6 +67,10 @@ is_aggregate <- function(dt = NULL,
     year <- as.integer(format(Sys.Date(), "%Y"))
   }
 
+  ## Ensure variables to be used to aggregate is type numeric
+  colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
+  dt <- is_col_num(dt = dt, cols = colVals)
+
   ## recode GEO codes
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = year)
   dt <- do_geo_recode(dt = dt,
@@ -158,19 +162,14 @@ is_org_files <- function(spec, id = NULL) {
 }
 
 
-## Covert to integer for columns integer but only after
-## variables are recoded
-is_col_int <- function(dt){
-  cols <- getOption("orgdata.integer")
-  noExtra <- setdiff(names(dt), cols)
-  extraInts <- names(dt)[!(names(dt) %in% noExtra)]
+## Covert to numeric for columns that are expected to be numeric
+## but only after variables are recoded
+is_col_num <- function(dt, cols){
 
-  colsInt <- c(cols, extraInts)
-
-  for (j in seq_len(length(colsInt))){
-    col <- colsInt[j]
+  for (j in seq_len(length(cols))){
+    col <- cols[j]
     if (methods::is(dt[[col]], "character")) {
-      data.table::set(dt, j = col, value = as.integer(dt[[col]]))
+      data.table::set(dt, j = col, value = as.numeric(dt[[col]]))
     }
   }
   return(dt)
