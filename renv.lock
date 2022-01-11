@@ -31,7 +31,15 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "1eab1dd4df2b76758fd8acab09a0e9b6",
-      "Requirements": []
+      "Requirements": [
+        "DBI",
+        "Rcpp",
+        "bit64",
+        "blob",
+        "memoise",
+        "pkgconfig",
+        "plogr"
+      ]
     },
     "Rcpp": {
       "Package": "Rcpp",
@@ -47,7 +55,9 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "e8a22846fff485f0be3770c2da758713",
-      "Requirements": []
+      "Requirements": [
+        "sys"
+      ]
     },
     "bit": {
       "Package": "bit",
@@ -63,7 +73,9 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "9fe98599ca456d6552421db0d6772d8f",
-      "Requirements": []
+      "Requirements": [
+        "bit"
+      ]
     },
     "blob": {
       "Package": "blob",
@@ -71,7 +83,10 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "dc5f7a6598bb025d20d66bb758f12879",
-      "Requirements": []
+      "Requirements": [
+        "rlang",
+        "vctrs"
+      ]
     },
     "cachem": {
       "Package": "cachem",
@@ -79,7 +94,10 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "648c5b3d71e6a37e3043617489a0a0e9",
-      "Requirements": []
+      "Requirements": [
+        "fastmap",
+        "rlang"
+      ]
     },
     "cellranger": {
       "Package": "cellranger",
@@ -87,7 +105,10 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "f61dbaec772ccd2e17705c1e872e9e7c",
-      "Requirements": []
+      "Requirements": [
+        "rematch",
+        "tibble"
+      ]
     },
     "cli": {
       "Package": "cli",
@@ -95,7 +116,9 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "66a3834e54593c89d8beefb312347e58",
-      "Requirements": []
+      "Requirements": [
+        "glue"
+      ]
     },
     "codetools": {
       "Package": "codetools",
@@ -143,7 +166,9 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "bb0eec2fe32e88d9e2836c2f73ea2077",
-      "Requirements": []
+      "Requirements": [
+        "rlang"
+      ]
     },
     "fansi": {
       "Package": "fansi",
@@ -175,7 +200,12 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7bf6fbed7f00cae876901fd70c04f3a4",
-      "Requirements": []
+      "Requirements": [
+        "digest",
+        "globals",
+        "listenv",
+        "parallelly"
+      ]
     },
     "future.apply": {
       "Package": "future.apply",
@@ -183,7 +213,10 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "f568ce73d3d59582b0f7babd0eb33d07",
-      "Requirements": []
+      "Requirements": [
+        "future",
+        "globals"
+      ]
     },
     "globals": {
       "Package": "globals",
@@ -191,7 +224,9 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "eca8023ed5ca6372479ebb9b3207f5ae",
-      "Requirements": []
+      "Requirements": [
+        "codetools"
+      ]
     },
     "glue": {
       "Package": "glue",
@@ -207,7 +242,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "5b8a2dd0fdbe2ab4f6081e6c7be6dfca",
-      "Requirements": []
+      "Requirements": [
+        "ellipsis",
+        "lifecycle",
+        "pkgconfig",
+        "rlang",
+        "vctrs"
+      ]
     },
     "httr": {
       "Package": "httr",
@@ -215,7 +256,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a525aba14184fec243f9eaec62fbed43",
-      "Requirements": []
+      "Requirements": [
+        "R6",
+        "curl",
+        "jsonlite",
+        "mime",
+        "openssl"
+      ]
     },
     "jsonlite": {
       "Package": "jsonlite",
@@ -239,7 +286,10 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a6b6d352e3ed897373ab19d8395c98d0",
-      "Requirements": []
+      "Requirements": [
+        "glue",
+        "rlang"
+      ]
     },
     "listenv": {
       "Package": "listenv",
@@ -263,7 +313,10 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a0bc51650201a56d00a4798523cc91b3",
-      "Requirements": []
+      "Requirements": [
+        "cachem",
+        "rlang"
+      ]
     },
     "mime": {
       "Package": "mime",
@@ -284,7 +337,16 @@
       "RemoteRef": "HEAD",
       "RemoteSha": "66e0b932ef9e077a0e991c363264b62341566c7d",
       "Hash": "9843d1612f6c93128f8b02cb8220c025",
-      "Requirements": []
+      "Requirements": [
+        "DBI",
+        "RSQLite",
+        "data.table",
+        "httr",
+        "jsonlite",
+        "magrittr",
+        "odbc",
+        "writexl"
+      ]
     },
     "odbc": {
       "Package": "odbc",
@@ -292,7 +354,14 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "3f9efc29c48dca3aebf00b61a472d543",
-      "Requirements": []
+      "Requirements": [
+        "DBI",
+        "Rcpp",
+        "bit64",
+        "blob",
+        "hms",
+        "rlang"
+      ]
     },
     "openssl": {
       "Package": "openssl",
@@ -300,21 +369,41 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "5406fd37ef0bf9b88c8a4f264d6ec220",
-      "Requirements": []
+      "Requirements": [
+        "askpass"
+      ]
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.5.1",
+      "Version": "0.5.2",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "0ba24b01bd19d0b29d880c40b8f8ddf3fd08a089",
+      "RemoteSha": "da489e6e4608bc28290b3510aff70affdc8dcc46",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "67bd32ad020b0722916ec31579a96013",
-      "Requirements": []
+      "Hash": "949d13daf36282296ea20ddbbbfbfd38",
+      "Requirements": [
+        "DBI",
+        "R6",
+        "crayon",
+        "data.table",
+        "fs",
+        "future",
+        "future.apply",
+        "lifecycle",
+        "listenv",
+        "norgeo",
+        "odbc",
+        "parallelly",
+        "progressr",
+        "readxl",
+        "rex",
+        "tibble",
+        "withr"
+      ]
     },
     "parallelly": {
       "Package": "parallelly",
@@ -330,7 +419,16 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "60200b6aa32314ac457d3efbb5ccbd98",
-      "Requirements": []
+      "Requirements": [
+        "cli",
+        "crayon",
+        "ellipsis",
+        "fansi",
+        "lifecycle",
+        "rlang",
+        "utf8",
+        "vctrs"
+      ]
     },
     "pkgconfig": {
       "Package": "pkgconfig",
@@ -362,7 +460,12 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "14dc9f7a3c91ebb14ec5bb9208a07061",
-      "Requirements": []
+      "Requirements": [
+        "R6",
+        "crayon",
+        "hms",
+        "prettyunits"
+      ]
     },
     "progressr": {
       "Package": "progressr",
@@ -370,7 +473,9 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7df448f5ae46ab0a1af0fb619349d3fd",
-      "Requirements": []
+      "Requirements": [
+        "digest"
+      ]
     },
     "readxl": {
       "Package": "readxl",
@@ -378,7 +483,12 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "63537c483c2dbec8d9e3183b3735254a",
-      "Requirements": []
+      "Requirements": [
+        "Rcpp",
+        "cellranger",
+        "progress",
+        "tibble"
+      ]
     },
     "rematch": {
       "Package": "rematch",
@@ -392,6 +502,8 @@
       "Package": "renv",
       "Version": "0.15.0",
       "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "36c1a644e5b0ba8050f40f07ea1dae62",
       "Requirements": []
     },
     "rex": {
@@ -400,7 +512,9 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "093584b944440c5cd07a696b3c8e0e4c",
-      "Requirements": []
+      "Requirements": [
+        "lazyeval"
+      ]
     },
     "rlang": {
       "Package": "rlang",
@@ -424,7 +538,16 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "36eb05ad4cfdfeaa56f5a9b2a1311efd",
-      "Requirements": []
+      "Requirements": [
+        "ellipsis",
+        "fansi",
+        "lifecycle",
+        "magrittr",
+        "pillar",
+        "pkgconfig",
+        "rlang",
+        "vctrs"
+      ]
     },
     "utf8": {
       "Package": "utf8",
@@ -440,7 +563,11 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ecf749a1b39ea72bd9b51b76292261f1",
-      "Requirements": []
+      "Requirements": [
+        "ellipsis",
+        "glue",
+        "rlang"
+      ]
     },
     "withr": {
       "Package": "withr",
