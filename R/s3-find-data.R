@@ -44,6 +44,10 @@ find_data.csv <- function(file, ...) {
 #' @export
 find_data.fhi <- find_data.csv
 
+#' @method find_data no_extention
+#' @export
+find_data. <- find_data.csv
+
 
 #' @method find_data xls
 #' @export
@@ -52,20 +56,20 @@ find_data.xls <- function(file, ...) {
 
   if (length(list(...)) > 0){
     dots <- is_args(...)
-    dots <- is_xls_args(dots)
-  } else {
-    dots <- list()
-  }
+      dots <- is_xls_args(dots)
+    } else {
+      dots <- list()
+    }
 
-  is_verbose(file, msg = "File:")
-  dots$path <- file
-  dt <- do.call(readxl::read_xls, dots)
+    is_verbose(file, msg = "File:")
+    dots$path <- file
+    dt <- do.call(readxl::read_xls, dots)
 
-  if (headerRename){
-    dt <- is_header_name(dt)
+    if (headerRename){
+      dt <- is_header_name(dt)
+    }
+    return(dt)
   }
-  return(dt)
-}
 
 #' @method find_data xls
 #' @export
