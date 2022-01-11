@@ -440,14 +440,15 @@ is_short_code <- function(x, n1 = 10, n2 = 6){
 
 ## Ensure no character in GEO codes
 is_geo_int <- function(dt){
+  GEO <- NULL
   tryCatch({
-    dt[, "GEO" := as.integer(GEO)]
+    dt[, GEO := as.integer(GEO)]
   },
   warning = function(x){
     warning("Check GEO codes!!! NAs introduced by coercion!!!\n")
   },
   finally = {
-    suppressWarnings(dt[, "GEO" := as.integer(GEO)])
+    suppressWarnings(dt[, GEO := as.integer(GEO)])
   }
   )
   return(dt)

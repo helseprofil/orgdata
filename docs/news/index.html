@@ -145,6 +145,8 @@
 <a href="#orgdata-052" class="anchor"></a>orgdata 0.5.2</h1>
 <ul>
 <li>Able to read files that have not extension provided it’s coma or semicolon separated (<a href='https://github.com/helseprofil/orgdata/issues/227'>#227</a>)</li>
+<li>Ensure all <strong>VAL</strong> columns are numeric type (<a href='https://github.com/helseprofil/orgdata/issues/229'>#229</a>)</li>
+<li>Give explicit warning when <strong>GEO</strong> codes have character that can cause coercion resulting to converting to <code>NA</code> (<a href='https://github.com/helseprofil/orgdata/issues/229'>#229</a>)</li>
 </ul>
 </div>
     <div id="orgdata-051" class="section level1">
@@ -370,7 +372,7 @@
 <ul>
 <li>Reshape dataset from wide to long. Reshape can have more than one <code>measure   variables</code>. Please read how this is specified in Access registration database.</li>
 <li>Split columns must have equal number of values to the defined <code>SPLITTIL</code>. Duplicate the value if it is less than the maximum <code>SPLITTIL</code>. For example for value <code>0</code> in column <code>LANDSSB</code> which will be split into <code>LANDBAK</code> and <code>INNVKAT</code>, the value will be duplicated into <code>00</code> to avoid split with value <code>NA</code>.</li>
-<li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code>do_aggregate_recode_standard()</code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_int()</code>.</li>
+<li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code>do_aggregate_recode_standard()</code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_num()</code>.</li>
 </ul>
 </div>
 </div>

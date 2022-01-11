@@ -1,7 +1,10 @@
 # orgdata 0.5.2
 - Able to read files that have not extension provided it's coma or semicolon
   separated (#227)
-
+- Ensure all **VAL** columns are numeric type (#229)
+- Give explicit warning when **GEO** codes have character that can cause
+  coercion resulting to converting to `NA` (#229)
+  
 # orgdata 0.5.1
 - Log files for `code99` also include koblid. The files will be named as
   `code99_koblidxxx` (#222)
