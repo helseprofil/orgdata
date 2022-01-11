@@ -68,11 +68,6 @@ do_aggregate <- function(dt = NULL,
 
   colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
 
-  ## for (j in colVals){
-  ##   if (is(dt[[j]], "character"))
-  ##     data.table::set(dt, j = j, value = as.numeric(dt[[j]]))
-  ## }
-
   # Don't aggregate columns reshape wide
   if (!is.null(wide)){
     colVals <- c(colVals, wide)
@@ -102,10 +97,10 @@ do_aggregate <- function(dt = NULL,
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
 
-  ## TODO read_file should convert integer variables
-  if (is(dt$GEO, "character")) {
-    dt[, GEO := as.integer(GEO)]
-  }
+  ## ## TODO read_file should convert integer variables
+  ## if (is(dt$GEO, "character")) {
+  ##   dt[, GEO := as.integer(GEO)]
+  ## }
 
   ## is_verbose("Merging geo codes...", type = "note")
   dt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]

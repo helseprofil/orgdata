@@ -104,16 +104,10 @@ do_geo_recode <- function(dt = NULL,
 
   dt <- data.table::copy(dt)
 
-  ## Ensure variables to be used to aggregate in type int
-  intVar <- c("GEO", paste0("VAL", 1:getOption("orgdata.vals")))
-  ## for (col in intVar){
-  ##   if (methods::is(dt[[col]], "character"))
-  ##     data.table::set(dt, j = col, value = as.numeric(dt[[col]]))
-  ## }
-  dt <- is_col_num(dt = dt, cols = intVar)
-
   # keep original code for debug.geo
   dt[, "origin" := GEO]
+  ## Ensure GEO can be converted to int and no character GEO
+  dt <- is_geo_int(dt)
 
   if (type == "grunnkrets"){
     dt <- is_grunnkrets(dt, control = control, ...)
@@ -442,4 +436,19 @@ is_short_code <- function(x, n1 = 10, n2 = 6){
   }
 
   paste_cols(codes)
+}
+
+## Ensure no character in GEO codes
+is_geo_int <- function(dt){
+  tryCatch({
+    dt[, "GEO" := as.integer(GEO)]
+  },
+  warning = function(x){
+    warning("Check GEO codes!!! NAs introduced by coercion!!!\n")
+  },
+  finally = {
+    suppressWarnings(dt[, "GEO" := as.integer(GEO)])
+  }
+  )
+  return(dt)
 }
