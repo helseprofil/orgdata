@@ -51,5 +51,5 @@ opt.orgdata <- list(
 }
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("orgdata version 0.5.1")
+  packageStartupMessage("orgdata version 0.5.2")
 }
