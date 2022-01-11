@@ -34,7 +34,22 @@ read_file <- function(file = NULL, ...) {
   }
 
   ext <- tools::file_ext(file)
-  class(file) <- append(class(file), ext)
+  if (ext == ""){
+    class(file) <- append(class(file), "none")
+  } else {
+    class(file) <- append(class(file), ext)
+  }
+
+  ## if (ext == ""){
+  ##   tempPath <- withr::local_tempdir("noExt")
+  ##   fs::file_copy(file, tempPath)
+  ##   tempFile <- list.files(tempPath)
+  ##   newFile <- file.path(tempPath, paste0(tempFile, ".csv"))
+  ##   file.rename(file.path(tempPath, tempFile), newFile)
+
+  ##   file <- file.path(newFile)
+  ##   ext <- "csv"
+  ## }
 
   dt <- find_data(file, ...)
 
