@@ -158,20 +158,15 @@ is_org_files <- function(spec, id = NULL) {
 }
 
 
-## Covert to integer for columns integer but only after
-## variables are recoded
-is_col_int <- function(dt){
-  cols <- getOption("orgdata.integer")
-  noExtra <- setdiff(names(dt), cols)
-  extraInts <- names(dt)[!(names(dt) %in% noExtra)]
+## Covert to numeric for columns that are expected to be numeric
+## but only after variables are recoded
+is_col_num <- function(dt, cols){
 
-  colsInt <- c(cols, extraInts)
-
-  for (j in seq_len(length(colsInt))){
-    col <- colsInt[j]
-    if (methods::is(dt[[col]], "character")) {
-      data.table::set(dt, j = col, value = as.integer(dt[[col]]))
+  for (j in seq_len(length(cols))){
+    col <- cols[j]
+      if (methods::is(dt[[col]], "character")) {
+        data.table::set(dt, j = col, value = as.numeric(dt[[col]]))
+      }
     }
-  }
   return(dt)
 }

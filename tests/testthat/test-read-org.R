@@ -69,7 +69,7 @@ test_that("Columns and class data", {
               "TAB1", "TAB2", "TAB3", "VAL1", "VAL2", "VAL3")
 
   ## TEST -------------------
-  ## expect_equal(is_col_int(dataRaw), dataOut) #function not activated
+  ## expect_equal(is_col_num(dataRaw), dataOut) #function not activated
   expect_equal(is_data_cols(fgspec = fgspec), cols)
   expect_equal(is_data_cols(fgspec = fgspecMis), colmis)
 })

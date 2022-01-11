@@ -68,6 +68,11 @@ do_aggregate <- function(dt = NULL,
 
   colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
 
+  ## for (j in colVals){
+  ##   if (is(dt[[j]], "character"))
+  ##     data.table::set(dt, j = j, value = as.numeric(dt[[j]]))
+  ## }
+
   # Don't aggregate columns reshape wide
   if (!is.null(wide)){
     colVals <- c(colVals, wide)

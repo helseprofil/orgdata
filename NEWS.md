@@ -221,7 +221,7 @@
 - Recode for `LANDBAK` and `INNVKAT` after aggregating are done internally ie.
   hard coded, in `do_aggregate_recode_standard()`. Total is coded with `20`. Any
   eventuality for future change should also look other related functions such as
-  `is_aggregate_standard_cols()` and `is_col_int()`.
+  `is_aggregate_standard_cols()` and `is_col_num()`.
 
 # orgdata 0.2
 

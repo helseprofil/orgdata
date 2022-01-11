@@ -105,11 +105,12 @@ do_geo_recode <- function(dt = NULL,
   dt <- data.table::copy(dt)
 
   ## Ensure variables to be used to aggregate in type int
-  intVar <- c("GEO", "VAL1")
-  for (col in intVar){
-    if (is(dt[[col]], "character"))
-      data.table::set(dt, j = col, value = as.integer(dt[[col]]))
-  }
+  intVar <- c("GEO", paste0("VAL", 1:getOption("orgdata.vals")))
+  ## for (col in intVar){
+  ##   if (methods::is(dt[[col]], "character"))
+  ##     data.table::set(dt, j = col, value = as.numeric(dt[[col]]))
+  ## }
+  dt <- is_col_num(dt = dt, cols = intVar)
 
   # keep original code for debug.geo
   dt[, "origin" := GEO]
