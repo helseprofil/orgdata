@@ -44,9 +44,9 @@ find_data.csv <- function(file, ...) {
 #' @export
 find_data.fhi <- find_data.csv
 
-#' @method find_data no_extention
+#' @method find_data none
 #' @export
-find_data. <- find_data.csv
+find_data.none <- find_data.csv
 
 
 #' @method find_data xls
