@@ -166,3 +166,13 @@ test_that("Recode geo", {
                              base = FALSE,
                              control = TRUE), dtout)
 })
+
+
+test_that("GEO character", {
+
+  dt <- readRDS(system.file("testdata", "geo-char.rds", package = "orgdata"))
+  dtout <- readRDS(system.file("testdata", "geo-char-out.rds", package = "orgdata"))
+
+  expect_equal(is_geo_int(dt = copy(dt)) , dtout)
+  expect_warning(is_geo_int(dt = copy(dt)), "Check GEO codes!!! NAs introduced by coercion!!!")
+})
