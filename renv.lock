@@ -59,6 +59,14 @@
         "sys"
       ]
     },
+    "base64enc": {
+      "Package": "base64enc",
+      "Version": "0.1-3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "543776ae6848fde2f48ff3816d0628bc",
+      "Requirements": []
+    },
     "bit": {
       "Package": "bit",
       "Version": "4.0.4",
@@ -128,6 +136,14 @@
       "Hash": "019388fc48e48b3da0d3a76ff94608a8",
       "Requirements": []
     },
+    "cpp11": {
+      "Package": "cpp11",
+      "Version": "0.4.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "fa53ce256cd280f468c080a58ea5ba8c",
+      "Requirements": []
+    },
     "crayon": {
       "Package": "crayon",
       "Version": "1.4.1",
@@ -135,6 +151,24 @@
       "Repository": "CRAN",
       "Hash": "e75525c55c70e5f4f78c9960a4b402e9",
       "Requirements": []
+    },
+    "crul": {
+      "Package": "crul",
+      "Version": "1.2.1.99",
+      "Source": "Repository",
+      "Repository": "https://ropensci.r-universe.dev",
+      "RemoteUrl": "https://github.com/ropensci/crul",
+      "RemoteRef": "main",
+      "RemoteSha": "d9ff4774d78ebdafd4bf48e326a539260959d63e",
+      "Hash": "c99046567ae9dc4b8dd534e3c5217ec1",
+      "Requirements": [
+        "R6",
+        "curl",
+        "httpcode",
+        "jsonlite",
+        "mime",
+        "urltools"
+      ]
     },
     "curl": {
       "Package": "curl",
@@ -185,6 +219,18 @@
       "Repository": "CRAN",
       "Hash": "77bd60a6157420d4ffa93b27cf6a58b8",
       "Requirements": []
+    },
+    "fauxpas": {
+      "Package": "fauxpas",
+      "Version": "0.5.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4a92318a9d58a8e66b7d0689db3157b5",
+      "Requirements": [
+        "R6",
+        "httpcode",
+        "whisker"
+      ]
     },
     "fs": {
       "Package": "fs",
@@ -249,6 +295,14 @@
         "rlang",
         "vctrs"
       ]
+    },
+    "httpcode": {
+      "Package": "httpcode",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "13641a1c6d2cc98801b76764078e17ea",
+      "Requirements": []
     },
     "httr": {
       "Package": "httr",
@@ -328,15 +382,15 @@
     },
     "norgeo": {
       "Package": "norgeo",
-      "Version": "2.0.0",
+      "Version": "2.1.0",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "norgeo",
       "RemoteUsername": "helseprofil",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "66e0b932ef9e077a0e991c363264b62341566c7d",
-      "Hash": "9843d1612f6c93128f8b02cb8220c025",
+      "RemoteRepo": "norgeo",
+      "RemoteRef": "master",
+      "RemoteSha": "46bcb58bd2629ced1d48fafb22bdf98e20fbef2e",
+      "Hash": "1726d2b0891421c5ccda5b67995be775",
       "Requirements": [
         "DBI",
         "RSQLite",
@@ -345,6 +399,7 @@
         "jsonlite",
         "magrittr",
         "odbc",
+        "vcr",
         "writexl"
       ]
     },
@@ -382,9 +437,9 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "2659c2152ec0f1155b7915454f662dfa95e7512e",
+      "RemoteSha": "bb2845f8c46bdef085bf276eb0c509698db7d66e",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "c06edb883c25d3ea95c28f19aae4e4c5",
+      "Hash": "9256710d3a4a7cc1cfade9c7eaf96534",
       "Requirements": [
         "DBI",
         "R6",
@@ -524,6 +579,14 @@
       "Hash": "0879f5388fe6e4d56d7ef0b7ccb031e5",
       "Requirements": []
     },
+    "rprojroot": {
+      "Package": "rprojroot",
+      "Version": "2.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "249d8cd1e74a8f6a26194a91b47f21d1",
+      "Requirements": []
+    },
     "sys": {
       "Package": "sys",
       "Version": "3.4",
@@ -549,6 +612,27 @@
         "vctrs"
       ]
     },
+    "triebeard": {
+      "Package": "triebeard",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "847a9d113b78baca4a9a8639609ea228",
+      "Requirements": [
+        "Rcpp"
+      ]
+    },
+    "urltools": {
+      "Package": "urltools",
+      "Version": "1.7.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e86a704261a105f4703f653e05defa3e",
+      "Requirements": [
+        "Rcpp",
+        "triebeard"
+      ]
+    },
     "utf8": {
       "Package": "utf8",
       "Version": "1.2.2",
@@ -556,6 +640,24 @@
       "Repository": "CRAN",
       "Hash": "c9c462b759a5cc844ae25b5942654d13",
       "Requirements": []
+    },
+    "vcr": {
+      "Package": "vcr",
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "ee587203109c71703c59e30d12c7f6ef",
+      "Requirements": [
+        "R6",
+        "base64enc",
+        "cpp11",
+        "crul",
+        "httr",
+        "rprojroot",
+        "urltools",
+        "webmockr",
+        "yaml"
+      ]
     },
     "vctrs": {
       "Package": "vctrs",
@@ -568,6 +670,31 @@
         "glue",
         "rlang"
       ]
+    },
+    "webmockr": {
+      "Package": "webmockr",
+      "Version": "0.8.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "754886d5a40436ca6d1714222cf51a8f",
+      "Requirements": [
+        "R6",
+        "base64enc",
+        "crul",
+        "curl",
+        "fauxpas",
+        "jsonlite",
+        "magrittr",
+        "urltools"
+      ]
+    },
+    "whisker": {
+      "Package": "whisker",
+      "Version": "0.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "ca970b96d894e90397ed20637a0c1bbe",
+      "Requirements": []
     },
     "withr": {
       "Package": "withr",
@@ -583,6 +710,14 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "edd181b6e10c87497db16d1f8c0d4ed5",
+      "Requirements": []
+    },
+    "yaml": {
+      "Package": "yaml",
+      "Version": "2.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "2826c5d9efb0a88f657c7a679c7106db",
       "Requirements": []
     }
   }
