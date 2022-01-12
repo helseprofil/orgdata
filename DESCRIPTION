@@ -1,20 +1,26 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 0.5.2
+Version: 0.5.3
 Authors@R:
-    person(given = "Yusman",
-           family = "Kamaleri",
-           role = c("aut", "cre"),
-           email = "ybka@fhi.no",
-           comment = c(ORCID = "0000-0001-5014-3665"))
+    c(person(given = "Yusman",
+             family = "Kamaleri",
+             role = c("aut", "cre"),
+             email = "ybka@fhi.no",
+             comment = c(ORCID = "0000-0001-5014-3665")),
+      person(given = "KHelse group",
+             role = c("ctb", "rev"),
+             comment = "https://www.fhi.no/hn/folkehelse"))
 Description: Cleaning, restructuring and aggregating original data
-             usually with enumerical area codes to any geographical codes.
+    usually with enumerical area codes to any geographical codes.
 License: MIT + file LICENSE
+URL: https://github.com/helseprofil/orgdata
+BugReports: https://github.com/helseprofil/orgdata/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-Depends: R (>= 4.1.0)
+Depends:
+    R (>= 4.1.0)
 Imports: 
     data.table (>= 1.14.2),
     DBI (>= 1.1.1),
@@ -27,15 +33,15 @@ Imports:
     lifecycle (>= 1.0.1),
     crayon (>= 1.4.1),
     rex (>= 1.2.0),
-    methods,
-    utils,
     listenv (>= 0.8.0),
     future (>= 1.23.0),
     future.apply (>= 1.8.1),
     progressr (>= 0.10.0),
     parallel (>= 4.1.1),
     parallelly (>= 1.30.0),
-    withr (>= 2.4.3)
+    withr (>= 2.4.3),
+    methods,
+    utils
 Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),
@@ -43,6 +49,4 @@ Suggests:
     knitr,
     rmarkdown
 Config/testthat/edition: 3
-URL: https://github.com/helseprofil/orgdata
-BugReports: https://github.com/helseprofil/orgdata/issues
 VignetteBuilder: knitr

@@ -11,6 +11,8 @@ roxygen2::roxygenise(clean = TRUE)
 devtools::check(env_vars = c(ORGDATA_TEST = "true"))
 devtools::document()
 
+## devtools::build()
+
 pkgdown::build_site(new_process = FALSE)
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)

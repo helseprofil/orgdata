@@ -9,7 +9,7 @@
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Cleaning, restructuring and aggregating original data
-             usually with enumerical area codes to any geographical codes.
+    usually with enumerical area codes to any geographical codes.
 }
 \details{
 Aggregating Original Data (raw data) into different geographical
@@ -25,6 +25,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Yusman Kamaleri \email{ybka@fhi.no} (\href{https://orcid.org/0000-0001-5014-3665}{ORCID})
+
+Other contributors:
+\itemize{
+  \item KHelse group (https://www.fhi.no/hn/folkehelse) [contributor, reviewer]
+}
 
 }
 \keyword{internal}
