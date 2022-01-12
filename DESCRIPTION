@@ -7,7 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "ybka@fhi.no",
            comment = c(ORCID = "0000-0001-5014-3665"))
-Description: Aggretating original data usually with enumerical area codes to any geographical codes.
+Description: Cleaning, restructuring and aggregating original data
+             usually with enumerical area codes to any geographical codes.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -8,7 +8,8 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Aggretating original data usually with enumerical area codes to any geographical codes.
+Cleaning, restructuring and aggregating original data
+             usually with enumerical area codes to any geographical codes.
 }
 \details{
 Aggregating Original Data (raw data) into different geographical
