@@ -1,5 +1,6 @@
 ## Most used functions --------------------------
 devtools::load_all()
+options(orgdata.year = 2021)
 devtools::test()
 
 ## devtools::check(vignettes = FALSE)

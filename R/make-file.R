@@ -52,6 +52,8 @@ make_file <- function(group = NULL,
     check = TRUE
   )
 
+  is_color_txt(year, "Production year for")
+
   ## CONNECTION --------------------------------------------
   kh <- is_conn_db(dbFile)
   on.exit(kh$db_close(), add = TRUE)
