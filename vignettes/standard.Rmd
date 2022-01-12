@@ -14,8 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
+
 Contributing to this package is very much welcome. This is an effort to
-structure things when pushing to `Github`.
+structure things and follow certain convention when pushing to `Github`.
 
 # Keyword for GitHub Commit
 
@@ -24,8 +25,9 @@ These keywords will be helpful when searching for relevant commits:
 -   `Feat:` for new feature or function
 -   `Fix:` for bug fix
 -   `Doc:` for documentation or changes to documentation
--   `Style:` for changes to code or comments that aren&rsquo;t because of bugs
+-   `Close:` or `Style:` for changes to code or comments that aren&rsquo;t because of bugs
 -   `Test:` for code testing in `tests` folder
+-   `VER:` for first version upgrade
 -   `Misc:` for any changes that aren&rsquo;t critical or doesn&rsquo;t fit to any of the
     above keywords. Avoid using it if possible or only as a last resort
     

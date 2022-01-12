@@ -1,15 +1,22 @@
+---
+title: "Make things standard"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Make things standard}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-# Table of Contents
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
-1.  [Keyword for GitHub Commit](#orgb257dad)
-2.  [Github Commit Message](#org21df746)
-3.  [Folders structure](#org74e00e4)
-4.  [Naming style (function or object)](#org0c7940f)
-5.  [Function names](#orgd055ad2)
+Contributing to this package is very much welcome. This is an effort to
+structure things and follow certain convention when pushing to `Github`.
 
-
-
-<a id="orgb257dad"></a>
 
 # Keyword for GitHub Commit
 
@@ -18,8 +25,9 @@ These keywords will be helpful when searching for relevant commits:
 -   `Feat:` for new feature or function
 -   `Fix:` for bug fix
 -   `Doc:` for documentation or changes to documentation
--   `Style:` for changes to code or comments that aren&rsquo;t because of bugs
+-   `Close:` or `Style:` for changes to code or comments that aren&rsquo;t because of bugs
 -   `Test:` for code testing in `tests` folder
+-   `VER:` for first version upgrade
 -   `Misc:` for any changes that aren&rsquo;t critical or doesn&rsquo;t fit to any of the
     above keywords. Avoid using it if possible or only as a last resort
     
@@ -31,7 +39,6 @@ These keywords will be helpful when searching for relevant commits:
         current list before aggregating.
 
 
-<a id="org21df746"></a>
 
 # Github Commit Message
 
@@ -47,7 +54,6 @@ imperative mood or like commanding someone especially for commit related to
 features, functions `(Feat:)` or fixing code `(Fix)`.
 
 
-<a id="org74e00e4"></a>
 
 # Folders structure
 
@@ -64,7 +70,6 @@ Where are the files located and how the files will be used.
     different places.
 
 
-<a id="org0c7940f"></a>
 
 # Naming style (function or object)
 
@@ -75,7 +80,6 @@ Use these naming style:
 -   `kebab-case` style for **filename** eg. `utils-internal.R`
 
 
-<a id="orgd055ad2"></a>
 
 # Function names
 
