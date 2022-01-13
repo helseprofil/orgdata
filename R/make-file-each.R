@@ -12,8 +12,8 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   is_verbose(msg = is_line_long(), type = "other")
   is_verbose(fileSpec$KOBLID, "KOBLID:")
 
-  fileCtrl <- get_column_input(fileSpec, "KONTROLLERT")
-  koblID <- get_column_input(fileSpec, "KOBLID")
+  fileCtrl <- find_column_input(fileSpec, "KONTROLLERT")
+  koblID <- find_column_input(fileSpec, "KOBLID")
 
   DB <- is_conn_db(db = "kh")
 
