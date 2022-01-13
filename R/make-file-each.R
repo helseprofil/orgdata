@@ -110,9 +110,8 @@ is_long_col <- function(dt, spec, widespec){
   # spec - file specification
   # widespec - Spec for reshape wide
   delTabs <- NULL
-  mtab <- is_multi_tabs(spec)
-  if (length(mtab) > 1){
-    mulTabs <- is_multi_tabs(spec = spec)
+  mulTabs <- is_multi_tabs(spec)
+  if (length(mulTabs) > 1){
     dt[, "delTabs" := do.call(paste0, .SD), .SDcols = mulTabs]
     ## Delete extra rows that aren't found in original data but
     ## were created when aggregating the dimensions
