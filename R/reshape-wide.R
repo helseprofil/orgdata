@@ -13,7 +13,8 @@ do_reshape_long <- function(dt = NULL, respec = NULL){
                          id.vars = idvar,
                          measure.vars = respec$widecol,
                          value.name = respec$resval,
-                         variable.name = "variable")
+                         variable.name = "variable",
+                         variable.factor = FALSE)
 
   data.table::setnames(dt, "variable", respec$rescol)
   return(dt)
