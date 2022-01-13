@@ -91,7 +91,7 @@ is_multi_wide <- function(dt, spec){
   if (length(tabs) > 1){
     dt[, "wideTAB" := do.call(paste0, .SD), .SDcols = tabs]
     cols <- unique(dt$wideTAB)
-    dt[, wideTAB := NULL]
+    dt[, "wideTAB" := NULL]
   } else {
     cols <- NA
   }

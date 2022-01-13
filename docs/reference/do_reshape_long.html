@@ -148,7 +148,7 @@ reshaped to wide via Access specification in RESHAPE columns." />
 reshaped to wide via Access specification in <code>RESHAPE</code> columns.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_reshape_long</span><span class='op'>(</span><span class='va'>dt</span>, <span class='va'>resval</span>, <span class='va'>rescol</span>, <span class='va'>widecols</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>do_reshape_long</span><span class='op'>(</span>dt <span class='op'>=</span> <span class='cn'>NULL</span>, respec <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,16 +158,9 @@ reshaped to wide via Access specification in <code>RESHAPE</code> columns.</p>
       <td><p>An output dataset from <code><a href='do_reshape_wide.html'>do_reshape_wide()</a></code></p></td>
     </tr>
     <tr>
-      <th>resval</th>
-      <td><p>Column value to be reshaped from</p></td>
-    </tr>
-    <tr>
-      <th>rescol</th>
-      <td><p>Column(s) dimension where the value derived from</p></td>
-    </tr>
-    <tr>
-      <th>widecols</th>
-      <td><p>Column(s) names created for wide reshape in the dataset</p></td>
+      <th>respec</th>
+      <td><p>Reshape specification with <code>id</code> and <code>value</code> variables. This
+is the output from <code><a href='get_reshape_wide_spec.html'>get_reshape_wide_spec()</a></code></p></td>
     </tr>
     </table>
 

@@ -4,16 +4,13 @@
 \alias{do_reshape_long}
 \title{Special Need Reshape to Long}
 \usage{
-do_reshape_long(dt, resval, rescol, widecols)
+do_reshape_long(dt = NULL, respec = NULL)
 }
 \arguments{
 \item{dt}{An output dataset from \code{do_reshape_wide()}}
 
-\item{resval}{Column value to be reshaped from}
-
-\item{rescol}{Column(s) dimension where the value derived from}
-
-\item{widecols}{Column(s) names created for wide reshape in the dataset}
+\item{respec}{Reshape specification with \code{id} and \code{value} variables. This
+is the output from \code{get_reshape_wide_spec()}}
 }
 \description{
 This function is only applicable to reshape data that was

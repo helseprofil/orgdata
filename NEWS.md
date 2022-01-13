@@ -1,3 +1,7 @@
+# orgdata 0.5.3
+- Fixed the bugs with reshape wide consisting multiple dimensions ie. more than
+  one *TAB* columns. (#220)
+
 # orgdata 0.5.2
 - Able to read files that have no specific extension but they have to be coma or
   semicolon separated (#227)
