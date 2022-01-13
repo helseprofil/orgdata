@@ -2,32 +2,21 @@
 #' @description This function is only applicable to reshape data that was
 #'   reshaped to wide via Access specification in `RESHAPE` columns.
 #' @param dt An output dataset from `do_reshape_wide()`
-#' @param resval Column value to be reshaped from
-#' @param rescol Column(s) dimension where the value derived from
-#' @param widecols Column(s) names created for wide reshape in the dataset
+#' @inheritParams do_reshape_wide
 #' @family reshape functions
 #' @export
-do_reshape_long <- function(dt, resval, rescol, widecols){
-  variable <- NULL
+do_reshape_long <- function(dt = NULL, respec = NULL){
   is_debug()
 
-  idvar <- setdiff(names(dt), widecols)
+  idvar <- setdiff(names(dt), respec$widecol)
   dt <- data.table::melt(data = dt,
                          id.vars = idvar,
-                         measure.vars = widecols,
-                         value.name = resval,
+                         measure.vars = respec$widecol,
+                         value.name = respec$resval,
                          variable.name = "variable")
 
-  resNr <- length(rescol)
-  brc <- is_bracket(resNr)
-
-  for (i in seq_len(resNr)){
-    col <- rescol[i]
-    subChoose <- paste0("\\", i)
-    dt[, (col) := sub(brc, subChoose, variable)]
-  }
-
-  dt[, variable := NULL]
+  data.table::setnames(dt, "variable", respec$rescol)
+  return(dt)
 }
 
 
@@ -47,15 +36,15 @@ do_reshape_wide <- function(dt = NULL, respec = NULL){
   resCol <- respec$rescol
   resVal <- respec$resval
 
-  forCols <- paste0(resCol, collapse = "+")
-
   ## TODO select only specific folder as reshape id instead of all with ...
   dt <- data.table::dcast(data = dt,
-                          formula = paste0("...", "~", forCols),
-                          value.var = resVal,
-                          sep = ";")
+                          formula = paste("...", "~", resCol),
+                          value.var = resVal)
+
+  return(dt)
 }
 
+# Codebook for RESHAPE
 # 1 = LONG
 # 2 = WIDE
 
@@ -82,57 +71,36 @@ get_reshape_wide_spec <- function(dt = NULL, group = NULL, con = NULL, spec = NU
   ## TODO Delete or exclude column that should not be included as in RESHAPE_ID
   resCol <- find_column_multi(spec, "RESHAPE_KOL")
   resVal <- find_column_input(spec, "RESHAPE_VAL")
-  wideCols <- is_reshape_wide_cols(dt, resCol)
+  wideCol <- as.character(unique(dt[[resCol]]))
+  multTab <- is_multi_wide(dt, spec)
 
   return(list(rescol = resCol,
               resval = resVal,
-              widecols = wideCols))
+              widecol = wideCol,
+              multtab = multTab))
 }
 
 ## Helper ---------------------
-## All possible combination of unique vectors to create value columns
-## from when dt is turned to wide especially with multiple reshape columns
-is_reshape_wide_cols <- function(dt, col){
-  # col - Value columns in dataset when turn to wide
-  cols <- NULL
+## If there are more dimensions to tabulate ie. multiple TABs
+## Then get the valid categories for multiple TABs
 
-  if (length(col) == 1){
-    wideCols <- as.character(unique(dt[[col]]))
+is_multi_wide <- function(dt, spec){
+  # spec - File specification
+  tabs <- is_multi_tabs(spec)
+
+  if (length(tabs) > 1){
+    dt[, "wideTAB" := do.call(paste0, .SD), .SDcols = tabs]
+    cols <- unique(dt$wideTAB)
+    dt[, wideTAB := NULL]
   } else {
-    vals <- vector(mode = "list", length = length(col))
-    for (i in seq_along(col)){
-      selCol <- col[i]
-      val <- as.character(unique(dt[[selCol]]))
-      vals[[i]] <- val
-    }
-
-    idx <- do.call(data.table::CJ, vals)
-    idCols <- names(idx)
-    refCols <- data.table::copy(idCols)
-
-    for (i in seq_len(nrow(idx))){
-      idCols <- data.table::copy(refCols)
-      idx[i, cols := paste0(.SD, collapse = ";"), .SDcols = idCols]
-    }
-    wideCols <- idx[["cols"]]
+    cols <- NA
   }
 
-  return(wideCols)
+  return(cols)
 }
 
-
-is_bracket <- function(x){
-  # x : Length of reshape columns
-  b1 <- "^(.*)"
-  b2 <- ";(.*)"
-
-  if (x > 1){
-    b3 <- paste0(rep(b2, x - 1), collapse = "")
-    b4 <- paste0(b1, b3, collapse = "")
-  } else {
-    b4 <- b1
-  }
-
-  return(b4)
+is_multi_tabs <- function(spec){
+  TAB <- paste0("TAB", 1:getOption("orgdata.tabs"))
+  tabs <- sapply(TAB, function(x) find_column_input(spec, x))
+  names(tabs[!is.na(tabs)])
 }
-

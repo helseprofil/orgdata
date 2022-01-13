@@ -39,22 +39,21 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   }
 
   ## Recode must happen before reshape wide as reshape wide will use selected TAB
-  ## of reshape column creating columns of unique value of TAB ie. wideCols object
+  ## of reshape column creating columns of unique value of TAB ie. wideCol object
   dt <- do_recode(dt = dt, spec = fileSpec, con = DB$dbconn, control = fileCtrl)
   dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = DB$dbconn)
 
-  ## Reshape to wide needs to keep object wideCols from original file
+  ## Reshape to wide needs to keep object wideCol from original file
   ## to reshape it back to long if it's wide and became TAB
-  wideCols <- NULL
+  wideCol <- NULL
   if (!is.na(reshVal) && reshapeWide){
-    meltSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
-    resCol <- meltSpec$rescol
-    resVal <- meltSpec$resval
-    wideCols <- meltSpec$widecols
+    wideSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
+    wideCol <- wideSpec$widecol
   }
 
+  ## DELETE UNDEFINED COLUMNS ------------------------
   ## Only columns defined in tbl_Filgruppe will be kept. Deleting columns only
-  ## after renaming RESHAPE columns back to standard columnames.
+  ## after renaming specified RESHAPE columns back to standard columnames.
   deleteVar <- setdiff(names(dt), datacols)
 
   if (length(deleteVar) != 0) {
@@ -75,13 +74,11 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   ## make specification for column that should not be included in the formula
   ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
   if (!is.na(reshVal) && reshapeWide){
-    dt <- do_reshape_wide(dt, meltSpec)
-    wideCols <- intersect(names(dt), wideCols)
+    dt <- do_reshape_wide(dt, wideSpec)
+    wideCol <- intersect(names(dt), wideCol)
   }
 
   ## AGGREGATE ------------------------------------
-  ## is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
-
   ## TODO - Not sure if this necessary. Turn of temporarily
   ## Convert some columns to interger. Must be after
   ## the variables are recoded eg. INNKAT is string before recorded to number
@@ -93,15 +90,35 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
                      aggregate = aggregate,
                      base = base,
                      control = fileCtrl,
-                     wide = wideCols,
+                     wide = wideCol,
                      koblid = koblID)
 
 
   ## RESHAPE LONG SPECIAL CASES --------------------------------------
   if (!is.na(reshVal) && reshapeWide){
-    idvar <- setdiff(names(dt), wideCols)
-    dt <- do_reshape_long(dt = dt, resval = resVal, rescol = resCol, widecols = wideCols)
+    dt <- do_reshape_long(dt = dt, respec = wideSpec)
+    dt <- is_long_col(dt, spec = fileSpec, widespec = wideSpec)
   }
 
   data.table::copy(dt)
+}
+
+
+## HELPER ---------------------------
+
+is_long_col <- function(dt, spec, widespec){
+  # spec - file specification
+  # widespec - Spec for reshape wide
+  mtab <- is_multi_tabs(spec)
+  if (length(mtab) > 1){
+    mulTabs <- is_multi_tabs(spec = spec)
+    dt[, "delTabs" := do.call(paste0, .SD), .SDcols = mulTabs]
+    ## Delete extra rows that aren't found in original data but
+    ## were created when aggregating the dimensions
+    mulIdx <- dt[!(delTabs %chin% widespec$multtab), which = TRUE]
+    dt <- is_delete_index(dt, mulIdx)
+    dt[, "delTabs" := NULL]
+  }
+
+  return(dt)
 }
