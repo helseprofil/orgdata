@@ -82,9 +82,10 @@ get_reshape_wide_spec <- function(dt = NULL, group = NULL, con = NULL, spec = NU
 ## Helper ---------------------
 ## If there are more dimensions to tabulate ie. multiple TABs
 ## Then get the valid categories for multiple TABs
-is_multi_wide <- function(dt, spec){
 
-  tabs <- is_multi_tab(spec)
+is_multi_wide <- function(dt, spec){
+  # spec - File specification
+  tabs <- is_multi_tabs(spec)
 
   if (length(tabs) > 1){
     dt[, "wideTAB" := do.call(paste0, .SD), .SDcols = tabs]
@@ -97,7 +98,7 @@ is_multi_wide <- function(dt, spec){
   return(cols)
 }
 
-is_multi_tab <- function(spec){
+is_multi_tabs <- function(spec){
   TAB <- paste0("TAB", 1:getOption("orgdata.tabs"))
   tabs <- sapply(TAB, function(x) find_column_input(spec, x))
   names(tabs[!is.na(tabs)])

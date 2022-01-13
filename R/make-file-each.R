@@ -109,9 +109,9 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 is_long_col <- function(dt, spec, widespec){
   # spec - file specification
   # widespec - Spec for reshape wide
-  mtab <- is_multi_tab(spec)
-  if (length(mtab) > 2){
-    mulTabs <- is_multi_tab(spec = fileSpec)
+  mtab <- is_multi_tabs(spec)
+  if (length(mtab) > 1){
+    mulTabs <- is_multi_tabs(spec = spec)
     dt[, "delTabs" := do.call(paste0, .SD), .SDcols = mulTabs]
     ## Delete extra rows that aren't found in original data but
     ## were created when aggregating the dimensions
@@ -121,5 +121,4 @@ is_long_col <- function(dt, spec, widespec){
   }
 
   return(dt)
-
 }
