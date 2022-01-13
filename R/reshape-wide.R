@@ -44,6 +44,7 @@ do_reshape_wide <- function(dt = NULL, respec = NULL){
   return(dt)
 }
 
+# Codebook for RESHAPE
 # 1 = LONG
 # 2 = WIDE
 
