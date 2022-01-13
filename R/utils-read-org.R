@@ -63,10 +63,6 @@ is_aggregate <- function(dt = NULL,
 
   ## validTo in the database `tblGeo` is a character
 
-  if (is.null(year)){
-    year <- as.integer(format(Sys.Date(), "%Y"))
-  }
-
   ## Ensure variables to be used to aggregate is type numeric
   colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
   dt <- is_col_num(dt = dt, cols = colVals)

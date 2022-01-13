@@ -52,6 +52,9 @@ make_file <- function(group = NULL,
     check = TRUE
   )
 
+  if (is.null(year)){
+    year <- as.integer(format(Sys.Date(), "%Y"))
+  }
   is_color_txt(year, "Production year for")
 
   ## CONNECTION --------------------------------------------
