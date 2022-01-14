@@ -70,6 +70,7 @@ is_col_var <- function(col){
 #' @param dt Dataset
 #' @param cols Columns to be converted to numeric
 is_col_num_warn <- function(dt, cols){
+  GEO <- NULL
 
   for (j in seq_len(length(cols))){
     col <- cols[j]

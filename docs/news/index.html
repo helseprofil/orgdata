@@ -146,6 +146,8 @@
 <ul>
 <li>Fixed the bugs with reshape wide consisting multiple dimensions ie. more than one <em>TAB</em> columns. (<a href='https://github.com/helseprofil/orgdata/issues/228'>#228</a>)</li>
 <li>Ensure melting columns are not converted to factor (<a href='https://github.com/helseprofil/orgdata/issues/234'>#234</a>)</li>
+<li>Some columns should be numeric type and these columns are <strong>GEO</strong>, <strong>AAR</strong>, <strong>KJONN</strong> and <strong>ALDER</strong>. They are also specify in global options <code>orgdata.num</code>. Ensure thise columns are numeric and give warning as well as log when coercion where <em>NA</em> is introduced. (<a href='https://github.com/helseprofil/orgdata/issues/235'>#235</a>)</li>
+<li>Use log file to check what or which codes that have problem. (<a href='https://github.com/helseprofil/orgdata/issues/237'>#237</a>)</li>
 </ul>
 </div>
     <div id="orgdata-052" class="section level1">
