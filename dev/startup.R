@@ -141,3 +141,8 @@ pkg <- covr::package_coverage(path = getwd())
 covr::report(pkg)
 
 devtools::install()
+
+
+## ADD BADGER ---------------
+remotes::install_github("GuangchuangYu/badger")
+library(badger)
