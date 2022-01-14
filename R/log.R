@@ -58,7 +58,7 @@ is_log_write <- function(value = NULL, x = NULL, koblid = NULL){
   }
 
   outCmd <- tryCatch({
-    data.table::fwrite(x = list(value), file = file.path(orgpath, nameFile))
+    data.table::fwrite(x = list(V1 = value), file = file.path(orgpath, nameFile))
     logFun
   },
   error = function(err){
