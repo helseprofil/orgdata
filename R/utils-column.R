@@ -69,7 +69,8 @@ is_col_var <- function(col){
 #'  and give warning and log when coercion
 #' @param dt Dataset
 #' @param cols Columns to be converted to numeric
-is_col_num_warn <- function(dt, cols){
+#' @param ... Extra arguments
+is_col_num_warn <- function(dt, cols, koblid = NULL){
   GEO <- NULL
 
   for (j in seq_len(length(cols))){
@@ -86,9 +87,9 @@ is_col_num_warn <- function(dt, cols){
         dt[, (dumCol) := NULL]
 
         fileNA <- paste0(col, "xx")
-        logCmd <- is_log_write(value = notCodes, x = fileNA)
+        logCmd <- is_log_write(value = notCodes, x = fileNA, koblid = koblid)
         msg <- paste0("Check column ", col, "! NAs introduced by coercion!! Check codes with:")
-        is_color_txt(logCmd, msg = msg, type = "warn")
+        is_color_txt(logCmd, msg = msg, type = "warn2")
       })
     }
   }
