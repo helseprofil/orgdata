@@ -175,9 +175,14 @@ make_file <- function(group = NULL,
                                spec = fgSpec,
                                con = kh$dbconn)
 
+  ## RENAME, CONVERT AND REORDER COLUMNS ----------------------
   standardCols <- is_standard_cols()
   orderCols <- intersect(standardCols, names(outDT))
   data.table::setcolorder(outDT, orderCols)
+
+  #convert to numeric
+  numCols <- c(getOption("orgdata.num"), paste0("VAL", 1:getOption("orgdata.vals")))
+  outDT <- is_col_num_warn(outDT, numCols)
 
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(dt = outDT, cols = grpCols)
@@ -186,10 +191,6 @@ make_file <- function(group = NULL,
   ## -- DELETE OLD BYDEL --
   bySpec <- get_extra_args_group(spec = fgSpec)
   outDT <- do_extra_args_group(dt = outDT, args = bySpec )
-
-  ## FINAL STEP ------------
-  numCols <- c("GEO", getOption("orgdata.integer"))
-  dt <- is_col_num_warn(outDT, numCols)
 
   if (save) {
     save_file(dt = outDT, name = group, fgSpec = fgSpec)

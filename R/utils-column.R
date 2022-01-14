@@ -84,9 +84,10 @@ is_col_num_warn <- function(dt, cols){
         notCodes <- dt[is.na(dumCol), GEO][[1]]
         dt[, (dumCol) := NULL]
 
-        fileNA <- paste0(col, "_na")
+        fileNA <- paste0(col, "xx")
         logCmd <- is_log_write(value = notCodes, x = fileNA)
-        message("Check column ", col, "! NAs introduced by coercion!! Check codes with: ", logCmd, "\n" )
+        msg <- paste0("Check column ", col, "! NAs introduced by coercion!! Check codes with:")
+        is_color_txt(logCmd, msg = msg, type = "warn")
       })
     }
   }
