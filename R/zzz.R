@@ -26,10 +26,11 @@ opt.orgdata <- list(
   ## Standard columns
   orgdata.columns = c("GEO", "LEVEL", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB"),
 
-  ## Columns with integer values. GEO is not included because some geo codes has
-  ## to be a combination of 2 columns and need to keep the leading 0 on second
-  ## column before merging. GEO will only be converted to integer after merging
-  orgdata.integer = c("AAR", "KJONN", "ALDER"),
+  ## Columns with numeric values. GEO must not be converted to numeric at early
+  ## stage because some geo codes has to be a combination of 2 columns and need
+  ## to keep the leading 0 on second column before merging. GEO will only be
+  ## converted to numeric after merging
+  orgdata.num = c("GEO", "AAR", "KJONN", "ALDER"),
 
   ## Use for debuging purposes only
   orgdata.debug = FALSE,

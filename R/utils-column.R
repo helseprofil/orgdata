@@ -61,3 +61,36 @@ is_col_var <- function(col){
   rhs <- is_separate(col, "=")[2]
   list(old = lhs, new = rhs)
 }
+
+
+#' @keywords internal
+#' @title Convert column to numeric with warning
+#' @description Covert to numeric for columns that are expected to be numeric
+#'  and give warning and log when coercion
+#' @param dt Dataset
+#' @param cols Columns to be converted to numeric
+is_col_num_warn <- function(dt, cols){
+
+  for (j in seq_len(length(cols))){
+    col <- cols[j]
+    if (methods::is(dt[[col]], "character")) {
+      tryCatch({
+        data.table::set(dt, j = col, value = as.numeric(dt[[col]]))
+      },
+      warning = function(x) {
+        dumCol <- "dumCol"
+        dt[, (dumCol) := get(col)]
+        suppressWarnings(data.table::set(dt, j = dumCol, value = as.numeric(dt[[dumCol]])))
+        notCodes <- dt[is.na(dumCol), GEO][[1]]
+        dt[, (dumCol) := NULL]
+
+        fileNA <- paste0(col, "xx")
+        logCmd <- is_log_write(value = notCodes, x = fileNA)
+        msg <- paste0("Check column ", col, "! NAs introduced by coercion!! Check codes with:")
+        is_color_txt(logCmd, msg = msg, type = "warn")
+      })
+    }
+  }
+  return(dt)
+}
+
