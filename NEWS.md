@@ -7,6 +7,7 @@
   `orgdata.num`. Ensure thise columns are numeric and give warning as well as
   log when coercion where *NA* is introduced. (#235)
 - Use log file to check what or which codes that have problem. (#237)
+- Warn and give logfile if GEO can't be converted to integer before geo recode. (#233 #236)
 
 # orgdata 0.5.2
 - Able to read files that have no specific extension but they have to be coma or
