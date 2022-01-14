@@ -77,9 +77,9 @@ dt[GEO %like% "99$"]
 ## Se alle rader i datasettet
 View(df)
 
-## Se alle GEO koder som har problemer med omkoding
-log$code00  #for code som avsluttet med 00 eller 0000
-log$codeShort #for coder som ikke er 7 eller 8 digit
+## Se logfiler
+read_log("code00", 343) #343 er en KOBLID
+read_log("code99", 343)
 
 ## Åpne hjemmeside
 website()
