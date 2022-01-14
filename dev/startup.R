@@ -27,10 +27,13 @@ pkgs <- c(
   "devtools", "roxygen2", "testthat", "knitr", "readxl",
   "pkgdown", "DBI", "odbc", "data.table", "R6", "covr",
   "rmarkdown", "future", "foreach", "styler", "remotes",
-  "digest", "rlang", "tibble", "cachem"
+  "digest", "rlang", "tibble", "cachem", "future.apply",
+  "withr", "progressr", "parallelly", "crayon", "lifecycle",
+  "rex", "listenv"
 )
 
-install.packages(pkgs = pkgs)
+sapply(pkgs, function(x) if(!requireNamespace(x)) install.packages(x))
+
 devtools::install_github("helseprofil/norgeo", force = TRUE)
 
 ## renv --------------------------------
@@ -115,7 +118,7 @@ pkgdown::build_site()
 pkgdown::preview_site()
 pkgdown::build_news()
 pkgdown::build_news(preview = TRUE)
-usethis::use_logo("man/figures/orgdataLogo.png")
+usethis::use_logo("C:/Users/ybka/Pictures/logo.png", geometry = "220x258", retina = TRUE)
 
 ## Use CI -------------------------------------------
 usethis::use_git_remote("origin", url = "https://github.com/helseprofil/orgdata.git", overwrite = TRUE)

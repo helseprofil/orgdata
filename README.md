@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# orgdata <img src='man/figures/logo.png' align="right" height="139" />
+# orgdata <img src='man/figures/logo.png' align="right" width="90" height="110" />
 
 <!-- badges: start -->
 

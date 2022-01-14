@@ -36,7 +36,7 @@ Imports:
     listenv (>= 0.8.0),
     future (>= 1.23.0),
     future.apply (>= 1.8.1),
-    progressr (>= 0.10.0),
+    progressr (>= 0.8.0),
     parallel (>= 4.1.1),
     parallelly (>= 1.30.0),
     withr (>= 2.4.3),
