@@ -106,8 +106,10 @@ do_geo_recode <- function(dt = NULL,
 
   # keep original code for debug.geo
   dt[, "origin" := GEO]
+
   ## Ensure GEO can be converted to int and no character GEO
-  dt <- is_geo_int(dt)
+  dt <- is_col_num_warn(dt, "GEO", ...)
+  dt[, GEO := as.integer(GEO)]
 
   if (type == "grunnkrets"){
     dt <- is_grunnkrets(dt, control = control, ...)
@@ -438,22 +440,3 @@ is_short_code <- function(x, n1 = 10, n2 = 6){
   paste_cols(codes)
 }
 
-## Ensure no character in GEO codes
-is_geo_int <- function(dt){
-  GEO <- NULL
-  if (methods::is(dt[["GEO"]], "character")){
-    tryCatch({
-      dt[, GEO := as.integer(GEO)]
-    },
-    warning = function(x){
-      notCodes <- dt[!is.na(GEO), "origin"][[1]]
-      logCmd <- is_log_write(value = notCodes, x = "GeoNA")
-      warning("Check GEO codes!!! NAs introduced by coercion!!! Check codes with: ", logCmd, "\n")
-    },
-    finally = {
-      suppressWarnings(dt[, GEO := as.integer(GEO)])
-    }
-    )
-  }
-  return(dt)
-}
