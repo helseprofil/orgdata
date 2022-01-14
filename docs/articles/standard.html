@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3</span>
       </span>
     </div>
 
@@ -77,7 +79,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/helseprofil/orgdata/">
+  <a href="https://github.com/helseprofil/orgdata/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -92,13 +94,13 @@
 
       
 
-      </header><script src="standard_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Make things standard</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/helseprofil/orgdata/blob/master/vignettes/standard.Rmd"><code>vignettes/standard.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/helseprofil/orgdata/blob/HEAD/vignettes/standard.Rmd" class="external-link"><code>vignettes/standard.Rmd</code></a></small>
       <div class="hidden name"><code>standard.Rmd</code></div>
 
     </div>
@@ -106,9 +108,9 @@
     
     
 <p>Contributing to this package is very much welcome. This is an effort to structure things and follow certain convention when pushing to <code>Github</code>.</p>
-<div id="keyword-for-github-commit" class="section level1">
-<h1 class="hasAnchor">
-<a href="#keyword-for-github-commit" class="anchor"></a>Keyword for GitHub Commit</h1>
+<div class="section level2">
+<h2 id="keyword-for-github-commit">Keyword for GitHub Commit<a class="anchor" aria-label="anchor" href="#keyword-for-github-commit"></a>
+</h2>
 <p>These keywords will be helpful when searching for relevant commits:</p>
 <ul>
 <li><p><code>Feat:</code> for new feature or function</p></li>
@@ -127,9 +129,9 @@ current list before aggregating.</code></pre>
 </li>
 </ul>
 </div>
-<div id="github-commit-message" class="section level1">
-<h1 class="hasAnchor">
-<a href="#github-commit-message" class="anchor"></a>Github Commit Message</h1>
+<div class="section level2">
+<h2 id="github-commit-message">Github Commit Message<a class="anchor" aria-label="anchor" href="#github-commit-message"></a>
+</h2>
 <p>Use message for commit as follows:</p>
 <pre><code>Keyword: Write summary as imperative or command
 
@@ -137,9 +139,9 @@ More detail explanation if necessary with maximum 72 characters and use
 line break for long sentences.</code></pre>
 <p>The first line gives summary for what was done. Preferably to write this as imperative mood or like commanding someone especially for commit related to features, functions <code>(Feat:)</code> or fixing code <code>(Fix)</code>.</p>
 </div>
-<div id="folders-structure" class="section level1">
-<h1 class="hasAnchor">
-<a href="#folders-structure" class="anchor"></a>Folders structure</h1>
+<div class="section level2">
+<h2 id="folders-structure">Folders structure<a class="anchor" aria-label="anchor" href="#folders-structure"></a>
+</h2>
 <p>Where are the files located and how the files will be used.</p>
 <ul>
 <li>Folder <code>/R</code> where all the R codes for the functions and objects for <code>orgdata</code> live.</li>
@@ -149,9 +151,9 @@ line break for long sentences.</code></pre>
 <li>Put the functions and helper functions in the same file if they aren’t used in different places.</li>
 </ul>
 </div>
-<div id="naming-style-function-or-object" class="section level1">
-<h1 class="hasAnchor">
-<a href="#naming-style-function-or-object" class="anchor"></a>Naming style (function or object)</h1>
+<div class="section level2">
+<h2 id="naming-style-function-or-object">Naming style (function or object)<a class="anchor" aria-label="anchor" href="#naming-style-function-or-object"></a>
+</h2>
 <p>Use these naming style:</p>
 <ul>
 <li>
@@ -165,9 +167,9 @@ line break for long sentences.</code></pre>
 </li>
 </ul>
 </div>
-<div id="function-names" class="section level1">
-<h1 class="hasAnchor">
-<a href="#function-names" class="anchor"></a>Function names</h1>
+<div class="section level2">
+<h2 id="function-names">Function names<a class="anchor" aria-label="anchor" href="#function-names"></a>
+</h2>
 <p>An effort to group functions according to their responsibilities :)</p>
 <ul>
 <li><p>Files with <code>read_</code> perfix for major functions.</p></li>
@@ -176,7 +178,7 @@ line break for long sentences.</code></pre>
 <li><p>Files with <code>find_</code> prefix for helper functions.</p></li>
 <li>
 <p>Files with <code>is_</code> prefix for internal functions or utility to use <code>orgdata</code> package.</p>
-<p>Internal functions will not be exported but if needed, they can be accessed with <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">:::</a></code> eg. <code>orgdata:::is_separate()</code>.</p>
+<p>Internal functions will not be exported but if needed, they can be accessed with <code>:::</code> eg. <code>orgdata:::is_separate()</code>.</p>
 </li>
 </ul>
 </div>
@@ -193,11 +195,13 @@ line break for long sentences.</code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/">Yusman Kamaleri</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman Kamaleri</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -205,6 +209,8 @@ line break for long sentences.</code></pre>
 
   
 
+
+  
 
   </body>
 </html>
