@@ -439,7 +439,7 @@
       "RemoteRef": "main",
       "RemoteSha": "b7b4270fd20b1b652513fb96a4e98144a369f1dc",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "389071a5d1dd8219825d02e68d23643f",
+      "Hash": "89db3734ff988fb07d32db0872c8df38",
       "Requirements": [
         "DBI",
         "R6",
