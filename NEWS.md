@@ -3,7 +3,7 @@
   one *TAB* columns. (#228)
 - Ensure melting columns are not converted to factor (#234)
 - Some columns should be numeric type and these columns are **GEO**, **AAR**,
-  **KJONN** and **ALDER**. They are also specify in global options
+  **KJONN**, **ALDER** and all **VALs**. They are also specify in global options
   `orgdata.num`. Ensure thise columns are numeric and give warning as well as
   log when coercion where *NA* is introduced. (#235)
 - Use log file to check what or which codes that have problem. (#237)
