@@ -181,37 +181,16 @@
     <div id="orgdata-04" class="section level1">
 <h1 class="page-header" data-toc-text="0.4">
 <a href="#orgdata-04" class="anchor"></a>orgdata 0.4</h1>
-<div id="orgdata-048" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-048" class="anchor"></a>orgdata 0.4.8</h2>
 <ul>
 <li>Get feedback for successful and unsuccessful filegroups when running <code><a href="../reference/make_filegroups.html">make_filegroups()</a></code>. (<a href='https://github.com/helseprofil/orgdata/issues/199'>#199</a>)</li>
 <li>Reshape wide is not limited to only 3 reshape columns as it was. (<a href='https://github.com/helseprofil/orgdata/issues/200'>#200</a> <a href='https://github.com/helseprofil/orgdata/issues/201'>#201</a>)</li>
 <li>Create log files in default orgdata folder instead of occupying the REM. (<a href='https://github.com/helseprofil/orgdata/issues/202'>#202</a>)</li>
 <li>Delete old bydel codes ie. before 2003, except for Oslo. This is due to the unstable geographical recoding of bydel. Use <code>EXTRA</code> column on filegroup level with argument <code>DeleteOldBydel</code>. (<a href='https://github.com/helseprofil/orgdata/issues/204'>#204</a> <a href='https://github.com/helseprofil/orgdata/issues/206'>#206</a>)</li>
 <li>Log files use <code>KOBLID</code> to be more specific. (<a href='https://github.com/helseprofil/orgdata/issues/208'>#208</a>)</li>
-</ul>
-</div>
-<div id="orgdata-047" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-047" class="anchor"></a>orgdata 0.4.7</h2>
-<ul>
 <li>Reshape to wide format can now implement multiple reshape dimensions which are usually one or multiple TAB columns. For instance for <em>LESEFERD</em> of <code>tot_elev</code> is the product of both <code>mestringsnivå</code> and <code>klassetrinn</code>. (<a href='https://github.com/helseprofil/orgdata/issues/188'>#188</a>)</li>
 <li>The output will be arrange on a standard column order. (<a href='https://github.com/helseprofil/orgdata/issues/190'>#190</a>)</li>
 <li>Debugging will be easier with a wrapper function <code><a href="../reference/debug_opt.html">debug_opt()</a></code>. (<a href='https://github.com/helseprofil/orgdata/issues/196'>#196</a>)</li>
-</ul>
-</div>
-<div id="orgdata-046" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-046" class="anchor"></a>orgdata 0.4.6</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/147'>#147</a> to implement reshape wide format to create denominator. This function is only applicable to certain file structure received from SSB. For example filegroup <em>LESEFERD</em> where column <code>tot_elev</code> represents the total number of student with <code>mestringsnivå</code> and not the grand total of students. The number of students with <code>mestringsnivå</code> is represented in column <code>ant_elev</code>. Therefore the long format for <code>mestringsnivå</code> needs to be restructured to wide with value from the <code>ant_elev</code> to ensure summing up <code>tot_elev</code> when creating denominator will not create a grand total of students instead of the total number of students with <code>mestringsnivå</code>. (<a href='https://github.com/helseprofil/orgdata/issues/184'>#184</a>)</li>
-</ul>
-</div>
-<div id="orgdata-045" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-045" class="anchor"></a>orgdata 0.4.5</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/162'>#162</a> when saving geographical codebook with <code>write = TRUE</code> and the table doesn’t exist in the <em>geo-code</em> database.</li>
 <li>Stop looping the geographical levels when <code>orgdata.debug.geo</code> or <code>orgdata.debug.aggregate</code> are active and make the default to <code>kommune</code>. (<a href='https://github.com/helseprofil/orgdata/issues/166'>#166</a>)</li>
 <li>Add batch date from codebook as reference when debugging. (<a href='https://github.com/helseprofil/orgdata/issues/168'>#168</a>)</li>
@@ -220,12 +199,6 @@
 <li>Geo codes for enumeration areas and towns that aren’t able to be merged will be converted to <code>unknown</code> codes with either <code>xxxx9999</code> or <code>xxxx99</code>. (<a href='https://github.com/helseprofil/orgdata/issues/177'>#177</a>)</li>
 <li>Create default folder at <code>C:/Users/YourUserName/orgdata_files</code> when <code>path</code> argument is not specified in <code><a href="../reference/save_file.html">save_file()</a></code>. (<a href='https://github.com/helseprofil/orgdata/issues/179'>#179</a>)</li>
 <li>Create unknown codes for enumeration areas and town codes if not able to recode. Most probably is due to the enumeration codes before 2002. The Excel file from SSB is not clean and unstable to be used for recoding. The unknown codes are based on municipality codes with added <code>xxxx99</code> or <code>xxxx9999</code>. As in <a href='https://github.com/helseprofil/orgdata/issues/177'>#177</a> but recode is done on municipality codes before merging back to the original dataset. (<a href='https://github.com/helseprofil/orgdata/issues/182'>#182</a>)</li>
-</ul>
-</div>
-<div id="orgdata-044" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-044" class="anchor"></a>orgdata 0.4.4</h2>
-<ul>
 <li>Add <code>codeDelete</code> in <code>log</code> for geographical codes that aren’t able to be merged. The codes will be excluded in the dataset. To access all the deleted codes use <code>log$codeDelete</code>. (<a href='https://github.com/helseprofil/orgdata/issues/149'>#149</a>)</li>
 <li>Give explicit error message when <code>path</code> is missing in <code><a href="../reference/save_file.html">save_file()</a></code>. (<a href='https://github.com/helseprofil/orgdata/issues/152'>#152</a>)</li>
 <li>Able to select any valid year to recode geographical codes and aggregate accordingly. But recoding geographical codes backward isn’t possible. (<a href='https://github.com/helseprofil/orgdata/issues/153'>#153</a>)</li>
@@ -233,54 +206,26 @@
 <li>Add column with batch date when the geographical codes were downloaded form SSB when creating a geo codebook with <code><a href="../reference/geo_levels.html">geo_levels()</a></code> or <code><a href="../reference/geo_recode.html">geo_recode()</a></code>. (<a href='https://github.com/helseprofil/orgdata/issues/156'>#156</a>)</li>
 <li>Actively select only the first geo code when old geo code is split into multiple new geo codes. (<a href='https://github.com/helseprofil/orgdata/issues/159'>#159</a>)</li>
 <li>Able to select a base year for geo recode based on the year available in the original data. This is available in column <code>AAR</code> in the dataset. Use argument <code>base</code> or global option <code>orgdata.recode.base</code> with logical input. <code>TRUE</code> will select the base year for recoding geographical code from the year of the original file to the current year. Default is <code>FALSE</code> ie. include all available geographical codes available in the codebook. (<a href='https://github.com/helseprofil/orgdata/issues/157'>#157</a>)</li>
-</ul>
-</div>
-<div id="orgdata-043" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-043" class="anchor"></a>orgdata 0.4.3</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/139'>#139</a> for <code>orgdata.debug.geo</code> keep original geo codes for enumeration areas before adding 9999. (<a href='https://github.com/helseprofil/orgdata/issues/140'>#140</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/142'>#142</a> show codes that have problem to recode directly instead of row numbers (<a href='https://github.com/helseprofil/orgdata/issues/144'>#144</a>)</li>
 <li>Save all codes that have problem in <code>log</code> environment for easy access. To list the codes is either with <code>log$code00</code> or <code>log$codeShort</code>
 </li>
 <li>Recode geo even when argument <code>aggregate = FALSE</code> in <code><a href="../reference/make_file.html">make_file()</a></code> function.</li>
 <li>Rename <code>make_filegroup</code> and <code>lag_filgruppe</code> to plural ie. <code>make_filegroups</code> and <code>lag_filgrupper</code>.</li>
-</ul>
-</div>
-<div id="orgdata-042" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-042" class="anchor"></a>orgdata 0.4.2</h2>
-<ul>
 <li>Use options <code>orgdata.debug.row</code> to select only specific row(s) for further processing. It can be activated via global options with <code><a href="https://rdrr.io/r/base/options.html">options(orgdata.debug.row = 20:50)</a></code> or via argument <code>row = 20:50</code> in <code><a href="../reference/make_file.html">make_file()</a></code> to select row 20 to 50.</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/135'>#135</a> with incorrect geo recode. (<a href='https://github.com/helseprofil/orgdata/issues/131'>#131</a>)</li>
 <li>Make multiple filegroups via <code>make_filegroups</code>. (<a href='https://github.com/helseprofil/orgdata/issues/137'>#137</a>)</li>
-</ul>
-</div>
-<div id="orgdata-041" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-041" class="anchor"></a>orgdata 0.4.1</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/132'>#132</a> LANDSSB must be string</li>
 <li>Convert whitespace to NA to be able to delete all rows with NA</li>
-</ul>
-</div>
-<div id="orgdata-040" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-040" class="anchor"></a>orgdata 0.4.0</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/119'>#119</a> able to mutate for TABS and VALS as well (<a href='https://github.com/helseprofil/orgdata/issues/126'>#126</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/122'>#122</a> delete rows with NA via EXTRA column (<a href='https://github.com/helseprofil/orgdata/issues/127'>#127</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/118'>#118</a> warning text when column(s) aren’t defined in FILGRUPPE and will be deleted (<a href='https://github.com/helseprofil/orgdata/issues/128'>#128</a>)</li>
 <li>Edit error message for columns with existing NA value before aggregating. Total value will be NA and this will conflict with the allready existing NA category in the aggregated column(s). Therefore existing NA value in the selected column(s) must be recoded to a valid value.</li>
 </ul>
 </div>
-</div>
     <div id="orgdata-03" class="section level1">
 <h1 class="page-header" data-toc-text="0.3">
 <a href="#orgdata-03" class="anchor"></a>orgdata 0.3</h1>
-<div id="orgdata-0310" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-0310" class="anchor"></a>orgdata 0.3.10</h2>
 <ul>
 <li>Use <code><a href="https://rdrr.io/r/base/options.html">options(orgdata.debug.geo = TRUE)</a></code> to keep old geo codes for debuging (<a href='https://github.com/helseprofil/orgdata/issues/120'>#120</a>)</li>
 <li>Use <code><a href="../reference/reset_options.html">reset_options()</a></code> to reset to default options.</li>
@@ -288,41 +233,17 @@
 <li>Add vignettes for <strong>Standardize git</strong> and <strong>Debugging</strong>
 </li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/121'>#121</a> recode geographical code for split codes (<a href='https://github.com/helseprofil/orgdata/issues/120'>#120</a>)</li>
-</ul>
-</div>
-<div id="orgdata-039" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-039" class="anchor"></a>orgdata 0.3.9</h2>
-<ul>
 <li>Change database filename to <strong>raw-database_BE.accdb</strong>
 </li>
-</ul>
-</div>
-<div id="orgdata-038" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-038" class="anchor"></a>orgdata 0.3.8</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/106'>#106</a> split long messages (<a href='https://github.com/helseprofil/orgdata/issues/107'>#107</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/108'>#108</a> <a href='https://github.com/helseprofil/orgdata/issues/112'>#112</a> grunnkrets codes that have changed before 2002 not available via API from SSB while code changes for municipality includes changes from 1977. Check from <a href="https://www.ssb.no/klass/klassifikasjoner/131/versjoner" title="SSB">SSB website</a>. We use the municipality codes to create uspesified grunnkrets codes for data before 2002 (<a href='https://github.com/helseprofil/orgdata/issues/109'>#109</a> <a href='https://github.com/helseprofil/orgdata/issues/113'>#113</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/110'>#110</a> updating SQL code for new table name for codebook (<a href='https://github.com/helseprofil/orgdata/issues/111'>#111</a>)</li>
-</ul>
-</div>
-<div id="orgdata-037" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-037" class="anchor"></a>orgdata 0.3.7</h2>
-<ul>
 <li>Check columns to aggregate for any possible <code>NA</code> (<a href='https://github.com/helseprofil/orgdata/issues/98'>#98</a>). Columns that have <code>NA</code> should be recoded to <code>uoppgitt</code> or something equivalent since leaving the category to <code>NA</code> will conflict with <code>NA</code> representing total value when aggregating.</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/100'>#100</a> for grunnkrets that ends with <code>00</code> have no correspond codes from SSB API. Need to add it manually (<a href='https://github.com/helseprofil/orgdata/issues/101'>#101</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/99'>#99</a> when geo codes fails to be recoded then the row index will be shown (<a href='https://github.com/helseprofil/orgdata/issues/103'>#103</a>)</li>
 <li>Geo codes ends with 4 zeros <code>xxxx0000</code> neither have equivalent codes from SSB nor representing a correct coding structure as so called <code>Delområde</code> that ends with 2 zeros <code>xxxxxx00</code>. To avoid missing the information, these geo codes are recoded to <code>xxxx9999</code> with function <code>is_grunnkrets_0000()</code> as in PR (<a href='https://github.com/helseprofil/orgdata/issues/103'>#103</a>).</li>
 <li>
 <code><a href="../reference/see_file.html">see_file()</a></code> accepts just a single numeric as well.</li>
-</ul>
-</div>
-<div id="orgdata-036" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-036" class="anchor"></a>orgdata 0.3.6</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/85'>#85</a> <code><a href="../reference/see_file.html">see_file()</a></code> list all the columns when columnames or column indexes are not specified. The variables are sorted whenever possible. (<a href='https://github.com/helseprofil/orgdata/issues/87'>#87</a>)</li>
 <li>Add more function tests (<a href='https://github.com/helseprofil/orgdata/issues/88'>#88</a>)</li>
 <li>Exclude <code>LANDSSB</code> in aggregate when split to <code>LANDBAK</code> and <code>INNVKAT</code>. This is because code <code>0</code> will be recoded to <code>20</code> when split and causes unnecessary more rows (<a href='https://github.com/helseprofil/orgdata/issues/84'>#84</a>)</li>
@@ -330,114 +251,43 @@
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/93'>#93</a> when source level can’t be identified due to <code>NA</code>.</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/95'>#95</a> for grunnkrets codes that aren’t missing but have less number of digits ie. less than 7 digits. Assuming these are codes for municipality then <code>9999</code> is added at the end of these codes (<a href='https://github.com/helseprofil/orgdata/issues/96'>#96</a>)</li>
 <li>Gives row number for GEO codes that get coerced as <code>NA</code> when converted to integer. This will make it easy to check in the original raw data (<a href='https://github.com/helseprofil/orgdata/issues/96'>#96</a>)</li>
-</ul>
-</div>
-<div id="orgdata-035" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-035" class="anchor"></a>orgdata 0.3.5</h2>
-<ul>
 <li>Aggregate now give total to all dimensions including those specified in <code>AGGKOL</code> (<a href='https://github.com/helseprofil/orgdata/issues/82'>#82</a>)</li>
 <li>Function <code><a href="../reference/see_file.html">see_file()</a></code> accept column index as well (<a href='https://github.com/helseprofil/orgdata/issues/83'>#83</a>)</li>
-</ul>
-</div>
-<div id="orgdata-034" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-034" class="anchor"></a>orgdata 0.3.4</h2>
-<ul>
 <li>Recode variables using regular expression when defined in codebook with type <code>RE</code>. Finding pattern can either be written in ordinary regular expression ie. <code>\\d{4}.*</code> or with <code>rex()</code> package. (<a href='https://github.com/helseprofil/orgdata/issues/78'>#78</a>)</li>
 <li>New feature for checking categories for variables with <code><a href="../reference/see_file.html">see_file()</a></code> (<a href='https://github.com/helseprofil/orgdata/issues/75'>#75</a>)</li>
-</ul>
-</div>
-<div id="orgdata-033" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-033" class="anchor"></a>orgdata 0.3.3</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/65'>#65</a> make TABS and VALS dynamic for easy extension for these columns (<a href='https://github.com/helseprofil/orgdata/issues/66'>#66</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/64'>#64</a> recode of variable that has different class (<a href='https://github.com/helseprofil/orgdata/issues/68'>#68</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/63'>#63</a> implicit null includes all possible VAL columns when exist (<a href='https://github.com/helseprofil/orgdata/issues/69'>#69</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/70'>#70</a> recode GEO of different object class (<a href='https://github.com/helseprofil/orgdata/issues/71'>#71</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/67'>#67</a> aggregate with total values for standard variables ie. <code>UTDANN</code>, <code>LANDSSB</code>, <code>LANDBAK</code> and <code>INNVKAT</code> (<a href='https://github.com/helseprofil/orgdata/issues/72'>#72</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/61'>#61</a> use AGGKOL in Access registration database to specify other columns to aggregate other than the standard eg. <code>KJONN</code>, <code>TAB1</code>, <code>TAB2</code> etc. (<a href='https://github.com/helseprofil/orgdata/issues/73'>#73</a>)</li>
-</ul>
-</div>
-<div id="orgdata-032" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-032" class="anchor"></a>orgdata 0.3.2</h2>
-<ul>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/55'>#55</a> to recode standard variables via codebook instead of hard coded (<a href='https://github.com/helseprofil/orgdata/issues/58'>#58</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/52'>#52</a> skip split if not specified (<a href='https://github.com/helseprofil/orgdata/issues/59'>#59</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/57'>#57</a> split column with duplicated values will keep the original column (<a href='https://github.com/helseprofil/orgdata/issues/60'>#60</a>)</li>
 <li>Fixed <a href='https://github.com/helseprofil/orgdata/issues/56'>#56</a> aggregate all VAL columns whenever specified and not only specific to <code>VAL1</code> (<a href='https://github.com/helseprofil/orgdata/issues/62'>#62</a>)</li>
-</ul>
-</div>
-<div id="orgdata-031" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-031" class="anchor"></a>orgdata 0.3.1</h2>
-<ul>
 <li>Edit verbose messages</li>
-</ul>
-</div>
-<div id="orgdata-030" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-030" class="anchor"></a>orgdata 0.3.0</h2>
-<ul>
 <li>Reshape dataset from wide to long. Reshape can have more than one <code>measure   variables</code>. Please read how this is specified in Access registration database.</li>
 <li>Split columns must have equal number of values to the defined <code>SPLITTIL</code>. Duplicate the value if it is less than the maximum <code>SPLITTIL</code>. For example for value <code>0</code> in column <code>LANDSSB</code> which will be split into <code>LANDBAK</code> and <code>INNVKAT</code>, the value will be duplicated into <code>00</code> to avoid split with value <code>NA</code>.</li>
 <li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code>do_aggregate_recode_standard()</code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_num()</code>.</li>
 </ul>
 </div>
-</div>
     <div id="orgdata-02" class="section level1">
 <h1 class="page-header" data-toc-text="0.2">
 <a href="#orgdata-02" class="anchor"></a>orgdata 0.2</h1>
-<div id="orgdata-024" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-024" class="anchor"></a>orgdata 0.2.4</h2>
 <ul>
 <li>Change argument parameter for <code><a href="../reference/find_spec.html">find_spec()</a></code> function.</li>
 <li>Update text document in several places.</li>
 <li>Add colour type <em>warn2</em> for warning message without <code>Warning:</code> prefix.</li>
-</ul>
-</div>
-<div id="orgdata-023" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-023" class="anchor"></a>orgdata 0.2.3</h2>
-<ul>
 <li>Request (<a href='https://github.com/helseprofil/orgdata/issues/43'>#43</a>) messages with specific colour</li>
 <li>Fixed (<a href='https://github.com/helseprofil/orgdata/issues/46'>#46</a>) recode to string even though columns is type integer or numeric.</li>
-</ul>
-</div>
-<div id="orgdata-022" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-022" class="anchor"></a>orgdata 0.2.2</h2>
-<ul>
 <li>Unknown bydel ie. <em>(uoppgitt)</em> is added when enumeration areas codes ie. <em>(grunnkrets)</em> for bydel is <code>XXXX9999</code> in function <code>geo_level()</code>.</li>
 <li>Add unknown grunnkrets for kommune when not available since some of the datasets have unknown grunnkrets that aren’t listed in API downloaded data (<a href='https://github.com/helseprofil/orgdata/issues/39'>#39</a>).</li>
 <li>Exclude <code>TAB1</code>, <code>TAB2</code> and <code>TAB3</code> from being aggregated. (<a href='https://github.com/helseprofil/orgdata/issues/44'>#44</a>)</li>
-</ul>
-</div>
-<div id="orgdata-021" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-021" class="anchor"></a>orgdata 0.2.1</h2>
-<ul>
 <li>Recode for aggregated variables uses <code>AG</code> in TYPE column in the codebook instead of FILGRUPPE with <code>AGGREGATE</code> as it was implemented in ver 0.2.0. This will make it possible so specify FILGRUPPE and LESID to implement the principle for <strong>GENERAL</strong>, <strong>COMMON</strong> and <strong>SPECIFIC</strong> variables.</li>
 <li>Change function name <code>do_aggregate_recode</code> to <code>do_aggregate_recode_standard</code> for standard variables.</li>
-</ul>
-</div>
-<div id="orgdata-020" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-020" class="anchor"></a>orgdata 0.2.0</h2>
-<ul>
 <li>Recode for aggregated categories can be defined in <em>Recode</em> form ie. codebook, and use <code>AGGREGATE</code> in the specification under FILGRUPPE</li>
 <li>Delete rows when defined in codebook using minus symbol under TIL column. Similar principles is implemented for <strong>GENERAL</strong>, <strong>COMMON</strong> and <strong>SPECIFIC</strong> feature as in recode. Read detail in <a href="https://helseprofil.github.io/orgdata/news/index.html#orgdata-0-0-5-alpha">ver 0.0.5 - alpha</a>.</li>
 <li>Display both columnames to be recoded that are found in the dataset or those that aren’t found when defined as <code>ALLE</code> in the codebook so user will be aware of its existence.</li>
-</ul>
-</div>
-</div>
-    <div id="orgdata-01" class="section level1">
-<h1 class="page-header" data-toc-text="0.1">
-<a href="#orgdata-01" class="anchor"></a>orgdata 0.1</h1>
-<ul>
 <li>Standardize some most used arguments to <code><a href="../reference/read_file.html">read_file()</a></code> such as <code>nrows</code>, <code>header</code>, <code>skip</code>, <code>trimws</code> and <code>na</code>. Read details in <code><a href="../reference/read_file.html">read_file()</a></code> function description.</li>
 <li>Output to <code><a href="../reference/read_file.html">read_file()</a></code> as data.table class.</li>
 <li>Use standard columnames with <code>V1</code>, <code>V2</code> etc when argment <code>header = FALSE</code> is specified.</li>
@@ -455,60 +305,34 @@
     <div id="orgdata-001---alpha-version" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
 <a href="#orgdata-001---alpha-version" class="anchor"></a>orgdata 0.0.1 - alpha version</h1>
-<div id="orgdata-009---alpha" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-009---alpha" class="anchor"></a>orgdata 0.0.9 - alpha</h2>
 <ul>
-<li>When MANHEADER is used then the new columname must be specified in the respective standard column (<a href='https://github.com/helseprofil/orgdata/issues/21'>#21</a>)</li>
-<li>Deprecated arguments <code>geo</code> and <code>val</code> in <code>make_file</code>. Output data must use standard columnames instead of keeping the columnames from original dataset.</li>
-<li>Rename functions <code>read_raw</code> or <code>lesraw</code> to <code>make_file</code> or <code>lag_fil</code> (<a href='https://github.com/helseprofil/orgdata/issues/27'>#27</a>)</li>
-<li>Alle functions uses underscore "_" for both english and norwegian.</li>
-</ul>
-</div>
-<div id="orgdata-008---alpha" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-008---alpha" class="anchor"></a>orgdata 0.0.8 - alpha</h2>
-<ul>
-<li>Add new columns if one of the standard columns is missing in the original data. The value to be inserted to the new column must use symbol less than <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;</a></code> and more than <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>. For instance when column <code>KJONN</code> doesn’t exist in the original data, we can specify with <code>&lt;2&gt;</code> in under column <code>KJONN</code> in the Access registration database. The output will add a new column <code>KJONN</code> with value <code>2</code>. (<a href='https://github.com/helseprofil/orgdata/issues/15'>#15</a>)</li>
-<li>Fix <a href='https://github.com/helseprofil/orgdata/issues/13'>#13</a> and <a href='https://github.com/helseprofil/orgdata/issues/18'>#18</a></li>
-<li>Default <code>orgdata.verbose</code> is <code>TRUE</code>.</li>
-<li>Options for <code>orgdata.implicit.null</code> with default as <code>TRUE</code>. Use <code><a href="https://rdrr.io/r/base/options.html">options(orgdata.implicit.null = FALSE)</a></code> to deactivate (<a href='https://github.com/helseprofil/orgdata/issues/19'>#19</a>)</li>
-</ul>
-</div>
-<div id="orgdata-007---alpha" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-007---alpha" class="anchor"></a>orgdata 0.0.7 - alpha</h2>
-<ul>
-<li>Implicit zero (<a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a>). Discussion is in <a href="https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51" title="implicit-null">Gist</a>
-</li>
-<li>Use version specific for imported packages.</li>
-<li>Rename standard column <code>LANDBAK</code> to <code>LANDSSB</code> for column in original data received from SOB containing information about country of origin.</li>
-<li>Save file as specified in column <code>MAPPE</code> in Access registration database or specify in <code>path</code> argument for function <code>save_file</code>. (<a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a>)</li>
-</ul>
-<p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a> and <a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a></p>
-</div>
-<div id="orgdata-006---alpha" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-006---alpha" class="anchor"></a>orgdata 0.0.6 - alpha</h2>
-<ul>
-<li>Create GEO code from two separate columns. This has to be defined in Access registration under <code>GEO</code> with comma separated eg. <code>nameGeoCol1, nameGeoCol2</code>.</li>
-<li>Order standard columns in the output dataset with this order for the first four columns:
+<li><p>When MANHEADER is used then the new columname must be specified in the respective standard column (<a href='https://github.com/helseprofil/orgdata/issues/21'>#21</a>)</p></li>
+<li><p>Deprecated arguments <code>geo</code> and <code>val</code> in <code>make_file</code>. Output data must use standard columnames instead of keeping the columnames from original dataset.</p></li>
+<li><p>Rename functions <code>read_raw</code> or <code>lesraw</code> to <code>make_file</code> or <code>lag_fil</code> (<a href='https://github.com/helseprofil/orgdata/issues/27'>#27</a>)</p></li>
+<li><p>Alle functions uses underscore "_" for both english and norwegian.</p></li>
+<li><p>Add new columns if one of the standard columns is missing in the original data. The value to be inserted to the new column must use symbol less than <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;</a></code> and more than <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code>. For instance when column <code>KJONN</code> doesn’t exist in the original data, we can specify with <code>&lt;2&gt;</code> in under column <code>KJONN</code> in the Access registration database. The output will add a new column <code>KJONN</code> with value <code>2</code>. (<a href='https://github.com/helseprofil/orgdata/issues/15'>#15</a>)</p></li>
+<li><p>Fix <a href='https://github.com/helseprofil/orgdata/issues/13'>#13</a> and <a href='https://github.com/helseprofil/orgdata/issues/18'>#18</a></p></li>
+<li><p>Default <code>orgdata.verbose</code> is <code>TRUE</code>.</p></li>
+<li><p>Options for <code>orgdata.implicit.null</code> with default as <code>TRUE</code>. Use <code><a href="https://rdrr.io/r/base/options.html">options(orgdata.implicit.null = FALSE)</a></code> to deactivate (<a href='https://github.com/helseprofil/orgdata/issues/19'>#19</a>)</p></li>
+<li><p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a> and <a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a> is as the following:</p></li>
+<li><p>Implicit zero (<a href='https://github.com/helseprofil/orgdata/issues/11'>#11</a>). Discussion is in <a href="https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51" title="implicit-null">Gist</a></p></li>
+<li><p>Use version specific for imported packages.</p></li>
+<li><p>Rename standard column <code>LANDBAK</code> to <code>LANDSSB</code> for column in original data received from SOB containing information about country of origin.</p></li>
+<li><p>Save file as specified in column <code>MAPPE</code> in Access registration database or specify in <code>path</code> argument for function <code>save_file</code>. (<a href='https://github.com/helseprofil/orgdata/issues/12'>#12</a>)</p></li>
+<li><p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/8'>#8</a> is as the following:</p></li>
+<li><p>Create GEO code from two separate columns. This has to be defined in Access registration under <code>GEO</code> with comma separated eg. <code>nameGeoCol1, nameGeoCol2</code>.</p></li>
+<li>
+<p>Order standard columns in the output dataset with this order for the first four columns:</p>
 <ul>
 <li>
 <code>GEO</code>, <code>AAR</code>, <code>ALDER</code>, <code>KJONN</code>
 </li>
 </ul>
 </li>
-<li>Change norwegian name for <code>save_file</code> from <code>lagfil</code> to <code>lagrefil</code>.</li>
-<li>Use column name <code>KOLNAVN</code> instead of <code>ADDKOL</code>.</li>
-<li>Rename function <code>do_addcols</code> and <code>get_addcols</code> to <code>do_colname</code> and <code>get_colname</code> to be consistent with the changes in Access registration database.</li>
-</ul>
-<p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/8'>#8</a></p>
-</div>
-<div id="orgdata-005---alpha" class="section level2">
-<h2 class="hasAnchor">
-<a href="#orgdata-005---alpha" class="anchor"></a>orgdata 0.0.5 - alpha</h2>
-<ul>
+<li><p>Change norwegian name for <code>save_file</code> from <code>lagfil</code> to <code>lagrefil</code>.</p></li>
+<li><p>Use column name <code>KOLNAVN</code> instead of <code>ADDKOL</code>.</p></li>
+<li><p>Rename function <code>do_addcols</code> and <code>get_addcols</code> to <code>do_colname</code> and <code>get_colname</code> to be consistent with the changes in Access registration database.</p></li>
+<li><p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/4'>#4</a> is as the following:</p></li>
 <li>
 <p>Recode variables from specification in <code>tbl_KodeBok</code> uses:</p>
 <ol>
@@ -532,8 +356,6 @@
 <li><p>Write as <code>&lt;NA&gt;</code> in codebook under column <code>FRA</code> when specifying missing variables indicating that a missing column to be recoded to value in column <code>TIL</code>. This will differentiate between real missing and a real column value of <code>NA</code>. (<a href='https://github.com/helseprofil/orgdata/issues/5'>#5</a>)</p></li>
 <li><p>Error message will be given if LESID is specified without FILGRUPPE since LESID is not unique ID.</p></li>
 </ul>
-<p>Changes is in PR <a href='https://github.com/helseprofil/orgdata/issues/4'>#4</a></p>
-</div>
 <div id="orgdata-004---alpha" class="section level2">
 <h2 class="hasAnchor">
 <a href="#orgdata-004---alpha" class="anchor"></a>orgdata 0.0.4 - alpha</h2>
