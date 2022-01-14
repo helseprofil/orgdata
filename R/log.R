@@ -17,10 +17,15 @@ log <- new.env()
 read_log <- function(name = NULL, koblid = NULL){
   # name - Name of object log
   is_null(name, "Log filename is missing!")
-  is_null(koblid, "KOBLID is missing")
+  ## is_null(koblid, "KOBLID is missing")
+
+  if (is.null(koblid)){
+    logFile <- paste0(name, ".csv")
+  } else {
+    logFile <- paste0(name, "_koblid", koblid, ".csv")
+  }
 
   orgPath <- is_orgdata_path()
-  logFile <- paste0(name, "_koblid", koblid, ".csv")
   logPath <- file.path(orgPath, logFile)
   fileExist <- fs::file_exists(logPath)
 
@@ -43,11 +48,18 @@ is_log_write <- function(value = NULL, x = NULL, koblid = NULL){
   # value - Object to put in log
   # x  - name the object
   orgpath <- is_orgdata_path()
-  nameFile <- paste0(x, "_koblid", koblid, ".csv")
+
+  if (is.null(koblid)){
+    nameFile <- paste0(x, ".csv")
+    logFun <- paste0('`', 'read_log("', x, '")`')
+  } else {
+    nameFile <- paste0(x, "_koblid", koblid, ".csv")
+    logFun <- paste0('`', 'read_log("', x, '", koblid)`')
+  }
 
   outCmd <- tryCatch({
     data.table::fwrite(x = list(value), file = file.path(orgpath, nameFile))
-    paste0('`', 'read_log("', x, '", koblid)`')
+    logFun
   },
   error = function(err){
     is_log(value = value, x = x)
