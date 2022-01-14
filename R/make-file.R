@@ -182,10 +182,14 @@ make_file <- function(group = NULL,
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(dt = outDT, cols = grpCols)
 
-  ## DELETE OLD BYDEL ---------------------------
+  ## EXTRA ARGUMENTS FOR FILEGROUP ---------------------------
+  ## -- DELETE OLD BYDEL --
   bySpec <- get_extra_args_group(spec = fgSpec)
   outDT <- do_extra_args_group(dt = outDT, args = bySpec )
 
+  ## FINAL STEP ------------
+  numCols <- c("GEO", getOption("orgdata.integer"))
+  dt <- is_col_num_warn(outDT, numCols)
 
   if (save) {
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
