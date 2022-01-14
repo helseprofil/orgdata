@@ -34,7 +34,6 @@
   (#217)
 
 # orgdata 0.4
-## orgdata 0.4.8
 - Get feedback for successful and unsuccessful filegroups when running
   `make_filegroups()`. (#199)
 - Reshape wide is not limited to only 3 reshape columns as it was. (#200 #201)
@@ -43,17 +42,11 @@
   unstable geographical recoding of bydel. Use `EXTRA` column on filegroup level
   with argument `DeleteOldBydel`. (#204 #206)
 - Log files use `KOBLID` to be more specific. (#208)
-
-## orgdata 0.4.7
-
 - Reshape to wide format can now implement multiple reshape dimensions which are
   usually one or multiple TAB columns. For instance for *LESEFERD* of `tot_elev`
   is the product of both `mestringsnivå` and `klassetrinn`. (#188)
 - The output will be arrange on a standard column order. (#190)
 - Debugging will be easier with a wrapper function `debug_opt()`. (#196)
-
-## orgdata 0.4.6
-
 - Fixed #147 to implement reshape wide format to create denominator. This
   function is only applicable to certain file structure received from SSB. For
   example filegroup *LESEFERD* where column `tot_elev` represents the total
@@ -63,9 +56,6 @@
   restructured to wide with value from the `ant_elev` to ensure summing up
   `tot_elev` when creating denominator will not create a grand total of students
   instead of the total number of students with `mestringsnivå`. (#184)
-  
-## orgdata 0.4.5
-
 - Fixed #162 when saving geographical codebook with `write = TRUE` and the table
   doesn't exist in the *geo-code* database.
 - Stop looping the geographical levels when `orgdata.debug.geo` or
@@ -85,9 +75,6 @@
   are based on municipality codes with added `xxxx99` or `xxxx9999`. As in #177
   but recode is done on municipality codes before merging back to the original
   dataset. (#182)
-
-## orgdata 0.4.4
-
 - Add `codeDelete` in `log` for geographical codes that aren't able to be
   merged. The codes will be excluded in the dataset. To access all the deleted
   codes use `log$codeDelete`. (#149)
@@ -105,9 +92,6 @@
   select the base year for recoding geographical code from the year of the
   original file to the current year. Default is `FALSE` ie. include all
   available geographical codes available in the codebook. (#157)
-
-## orgdata 0.4.3
-
 - Fixed #139 for `orgdata.debug.geo` keep original geo codes for enumeration
   areas before adding 9999. (#140)
 - Fixed #142 show codes that have problem to recode directly instead of row
@@ -117,21 +101,14 @@
 - Recode geo even when argument `aggregate = FALSE` in `make_file()` function.
 - Rename `make_filegroup` and `lag_filgruppe` to plural ie. `make_filegroups`
   and `lag_filgrupper`.
-
-## orgdata 0.4.2
-
 - Use options `orgdata.debug.row` to select only specific row(s) for further
   processing. It can be activated via global options with
   `options(orgdata.debug.row = 20:50)` or via argument `row = 20:50` in
   `make_file()` to select row 20 to 50.
 - Fixed #135 with incorrect geo recode. (#131)
 - Make multiple filegroups via `make_filegroups`. (#137)
-
-## orgdata 0.4.1
 - Fixed #132 LANDSSB must be string
 - Convert whitespace to NA to be able to delete all rows with NA
-
-## orgdata 0.4.0
 - Fixed #119 able to mutate for TABS and VALS as well (#126)
 - Fixed #122 delete rows with NA via EXTRA column (#127)
 - Fixed #118 warning text when column(s) aren't defined in FILGRUPPE and will be
@@ -142,18 +119,12 @@
   selected column(s) must be recoded to a valid value.
 
 # orgdata 0.3
-
-## orgdata 0.3.10
 - Use `options(orgdata.debug.geo = TRUE)` to keep old geo codes for debuging (#120)
 - Use `reset_options()` to reset to default options.
 - Warn when process discontinued due to debugging.
 - Add vignettes for **Standardize git** and **Debugging**
 - Fixed #121 recode geographical code for split codes (#120)
-
-## orgdata 0.3.9
 - Change database filename to **raw-database_BE.accdb**
-
-## orgdata 0.3.8
 - Fixed #106 split long messages (#107)
 - Fixed #108 #112 grunnkrets codes that have changed before 2002 not available
   via API from SSB while code changes for municipality includes changes
@@ -162,8 +133,6 @@
   use the municipality codes to create uspesified grunnkrets codes for data
   before 2002 (#109 #113)
 - Fixed #110 updating SQL code for new table name for codebook (#111)
-
-## orgdata 0.3.7
 - Check columns to aggregate for any possible `NA` (#98). Columns that have `NA`
   should be recoded to `uoppgitt` or something equivalent since leaving the
   category to `NA` will conflict with `NA` representing total value when
@@ -176,8 +145,6 @@
   with 2 zeros `xxxxxx00`. To avoid missing the information, these geo codes are
   recoded to `xxxx9999` with function `is_grunnkrets_0000()` as in PR (#103).
 - `see_file()` accepts just a single numeric as well.
-
-## orgdata 0.3.6
 - Fixed #85 `see_file()` list all the columns when columnames or column indexes
   are not specified. The variables are sorted whenever possible. (#87)
 - Add more function tests (#88)
@@ -191,21 +158,13 @@
   `9999` is added at the end of these codes (#96)
 - Gives row number for GEO codes that get coerced as `NA` when converted to
   integer. This will make it easy to check in the original raw data (#96)
-  
-## orgdata 0.3.5
 - Aggregate now give total to all dimensions including those specified in
   `AGGKOL` (#82)
 - Function `see_file()` accept column index as well (#83)
-
-## orgdata 0.3.4
-
 - Recode variables using regular expression when defined in codebook with type
   `RE`. Finding pattern can either be written in ordinary regular expression ie.
   `\\d{4}.*` or with `rex()` package. (#78)
 - New feature for checking categories for variables with `see_file()` (#75)
-
-## orgdata 0.3.3
-
 - Fixed #65 make TABS and VALS dynamic for easy extension for these columns (#66)
 - Fixed #64 recode of variable that has different class (#68)
 - Fixed #63 implicit null includes all possible VAL columns when exist (#69)
@@ -214,18 +173,12 @@
   `LANDSSB`, `LANDBAK` and `INNVKAT` (#72)
 - Fixed #61 use AGGKOL in Access registration database to specify other columns to
   aggregate other than the standard eg. `KJONN`, `TAB1`, `TAB2` etc. (#73)
-
-## orgdata 0.3.2
 - Fixed #55 to recode standard variables via codebook instead of hard coded (#58)
 - Fixed #52 skip split if not specified (#59)
 - Fixed #57 split column with duplicated values will keep the original column (#60)
 - Fixed #56 aggregate all VAL columns whenever specified and not only specific to
   `VAL1` (#62)
-
-## orgdata 0.3.1
 - Edit verbose messages
-
-## orgdata 0.3.0
 - Reshape dataset from wide to long. Reshape can have more than one `measure
   variables`. Please read how this is specified in Access registration database.
 - Split columns must have equal number of values to the defined `SPLITTIL`.
@@ -238,36 +191,22 @@
   `is_aggregate_standard_cols()` and `is_col_num()`.
 
 # orgdata 0.2
-
-## orgdata 0.2.4
 - Change argument parameter for `find_spec()` function.
 - Update text document in several places.
 - Add colour type *warn2* for warning message without `Warning:` prefix.
-
-## orgdata 0.2.3
 - Request (#43) messages with specific colour
 - Fixed (#46) recode to string even though columns is type integer or numeric.
-
-## orgdata 0.2.2
-
 - Unknown bydel ie. *(uoppgitt)* is added when enumeration areas codes ie.
   *(grunnkrets)* for bydel is `XXXX9999` in function `geo_level()`.
 - Add unknown grunnkrets for kommune when not available since some of the
   datasets have unknown grunnkrets that aren't listed in API downloaded data (#39).
 - Exclude `TAB1`, `TAB2` and `TAB3` from being aggregated. (#44) 
-
-## orgdata 0.2.1
-
 - Recode for aggregated variables uses `AG` in TYPE column in the codebook
   instead of FILGRUPPE with `AGGREGATE` as it was implemented in ver 0.2.0. This
   will make it possible so specify FILGRUPPE and LESID to implement the
   principle for **GENERAL**, **COMMON** and **SPECIFIC** variables.
 - Change function name `do_aggregate_recode` to `do_aggregate_recode_standard`
   for standard variables.
-
-
-## orgdata 0.2.0
-
 - Recode for aggregated categories can be defined in *Recode* form ie. codebook,
   and use `AGGREGATE` in the specification under FILGRUPPE
 - Delete rows when defined in codebook using minus symbol under TIL column.
@@ -276,9 +215,6 @@
 - Display both columnames to be recoded that are found in the dataset or those
   that aren't found when defined as `ALLE` in the codebook so user will be aware
   of its existence.
-
-# orgdata 0.1
-
 - Standardize some most used arguments to `read_file()` such as `nrows`,
   `header`, `skip`, `trimws` and `na`. Read details in `read_file()` function
   description.
@@ -293,15 +229,11 @@
 - Add column `LEVEL` for granularity level ie. grunnkrets, fylke, kommune, bydel etc
 
 # orgdata 0.0.1 - alpha version
-
-## orgdata 0.0.9 - alpha
 - When MANHEADER is used then the new columname must be specified in the respective standard column (#21) 
 - Deprecated arguments `geo` and `val` in `make_file`. Output data must use standard
   columnames instead of keeping the columnames from original dataset.
 - Rename functions `read_raw` or `lesraw` to `make_file` or `lag_fil` (#27)
 - Alle functions uses underscore "_" for both english and norwegian.
-
-## orgdata 0.0.8 - alpha
 - Add new columns if one of the standard columns is missing in the original
   data. The value to be inserted to the new column must use symbol less than `<`
   and more than `>`. For instance when column `KJONN` doesn't exist in the
@@ -311,21 +243,14 @@
 - Default `orgdata.verbose` is `TRUE`.
 - Options for `orgdata.implicit.null` with default as `TRUE`. Use
   `options(orgdata.implicit.null = FALSE)` to deactivate (#19)
-
-## orgdata 0.0.7 - alpha
-
+- Changes is in PR #11 and #12 is as the following:
 - Implicit zero (#11). Discussion is in [Gist](https://gist.github.com/ybkamaleri/cd789560d595d7a0d6eb46a23395fc51 "implicit-null")
 - Use version specific for imported packages.
 - Rename standard column `LANDBAK` to `LANDSSB` for column in original data
   received from SOB containing information about country of origin.
 - Save file as specified in column `MAPPE` in Access registration database or
   specify in `path` argument for function `save_file`. (#12)
-
-Changes is in PR #11 and #12
-
-
-## orgdata 0.0.6 - alpha
-
+- Changes is in PR #8 is as the following:
 - Create GEO code from two separate columns. This has to be defined in Access
   registration under `GEO` with comma separated eg. `nameGeoCol1, nameGeoCol2`.
 - Order standard columns in the output dataset with this order for the first four columns:
@@ -334,11 +259,7 @@ Changes is in PR #11 and #12
 - Use column name `KOLNAVN` instead of `ADDKOL`.
 - Rename function `do_addcols` and `get_addcols` to `do_colname` and
   `get_colname` to be consistent with the changes in Access registration database.
-
-Changes is in PR #8
-
-## orgdata 0.0.5 - alpha
-
+- Changes is in PR #4 is as the following:
 - Recode variables from specification in `tbl_KodeBok` uses:
   1. **GENERAL** variables are defined in FILGRUPPE as `ALLE` and are used to
      recode variables in all groups.
@@ -358,7 +279,6 @@ Changes is in PR #8
 - Error message will be given if LESID is specified without FILGRUPPE since
   LESID is not unique ID.
 
-Changes is in PR #4
 
 ## orgdata 0.0.4 - alpha
 
