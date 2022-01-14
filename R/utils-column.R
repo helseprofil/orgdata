@@ -69,6 +69,7 @@ is_col_var <- function(col){
 #'  and give warning and log when coercion
 #' @param dt Dataset
 #' @param cols Columns to be converted to numeric
+#' @param koblid ID to connect file and spec
 #' @param ... Extra arguments
 is_col_num_warn <- function(dt, cols, koblid = NULL){
   GEO <- NULL

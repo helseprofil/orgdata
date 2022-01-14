@@ -4,12 +4,16 @@
 \alias{is_col_num_warn}
 \title{Convert column to numeric with warning}
 \usage{
-is_col_num_warn(dt, cols)
+is_col_num_warn(dt, cols, koblid = NULL)
 }
 \arguments{
 \item{dt}{Dataset}
 
 \item{cols}{Columns to be converted to numeric}
+
+\item{koblid}{ID to connect file and spec}
+
+\item{...}{Extra arguments}
 }
 \description{
 Covert to numeric for columns that are expected to be numeric
