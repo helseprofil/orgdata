@@ -49,7 +49,7 @@ debug_opt <- function(opt = c("fun", "nrow", "row", "aggregate", "geo"), val = N
 
 
 #' @title Emoji
-#' @description Use emoji for fun :smile:
+#' @description Use emoji for fun &#128516;
 #' @param x Emoji to choose ie. thumb, smile or sad
 #' @examples emoji("smile")
 #' @export

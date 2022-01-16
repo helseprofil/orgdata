@@ -12,7 +12,7 @@ emoji(
 \item{x}{Emoji to choose ie. thumb, smile or sad}
 }
 \description{
-Use emoji for fun :smile:
+Use emoji for fun 😄
 }
 \examples{
 emoji("smile")
