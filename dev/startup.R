@@ -109,6 +109,7 @@ usethis::use_package("future.apply")
 usethis::use_package("listenv")
 usethis::use_package("progressr")
 usethis::use_package("withr")
+usethis::use_package("remotes")
 
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub

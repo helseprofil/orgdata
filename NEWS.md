@@ -1,3 +1,7 @@
+# orgdata 0.5.4
+- Update package via function `update_orgdata()`. Basically it's just a wrapper
+  for `remotes::install_github()`.
+
 # orgdata 0.5.3
 - Fixed the bugs with reshape wide consisting multiple dimensions ie. more than
   one *TAB* columns. (#228)

@@ -75,8 +75,10 @@ emoji <- function(x = c("mark", "thumb", "write",
 #' @description Update orgdata directly with Github repo. Default is `main` branch.
 #' @param ... Other arguments to `remotes::install_github()`
 #' @examples
+#' \dontrun{
 #' update_orgdata() #use default
 #' update_orgdata(ref = "dev") #to upgrade with dev branch
+#' }
 #' @export
 update_orgdata <- function(...){
   ## if(!requireNamespace("remotes")) install.packages("remotes", repos = "https://cloud.r-project.org")
