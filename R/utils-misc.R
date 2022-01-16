@@ -71,6 +71,25 @@ emoji <- function(x = c("mark", "thumb", "write",
 }
 
 
+#' @title Update package
+#' @description Update orgdata directly with Github repo. Default is `main` branch.
+#' @param ... Other arguments to `remotes::install_github()`
+#' @examples
+#' update_orgdata() #use default
+#' update_orgdata(ref = "dev") #to upgrade with dev branch
+#' @export
+update_orgdata <- function(...){
+  ## if(!requireNamespace("remotes")) install.packages("remotes", repos = "https://cloud.r-project.org")
+  unloadNamespace("orgdata")
+  remotes::install_github("helseprofil/orgdata", force = TRUE, ...)
+  attachNamespace("orgdata")
+}
+
+#' @export
+#' @rdname update_orgdata
+upgrade_orgdata <- update_orgdata
+
+
 ## TESTTHAT ----------------
 ## Skip when no database file are found eg. in CRAN or CI
 skip_error_db <- function(){
