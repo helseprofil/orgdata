@@ -1,10 +1,13 @@
-## Kjør alle herfra -------------------
+## Kjør alt herfra -------------------
 library(orgdata)
 options(orgdata.year = 2021) #Hvilket årgang til å omkode geo
 progressr::handlers(global = TRUE)
 ## til hit som oppsett ----------------
 
+## Fo å oppdatere pakken når ny versjon er tilgjengelig
+update_orgdata()
 
+## ----------------------------------
 ##   HUSK Å ALLTID TILORDNE ET OBJEKT for make_file og read_file ! ###
 ##   dt <- make_file()
 ## dvs. ^
