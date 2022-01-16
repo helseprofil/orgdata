@@ -28,7 +28,8 @@ cat(
 
 ```
 
-Aggregating **OR**i**G**inal **DATA** into a preferred data structure.
+Cleaning, restructuring and aggregating **OR**i**G**inal **DATA** into a
+preferred dataset.
 
 ## Installation
 
@@ -45,6 +46,12 @@ or use a user startup file *sepaafil.R* by cloning it from `user` branch
 git clone -b user https://github.com/helseprofil/orgdata
 ```
 
+To install development version from `orgdata`, use:
+
+```r
+library(orgdata)
+update_orgdata(ref = "dev")
+```
 
 ## Usage 
 
