@@ -83,7 +83,7 @@ emoji <- function(x = c("mark", "thumb", "write",
 update_orgdata <- function(...){
   ## if(!requireNamespace("remotes")) install.packages("remotes", repos = "https://cloud.r-project.org")
   unloadNamespace("orgdata")
-  remotes::install_github("helseprofil/orgdata", force = TRUE, ...)
+  suppressWarnings(remotes::install_github("helseprofil/orgdata", force = TRUE, ...))
   attachNamespace("orgdata")
 }
 
