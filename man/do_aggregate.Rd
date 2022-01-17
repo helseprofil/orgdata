@@ -7,9 +7,10 @@
 do_aggregate(
   dt = NULL,
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
-  level = c("grunnkrets", "fylke", "kommune", "bydel"),
+  level = c("grunnkrets", "fylke", "kommune", "bydel", "land"),
   year = NULL,
   aggregate.col = NULL,
+  geoDT = NULL,
   check = getOption("orgdata.debug.aggregate"),
   base = getOption("orgdata.recode.base"),
   control = FALSE,
@@ -30,6 +31,8 @@ aggregating. If not specified, then current year will be used}
 
 \item{aggregate.col}{Other columns to aggregate other than the standard ie.
 \code{UTDANN}, \code{LANDSSB}, \code{LANDBAK} and \code{INNVKAT}}
+
+\item{geoDT}{Geo codes to aggregate with}
 
 \item{check}{If TRUE then output will keep variables for geographical levels
 without aggregating it. This is useful to check for geographical codes that
