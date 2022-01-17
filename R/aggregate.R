@@ -1,3 +1,8 @@
+#' Environment to store geo data to aggregate
+#' @export .agr
+.agr <- new.env()
+
+
 #' @title Aggregate Data
 #' @description Aggregate data according to the specification in `tbl_Filgruppe`
 #'   in `AGGREGERE` column. The input in argument `source` must be a lower
@@ -11,6 +16,7 @@
 #'   aggregating. If not specified, then current year will be used
 #' @param aggregate.col Other columns to aggregate other than the standard ie.
 #'   `UTDANN`, `LANDSSB`, `LANDBAK` and `INNVKAT`
+#' @param geoDT Geo codes to aggregate dataset with
 #' @param check If TRUE then output will keep variables for geographical levels
 #'   without aggregating it. This is useful to check for geographical codes that
 #'   are missing. Else use `options(orgdata.aggregate = FALSE)`
@@ -42,6 +48,7 @@ do_aggregate <- function(dt = NULL,
                          ),
                          year = NULL,
                          aggregate.col = NULL,
+                         geoDT = NULL,
                          check = getOption("orgdata.debug.aggregate"),
                          base = getOption("orgdata.recode.base"),
                          control = FALSE,
@@ -78,26 +85,26 @@ do_aggregate <- function(dt = NULL,
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
 
-  geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
-  geoDB <- is_conn_db(geoFile)
+  ## geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+  ## geoDB <- is_conn_db(geoFile)
 
-  ## Cast geo levels ie. aggregate to different geo levels
-  geoDT <- find_spec(
-    "geo-code.sql",
-    con = geoDB$dbconn,
-    char = source,
-    char2 = year,
-    opposite = TRUE
-  )
-  data.table::setDT(geoDT)
+  ## ## Cast geo levels ie. aggregate to different geo levels
+  ## geoDT <- find_spec(
+  ##   "geo-code.sql",
+  ##   con = geoDB$dbconn,
+  ##   char = source,
+  ##   char2 = year,
+  ##   opposite = TRUE
+  ## )
+  ## data.table::setDT(geoDT)
 
-  ## Columns that are type integer
-  intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
-  geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
+  ## ## Columns that are type integer
+  ## intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
+  ## geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
 
-  if (level == "land"){
-    geoDT[, "land" := 0L]
-  }
+  ## if (level == "land"){
+  ##   geoDT[, "land" := 0L]
+  ## }
 
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
@@ -243,4 +250,26 @@ is_validate_NA <- function(cols, dt){
       is_stop(msg = msgAgg, var = paste_cols(i))
     }
   }
+}
+
+## Download geo dataset
+is_geo_cast <- function(source, year){
+
+  geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+  geoDB <- is_conn_db(geoFile)
+
+  ## Cast geo levels ie. aggregate to different geo levels
+  geoDT <- find_spec(
+    "geo-code.sql",
+    con = geoDB$dbconn,
+    char = source,
+    char2 = year,
+    opposite = TRUE
+  )
+  data.table::setDT(geoDT)
+
+  ## Columns that are type integer
+  intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
+  geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
+  geoDT[, "land" := 0L]
 }
