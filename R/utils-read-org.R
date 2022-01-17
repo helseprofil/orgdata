@@ -84,6 +84,7 @@ is_aggregate <- function(dt = NULL,
   }
 
   if (aggregate){
+    .agr$geo <- is_geo_cast(source = source, year = year)
     nSpec <- length(aggSpec)
     DT <- vector(mode = "list", length = nSpec)
     for (i in seq_len(nSpec)) {
@@ -92,6 +93,7 @@ is_aggregate <- function(dt = NULL,
                           level = aggSpec[i],
                           year = year,
                           aggregate.col = aggCol,
+                          geoDT = .agr$geo,
                           base = base,
                           control = control,
                           wide = wide)
@@ -99,6 +101,7 @@ is_aggregate <- function(dt = NULL,
       gc()
       rm(dtt)
     }
+    rm(geo, envir = .agr)
     dt <- data.table::rbindlist(DT, use.names = TRUE, fill = TRUE)
   } else {
     is_verbose(x = "", msg = "Dataset will not be aggregated!", type = "warn")
