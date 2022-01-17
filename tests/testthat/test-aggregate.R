@@ -1,3 +1,18 @@
+test_that("Aggregate file", {
+
+  aggDT <- readRDS(system.file("testdata", "aggregate-dt.rds", package = "orgdata"))
+  geoDT <- readRDS(system.file("testdata", "geo-aggregate-dt.rds", package = "orgdata"))
+  outDT <- readRDS(system.file("testdata", "aggregate-out.rds", package = "orgdata"))
+
+  expect_equal(do_aggregate(dt = aggDT,
+                            source = "grunnkrets",
+                            level = "kommune",
+                            year = 2021,
+                            geoDT = geoDT,
+                            wide = as.character(1:3)), outDT)
+
+})
+
 test_that("Aggregate group list", {
 
   ## DATA ----------------
