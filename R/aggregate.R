@@ -85,27 +85,6 @@ do_aggregate <- function(dt = NULL,
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
 
-  ## geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
-  ## geoDB <- is_conn_db(geoFile)
-
-  ## ## Cast geo levels ie. aggregate to different geo levels
-  ## geoDT <- find_spec(
-  ##   "geo-code.sql",
-  ##   con = geoDB$dbconn,
-  ##   char = source,
-  ##   char2 = year,
-  ##   opposite = TRUE
-  ## )
-  ## data.table::setDT(geoDT)
-
-  ## ## Columns that are type integer
-  ## intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
-  ## geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
-
-  ## if (level == "land"){
-  ##   geoDT[, "land" := 0L]
-  ## }
-
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
 
@@ -254,7 +233,7 @@ is_validate_NA <- function(cols, dt){
 
 ## Download geo dataset
 is_geo_cast <- function(source, year){
-
+# source - Geo code granularity in the dataset ie. to be aggreagated from
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geoDB <- is_conn_db(geoFile)
 
@@ -272,4 +251,6 @@ is_geo_cast <- function(source, year){
   intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
   geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
   geoDT[, "land" := 0L]
+  ncols <- names(geoDT)!="batch"
+  data.table::setcolorder(geoDT, c(names(geoDT)[ncols], "batch"))
 }
