@@ -4,7 +4,7 @@ options(orgdata.year = 2021) #Hvilket årgang til å omkode geo
 progressr::handlers(global = TRUE)
 ## til hit som oppsett ----------------
 
-## Fo å oppdatere pakken når ny versjon er tilgjengelig
+## Oppdatere pakken når ny versjon er tilgjengelig
 update_orgdata()
 
 ## ----------------------------------
