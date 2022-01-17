@@ -1,8 +1,3 @@
-#' Environment to store geo data to aggregate
-#' @export .agr
-.agr <- new.env()
-
-
 #' @title Aggregate Data
 #' @description Aggregate data according to the specification in `tbl_Filgruppe`
 #'   in `AGGREGERE` column. The input in argument `source` must be a lower
