@@ -37,7 +37,8 @@ do_aggregate <- function(dt = NULL,
                            "grunnkrets",
                            "fylke",
                            "kommune",
-                           "bydel"
+                           "bydel",
+                           "land"
                          ),
                          year = NULL,
                          aggregate.col = NULL,
@@ -94,13 +95,12 @@ do_aggregate <- function(dt = NULL,
   intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
   geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
 
+  if (level == "land"){
+    geoDT[, "land" := 0L]
+  }
+
   deleteVar <- c("code", "level", "name", "validTo")
   keepVar <- setdiff(names(geoDT), deleteVar)
-
-  ## ## TODO read_file should convert integer variables
-  ## if (is(dt$GEO, "character")) {
-  ##   dt[, GEO := as.integer(GEO)]
-  ## }
 
   ## is_verbose("Merging geo codes...", type = "note")
   dt[geoDT, on = c(GEO = "code"), (keepVar) := mget(keepVar)]
@@ -159,6 +159,7 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
                  "F" = "fylke",
                  "K" = "kommune",
                  "B" = "bydel",
+                 "L" = "land",
                  "grunnkrets"
                  )
     level[[i]] <- gg
