@@ -1,3 +1,8 @@
+# orgdata 0.5.5
+- Able to aggregate to country level in addition to other geographical levels (#240)
+- Download the geo code to aggregate with only once despite the different
+  geographical levels the dataset to be aggregated into (#241)
+
 # orgdata 0.5.4
 - Update package via function `update_orgdata()`. Basically it's just a wrapper
   for `remotes::install_github()`.
