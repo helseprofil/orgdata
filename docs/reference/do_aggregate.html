@@ -19,7 +19,7 @@ granularity level than the level input."><meta property="og:image" content="/log
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.5</span>
       </span>
     </div>
 
@@ -82,9 +82,10 @@ granularity level than the <code>level</code> input.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">do_aggregate</span><span class="op">(</span>
   dt <span class="op">=</span> <span class="cn">NULL</span>,
   source <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grunnkrets"</span>, <span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span><span class="op">)</span>,
-  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grunnkrets"</span>, <span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span><span class="op">)</span>,
+  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grunnkrets"</span>, <span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"land"</span><span class="op">)</span>,
   year <span class="op">=</span> <span class="cn">NULL</span>,
   aggregate.col <span class="op">=</span> <span class="cn">NULL</span>,
+  geoDT <span class="op">=</span> <span class="cn">NULL</span>,
   check <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"orgdata.debug.aggregate"</span><span class="op">)</span>,
   base <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"orgdata.recode.base"</span><span class="op">)</span>,
   control <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -108,6 +109,8 @@ aggregating. If not specified, then current year will be used</p></dd>
 <dt>aggregate.col</dt>
 <dd><p>Other columns to aggregate other than the standard ie.
 <code>UTDANN</code>, <code>LANDSSB</code>, <code>LANDBAK</code> and <code>INNVKAT</code></p></dd>
+<dt>geoDT</dt>
+<dd><p>Geo codes to aggregate dataset with</p></dd>
 <dt>check</dt>
 <dd><p>If TRUE then output will keep variables for geographical levels
 without aggregating it. This is useful to check for geographical codes that

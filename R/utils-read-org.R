@@ -84,21 +84,23 @@ is_aggregate <- function(dt = NULL,
   }
 
   if (aggregate){
+    geoCode <- is_geo_cast(source = source, year = year)
     nSpec <- length(aggSpec)
-    DT <- vector(mode = "list", length = nSpec)
-    for (i in seq_len(nSpec)) {
-      dtt <- do_aggregate(dt = dt,
-                          source = source,
-                          level = aggSpec[i],
-                          year = year,
-                          aggregate.col = aggCol,
-                          base = base,
-                          control = control,
-                          wide = wide)
-      DT[[i]] <- data.table::copy(dtt)
-      gc()
-      rm(dtt)
-    }
+
+    DT <- lapply(seq_len(nSpec),
+                 function(x){
+                   do_aggregate(
+                     dt = dt,
+                     source = source,
+                     level = aggSpec[x],
+                     year = year,
+                     aggregate.col = aggCol,
+                     geoDT = geoCode,
+                     base = base,
+                     control = control,
+                     wide = wide)
+                 })
+
     dt <- data.table::rbindlist(DT, use.names = TRUE, fill = TRUE)
   } else {
     is_verbose(x = "", msg = "Dataset will not be aggregated!", type = "warn")

@@ -102,22 +102,21 @@ make_file <- function(group = NULL,
     useParallel <- parallel
   }
 
-  if(useParallel){
+  options(parallelly.availableCores.custom = function() {
+    ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
+    ncores <- min(as.integer(useCore * ncores))
+    max(1L, ncores)
+  })
 
-    options(parallelly.availableCores.custom = function() {
-      ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
-      ncores <- min(as.integer(useCore * ncores))
-      max(1L, ncores)
-    })
+  future::plan("multisession")
+
+
+  if (useParallel){
+    p <- progressr::progressor(steps = rowFile)
     paraMsg1 <- paste0("Start parallel processing ... \U001F680")
     paraMsg <- paste0("Start parallel processing with ", parallelly::availableCores(), " cores \U001F680")
     is_verbose(msg = paraMsg)
 
-    future::plan(future::multisession)
-    p <- progressr::progressor(steps = rowFile)
-  }
-
-  if (useParallel){
     DT <- future.apply::future_lapply(seq_len(rowFile),
                                       function(x) {
                                         p()
@@ -191,6 +190,9 @@ make_file <- function(group = NULL,
   ## -- DELETE OLD BYDEL --
   bySpec <- get_extra_args_group(spec = fgSpec)
   outDT <- do_extra_args_group(dt = outDT, args = bySpec )
+
+  ## Shut down parallel workers
+  future::plan("sequential")
 
   if (save) {
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
