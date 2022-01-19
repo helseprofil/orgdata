@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.6</span>
       </span>
     </div>
 
@@ -122,11 +122,13 @@
 <div class="section level2">
 <h2 id="orgdata-debug">orgdata.debug<a class="anchor" aria-label="anchor" href="#orgdata-debug"></a>
 </h2>
-<p>This is used to display the process flow when running any functions in <code>orgdata</code>. It is useful to know which process creates problems during troubleshoot. To activate:</p>
+<p>This is used to display the process flow when running any functions in <code>orgdata</code>. It is useful to know which process creates problems during troubleshoot. Options <code>shallow</code> and <code>deep</code> are used to decide the levels of functions to be shown during the process flow. Selecting <code>shallow</code> is equal to <code>TRUE</code> while <code>deep</code> will show the helper functions as well. To activate:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># OR</span>
-<span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"fun"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"shallow"</span><span class="op">)</span>
+<span class="co"># OR</span>
+<span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"deep"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="orgdata-debug-nrow">orgdata.debug.nrow<a class="anchor" aria-label="anchor" href="#orgdata-debug-nrow"></a>
