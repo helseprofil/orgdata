@@ -198,7 +198,7 @@ make_file <- function(group = NULL,
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
 
-  prodMsg <- "Done production year for"
+  prodMsg <- paste0("Done! `", group ,"` for")
   withr::with_options(list(orgdata.emoji = "thumb"),
                       is_colour_txt(x = year,
                                     msg = prodMsg,
