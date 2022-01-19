@@ -52,6 +52,8 @@ is_aggregate <- function(dt = NULL,
                          control = FALSE,
                          wide = NULL, ...){
 
+  is_debug(deep = TRUE)
+
   GEO <- NULL
 
   aggSpec <- get_aggregate(spec = fgspec)

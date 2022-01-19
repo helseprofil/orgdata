@@ -126,6 +126,7 @@ do_aggregate <- function(dt = NULL,
 #' @family aggregate functions
 #' @export
 get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
+  is_debug(deep = TRUE)
   is_null_both(group, spec)
   is_not_null_both(group, spec)
 
@@ -172,6 +173,8 @@ is_set_list <- function(level, srcCols, colx = NULL, dt = NULL) {
   # level - Geo granularity to aggregate.R
   # srcCols - Colnames of source data to be aggregated
   # colx - Colnames to aggregate other than standard
+
+  is_debug(deep = TRUE)
 
   ## Don't aggregate these columns
   tabs <- paste0("TAB", 1:getOption("orgdata.tabs"))
@@ -229,6 +232,7 @@ is_validate_NA <- function(cols, dt){
 ## Download geo dataset
 is_geo_cast <- function(source, year){
 # source - Geo code granularity in the dataset ie. to be aggreagated from
+  is_debug(deep = TRUE)
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geoDB <- is_conn_db(geoFile)
 

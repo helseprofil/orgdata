@@ -71,7 +71,7 @@ get_split <- function(group = NULL, con = NULL, spec = NULL) {
 
 ## Helper -------------------
 is_split_check <- function(dt, split){
-
+  is_debug(deep = TRUE)
   frm <- split$from #variable to be split
   fval <- unique(dt[[frm]]) #values from variable to be split
   fnr <- nchar(fval) #number of digits for each values
