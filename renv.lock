@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.1",
+    "Version": "4.1.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -27,10 +27,10 @@
     },
     "RSQLite": {
       "Package": "RSQLite",
-      "Version": "2.2.8",
+      "Version": "2.2.9",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "1eab1dd4df2b76758fd8acab09a0e9b6",
+      "Hash": "10d7d118b5ad61a9a02b5cbf36119ac4",
       "Requirements": [
         "DBI",
         "Rcpp",
@@ -43,10 +43,10 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.0.7",
+      "Version": "1.0.8",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "dab19adae4440ae55aa8a9d238b246bb",
+      "Hash": "22b546dd7e337f6c0c58a39983a496bc",
       "Requirements": []
     },
     "askpass": {
@@ -146,21 +146,18 @@
     },
     "crayon": {
       "Package": "crayon",
-      "Version": "1.4.1",
+      "Version": "1.4.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "e75525c55c70e5f4f78c9960a4b402e9",
+      "Hash": "0a6a65d92bd45b47b94b84244b528d17",
       "Requirements": []
     },
     "crul": {
       "Package": "crul",
-      "Version": "1.2.1.99",
+      "Version": "1.2.0",
       "Source": "Repository",
-      "Repository": "https://ropensci.r-universe.dev",
-      "RemoteUrl": "https://github.com/ropensci/crul",
-      "RemoteRef": "main",
-      "RemoteSha": "d9ff4774d78ebdafd4bf48e326a539260959d63e",
-      "Hash": "c99046567ae9dc4b8dd534e3c5217ec1",
+      "Repository": "CRAN",
+      "Hash": "607162d6f0d735014263cb0160c5be72",
       "Requirements": [
         "R6",
         "curl",
@@ -206,10 +203,10 @@
     },
     "fansi": {
       "Package": "fansi",
-      "Version": "0.5.0",
+      "Version": "1.0.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d447b40982c576a72b779f0a3b3da227",
+      "Hash": "ae34c3d1fdfac1566ca17c1b5d8f2613",
       "Requirements": []
     },
     "fastmap": {
@@ -363,10 +360,10 @@
     },
     "memoise": {
       "Package": "memoise",
-      "Version": "2.0.0",
+      "Version": "2.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a0bc51650201a56d00a4798523cc91b3",
+      "Hash": "e2817ccf4a065c5d9d7f2cfbe7c1d78c",
       "Requirements": [
         "cachem",
         "rlang"
@@ -420,26 +417,26 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "1.4.5",
+      "Version": "1.4.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5406fd37ef0bf9b88c8a4f264d6ec220",
+      "Hash": "69fdf291af288f32fd4cd93315084ea8",
       "Requirements": [
         "askpass"
       ]
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.5.3",
+      "Version": "0.5.5",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "b7b4270fd20b1b652513fb96a4e98144a369f1dc",
+      "RemoteSha": "20d4636c7332459adcfddd7146852ebef75486f1",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "89db3734ff988fb07d32db0872c8df38",
+      "Hash": "b57106b2b3a9fcee80cf2f0f5ecff90d",
       "Requirements": [
         "DBI",
         "R6",
@@ -455,6 +452,7 @@
         "parallelly",
         "progressr",
         "readxl",
+        "remotes",
         "rex",
         "tibble",
         "withr"
@@ -553,6 +551,14 @@
       "Hash": "c66b930d20bb6d858cd18e1cebcfae5c",
       "Requirements": []
     },
+    "remotes": {
+      "Package": "remotes",
+      "Version": "2.4.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "227045be9aee47e6dda9bb38ac870d67",
+      "Requirements": []
+    },
     "renv": {
       "Package": "renv",
       "Version": "0.15.0",
@@ -563,10 +569,10 @@
     },
     "rex": {
       "Package": "rex",
-      "Version": "1.2.0",
+      "Version": "1.2.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "093584b944440c5cd07a696b3c8e0e4c",
+      "Hash": "ae34cd56890607370665bee5bd17812f",
       "Requirements": [
         "lazyeval"
       ]
@@ -597,10 +603,10 @@
     },
     "tibble": {
       "Package": "tibble",
-      "Version": "3.1.5",
+      "Version": "3.1.6",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "36eb05ad4cfdfeaa56f5a9b2a1311efd",
+      "Hash": "8a8f02d1934dfd6431c671361510dd0b",
       "Requirements": [
         "ellipsis",
         "fansi",
