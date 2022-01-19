@@ -153,11 +153,19 @@ is_verbose <- function(x = NULL, msg = NULL,
   }
 }
 
-is_debug <- function() {
-  if (getOption("orgdata.debug")) {
+## Show helper functions with "deep"
+is_debug <- function(type = getOption("orgdata.debug"), deep = FALSE, showFUN = FALSE) {
+
+  if (isTRUE(type) || type == "shallow") showFUN <- TRUE
+
+  if (isTRUE(deep)) showFUN <- FALSE
+  if (type == "deep"){
+    showFUN <- TRUE
+  }
+
+  if (showFUN) {
     fnc <- sys.calls()[[sys.nframe() - 1]][1]
     is_colour_txt(x = deparse(fnc), msg = "Execute:", type = "debug")
-    ## cat(note(paste0("Execute:  ", deparse(fnc))))
   }
 }
 
