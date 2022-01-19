@@ -50,6 +50,8 @@ get_extra_args <- function(group = NULL, con = NULL, spec = NULL){
 is_delete_na_row <- function(dt = NULL, extra = NULL){
   nrc <- NULL
 
+  is_debug(deep = TRUE)
+
   delRow <- any(extra == "DeleteNaRow")
   if (isTRUE(delRow)){
     dt <- is_null_to_na(dt)

@@ -156,6 +156,10 @@ is_verbose <- function(x = NULL, msg = NULL,
 ## Show helper functions with "deep"
 is_debug <- function(type = getOption("orgdata.debug"), deep = FALSE, showFUN = FALSE) {
 
+  if (isFALSE(type)){
+    return()
+  }
+
   if (isTRUE(type) || type == "shallow") showFUN <- TRUE
 
   if (isTRUE(deep)) showFUN <- FALSE

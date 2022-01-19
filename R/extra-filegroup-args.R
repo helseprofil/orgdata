@@ -50,6 +50,7 @@ get_extra_args_group <- function(group = NULL, con = NULL, spec = NULL){
 ## Arguments ----------------
 # Delete older bydel ie. before 2003 except for Oslo
 is_delete_bydel_before_2003 <- function(dt = NULL, extra = NULL){
+  is_debug(deep = TRUE)
   delBydel <- any(extra == "DeleteOldBydel")
 
   if (isTRUE(delBydel)){

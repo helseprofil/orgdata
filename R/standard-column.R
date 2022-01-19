@@ -18,9 +18,6 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
   data.table::setnames(dt, spec$old, spec$new)
 }
 
-is_column_equal <- function(dt, spec){
-
-}
 
 #' @title Get Standard Columns
 #' @description Standard columns names in rawdata will be checked against
@@ -34,7 +31,7 @@ is_column_equal <- function(dt, spec){
 #' @import data.table
 #' @export
 get_column_standard <- function(group = NULL, con = NULL, spec = NULL) {
-
+  is_debug(deep = TRUE)
   is_null_both(group, spec)
   is_not_null_both(group, spec)
 

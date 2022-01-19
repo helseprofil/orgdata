@@ -99,6 +99,8 @@ do_geo_recode <- function(dt = NULL,
                           ){
   GEO <- i.to <- changeOccurred <- NULL
 
+  is_debug()
+
   withr::with_options(list(orgdata.emoji = "write"),
                       is_color_txt(x = "", msg = "Recode geo codes ...", emoji = TRUE))
 
@@ -179,7 +181,7 @@ get_geo_recode <- function(con = NULL,
 
   changeOccurred <- NULL
 
-  is_debug()
+  is_debug(deep = TRUE)
   is_null(con)
   is_null(year)
   type <- match.arg(type)
@@ -226,6 +228,7 @@ is_grunnkrets_na <- function(dt, control = FALSE){
 is_grunnkrets_0000 <- function(dt, control = FALSE, ...){
   GEO <- AAR <- NULL
 
+  is_debug(deep = TRUE)
   nr00 <- dt[GEO %like% "0000$", .N]
   if (nr00 > 0){
     idx <- dt[, .I[GEO %like% "0000$"]]
@@ -250,6 +253,7 @@ is_grunnkrets_0000 <- function(dt, control = FALSE, ...){
 is_grunnkrets <- function(dt, control = FALSE, ...){
   GEO <- dummy_grk <- NULL
 
+  is_debug(deep = TRUE)
   dt[, dummy_grk := data.table::fifelse(nchar(GEO) > 6 , yes = 0, no = 1, na = 0)]
 
   dummy <- dt[dummy_grk != 0, .N]
@@ -308,6 +312,8 @@ is_problem_geo_before_2002 <- function(dt, dcode, type, year, con){
   # type - grunnkrets or bydel
 
   GEO <- Geo_Dummy <- oldCode <- currentCode <- i.newGEO <- newGEO <- NULL
+
+  is_debug(deep = TRUE)
   yr <- unique(dt$AAR)
 
   yrOld <- any(yr < 2003)

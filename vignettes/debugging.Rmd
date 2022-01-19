@@ -30,13 +30,18 @@ Warning will be given when debugging is active.
 
 ## orgdata.debug
 
-This is used to display the process flow when running any functions in `orgdata`. It is
-useful to know which process creates problems during troubleshoot. To activate:
+This is used to display the process flow when running any functions in
+`orgdata`. It is useful to know which process creates problems during
+troubleshoot. Options `shallow` and `deep` are used to decide the levels of
+functions to be shown during the process flow. Selecting `shallow` is equal to
+`TRUE` while `deep` will show the helper functions as well. To activate:
 
 ```{r debug, eval = FALSE}
 options(orgdata.debug = TRUE)
 # OR
-debug_opt("fun")
+debug_opt("shallow")
+# OR
+debug_opt("deep")
 ```
 
 ## orgdata.debug.nrow

@@ -73,7 +73,7 @@ is_col_var <- function(col){
 #' @param ... Extra arguments
 is_col_num_warn <- function(dt, cols, koblid = NULL){
   GEO <- NULL
-
+  is_debug(deep = TRUE)
   for (j in seq_len(length(cols))){
     col <- cols[j]
     if (methods::is(dt[[col]], "character")) {

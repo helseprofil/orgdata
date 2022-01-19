@@ -33,7 +33,7 @@ opt.orgdata <- list(
   orgdata.num = c("GEO", "AAR", "KJONN", "ALDER"),
 
   ## Use for debuging purposes only
-  orgdata.debug = FALSE,
+  orgdata.debug = FALSE,  #Choose "deep" to show helper functions as well
   orgdata.debug.nrow = 0,  #If other than 0 then x rows will be selected
   orgdata.debug.row = NULL, #Select specific rows eg. 20:50
   orgdata.debug.aggregate = FALSE, #Recode but don't aggregate if TRUE
@@ -52,5 +52,5 @@ opt.orgdata <- list(
 }
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("orgdata version 0.5.5")
+  packageStartupMessage("orgdata version 0.5.6")
 }

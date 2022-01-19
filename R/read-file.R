@@ -68,7 +68,7 @@ les_fil <- read_file
 ## Helper -------------------------------------
 
 is_id_file <- function(filid = NULL, con = NULL) {
-  is_debug()
+  is_debug(deep = TRUE)
   if (is.null(con)) {
     dbFile <- is_path_db(
       db = getOption("orgdata.db"),
