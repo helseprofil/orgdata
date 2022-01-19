@@ -198,6 +198,12 @@ make_file <- function(group = NULL,
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
 
+  prodMsg <- "Done production year for"
+  withr::with_options(list(orgdata.emoji = "thumb"),
+                      is_colour_txt(x = year,
+                                    msg = prodMsg,
+                                    type = "note",
+                                    emoji = TRUE))
   return(outDT[])
 }
 
