@@ -6,7 +6,7 @@
 \alias{find_column_multi_input_arg}
 \title{Columns with Multiple Inputs}
 \usage{
-find_column_multi(spec = NULL, col = NULL, sep = c(",", "|", ":", ";"))
+find_column_multi(spec = NULL, col = NULL, sep = c(",", "|", ":", ";", "&"))
 
 find_column_multi_input(input = NULL)
 

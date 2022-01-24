@@ -34,6 +34,7 @@ recode \code{NA} to a preferred value such as \code{0} or \code{Total}.
 }
 \seealso{
 Other recode functions: 
+\code{\link{do_recode_post}()},
 \code{\link{do_recode_regexp}()},
 \code{\link{do_recode}()},
 \code{\link{get_codebok_aggregate}()},

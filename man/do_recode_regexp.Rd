@@ -25,6 +25,7 @@ is specified with \code{ALLE} while \code{LESID} left empty.
 \seealso{
 Other recode functions: 
 \code{\link{do_recode_aggregate}()},
+\code{\link{do_recode_post}()},
 \code{\link{do_recode}()},
 \code{\link{get_codebok_aggregate}()},
 \code{\link{get_codebok_regexp}()},

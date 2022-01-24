@@ -7,7 +7,7 @@ reset_opt()
 
 ## devtools::check(vignettes = FALSE)
 roxygen2::roxygenise(clean = TRUE)
-# Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0) #avoid to verify file timestamp when check()
+Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0) #avoid to verify file timestamp when check()
 ## Skip test that only relevant to run locally eg. need access to DB
 ## Use function skip_if_check(). See example in test-make-file.R
 devtools::check(env_vars = c(ORGDATA_TEST = "true"))
