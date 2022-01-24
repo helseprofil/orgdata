@@ -6,6 +6,8 @@
   aggregated. Specification to select the row to be recoded uses either standard
   expression or R syntax of `data.table` style. When using R syntax the value
   must have `raw` prefix eg. `raw(AAR %in% c(2000, 2005))`. #244 #245
+- Delete rows with `"-"` minus symbol in `TIL` column in the codebook is
+  accepted for `do_recode_post()`.
 
 # orgdata 0.5.5
 - Able to aggregate to country level in addition to other geographical levels (#240)
