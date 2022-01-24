@@ -183,9 +183,6 @@ make_file <- function(group = NULL,
   numCols <- c(getOption("orgdata.num"), paste0("VAL", 1:getOption("orgdata.vals")))
   outDT <- is_col_num_warn(outDT, numCols)
 
-  grpCols <- get_colname(spec = fgSpec)
-  outDT <- do_colname(dt = outDT, cols = grpCols)
-
   ## EXTRA ARGUMENTS FOR FILEGROUP ---------------------------
   ## -- DELETE OLD BYDEL --
   bySpec <- get_extra_args_group(spec = fgSpec)
@@ -194,6 +191,9 @@ make_file <- function(group = NULL,
   ## POST RECODE ---------------------------------------------
   outDT <- do_recode_post(dt = outDT, spec = fgSpec, con = kh$dbconn)
 
+  ## RENAME STANDARD COLUMNS ---------------------------------
+  grpCols <- get_colname(spec = fgSpec)
+  outDT <- do_colname(dt = outDT, cols = grpCols)
 
   ## Shut down parallel workers
   future::plan("sequential")
