@@ -6,6 +6,7 @@
 #' @inheritParams make_file
 #' @export
 do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base){
+  is_debug()
   fileSpec <- spec
   filePath <- is_path_raw(fileSpec, check = TRUE)
 

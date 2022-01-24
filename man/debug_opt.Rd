@@ -4,7 +4,10 @@
 \alias{debug_opt}
 \title{Debugging options}
 \usage{
-debug_opt(opt = c("fun", "nrow", "row", "aggregate", "geo"), val = NULL)
+debug_opt(
+  opt = c("shallow", "deep", "nrow", "row", "aggregate", "geo"),
+  val = NULL
+)
 }
 \arguments{
 \item{opt}{Debug options}
@@ -17,7 +20,8 @@ A wrapper for debugging options.
 \details{
 Options available:
 \itemize{
-\item "fun"       : Activating options \code{orgdata.debug}
+\item "shallow"   : Show the executed funcitons in the process flow
+\item "deep"      : Show deeper including helper functions in the process flow
 \item "nrow"      : For \code{orgdata.debug.nrow}. Default value is 20 if \code{val} argument is missing
 \item "row"       : For \code{orgdata.debug.row}. Default value is 1:50 if \code{val} argument is missing
 \item "aggregate" : Activating \code{orgdata.debug.aggregate}

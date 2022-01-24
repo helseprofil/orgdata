@@ -61,7 +61,7 @@ do_reshape_wide <- function(dt = NULL, respec = NULL){
 #' @export
 get_reshape_wide_spec <- function(dt = NULL, group = NULL, con = NULL, spec = NULL){
 
-  is_debug()
+  is_debug(deep = TRUE)
   is_null_both(group, spec)
   is_not_null_both(group, spec)
 

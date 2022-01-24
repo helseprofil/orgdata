@@ -1,3 +1,7 @@
+# orgdata 0.5.6
+- Debug functions can go deeper to show helper functions as well with
+  `debug_opt("deep")` or `options(orgdata.debug = "deep")` #243
+
 # orgdata 0.5.5
 - Able to aggregate to country level in addition to other geographical levels (#240)
 - Download the geo code to aggregate with only once despite the different

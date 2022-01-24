@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# orgdata <img src='man/figures/logo.png' align="right" width="100" height="120" />
+# orgdata <img src='man/figures/logo.png' align="right" width="110" height="138" />
 
 ```{r echo=FALSE, results="hide", message=FALSE}
 library("badger")
@@ -25,7 +25,6 @@ cat(
   badge_lifecycle("experimental", "orange"),
   badge_github_version("helseprofil/orgdata", "blue")
 )
-
 ```
 
 Cleaning, restructuring and aggregating **OR**i**G**inal **DATA** into a

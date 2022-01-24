@@ -80,6 +80,7 @@ get_implicit_ref <- function(dt, cols){
 #' @family implicit-null functions
 #' @export
 get_implicit_col <- function(dt, years, cols, refs){
+  is_debug(deep = TRUE)
   nn <- vector(mode = "list", length = length(cols))
   for (i in seq_along(cols)){
     col <- cols[i]
@@ -103,6 +104,7 @@ get_implicit_col <- function(dt, years, cols, refs){
 #' @family implicit-null functions
 #' @export
 get_implicit_per_year <- function(imp, refs, years, colstr, .env = parent.frame()){
+  is_debug(deep = TRUE)
   dty <- vector(mode = "list", length = length(years))
 
   for (i in seq_len(length(years))){

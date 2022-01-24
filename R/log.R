@@ -38,12 +38,6 @@ read_log <- function(name = NULL, koblid = NULL){
 }
 
 ## Helper --------------
-is_log <- function(value = NULL, x = NULL){
-  # value - Object to put in log
-  # x - name the object
-  assign(x = x, value = value, envir = log)
-}
-
 is_log_write <- function(value = NULL, x = NULL, koblid = NULL){
   # value - Object to put in log
   # x  - name the object
@@ -62,7 +56,7 @@ is_log_write <- function(value = NULL, x = NULL, koblid = NULL){
     logFun
   },
   error = function(err){
-    is_log(value = value, x = x)
+    assign(x = x, value = value, envir = log)
     paste0("log$", x)
   })
 

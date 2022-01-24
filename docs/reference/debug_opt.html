@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.6</span>
       </span>
     </div>
 
@@ -75,7 +75,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">debug_opt</span><span class="op">(</span>opt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fun"</span>, <span class="st">"nrow"</span>, <span class="st">"row"</span>, <span class="st">"aggregate"</span>, <span class="st">"geo"</span><span class="op">)</span>, val <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">debug_opt</span><span class="op">(</span>
+  opt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"shallow"</span>, <span class="st">"deep"</span>, <span class="st">"nrow"</span>, <span class="st">"row"</span>, <span class="st">"aggregate"</span>, <span class="st">"geo"</span><span class="op">)</span>,
+  val <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -87,7 +90,8 @@
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>Options available:</p><ul><li><p>"fun"       : Activating options <code>orgdata.debug</code></p></li>
+    <p>Options available:</p><ul><li><p>"shallow"   : Show the executed funcitons in the process flow</p></li>
+<li><p>"deep"      : Show deeper including helper functions in the process flow</p></li>
 <li><p>"nrow"      : For <code>orgdata.debug.nrow</code>. Default value is 20 if <code>val</code> argument is missing</p></li>
 <li><p>"row"       : For <code>orgdata.debug.row</code>. Default value is 1:50 if <code>val</code> argument is missing</p></li>
 <li><p>"aggregate" : Activating <code>orgdata.debug.aggregate</code></p></li>
