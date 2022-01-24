@@ -1,6 +1,11 @@
 # orgdata 0.5.6
 - Debug functions can go deeper to show helper functions as well with
   `debug_opt("deep")` or `options(orgdata.debug = "deep")` #243
+- Post recode uses type `PS` in codebook. The function is used when there is a
+  need to recode the value of a column after the dataset have been clean and
+  aggregated. Specification to select the row to be recoded uses either standard
+  expression or R syntax of `data.table` style. When using R syntax the value
+  must have `raw` prefix eg. `raw(AAR %in% c(2000, 2005))`. #244 #245
 
 # orgdata 0.5.5
 - Able to aggregate to country level in addition to other geographical levels (#240)

@@ -72,6 +72,7 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.6" id="orgdata-056">orgdata 0.5.6<a class="anchor" aria-label="anchor" href="#orgdata-056"></a></h2>
 <ul><li>Debug functions can go deeper to show helper functions as well with <code>debug_opt("deep")</code> or <code>options(orgdata.debug = "deep")</code> <a href="https://github.com/helseprofil/orgdata/issues/243" class="external-link">#243</a></li>
+<li>Post recode uses type <code>PS</code> in codebook. The function is used when there is a need to recode the value of a column after the dataset have been clean and aggregated. Specification to select the row to be recoded uses either standard expression or R syntax of <code>data.table</code> style. When using R syntax the value must have <code>raw</code> prefix eg. <code>raw(AAR %in% c(2000, 2005))</code>. <a href="https://github.com/helseprofil/orgdata/issues/244" class="external-link">#244</a> <a href="https://github.com/helseprofil/orgdata/issues/245" class="external-link">#245</a></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.5" id="orgdata-055">orgdata 0.5.5<a class="anchor" aria-label="anchor" href="#orgdata-055"></a></h2>
