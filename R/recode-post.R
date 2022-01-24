@@ -48,7 +48,7 @@ is_recode_post <- function(dt, ...){
   input <- vars[["input"]] #recode spec
 
   # Ensure similar type for column and value to be changed to
-  val <- as.numeric(toVAL)
+  val <- suppressWarnings(as.numeric(toVAL))
   if (is.na(val)){
     dt[, (recodeCol) := as.character(get(recodeCol))]
   }
