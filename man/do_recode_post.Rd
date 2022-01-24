@@ -4,7 +4,7 @@
 \alias{do_recode_post}
 \title{Post Recode Columns}
 \usage{
-do_recode_post(dt = NULL, spec = NULL, con = NULL, control = FALSE)
+do_recode_post(dt = NULL, spec = NULL, con = NULL)
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
@@ -12,9 +12,6 @@ do_recode_post(dt = NULL, spec = NULL, con = NULL, control = FALSE)
 \item{spec}{Specification from \code{tbl_Filgruppe}}
 
 \item{con}{Connection to database}
-
-\item{control}{Logical value. \code{TRUE} if the file has been controlled for
-possible errors}
 }
 \description{
 Recode selected columns after cleaning and processing the
@@ -22,7 +19,12 @@ filegroup based on the specification for \code{FILGRUPPE} in codebook with type
 \code{PS}. For example some columns in a filegroup doesn't have values for a
 specific year. This column should not have a value of 0. Instead a special
 symbol \code{..} is given, representing that the column is missing because the
-value is not available to calculate the value.
+value is not available for calculation. This is how to specify in \code{FRA}
+column in registration database to recode all years from 1990 to 2000 and
+TAB1 with value \code{foo} to a selected value in \code{KOL} column ie. \code{AAR = 1990:2000 & TAB1 = "foo"}. Important to use symbol \code{&} if more than one
+conditions to recode. To use R code syntax directly asis, use \code{raw} prefix
+ie. \code{raw(AAR == 1990:2000 & TAB1 == "foo")}. Selection with \code{\%in\%},
+\verb{\%chin\%}, \code{|} etc. can be used with \code{raw} prefix.
 }
 \seealso{
 Other recode functions: 

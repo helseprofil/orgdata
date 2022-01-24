@@ -4,17 +4,21 @@
 #'   `PS`. For example some columns in a filegroup doesn't have values for a
 #'   specific year. This column should not have a value of 0. Instead a special
 #'   symbol `..` is given, representing that the column is missing because the
-#'   value is not available to calculate the value.
+#'   value is not available for calculation. This is how to specify in `FRA`
+#'   column in registration database to recode all years from 1990 to 2000 and
+#'   TAB1 with value `foo` to a selected value in `KOL` column ie. `AAR =
+#'   1990:2000 & TAB1 = "foo"`. Important to use symbol `&` if more than one
+#'   conditions to recode. To use R code syntax directly asis, use `raw` prefix
+#'   ie. `raw(AAR == 1990:2000 & TAB1 == "foo")`. Selection with `%in%`,
+#'   `%chin%`, `|` etc. can be used with `raw` prefix.
 #' @inheritParams do_split
 #' @inheritParams get_split
 #' @inheritParams find_spec
-#' @inheritParams do_geo_recode
 #' @family recode functions
 #' @export
 do_recode_post <- function(dt = NULL,
                            spec = NULL,
-                           con = NULL,
-                           control = FALSE) {
+                           con = NULL) {
   is_debug()
 
   grp <- find_column_input(spec = spec, "FILGRUPPE")
@@ -37,15 +41,16 @@ do_recode_post <- function(dt = NULL,
 }
 
 ### Helper -------------------
-#TODO Delete raw with "-"
-
+# TODO Use S3 class
 is_recode_post <- function(dt, ...){
 
+  is_debug(deep = TRUE)
+
   vars <- list(...)
-  spec <- vars[["spec"]]
-  recodeCol <- vars[["recodeCol"]]
-  toVAL <- vars[["toVAL"]]
-  input <- vars[["input"]] #recode spec
+  spec <- vars[["spec"]] #Codebook spec
+  recodeCol <- vars[["recodeCol"]] #column to recode
+  toVAL <- vars[["toVAL"]] #value to be recode to
+  input <- vars[["input"]] #i arg or condition to recode
 
   # Ensure similar type for column and value to be changed to
   val <- suppressWarnings(as.numeric(toVAL))
@@ -55,6 +60,8 @@ is_recode_post <- function(dt, ...){
 
   ## Either RAW or EXP input
   typ <- is_post_type(input)
+
+  dt <- is_post_delete_row(dt, spec, input, toVAL, typ)
 
   if (typ == "raw"){
     argOut <- is_post_raw(input = input)
@@ -103,4 +110,23 @@ is_post_type <- function(input){
   } else {
     out <- "exp"
   }
+}
+
+# Delete row
+is_post_delete_row <- function(dt, spec, input, toVAL, typ){
+
+  if (toVAL != "-"){
+    return(dt)
+  }
+
+  if (typ == "raw"){
+    argOut <- is_post_raw(input = input)
+    idx <- dt[eval(argOut), which = TRUE]
+  } else {
+    argOut <- is_post_exp(input = spec)
+    cols <- names(argOut)
+    idx <- dt[argOut, which = TRUE, on = cols]
+  }
+
+  is_delete_index(dt, idx)
 }

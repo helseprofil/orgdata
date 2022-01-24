@@ -4,7 +4,12 @@ filegroup based on the specification for FILGRUPPE in codebook with type
 PS. For example some columns in a filegroup doesn't have values for a
 specific year. This column should not have a value of 0. Instead a special
 symbol .. is given, representing that the column is missing because the
-value is not available to calculate the value."><meta property="og:image" content="/logo.png"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
+value is not available for calculation. This is how to specify in FRA
+column in registration database to recode all years from 1990 to 2000 and
+TAB1 with value foo to a selected value in KOL column ie. AAR = 1990:2000 &amp;amp; TAB1 = &quot;foo&quot;. Important to use symbol &amp;amp; if more than one
+conditions to recode. To use R code syntax directly asis, use raw prefix
+ie. raw(AAR == 1990:2000 &amp;amp; TAB1 == &quot;foo&quot;). Selection with %in%,
+%chin%, | etc. can be used with raw prefix."><meta property="og:image" content="/logo.png"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
@@ -81,11 +86,16 @@ filegroup based on the specification for <code>FILGRUPPE</code> in codebook with
 <code>PS</code>. For example some columns in a filegroup doesn't have values for a
 specific year. This column should not have a value of 0. Instead a special
 symbol <code>..</code> is given, representing that the column is missing because the
-value is not available to calculate the value.</p>
+value is not available for calculation. This is how to specify in <code>FRA</code>
+column in registration database to recode all years from 1990 to 2000 and
+TAB1 with value <code>foo</code> to a selected value in <code>KOL</code> column ie. <code>AAR = 1990:2000 &amp; TAB1 = "foo"</code>. Important to use symbol <code>&amp;</code> if more than one
+conditions to recode. To use R code syntax directly asis, use <code>raw</code> prefix
+ie. <code>raw(AAR == 1990:2000 &amp; TAB1 == "foo")</code>. Selection with <code>%in%</code>,
+<code>%chin%</code>, <code>|</code> etc. can be used with <code>raw</code> prefix.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">do_recode_post</span><span class="op">(</span>dt <span class="op">=</span> <span class="cn">NULL</span>, spec <span class="op">=</span> <span class="cn">NULL</span>, con <span class="op">=</span> <span class="cn">NULL</span>, control <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">do_recode_post</span><span class="op">(</span>dt <span class="op">=</span> <span class="cn">NULL</span>, spec <span class="op">=</span> <span class="cn">NULL</span>, con <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -96,9 +106,6 @@ value is not available to calculate the value.</p>
 <dd><p>Specification from <code>tbl_Filgruppe</code></p></dd>
 <dt>con</dt>
 <dd><p>Connection to database</p></dd>
-<dt>control</dt>
-<dd><p>Logical value. <code>TRUE</code> if the file has been controlled for
-possible errors</p></dd>
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
