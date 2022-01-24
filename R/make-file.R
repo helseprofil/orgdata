@@ -191,6 +191,10 @@ make_file <- function(group = NULL,
   bySpec <- get_extra_args_group(spec = fgSpec)
   outDT <- do_extra_args_group(dt = outDT, args = bySpec )
 
+  ## POST RECODE ---------------------------------------------
+  outDT <- do_recode_post(dt = outDT, spec = fgSpec, con = kh$dbconn)
+
+
   ## Shut down parallel workers
   future::plan("sequential")
 

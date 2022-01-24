@@ -24,7 +24,7 @@
 #' }
 #' @family input-argument functions
 #' @export
-find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", "|", ":", ";")) {
+find_column_multi <- function(spec = NULL, col = NULL, sep = c(",", "|", ":", ";", "&")) {
   # Output is a vector of the INNLESARG input
   is_debug()
   is_null(spec)
