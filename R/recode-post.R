@@ -76,10 +76,26 @@ is_recode_post <- function(dt, ...){
 
 ## Raw input and evaluate asis
 is_post_raw <- function(input){
-  argInput <- sub("^raw\\((.*)\\)", "\\1", input)
-  argVAL <- sub("^\\((.*)\\)", "\\1", argInput)
-  str2lang(argVAL)
+
+  ## Check if the parentheses are balanced
+  lhs <- length(gregexpr("\\(", input)[[1]])
+  rhs <- length(gregexpr("\\)", input)[[1]])
+  para <- lhs - rhs
+
+  if (para < 0){
+    is_stop(msg = "Parentheses in `Post Recode` are not balanced!", var = input)
+  }
+
+  if (para == 0){
+    argInput <- sub("^raw\\((.*)\\)", "\\1", input)
+  } else {
+    argInput <- sub("^raw\\((.*)", "\\1", input)
+  }
+
+  str2lang(argInput)
 }
+
+
 
 ## Expression not an R standard
 is_post_exp <- function(input){

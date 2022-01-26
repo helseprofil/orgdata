@@ -5,13 +5,16 @@ test_that("Post recode raw", {
                          FRA = "raw(AAR == 2014 & LANDBAK %chin% c(\"0\", \"20\"))",
                          TIL = ".."), row.names = 1L, class = "data.frame")
 
-  input <- "raw(AAR == 2014 & LANDBAK %chin% c(\"0\", \"20\"))"
+  input <- "raw(AAR == 2014 & LANDBAK %chin% c(\"0\", \"20\"))" #balanced parenthesis
+  input2 <- "raw(AAR == 2014 & LANDBAK %chin% c(\"0\", \"20\")" #unbalanced parenthesis
+  input3 <- "raw(AAR == 2014 & LANDBAK %chin% c(\"0\", \"20\")))" #unbalanced parenthesis on rhs
   recodeCol <- "INNVKAT"
   toVAL <- ".."
   dtOut <- readRDS(system.file("testdata", "post-recode-out-raw.rds", package = "orgdata"))
 
   expect_equal(is_recode_post(dt = dt, spec = spec, input = input, recodeCol = recodeCol, toVAL = toVAL), dtOut)
-
+  expect_equal(is_recode_post(dt = dt, spec = spec, input = input2, recodeCol = recodeCol, toVAL = toVAL), dtOut)
+  expect_error(is_recode_post(dt = dt, spec = spec, input = input3, recodeCol = recodeCol, toVAL = toVAL))
 })
 
 test_that("Post recode exp", {
