@@ -22,7 +22,7 @@ library("badger")
 cat(
   badge_github_actions(),
   badge_codecov("helseprofil/orgdata"),
-  badge_lifecycle("experimental", "orange"),
+  badge_lifecycle("maturing", "blue"),
   badge_github_version("helseprofil/orgdata", "blue")
 )
 ```
