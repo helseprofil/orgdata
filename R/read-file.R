@@ -11,13 +11,16 @@
 #'   \item `trimws` to trim leading and trailing whitespace
 #'   \item `na` for character value to be interpreted as `NA`
 #' }
-#' @param file Use FILID or a complete path of a filename
+#' @param file Use FILID, FILEGROUP or a complete path of a filename
 #' @param ... All other arguments to be passed related to the file format
 #' @examples
 #' \dontrun{
 #' # With FILID
 #' DT <- read_file(file = 5)
 #' DT <- read_file(file = 5, fill = TRUE, nrows = 10)
+#'
+#' # With FILEGROUP
+#' dt <- read_file(file = "UTFORE")
 #'
 #' # With filepath
 #' rdata <- read_file(file = "/file/path/mydata.xlsx", sheet = "S3", range = cell_rows(1:4))
@@ -30,7 +33,14 @@ read_file <- function(file = NULL, ...) {
   is_null(file)
 
   if (is.numeric(file)) {
-    file <- is_id_file(filid = file)
+    file <- is_file_id(filid = file)
+  } else {
+    file <- is_file_path(file = file)
+  }
+
+  fileExist <- fs::file_exists(file)
+  if (isFALSE(fileExist)){
+    is_stop("File not found!", file)
   }
 
   ext <- tools::file_ext(file)
@@ -39,17 +49,6 @@ read_file <- function(file = NULL, ...) {
   } else {
     class(file) <- append(class(file), ext)
   }
-
-  ## if (ext == ""){
-  ##   tempPath <- withr::local_tempdir("noExt")
-  ##   fs::file_copy(file, tempPath)
-  ##   tempFile <- list.files(tempPath)
-  ##   newFile <- file.path(tempPath, paste0(tempFile, ".csv"))
-  ##   file.rename(file.path(tempPath, tempFile), newFile)
-
-  ##   file <- file.path(newFile)
-  ##   ext <- "csv"
-  ## }
 
   dt <- find_data(file, ...)
 
@@ -67,7 +66,7 @@ les_fil <- read_file
 
 ## Helper -------------------------------------
 
-is_id_file <- function(filid = NULL, con = NULL) {
+is_file_id <- function(filid = NULL, con = NULL) {
   is_debug(deep = TRUE)
   if (is.null(con)) {
     dbFile <- is_path_db(
@@ -81,4 +80,15 @@ is_id_file <- function(filid = NULL, con = NULL) {
   on.exit(kh$db_close(), add = TRUE)
   file <- find_spec("org-file.sql", value = filid, con = con)
   file.path(getOption("orgdata.folder.data"), file)
+}
+
+is_file_path <- function(file){
+  slash01 <- grepl("\\\\", file)
+  slash02 <- grepl("/", file)
+  path <- slash01 + slash02
+
+  if (path == 0){
+    file <- is_file_csv(group = file, action = "read")
+  }
+  return(file)
 }

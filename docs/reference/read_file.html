@@ -102,7 +102,7 @@ for <code>fread</code> function can be used. For a <code> .xlsx </code> or <code
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>file</dt>
-<dd><p>Use FILID or a complete path of a filename</p></dd>
+<dd><p>Use FILID, FILEGROUP or a complete path of a filename</p></dd>
 <dt>...</dt>
 <dd><p>All other arguments to be passed related to the file format</p></dd>
 </dl></div>
@@ -113,6 +113,9 @@ for <code>fread</code> function can be used. For a <code> .xlsx </code> or <code
 <span class="r-in"><span class="co"># With FILID</span></span>
 <span class="r-in"><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu">read_file</span><span class="op">(</span>file <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu">read_file</span><span class="op">(</span>file <span class="op">=</span> <span class="fl">5</span>, fill <span class="op">=</span> <span class="cn">TRUE</span>, nrows <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># With FILEGROUP</span></span>
+<span class="r-in"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu">read_file</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"UTFORE"</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># With filepath</span></span>
 <span class="r-in"><span class="va">rdata</span> <span class="op">&lt;-</span> <span class="fu">read_file</span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/file/path/mydata.xlsx"</span>, sheet <span class="op">=</span> <span class="st">"S3"</span>, range <span class="op">=</span> <span class="fu">cell_rows</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>

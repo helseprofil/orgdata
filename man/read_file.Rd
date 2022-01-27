@@ -10,7 +10,7 @@ read_file(file = NULL, ...)
 les_fil(file = NULL, ...)
 }
 \arguments{
-\item{file}{Use FILID or a complete path of a filename}
+\item{file}{Use FILID, FILEGROUP or a complete path of a filename}
 
 \item{...}{All other arguments to be passed related to the file format}
 }
@@ -34,6 +34,9 @@ Nevertheless, some most used arguments are standardized for \code{read_file()} a
 # With FILID
 DT <- read_file(file = 5)
 DT <- read_file(file = 5, fill = TRUE, nrows = 10)
+
+# With FILEGROUP
+dt <- read_file(file = "UTFORE")
 
 # With filepath
 rdata <- read_file(file = "/file/path/mydata.xlsx", sheet = "S3", range = cell_rows(1:4))

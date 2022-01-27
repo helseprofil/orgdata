@@ -1,6 +1,8 @@
 # orgdata 0.5.7
 - Handle unbalanced parentheses in post recode whenever possible when `raw` is
   used, else give error message. #246
+- `read_file()` accept filegroup name as argument in `file` to read the
+  completed file after running `make_file()` function. #247
   
 # orgdata 0.5.6
 - Debug functions can go deeper to show helper functions as well with
