@@ -28,4 +28,5 @@ test_that("File path", {
 
   expect_equal(is_file_path(fcsv), fcsv)
   expect_equal(is_file_path(fcsv2), fcsv2)
+  expect_error(read_file(file = system.file("testdata", "bla.csv", package = "orgdata")))
 })
