@@ -21,3 +21,11 @@ test_that("Args for find_data", {
   expect_equal(is_args(list(fill=TRUE)), ut)
   expect_equal(is_args(fill=TRUE), ut)
 })
+
+test_that("File path", {
+  fcsv <- "C:\\TEST\\file.csv"
+  fcsv2 <- "C:/TEST/file.csv"
+
+  expect_equal(is_file_path(fcsv), fcsv)
+  expect_equal(is_file_path(fcsv2), fcsv2)
+})

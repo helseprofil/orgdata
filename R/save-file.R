@@ -36,7 +36,7 @@ save_file <- function(dt = NULL,
   is_null(dt)
   is_null(name)
 
-  file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec)
+  file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
   data.table::fwrite(dt, file = file, sep = ";")
 }
 
@@ -46,8 +46,13 @@ lagre_fil <- save_file
 
 
 ## Helper -----------------------------------------
-
-is_file_csv <- function(group, path, date, verbose = getOption("orgdata.verbose"), fgSpec){
+# action - To display message as save or read file
+is_file_csv <- function(group = NULL,
+                        path = NULL,
+                        date = FALSE,
+                        verbose = getOption("orgdata.verbose"),
+                        fgSpec = NULL,
+                        action = c("save", "read")){
 
   if (date){
     batch <- is_batch("time")
@@ -57,7 +62,7 @@ is_file_csv <- function(group, path, date, verbose = getOption("orgdata.verbose"
   }
 
   if (is.null(path)){
-    fpath <- is_save_path(group = group, fgSpec = fgSpec)
+    fpath <- is_save_path(group = group, fgSpec = fgSpec, action = action)
     fileOut <- file.path(fpath, fileName)
   } else {
     fileOut <- file.path(path, fileName)
@@ -66,14 +71,17 @@ is_file_csv <- function(group, path, date, verbose = getOption("orgdata.verbose"
     }
   }
 
-    if (verbose){
-      message("Save file: ", fileOut)
-    }
+  msg <- switch(action,
+                save = "Save file:",
+                read = "Read file:",
+                "File:")
 
-    return(fileOut)
+  is_verbose(fileOut, msg = msg)
+
+  return(fileOut)
 }
 
-is_save_path <- function(group = NULL, fgSpec = NULL){
+is_save_path <- function(group = NULL, fgSpec = NULL, ...){
 
   if (is.null(fgSpec)){
     dbFile <- is_path_db(
@@ -96,21 +104,25 @@ is_save_path <- function(group = NULL, fgSpec = NULL){
     is_verbose("Invalid Filegroup or `path` is missing")
     outPath <- is_orgdata_path()
   } else {
-    outPath <- is_group_path(fgSpec)
+    outPath <- is_group_path(fgSpec, ...)
   }
 
   return(outPath)
 }
 
-is_group_path <- function(fgSpec){
+is_group_path <- function(fgSpec, action){
 
   folder <- fgSpec$UTMAPPE
   fullPath <- file.path(getOption("orgdata.folder.data"), folder)
   ## fullPath <- normalizePath(fullPath, winslash = "/")
 
   if (!fs::dir_exists(fullPath)) {
-    is_verbose(x = fullPath, msg = "New folder is created:")
-    fs::dir_create(fullPath)
+    if (action == "save"){
+      is_verbose(x = fullPath, msg = "New folder is created:")
+      fs::dir_create(fullPath)
+    } else {
+      is_stop(msg = "Folder not found!", var = fullPath)
+    }
   }
 
   invisible(fullPath)
