@@ -48,6 +48,21 @@ find_data.fhi <- find_data.csv
 #' @export
 find_data.none <- find_data.csv
 
+#' @method find_data http
+#' @export
+find_data.http <- function(file, ...){
+  if(length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_dt_args(dots)
+  } else {
+    dots <- list()
+  }
+
+  is_verbose(file, msg = "File:")
+  dots$input <- file
+  dt <- do.call(data.table::fread, dots)
+}
+
 
 #' @method find_data xls
 #' @export
@@ -56,22 +71,22 @@ find_data.xls <- function(file, ...) {
 
   if (length(list(...)) > 0){
     dots <- is_args(...)
-      dots <- is_xls_args(dots)
-    } else {
-      dots <- list()
-    }
-
-    is_verbose(file, msg = "File:")
-    dots$path <- file
-    dt <- do.call(readxl::read_xls, dots)
-
-    if (headerRename){
-      dt <- is_header_name(dt)
-    }
-    return(dt)
+    dots <- is_xls_args(dots)
+  } else {
+    dots <- list()
   }
 
-#' @method find_data xls
+  is_verbose(file, msg = "File:")
+  dots$path <- file
+  dt <- do.call(readxl::read_xls, dots)
+
+  if (headerRename){
+    dt <- is_header_name(dt)
+  }
+  return(dt)
+}
+
+#' @method find_data xlsx
 #' @export
 find_data.xlsx <- function(file, ...) {
   headerRename <- is.element("header", names(list(...)))
@@ -92,6 +107,7 @@ find_data.xlsx <- function(file, ...) {
   }
   return(dt)
 }
+
 
 ## Helper -------------------------------------------
 ## Direct args or from registration database

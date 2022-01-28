@@ -38,17 +38,25 @@ read_file <- function(file = NULL, ...) {
     file <- is_file_path(file = file)
   }
 
-  fileExist <- fs::file_exists(file)
-  if (isFALSE(fileExist)){
-    is_stop("File not found!", file)
+  web <- is_file_http(file = file, web = TRUE)
+
+  ## Data on the web or direct file
+  if (web){
+    file <- is_file_http(file)
+  } else {
+    fileExist <- fs::file_exists(file)
+    if (isFALSE(fileExist)){
+      is_stop("File not found!", file)
+    }
+
+    ext <- tools::file_ext(file)
+    if (ext == ""){
+      class(file) <- append(class(file), "none")
+    } else {
+      class(file) <- append(class(file), ext)
+    }
   }
 
-  ext <- tools::file_ext(file)
-  if (ext == ""){
-    class(file) <- append(class(file), "none")
-  } else {
-    class(file) <- append(class(file), ext)
-  }
 
   dt <- find_data(file, ...)
 
@@ -91,4 +99,15 @@ is_file_path <- function(file){
     file <- is_file_csv(group = file, action = "read")
   }
   return(file)
+}
+
+is_file_http <- function(file, web = FALSE){
+  http <- grepl("^http", file)
+  class(file) <- append(class(file), "http")
+
+  if (web){
+    return(web)
+  } else {
+    return(file)
+  }
 }
