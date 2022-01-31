@@ -26,7 +26,20 @@ test_that("File path", {
   fcsv <- "C:\\TEST\\file.csv"
   fcsv2 <- "C:/TEST/file.csv"
 
-  expect_equal(is_file_path(fcsv), fcsv)
-  expect_equal(is_file_path(fcsv2), fcsv2)
+  expect_equal(is_read_path(fcsv), fcsv)
+  expect_equal(is_read_path(fcsv2), fcsv2)
   expect_error(read_file(file = system.file("testdata", "bla.csv", package = "orgdata")))
 })
+
+
+test_that("Dots args", {
+
+  Dots <- list(trimws = TRUE, nrows = 50)
+  csvOut <- list(strip.white = TRUE, nrows = 50)
+  xlsOut <- list(trim_ws = TRUE, n_max = 50)
+
+  expect_equal(is_csv_dots(Dots), csvOut)
+  expect_equal(is_xls_dots(Dots), xlsOut)
+  })
+
+bb <- is_xls_dots(Dots)

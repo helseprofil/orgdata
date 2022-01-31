@@ -33,16 +33,16 @@ read_file <- function(file = NULL, ...) {
   is_null(file)
 
   if (is.numeric(file)) {
-    file <- is_file_id(filid = file)
+    file <- is_read_id(filid = file)
   } else {
-    file <- is_file_path(file = file)
+    file <- is_read_path(file = file)
   }
 
-  web <- is_file_http(file = file, web = TRUE)
+  web <- is_read_http(file = file, web = TRUE)
 
   ## Data on the web or direct file
   if (web){
-    file <- is_file_http(file)
+    file <- is_read_http(file)
   } else {
     fileExist <- fs::file_exists(file)
     if (isFALSE(fileExist)){
@@ -74,7 +74,7 @@ les_fil <- read_file
 
 ## Helper -------------------------------------
 
-is_file_id <- function(filid = NULL, con = NULL) {
+is_read_id <- function(filid = NULL, con = NULL) {
   is_debug(deep = TRUE)
   if (is.null(con)) {
     dbFile <- is_path_db(
@@ -90,18 +90,19 @@ is_file_id <- function(filid = NULL, con = NULL) {
   file.path(getOption("orgdata.folder.data"), file)
 }
 
-is_file_path <- function(file){
+is_read_path <- function(file){
   slash01 <- grepl("\\\\", file)
   slash02 <- grepl("/", file)
   path <- slash01 + slash02
 
+  # get path of FILGRUPPE if not direct file path
   if (path == 0){
     file <- is_file_csv(group = file, action = "read")
   }
   return(file)
 }
 
-is_file_http <- function(file, web = FALSE){
+is_read_http <- function(file, web = FALSE){
   http <- grepl("^http", file)
   class(file) <- append(class(file), "http")
 
