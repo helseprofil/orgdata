@@ -42,4 +42,3 @@ test_that("Dots args", {
   expect_equal(is_xls_dots(Dots), xlsOut)
   })
 
-bb <- is_xls_dots(Dots)
