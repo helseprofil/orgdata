@@ -26,7 +26,7 @@ test_that("File path", {
   fcsv <- "C:\\TEST\\file.csv"
   fcsv2 <- "C:/TEST/file.csv"
 
-  expect_equal(is_file_path(fcsv), fcsv)
-  expect_equal(is_file_path(fcsv2), fcsv2)
+  expect_equal(is_read_path(fcsv), fcsv)
+  expect_equal(is_read_path(fcsv2), fcsv2)
   expect_error(read_file(file = system.file("testdata", "bla.csv", package = "orgdata")))
 })
