@@ -28,13 +28,7 @@ find_data.default <- function(file, ...) {
 #' @method find_data csv
 #' @export
 find_data.csv <- function(file, ...) {
-  if(length(list(...)) > 0){
-    dots <- is_args(...)
-    dots <- is_dt_args(dots)
-  } else {
-    dots <- list()
-  }
-
+  dots <- is_csv_dots(...)
   is_verbose(file, msg = "File:")
   dots$file <- file
   dt <- do.call(data.table::fread, dots)
@@ -51,13 +45,7 @@ find_data.none <- find_data.csv
 #' @method find_data http
 #' @export
 find_data.http <- function(file, ...){
-  if(length(list(...)) > 0){
-    dots <- is_args(...)
-    dots <- is_dt_args(dots)
-  } else {
-    dots <- list()
-  }
-
+  dots <- is_csv_dots(...)
   is_verbose(file, msg = "File:")
   dots$input <- file
   dt <- do.call(data.table::fread, dots)
@@ -69,13 +57,7 @@ find_data.http <- function(file, ...){
 find_data.xls <- function(file, ...) {
   headerRename <- is.element("header", names(list(...)))
 
-  if (length(list(...)) > 0){
-    dots <- is_args(...)
-    dots <- is_xls_args(dots)
-  } else {
-    dots <- list()
-  }
-
+  dots <- is_xls_dots(...)
   is_verbose(file, msg = "File:")
   dots$path <- file
   dt <- do.call(readxl::read_xls, dots)
@@ -91,13 +73,7 @@ find_data.xls <- function(file, ...) {
 find_data.xlsx <- function(file, ...) {
   headerRename <- is.element("header", names(list(...)))
 
-  if (length(list(...)) > 0){
-    dots <- is_args(...)
-    dots <- is_xls_args(dots)
-  } else {
-    dots <- list()
-  }
-
+  dots <- is_xls_dots(...)
   is_verbose(file, msg = "File:")
   dots$path <- file
   dt <- do.call(readxl::read_xlsx, dots)
@@ -110,6 +86,26 @@ find_data.xlsx <- function(file, ...) {
 
 
 ## Helper -------------------------------------------
+is_csv_dots <- function(...){
+  if(length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_dt_args(dots)
+  } else {
+    dots <- list()
+  }
+  return(dots)
+}
+
+is_xls_dots <- function(...){
+  if (length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_xls_args(dots)
+  } else {
+    dots <- list()
+  }
+  return(dots)
+}
+
 ## Direct args or from registration database
 is_args <- function(...){
   ## take it out from nested list
