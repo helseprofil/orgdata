@@ -80,7 +80,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   }
 
   ## AGGREGATE ------------------------------------
-  ## TODO - Not sure if this necessary. Turn of temporarily
+  ## TODO - Not sure if this necessary. Turn off temporarily
   ## Convert some columns to interger. Must be after
   ## the variables are recoded eg. INNKAT is string before recorded to number
   ## dt <- is_col_num(dt)
@@ -96,6 +96,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
 
   ## RESHAPE LONG SPECIAL CASES --------------------------------------
+  ## When dataset was long then reshape to wide before long again
   if (!is.na(reshVal) && reshapeWide){
     dt <- do_reshape_long(dt = dt, respec = wideSpec)
     dt <- is_long_col(dt, spec = fileSpec, widespec = wideSpec)
@@ -106,7 +107,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
 
 ## HELPER ---------------------------
-
+# Delete rows created from cross join that shouldn't be there
 is_long_col <- function(dt, spec, widespec){
   # spec - file specification
   # widespec - Spec for reshape wide
