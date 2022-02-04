@@ -1,3 +1,7 @@
+# orgdata 0.5.8
+- Change helper function names for `read_file()`. (#250) 
+- Fixed bugs when reading file from the web with https (#251)
+
 # orgdata 0.5.7
 - Handle unbalanced parentheses in post recode whenever possible when `raw` is
   used, else give error message. #246
