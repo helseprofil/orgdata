@@ -1,4 +1,9 @@
 test_that("Read rawdata", {
+
+  dtOut <- readRDS(system.file("testdata", "testfile_read.rds", package = "orgdata"))
+
+  expect_equal(read_file(file.path(system.file(package = "orgdata"), "testdata/testfile.xlsx"), skip = 1, range = "A2:B6"), dtOut)
+
   expect_error(find_data("raw-data.spss"))
   expect_error(read_file.default("raw-data.spss"))
   expect_error(read_file("raw-data.spss"))
