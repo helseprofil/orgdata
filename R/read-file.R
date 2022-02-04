@@ -38,7 +38,7 @@ read_file <- function(file = NULL, ...) {
     file <- is_read_path(file = file)
   }
 
-  web <- is_read_http(file = file, web = TRUE)
+  web <- is_read_http(file = file, check = TRUE)
 
   ## Data on the web or direct file
   if (web){
@@ -102,11 +102,15 @@ is_read_path <- function(file){
   return(file)
 }
 
-is_read_http <- function(file, web = FALSE){
+is_read_http <- function(file, check = FALSE){
+  web <- FALSE
   http <- grepl("^http", file)
-  class(file) <- append(class(file), "http")
+  if (isTRUE(http)){
+    class(file) <- append(class(file), "http")
+    web <- TRUE
+  }
 
-  if (web){
+  if (isTRUE(check)){
     return(web)
   } else {
     return(file)
