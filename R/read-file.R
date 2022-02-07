@@ -1,17 +1,19 @@
 #' Read Data File
-#' @description Read rawdata either using `FILID` value or complete file path. It uses the [find_data()] generic method.
-#'    For a \code{ .csv } file, [data.table::fread()] is used and all other arguments
-#'    for \code{fread} function can be used. For a \code{ .xlsx } or \code{ .xls } file
-#'    [readxl::read_excel()] function and all of its arguments.
-#' @description Nevertheless, some most used arguments are standardized for `read_file()` and there are:
-#' \itemize{
-#'   \item `nrows` to display maksimum numbers to read
-#'   \item `header` FALSE to give default columnames as `V1`, `V2` etc
-#'   \item `skip` a specific number of raws before reading the data
-#'   \item `trimws` to trim leading and trailing whitespace
-#'   \item `na` for character value to be interpreted as `NA`
-#' }
-#' @param file Use FILID, FILEGROUP or a complete path of a filename
+#' @description Read rawdata either using `FILID` value or complete file path.
+#'   It uses the [find_data()] generic method. For a \code{ .csv } file,
+#'   [data.table::fread()] is used and all other arguments for \code{fread}
+#'   function can be used. For a \code{ .xlsx } or \code{ .xls } file
+#'   [readxl::read_excel()] function and all of its arguments. For a \code{ .dta
+#'   } file, [haven::read_dta()] is used and all other arguments for
+#'   \code{read_dta} function can be used.
+#' @description Nevertheless, some most used arguments are standardized for
+#'   `read_file()` and there are: \itemize{ \item `nrows` to display maksimum
+#'   numbers to read \item `header` FALSE to give default columnames as `V1`,
+#'   `V2` etc \item `skip` a specific number of raws before reading the data
+#'   \item `trimws` to trim leading and trailing whitespace \item `na` for
+#'   character value to be interpreted as `NA` }
+#' @param file Use FILID, FILEGROUP or a complete path of a filename. Data set
+#'   of `.csv` extension on `https://` can also be file input arg.
 #' @param ... All other arguments to be passed related to the file format
 #' @examples
 #' \dontrun{

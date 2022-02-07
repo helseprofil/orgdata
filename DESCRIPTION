@@ -42,7 +42,8 @@ Imports:
     withr (>= 2.4.3),
     remotes (>= 2.4.2),
     methods,
-    utils
+    utils,
+    haven (>= 2.4.3)
 Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),

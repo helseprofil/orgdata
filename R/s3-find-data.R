@@ -84,6 +84,14 @@ find_data.xlsx <- function(file, ...) {
   return(dt)
 }
 
+#' @method find_data dta
+#' @export
+find_data.dta <- function(file, ...){
+  dots <- is_dta_dots(...)
+  is_verbose(file, msg = "File:")
+  dots$file <- file
+  do.call(haven::read_dta, dots)
+}
 
 ## Helper -------------------------------------------
 is_csv_dots <- function(...){
@@ -100,6 +108,16 @@ is_xls_dots <- function(...){
   if (length(list(...)) > 0){
     dots <- is_args(...)
     dots <- is_xls_args(dots)
+  } else {
+    dots <- list()
+  }
+  return(dots)
+}
+
+is_dta_dots <- function(...){
+  if (length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_dta_args(dots)
   } else {
     dots <- list()
   }
@@ -146,6 +164,19 @@ is_xls_args <- function(x){
   }
   return(x)
 }
+
+is_dta_args <- function(x){
+  x <- is_rename_args(from = "nrows", to = "n_max")
+  argInt <- c("skip", "n_max")
+  inx <- is.element(argInt, names(x))
+  elm <- argInt[inx]
+
+  if (sum(inx)>0){
+    x <- is_numeric_args(x, elm)
+  }
+  return(x)
+}
+
 
 ## Use standard args in orgdata and rename it to the respective
 ## read functions arguments
