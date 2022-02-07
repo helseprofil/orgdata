@@ -112,6 +112,7 @@ usethis::use_package("listenv")
 usethis::use_package("progressr")
 usethis::use_package("withr")
 usethis::use_package("remotes")
+usethis::use_package("haven")
 
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub

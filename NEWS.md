@@ -1,6 +1,7 @@
 # orgdata 0.5.8
 - Change helper function names for `read_file()`. (#250) 
 - Fixed bugs when reading file from the web with https (#251)
+- `read_file()` accept Stata file with `dta` extension (#252)
 
 # orgdata 0.5.7
 - Handle unbalanced parentheses in post recode whenever possible when `raw` is
