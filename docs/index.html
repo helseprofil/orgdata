@@ -100,20 +100,19 @@
 <div class="section level1">
 <div class="page-header"><h1 id="orgdata-">orgdata <img src="reference/figures/logo.png" align="right" width="110" height="138"><a class="anchor" aria-label="anchor" href="#orgdata-"></a>
 </h1></div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; v Setting active project to 'C:/Users/ybka/Git-fhi/orgdata'</span></span></code></pre></div>
 
 <p>Cleaning, restructuring and aggregating <strong>OR</strong>i<strong>G</strong>inal <strong>DATA</strong> into a preferred dataset.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>To install then run this code</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"helseprofil/orgdata"</span><span class="op">)</span></code></pre></div>
 <p>or use a user startup file <em>sepaafil.R</em> by cloning it from <code>user</code> branch</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-b</span> user https://github.com/helseprofil/orgdata</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-b</span> user https://github.com/helseprofil/orgdata</span></code></pre></div>
 <p>To install development version from <code>orgdata</code>, use:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/update_orgdata.html">update_orgdata</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="st">"dev"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -121,7 +120,7 @@
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>To implement the specifications per file group as being registered in the database use <code><a href="reference/make_file.html">make_file()</a></code> function. Parallel processing can be used if needed.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span>
 <span class="co"># All files under BEFOLKNING group</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span>

@@ -1,30 +1,3 @@
-#' @title Connect to Database
-#' @description Use R6 object to connect to database
-#' @param dbname Database filename with complete path
-#' @param db Database file `kh` (Kommunehelse) and `geo` (Geo code)
-#' @param .test Use for testing only
-#' @param ... Other arguments
-#' @keywords internal
-is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...){
-
-  db <- match.arg(db)
-  dbfile <- switch(db,
-                   kh = getOption("orgdata.db"),
-                   geo = getOption("orgdata.geo"),
-                   getOption("orgdata.db"))
-
-  if (is.null(dbname)){
-    dbname <- is_path_db(db = dbfile, ...)
-  }
-
-  if (.test){
-    return(dbname)
-  }
-
-  KHelse$new(dbname = dbname)
-}
-
-
 #' @title Connecting to Database
 #' @description
 #' Connect to registration database to get all necessary information
@@ -122,3 +95,29 @@ KHelse <- R6::R6Class(
     }
   )
 )
+
+#' @title Connect to Database
+#' @description Use R6 object to connect to database
+#' @param dbname Database filename with complete path
+#' @param db Database file `kh` (Kommunehelse) and `geo` (Geo code)
+#' @param .test Use for testing only
+#' @param ... Other arguments
+#' @keywords internal
+is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...){
+
+  db <- match.arg(db)
+  dbfile <- switch(db,
+                   kh = getOption("orgdata.db"),
+                   geo = getOption("orgdata.geo"),
+                   getOption("orgdata.db"))
+
+  if (is.null(dbname)){
+    dbname <- is_path_db(db = dbfile, ...)
+  }
+
+  if (.test){
+    return(dbname)
+  }
+
+  KHelse$new(dbname = dbname)
+}

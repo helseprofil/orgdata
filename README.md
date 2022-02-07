@@ -1,9 +1,6 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # orgdata <img src='man/figures/logo.png' align="right" width="110" height="138" />
-
-    #> v Setting active project to 'C:/Users/ybka/Git-fhi/orgdata'
 
 [![R build
 status](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
