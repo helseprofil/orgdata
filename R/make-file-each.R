@@ -9,6 +9,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   is_debug()
   fileSpec <- spec
   filePath <- is_path_raw(fileSpec, check = TRUE)
+  filePath <- gsub("\\\\", "/", filePath)
 
   is_verbose(msg = is_line_long(), type = "other")
   is_verbose(fileSpec$KOBLID, "KOBLID:")
