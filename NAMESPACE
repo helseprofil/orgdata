@@ -2,6 +2,7 @@
 
 S3method(find_data,csv)
 S3method(find_data,default)
+S3method(find_data,dta)
 S3method(find_data,fhi)
 S3method(find_data,http)
 S3method(find_data,none)
