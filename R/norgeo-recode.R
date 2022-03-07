@@ -90,16 +90,20 @@ do_geo_recode <- function(dt = NULL,
                             "fylke",
                             "kommune",
                             "bydel"),
-                          year = getOption("orgdata.year"),
+                          year = NULL,
                           con = NULL,
-                          geo = getOption("orgdata.debug.geo"),
-                          base = getOption("orgdata.recode.base"),
+                          geo = NULL,
+                          base = NULL,
                           control = FALSE,
                           ...
                           ){
   GEO <- i.to <- changeOccurred <- NULL
 
   is_debug()
+
+  if(is.nul(year)) year <- getOption("orgdata.year")
+  if(is.null(geo)) geo <- getOption("orgdata.debug.geo")
+  if(is.null(base)) base <- getOption("orgdata.recode.base")
 
   withr::with_options(list(orgdata.emoji = "write"),
                       is_color_txt(x = "", msg = "Recode geo codes ...", emoji = TRUE))
@@ -176,10 +180,12 @@ get_geo_recode <- function(con = NULL,
                              "fylke",
                              "kommune",
                              "bydel"),
-                           year = getOption("orgdata.year")
+                           year = NULL
                            ){
 
   changeOccurred <- NULL
+
+  if (is.null(year)) year <- getOption("orgdata.year")
 
   is_debug(deep = TRUE)
   is_null(con)

@@ -115,3 +115,17 @@ skip_if_check <- function(){
 
   testthat::skip("Not run when CMD check")
 }
+
+## OPTIONS --------------
+# Driver on different operating system
+os_drive <- function(os = OS){
+  switch(os,
+         Linux = getOption("orgdata.linux.drive"),
+         Windows = getOption("orgdata.win.drive"))
+}
+
+# add prefix "kh" to options
+opt_rename <- function(x){
+  x2 <- paste("orgdata", names(x), sep = ".")
+  x <- stats::setNames(x, x2)
+}

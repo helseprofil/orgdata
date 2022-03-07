@@ -1,8 +1,10 @@
 # Check code ------------------------------------------
 # Arguments that are missing
-is_null <- function(arg = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
+is_null <- function(arg = NULL, msg = NULL, verbose = NULL) {
   ## msg : Alternative message if not using default
   argchr <- deparse(substitute(arg))
+
+  if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
 
   if (!is.null(msg)) {
     msgTxt <- msg
@@ -20,9 +22,11 @@ is_null <- function(arg = NULL, msg = NULL, verbose = getOption("orgdata.verbose
   }
 }
 
-is_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
+is_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = NULL) {
   xchr <- deparse(substitute(x))
   ychr <- deparse(substitute(y))
+
+  if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
 
   if (!is.null(msg)) {
     msgTxt <- msg
@@ -40,9 +44,11 @@ is_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("or
   }
 }
 
-is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = getOption("orgdata.verbose")) {
+is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = NULL) {
   xchr <- deparse(substitute(x))
   ychr <- deparse(substitute(y))
+
+  if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
 
   if (!is.null(msg)) {
     msgTxt <- msg
@@ -154,7 +160,9 @@ is_verbose <- function(x = NULL, msg = NULL,
 }
 
 ## Show helper functions with "deep"
-is_debug <- function(type = getOption("orgdata.debug"), deep = FALSE, showFUN = FALSE) {
+is_debug <- function(type = NULL, deep = FALSE, showFUN = FALSE) {
+
+  if (is.null(type)) type <- getOption("orgdata.debug")
 
   if (isFALSE(type)){
     return()

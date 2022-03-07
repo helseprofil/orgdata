@@ -43,7 +43,8 @@ Imports:
     remotes (>= 2.4.2),
     methods,
     utils,
-    haven (>= 2.4.3)
+    haven (>= 2.4.3),
+    yaml (>= 2.3.5)
 Remotes: helseprofil/norgeo
 Suggests: 
     testthat (>= 3.0.0),

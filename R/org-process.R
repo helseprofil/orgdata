@@ -14,13 +14,16 @@ is_org_process <- function(file,
                            filespec,
                            fgspec,
                            con,
-                           verbose = getOption("orgdata.verbose"),
-                           row = getOption("orgdata.debug.row"),
+                           verbose = NULL,
+                           row = NULL,
                            control = FALSE
                            ) {
   GEO <- NULL
   is_debug(deep = TRUE)
   dots <- get_innlesarg(spec = filespec)
+
+  if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
+  if (is.null(row)) row <- getOption("orgdata.debug.row")
 
   ## For GEO codes that are derived from a combination of two columns
   geoVals <- is_separate(filespec$GEO, ",")
@@ -94,7 +97,9 @@ is_geo_split <- function(geo, dots){
   return(dots)
 }
 
-is_read_file <- function(file, debug = getOption("orgdata.debug.nrow"), extra){
+is_read_file <- function(file, debug = NULL, extra){
+  if (is.null(debug)) debug <- getOption("orgdata.debug.nrow")
+
   if (debug > 0) {
     dt <- read_file(file = file, nrows = debug)
   } else {
@@ -104,7 +109,9 @@ is_read_file <- function(file, debug = getOption("orgdata.debug.nrow"), extra){
   dt <- do_extra_args(dt = dt, args = extra)
 }
 
-is_read_file_dots <- function(file, dots, debug = getOption("orgdata.debug.nrow"), extra){
+is_read_file_dots <- function(file, dots, debug = NULL, extra){
+  if (is.null(debug)) debug <- getOption("orgdata.debug.nrow")
+
   if (debug > 0){
     dots$nrows <- debug
     dt <- read_file(file = file, dots)

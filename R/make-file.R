@@ -33,19 +33,26 @@
 #' @export
 make_file <- function(group = NULL,
                       koblid = NULL,
-                      aggregate = getOption("orgdata.aggregate"),
+                      aggregate = NULL,
                       save = FALSE,
-                      year = getOption("orgdata.year"),
-                      implicitnull = getOption("orgdata.implicit.null"),
-                      row = getOption("orgdata.debug.row"),
-                      base = getOption("orgdata.recode.base"),
-                      parallel = getOption("orgdata.parallel")
+                      year = NULL,
+                      implicitnull = NULL,
+                      row = NULL,
+                      base = NULL,
+                      parallel = NULL
                       ) {
 
   LEVEL <- NULL
 
   is_null(group, "Filgruppe is missing")
   is_debug()
+
+  if (is.null(aggregate)) aggregate <- getOption("orgdata.aggregate")
+  if (is.null(year)) year <- getOption("orgdata.year")
+  if (is.null(implicitnull)) implicitnull <- getOption("orgdata.implicit.null")
+  if (is.null(row)) row <- getOption("orgdata.debug.row")
+  if (is.null(base)) base <- getOption("orgdata.recode.base")
+  if (is.null(parallel)) parallel <- getOption("orgdata.parallel")
 
   dbFile <- is_path_db(
     db = getOption("orgdata.db"),

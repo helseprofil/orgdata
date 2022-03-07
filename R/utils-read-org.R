@@ -5,7 +5,7 @@
 is_path_db <- function(db, check = FALSE) {
   ## db - Database file
   db <- file.path(
-    getOption("orgdata.drive"),
+    os_drive(),
     getOption("orgdata.folder.db"),
     db
   )
@@ -45,16 +45,22 @@ is_data_cols <- function(fgspec = NULL){
 
 is_aggregate <- function(dt = NULL,
                          fgspec = NULL,
-                         verbose = getOption("orgdata.verbose"),
-                         year = getOption("orgdata.year"),
-                         aggregate = getOption("orgdata.aggregate"),
-                         base = getOption("orgdata.recode.base"),
+                         verbose = NULL,
+                         year = NULL,
+                         aggregate = NULL,
+                         base = NULL,
                          control = FALSE,
                          wide = NULL, ...){
 
   is_debug(deep = TRUE)
 
   GEO <- NULL
+
+  if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
+  if (is.null(year)) year <- getOption("orgdata.year")
+  if (is.null(aggregate)) aggregate <- getOption("orgdata.aggregate")
+  if (is.null(base)) base <- getOption("orgdata.recode.base")
+
 
   aggSpec <- get_aggregate(spec = fgspec)
   source <- is_geo_level(dt[!is.na(GEO), GEO][1])
@@ -128,7 +134,7 @@ is_geo_level <- function(x){
 ## Create complete path to raw data file
 is_path_raw <- function(spec, check = FALSE) {
   filename <- find_column_input(spec, "FILNAVN")
-  filePath <- file.path(getOption("orgdata.folder.data"), filename)
+  filePath <- file.path(os_drive(), getOption("orgdata.folder.data"), filename)
 
   if (isTRUE(check) && isFALSE(file.exists(filePath))) {
     is_stop("File does not exist! \n", filePath)
