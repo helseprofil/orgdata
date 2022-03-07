@@ -180,3 +180,16 @@ is_col_num <- function(dt, cols){
   }
   return(dt)
 }
+
+## Connect to the CSV database
+is_duck_db <- function(group, year){
+
+  duckFile <- paste0(group, ".duckdb")
+  duckPath <- file.path("csv_database", year)
+  duckRoot <- file.path(os_drive(), getOption("orgdata.folder.db"), duckPath)
+  if (!fs::dir_exists(duckRoot)){
+    fs::dir_create(duckRoot)
+  }
+
+  DBI::dbConnect(duckdb::duckdb(), file.path(duckRoot,duckFile))
+}

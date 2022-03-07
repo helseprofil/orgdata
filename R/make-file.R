@@ -68,12 +68,14 @@ make_file <- function(group = NULL,
   kh <- is_conn_db(dbFile)
   on.exit(kh$db_close(), add = TRUE)
 
+  concsv <- is_duck_db(group = group, year = year)
+
   ## SPECIFICATIONS ----------------------------------------
-  spec <- find_spec(
-    file = "specification.sql",
-    value = group,
-    con = kh$dbconn
-  )
+    spec <- find_spec(
+      file = "specification.sql",
+      value = group,
+      con = kh$dbconn
+    )
   ## data.table::setDT(spec)
   ## TODO Can't use DT yet. Some functions are still
   ## based on DF eg. find_column_input
