@@ -22,11 +22,14 @@ do_recode_without_aggregate <- function(dt = NULL,
                                           "kommune",
                                           "bydel"
                                         ),
-                                        year = getOption("orgdata.year"),
-                                        base = getOption("orgdata.recode.base"),
+                                        year = NULL,
+                                        base = NULL,
                                         ...){
   AAR <- NULL
   cat("..")
+
+  if(is.null(year)) year <- getOption("orgdata.year")
+  if(is.null(base)) base <- getOption("orgdata.recode.base")
 
   is_debug()
   is_null(dt)
@@ -101,7 +104,7 @@ do_geo_recode <- function(dt = NULL,
 
   is_debug()
 
-  if(is.nul(year)) year <- getOption("orgdata.year")
+  if(is.null(year)) year <- getOption("orgdata.year")
   if(is.null(geo)) geo <- getOption("orgdata.debug.geo")
   if(is.null(base)) base <- getOption("orgdata.recode.base")
 
