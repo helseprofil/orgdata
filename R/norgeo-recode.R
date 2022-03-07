@@ -42,18 +42,14 @@ do_recode_without_aggregate <- function(dt = NULL,
   geoDB <- is_conn_db(geoFile)
 
   cat("..")
-  ## validTo in the database `tblGeo` is a character
-  if (is.null(year)) {
-    yr <- as.integer(format(Sys.Date(), "%Y"))
-  }
 
   ## recode GEO codes
-  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
+  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = year)
   cat("..\n")
   dt <- do_geo_recode(dt = dt,
                       code = code,
                       type = source,
-                      year = yr,
+                      year = year,
                       con = geoDB$dbconn,
                       base = base, ...)
 }
