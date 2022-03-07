@@ -44,8 +44,8 @@ do_aggregate <- function(dt = NULL,
                          year = NULL,
                          aggregate.col = NULL,
                          geoDT = NULL,
-                         check = getOption("orgdata.debug.aggregate"),
-                         base = getOption("orgdata.recode.base"),
+                         check = NULL,
+                         base = NULL,
                          control = FALSE,
                          wide = NULL) {
 
@@ -55,6 +55,9 @@ do_aggregate <- function(dt = NULL,
   is_debug()
   is_null(dt)
   dt <- data.table::copy(dt)
+
+  if(is.null(check)) check <- getOption("orgdata.debug.aggregate")
+  if(is.null(base)) base <- getOption("orgdata.recode.base")
 
   source <- tolower(source)
   level <- tolower(level)

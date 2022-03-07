@@ -89,7 +89,7 @@ is_read_id <- function(filid = NULL, con = NULL) {
 
   on.exit(kh$db_close(), add = TRUE)
   file <- find_spec("org-file.sql", value = filid, con = con)
-  file.path(getOption("orgdata.folder.data"), file)
+  file.path(os_drive(), getOption("orgdata.folder.data"), file)
 }
 
 is_read_path <- function(file){

@@ -13,9 +13,11 @@
 do_recode_aggregate <- function(dt = NULL,
                                 spec = NULL,
                                 con = NULL,
-                                aggregate = getOption("orgdata.aggregate"),
+                                aggregate = NULL,
                                 control = FALSE) {
   is_debug()
+
+  if (is.null(aggregate)) aggregate <- getOption("orgdata.aggregate")
 
   if (aggregate){
     grp <- find_column_input(spec = spec, "FILGRUPPE")
