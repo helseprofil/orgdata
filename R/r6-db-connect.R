@@ -90,6 +90,15 @@ KHelse <- R6::R6Class(
     },
 
     #' @description
+    #' Read table and convert to data.table format
+    #' @inheritParams db_write
+    db_read = function(name = NULL){
+      if(!is.null(name)) {self$tblname <- name}
+      DT <- DBI::dbReadTable(self$dbconn, name = self$tblname)
+      data.table::setDT(DT)
+    },
+
+    #' @description
     #' Remove table in the database.
     #' @inheritParams db_write
     db_remove_table = function(name = NULL){
@@ -160,7 +169,7 @@ connect_db <- function(dbname, dbtype, dbyear, dbdriver){
          },
          DuckDB = {
            duckFile <- paste0(dbname, ".duckdb")
-           duckPath <- file.path("csv_database", dbyear)
+           duckPath <- file.path("raw_database", dbyear)
            duckRoot <- file.path(os_drive(), getOption("orgdata.folder.db"), duckPath)
            if (!fs::dir_exists(duckRoot)){
              fs::dir_create(duckRoot)
@@ -173,7 +182,7 @@ connect_db <- function(dbname, dbtype, dbyear, dbdriver){
 
 write_db <- function(name = NULL,
                      dbconn = NULL,
-                     value=NULL,
+                     value = NULL,
                      write = FALSE,
                      append = FALSE,
                      field.types = NULL,

@@ -8,6 +8,7 @@
 #' @param verbose Make processes explicit. Default is FALSE
 #' @param row Select specific row only
 #' @param control Logical value. If the file has been checked for possible errors
+#' @param duck R6 object for DuckDB
 #' @return A dataset with `data.table` format
 
 is_org_process <- function(file,
@@ -16,31 +17,53 @@ is_org_process <- function(file,
                            con,
                            verbose = NULL,
                            row = NULL,
-                           control = FALSE
+                           control = FALSE,
+                           duck = NULL
                            ) {
   GEO <- NULL
   is_debug(deep = TRUE)
-  dots <- get_innlesarg(spec = filespec)
-
-  if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
-  if (is.null(row)) row <- getOption("orgdata.debug.row")
 
   ## For GEO codes that are derived from a combination of two columns
   geoVals <- is_separate(filespec$GEO, ",")
   geo2col <- length(geoVals) > 1
-  if (geo2col) {
-    dots <- is_geo_split(geo = geoVals, dots = dots)
+
+  ## Check if dataset in DuckDB -------------
+  duckID <- as.integer(DBI::dbListTables(duck$dbconn))
+  tblFilid <- as.character(filespec$FILID)
+  if (isFALSE(filespec$KONTROLLERT) && isTRUE(any(filespec$FILID %in% duckID))){
+    duck$db_remove_table(name = tblFilid)
   }
 
-  ## With or without dots or extra arguments
-  extra <- get_extra_args(spec = filespec)
-  extra <- is_fake_NA(extra)
-  if (is.na(dots[1])) {
-    dt <- is_read_file(file = file, extra = extra)
+  if (isTRUE(filespec$KONTROLLERT) && isTRUE(any(filespec$FILID %in% duckID))){
+    is_color_txt(x = tblFilid, msg = "Read from Database. FILID:")
+    dt <- duck$db_read(name = tblFilid)
   } else {
-    dt <- is_read_file_dots(file = file, dots = dots, extra = extra)
+    ## Read CSV files -------------
+    dots <- get_innlesarg(spec = filespec)
+
+    if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
+    if (is.null(row)) row <- getOption("orgdata.debug.row")
+
+    if (geo2col) {
+      dots <- is_geo_split(geo = geoVals, dots = dots)
+    }
+
+    ## With or without dots or extra arguments
+    extra <- get_extra_args(spec = filespec)
+    extra <- is_fake_NA(extra)
+    if (is.na(dots[1])) {
+      dt <- is_read_file(file = file, extra = extra)
+    } else {
+      dt <- is_read_file_dots(file = file, dots = dots, extra = extra)
+    }
+
+    if (isTRUE(filespec$KONTROLLERT)){
+      duck$db_write(name = tblFilid, value = dt)
+    }
   }
 
+
+  ## Process files from specification ---------
   ## From options(orgdata.debug.row)
   if (!is.null(row)){
     dt <- dt[row,]

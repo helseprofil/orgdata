@@ -59,9 +59,6 @@ make_file <- function(group = NULL,
     check = TRUE
   )
 
-  if (is.null(year)){
-    year <- as.integer(format(Sys.Date(), "%Y"))
-  }
   is_color_txt(year, "Production year for")
 
   ## CONNECTION --------------------------------------------
@@ -142,7 +139,8 @@ make_file <- function(group = NULL,
                                           datacols = dataCols,
                                           year = year,
                                           row = row,
-                                          base = base)},
+                                          base = base,
+                                          duck = duck)},
                                       future.seed = TRUE)
   } else {
     DT <- lapply(seq_len(rowFile),
@@ -153,7 +151,8 @@ make_file <- function(group = NULL,
                                      datacols = dataCols,
                                      year = year,
                                      row = row,
-                                     base = base)
+                                     base = base,
+                                     duck = duck)
                  })
   }
 
