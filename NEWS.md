@@ -106,7 +106,7 @@
 - Refactoring function for recode of geographical codes. (#174)
 - Geo codes for enumeration areas and towns that aren't able to be merged will
   be converted to `unknown` codes with either `xxxx9999` or `xxxx99`. (#177)
-- Create default folder at `C:/Users/YourUserName/orgdata_files` when `path`
+- Create default folder at `C:/Users/YourUserName/orgdata_logs` when `path`
   argument is not specified in `save_file()`. (#179)
 - Create unknown codes for enumeration areas and town codes if not able to
   recode. Most probably is due to the enumeration codes before 2002. The Excel

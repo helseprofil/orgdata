@@ -10,7 +10,7 @@
 #' @param path Folder path to save the file. If `name` is
 #'   a valide filegroup \emph{(FILGRUPPE)} then use the specified `UTMAPPE`
 #'   in Access registration database else file will be saved in default folder
-#'   `C:\Users\YourUserName\orgdata_files`. The default folder will be
+#'   `C:\Users\YourUserName\orgdata_logs`. The default folder will be
 #'   created if not exist.
 #' @param date Use date and time as part of the filename
 #' @param fgSpec File group specification from Access registration database
