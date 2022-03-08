@@ -150,7 +150,7 @@ is_reshape_val <- function(input, var, vals){
 is_reshape_input <- function(input){
   if (grepl("^list", input)){
     out <- "vars"
-  } else if (grepl("^!", input)){
+  } else if (grepl("^-", input)){
     out <- "not"
   } else {
     out <- "error"
@@ -173,7 +173,7 @@ is_reshape_var_list <- function(spec){
 
 is_reshape_var_other <- function(dtnames, reshapeid, spec){
   input <- spec$RESHAPE_VAL
-  vars <- gsub("^!\\((.*)\\)", "\\1", input)
+  vars <- gsub("^-\\((.*)\\)", "\\1", input)
   vars <- is_separate(vars, sep = ",")
   vars <- c(vars, reshapeid)
   setdiff(dtnames, vars)
