@@ -17,7 +17,7 @@ KHelse <- R6::R6Class(
     #' @field dbtype Database type of either Access or DuckDB
     dbtype = NULL,
 
-    #' @field dbyear Production year
+    #' @field dbyear Production year. Only relevant for DuckDB
     dbyear = NULL,
 
     #' @field dbconn Database connection.
@@ -42,8 +42,7 @@ KHelse <- R6::R6Class(
     #' kh$db_close()
     #' kh$db_connect()
     #' }
-    initialize = function(dbname = NULL, dbtype = NULL, dbyear = NULL) {
-      if (is.null(dbtype)) dbtype <- "Access"
+    initialize = function(dbname = NULL, dbtype = "Access", dbyear = NULL) {
 
       if (is.null(dbname)) {
         stop(message(" Woopss!! Can't find database file!"))
@@ -193,7 +192,7 @@ write_db <- function(name = NULL,
                              )
          },
          DuckDB = {
-           DBI::dbWriteTable(conn =dbconn,
+           DBI::dbWriteTable(conn = dbconn,
                              name = name,
                              value = value)
          })
