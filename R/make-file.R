@@ -65,17 +65,22 @@ make_file <- function(group = NULL,
   is_color_txt(year, "Production year for")
 
   ## CONNECTION --------------------------------------------
+  ## Access
   kh <- is_conn_db(dbFile)
   on.exit(kh$db_close(), add = TRUE)
 
-  concsv <- is_duck_db(group = group, year = year)
+  ## DuckDB
+  duck <- is_conn_db(dbname = group,
+                     dbtype = "DuckDB",
+                     dbyear = year)
+  on.exit(duck$db_close(), add = TRUE)
 
   ## SPECIFICATIONS ----------------------------------------
-    spec <- find_spec(
-      file = "specification.sql",
-      value = group,
-      con = kh$dbconn
-    )
+  spec <- find_spec(
+    file = "specification.sql",
+    value = group,
+    con = kh$dbconn
+  )
   ## data.table::setDT(spec)
   ## TODO Can't use DT yet. Some functions are still
   ## based on DF eg. find_column_input
@@ -212,12 +217,12 @@ make_file <- function(group = NULL,
   }
 
   prodMsg <- paste0("Done! `", group ,"` for")
-  withr::with_options(list(orgdata.emoji = "thumb"),
-                      is_colour_txt(x = year,
-                                    msg = prodMsg,
-                                    type = "note",
-                                    emoji = TRUE))
-  return(outDT[])
+          withr::with_options(list(orgdata.emoji = "thumb"),
+                              is_colour_txt(x = year,
+                                            msg = prodMsg,
+                                            type = "note",
+                                            emoji = TRUE))
+          return(outDT[])
 }
 
   #' @export
