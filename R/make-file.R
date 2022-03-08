@@ -59,14 +59,18 @@ make_file <- function(group = NULL,
     check = TRUE
   )
 
-  if (is.null(year)){
-    year <- as.integer(format(Sys.Date(), "%Y"))
-  }
   is_color_txt(year, "Production year for")
 
   ## CONNECTION --------------------------------------------
+  ## Access
   kh <- is_conn_db(dbFile)
   on.exit(kh$db_close(), add = TRUE)
+
+  ## DuckDB
+  duck <- is_conn_db(dbname = group,
+                     dbtype = "DuckDB",
+                     dbyear = year)
+  on.exit(duck$db_close(), add = TRUE)
 
   ## SPECIFICATIONS ----------------------------------------
   spec <- find_spec(
@@ -135,7 +139,8 @@ make_file <- function(group = NULL,
                                           datacols = dataCols,
                                           year = year,
                                           row = row,
-                                          base = base)},
+                                          base = base,
+                                          duck = duck)},
                                       future.seed = TRUE)
   } else {
     DT <- lapply(seq_len(rowFile),
@@ -146,7 +151,8 @@ make_file <- function(group = NULL,
                                      datacols = dataCols,
                                      year = year,
                                      row = row,
-                                     base = base)
+                                     base = base,
+                                     duck = duck)
                  })
   }
 
@@ -210,12 +216,12 @@ make_file <- function(group = NULL,
   }
 
   prodMsg <- paste0("Done! `", group ,"` for")
-  withr::with_options(list(orgdata.emoji = "thumb"),
-                      is_colour_txt(x = year,
-                                    msg = prodMsg,
-                                    type = "note",
-                                    emoji = TRUE))
-  return(outDT[])
+          withr::with_options(list(orgdata.emoji = "thumb"),
+                              is_colour_txt(x = year,
+                                            msg = prodMsg,
+                                            type = "note",
+                                            emoji = TRUE))
+          return(outDT[])
 }
 
   #' @export

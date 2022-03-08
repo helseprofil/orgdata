@@ -4,8 +4,9 @@
 #' @param fgspec Filegroup specification
 #' @param datacols Columnames to be kept
 #' @inheritParams make_file
+#' @param duck R6 object for DuckDB
 #' @export
-do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base){
+do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base, duck = NULL){
   is_debug()
   fileSpec <- spec
   filePath <- is_path_raw(fileSpec, check = TRUE)
@@ -25,7 +26,8 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     fgspec = fgspec,
     con = DB$dbconn,
     row = row,
-    control = fileCtrl
+    control = fileCtrl,
+    duck = duck
   )
 
   ## RESHAPE structure -----------------------------------------
