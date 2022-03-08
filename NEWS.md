@@ -2,6 +2,12 @@
 - Change helper function names for `read_file()`. (#250) 
 - Fixed bugs when reading file from the web with https (#251)
 - `read_file()` accept Stata file with `dta` extension (#252)
+- Use yaml format for global configuration file to ease update. The file is
+  located in [config repo](https://github.com/helseprofil/config/blob/main/config-orgdata.yml) (#256)
+- Raw data that have been controlled for are saved in DuckDB database format.
+  This increase reading speed especially for big files. Mark column
+  *KONTROLLERT* in the Access registration database to activate this function.
+  Unmark to delete from the database. (#257)
 
 # orgdata 0.5.7
 - Handle unbalanced parentheses in post recode whenever possible when `raw` is
