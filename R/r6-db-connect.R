@@ -81,15 +81,21 @@ KHelse <- R6::R6Class(
       if(!is.null(name)) { self$tblname <- name }
       if(!is.null(value)) { self$tblvalue <- value }
 
-      DBI::dbWriteTable(self$dbconn,
-                        self$tblname,
-                        self$tblvalue,
-                        # https://github.com/r-dbi/odbc/issues/263
-                        batch_rows = 1,
-                        overwrite = write,
-                        append = append,
-                        field.types = field.types
-                        )
+      write_db(name = self$tblname,
+               dbconn = self$dbconn,
+               value= self$tblvalue,
+               write = write,
+               append = append,
+               field.types = field.types,
+               dbtype = self$dbtype)
+    },
+
+    #' @description
+    #' Remove table in the database.
+    #' @inheritParams db_write
+    db_remove_table = function(name = NULL){
+      if(!is.null(name)) { self$tblname <- name }
+      DBI::dbRemoveTable(self$dbconn, self$tblname)
     },
 
     #' @description
@@ -164,4 +170,31 @@ connect_db <- function(dbname, dbtype, dbyear, dbdriver){
            DBI::dbConnect(duckdb::duckdb(), file.path(duckRoot,duckFile))
          })
 
+}
+
+write_db <- function(name = NULL,
+                     dbconn = NULL,
+                     value=NULL,
+                     write = FALSE,
+                     append = FALSE,
+                     field.types = NULL,
+                     dbtype = NULL){
+
+  switch(dbtype,
+         Access = {
+           DBI::dbWriteTable(conn = dbconn,
+                             name = name,
+                             value = value,
+                             # https://github.com/r-dbi/odbc/issues/263
+                             batch_rows = 1,
+                             overwrite = write,
+                             append = append,
+                             field.types = field.types
+                             )
+         },
+         DuckDB = {
+           DBI::dbWriteTable(conn =dbconn,
+                             name = name,
+                             value = value)
+         })
 }
