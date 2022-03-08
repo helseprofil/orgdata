@@ -68,7 +68,7 @@ test_that("Reshape rename column", {
                          ALDER = "ALDER_AR", UTDANN = "<0>", LANDSSB = NA_character_,
                          TAB1 = "hvorfor", TAB2 = NA_character_, TAB3 = NA_character_,
                          VAL1 = "N", VAL2 = NA_character_, VAL3 = NA_character_, RESHAPE_ID = "GEO, AAR, KJONN, ALDER, UTDANN",
-                         RESHAPE_VAL = "!(FAAR, BOKOMMUNE_V_DOD, DODSKOMMUNE_K)",
+                         RESHAPE_VAL = "-(FAAR, BOKOMMUNE_V_DOD, DODSKOMMUNE_K)",
                          RESHAPE_KOL = "TAB1 = hvorfor, VAL1 = N", EXTRA = NA_character_), row.names = 1L, class = "data.frame")
 
   outVarId <- list(id = c("GEO", "AAR", "KJONN", "ALDER", "UTDANN"),
