@@ -32,7 +32,7 @@
   <a href="../articles/get-started.html">Get started</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -75,7 +75,16 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">do_make_file_each</span><span class="op">(</span><span class="va">spec</span>, <span class="va">fgspec</span>, <span class="va">aggregate</span>, <span class="va">datacols</span>, <span class="va">year</span>, <span class="va">row</span>, <span class="va">base</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">do_make_file_each</span><span class="op">(</span>
+  <span class="va">spec</span>,
+  <span class="va">fgspec</span>,
+  <span class="va">aggregate</span>,
+  <span class="va">datacols</span>,
+  <span class="va">year</span>,
+  <span class="va">row</span>,
+  <span class="va">base</span>,
+  duck <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -99,6 +108,8 @@ aggregating. If not specified, then current year will be used</p></dd>
 <dd><p>Logical value. If <code>TRUE</code> then use year in the original data as the base
 year to recode the geographical codes. Default is <code>FALSE</code> and use all
 available codes in geo codebook</p></dd>
+<dt>duck</dt>
+<dd><p>R6 object for DuckDB</p></dd>
 </dl></div>
 
   </div>
@@ -109,11 +120,14 @@ available codes in geo codebook</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by <a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman Kamaleri</a>.</p>
+  <p></p><p>Developed by
+<a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman
+Kamaleri</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer></div>

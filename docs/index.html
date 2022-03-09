@@ -57,7 +57,7 @@
   <a href="articles/get-started.html">Get started</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -98,10 +98,13 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="orgdata-">orgdata <img src="reference/figures/logo.png" align="right" width="110" height="138"><a class="anchor" aria-label="anchor" href="#orgdata-"></a>
+<div class="page-header"><h1 id="orgdata-">orgdata
+<img src="reference/figures/logo.png" align="right" width="110" height="138"><a class="anchor" aria-label="anchor" href="#orgdata-"></a>
 </h1></div>
 
-<p>Cleaning, restructuring and aggregating <strong>OR</strong>i<strong>G</strong>inal <strong>DATA</strong> into a preferred dataset.</p>
+<p>Cleaning, restructuring and aggregating
+<strong>OR</strong>i<strong>G</strong>inal <strong>DATA</strong> into a
+preferred dataset.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -109,7 +112,8 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"helseprofil/orgdata"</span><span class="op">)</span></code></pre></div>
-<p>or use a user startup file <em>sepaafil.R</em> by cloning it from <code>user</code> branch</p>
+<p>or use a user startup file <em>sepaafil.R</em> by cloning it from
+<code>user</code> branch</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-b</span> user https://github.com/helseprofil/orgdata</span></code></pre></div>
 <p>To install development version from <code>orgdata</code>, use:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -119,7 +123,9 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>To implement the specifications per file group as being registered in the database use <code><a href="reference/make_file.html">make_file()</a></code> function. Parallel processing can be used if needed.</p>
+<p>To implement the specifications per file group as being registered in
+the database use <code><a href="reference/make_file.html">make_file()</a></code> function. Parallel processing
+can be used if needed.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span>
 <span class="co"># All files under BEFOLKNING group</span>
@@ -129,15 +135,19 @@
 <span class="co"># For selected files with KOBLID</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">48</span><span class="op">)</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">48</span>, <span class="fl">72</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Use function <code><a href="reference/make_filegroups.html">make_filegroups()</a></code> to process multiple file groups at once.</p>
+<p>Use function <code><a href="reference/make_filegroups.html">make_filegroups()</a></code> to process multiple file
+groups at once.</p>
 </div>
 <div class="section level2">
 <h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
 </h2>
 <ul>
-<li><a href="https://helseprofil.github.io/orgdata/articles/get-started.html" class="external-link">Get started</a></li>
-<li><a href="https://helseprofil.github.io/orgdata/reference/index.html" class="external-link">Functions overview</a></li>
-<li><a href="https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1" class="external-link">Presentation slides</a></li>
+<li><a href="https://helseprofil.github.io/orgdata/articles/get-started.html" class="external-link">Get
+started</a></li>
+<li><a href="https://helseprofil.github.io/orgdata/reference/index.html" class="external-link">Functions
+overview</a></li>
+<li><a href="https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1" class="external-link">Presentation
+slides</a></li>
 <li><a href="https://github.com/helseprofil/orgdata/blob/main/dev/standard.org" class="external-link">Conventions</a></li>
 <li><a href="https://youtu.be/PhEQq4iWJCY" class="external-link">Video guide</a></li>
 </ul>
@@ -196,12 +206,15 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by <a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman Kamaleri</a>.</p>
+<p>Developed by
+<a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman
+Kamaleri</a>.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
