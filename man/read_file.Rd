@@ -10,24 +10,26 @@ read_file(file = NULL, ...)
 les_fil(file = NULL, ...)
 }
 \arguments{
-\item{file}{Use FILID, FILEGROUP or a complete path of a filename}
+\item{file}{Use FILID, FILEGROUP or a complete path of a filename. Data set
+of \code{.csv} extension on \verb{https://} can also be file input arg.}
 
 \item{...}{All other arguments to be passed related to the file format}
 }
 \description{
-Read rawdata either using \code{FILID} value or complete file path. It uses the \code{\link[=find_data]{find_data()}} generic method.
-For a \code{ .csv } file, \code{\link[data.table:fread]{data.table::fread()}} is used and all other arguments
-for \code{fread} function can be used. For a \code{ .xlsx } or \code{ .xls } file
-\code{\link[readxl:read_excel]{readxl::read_excel()}} function and all of its arguments.
+Read rawdata either using \code{FILID} value or complete file path.
+It uses the \code{\link[=find_data]{find_data()}} generic method. For a \code{ .csv } file,
+\code{\link[data.table:fread]{data.table::fread()}} is used and all other arguments for \code{fread}
+function can be used. For a \code{ .xlsx } or \code{ .xls } file
+\code{\link[readxl:read_excel]{readxl::read_excel()}} function and all of its arguments. For a \code{ .dta
+  } file, \code{\link[haven:read_dta]{haven::read_dta()}} is used and all other arguments for
+\code{read_dta} function can be used.
 
-Nevertheless, some most used arguments are standardized for \code{read_file()} and there are:
-\itemize{
-\item \code{nrows} to display maksimum numbers to read
-\item \code{header} FALSE to give default columnames as \code{V1}, \code{V2} etc
-\item \code{skip} a specific number of raws before reading the data
-\item \code{trimws} to trim leading and trailing whitespace
-\item \code{na} for character value to be interpreted as \code{NA}
-}
+Nevertheless, some most used arguments are standardized for
+\code{read_file()} and there are: \itemize{ \item \code{nrows} to display maksimum
+numbers to read \item \code{header} FALSE to give default columnames as \code{V1},
+\code{V2} etc \item \code{skip} a specific number of raws before reading the data
+\item \code{trimws} to trim leading and trailing whitespace \item \code{na} for
+character value to be interpreted as \code{NA} }
 }
 \examples{
 \dontrun{

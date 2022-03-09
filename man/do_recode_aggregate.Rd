@@ -8,7 +8,7 @@ do_recode_aggregate(
   dt = NULL,
   spec = NULL,
   con = NULL,
-  aggregate = getOption("orgdata.aggregate"),
+  aggregate = NULL,
   control = FALSE
 )
 }

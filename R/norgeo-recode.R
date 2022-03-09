@@ -22,11 +22,14 @@ do_recode_without_aggregate <- function(dt = NULL,
                                           "kommune",
                                           "bydel"
                                         ),
-                                        year = getOption("orgdata.year"),
-                                        base = getOption("orgdata.recode.base"),
+                                        year = NULL,
+                                        base = NULL,
                                         ...){
   AAR <- NULL
   cat("..")
+
+  if(is.null(year)) year <- getOption("orgdata.year")
+  if(is.null(base)) base <- getOption("orgdata.recode.base")
 
   is_debug()
   is_null(dt)
@@ -39,18 +42,14 @@ do_recode_without_aggregate <- function(dt = NULL,
   geoDB <- is_conn_db(geoFile)
 
   cat("..")
-  ## validTo in the database `tblGeo` is a character
-  if (is.null(year)) {
-    yr <- as.integer(format(Sys.Date(), "%Y"))
-  }
 
   ## recode GEO codes
-  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = yr)
+  code <- get_geo_recode(con = geoDB$dbconn, type = source, year = year)
   cat("..\n")
   dt <- do_geo_recode(dt = dt,
                       code = code,
                       type = source,
-                      year = yr,
+                      year = year,
                       con = geoDB$dbconn,
                       base = base, ...)
 }
@@ -90,16 +89,20 @@ do_geo_recode <- function(dt = NULL,
                             "fylke",
                             "kommune",
                             "bydel"),
-                          year = getOption("orgdata.year"),
+                          year = NULL,
                           con = NULL,
-                          geo = getOption("orgdata.debug.geo"),
-                          base = getOption("orgdata.recode.base"),
+                          geo = NULL,
+                          base = NULL,
                           control = FALSE,
                           ...
                           ){
   GEO <- i.to <- changeOccurred <- NULL
 
   is_debug()
+
+  if(is.null(year)) year <- getOption("orgdata.year")
+  if(is.null(geo)) geo <- getOption("orgdata.debug.geo")
+  if(is.null(base)) base <- getOption("orgdata.recode.base")
 
   withr::with_options(list(orgdata.emoji = "write"),
                       is_color_txt(x = "", msg = "Recode geo codes ...", emoji = TRUE))
@@ -176,10 +179,12 @@ get_geo_recode <- function(con = NULL,
                              "fylke",
                              "kommune",
                              "bydel"),
-                           year = getOption("orgdata.year")
+                           year = NULL
                            ){
 
   changeOccurred <- NULL
+
+  if (is.null(year)) year <- getOption("orgdata.year")
 
   is_debug(deep = TRUE)
   is_null(con)

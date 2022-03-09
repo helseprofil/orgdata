@@ -17,7 +17,7 @@ lagre_fil(dt = NULL, name = NULL, path = NULL, date = FALSE, fgSpec = NULL)
 \item{path}{Folder path to save the file. If \code{name} is
 a valide filegroup \emph{(FILGRUPPE)} then use the specified \code{UTMAPPE}
 in Access registration database else file will be saved in default folder
-\verb{C:\\Users\\YourUserName\\orgdata_files}. The default folder will be
+\verb{C:\\Users\\YourUserName\\orgdata_logs}. The default folder will be
 created if not exist.}
 
 \item{date}{Use date and time as part of the filename}

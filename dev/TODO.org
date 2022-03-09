@@ -42,7 +42,7 @@ Consider R6 class.
 *** TODO tryCatch
 Use =tryCatch= in loop files for error message
 *** DONE Process files
-Make seperate function =is_org_process=
+Make seperate function =is_process_file=
 *** HOLD Recoded variables
 - Not sure what I was thinking here :-(
 - Make function ~check_code(x=all)~ eg. ~check_code(x=landbak)~ only check recoded value for =landbak=.

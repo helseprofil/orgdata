@@ -11,8 +11,8 @@ do_aggregate(
   year = NULL,
   aggregate.col = NULL,
   geoDT = NULL,
-  check = getOption("orgdata.debug.aggregate"),
-  base = getOption("orgdata.recode.base"),
+  check = NULL,
+  base = NULL,
   control = FALSE,
   wide = NULL
 )

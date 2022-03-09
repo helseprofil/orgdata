@@ -29,12 +29,6 @@ navbar:
     href: news/index.html
 
 reference:
-- title: Database connection
-  desc: >
-    Make connection to the database. Use `opt.orgdata` to see orgdata config options
-    or `getOption()` for a specific option. Object of R6 Class will be created.
-  contents:
-  - KHelse
 - title: Main functions
   desc: >
     Functions to load rawdata into R and produce a `csv` file for the selected group (*filgruppe*).
@@ -43,6 +37,12 @@ reference:
   - make_file
   - make_filegroups
   - save_file
+- title: Database connection
+  desc: >
+    Make connection to the database. Use `opt.orgdata` to see orgdata config options
+    or `getOption()` for a specific option. Object of R6 Class will be created.
+  contents:
+  - KHelse
 - title: Geo codes
   desc: >
     Functions to get geographical codes for aggregating and recoding. The codes are fetched from
@@ -72,6 +72,7 @@ reference:
   desc: Some functions that are nice to have.
   contents:
     - see_file
+    - see_raw
     - log
     - read_log
     - debug_opt

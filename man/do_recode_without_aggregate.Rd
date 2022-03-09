@@ -7,8 +7,8 @@
 do_recode_without_aggregate(
   dt = NULL,
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
-  year = getOption("orgdata.year"),
-  base = getOption("orgdata.recode.base"),
+  year = NULL,
+  base = NULL,
   ...
 )
 }

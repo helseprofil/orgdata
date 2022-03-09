@@ -1,30 +1,3 @@
-#' @title Connect to Database
-#' @description Use R6 object to connect to database
-#' @param dbname Database filename with complete path
-#' @param db Database file `kh` (Kommunehelse) and `geo` (Geo code)
-#' @param .test Use for testing only
-#' @param ... Other arguments
-#' @keywords internal
-is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...){
-
-  db <- match.arg(db)
-  dbfile <- switch(db,
-                   kh = getOption("orgdata.db"),
-                   geo = getOption("orgdata.geo"),
-                   getOption("orgdata.db"))
-
-  if (is.null(dbname)){
-    dbname <- is_path_db(db = dbfile, ...)
-  }
-
-  if (.test){
-    return(dbname)
-  }
-
-  KHelse$new(dbname = dbname)
-}
-
-
 #' @title Connecting to Database
 #' @description
 #' Connect to registration database to get all necessary information
@@ -41,6 +14,12 @@ KHelse <- R6::R6Class(
     #' @field dbname Database filename.
     dbname = NULL,
 
+    #' @field dbtype Database type of either Access or DuckDB
+    dbtype = NULL,
+
+    #' @field dbyear Production year. Only relevant for DuckDB
+    dbyear = NULL,
+
     #' @field dbconn Database connection.
     dbconn = NULL,
 
@@ -54,6 +33,8 @@ KHelse <- R6::R6Class(
     #' @description
     #' Start connecting to the database.
     #' @param dbname Database filename.
+    #' @param dbtype Database type eg. Access, SQLite, DuckDB etc.
+    #' @param dbyear Production year. This arg only relevant to raw database in DuckDB
     #' @examples
     #' \dontrun{
     #' kh <- KHelse$new(file.path(getOption("orgdata.drive"),
@@ -63,16 +44,19 @@ KHelse <- R6::R6Class(
     #' kh$db_close()
     #' kh$db_connect()
     #' }
-    initialize = function(dbname = NULL) {
+    initialize = function(dbname = NULL, dbtype = "Access", dbyear = NULL) {
+
       if (is.null(dbname)) {
         stop(message(" Woopss!! Can't find database file!"))
       } else {
+
         self$dbname <- dbname
-        cs <- paste0(private$..drv, self$dbname)
-        self$dbconn <- DBI::dbConnect(odbc::odbc(),
-                                      .connection_string = cs,
-                                      encoding = "latin1"
-                                      )
+        self$dbtype <- dbtype
+        self$dbyear <- dbyear
+        self$dbconn <- connect_db(dbname = self$dbname,
+                                  dbtype = self$dbtype,
+                                  dbyear = self$dbyear,
+                                  dbdriver = private$..drv)
       }
     },
 
@@ -80,11 +64,10 @@ KHelse <- R6::R6Class(
     #' Reconnect to the database when \code{db_close} was used.
     db_connect = function() {
       stopifnot(!is.null(self$dbname))
-      cs <- paste0(private$..drv, self$dbname)
-      self$dbconn <- DBI::dbConnect(odbc::odbc(),
-                                    .connection_string = cs,
-                                    encoding = "latin1"
-                                    )
+      self$dbconn <- connect_db(dbname = self$dbname,
+                                dbtype = self$dbtype,
+                                dbyear = self$dbyear,
+                                dbdriver = private$..drv)
     },
 
     #' @description
@@ -99,26 +82,134 @@ KHelse <- R6::R6Class(
       if(!is.null(name)) { self$tblname <- name }
       if(!is.null(value)) { self$tblvalue <- value }
 
-      DBI::dbWriteTable(self$dbconn,
-                        self$tblname,
-                        self$tblvalue,
-                        batch_rows = 1,
-                        overwrite = write,
-                        append = append,
-                        field.types = field.types
-                        )
+      write_db(name = self$tblname,
+               dbconn = self$dbconn,
+               value= self$tblvalue,
+               write = write,
+               append = append,
+               field.types = field.types,
+               dbtype = self$dbtype)
+    },
+
+    #' @description
+    #' Read table and convert to data.table format
+    #' @param name Table name to be created in the database.
+    db_read = function(name = NULL){
+      if(!is.null(name)) {self$tblname <- name}
+      DT <- DBI::dbReadTable(self$dbconn, name = self$tblname)
+      data.table::setDT(DT)
+    },
+
+    #' @description
+    #' Remove table in the database.
+    #' @param name Table name to be created in the database.
+    db_remove_table = function(name = NULL){
+      if(!is.null(name)) { self$tblname <- name }
+      DBI::dbRemoveTable(self$dbconn, self$tblname)
     },
 
     #' @description
     #' Close connection to the database.
     db_close = function() {
-      DBI::dbDisconnect(self$dbconn)
+      if (self$dbtype == "Access"){
+        DBI::dbDisconnect(self$dbconn)
+      }
+
+      if (self$dbtype == "DuckDB"){
+        DBI::dbDisconnect(self$dbconn, shutdown = TRUE)
+      }
     }
   ),
-  private = list(
-    ..drv = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=",
-    finalize = function() {
-      DBI::dbDisconnect(self$dbconn)
-    }
-  )
+    private = list(
+      ..drv = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=",
+      finalize = function() {
+        if (self$dbtype == "Access"){
+          DBI::dbDisconnect(self$dbconn)
+        }
+
+        if (self$dbtype == "DuckDB"){
+          DBI::dbDisconnect(self$dbconn, shutdown = TRUE)
+        }
+      }
+    )
 )
+
+#' @title Connect to Database
+#' @description Use R6 object to connect to database
+#' @param dbname Database filename with complete path
+#' @param db Database file `kh` (Kommunehelse), `geo` (Geo code) or `raw` (Raw database)
+#' @param .test Use for testing only
+#' @param ... Other arguments
+#' @keywords internal
+is_conn_db <- function(dbname = NULL, db = c("kh", "geo", "raw"), .test = FALSE, ...){
+
+  db <- match.arg(db)
+  dbfile <- switch(db,
+                   kh = getOption("orgdata.db"),
+                   geo = getOption("orgdata.geo"),
+                   getOption("orgdata.db"))
+
+  if (is.null(dbname)){
+    dbname <- is_path_db(db = dbfile, ...)
+  }
+
+  if (.test){
+    return(dbname)
+  }
+
+  if (db == "raw"){
+    KHelse$new(dbname = dbname, dbtype = "DuckDB", dbyear = getOption("orgdata.year"), ...)
+  } else {
+    KHelse$new(dbname = dbname, ...)
+  }
+}
+
+
+## HELPER ---------------
+connect_db <- function(dbname, dbtype, dbyear, dbdriver){
+  switch(dbtype,
+         Access = {
+           DBI::dbConnect(odbc::odbc(),
+                          .connection_string = paste0(dbdriver, dbname),
+                          encoding = "latin1")
+         },
+         DuckDB = {
+           duckFile <- paste0(dbname, ".duckdb")
+           duckPath <- file.path("raw_database", dbyear)
+           duckRoot <- file.path(os_drive(), getOption("orgdata.folder.db"), duckPath)
+           if (!fs::dir_exists(duckRoot)){
+             fs::dir_create(duckRoot)
+           }
+
+           DBI::dbConnect(duckdb::duckdb(), file.path(duckRoot,duckFile))
+         })
+
+}
+
+write_db <- function(name = NULL,
+                     dbconn = NULL,
+                     value = NULL,
+                     write = FALSE,
+                     append = FALSE,
+                     field.types = NULL,
+                     dbtype = NULL){
+
+  switch(dbtype,
+         Access = {
+           DBI::dbWriteTable(conn = dbconn,
+                             name = name,
+                             value = value,
+                             # https://github.com/r-dbi/odbc/issues/263
+                             batch_rows = 1,
+                             overwrite = write,
+                             append = append,
+                             field.types = field.types
+                             )
+         },
+         DuckDB = {
+           DBI::dbWriteTable(conn = dbconn,
+                             name = name,
+                             value = value,
+                             overwrite = write)
+         })
+}

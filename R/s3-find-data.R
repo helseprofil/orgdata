@@ -28,13 +28,7 @@ find_data.default <- function(file, ...) {
 #' @method find_data csv
 #' @export
 find_data.csv <- function(file, ...) {
-  if(length(list(...)) > 0){
-    dots <- is_args(...)
-    dots <- is_dt_args(dots)
-  } else {
-    dots <- list()
-  }
-
+  dots <- is_csv_dots(...)
   is_verbose(file, msg = "File:")
   dots$file <- file
   dt <- do.call(data.table::fread, dots)
@@ -48,41 +42,38 @@ find_data.fhi <- find_data.csv
 #' @export
 find_data.none <- find_data.csv
 
+#' @method find_data http
+#' @export
+find_data.http <- function(file, ...){
+  dots <- is_csv_dots(...)
+  is_verbose(file, msg = "File:")
+  dots$input <- file
+  dt <- do.call(data.table::fread, dots)
+}
+
 
 #' @method find_data xls
 #' @export
 find_data.xls <- function(file, ...) {
   headerRename <- is.element("header", names(list(...)))
 
-  if (length(list(...)) > 0){
-    dots <- is_args(...)
-      dots <- is_xls_args(dots)
-    } else {
-      dots <- list()
-    }
+  dots <- is_xls_dots(...)
+  is_verbose(file, msg = "File:")
+  dots$path <- file
+  dt <- do.call(readxl::read_xls, dots)
 
-    is_verbose(file, msg = "File:")
-    dots$path <- file
-    dt <- do.call(readxl::read_xls, dots)
-
-    if (headerRename){
-      dt <- is_header_name(dt)
-    }
-    return(dt)
+  if (headerRename){
+    dt <- is_header_name(dt)
   }
+  return(dt)
+}
 
-#' @method find_data xls
+#' @method find_data xlsx
 #' @export
 find_data.xlsx <- function(file, ...) {
   headerRename <- is.element("header", names(list(...)))
 
-  if (length(list(...)) > 0){
-    dots <- is_args(...)
-    dots <- is_xls_args(dots)
-  } else {
-    dots <- list()
-  }
-
+  dots <- is_xls_dots(...)
   is_verbose(file, msg = "File:")
   dots$path <- file
   dt <- do.call(readxl::read_xlsx, dots)
@@ -93,7 +84,46 @@ find_data.xlsx <- function(file, ...) {
   return(dt)
 }
 
+#' @method find_data dta
+#' @export
+find_data.dta <- function(file, ...){
+  dots <- is_dta_dots(...)
+  is_verbose(file, msg = "File:")
+  dots$file <- file
+  do.call(haven::read_dta, dots)
+}
+
 ## Helper -------------------------------------------
+is_csv_dots <- function(...){
+  if(length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_dt_args(dots)
+  } else {
+    dots <- list()
+  }
+  return(dots)
+}
+
+is_xls_dots <- function(...){
+  if (length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_xls_args(dots)
+  } else {
+    dots <- list()
+  }
+  return(dots)
+}
+
+is_dta_dots <- function(...){
+  if (length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_dta_args(dots)
+  } else {
+    dots <- list()
+  }
+  return(dots)
+}
+
 ## Direct args or from registration database
 is_args <- function(...){
   ## take it out from nested list
@@ -134,6 +164,19 @@ is_xls_args <- function(x){
   }
   return(x)
 }
+
+is_dta_args <- function(x){
+  x <- is_rename_args(from = "nrows", to = "n_max")
+  argInt <- c("skip", "n_max")
+  inx <- is.element(argInt, names(x))
+  elm <- argInt[inx]
+
+  if (sum(inx)>0){
+    x <- is_numeric_args(x, elm)
+  }
+  return(x)
+}
+
 
 ## Use standard args in orgdata and rename it to the respective
 ## read functions arguments

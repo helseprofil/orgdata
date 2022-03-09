@@ -4,11 +4,13 @@
 #' @param fgspec Filegroup specification
 #' @param datacols Columnames to be kept
 #' @inheritParams make_file
+#' @param duck R6 object for DuckDB
 #' @export
-do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base){
+do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base, duck = NULL){
   is_debug()
   fileSpec <- spec
   filePath <- is_path_raw(fileSpec, check = TRUE)
+  filePath <- gsub("\\\\", "/", filePath)
 
   is_verbose(msg = is_line_long(), type = "other")
   is_verbose(fileSpec$KOBLID, "KOBLID:")
@@ -18,13 +20,14 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
   DB <- is_conn_db(db = "kh")
 
-  dt <- is_org_process(
+  dt <- is_process_file(
     file = filePath,
     filespec = fileSpec,
     fgspec = fgspec,
     con = DB$dbconn,
     row = row,
-    control = fileCtrl
+    control = fileCtrl,
+    duck = duck
   )
 
   ## RESHAPE structure -----------------------------------------
@@ -80,7 +83,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   }
 
   ## AGGREGATE ------------------------------------
-  ## TODO - Not sure if this necessary. Turn of temporarily
+  ## TODO - Not sure if this necessary. Turn off temporarily
   ## Convert some columns to interger. Must be after
   ## the variables are recoded eg. INNKAT is string before recorded to number
   ## dt <- is_col_num(dt)
@@ -96,6 +99,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
 
   ## RESHAPE LONG SPECIAL CASES --------------------------------------
+  ## When dataset was long then reshape to wide before long again
   if (!is.na(reshVal) && reshapeWide){
     dt <- do_reshape_long(dt = dt, respec = wideSpec)
     dt <- is_long_col(dt, spec = fileSpec, widespec = wideSpec)
@@ -106,7 +110,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
 
 ## HELPER ---------------------------
-
+# Delete rows created from cross join that shouldn't be there
 is_long_col <- function(dt, spec, widespec){
   # spec - file specification
   # widespec - Spec for reshape wide

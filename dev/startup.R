@@ -1,6 +1,5 @@
 ## Most used functions --------------------------
 devtools::load_all()
-options(orgdata.year = 2021)
 devtools::test()
 
 reset_opt()
@@ -31,8 +30,8 @@ pkgs <- c(
   "rmarkdown", "future", "foreach", "styler", "remotes",
   "digest", "rlang", "tibble", "cachem", "future.apply",
   "withr", "progressr", "parallelly", "crayon", "lifecycle",
-  "rex", "listenv"
-)
+  "rex", "listenv", "norgeo", "haven", "yaml", "duckdb"
+  )
 
 sapply(pkgs, function(x) if(!requireNamespace(x)) install.packages(x))
 
@@ -112,6 +111,9 @@ usethis::use_package("listenv")
 usethis::use_package("progressr")
 usethis::use_package("withr")
 usethis::use_package("remotes")
+usethis::use_package("haven")
+usethis::use_package("yaml", min_version = TRUE)
+usethis::use_package("duckdb", min_version = TRUE)
 
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub

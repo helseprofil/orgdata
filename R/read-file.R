@@ -1,17 +1,19 @@
 #' Read Data File
-#' @description Read rawdata either using `FILID` value or complete file path. It uses the [find_data()] generic method.
-#'    For a \code{ .csv } file, [data.table::fread()] is used and all other arguments
-#'    for \code{fread} function can be used. For a \code{ .xlsx } or \code{ .xls } file
-#'    [readxl::read_excel()] function and all of its arguments.
-#' @description Nevertheless, some most used arguments are standardized for `read_file()` and there are:
-#' \itemize{
-#'   \item `nrows` to display maksimum numbers to read
-#'   \item `header` FALSE to give default columnames as `V1`, `V2` etc
-#'   \item `skip` a specific number of raws before reading the data
-#'   \item `trimws` to trim leading and trailing whitespace
-#'   \item `na` for character value to be interpreted as `NA`
-#' }
-#' @param file Use FILID, FILEGROUP or a complete path of a filename
+#' @description Read rawdata either using `FILID` value or complete file path.
+#'   It uses the [find_data()] generic method. For a \code{ .csv } file,
+#'   [data.table::fread()] is used and all other arguments for \code{fread}
+#'   function can be used. For a \code{ .xlsx } or \code{ .xls } file
+#'   [readxl::read_excel()] function and all of its arguments. For a \code{ .dta
+#'   } file, [haven::read_dta()] is used and all other arguments for
+#'   \code{read_dta} function can be used.
+#' @description Nevertheless, some most used arguments are standardized for
+#'   `read_file()` and there are: \itemize{ \item `nrows` to display maksimum
+#'   numbers to read \item `header` FALSE to give default columnames as `V1`,
+#'   `V2` etc \item `skip` a specific number of raws before reading the data
+#'   \item `trimws` to trim leading and trailing whitespace \item `na` for
+#'   character value to be interpreted as `NA` }
+#' @param file Use FILID, FILEGROUP or a complete path of a filename. Data set
+#'   of `.csv` extension on `https://` can also be file input arg.
 #' @param ... All other arguments to be passed related to the file format
 #' @examples
 #' \dontrun{
@@ -33,22 +35,30 @@ read_file <- function(file = NULL, ...) {
   is_null(file)
 
   if (is.numeric(file)) {
-    file <- is_file_id(filid = file)
+    file <- is_read_id(filid = file)
   } else {
-    file <- is_file_path(file = file)
+    file <- is_read_path(file = file)
   }
 
-  fileExist <- fs::file_exists(file)
-  if (isFALSE(fileExist)){
-    is_stop("File not found!", file)
+  web <- is_read_http(file = file, check = TRUE)
+
+  ## Data on the web or direct file
+  if (web){
+    file <- is_read_http(file)
+  } else {
+    fileExist <- fs::file_exists(file)
+    if (isFALSE(fileExist)){
+      is_stop("File not found!", file)
+    }
+
+    ext <- tools::file_ext(file)
+    if (ext == ""){
+      class(file) <- append(class(file), "none")
+    } else {
+      class(file) <- append(class(file), ext)
+    }
   }
 
-  ext <- tools::file_ext(file)
-  if (ext == ""){
-    class(file) <- append(class(file), "none")
-  } else {
-    class(file) <- append(class(file), ext)
-  }
 
   dt <- find_data(file, ...)
 
@@ -66,7 +76,7 @@ les_fil <- read_file
 
 ## Helper -------------------------------------
 
-is_file_id <- function(filid = NULL, con = NULL) {
+is_read_id <- function(filid = NULL, con = NULL) {
   is_debug(deep = TRUE)
   if (is.null(con)) {
     dbFile <- is_path_db(
@@ -79,16 +89,32 @@ is_file_id <- function(filid = NULL, con = NULL) {
 
   on.exit(kh$db_close(), add = TRUE)
   file <- find_spec("org-file.sql", value = filid, con = con)
-  file.path(getOption("orgdata.folder.data"), file)
+  file.path(os_drive(), getOption("orgdata.folder.data"), file)
 }
 
-is_file_path <- function(file){
+is_read_path <- function(file){
   slash01 <- grepl("\\\\", file)
   slash02 <- grepl("/", file)
   path <- slash01 + slash02
 
+  # get path of FILGRUPPE if not direct file path
   if (path == 0){
     file <- is_file_csv(group = file, action = "read")
   }
   return(file)
+}
+
+is_read_http <- function(file, check = FALSE){
+  web <- FALSE
+  http <- grepl("^http", file)
+  if (isTRUE(http)){
+    class(file) <- append(class(file), "http")
+    web <- TRUE
+  }
+
+  if (isTRUE(check)){
+    return(web)
+  } else {
+    return(file)
+  }
 }

@@ -33,13 +33,13 @@
 #' @export
 make_file <- function(group = NULL,
                       koblid = NULL,
-                      aggregate = getOption("orgdata.aggregate"),
+                      aggregate = NULL,
                       save = FALSE,
-                      year = getOption("orgdata.year"),
-                      implicitnull = getOption("orgdata.implicit.null"),
-                      row = getOption("orgdata.debug.row"),
-                      base = getOption("orgdata.recode.base"),
-                      parallel = getOption("orgdata.parallel")
+                      year = NULL,
+                      implicitnull = NULL,
+                      row = NULL,
+                      base = NULL,
+                      parallel = NULL
                       ) {
 
   LEVEL <- NULL
@@ -47,19 +47,30 @@ make_file <- function(group = NULL,
   is_null(group, "Filgruppe is missing")
   is_debug()
 
+  if (is.null(aggregate)) aggregate <- getOption("orgdata.aggregate")
+  if (is.null(year)) year <- getOption("orgdata.year")
+  if (is.null(implicitnull)) implicitnull <- getOption("orgdata.implicit.null")
+  if (is.null(row)) row <- getOption("orgdata.debug.row")
+  if (is.null(base)) base <- getOption("orgdata.recode.base")
+  if (is.null(parallel)) parallel <- getOption("orgdata.parallel")
+
   dbFile <- is_path_db(
     db = getOption("orgdata.db"),
     check = TRUE
   )
 
-  if (is.null(year)){
-    year <- as.integer(format(Sys.Date(), "%Y"))
-  }
   is_color_txt(year, "Production year for")
 
   ## CONNECTION --------------------------------------------
+  ## Access
   kh <- is_conn_db(dbFile)
   on.exit(kh$db_close(), add = TRUE)
+
+  ## DuckDB
+  duck <- is_conn_db(dbname = group,
+                     dbtype = "DuckDB",
+                     dbyear = year)
+  on.exit(duck$db_close(), add = TRUE)
 
   ## SPECIFICATIONS ----------------------------------------
   spec <- find_spec(
@@ -85,14 +96,11 @@ make_file <- function(group = NULL,
   withr::with_options(list(orgdata.emoji = "book"),
                       is_colour_txt(x = rowFile, grpMsg, type = "note", emoji = TRUE))
 
-  withr::with_options(list(orgdata.emoji = "folder"),
-                      is_verbose(x = is_orgdata_path(), msg = "Log files can be found in", emoji = TRUE))
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
 
-  ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
-
+  ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------
   ## Parallel uses 50% of the cores but not more than 80%
   useCore <- 0.5
   if (is.numeric(parallel)){
@@ -128,7 +136,8 @@ make_file <- function(group = NULL,
                                           datacols = dataCols,
                                           year = year,
                                           row = row,
-                                          base = base)},
+                                          base = base,
+                                          duck = duck)},
                                       future.seed = TRUE)
   } else {
     DT <- lapply(seq_len(rowFile),
@@ -139,7 +148,8 @@ make_file <- function(group = NULL,
                                      datacols = dataCols,
                                      year = year,
                                      row = row,
-                                     base = base)
+                                     base = base,
+                                     duck = duck)
                  })
   }
 
@@ -208,13 +218,19 @@ make_file <- function(group = NULL,
                                     msg = prodMsg,
                                     type = "note",
                                     emoji = TRUE))
+
+  withr::with_options(list(orgdata.emoji = "folder"),
+                      is_verbose(x = is_orgdata_path(),
+                                 msg = "Log files can be found in",
+                                 emoji = TRUE))
+
   return(outDT[])
 }
 
-  #' @export
-  #' @rdname make_file
+#' @export
+#' @rdname make_file
 lag_fil <- make_file
 
 
-## Helper -----------------------------------------
-## Helper functions are in file utils-read-org.R
+## HELPER -----------------------------------------
+## Helper functions are in file utils-read-file.R

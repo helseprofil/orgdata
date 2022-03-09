@@ -10,7 +10,7 @@
 #' @param path Folder path to save the file. If `name` is
 #'   a valide filegroup \emph{(FILGRUPPE)} then use the specified `UTMAPPE`
 #'   in Access registration database else file will be saved in default folder
-#'   `C:\Users\YourUserName\orgdata_files`. The default folder will be
+#'   `C:\Users\YourUserName\orgdata_logs`. The default folder will be
 #'   created if not exist.
 #' @param date Use date and time as part of the filename
 #' @param fgSpec File group specification from Access registration database
@@ -50,9 +50,11 @@ lagre_fil <- save_file
 is_file_csv <- function(group = NULL,
                         path = NULL,
                         date = FALSE,
-                        verbose = getOption("orgdata.verbose"),
+                        verbose = NULL,
                         fgSpec = NULL,
                         action = c("save", "read")){
+
+  if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
 
   if (date){
     batch <- is_batch("time")
@@ -113,7 +115,7 @@ is_save_path <- function(group = NULL, fgSpec = NULL, ...){
 is_group_path <- function(fgSpec, action){
 
   folder <- fgSpec$UTMAPPE
-  fullPath <- file.path(getOption("orgdata.folder.data"), folder)
+  fullPath <- file.path(os_drive(), getOption("orgdata.folder.data"), folder)
   ## fullPath <- normalizePath(fullPath, winslash = "/")
 
   if (!fs::dir_exists(fullPath)) {

@@ -1,3 +1,16 @@
+# orgdata 0.5.8
+- Change helper function names for `read_file()`. (#250) 
+- Fixed bugs when reading file from the web with https (#251)
+- `read_file()` accept Stata file with `dta` extension (#252)
+- Use yaml format for global configuration file to ease update. The file is
+  located in [config repo](https://github.com/helseprofil/config/blob/main/config-orgdata.yml) (#256)
+- Raw data that have been controlled for are saved in DuckDB database format.
+  This increase reading speed especially for big files. Mark column
+  *KONTROLLERT* in the Access registration database to activate this function.
+  Unmark to read from the original raw file instead. (#257)
+- Use `see_raw()` to read the raw data in the database. Argument `action =
+  "delete"` can be used to delete the data from the raw database.
+
 # orgdata 0.5.7
 - Handle unbalanced parentheses in post recode whenever possible when `raw` is
   used, else give error message. #246
@@ -95,7 +108,7 @@
 - Refactoring function for recode of geographical codes. (#174)
 - Geo codes for enumeration areas and towns that aren't able to be merged will
   be converted to `unknown` codes with either `xxxx9999` or `xxxx99`. (#177)
-- Create default folder at `C:/Users/YourUserName/orgdata_files` when `path`
+- Create default folder at `C:/Users/YourUserName/orgdata_logs` when `path`
   argument is not specified in `save_file()`. (#179)
 - Create unknown codes for enumeration areas and town codes if not able to
   recode. Most probably is due to the enumeration codes before 2002. The Excel

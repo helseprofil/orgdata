@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">orgdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.8</span>
       </span>
     </div>
 
@@ -69,6 +69,13 @@
       <small>Source: <a href="https://github.com/helseprofil/orgdata/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.5.8" id="orgdata-058">orgdata 0.5.8<a class="anchor" aria-label="anchor" href="#orgdata-058"></a></h2>
+<ul><li>Change helper function names for <code><a href="../reference/read_file.html">read_file()</a></code>. (<a href="https://github.com/helseprofil/orgdata/issues/250" class="external-link">#250</a>)</li>
+<li>Fixed bugs when reading file from the web with https (<a href="https://github.com/helseprofil/orgdata/issues/251" class="external-link">#251</a>)</li>
+<li>
+<code><a href="../reference/read_file.html">read_file()</a></code> accept Stata file with <code>dta</code> extension (<a href="https://github.com/helseprofil/orgdata/issues/252" class="external-link">#252</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.7" id="orgdata-057">orgdata 0.5.7<a class="anchor" aria-label="anchor" href="#orgdata-057"></a></h2>
 <ul><li>Handle unbalanced parentheses in post recode whenever possible when <code>raw</code> is used, else give error message. <a href="https://github.com/helseprofil/orgdata/issues/246" class="external-link">#246</a></li>
@@ -135,7 +142,7 @@
 <li>Hide warning messages if file has been controlled for any possible errors. It means the column <em>KONTROLLERT</em> in table for original files is marked for the specific file. (<a href="https://github.com/helseprofil/orgdata/issues/171" class="external-link">#171</a>)</li>
 <li>Refactoring function for recode of geographical codes. (<a href="https://github.com/helseprofil/orgdata/issues/174" class="external-link">#174</a>)</li>
 <li>Geo codes for enumeration areas and towns that aren’t able to be merged will be converted to <code>unknown</code> codes with either <code>xxxx9999</code> or <code>xxxx99</code>. (<a href="https://github.com/helseprofil/orgdata/issues/177" class="external-link">#177</a>)</li>
-<li>Create default folder at <code>C:/Users/YourUserName/orgdata_files</code> when <code>path</code> argument is not specified in <code><a href="../reference/save_file.html">save_file()</a></code>. (<a href="https://github.com/helseprofil/orgdata/issues/179" class="external-link">#179</a>)</li>
+<li>Create default folder at <code>C:/Users/YourUserName/orgdata_logs</code> when <code>path</code> argument is not specified in <code><a href="../reference/save_file.html">save_file()</a></code>. (<a href="https://github.com/helseprofil/orgdata/issues/179" class="external-link">#179</a>)</li>
 <li>Create unknown codes for enumeration areas and town codes if not able to recode. Most probably is due to the enumeration codes before 2002. The Excel file from SSB is not clean and unstable to be used for recoding. The unknown codes are based on municipality codes with added <code>xxxx99</code> or <code>xxxx9999</code>. As in <a href="https://github.com/helseprofil/orgdata/issues/177" class="external-link">#177</a> but recode is done on municipality codes before merging back to the original dataset. (<a href="https://github.com/helseprofil/orgdata/issues/182" class="external-link">#182</a>)</li>
 <li>Add <code>codeDelete</code> in <code>log</code> for geographical codes that aren’t able to be merged. The codes will be excluded in the dataset. To access all the deleted codes use <code>log$codeDelete</code>. (<a href="https://github.com/helseprofil/orgdata/issues/149" class="external-link">#149</a>)</li>
 <li>Give explicit error message when <code>path</code> is missing in <code><a href="../reference/save_file.html">save_file()</a></code>. (<a href="https://github.com/helseprofil/orgdata/issues/152" class="external-link">#152</a>)</li>

@@ -4,12 +4,12 @@
 \alias{is_conn_db}
 \title{Connect to Database}
 \usage{
-is_conn_db(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...)
+is_conn_db(dbname = NULL, db = c("kh", "geo", "raw"), .test = FALSE, ...)
 }
 \arguments{
 \item{dbname}{Database filename with complete path}
 
-\item{db}{Database file \code{kh} (Kommunehelse) and \code{geo} (Geo code)}
+\item{db}{Database file \code{kh} (Kommunehelse), \code{geo} (Geo code) or \code{raw} (Raw database)}
 
 \item{.test}{Use for testing only}
 

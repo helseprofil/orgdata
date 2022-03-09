@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # orgdata <img src='man/figures/logo.png' align="right" width="110" height="138" />
@@ -7,7 +6,7 @@
 status](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
 [![](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/orgdata)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
-[![](https://img.shields.io/badge/devel%20version-0.5.7-blue.svg)](https://github.com/helseprofil/orgdata)
+[![](https://img.shields.io/badge/devel%20version-0.5.8-blue.svg)](https://github.com/helseprofil/orgdata)
 
 Cleaning, restructuring and aggregating **OR**i**G**inal **DATA** into a
 preferred dataset.
