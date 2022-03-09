@@ -235,6 +235,9 @@
     <loc>/reference/is_logger.html</loc>
   </url>
   <url>
+    <loc>/reference/is_org_process.html</loc>
+  </url>
+  <url>
     <loc>/reference/is_process_file.html</loc>
   </url>
   <url>
@@ -281,6 +284,9 @@
   </url>
   <url>
     <loc>/reference/see_file.html</loc>
+  </url>
+  <url>
+    <loc>/reference/see_raw.html</loc>
   </url>
   <url>
     <loc>/reference/update_orgdata.html</loc>

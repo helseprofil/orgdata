@@ -36,7 +36,7 @@ examples."><meta property="og:image" content="/logo.png"><!-- mathjax --><script
   <a href="../articles/get-started.html">Get started</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -89,6 +89,14 @@ will create an object of R6 Class. Please refer to the
 <dd><p>Database filename.</p></dd>
 
 
+<dt><code>dbtype</code></dt>
+<dd><p>Database type of either Access or DuckDB</p></dd>
+
+
+<dt><code>dbyear</code></dt>
+<dd><p>Production year. Only relevant for DuckDB</p></dd>
+
+
 <dt><code>dbconn</code></dt>
 <dd><p>Database connection.</p></dd>
 
@@ -113,18 +121,28 @@ Data must be in a <code>data.frame</code> or <code>data.table</code> format.</p>
 <ul><li><p><a href="#method-new"><code>KHelse$new()</code></a></p></li>
 <li><p><a href="#method-db_connect"><code>KHelse$db_connect()</code></a></p></li>
 <li><p><a href="#method-db_write"><code>KHelse$db_write()</code></a></p></li>
+<li><p><a href="#method-db_read"><code>KHelse$db_read()</code></a></p></li>
+<li><p><a href="#method-db_remove_table"><code>KHelse$db_remove_table()</code></a></p></li>
 <li><p><a href="#method-db_close"><code>KHelse$db_close()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
 <p>Start connecting to the database.</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va"><a href="../reference/KHelse.html">KHelse</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>dbname <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va"><a href="../reference/KHelse.html">KHelse</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>dbname <span class="op">=</span> <span class="cn">NULL</span>, dbtype <span class="op">=</span> <span class="st">"Access"</span>, dbyear <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>dbname</code></dt>
 <dd><p>Database filename.</p></dd>
+
+
+<dt><code>dbtype</code></dt>
+<dd><p>Database type eg. Access, SQLite, DuckDB etc.</p></dd>
+
+
+<dt><code>dbyear</code></dt>
+<dd><p>Production year. This arg only relevant to raw database in DuckDB</p></dd>
 
 
 </dl><p></p></div>
@@ -190,10 +208,42 @@ the table if it already exists</p></dd>
 </dl><p></p></div>
 </div>
 
+</div><p></p><hr><a id="method-db_read"></a><div class="section">
+<h3 id="method-db-read-">Method <code>db_read()</code><a class="anchor" aria-label="anchor" href="#method-db-read-"></a></h3>
+<p>Read table and convert to data.table format</p><div class="section">
+<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">KHelse</span><span class="op">$</span><span class="fu">db_read</span><span class="op">(</span>name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>name</code></dt>
+<dd><p>Table name to be created in the database.</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-db_remove_table"></a><div class="section">
+<h3 id="method-db-remove-table-">Method <code>db_remove_table()</code><a class="anchor" aria-label="anchor" href="#method-db-remove-table-"></a></h3>
+<p>Remove table in the database.</p><div class="section">
+<h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">KHelse</span><span class="op">$</span><span class="fu">db_remove_table</span><span class="op">(</span>name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>name</code></dt>
+<dd><p>Table name to be created in the database.</p></dd>
+
+
+</dl><p></p></div>
+</div>
+
 </div><p></p><hr><a id="method-db_close"></a><div class="section">
 <h3 id="method-db-close-">Method <code>db_close()</code><a class="anchor" aria-label="anchor" href="#method-db-close-"></a></h3>
 <p>Close connection to the database.</p><div class="section">
-<h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
+<h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">KHelse</span><span class="op">$</span><span class="fu">db_close</span><span class="op">(</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
@@ -227,11 +277,14 @@ the table if it already exists</p></dd>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by <a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman Kamaleri</a>.</p>
+  <p></p><p>Developed by
+<a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman
+Kamaleri</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer></div>
