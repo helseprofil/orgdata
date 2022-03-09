@@ -229,5 +229,5 @@ make_file <- function(group = NULL,
 lag_fil <- make_file
 
 
-## Helper -----------------------------------------
-## Helper functions are in file utils-read-org.R
+## HELPER -----------------------------------------
+## Helper functions are in file utils-read-file.R

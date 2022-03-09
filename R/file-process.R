@@ -1,25 +1,27 @@
 #' @keywords internal
-#' @title Process Raw Data
-#' @description Implement the specifications to the raw data and deliver the output
+#' @title Process Raw Data File
+#' @description Implement the specifications to the raw data such as cleaning
+#'   and recoding the data.
 #' @param file File rawdata
 #' @param filespec Specification for a file from `tbl_Innlesing`
 #' @param fgspec Specification for a file group
 #' @param con Connection to the database
 #' @param verbose Make processes explicit. Default is FALSE
 #' @param row Select specific row only
-#' @param control Logical value. If the file has been checked for possible errors
+#' @param control Logical value. If the file has been checked for possible
+#'   errors
 #' @param duck R6 object for DuckDB
 #' @return A dataset with `data.table` format
 
-is_org_process <- function(file,
-                           filespec,
-                           fgspec,
-                           con,
-                           verbose = NULL,
-                           row = NULL,
-                           control = FALSE,
-                           duck = NULL
-                           ) {
+is_process_file <- function(file,
+                            filespec,
+                            fgspec,
+                            con,
+                            verbose = NULL,
+                            row = NULL,
+                            control = FALSE,
+                            duck = NULL
+                            ) {
   GEO <- NULL
   is_debug(deep = TRUE)
 

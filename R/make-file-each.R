@@ -20,7 +20,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
   DB <- is_conn_db(db = "kh")
 
-  dt <- is_org_process(
+  dt <- is_process_file(
     file = filePath,
     filespec = fileSpec,
     fgspec = fgspec,
