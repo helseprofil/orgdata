@@ -5,4 +5,5 @@ renv::install("helseprofil/orgdata@main")
 renv::install("norgeo")
 renv::snapshot()
 
+renv::status()
 renv::clean()
