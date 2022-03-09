@@ -33,6 +33,8 @@ KHelse <- R6::R6Class(
     #' @description
     #' Start connecting to the database.
     #' @param dbname Database filename.
+    #' @param dbtype Database type eg. Access, SQLite, DuckDB etc.
+    #' @param dbyear Production year. This arg only relevant to raw database in DuckDB
     #' @examples
     #' \dontrun{
     #' kh <- KHelse$new(file.path(getOption("orgdata.drive"),
@@ -91,7 +93,7 @@ KHelse <- R6::R6Class(
 
     #' @description
     #' Read table and convert to data.table format
-    #' @inheritParams db_write
+    #' @param name Table name to be created in the database.
     db_read = function(name = NULL){
       if(!is.null(name)) {self$tblname <- name}
       DT <- DBI::dbReadTable(self$dbconn, name = self$tblname)
@@ -100,7 +102,7 @@ KHelse <- R6::R6Class(
 
     #' @description
     #' Remove table in the database.
-    #' @inheritParams db_write
+    #' @param name Table name to be created in the database.
     db_remove_table = function(name = NULL){
       if(!is.null(name)) { self$tblname <- name }
       DBI::dbRemoveTable(self$dbconn, self$tblname)

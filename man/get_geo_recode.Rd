@@ -7,7 +7,7 @@
 get_geo_recode(
   con = NULL,
   type = c("grunnkrets", "fylke", "kommune", "bydel"),
-  year = getOption("orgdata.year")
+  year = NULL
 )
 }
 \arguments{

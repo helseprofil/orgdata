@@ -8,25 +8,25 @@
 make_file(
   group = NULL,
   koblid = NULL,
-  aggregate = getOption("orgdata.aggregate"),
+  aggregate = NULL,
   save = FALSE,
-  year = getOption("orgdata.year"),
-  implicitnull = getOption("orgdata.implicit.null"),
-  row = getOption("orgdata.debug.row"),
-  base = getOption("orgdata.recode.base"),
-  parallel = getOption("orgdata.parallel")
+  year = NULL,
+  implicitnull = NULL,
+  row = NULL,
+  base = NULL,
+  parallel = NULL
 )
 
 lag_fil(
   group = NULL,
   koblid = NULL,
-  aggregate = getOption("orgdata.aggregate"),
+  aggregate = NULL,
   save = FALSE,
-  year = getOption("orgdata.year"),
-  implicitnull = getOption("orgdata.implicit.null"),
-  row = getOption("orgdata.debug.row"),
-  base = getOption("orgdata.recode.base"),
-  parallel = getOption("orgdata.parallel")
+  year = NULL,
+  implicitnull = NULL,
+  row = NULL,
+  base = NULL,
+  parallel = NULL
 )
 }
 \arguments{

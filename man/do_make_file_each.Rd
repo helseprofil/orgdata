@@ -4,7 +4,16 @@
 \alias{do_make_file_each}
 \title{Process Each File}
 \usage{
-do_make_file_each(spec, fgspec, aggregate, datacols, year, row, base)
+do_make_file_each(
+  spec,
+  fgspec,
+  aggregate,
+  datacols,
+  year,
+  row,
+  base,
+  duck = NULL
+)
 }
 \arguments{
 \item{spec}{File specification}
@@ -25,6 +34,8 @@ aggregating. If not specified, then current year will be used}
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
 available codes in geo codebook}
+
+\item{duck}{R6 object for DuckDB}
 }
 \description{
 Process each file parallelly

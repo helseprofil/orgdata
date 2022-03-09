@@ -30,6 +30,10 @@ kh$db_connect()
 \describe{
 \item{\code{dbname}}{Database filename.}
 
+\item{\code{dbtype}}{Database type of either Access or DuckDB}
+
+\item{\code{dbyear}}{Production year. Only relevant for DuckDB}
+
 \item{\code{dbconn}}{Database connection.}
 
 \item{\code{tblname}}{Table name to be created in the database.}
@@ -45,6 +49,8 @@ Data must be in a \code{data.frame} or \code{data.table} format.}
 \item \href{#method-new}{\code{KHelse$new()}}
 \item \href{#method-db_connect}{\code{KHelse$db_connect()}}
 \item \href{#method-db_write}{\code{KHelse$db_write()}}
+\item \href{#method-db_read}{\code{KHelse$db_read()}}
+\item \href{#method-db_remove_table}{\code{KHelse$db_remove_table()}}
 \item \href{#method-db_close}{\code{KHelse$db_close()}}
 }
 }
@@ -54,13 +60,17 @@ Data must be in a \code{data.frame} or \code{data.table} format.}
 \subsection{Method \code{new()}}{
 Start connecting to the database.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{KHelse$new(dbname = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{KHelse$new(dbname = NULL, dbtype = "Access", dbyear = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{dbname}}{Database filename.}
+
+\item{\code{dbtype}}{Database type eg. Access, SQLite, DuckDB etc.}
+
+\item{\code{dbyear}}{Production year. This arg only relevant to raw database in DuckDB}
 }
 \if{html}{\out{</div>}}
 }
@@ -118,6 +128,40 @@ the table if it already exists}
 \item{\code{append}}{Append the data to an existing table in the database}
 
 \item{\code{field.types}}{Type of data in specified column. Must be named as vector}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-db_read"></a>}}
+\if{latex}{\out{\hypertarget{method-db_read}{}}}
+\subsection{Method \code{db_read()}}{
+Read table and convert to data.table format
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{KHelse$db_read(name = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{Table name to be created in the database.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-db_remove_table"></a>}}
+\if{latex}{\out{\hypertarget{method-db_remove_table}{}}}
+\subsection{Method \code{db_remove_table()}}{
+Remove table in the database.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{KHelse$db_remove_table(name = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{Table name to be created in the database.}
 }
 \if{html}{\out{</div>}}
 }
