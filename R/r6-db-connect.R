@@ -135,11 +135,11 @@ KHelse <- R6::R6Class(
 #' @title Connect to Database
 #' @description Use R6 object to connect to database
 #' @param dbname Database filename with complete path
-#' @param db Database file `kh` (Kommunehelse) and `geo` (Geo code)
+#' @param db Database file `kh` (Kommunehelse), `geo` (Geo code) or `raw` (Raw database)
 #' @param .test Use for testing only
 #' @param ... Other arguments
 #' @keywords internal
-is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...){
+is_conn_db <- function(dbname = NULL, db = c("kh", "geo", "raw"), .test = FALSE, ...){
 
   db <- match.arg(db)
   dbfile <- switch(db,
@@ -155,7 +155,11 @@ is_conn_db <- function(dbname = NULL, db = c("kh", "geo"), .test = FALSE, ...){
     return(dbname)
   }
 
-  KHelse$new(dbname = dbname, ...)
+  if (db == "raw"){
+    KHelse$new(dbname = dbname, dbtype = "DuckDB", dbyear = getOption("orgdata.year"), ...)
+  } else {
+    KHelse$new(dbname = dbname, ...)
+  }
 }
 
 
@@ -203,6 +207,7 @@ write_db <- function(name = NULL,
          DuckDB = {
            DBI::dbWriteTable(conn = dbconn,
                              name = name,
-                             value = value)
+                             value = value,
+                             overwrite = write)
          })
 }

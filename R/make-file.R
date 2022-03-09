@@ -96,14 +96,11 @@ make_file <- function(group = NULL,
   withr::with_options(list(orgdata.emoji = "book"),
                       is_colour_txt(x = rowFile, grpMsg, type = "note", emoji = TRUE))
 
-  withr::with_options(list(orgdata.emoji = "folder"),
-                      is_verbose(x = is_orgdata_path(), msg = "Log files can be found in", emoji = TRUE))
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
 
-  ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------------
-
+  ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------
   ## Parallel uses 50% of the cores but not more than 80%
   useCore <- 0.5
   if (is.numeric(parallel)){
@@ -216,18 +213,24 @@ make_file <- function(group = NULL,
   }
 
   prodMsg <- paste0("Done! `", group ,"` for")
-          withr::with_options(list(orgdata.emoji = "thumb"),
-                              is_colour_txt(x = year,
-                                            msg = prodMsg,
-                                            type = "note",
-                                            emoji = TRUE))
-          return(outDT[])
+  withr::with_options(list(orgdata.emoji = "thumb"),
+                      is_colour_txt(x = year,
+                                    msg = prodMsg,
+                                    type = "note",
+                                    emoji = TRUE))
+
+  withr::with_options(list(orgdata.emoji = "folder"),
+                      is_verbose(x = is_orgdata_path(),
+                                 msg = "Log files can be found in",
+                                 emoji = TRUE))
+
+  return(outDT[])
 }
 
-  #' @export
-  #' @rdname make_file
+#' @export
+#' @rdname make_file
 lag_fil <- make_file
 
 
-## Helper -----------------------------------------
-## Helper functions are in file utils-read-org.R
+## HELPER -----------------------------------------
+## Helper functions are in file utils-read-file.R
