@@ -478,9 +478,9 @@
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "9f6fa3791537bcf7bbd12b6d6d19fb75821103db",
+      "RemoteSha": "329928c4ca8b483859330e00dd81b8ea6fd83386",
       "Remotes": "helseprofil/norgeo",
-      "Hash": "9a8a08455cfa1861ea39802831654745",
+      "Hash": "114bca4e29b4b396d323718fe1ce4a57",
       "Requirements": [
         "DBI",
         "R6",
