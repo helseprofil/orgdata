@@ -25,27 +25,20 @@ is_process_file <- function(file,
   GEO <- NULL
   is_debug(deep = TRUE)
 
-  ## For GEO codes that are derived from a combination of two columns
-  geoVals <- is_separate(filespec$GEO, ",")
-  geo2col <- length(geoVals) > 1
-
-  ## Check if dataset in DuckDB -------------
+  ## Check dataset in DuckDB -------------
   duckID <- as.integer(DBI::dbListTables(duck$dbconn))
-  tblFilid <- as.character(filespec$FILID)
-  if (isFALSE(filespec$KONTROLLERT) && isTRUE(any(filespec$FILID %in% duckID))){
-    duck$db_remove_table(name = tblFilid)
-  }
+  tblFilid <- find_column_input(filespec, "FILID", type = "character")
 
-  if (isTRUE(filespec$KONTROLLERT) && isTRUE(any(filespec$FILID %in% duckID))){
-    is_color_txt(x = tblFilid, msg = "Read from Database. FILID:")
-    dt <- duck$db_read(name = tblFilid)
-  } else {
-    ## Read CSV files -------------
+  if (isFALSE(control) || isFALSE(any(as.integer(tblFilid) %in% duckID))){
+    ## Read raw file -------------
     dots <- get_innlesarg(spec = filespec)
 
     if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
     if (is.null(row)) row <- getOption("orgdata.debug.row")
 
+    ## For GEO codes that are derived from a combination of two columns
+    geoVals <- is_separate(filespec$GEO, ",")
+    geo2col <- length(geoVals) > 1
     if (geo2col) {
       dots <- is_geo_split(geo = geoVals, dots = dots)
     }
@@ -59,47 +52,53 @@ is_process_file <- function(file,
       dt <- is_read_file_dots(file = file, dots = dots, extra = extra)
     }
 
-    if (isTRUE(filespec$KONTROLLERT)){
-      duck$db_write(name = tblFilid, value = dt)
+    ## From options(orgdata.debug.row)
+    if (!is.null(row)){
+      dt <- dt[row,]
+    }
+
+    ## GEO codes from two columns needs to be joined
+    if (geo2col){
+      dt[, GEO := paste0(get(geoVals[1]), get(geoVals[2]))]
+      dt[, (geoVals) := NULL]
+    }
+
+    manSpec <- get_manheader(spec = filespec)
+    dt <- do_manheader(dt, manSpec)
+
+    colSpec <- get_column_standard(spec = filespec)
+    dt <- do_column_standard(dt, colSpec)
+
+    dt <- do_delete_row(dt = dt, spec = filespec, con = con)
+    if (nrow(dt) == 0){
+      is_stop("Dataset is empty after removing unwanted rows!")
+    }
+
+    splitSpec <- get_split(spec = fgspec)
+    dt <- do_split(dt = dt, split = splitSpec)
+
+    yrSpec <- get_year(filespec, con)
+    dt <- do_year(dt, yrSpec)
+
+    dt <- do_mutate(dt, spec = filespec)
+
+    reshVal <- filespec$RESHAPE
+    if (!is.na(reshVal) && reshVal == 1){ # LONG
+      reshSpec <- get_reshape_id_val(dt, spec = filespec)
+      dt <- do_reshape(dt, reshSpec)
     }
   }
 
-
-  ## Process files from specification ---------
-  ## From options(orgdata.debug.row)
-  if (!is.null(row)){
-    dt <- dt[row,]
+  ## Add dataset to DuckDB -------------
+  if (isFALSE(control) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
+    duck$db_write(name = tblFilid, value = dt, write = TRUE)
   }
 
-  ## GEO codes from two columns needs to be joined
-  if (geo2col){
-    dt[, GEO := paste0(get(geoVals[1]), get(geoVals[2]))]
-    dt[, (geoVals) := NULL]
-  }
-
-  manSpec <- get_manheader(spec = filespec)
-  dt <- do_manheader(dt, manSpec)
-
-  colSpec <- get_column_standard(spec = filespec)
-  dt <- do_column_standard(dt, colSpec)
-
-  dt <- do_delete_row(dt = dt, spec = filespec, con = con)
-  if (nrow(dt) == 0){
-    is_stop("Dataset is empty after removing unwanted rows!")
-  }
-
-  splitSpec <- get_split(spec = fgspec)
-  dt <- do_split(dt = dt, split = splitSpec)
-
-  yrSpec <- get_year(filespec, con)
-  dt <- do_year(dt, yrSpec)
-
-  dt <- do_mutate(dt, spec = filespec)
-
-  reshVal <- filespec$RESHAPE
-  if (!is.na(reshVal) && reshVal == 1){ # LONG
-    reshSpec <- get_reshape_id_val(dt, spec = filespec)
-    dt <- do_reshape(dt, reshSpec)
+  if (isTRUE(control) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
+    is_color_txt(x = tblFilid, msg = "Read from Database. FILID:")
+    dt <- duck$db_read(name = tblFilid)
+  } else {
+    duck$db_write(name = tblFilid, value = dt, write = TRUE)
   }
 
   return(dt)

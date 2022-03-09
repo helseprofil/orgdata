@@ -203,6 +203,7 @@ write_db <- function(name = NULL,
          DuckDB = {
            DBI::dbWriteTable(conn = dbconn,
                              name = name,
-                             value = value)
+                             value = value,
+                             overwrite = write)
          })
 }
