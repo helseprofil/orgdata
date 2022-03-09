@@ -78,6 +78,12 @@ is_file_csv <- function(group = NULL,
                 read = "Read file:",
                 "File:")
 
+  fileOut <- gsub("\\\\", "/", fileOut)
+
+  if (action == "read"){
+    withr::local_options(list(orgdata.verbose = FALSE))
+  }
+
   is_verbose(fileOut, msg = msg)
 
   return(fileOut)
