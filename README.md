@@ -10,7 +10,7 @@ For å bruke det må **user** repo klonet i din pc.
 git clone -b user https://github.com/helseprofil/orgdata.git
 ```
 
-Deretter kjøre alle linjene filen *update.R*.
+Deretter kjør alle linjene i filen *update.R*.
 
 ```r
 if(!requireNamespace("renv")) install.packages("renv")
