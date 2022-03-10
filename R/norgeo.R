@@ -122,10 +122,11 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   return(geo$tblvalue)
 }
 
+
 # TODO File should only consist of merge ID and level codes
-geo_merge <- function(id1, id2, level, col, file, name = "tblGeo", ...){
-  # id1 - ID columname to merge from database
-  # id2 - ID columname from file to merge from
+geo_merge <- function(id.table, id.file, level, col, file, table.name = "tblGeo", ...){
+  # id.table - ID columname to merge from database
+  # id.file - ID columname from file to merge from
   # level - Geographical level the merged file will represent eg. "levekaar".
   # col - Columname in the file that will be the code representing the level value
   # file - Complete path of filename to from from
@@ -134,7 +135,7 @@ geo_merge <- function(id1, id2, level, col, file, name = "tblGeo", ...){
   geo <- KHelse$new(geoDB)
   on.exit(geo$db_close(), add = TRUE)
 
-  DT <- geo$db_read(name)
+  DT <- geo$db_read(table.name)
 
   # when testing, use the file in dev folder
   file <- test_file(file = file, ...)
