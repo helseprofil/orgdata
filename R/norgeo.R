@@ -122,6 +122,42 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   return(geo$tblvalue)
 }
 
+# TODO File should only consist of merge ID and level codes
+geo_merge <- function(id1, id2, level, col, file, name = "tblGeo", ...){
+  # id1 - ID columname to merge from database
+  # id2 - ID columname from file to merge from
+  # level - Geographical level the merged file will represent eg. "levekaar".
+  # col - Columname in the file that will be the code representing the level value
+  # file - Complete path of filename to from from
+
+  geoDB <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+  geo <- KHelse$new(geoDB)
+  on.exit(geo$db_close(), add = TRUE)
+
+  DT <- geo$db_read(name)
+
+  # when testing, use the file in testdata
+  file <- test_file(file = file, ...)
+  dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
+
+  data.table::setkeyv(DT, id1)
+  data.table::setkeyv(dt, id2)
+
+  #TODO
+  #Create same structure for imported file as DT
+  #Merge to with the ID selected either grunnkrets, kommune etc
+
+  return(DT)
+}
+
+test_file <- function(file = NULL, .test = FALSE){
+  if(.test){
+    file <- system.file("testdata", "levekaar.csv", package = "orgdata")
+  }
+
+  return(file)
+}
+
 
 #' @title Create Dummy Enumeration Area Codes
 #' @description Some of the downloaded enumeration area codes from SSB lack
