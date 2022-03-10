@@ -155,7 +155,7 @@ geo_merge <- function(id1, id2, level, col, file, name = "tblGeo", ...){
 
 test_file <- function(file = NULL, .test = FALSE){
   if(.test){
-    file <- file.path(getwd(), "dev/levekaar.csv")
+    file <- file.path(here::here(), "dev/levekaar.csv")
   }
 
   return(file)
