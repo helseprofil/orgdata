@@ -175,13 +175,13 @@ connect_db <- function(dbname, dbtype, dbyear, dbdriver){
          },
          DuckDB = {
            duckFile <- paste0(dbname, ".duckdb")
-           duckPath <- file.path("raw_database", dbyear)
-           duckRoot <- file.path(os_drive(), getOption("orgdata.folder.db"), duckPath)
+           duckPath <- is_path_db(getOption("orgdata.folder.org.db"))
+           duckRoot <- file.path(duckPath, dbyear)
            if (!fs::dir_exists(duckRoot)){
              fs::dir_create(duckRoot)
            }
 
-           DBI::dbConnect(duckdb::duckdb(), file.path(duckRoot,duckFile))
+           DBI::dbConnect(duckdb::duckdb(), file.path(duckRoot, duckFile))
          })
 
 }

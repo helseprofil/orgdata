@@ -85,6 +85,7 @@ usethis::use_r("r6-db-connect.R")
 ## usethis::use_testthat()
 usethis::use_test("specification")
 usethis::use_test("check")
+usethis::use_test("see-org")
 
 saveRDS(dt, file = file.path(system.file(package = "orgdata"), "testdata","dt-recode-agg.rds"))
 testdt <- readRDS(file = system.file("testdata", "dt-test.rds", package = "orgdata"))

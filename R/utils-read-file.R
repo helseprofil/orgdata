@@ -11,8 +11,7 @@ is_path_db <- function(db, check = FALSE) {
   )
 
   if (isTRUE(check) && isFALSE(file.exists(db))) {
-    is_stop("Access database file does not exist! \n", var = db)
-
+    is_stop("Database file not found! \n", var = db)
   }
 
   return(db)
