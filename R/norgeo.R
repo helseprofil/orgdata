@@ -136,7 +136,7 @@ geo_merge <- function(id1, id2, level, col, file, name = "tblGeo", ...){
 
   DT <- geo$db_read(name)
 
-  # when testing, use the file in testdata
+  # when testing, use the file in dev folder
   file <- test_file(file = file, ...)
   dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
 
@@ -147,12 +147,15 @@ geo_merge <- function(id1, id2, level, col, file, name = "tblGeo", ...){
   #Create same structure for imported file as DT
   #Merge to with the ID selected either grunnkrets, kommune etc
 
+  DT[dt, (col) := get(col)]
+  data.table::setnames(DT, col, level)
+
   return(DT)
 }
 
 test_file <- function(file = NULL, .test = FALSE){
   if(.test){
-    file <- system.file("testdata", "levekaar.csv", package = "orgdata")
+    file <- file.path(getwd(), "dev/levekaar.csv")
   }
 
   return(file)
