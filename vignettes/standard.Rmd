@@ -27,6 +27,7 @@ These keywords will be helpful when searching for relevant commits:
 -   `Doc:` for documentation or changes to documentation
 -   `Close:` or `Style:` for changes to code or comments that aren&rsquo;t because of bugs
 -   `Test:` for code testing in `tests` folder
+-   `DEV:` for development processes for new feature
 -   `VER:` for first version upgrade
 -   `Misc:` for any changes that aren&rsquo;t critical or doesn&rsquo;t fit to any of the
     above keywords. Avoid using it if possible or only as a last resort
