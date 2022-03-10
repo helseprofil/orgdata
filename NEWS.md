@@ -8,7 +8,7 @@
   This increase reading speed especially for big files. Mark column
   *KONTROLLERT* in the Access registration database to activate this function.
   Unmark to read from the original raw file instead. (#257)
-- Use `see_raw()` to read the raw data in the database. Argument `action =
+- Use `see_org()` to read the raw data in the database. Argument `action =
   "delete"` can be used to delete the data from the raw database.
 
 # orgdata 0.5.7
