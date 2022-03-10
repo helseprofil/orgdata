@@ -1,20 +1,30 @@
-#' @title See Raw Data in the Database
-#' @description See the raw data that are saved in the raw database when the
-#'   column *KONTROLLERT* is marked.
+#' @title See Original Data in the Database
+#' @description See the original data that are saved in the org database when
+#'   the column *KONTROLLERT* is marked. This means the dataset has been cleaned
+#'   and recoded as specified in *INNLESING* table in Access registration
+#'   database.
 #' @param name The filegroup name
 #' @param filid File ID for the raw data
 #' @param action To read or delete the data in the database. Default is `read`.
 #' @examples
 #' \dontrun{
-#' dt <- see_raw("LESEFERD", filid = 134)
+#' dt <- see_org("LESEFERD", filid = 134)
 #' }
 #' @export
-see_raw <- function(name = NULL, filid = NULL, action = c("read", "delete")){
+see_org <- function(name = NULL, filid = NULL, action = c("read", "delete")){
 
   action <- match.arg(action)
-  if (length(action) == 2) action = "read"
-
+  if (length(action) > 1) action = "read"
   is_null_both(name, filid, msg = "Both args can't be empty!")
+
+  duckPath <- is_path_db(getOption("orgdata.folder.org.db"))
+  duckFile <- file.path(duckPath,
+                        getOption("orgdata.year"),
+                        paste0( name, ".duckdb" ))
+  if(!(fs::is_file(duckFile))){
+    is_stop("Database file not found for FILGRUPPE:", name)
+  }
+
   rcon <- is_conn_db(dbname = name, db = "raw")
   on.exit(rcon$db_close(), add = TRUE)
 
@@ -22,6 +32,7 @@ see_raw <- function(name = NULL, filid = NULL, action = c("read", "delete")){
   dbTables <- vapply(dbTables, as.integer, integer(1))
 
   if (isFALSE(any(filid %in% dbTables))){
+    message("Available filid:", is_short_code(dbTables))
     is_stop("Not found FILID:", filid)
   }
 
