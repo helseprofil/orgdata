@@ -94,7 +94,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   cat("..")
   if (type == "grunnkrets"){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
+    dtGrunn <- get_grunnkrets_dummy(dt = dtGrunn, from = from, to = to)
     geo$tblvalue <- dtGrunn[, "batch" := is_batch("date")]
   } else                     {
     dtLevels <- norgeo::track_change(type = type, from = from, to = to)
@@ -131,7 +131,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @inheritParams geo_recode
 #' @family geo codes functions
 #' @export
-get_geo_dummy <- function(dt, from, to){
+get_grunnkrets_dummy <- function(dt, from, to){
   kommune <- norgeo::track_change("kommune", from = from, to = to)
   dt <- is_unknown_grunnkrets(dt, kommune)
   dt <- is_grunnkrets_99(dt)
