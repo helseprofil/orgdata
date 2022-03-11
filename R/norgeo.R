@@ -123,13 +123,34 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 }
 
 
-# TODO File should only consist of merge ID and level codes
-geo_merge <- function(id.table, id.file, level, col, file, table.name = "tblGeo", ...){
-  # id.table - ID columname to merge from database
-  # id.file - ID columname from file to merge from
-  # level - Geographical level the merged file will represent eg. "levekaar".
-  # col - Columname in the file that will be the code representing the level value
-  # file - Complete path of filename to from from
+#' @title Merge Other Geo Level Manually
+#' @description Geo codes other than those downloaded from SSB API can be merged
+#'   to the main geo table ie. `tblGeo`. The file must consist of column to
+#'   merge to ie. `id.file` and the geo codes to add to ie. `column`
+#' @param id.table ID columname to merge to in the database eg. `kommune`
+#' @param id.file ID columname from file to merge from. This depends on the
+#'   columnames in the files. If `id.table` is `kommune`, then `id.file` must be
+#'   the columname representing geo codes that is equivalent to `kommune` codes.
+#' @param geo.level Geographical level the merged file will be representing eg.
+#'   "levekaar".
+#' @param file Complete path of filename to merge from
+#' @param year Year the code is valid for. If not sepecified `orgdata.year` is
+#'   used.
+#' @param ... Other possible arguments
+#' @examples
+#' @export
+
+geo_merge <- function(id.table = NULL,
+                      id.file = NULL,
+                      geo.level = NULL,
+                      file = NULL,
+                      year = NULL,
+                      table.name = "tblGeo", ...){
+
+  is_null(id.table)
+  is_null(id.file)
+  is_null(arg = file, msg = "File to merge from is missing!")
+  is_null(arg = geo.level, msg = "Missing geo level for the new codes!")
 
   geoDB <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoDB)
@@ -141,25 +162,32 @@ geo_merge <- function(id.table, id.file, level, col, file, table.name = "tblGeo"
   file <- test_file(file = file, ...)
   dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
 
-  data.table::setkeyv(DT, id1)
-  data.table::setkeyv(dt, id2)
+  is_unique_id(dt = dt, id = id.file)
 
-  #TODO
-  #Create same structure for imported file as DT
-  #Merge to with the ID selected either grunnkrets, kommune etc
+  data.table::setkeyv(DT, id.table)
+  data.table::setkeyv(dt, id.file)
 
-  DT[dt, (col) := get(col)]
-  data.table::setnames(DT, col, level)
+  ## Dataset for selected geo.level
+  geoCols <- names(DT)
+  dd <- data.table::copy(dt)
+  dd[DT, (geoCols) := mget(geoCols)]
+  dd[, level := geo.level]
+  dd[, name := NA]
+  dd[, code := get(id.file)]
+  if (is.null(year)){
+    year <- getOption("orgdata.year")
+  }
+  dd[, validTo := year]
+
+  # Dataset merged to main table
+  DT[dt, (id.file) := get(id.file)]
+  data.table::setnames(DT, id.file, geo.level)
+
+  DT <- data.table::rbindlist(list(DT, dd), use.names = TRUE)
+  data.table::setcolorder(DT, names(DT)[names(DT)!= "batch"])
+  setkey(DT, code)
 
   return(DT)
-}
-
-test_file <- function(file = NULL, .test = FALSE){
-  if(.test){
-    file <- file.path(here::here(), "dev/levekaar.csv")
-  }
-
-  return(file)
 }
 
 
@@ -293,4 +321,22 @@ is_grunnkrets_99 <- function(dt){
   }
 
   return(dt)
+}
+
+test_file <- function(file = NULL, .test = FALSE){
+  if(.test){
+    file <- file.path(here::here(), "dev/levekaar.csv")
+  }
+
+  return(file)
+}
+
+is_unique_id <- function(dt, id){
+  dupID <- dt[duplicated(get( id ))][[id]]
+  if (length(dupID) > 0){
+    msg <- paste0("Column `", id, "` must be unique to be able to merge!")
+    is_color_txt(x = "", msg = msg, type = "error")
+    is_stop("Found duplicated `id.file`:", is_short_code(dupID, n2 = 8))
+  }
+  invisible()
 }

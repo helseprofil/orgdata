@@ -14,6 +14,7 @@ is_null <- function(arg = NULL, msg = NULL, verbose = NULL) {
 
   if (verbose) {
     fun <- deparse(sys.calls()[[sys.nframe() - 1]])
+    if (length(fun) > 1) fun <- paste(fun, collapse = "")
     msgTxt <- paste0("\n", msgTxt, " in ", fun)
   }
 
