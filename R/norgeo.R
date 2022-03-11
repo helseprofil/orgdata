@@ -131,6 +131,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @param id.file ID columname from file to merge from. This depends on the
 #'   columnames in the files. If `id.table` is `kommune`, then `id.file` must be
 #'   the columname representing geo codes that is equivalent to `kommune` codes.
+#' @param geo.col Columname where the new geo codes are
 #' @param geo.level Geographical level the merged file will be representing eg.
 #'   "levekaar".
 #' @param file Complete path of filename to merge from
@@ -138,14 +139,26 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #'   used.
 #' @param ... Other possible arguments
 #' @examples
+#' \dontrun{
+#' dt <- geo_merge(id.table = "grunnkrets",
+#'                 id.file = "id",
+#'                 geo.col = "col2",
+#'                 file = "C:/path/to/file.csv",
+#'                 geo.level = "levekaar",
+#'                 year = 2022)
+#' }
 #' @export
 
 geo_merge <- function(id.table = NULL,
                       id.file = NULL,
+                      geo.col = NULL,
                       geo.level = NULL,
                       file = NULL,
                       year = NULL,
                       table.name = "tblGeo", ...){
+
+  # when testing, use the file in dev folder
+  file <- test_file(file = file, ...)
 
   is_null(id.table, verbose = FALSE)
   is_null(id.file, verbose = FALSE)
@@ -157,10 +170,9 @@ geo_merge <- function(id.table = NULL,
   on.exit(geo$db_close(), add = TRUE)
 
   DT <- geo$db_read(table.name)
-
-  # when testing, use the file in dev folder
-  file <- test_file(file = file, ...)
   dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
+  delCols <- setdiff(names(dt), c(id.file, geo.col))
+  dt[, (delCols) := NULL]
 
   is_unique_id(dt = dt, id = id.file)
 
@@ -180,12 +192,12 @@ geo_merge <- function(id.table = NULL,
   dd[, validTo := year]
 
   # Dataset merged to main table
-  DT[dt, (id.file) := get(id.file)]
-  data.table::setnames(DT, id.file, geo.level)
+  DT[dt, (geo.col) := get(geo.col)]
+  data.table::setnames(DT, geo.col, geo.level)
 
   DT <- data.table::rbindlist(list(DT, dd), use.names = TRUE)
   data.table::setcolorder(DT, names(DT)[names(DT)!= "batch"])
-  setkey(DT, code)
+  data.table::setkey(DT, code)
 
   return(DT)
 }
