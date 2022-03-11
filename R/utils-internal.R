@@ -9,13 +9,13 @@ is_null <- function(arg = NULL, msg = NULL, verbose = NULL) {
   if (!is.null(msg)) {
     msgTxt <- msg
   } else {
-    msgTxt <- sprintf("Argument for `%s` is missing", argchr)
+    msgTxt <- sprintf("Argument for `%s` is missing!", argchr)
   }
 
   if (verbose) {
     fun <- deparse(sys.calls()[[sys.nframe() - 1]])
-    if (length(fun) > 1) fun <- paste(fun, collapse = "")
-    msgTxt <- paste0("\n", msgTxt, " in ", fun)
+    if (length(fun) > 1) fun <- paste0(fun, collapse = "")
+    msgTxt <- paste0("\n", msgTxt, " in \n", fun)
   }
 
   if (is.null(arg)) {

@@ -147,10 +147,10 @@ geo_merge <- function(id.table = NULL,
                       year = NULL,
                       table.name = "tblGeo", ...){
 
-  is_null(id.table)
-  is_null(id.file)
-  is_null(arg = file, msg = "File to merge from is missing!")
-  is_null(arg = geo.level, msg = "Missing geo level for the new codes!")
+  is_null(id.table, verbose = FALSE)
+  is_null(id.file, verbose = FALSE)
+  is_null(arg = file, verbose = FALSE)
+  is_null(arg = geo.level, verbose = FALSE)
 
   geoDB <- is_path_db(getOption("orgdata.geo"), check = TRUE)
   geo <- KHelse$new(geoDB)
