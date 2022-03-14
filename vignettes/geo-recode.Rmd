@@ -1,0 +1,83 @@
+---
+title: "Recode and Map Geo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Recode and Map Geo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This guide explains how to create geo table to recode and map geo codes. This
+file will be saved in **orgdata.geo** database. See `getOptions("orgdata.geo")`
+
+# Recode Geo Codes
+
+The function to create table for recoding geo is `geo_recode()`. The table
+will consist of previous codes and their new codes whenever available. For
+instance, to get all codes for *kommuner* from 2017 to 2022. The table will list
+all the codes for *kommuner* since 2017 in columname `oldCode` while their current
+codes ie. 2022, is in colum `currentCode`. Any geo codes that have changed since
+2017 will have their new codes in `currentCode` column. For geo codes that have
+not changed since 2017 will have the value as `NA` in the `oldCode` column.
+
+Use argument `write = TRUE` to save it in the database. If the table already
+exists in the database and you just want to add a new dataset to the table, use
+argument `append = TRUE`. The table in the database will be called *kommune2022*
+if the data consist of geo codes up to 2022, ie. argument `to = 2022` and `typ =
+kommune`.
+
+However in most cases you will only need to use argument `write = TRUE`. Check
+the documentation with `help("geo_recode")`.
+
+```{r geo-recode, include = TRUE }
+library(orgdata)
+dt <- geo_recode(type = "kommune", from = 2018, to = 2022)
+dt[1:5]
+```
+
+# Mapping Geo Codes
+
+The function to create geo mapping is `geo_levels()`. The default table name to
+be created in the database is *tblGeo*. It consists of all the geo granularities
+(`levels`) of the selected year. The lowest level is enumeration areas codes or
+*grunnkrets*.
+
+Arguments `write` and `append` can be use when calling `geo_levels()` function.
+However in most cases, you will only need to use `append = TRUE`, ie. to append
+the data to the existing *tblGeo* in the database.
+
+```{r geo-map, include = TRUE }
+DT <- geo_levels(year = 2022)
+DT[sample(1:.N, 5)]
+```
+
+# Merge Geo Codes
+
+Both `geo_recode()` and `geo_levels()` fetch the data via API available from
+SSB. To merge geo codes that aren't available via API can be done with the
+function `geo_merge()`.
+
+The data to merge can be in any format that is accepted by `read_file()`
+function. The data must consist of column id to merge to the database *tblGeo*
+and column with the new geo codes to be added to.
+
+Below is an example on how the function can be specified. Please read the
+documentation for type of arguments that can be accepted.
+
+```{r geo-merge, eval = FALSE}
+dd <- geo_merge(id.table = "kommune",
+                id.file = "var01",
+                geo.col = "code_levekaar",
+                geo.level = "levekaar",
+                file = "C:/Users/ybka/data/levekaar.csv",
+                year = 2022)
+
+```
+

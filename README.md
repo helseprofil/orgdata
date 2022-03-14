@@ -4,7 +4,7 @@
 
 [![R build
 status](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
-[![](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/orgdata)
+[![](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://codecov.io/gh/helseprofil/orgdata)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![](https://img.shields.io/badge/devel%20version-0.5.8-blue.svg)](https://github.com/helseprofil/orgdata)
 
@@ -16,17 +16,20 @@ preferred dataset.
 To install then run this code
 
 ``` r
-if(!requireNamespace("remotes")) install.packages("remotes")
-remotes::install_github("helseprofil/orgdata")
+source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
+kh_install("orgdata")
 ```
 
-or use a user startup file *sepaafil.R* by cloning it from `user` branch
+or you can use the *user* branch for reproducibilty, ie. keeping the
+package version for all dependencies as they were used in the
+development processes.
 
-``` sh
-git clone -b user https://github.com/helseprofil/orgdata
+``` r
+source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
+kh_restore("orgdata")
 ```
 
-To install development version from `orgdata`, use:
+Alternatively you can install the development version via `orgdata`.
 
 ``` r
 library(orgdata)

@@ -94,7 +94,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   cat("..")
   if (type == "grunnkrets"){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
+    dtGrunn <- get_grunnkrets_dummy(dt = dtGrunn, from = from, to = to)
     geo$tblvalue <- dtGrunn[, "batch" := is_batch("date")]
   } else                     {
     dtLevels <- norgeo::track_change(type = type, from = from, to = to)
@@ -123,6 +123,109 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 }
 
 
+#' @title Merge Other Geo Level Manually
+#' @description Geo codes other than those downloaded from SSB API can be merged
+#'   to the main geo table ie. `tblGeo` in the geocodes database. The file must
+#'   consist of column to merge to ie. `id.file` and the geo codes to add to ie.
+#'   `column`.
+#' @param id.table ID columname to merge to that is found in the database eg.
+#'   `kommune`
+#' @param id.file ID columname from the file to merge from. This depends on the
+#'   columnames in the files. If `id.table` is `kommune`, then `id.file` must be
+#'   the columname representing geo codes that is equivalent to `kommune` codes.
+#'   Both `id.table` and `id.file` will be used for merging and these codes must
+#'   be unique.
+#' @param geo.col Columname where the new geo codes are eg. if the new geo codes
+#'   is on levekaar, then `geo.col` is the columname where codes for levekaar
+#'   can be found.
+#' @param geo.level Geographical level of the merged file will be representing
+#'   eg. "levekaar". This will be the value in column `level` in the `tblGeo` in
+#'   the database.
+#' @param file Complete path of filename to merge from
+#' @param year Year the code is valid for. If not sepecified `orgdata.year` is
+#'   used.
+#' @inheritParams geo_levels
+#' @param table.name Name of the table for geo recode in geocodes database. This
+#'   can be found with `getOptions("orgdata.geo")`. The default is `tblGeo`.
+#' @param ... Other possible arguments
+#' @examples
+#' \dontrun{
+#' dt <- geo_merge(id.table = "grunnkrets",
+#'                 id.file = "id",
+#'                 geo.col = "col2",
+#'                 file = "C:/path/to/file.csv",
+#'                 geo.level = "levekaar",
+#'                 year = 2022)
+#' }
+#' @export
+
+geo_merge <- function(id.table = NULL,
+                      id.file = NULL,
+                      geo.col = NULL,
+                      geo.level = NULL,
+                      file = NULL,
+                      year = NULL,
+                      write = FALSE,
+                      table.name = "tblGeo", ...){
+
+  code <- level <- name <- validTo <- NULL
+
+  # when testing, use the file in dev folder
+  file <- test_file(file = file, ...)
+
+  is_null(id.table, verbose = FALSE)
+  is_null(id.file, verbose = FALSE)
+  is_null(arg = file, verbose = FALSE)
+  is_null(arg = geo.level, verbose = FALSE)
+
+  geoDB <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+  geo <- KHelse$new(geoDB)
+  on.exit(geo$db_close(), add = TRUE)
+
+  DT <- geo$db_read(table.name)
+  dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
+  delCols <- setdiff(names(dt), c(id.file, geo.col))
+  dt[, (delCols) := NULL]
+
+  is_unique_id(dt = dt, id = id.file)
+
+  data.table::setkeyv(DT, id.table)
+  data.table::setkeyv(dt, id.file)
+
+  ## Dataset for selected geo.level
+  geoCols <- names(DT)
+  dd <- data.table::copy(dt)
+  dd[DT, (geoCols) := mget(geoCols)]
+  dd[, level := geo.level]
+  dd[, name := NA]
+  dd[, code := get(id.file)]
+  if (is.null(year)){
+    year <- getOption("orgdata.year")
+  }
+  dd[, validTo := year]
+
+  # Dataset merged to main table
+  DT[dt, (geo.col) := get(geo.col)]
+  data.table::setnames(DT, geo.col, geo.level)
+
+  DT <- data.table::rbindlist(list(DT, dd), use.names = TRUE)
+  data.table::setcolorder(DT, names(DT)[names(DT)!= "batch"])
+  data.table::setkey(DT, code)
+
+  if (isFALSE(write)){
+    write <- utils::askYesNo("Should the result be added to geo database?", default = FALSE)
+  }
+
+  if (write) {
+    is_write_msg(msg = "write")
+    geo$db_write(name = table.name, value = DT, write = write)
+    msgWrite <- paste0("Write table `", table.name, "` is completed in: \n")
+    is_verbose(x = geoDB, msg = msgWrite, type = "note")
+  }
+
+  return(DT)
+}
+
 #' @title Create Dummy Enumeration Area Codes
 #' @description Some of the downloaded enumeration area codes from SSB lack
 #'   codes for missing ie. `xxxx9999`. This function create these codes that
@@ -131,7 +234,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @inheritParams geo_recode
 #' @family geo codes functions
 #' @export
-get_geo_dummy <- function(dt, from, to){
+get_grunnkrets_dummy <- function(dt, from, to){
   kommune <- norgeo::track_change("kommune", from = from, to = to)
   dt <- is_unknown_grunnkrets(dt, kommune)
   dt <- is_grunnkrets_99(dt)
@@ -161,6 +264,8 @@ is_write <- function(write, table, con, answer = 0) {
     is_assign_var("write", FALSE)
     is_assign_var("append", FALSE)
   }
+
+  invisible()
 }
 
 is_assign_var <- function(var, val){
@@ -171,9 +276,9 @@ is_assign_var <- function(var, val){
 is_write_msg <- function(msg = c("write", "append", "fetch")){
   msg <- match.arg(msg)
   switch(msg,
-         write = message("\nStart writing data ..."),
-         append = message("\nStart appending data ..."),
-         fetch = cat("\nFetching data ...")
+         write = message("Start writing data ..."),
+         append = message("Start appending data ..."),
+         fetch = cat("Fetching data ...")
          )
 }
 
@@ -253,4 +358,22 @@ is_grunnkrets_99 <- function(dt){
   }
 
   return(dt)
+}
+
+test_file <- function(file = NULL, .test = FALSE){
+  if(.test){
+    file <- file.path(here::here(), "dev/levekaar.csv")
+  }
+
+  return(file)
+}
+
+is_unique_id <- function(dt, id){
+  dupID <- dt[duplicated(get( id ))][[id]]
+  if (length(dupID) > 0){
+    msg <- paste0("Column `", id, "` must be unique to be able to merge!")
+    is_color_txt(x = "", msg = msg, type = "error")
+    is_stop("Found duplicated `id.file`:", is_short_code(dupID, n2 = 8))
+  }
+  invisible()
 }

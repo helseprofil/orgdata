@@ -51,6 +51,7 @@ Suggests:
     utils,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    here (>= 1.0.1)
 Config/testthat/edition: 3
 VignetteBuilder: knitr

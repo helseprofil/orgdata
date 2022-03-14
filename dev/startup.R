@@ -115,7 +115,7 @@ usethis::use_package("remotes")
 usethis::use_package("haven")
 usethis::use_package("yaml", min_version = TRUE)
 usethis::use_package("duckdb", min_version = TRUE)
-
+usethis::use_package("here", type = "Suggest", min_version = TRUE)
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub
 ## devtools::install_github("r-lib/pkgdown")

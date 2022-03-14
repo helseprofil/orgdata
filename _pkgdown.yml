@@ -19,6 +19,8 @@ navbar:
     href: articles/get-started.html
   - text: Articles
     menu:
+    - text: Recode and mape geo
+      href: articles/geo-recode.html
     - text: Make standard
       href: articles/standard.html
     - text: Debugging

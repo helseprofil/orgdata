@@ -30,6 +30,6 @@ geo_levels(2021, append = TRUE)
 \seealso{
 Other geo codes functions: 
 \code{\link{geo_recode}()},
-\code{\link{get_geo_dummy}()}
+\code{\link{get_grunnkrets_dummy}()}
 }
 \concept{geo codes functions}

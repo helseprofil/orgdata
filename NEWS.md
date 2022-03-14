@@ -10,6 +10,11 @@
   Unmark to read from the original raw file instead. (#257)
 - Use `see_org()` to read the raw data in the database. Argument `action =
   "delete"` can be used to delete the data from the raw database.
+- Function `geo_merge()` for merging geo codes that aren't available from API to
+  the mapping table ie. *tblGeo*, in the geo database. The data could be in any
+  file format accepted by `read_file()` function. The data to be merged must
+  have column to be merged ie. `id.file`, that is equivalent to the column id in
+  the database ie. `id.table`. The `id.file` must be unique.
 
 # orgdata 0.5.7
 - Handle unbalanced parentheses in post recode whenever possible when `raw` is
