@@ -15,23 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 Presuming that `orgdata` package has been installed, this is how you can start
-using the main function. Otherwise you can install the package using the code below.
-
-```r
-if (!requireNamespace("remotes"))
-  install.packages("remotes")
-remotes::install_github("helseprofil/orgdata")
-```
-
-Alternatively is to clone user startup files ie. *seepafil.R* via terminal from
-`user` branch.
-
-```shell
-git clone -b user https://github.com/helseprofil/orgdata
-```
-
-When cloning the user startup, run the codes in *setup.R* file once before
-using *seepafil.R*.
+using the main function.
 
 ## Aggregate all files
 

@@ -36,7 +36,7 @@ kommune`.
 However in most cases you will only need to use argument `write = TRUE`. Check
 the documentation with `help("geo_recode")`.
 
-```{r geo-recode, include = TRUE }
+```{r geo-recode, eval = FALSE}
 library(orgdata)
 dt <- geo_recode(type = "kommune", from = 2018, to = 2022)
 dt[1:5]
@@ -53,7 +53,7 @@ Arguments `write` and `append` can be use when calling `geo_levels()` function.
 However in most cases, you will only need to use `append = TRUE`, ie. to append
 the data to the existing *tblGeo* in the database.
 
-```{r geo-map, include = TRUE }
+```{r geo-map, eval = FALSE}
 DT <- geo_levels(year = 2022)
 DT[sample(1:.N, 5)]
 ```
