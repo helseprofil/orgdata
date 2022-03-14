@@ -210,6 +210,10 @@ geo_merge <- function(id.table = NULL,
   data.table::setcolorder(DT, names(DT)[names(DT)!= "batch"])
   data.table::setkey(DT, code)
 
+  if (isFALSE(write)){
+    write <- utils::askYesNo("Should the result be added to geo database?", default = FALSE)
+  }
+
   if (write) {
     is_write_msg(msg = "write")
     geo$db_write(name = table.name, value = DT, write = write)
@@ -219,7 +223,6 @@ geo_merge <- function(id.table = NULL,
 
   return(DT)
 }
-
 
 #' @title Create Dummy Enumeration Area Codes
 #' @description Some of the downloaded enumeration area codes from SSB lack
