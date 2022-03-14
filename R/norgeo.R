@@ -128,16 +128,23 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #'   to the main geo table ie. `tblGeo` in the geocodes database. The file must
 #'   consist of column to merge to ie. `id.file` and the geo codes to add to ie.
 #'   `column`.
-#' @param id.table ID columname to merge to in the database eg. `kommune`
-#' @param id.file ID columname from file to merge from. This depends on the
+#' @param id.table ID columname to merge to that is found in the database eg.
+#'   `kommune`
+#' @param id.file ID columname from the file to merge from. This depends on the
 #'   columnames in the files. If `id.table` is `kommune`, then `id.file` must be
 #'   the columname representing geo codes that is equivalent to `kommune` codes.
-#' @param geo.col Columname where the new geo codes are
-#' @param geo.level Geographical level the merged file will be representing eg.
-#'   "levekaar".
+#'   Both `id.table` and `id.file` will be used for merging and these codes must
+#'   be unique.
+#' @param geo.col Columname where the new geo codes are eg. if the new geo codes
+#'   is on levekaar, then `geo.col` is the columname where codes for levekaar
+#'   can be found.
+#' @param geo.level Geographical level of the merged file will be representing
+#'   eg. "levekaar". This will be the value in column `level` in the `tblGeo` in
+#'   the database.
 #' @param file Complete path of filename to merge from
 #' @param year Year the code is valid for. If not sepecified `orgdata.year` is
 #'   used.
+#' @inheritParams geo_levels
 #' @param table.name Name of the table for geo recode in geocodes database. This
 #'   can be found with `getOptions("orgdata.geo")`. The default is `tblGeo`.
 #' @param ... Other possible arguments
@@ -158,6 +165,7 @@ geo_merge <- function(id.table = NULL,
                       geo.level = NULL,
                       file = NULL,
                       year = NULL,
+                      write = FALSE,
                       table.name = "tblGeo", ...){
 
   # when testing, use the file in dev folder
@@ -202,6 +210,13 @@ geo_merge <- function(id.table = NULL,
   data.table::setcolorder(DT, names(DT)[names(DT)!= "batch"])
   data.table::setkey(DT, code)
 
+  if (write) {
+    is_write_msg(msg = "write")
+    geo$db_write(name = table.name, value = DT, write = write)
+    msgWrite <- paste0("Write table `", table.name, "` is completed in: \n")
+    is_verbose(x = geoDB, msg = msgWrite, type = "note")
+  }
+
   return(DT)
 }
 
@@ -244,6 +259,8 @@ is_write <- function(write, table, con, answer = 0) {
     is_assign_var("write", FALSE)
     is_assign_var("append", FALSE)
   }
+
+  invisible()
 }
 
 is_assign_var <- function(var, val){
@@ -254,9 +271,9 @@ is_assign_var <- function(var, val){
 is_write_msg <- function(msg = c("write", "append", "fetch")){
   msg <- match.arg(msg)
   switch(msg,
-         write = message("\nStart writing data ..."),
-         append = message("\nStart appending data ..."),
-         fetch = cat("\nFetching data ...")
+         write = message("Start writing data ..."),
+         append = message("Start appending data ..."),
+         fetch = cat("Fetching data ...")
          )
 }
 
