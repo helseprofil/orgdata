@@ -7,6 +7,12 @@
     <loc>/articles/debugging.html</loc>
   </url>
   <url>
+    <loc>/articles/geo-mapping.html</loc>
+  </url>
+  <url>
+    <loc>/articles/geo-recode.html</loc>
+  </url>
+  <url>
     <loc>/articles/get-started.html</loc>
   </url>
   <url>
@@ -136,6 +142,9 @@
     <loc>/reference/geo_levels.html</loc>
   </url>
   <url>
+    <loc>/reference/geo_merge.html</loc>
+  </url>
+  <url>
     <loc>/reference/geo_recode.html</loc>
   </url>
   <url>
@@ -175,10 +184,13 @@
     <loc>/reference/get_extra_args_group.html</loc>
   </url>
   <url>
-    <loc>/reference/get_grunnkrets_dummy.html</loc>
+    <loc>/reference/get_geo_dummy.html</loc>
   </url>
   <url>
     <loc>/reference/get_geo_recode.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_grunnkrets_dummy.html</loc>
   </url>
   <url>
     <loc>/reference/get_implicit_col.html</loc>

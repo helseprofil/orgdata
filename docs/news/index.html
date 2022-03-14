@@ -38,6 +38,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/geo-recode.html">Recode and mape geo</a>
+    </li>
+    <li>
       <a href="../articles/standard.html">Make standard</a>
     </li>
     <li>
@@ -88,6 +91,13 @@ instead. (<a href="https://github.com/helseprofil/orgdata/issues/257" class="ext
 <li>Use <code><a href="../reference/see_org.html">see_org()</a></code> to read the raw data in the database.
 Argument <code>action =   "delete"</code> can be used to delete the data
 from the raw database.</li>
+<li>Function <code><a href="../reference/geo_merge.html">geo_merge()</a></code> for merging geo codes that aren’t
+available from API to the mapping table ie. <em>tblGeo</em>, in the geo
+database. The data could be in any file format accepted by
+<code><a href="../reference/read_file.html">read_file()</a></code> function. The data to be merged must have
+column to be merged ie. <code>id.file</code>, that is equivalent to the
+column id in the database ie. <code>id.table</code>. The
+<code>id.file</code> must be unique.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.7" id="orgdata-057">orgdata 0.5.7<a class="anchor" aria-label="anchor" href="#orgdata-057"></a></h2>

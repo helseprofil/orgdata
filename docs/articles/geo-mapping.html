@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Make things standard • orgdata</title>
+<title>Recode and Map Geo • orgdata</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Make things standard">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Recode and Map Geo">
 <meta property="og:description" content="orgdata">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -100,120 +100,47 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Make things standard</h1>
+      <h1 data-toc-skip>Recode and Map Geo</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/helseprofil/orgdata/blob/HEAD/vignettes/standard.Rmd" class="external-link"><code>vignettes/standard.Rmd</code></a></small>
-      <div class="hidden name"><code>standard.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/helseprofil/orgdata/blob/HEAD/vignettes/geo-mapping.Rmd" class="external-link"><code>vignettes/geo-mapping.Rmd</code></a></small>
+      <div class="hidden name"><code>geo-mapping.Rmd</code></div>
 
     </div>
 
     
     
-<p>Contributing to this package is very much welcome. This is an effort
-to structure things and follow certain convention when pushing to
-<code>Github</code>.</p>
+<p>This guide explains how to create geo table to recode and map geo
+codes. This file will be saved in <strong>orgdata.geo</strong> database.
+See <code>getOptions("orgdata.geo")</code></p>
 <div class="section level2">
-<h2 id="keyword-for-github-commit">Keyword for GitHub Commit<a class="anchor" aria-label="anchor" href="#keyword-for-github-commit"></a>
+<h2 id="recode-geo-codes">Recode Geo Codes<a class="anchor" aria-label="anchor" href="#recode-geo-codes"></a>
 </h2>
-<p>These keywords will be helpful when searching for relevant
-commits:</p>
-<ul>
-<li><p><code>Feat:</code> for new feature or function</p></li>
-<li><p><code>Fix:</code> for bug fix</p></li>
-<li><p><code>Doc:</code> for documentation or changes to
-documentation</p></li>
-<li><p><code>Close:</code> or <code>Style:</code> for changes to code or
-comments that aren’t because of bugs</p></li>
-<li><p><code>Test:</code> for code testing in <code>tests</code>
-folder</p></li>
-<li><p><code>DEV:</code> for development processes for new
-feature</p></li>
-<li><p><code>VER:</code> for first version upgrade</p></li>
-<li>
-<p><code>Misc:</code> for any changes that aren’t critical or
-doesn’t fit to any of the above keywords. Avoid using it if possible or
-only as a last resort</p>
-<p>Example of commit message</p>
-<pre><code>Feat: Get list of new files
-
-New files are missing in the current list. They need to be in the
-current list before aggregating.</code></pre>
-</li>
-</ul>
-</div>
-<div class="section level2">
-<h2 id="github-commit-message">Github Commit Message<a class="anchor" aria-label="anchor" href="#github-commit-message"></a>
-</h2>
-<p>Use message for commit as follows:</p>
-<pre><code>Keyword: Write summary as imperative or command
-
-More detail explanation if necessary with maximum 72 characters and use
-line break for long sentences.</code></pre>
-<p>The first line gives summary for what was done. Preferably to write
-this as imperative mood or like commanding someone especially for commit
-related to features, functions <code>(Feat:)</code> or fixing code
-<code>(Fix)</code>.</p>
-</div>
-<div class="section level2">
-<h2 id="folders-structure">Folders structure<a class="anchor" aria-label="anchor" href="#folders-structure"></a>
-</h2>
-<p>Where are the files located and how the files will be used.</p>
-<ul>
-<li>Folder <code>/R</code> where all the R codes for the functions and
-objects for <code>orgdata</code> live.</li>
-<li>Folder <code>/inst</code> is for SQL code files and other files that
-are needed by the package.</li>
-<li>Folder <code>/dev</code> is for other files that aren’t used in the
-package but good to have as reference or code testing.</li>
-<li>Files with prefix <code>utils-*</code> in folder <code>/R</code>
-have helper functions that are used multiple times in different
-places.</li>
-<li>Put the functions and helper functions in the same file if they
-aren’t used in different places.</li>
-</ul>
-</div>
-<div class="section level2">
-<h2 id="naming-style-function-or-object">Naming style (function or object)<a class="anchor" aria-label="anchor" href="#naming-style-function-or-object"></a>
-</h2>
-<p>Use these naming style:</p>
-<ul>
-<li>
-<code>snake_case</code> style is for <strong>function</strong> eg.
-<code>find_column_input</code>
-</li>
-<li>
-<code>camelCase</code> style is for <strong>object</strong> eg.
-<code>fileGroup</code>
-</li>
-<li>
-<code>kebab-case</code> style for <strong>filename</strong> eg.
-<code>utils-internal.R</code>
-</li>
-</ul>
-</div>
-<div class="section level2">
-<h2 id="function-names">Function names<a class="anchor" aria-label="anchor" href="#function-names"></a>
-</h2>
-<p>An effort to group functions according to their responsibilities
-:)</p>
-<ul>
-<li><p>Files with <code>read_</code> perfix for major
-functions.</p></li>
-<li><p>Files with <code>do_</code> prefix for doing some action
-functions.</p></li>
-<li><p>Files with <code>get_</code> prefix for column specific
-functions.</p></li>
-<li><p>Files with <code>find_</code> prefix for helper
-functions.</p></li>
-<li>
-<p>Files with <code>is_</code> prefix for internal functions or
-utility to use <code>orgdata</code> package.</p>
-<p>Internal functions will not be exported but if needed, they can be
-accessed with <code>:::</code> eg.
-<code>orgdata:::is_separate()</code>.</p>
-</li>
-</ul>
+<p>The function to create the table for recoding geo is
+<code><a href="../reference/geo_recode.html">geo_recode()</a></code>. The table will consist of previous codes and
+their new codes whenever available. For instance, to get all codes for
+<em>kommuner</em> from 2017 to 2022. The table will list all the codes
+for <em>kommuner</em> since 2017 in columname <code>oldCode</code> and
+their current codes ie. 2022, in columname <code>currentCode</code>. Any
+geo codes that have change since 2017 will have the new codes in
+<code>currentCode</code> column. For geo codes that have not changed
+since 2017 will have <code>NA</code> in the <code>oldCode</code>
+column.</p>
+<p>Use argument <code>write = TRUE</code> to save it in the database. If
+the table already exists in the database and you just want to add a new
+dataset to the table, use argument <code>append = TRUE</code>. The table
+in the database will be called <code>kommune2022</code> if the data
+consist of geo codes up to 2022, ie. argument
+<code>to = 2022</code>.</p>
+<p>However in most cases you will only need to use argument
+<code>write = TRUE</code>. Check the documentation with
+<code><a href="../reference/geo_recode.html">help("geo_recode")</a></code>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span>
+<span class="co">#&gt; orgdata version 0.5.8</span>
+<span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_recode.html">geo_recode</a></span><span class="op">(</span><span class="st">"kommune"</span>, <span class="fl">2018</span>, <span class="fl">2022</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Fetching data .....</span></code></pre></div>
 </div>
   </div>
 
