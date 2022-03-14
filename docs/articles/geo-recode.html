@@ -116,21 +116,22 @@ See <code>getOptions("orgdata.geo")</code></p>
 <div class="section level2">
 <h2 id="recode-geo-codes">Recode Geo Codes<a class="anchor" aria-label="anchor" href="#recode-geo-codes"></a>
 </h2>
-<p>The function to create the table for recoding geo is
+<p>The function to create table for recoding geo is
 <code><a href="../reference/geo_recode.html">geo_recode()</a></code>. The table will consist of previous codes and
 their new codes whenever available. For instance, to get all codes for
 <em>kommuner</em> from 2017 to 2022. The table will list all the codes
-for <em>kommuner</em> since 2017 in columname <code>oldCode</code> and
-their current codes ie. 2022, in columname <code>currentCode</code>. Any
-geo codes that have change since 2017 will have the new codes in
+for <em>kommuner</em> since 2017 in columname <code>oldCode</code> while
+their current codes ie. 2022, is in colum <code>currentCode</code>. Any
+geo codes that have changed since 2017 will have their new codes in
 <code>currentCode</code> column. For geo codes that have not changed
-since 2017 will have <code>NA</code> in the <code>oldCode</code>
-column.</p>
+since 2017 will have the value as <code>NA</code> in the
+<code>oldCode</code> column.</p>
 <p>Use argument <code>write = TRUE</code> to save it in the database. If
 the table already exists in the database and you just want to add a new
 dataset to the table, use argument <code>append = TRUE</code>. The table
 in the database will be called <em>kommune2022</em> if the data consist
-of geo codes up to 2022, ie. argument <code>to = 2022</code>.</p>
+of geo codes up to 2022, ie. argument <code>to = 2022</code> and
+<code>typ = kommune</code>.</p>
 <p>However in most cases you will only need to use argument
 <code>write = TRUE</code>. Check the documentation with
 <code><a href="../reference/geo_recode.html">help("geo_recode")</a></code>.</p>
@@ -140,7 +141,7 @@ of geo codes up to 2022, ie. argument <code>to = 2022</code>.</p>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_recode.html">geo_recode</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2018</span>, to <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Fetching data .....</span>
-<span class="va">dt</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span>
+<span class="va">dt</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>
 <span class="co">#&gt;    oldCode  oldName currentCode   newName changeOccurred      batch</span>
 <span class="co">#&gt; 1:    &lt;NA&gt;     &lt;NA&gt;        0301      Oslo           2022 2022-03-14</span>
 <span class="co">#&gt; 2:    &lt;NA&gt;     &lt;NA&gt;        1101 Eigersund           2022 2022-03-14</span>
@@ -170,29 +171,19 @@ to the existing <em>tblGeo</em> in the database.</p>
 <span class="co">#&gt; Data for kommune to fylke is from 2022 with 356 rows</span>
 <span class="co">#&gt; <span style="color: #00BB00;">Searching for geo level with NA due to grunnkrets code ends with 00 </span> </span>
 <span class="co">#&gt; ................................................</span>
-<span class="va">DT</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">DT</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span>,<span class="op">]</span>
-<span class="co">#&gt;         code               name validTo      level grunnkrets kommune fylke</span>
-<span class="co">#&gt;  1: 46310301             Øksnes    2022 grunnkrets   46310301    4631    46</span>6
-<span class="co">#&gt;  2: 46011822             Bjørge    2022 grunnkrets   46011822    4601    46</span>6
-<span class="co">#&gt;  3: 50540300              Rissa    2022 grunnkrets   50540300    5054    50</span>
-<span class="co">#&gt;  4: 30530204          Nesbakken    2022 grunnkrets   30530204    3053    30</span>
-<span class="co">#&gt;  5: 11032508     Nordre Sunde 2    2022 grunnkrets   11032508    1103    11</span>
-<span class="co">#&gt;  6: 50610108             Løfall    2022 grunnkrets   50610108    5061    50</span>0
-<span class="co">#&gt;  7: 54012020   Lanes - Finnvika    2022 grunnkrets   54012020    5401    54</span>
-<span class="co">#&gt;  8: 34160302              Kisen    2022 grunnkrets   34160302    3416    34</span>
-<span class="co">#&gt;  9: 15390401        Veblungsnes    2022 grunnkrets   15390401    1539    15</span>
-<span class="co">#&gt; 10: 11440103 Langøy - Naustvold    2022 grunnkrets   11440103    1144    11</span>1
-<span class="co">#&gt;      bydel      batch</span>
-<span class="co">#&gt;  1:   &lt;NA&gt; 2022-03-14</span>
-<span class="co">#&gt;  2: 460104 2022-03-14</span>
-<span class="co">#&gt;  3:   &lt;NA&gt; 2022-03-14</span>
-<span class="co">#&gt;  4:   &lt;NA&gt; 2022-03-14</span>
-<span class="co">#&gt;  5: 110304 2022-03-14</span>
-<span class="co">#&gt;  6:   &lt;NA&gt; 2022-03-14</span>
-<span class="co">#&gt;  7:   &lt;NA&gt; 2022-03-14</span>
-<span class="co">#&gt;  8:   &lt;NA&gt; 2022-03-14</span>
-<span class="co">#&gt;  9:   &lt;NA&gt; 2022-03-14</span>
-<span class="co">#&gt; 10:   &lt;NA&gt; 2022-03-14</span></code></pre></div>
+<span class="va">DT</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">.N</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span>
+<span class="co">#&gt;        code                name validTo      level grunnkrets kommune fylke</span>
+<span class="co">#&gt; 1: 15390201              Rødven    2022 grunnkrets   15390201    1539    15</span>5
+<span class="co">#&gt; 2: 30051112          Borgetjern    2022 grunnkrets   30051112    3005    30</span>
+<span class="co">#&gt; 3: 46170100 Ølve - Hatlestranda    2022 grunnkrets   46170100    4617    46</span>6
+<span class="co">#&gt; 4: 50060309          Kvamsenget    2022 grunnkrets   50060309    5006    50</span>
+<span class="co">#&gt; 5: 50017512          Heimdal 12    2022 grunnkrets   50017512    5001    50</span>
+<span class="co">#&gt;     bydel      batch</span>
+<span class="co">#&gt; 1:   &lt;NA&gt; 2022-03-14</span>
+<span class="co">#&gt; 2:   &lt;NA&gt; 2022-03-14</span>
+<span class="co">#&gt; 3:   &lt;NA&gt; 2022-03-14</span>
+<span class="co">#&gt; 4:   &lt;NA&gt; 2022-03-14</span>
+<span class="co">#&gt; 5: 500104 2022-03-14</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="merge-geo-codes">Merge Geo Codes<a class="anchor" aria-label="anchor" href="#merge-geo-codes"></a>
