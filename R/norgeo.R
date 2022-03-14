@@ -125,8 +125,9 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 
 #' @title Merge Other Geo Level Manually
 #' @description Geo codes other than those downloaded from SSB API can be merged
-#'   to the main geo table ie. `tblGeo`. The file must consist of column to
-#'   merge to ie. `id.file` and the geo codes to add to ie. `column`
+#'   to the main geo table ie. `tblGeo` in the geocodes database. The file must
+#'   consist of column to merge to ie. `id.file` and the geo codes to add to ie.
+#'   `column`.
 #' @param id.table ID columname to merge to in the database eg. `kommune`
 #' @param id.file ID columname from file to merge from. This depends on the
 #'   columnames in the files. If `id.table` is `kommune`, then `id.file` must be
@@ -137,6 +138,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @param file Complete path of filename to merge from
 #' @param year Year the code is valid for. If not sepecified `orgdata.year` is
 #'   used.
+#' @param table.name Name of the table for geo recode in geocodes database. This
+#'   can be found with `getOptions("orgdata.geo")`. The default is `tblGeo`.
 #' @param ... Other possible arguments
 #' @examples
 #' \dontrun{
