@@ -20,89 +20,110 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
   DB <- is_conn_db(db = "kh")
 
-  dt <- is_process_file(
-    file = filePath,
-    filespec = fileSpec,
-    fgspec = fgspec,
-    con = DB$dbconn,
-    row = row,
-    control = fileCtrl,
-    duck = duck
-  )
+  ## Check dataset in DuckDB -------------
+  duckID <- as.integer(DBI::dbListTables(duck$dbconn))
+  tblFilid <- find_column_input(fileSpec, "FILID", type = "character")
 
-  ## RESHAPE structure -----------------------------------------
-  reshVal <- find_column_input(fileSpec, "RESHAPE")
-  reshapeLong <- reshVal == 1
-  reshapeWide <- reshVal == 2
+  ## Read from raw file if not allready found in DuckDB
+  if (isFALSE(fileCtrl) || isFALSE(any(as.integer(tblFilid) %in% duckID))) {
+    dt <- is_process_file(
+      file = filePath,
+      filespec = fileSpec,
+      fgspec = fgspec,
+      con = DB$dbconn,
+      row = row,
+      control = fileCtrl,
+      duck = duck
+    )
 
-  ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
-  ## defined in Access coz aggregating uses the standard columnames. Else it
-  ## will be deleted as undefined columns in Access database
-  if (!is.na(reshVal) && reshapeLong){
-    dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
+    ## RESHAPE structure -----------------------------------------
+    reshVal <- find_column_input(fileSpec, "RESHAPE")
+    reshapeLong <- reshVal == 1
+    reshapeWide <- reshVal == 2
+
+    ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
+    ## defined in Access coz aggregating uses the standard columnames. Else it
+    ## will be deleted as undefined columns in Access database
+    if (!is.na(reshVal) && reshapeLong){
+      dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
+    }
+
+    ## Recode must happen before reshape wide as reshape wide will use selected TAB
+    ## of reshape column creating columns of unique value of TAB ie. wideCol object
+    dt <- do_recode(dt = dt, spec = fileSpec, con = DB$dbconn, control = fileCtrl)
+    dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = DB$dbconn)
+
+    ## Reshape to wide needs to keep object wideCol from original file
+    ## to reshape it back to long if it's wide and became TAB
+    wideCol <- NULL
+    if (!is.na(reshVal) && reshapeWide){
+      wideSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
+      wideCol <- wideSpec$widecol
+    }
+
+    ## DELETE UNDEFINED COLUMNS ------------------------
+    ## Only columns defined in tbl_Filgruppe will be kept. Deleting columns only
+    ## after renaming specified RESHAPE columns back to standard columnames.
+    deleteVar <- setdiff(names(dt), datacols)
+
+    if (length(deleteVar) != 0) {
+      dt[, (deleteVar) := NULL]
+    }
+
+    if (length(deleteVar) != 0) {
+      ## What does this mean? Need to ask the senior people in the project :-)
+      msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
+      msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
+      msgWarn <- paste0(msg01, "\n", msg02)
+      is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
+      deleteVar <- paste(deleteVar, collapse = ", ")
+      is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
+    }
+
+    ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
+    ## make specification for column that should not be included in the formula
+    ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
+    if (!is.na(reshVal) && reshapeWide){
+      dt <- do_reshape_wide(dt, wideSpec)
+      wideCol <- intersect(names(dt), wideCol)
+    }
+
+    ## AGGREGATE ------------------------------------
+    ## TODO - Not sure if this necessary. Turn off temporarily
+    ## Convert some columns to interger. Must be after
+    ## the variables are recoded eg. INNKAT is string before recorded to number
+    ## dt <- is_col_num(dt)
+
+    dt <- is_aggregate(dt = dt,
+                       fgspec = fgspec,
+                       year = year,
+                       aggregate = aggregate,
+                       base = base,
+                       control = fileCtrl,
+                       wide = wideCol,
+                       koblid = koblID)
+
+
+    ## RESHAPE LONG SPECIAL CASES --------------------------------------
+    ## When dataset was long then reshape to wide before long again
+    if (!is.na(reshVal) && reshapeWide){
+      dt <- do_reshape_long(dt = dt, respec = wideSpec)
+      dt <- is_long_col(dt, spec = fileSpec, widespec = wideSpec)
+    }
+
   }
 
-  ## Recode must happen before reshape wide as reshape wide will use selected TAB
-  ## of reshape column creating columns of unique value of TAB ie. wideCol object
-  dt <- do_recode(dt = dt, spec = fileSpec, con = DB$dbconn, control = fileCtrl)
-  dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = DB$dbconn)
-
-  ## Reshape to wide needs to keep object wideCol from original file
-  ## to reshape it back to long if it's wide and became TAB
-  wideCol <- NULL
-  if (!is.na(reshVal) && reshapeWide){
-    wideSpec <- get_reshape_wide_spec(dt, spec = fileSpec)
-    wideCol <- wideSpec$widecol
+  ## Add to or read from DuckDB -------------
+  if (isFALSE(fileCtrl) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
+    duck$db_write(name = tblFilid, value = dt, write = TRUE)
   }
 
-  ## DELETE UNDEFINED COLUMNS ------------------------
-  ## Only columns defined in tbl_Filgruppe will be kept. Deleting columns only
-  ## after renaming specified RESHAPE columns back to standard columnames.
-  deleteVar <- setdiff(names(dt), datacols)
-
-  if (length(deleteVar) != 0) {
-    dt[, (deleteVar) := NULL]
-  }
-
-  if (length(deleteVar) != 0) {
-    ## What does this mean? Need to ask the senior people in the project :-)
-    msg01 <- "Are you sure the deleted column(s) doesn't contain subtotal?"
-    msg02 <- "Else aggregating will be incorrect. Define it in FILGRUPPE and delete later"
-    msgWarn <- paste0(msg01, "\n", msg02)
-    is_verbose(x = msgWarn, type = "warn", ctrl = fileCtrl)
-    deleteVar <- paste(deleteVar, collapse = ", ")
-    is_verbose(x = paste_cols(deleteVar), "Deleted column(s):", type = "warn2", ctrl = fileCtrl)
-  }
-
-  ## RESAHPE WIDE only after undefined column(s) are deleted. Else needs to
-  ## make specification for column that should not be included in the formula
-  ## LHS ~ RHS. TODO The function to exclude the column is not implemented yet.
-  if (!is.na(reshVal) && reshapeWide){
-    dt <- do_reshape_wide(dt, wideSpec)
-    wideCol <- intersect(names(dt), wideCol)
-  }
-
-  ## AGGREGATE ------------------------------------
-  ## TODO - Not sure if this necessary. Turn off temporarily
-  ## Convert some columns to interger. Must be after
-  ## the variables are recoded eg. INNKAT is string before recorded to number
-  ## dt <- is_col_num(dt)
-
-  dt <- is_aggregate(dt = dt,
-                     fgspec = fgspec,
-                     year = year,
-                     aggregate = aggregate,
-                     base = base,
-                     control = fileCtrl,
-                     wide = wideCol,
-                     koblid = koblID)
-
-
-  ## RESHAPE LONG SPECIAL CASES --------------------------------------
-  ## When dataset was long then reshape to wide before long again
-  if (!is.na(reshVal) && reshapeWide){
-    dt <- do_reshape_long(dt = dt, respec = wideSpec)
-    dt <- is_long_col(dt, spec = fileSpec, widespec = wideSpec)
+  if (isTRUE(fileCtrl) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
+    is_color_txt(x = tblFilid, msg = "Read from Database. FILID:")
+    is_color_txt(x = filePath, msg = "File:")
+    dt <- duck$db_read(name = tblFilid)
+  } else {
+    duck$db_write(name = tblFilid, value = dt, write = TRUE)
   }
 
   data.table::copy(dt)
