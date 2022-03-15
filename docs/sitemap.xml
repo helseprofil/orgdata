@@ -1,312 +1,312 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/404.html</loc>
   </url>
   <url>
-    <loc>/articles/debugging.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/articles/debugging.html</loc>
   </url>
   <url>
-    <loc>/articles/geo-mapping.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/articles/geo-mapping.html</loc>
   </url>
   <url>
-    <loc>/articles/geo-recode.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/articles/geo-recode.html</loc>
   </url>
   <url>
-    <loc>/articles/get-started.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/articles/get-started.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/standard.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/articles/standard.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/index.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/debug_opt.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/debug_opt.html</loc>
   </url>
   <url>
-    <loc>/reference/do_addcols.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_addcols.html</loc>
   </url>
   <url>
-    <loc>/reference/do_aggregate.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_aggregate.html</loc>
   </url>
   <url>
-    <loc>/reference/do_aggregate_recode.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_aggregate_recode.html</loc>
   </url>
   <url>
-    <loc>/reference/do_aggregate_recode_standard.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_aggregate_recode_standard.html</loc>
   </url>
   <url>
-    <loc>/reference/do_colname.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_colname.html</loc>
   </url>
   <url>
-    <loc>/reference/do_column_standard.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_column_standard.html</loc>
   </url>
   <url>
-    <loc>/reference/do_delete_row.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_delete_row.html</loc>
   </url>
   <url>
-    <loc>/reference/do_extra_args.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_extra_args.html</loc>
   </url>
   <url>
-    <loc>/reference/do_extra_args_group.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_extra_args_group.html</loc>
   </url>
   <url>
-    <loc>/reference/do_geo_recode.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_geo_recode.html</loc>
   </url>
   <url>
-    <loc>/reference/do_implicit_null.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_implicit_null.html</loc>
   </url>
   <url>
-    <loc>/reference/do_make_file_each.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_make_file_each.html</loc>
   </url>
   <url>
-    <loc>/reference/do_manheader.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_manheader.html</loc>
   </url>
   <url>
-    <loc>/reference/do_mutate.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_mutate.html</loc>
   </url>
   <url>
-    <loc>/reference/do_recode.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_recode.html</loc>
   </url>
   <url>
-    <loc>/reference/do_recode_aggregate.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_recode_aggregate.html</loc>
   </url>
   <url>
-    <loc>/reference/do_recode_post.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_recode_post.html</loc>
   </url>
   <url>
-    <loc>/reference/do_recode_regexp.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_recode_regexp.html</loc>
   </url>
   <url>
-    <loc>/reference/do_recode_without_aggregate.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_recode_without_aggregate.html</loc>
   </url>
   <url>
-    <loc>/reference/do_reshape.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_reshape.html</loc>
   </url>
   <url>
-    <loc>/reference/do_reshape_long.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_reshape_long.html</loc>
   </url>
   <url>
-    <loc>/reference/do_reshape_rename_col.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_reshape_rename_col.html</loc>
   </url>
   <url>
-    <loc>/reference/do_reshape_wide.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_reshape_wide.html</loc>
   </url>
   <url>
-    <loc>/reference/do_split.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_split.html</loc>
   </url>
   <url>
-    <loc>/reference/do_year.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/do_year.html</loc>
   </url>
   <url>
-    <loc>/reference/emoji.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/emoji.html</loc>
   </url>
   <url>
-    <loc>/reference/find_column_input.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/find_column_input.html</loc>
   </url>
   <url>
-    <loc>/reference/find_column_multi.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/find_column_multi.html</loc>
   </url>
   <url>
-    <loc>/reference/find_data.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/find_data.html</loc>
   </url>
   <url>
-    <loc>/reference/find_implicit_col.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/find_implicit_col.html</loc>
   </url>
   <url>
-    <loc>/reference/find_implicit_null.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/find_implicit_null.html</loc>
   </url>
   <url>
-    <loc>/reference/find_spec.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/find_spec.html</loc>
   </url>
   <url>
-    <loc>/reference/geo_level.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/geo_level.html</loc>
   </url>
   <url>
-    <loc>/reference/geo_levels.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/geo_levels.html</loc>
   </url>
   <url>
-    <loc>/reference/geo_merge.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/geo_merge.html</loc>
   </url>
   <url>
-    <loc>/reference/geo_recode.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/geo_recode.html</loc>
   </url>
   <url>
-    <loc>/reference/get_addcols.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_addcols.html</loc>
   </url>
   <url>
-    <loc>/reference/get_aggregate.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_aggregate.html</loc>
   </url>
   <url>
-    <loc>/reference/get_codebok.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_codebok.html</loc>
   </url>
   <url>
-    <loc>/reference/get_codebok_aggregate.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_codebok_aggregate.html</loc>
   </url>
   <url>
-    <loc>/reference/get_codebok_regexp.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_codebok_regexp.html</loc>
   </url>
   <url>
-    <loc>/reference/get_colname.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_colname.html</loc>
   </url>
   <url>
-    <loc>/reference/get_column_input.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_column_input.html</loc>
   </url>
   <url>
-    <loc>/reference/get_column_standard.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_column_standard.html</loc>
   </url>
   <url>
-    <loc>/reference/get_delete_row_spec.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_delete_row_spec.html</loc>
   </url>
   <url>
-    <loc>/reference/get_extra_arg.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_extra_arg.html</loc>
   </url>
   <url>
-    <loc>/reference/get_extra_args.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_extra_args.html</loc>
   </url>
   <url>
-    <loc>/reference/get_extra_args_group.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_extra_args_group.html</loc>
   </url>
   <url>
-    <loc>/reference/get_geo_dummy.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_geo_dummy.html</loc>
   </url>
   <url>
-    <loc>/reference/get_geo_recode.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_geo_recode.html</loc>
   </url>
   <url>
-    <loc>/reference/get_grunnkrets_dummy.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_grunnkrets_dummy.html</loc>
   </url>
   <url>
-    <loc>/reference/get_implicit_col.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_implicit_col.html</loc>
   </url>
   <url>
-    <loc>/reference/get_implicit_per_year.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_implicit_per_year.html</loc>
   </url>
   <url>
-    <loc>/reference/get_implicit_ref.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_implicit_ref.html</loc>
   </url>
   <url>
-    <loc>/reference/get_innlesarg.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_innlesarg.html</loc>
   </url>
   <url>
-    <loc>/reference/get_manheader.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_manheader.html</loc>
   </url>
   <url>
-    <loc>/reference/get_mutate_value.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_mutate_value.html</loc>
   </url>
   <url>
-    <loc>/reference/get_reshape_id_val.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_reshape_id_val.html</loc>
   </url>
   <url>
-    <loc>/reference/get_reshape_wide_spec.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_reshape_wide_spec.html</loc>
   </url>
   <url>
-    <loc>/reference/get_split.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_split.html</loc>
   </url>
   <url>
-    <loc>/reference/get_year.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_year.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/is_active.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_active.html</loc>
   </url>
   <url>
-    <loc>/reference/is_col_num_warn.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_col_num_warn.html</loc>
   </url>
   <url>
-    <loc>/reference/is_col_separate.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_col_separate.html</loc>
   </url>
   <url>
-    <loc>/reference/is_conn_db.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_conn_db.html</loc>
   </url>
   <url>
-    <loc>/reference/is_defaar.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_defaar.html</loc>
   </url>
   <url>
-    <loc>/reference/is_input_type.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_input_type.html</loc>
   </url>
   <url>
-    <loc>/reference/is_logger.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_logger.html</loc>
   </url>
   <url>
-    <loc>/reference/is_org_process.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_org_process.html</loc>
   </url>
   <url>
-    <loc>/reference/is_process_file.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_process_file.html</loc>
   </url>
   <url>
-    <loc>/reference/is_query.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/is_query.html</loc>
   </url>
   <url>
-    <loc>/reference/KHelse.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/KHelse.html</loc>
   </url>
   <url>
-    <loc>/reference/log.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/log.html</loc>
   </url>
   <url>
-    <loc>/reference/make_file.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/make_file.html</loc>
   </url>
   <url>
-    <loc>/reference/make_filegroup.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/make_filegroup.html</loc>
   </url>
   <url>
-    <loc>/reference/make_filegroups.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/make_filegroups.html</loc>
   </url>
   <url>
-    <loc>/reference/make_raw.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/make_raw.html</loc>
   </url>
   <url>
-    <loc>/reference/orgdata-package.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/orgdata-package.html</loc>
   </url>
   <url>
-    <loc>/reference/read_file.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/read_file.html</loc>
   </url>
   <url>
-    <loc>/reference/read_log.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/read_log.html</loc>
   </url>
   <url>
-    <loc>/reference/read_org.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/read_org.html</loc>
   </url>
   <url>
-    <loc>/reference/read_raw.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/read_raw.html</loc>
   </url>
   <url>
-    <loc>/reference/reset_options.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/reset_options.html</loc>
   </url>
   <url>
-    <loc>/reference/save_file.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/save_file.html</loc>
   </url>
   <url>
-    <loc>/reference/see_file.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/see_file.html</loc>
   </url>
   <url>
-    <loc>/reference/see_org.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/see_org.html</loc>
   </url>
   <url>
-    <loc>/reference/see_raw.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/see_raw.html</loc>
   </url>
   <url>
-    <loc>/reference/update_orgdata.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/update_orgdata.html</loc>
   </url>
   <url>
-    <loc>/reference/website.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/website.html</loc>
   </url>
 </urlset>
