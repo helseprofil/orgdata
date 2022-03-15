@@ -119,6 +119,11 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
   }
 
+
+  if (debugOpt){
+    return(data.table::copy(dt))
+  }
+
   ## Add to or read from DuckDB -------------
   if (isFALSE(fileCtrl) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
     duck$db_write(name = tblFilid, value = dt, write = TRUE)
