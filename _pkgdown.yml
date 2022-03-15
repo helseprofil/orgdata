@@ -8,32 +8,31 @@ authors:
     href: https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/
 template:
   bootstrap: 5
-  bootswatch: cosmo
+  bootswatch: flatly
 
 navbar:
   structure:
     right: [search, github]
-  components:
-    left:
-    - icon: fa-home fa-lg
-      href: index.html
-    - text: Get started
-      href: articles/get-started.html
-    - text: Articles
-      menu:
-      - text: Recode and mape geo
-        href: articles/geo-recode.html
-      - text: Make standard
-        href: articles/standard.html
-      - text: Debugging
-        href: articles/debugging.html
-    - text: Functions
-      href: reference/index.html
-    - text: Changelog
-      href: news/index.html
+  left:
+  - icon: fa-home fa-lg
+    href: index.html
+  - text: Get started
+    href: articles/get-started.html
+  - text: Articles
+    menu:
+    - text: Recode and mape geo
+      href: articles/geo-recode.html
+    - text: Make standard
+      href: articles/standard.html
+    - text: Debugging
+      href: articles/debugging.html
+  - text: Functions
+    href: reference/index.html
+  - text: Changelog
+    href: news/index.html
 
-search:
-  exclude: ['news/index.html']
+# search:
+#   exclude: ['news/index.html']
 
 reference:
 - title: Main functions
