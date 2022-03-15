@@ -45,8 +45,10 @@ source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
 kh_install("orgdata")
 ```
 
-or you can use the *user* branch for reproducibilty, ie. keeping the package
-version for all dependencies as they were used in the development processes.
+To maintain dependencies package version, you can install *orgdata* from the
+*user* branch for reproducibilty, ie. keeping the package version for all
+dependencies as they were used in the development processes. You must however
+install **Git** prior to using `kh_restore()` function.
 
 ```r
 source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
