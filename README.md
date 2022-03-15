@@ -4,7 +4,7 @@
 
 [![R build
 status](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
-[![](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://codecov.io/gh/helseprofil/orgdata)
+[![](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/orgdata)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![](https://img.shields.io/badge/devel%20version-0.5.8-blue.svg)](https://github.com/helseprofil/orgdata)
 
@@ -20,9 +20,10 @@ source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
 kh_install("orgdata")
 ```
 
-or you can use the *user* branch for reproducibilty, ie. keeping the
-package version for all dependencies as they were used in the
-development processes.
+To maintain dependencies package version, you can install *orgdata* from
+the *user* branch for reproducibilty, ie. keeping the package version
+for all dependencies as they were used in the development processes. You
+must however install **Git** prior to using `kh_restore()` function.
 
 ``` r
 source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")

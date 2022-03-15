@@ -7,11 +7,12 @@ authors:
   Yusman Kamaleri:
     href: https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/
 template:
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: flatly
 
 navbar:
-  type: default
+  structure:
+    right: [search, github]
   left:
   - icon: fa-home fa-lg
     href: index.html
@@ -29,6 +30,9 @@ navbar:
     href: reference/index.html
   - text: Changelog
     href: news/index.html
+
+# search:
+#   exclude: ['news/index.html']
 
 reference:
 - title: Main functions
