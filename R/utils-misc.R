@@ -129,3 +129,9 @@ opt_rename <- function(x){
   x2 <- paste("orgdata", names(x), sep = ".")
   x <- stats::setNames(x, x2)
 }
+
+# Debug options -------
+# Check if any debug options is activated
+is_option_active <- function(){
+  any(c(getOption("orgdata.debug.aggregate"), getOption("orgdata.geo")))
+}
