@@ -42,6 +42,15 @@ dt <- geo_recode(type = "kommune", from = 2018, to = 2022)
 dt[1:5]
 ```
 
+```r 
+oldCode              oldName currentCode           newName changeOccurred      batch
+1:    <NA>              <NA>        0301              Oslo           2022 2022-03-15
+2:    <NA>              <NA>        1101         Eigersund           2022 2022-03-15
+3:    1141            Finnøy        1103         Stavanger           2020 2022-03-15
+4:    1142          Rennesøy        1103         Stavanger           2020 2022-03-15
+5:    <NA>              <NA>        1106         Haugesund           2022 2022-03-15
+```
+
 # Mapping Geo Codes
 
 The function to create geo mapping is `geo_levels()`. The default table name to
@@ -57,6 +66,16 @@ the data to the existing *tblGeo* in the database.
 DT <- geo_levels(year = 2022)
 DT[sample(1:.N, 5)]
 ```
+
+```r
+code                      name validTo      level grunnkrets kommune fylke bydel      batch
+1: 30470104 Søndre Simostranda    2022 grunnkrets   30470104    3047    30  <NA> 2022-03-15
+2: 11140110           Vikeså 2    2022 grunnkrets   11140110    1114    11  <NA> 2022-03-15
+3: 30020408           Ørehavna    2022 grunnkrets   30020408    3002    30  <NA> 2022-03-15
+4: 46350304          Hjartholm    2022 grunnkrets   46350304    4635    46  <NA> 2022-03-15
+5: 42160109     Birkeland Nord    2022 grunnkrets   42160109    4216    42  <NA> 2022-03-15
+```
+
 
 # Merge Geo Codes
 
