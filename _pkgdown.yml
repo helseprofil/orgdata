@@ -13,23 +13,25 @@ template:
 navbar:
   structure:
     right: [search, github]
-  left:
-  - icon: fa-home fa-lg
-    href: index.html
-  - text: Get started
-    href: articles/get-started.html
-  - text: Articles
-    menu:
-    - text: Recode and mape geo
-      href: articles/geo-recode.html
-    - text: Make standard
-      href: articles/standard.html
-    - text: Debugging
-      href: articles/debugging.html
-  - text: Functions
-    href: reference/index.html
-  - text: Changelog
-    href: news/index.html
+  components:
+    intro:
+      text: Get started
+      href: articles/get-started.html
+    articles:
+      text: Articles
+      menu:
+      - text: Recode and mape geo
+        href: articles/geo-recode.html
+      - text: Make standard
+        href: articles/standard.html
+      - text: Debugging
+        href: articles/debugging.html
+    reference:
+      text: Functions
+      href: reference/index.html
+    news:
+      text: Changelog
+      href: news/index.html
 
 # search:
 #   exclude: ['news/index.html']
