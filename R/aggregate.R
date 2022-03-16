@@ -5,7 +5,7 @@
 #' @inheritParams do_split
 #' @param source What geographical granularity codes that is available in the
 #'   source data. This will be used for merging with the geo codebook generated
-#'   from `geo_levels()`
+#'   from `geo_map()`
 #' @param level Geographical granularity for aggregating data to
 #' @param year Which year of georaphical code to use for recoding and
 #'   aggregating. If not specified, then current year will be used

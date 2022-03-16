@@ -5,7 +5,7 @@
 #' @inheritParams do_split
 #' @param source What geographical granularity codes that is available in the
 #'   source data. This will be used for merging with the output from
-#'   `geo_levels()`
+#'   `geo_map()`
 #' @inheritParams do_geo_recode
 #' @examples
 #' \dontrun{
