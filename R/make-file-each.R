@@ -29,9 +29,10 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   ## Check dataset in DuckDB -------------
   duckID <- as.integer(DBI::dbListTables(duck$dbconn))
   tblFilid <- find_column_input(fileSpec, "FILID", type = "character")
+  fileDuck <- any(as.integer(tblFilid) %in% duckID)
 
   ## Read from raw file if not allready found in DuckDB
-  if (isFALSE(fileCtrl) || isFALSE(any(as.integer(tblFilid) %in% duckID))) {
+  if (!fileCtrl || !fileDuck) {
     dt <- is_process_file(
       file = filePath,
       filespec = fileSpec,
@@ -125,17 +126,22 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   }
 
   ## Add to or read from DuckDB -------------
-  if (isFALSE(fileCtrl) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
+  if (!fileCtrl && fileDuck){
+    is_color_txt(x = "", msg = "Updating dataset in the database ...")
     duck$db_write(name = tblFilid, value = dt, write = TRUE)
   }
 
-  if (isTRUE(fileCtrl) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
-    is_color_txt(x = tblFilid, msg = "Read from Database. FILID:")
+  if (fileCtrl && fileDuck){
+    withr::with_options(list(orgdata.emoji = "safe"),
+                        is_color_txt(x = tblFilid,
+                                     msg = "Read file from Database. FILID:",
+                                     type = "note", emoji = TRUE))
     is_color_txt(x = filePath, msg = "File:")
     dt <- duck$db_read(name = tblFilid)
   }
 
-  if (isTRUE(fileCtrl) && isFALSE(any(as.integer(tblFilid) %in% duckID))){
+  if (fileCtrl && !fileDuck){
+    is_color_txt(x = "", msg = "Adding dataset to the database ...")
     duck$db_write(name = tblFilid, value = dt, write = TRUE)
   }
 
@@ -144,12 +150,6 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
 
 ## HELPER ---------------------------
-
-duckYN <- function(ctrl, filid){
-
-
-}
-
 # Delete rows created from cross join that shouldn't be there
 is_long_col <- function(dt, spec, widespec){
   # spec - file specification

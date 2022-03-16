@@ -268,8 +268,9 @@ is_colour_txt <- function(x, msg,
                  santa = "\U0001F385",
                  search = "\U001F50D",
                  folder = "\U001F4C1",
-                 book = "\U0001F4DA"
-                 )
+                 book = "\U0001F4DA",
+                 safe = "\U001F5C4"
+                   )
 
   if (emoji){
     cat(symb, clrMsg, "\n")
