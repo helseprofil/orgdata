@@ -22,7 +22,7 @@ do_aggregate(
 
 \item{source}{What geographical granularity codes that is available in the
 source data. This will be used for merging with the geo codebook generated
-from \code{geo_levels()}}
+from \code{geo_map()}}
 
 \item{level}{Geographical granularity for aggregating data to}
 

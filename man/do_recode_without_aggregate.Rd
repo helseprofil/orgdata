@@ -17,7 +17,7 @@ do_recode_without_aggregate(
 
 \item{source}{What geographical granularity codes that is available in the
 source data. This will be used for merging with the output from
-\code{geo_levels()}}
+\code{geo_map()}}
 
 \item{year}{Which year the geograhical codes to be recoded to. If it is empty
 then current year will be used.}

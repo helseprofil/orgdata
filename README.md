@@ -2,9 +2,10 @@
 
 # orgdata <img src='man/figures/logo.png' align="right" width="110" height="138" />
 
+
 [![R build
 status](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
-[![](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/orgdata)
+[![](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://codecov.io/gh/helseprofil/orgdata)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![](https://img.shields.io/badge/devel%20version-0.5.8-blue.svg)](https://github.com/helseprofil/orgdata)
 
@@ -21,9 +22,9 @@ kh_install("orgdata")
 ```
 
 To maintain dependencies package version, you can install *orgdata* from
-the *user* branch for reproducibilty, ie. keeping the package version
-for all dependencies as they were used in the development processes. You
-must however install **Git** prior to using `kh_restore()` function.
+the *user* branch for reproducibility, ie. keeping the package version
+for all dependencies as they were used during the development process.
+You must however install **Git** prior to using `kh_restore()` function.
 
 ``` r
 source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
@@ -40,14 +41,12 @@ update_orgdata(ref = "dev")
 ## Usage
 
 To implement the specifications per file group as being registered in
-the database use `make_file()` function. Parallel processing can be used
-if needed.
+the database use `make_file()` function.
 
 ``` r
 library(orgdata)
 # All files under BEFOLKNING group
 dt <- make_file("BEFOLKNING")
-dt <- make_file("BEFOLKNING", parallel = TRUE)
 
 # For selected files with KOBLID
 dt <- make_file("BEFOLKNING", koblid = 48)
@@ -56,6 +55,10 @@ dt <- make_file("BEFOLKNING", koblid = c(48, 72))
 
 Use function `make_filegroups()` to process multiple file groups at
 once.
+
+``` r
+make_filegroups(BEFOLKNING, LESEFERD, NEET)
+```
 
 ## Resources
 
