@@ -119,7 +119,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
   }
 
-
+  ## When debug then skip everything with DuckDB
   if (debugOpt){
     return(data.table::copy(dt))
   }
@@ -133,7 +133,9 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     is_color_txt(x = tblFilid, msg = "Read from Database. FILID:")
     is_color_txt(x = filePath, msg = "File:")
     dt <- duck$db_read(name = tblFilid)
-  } else {
+  }
+
+  if (isTRUE(fileCtrl) && isFALSE(any(as.integer(tblFilid) %in% duckID))){
     duck$db_write(name = tblFilid, value = dt, write = TRUE)
   }
 
@@ -142,6 +144,12 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
 
 ## HELPER ---------------------------
+
+duckYN <- function(ctrl, filid){
+
+
+}
+
 # Delete rows created from cross join that shouldn't be there
 is_long_col <- function(dt, spec, widespec){
   # spec - file specification
