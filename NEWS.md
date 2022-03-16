@@ -1,3 +1,8 @@
+# orgdata 0.5.9
+- Update text and website 
+- Change function name from `geo_levels()` to `geo_map()` for mapping geo codes
+  granularity.
+  
 # orgdata 0.5.8
 - Change helper function names for `read_file()`. (#250) 
 - Fixed bugs when reading file from the web with https (#251)
