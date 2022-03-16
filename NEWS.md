@@ -1,3 +1,7 @@
+# orgdata 0.5.10
+- Use *KOBLID* as table name in DuckDB instead of *FILID* since *FILID* is not a
+  unique number ie. can be used by multiple *KOBLID*.
+  
 # orgdata 0.5.9
 - Update text and website 
 - Change function name from `geo_levels()` to `geo_map()` for mapping geo codes
