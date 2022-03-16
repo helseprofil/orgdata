@@ -10,12 +10,13 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   is_debug()
   fileSpec <- spec
   filePath <- is_path_raw(fileSpec, check = TRUE)
+
   filePath <- gsub("\\\\", "/", filePath)
 
   is_verbose(msg = is_line_long(), type = "other")
 
   koblID <- find_column_input(fileSpec, "KOBLID")
-  is_verbose(kobID, "KOBLID:")
+  is_verbose(koblID, "KOBLID:")
 
   debugOpt <- is_option_active()
   if (!debugOpt){
@@ -126,8 +127,15 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   }
 
   ## Add to or read from DuckDB -------------
+  fileName <- find_column_input(fileSpec, "FILNAVN")
+  fileName <- paste0("../", gsub("\\\\", "/", fileName))
+
   if (!fileCtrl && fileDuck){
-    is_color_txt(x = "", msg = "Updating dataset in the database ...")
+    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+    withr::with_options(list(orgdata.emoji = "safe"),
+                        is_color_txt(x = "",
+                                     msg = "Updating dataset to the database ...",
+                                     type = "debug", emoji = TRUE))
     duck$db_write(name = tblKoblid, value = dt, write = TRUE)
   }
 
@@ -135,13 +143,17 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     withr::with_options(list(orgdata.emoji = "safe"),
                         is_color_txt(x = "",
                                      msg = "Read data directly from Database",
-                                     type = "note", emoji = TRUE))
-    is_color_txt(x = filePath, msg = "File:")
+                                     type = "debug", emoji = TRUE))
+    is_color_txt(x = fileName, msg = "File:")
     dt <- duck$db_read(name = tblKoblid)
   }
 
   if (fileCtrl && !fileDuck){
-    is_color_txt(x = "", msg = "Adding dataset to the database ...")
+    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+    withr::with_options(list(orgdata.emoji = "safe"),
+                        is_color_txt(x = "",
+                                     msg = "Adding dataset to the database ...",
+                                     type = "debug", emoji = TRUE))
     duck$db_write(name = tblKoblid, value = dt, write = TRUE)
   }
 
