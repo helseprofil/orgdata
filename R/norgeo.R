@@ -11,11 +11,11 @@
 #' @family geo codes functions
 #' @examples
 #' \dontrun{
-#' geo_levels(2020, write = TRUE)
-#' geo_levels(2021, append = TRUE)
+#' geo_map(2020, write = TRUE)
+#' geo_map(2021, append = TRUE)
 #' }
 #' @export
-geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
+geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
   is_null(year)
   is_write_msg(msg = "fetch")
   ## break msg before showing message from cast_geo
@@ -62,7 +62,7 @@ geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblG
 #' @param type Type of regional granularity ie. enumeration area (grunnkrets)
 #' @param from Starting year for the range period. Current year is the default if left empty
 #' @param to End of year for the range period. Current year is the default if left empty
-#' @inheritParams geo_levels
+#' @inheritParams geo_map
 #' @importFrom norgeo track_change
 #' @family geo codes functions
 #' @examples
@@ -144,7 +144,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @param file Complete path of filename to merge from
 #' @param year Year the code is valid for. If not sepecified `orgdata.year` is
 #'   used.
-#' @inheritParams geo_levels
+#' @inheritParams geo_map
 #' @param table.name Name of the table for geo recode in geocodes database. This
 #'   can be found with `getOptions("orgdata.geo")`. The default is `tblGeo`.
 #' @param ... Other possible arguments

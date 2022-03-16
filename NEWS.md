@@ -129,7 +129,7 @@
   accordingly. But recoding geographical codes backward isn't possible. (#153)
 - Error message will split a long vector if exist. (#153)
 - Add column with batch date when the geographical codes were downloaded form
-  SSB when creating a geo codebook with `geo_levels()` or `geo_recode()`. (#156)
+  SSB when creating a geo codebook with `geo_map()` or `geo_recode()`. (#156)
 - Actively select only the first geo code when old geo code is split into
   multiple new geo codes. (#159)
 - Able to select a base year for geo recode based on the year available in the

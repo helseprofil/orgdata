@@ -131,17 +131,17 @@ of geo codes up to 2022, ie. argument <code>to = 2022</code> and
 <div class="section level2">
 <h2 id="mapping-geo-codes">Mapping Geo Codes<a class="anchor" aria-label="anchor" href="#mapping-geo-codes"></a>
 </h2>
-<p>The function to create geo mapping is <code><a href="../reference/geo_levels.html">geo_levels()</a></code>. The
+<p>The function to create geo mapping is <code><a href="../reference/geo_map.html">geo_map()</a></code>. The
 default table name to be created in the database is <em>tblGeo</em>. It
 consists of all the geo granularities (<code>levels</code>) of the
 selected year. The lowest level is enumeration areas codes or
 <em>grunnkrets</em>.</p>
 <p>Arguments <code>write</code> and <code>append</code> can be use when
-calling <code><a href="../reference/geo_levels.html">geo_levels()</a></code> function. However in most cases, you
+calling <code><a href="../reference/geo_map.html">geo_map()</a></code> function. However in most cases, you
 will only need to use <code>append = TRUE</code>, ie. to append the data
 to the existing <em>tblGeo</em> in the database.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_levels.html">geo_levels</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_map.html">geo_map</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span>
 <span class="va">DT</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">.N</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>code                      name validTo      level grunnkrets kommune fylke bydel      batch</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="dv">30470104</span> Søndre Simostranda    <span class="dv">2022</span> grunnkrets   <span class="dv">30470104</span>    <span class="dv">3047</span>    <span class="dv">30</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> <span class="dv">2022-03-15</span></span>
@@ -153,7 +153,7 @@ to the existing <em>tblGeo</em> in the database.</p>
 <div class="section level2">
 <h2 id="merge-geo-codes">Merge Geo Codes<a class="anchor" aria-label="anchor" href="#merge-geo-codes"></a>
 </h2>
-<p>Both <code><a href="../reference/geo_recode.html">geo_recode()</a></code> and <code><a href="../reference/geo_levels.html">geo_levels()</a></code> fetch
+<p>Both <code><a href="../reference/geo_recode.html">geo_recode()</a></code> and <code><a href="../reference/geo_map.html">geo_map()</a></code> fetch
 the data via API available from SSB. To merge geo codes that aren’t
 available via API can be done with the function
 <code><a href="../reference/geo_merge.html">geo_merge()</a></code>.</p>

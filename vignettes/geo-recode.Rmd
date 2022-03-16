@@ -53,17 +53,17 @@ oldCode              oldName currentCode           newName changeOccurred      b
 
 # Mapping Geo Codes
 
-The function to create geo mapping is `geo_levels()`. The default table name to
+The function to create geo mapping is `geo_map()`. The default table name to
 be created in the database is *tblGeo*. It consists of all the geo granularities
 (`levels`) of the selected year. The lowest level is enumeration areas codes or
 *grunnkrets*.
 
-Arguments `write` and `append` can be use when calling `geo_levels()` function.
+Arguments `write` and `append` can be use when calling `geo_map()` function.
 However in most cases, you will only need to use `append = TRUE`, ie. to append
 the data to the existing *tblGeo* in the database.
 
 ```{r geo-map, eval = FALSE}
-DT <- geo_levels(year = 2022)
+DT <- geo_map(year = 2022)
 DT[sample(1:.N, 5)]
 ```
 
@@ -79,7 +79,7 @@ code                      name validTo      level grunnkrets kommune fylke bydel
 
 # Merge Geo Codes
 
-Both `geo_recode()` and `geo_levels()` fetch the data via API available from
+Both `geo_recode()` and `geo_map()` fetch the data via API available from
 SSB. To merge geo codes that aren't available via API can be done with the
 function `geo_merge()`.
 
