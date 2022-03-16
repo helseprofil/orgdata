@@ -1,4 +1,4 @@
-#' @title Granularity of Georgraphical Codes
+#' @title Granularity of Geographical Codes
 #' @description Create a database granularity of geographical codes to aggregate
 #'   data accordingly. Implementation of this function is base on [norgeo::cast_geo()]
 #'   function in \href{https://helseprofil.github.io/norgeo/}{norgeo} package.
@@ -54,7 +54,7 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
   return(geo$tblvalue)
 }
 
-#' @title Geographical Codes
+#' @title Geographical Codes to Recode
 #' @description Create a table of current year geographical codes against previous
 #'  years geogprahical codes. This is used to recode the previous years codes to the
 #'  current codes. Implementation of this function is base on [norgeo::track_change()]
@@ -126,8 +126,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @title Merge Other Geo Level Manually
 #' @description Geo codes other than those downloaded from SSB API can be merged
 #'   to the main geo table ie. `tblGeo` in the geocodes database. The file must
-#'   consist of column to merge to ie. `id.file` and the geo codes to add to ie.
-#'   `column`.
+#'   consist of id column to merge into ie. `id.file` and the geo codes to add
+#'   to ie. `geo.col`.
 #' @param id.table ID columname to merge to that is found in the database eg.
 #'   `kommune`
 #' @param id.file ID columname from the file to merge from. This depends on the
@@ -153,8 +153,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' dt <- geo_merge(id.table = "grunnkrets",
 #'                 id.file = "id",
 #'                 geo.col = "col2",
-#'                 file = "C:/path/to/file.csv",
 #'                 geo.level = "levekaar",
+#'                 file = "C:/path/to/file.csv",
 #'                 year = 2022)
 #' }
 #' @export
