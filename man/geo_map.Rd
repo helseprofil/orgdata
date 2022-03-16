@@ -2,7 +2,7 @@
 % Please edit documentation in R/norgeo.R
 \name{geo_map}
 \alias{geo_map}
-\title{Granularity of Georgraphical Codes}
+\title{Granularity of Geographical Codes}
 \usage{
 geo_map(year = NULL, write = FALSE, append = FALSE, table = "tblGeo")
 }
