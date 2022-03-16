@@ -91,8 +91,8 @@ from 2022 has `levekaar` codes in columname `code_levekaar` and these `levekaar`
 codes are derived from `bydel` codes, then the specification for the arguments
 will be as the example below.
 
-Please read the documentation for type of arguments that can be accepted with
-`help(geo_merge())`.
+Please read the documentation for details on arguments that can be used with
+`help("geo_merge")` or `?geo_merge`.
 
 ```{r geo-merge, eval = FALSE}
 dd <- geo_merge(id.table = "bydel",
