@@ -15,11 +15,12 @@ knitr::opts_chunk$set(
 ```
 
 This guide explains how to create geo table to recode and map geo codes. This
-file will be saved in **orgdata.geo** database. See `getOptions("orgdata.geo")`
+file will be saved in database file specified in **orgdata.geo** option. See
+`getOptions("orgdata.geo")`
 
 # Recode Geo Codes
 
-The function to create table for recoding geo is `geo_recode()`. The table
+The function to create table for recoding geo codes is `geo_recode()`. The table
 will consist of previous codes and their new codes whenever available. For
 instance, to get all codes for *kommuner* from 2017 to 2022. The table will list
 all the codes for *kommuner* since 2017 in columname `oldCode` while their current
@@ -34,7 +35,7 @@ if the data consist of geo codes up to 2022, ie. argument `to = 2022` and `typ =
 kommune`.
 
 However in most cases you will only need to use argument `write = TRUE`. Check
-the documentation with `help("geo_recode")`.
+the documentation for possible arguments with `help("geo_recode")`.
 
 ```{r geo-recode, eval = FALSE}
 library(orgdata)
@@ -58,7 +59,7 @@ be created in the database is *tblGeo*. It consists of all the geo granularities
 (`levels`) of the selected year. The lowest level is enumeration areas codes or
 *grunnkrets*.
 
-Arguments `write` and `append` can be use when calling `geo_map()` function.
+Arguments `write` and `append` can be used when calling `geo_map()` function.
 However in most cases, you will only need to use `append = TRUE`, ie. to append
 the data to the existing *tblGeo* in the database.
 
@@ -84,14 +85,17 @@ SSB. To merge geo codes that aren't available via API can be done with the
 function `geo_merge()`.
 
 The data to merge can be in any format that is accepted by `read_file()`
-function. The data must consist of column id to merge to the database *tblGeo*
-and column with the new geo codes to be added to.
+function. The new data must have column id to merge into the database *tblGeo*
+and column with the new geo codes to be added to. For instance if a new dataset
+from 2022 has `levekaar` codes in columname `code_levekaar` and these `levekaar`
+codes are derived from `bydel` codes, then the specification for the arguments
+will be as the example below.
 
-Below is an example on how the function can be specified. Please read the
-documentation for type of arguments that can be accepted.
+Please read the documentation for type of arguments that can be accepted with
+`help(geo_merge())`.
 
 ```{r geo-merge, eval = FALSE}
-dd <- geo_merge(id.table = "kommune",
+dd <- geo_merge(id.table = "bydel",
                 id.file = "var01",
                 geo.col = "code_levekaar",
                 geo.level = "levekaar",
