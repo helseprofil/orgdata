@@ -1,5 +1,7 @@
 # orgdata 0.6.0
 - Use *KOBLID* to add or delete from Duck database (#261)
+- Depends for *norgeo* package refers directly to CRAN version instead of GitHub
+  repo.
 
 # orgdata 0.5
 - Use *KOBLID* as table name in DuckDB instead of *FILID* since *FILID* is not a
