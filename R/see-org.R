@@ -4,18 +4,18 @@
 #'   and recoded as specified in *INNLESING* table in Access registration
 #'   database.
 #' @param name The filegroup name
-#' @param filid File ID for the raw data
+#' @inheritParams make_file
 #' @param action To read or delete the data in the database. Default is `read`.
 #' @examples
 #' \dontrun{
-#' dt <- see_org("LESEFERD", filid = 134)
+#' dt <- see_org("LESEFERD", koblid = 134)
 #' }
 #' @export
-see_org <- function(name = NULL, filid = NULL, action = c("read", "delete")){
+see_org <- function(name = NULL, koblid  = NULL, action = c("read", "delete")){
 
   action <- match.arg(action)
   if (length(action) > 1) action = "read"
-  is_null_both(name, filid, msg = "Both args can't be empty!")
+  is_null_both(name, koblid, msg = "Both args can't be empty!")
 
   duckPath <- is_path_db(getOption("orgdata.folder.org.db"))
   duckFile <- file.path(duckPath,
@@ -31,17 +31,17 @@ see_org <- function(name = NULL, filid = NULL, action = c("read", "delete")){
   dbTables <- DBI::dbListTables(rcon$dbconn)
   dbTables <- vapply(dbTables, as.integer, integer(1))
 
-  if (isFALSE(any(filid %in% dbTables))){
-    message("Available filid:", is_short_code(dbTables))
-    is_stop("Not found FILID:", filid)
+  if (isFALSE(any(koblid %in% dbTables))){
+    message("Available koblid:", is_short_code(dbTables))
+    is_stop("Not found KOBLID:", koblid)
   }
 
   if (action == "delete"){
-    rcon$db_remove_table(as.character(filid))
-    is_color_txt(filid, "Delete raw database for FILID:")
+    rcon$db_remove_table(as.character(koblid))
+    is_color_txt(koblid, "Delete raw database for KOBLID:")
     invisible()
   } else {
-    dt <- rcon$db_read(as.character(filid))
+    dt <- rcon$db_read(as.character(koblid))
     data.table::setDT(dt)
     dt[]
   }

@@ -41,6 +41,11 @@ should be working correctly. You could save the output directly as a `.csv` file
 df <- make_file("BEFOLKNING", save = TRUE)
 ```
 
+It is advisable to mark the file with *KONTROLLERT* in the Access Database when
+you have checked the output. This will ensure the next time you run
+`make_file()` of the same file group will be much faster escaping
+all the cleaning and recording processes.
+
 ## Aggregate selected files only
 
 Aggregating the whole files in a group could take a long time when there are
@@ -62,15 +67,13 @@ specify argument `aggregate` as `TRUE`. You could also activate it globally via 
 df <- make_file("BEFOLKNING", aggregate = FALSE)
 
 # Global option
-op <- options() 
 options(orgdata.aggregate = FALSE)
 df <- make_file("BEFOLKNING")
 ```
 
 By activating it globally using `options`, all proceeding processes will not be
-aggregated unless it's changed during function call or you reset the options if
-you have saved the default with `op <- options()`.
+aggregated unless it's changed during function call or you reset the options.
 
 ```r
-options(op)
+reset_opt()
 ```

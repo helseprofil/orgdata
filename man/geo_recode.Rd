@@ -2,7 +2,7 @@
 % Please edit documentation in R/norgeo.R
 \name{geo_recode}
 \alias{geo_recode}
-\title{Geographical Codes}
+\title{Geographical Codes to Recode}
 \usage{
 geo_recode(
   type = c("grunnkrets", "bydel", "kommune", "fylke"),
@@ -38,7 +38,7 @@ geo_recode(type = "grunnkrets", from = 2018, to = 2021, append = TRUE)
 }
 \seealso{
 Other geo codes functions: 
-\code{\link{geo_levels}()},
+\code{\link{geo_map}()},
 \code{\link{get_grunnkrets_dummy}()}
 }
 \concept{geo codes functions}

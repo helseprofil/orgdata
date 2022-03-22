@@ -1,7 +1,7 @@
 home:
   links:
   - text: Folkehelseprofiler
-    href: https://www.fhi.no/hn/folkehelse/folkehelseprofil
+    href: https://www.fhi.no/hn/folkehelse
 
 url: https://helseprofil.github.io/orgdata
 
@@ -22,12 +22,12 @@ navbar:
     articles:
       text: Articles
       menu:
-      - text: Recode and mape geo
+      - text: Recode and map geo
         href: articles/geo-recode.html
-      - text: Make standard
-        href: articles/standard.html
       - text: Debugging
         href: articles/debugging.html
+      - text: Make standard
+        href: articles/standard.html
     reference:
       text: Functions
       href: reference/index.html

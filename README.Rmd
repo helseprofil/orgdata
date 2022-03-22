@@ -46,15 +46,14 @@ kh_install("orgdata")
 ```
 
 To maintain dependencies package version, you can install *orgdata* from the
-*user* branch for reproducibilty, ie. keeping the package version for all
-dependencies as they were used in the development processes. You must however
+*user* branch for reproducibility, ie. keeping the package version for all
+dependencies as they were used during the development process. You must however
 install **Git** prior to using `kh_restore()` function.
 
 ```r
 source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
 kh_restore("orgdata")
 ```
-
 
 Alternatively you can install the development version via `orgdata`.
 
@@ -65,14 +64,13 @@ update_orgdata(ref = "dev")
 
 ## Usage 
 
-To implement the specifications per file group as being registered in 
-the database use `make_file()` function. Parallel processing can be used if needed.
+To implement the specifications per file group as being registered in the
+database use `make_file()` function.
 
 ```r
 library(orgdata)
 # All files under BEFOLKNING group
 dt <- make_file("BEFOLKNING")
-dt <- make_file("BEFOLKNING", parallel = TRUE)
 
 # For selected files with KOBLID
 dt <- make_file("BEFOLKNING", koblid = 48)
@@ -80,6 +78,11 @@ dt <- make_file("BEFOLKNING", koblid = c(48, 72))
 ```
 
 Use function `make_filegroups()` to process multiple file groups at once.
+
+```r
+make_filegroups(BEFOLKNING, LESEFERD, NEET)
+
+```
 
 ## Resources
 

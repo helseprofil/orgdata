@@ -133,5 +133,5 @@ opt_rename <- function(x){
 # Debug options -------
 # Check if any debug options is activated
 is_option_active <- function(){
-  any(c(getOption("orgdata.debug.aggregate"), getOption("orgdata.geo")))
+  any(c(getOption("orgdata.debug.aggregate"), getOption("orgdata.debug.geo")))
 }

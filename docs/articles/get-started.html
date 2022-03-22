@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,9 +51,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/geo-recode.html">Recode and mape geo</a>
-    <a class="dropdown-item" href="../articles/standard.html">Make standard</a>
+    <a class="dropdown-item" href="../articles/geo-recode.html">Recode and map geo</a>
     <a class="dropdown-item" href="../articles/debugging.html">Debugging</a>
+    <a class="dropdown-item" href="../articles/standard.html">Make standard</a>
   </div>
 </li>
 <li class="nav-item">
@@ -112,6 +112,10 @@ everything should be working correctly. You could save the output
 directly as a <code>.csv</code> file by:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>It is advisable to mark the file with <em>KONTROLLERT</em> in the
+Access Database when you have checked the output. This will ensure the
+next time you run <code><a href="../reference/make_file.html">make_file()</a></code> of the same file group will
+be much faster escaping all the cleaning and recording processes.</p>
 </div>
 <div class="section level2">
 <h2 id="aggregate-selected-files-only">Aggregate selected files only<a class="anchor" aria-label="anchor" href="#aggregate-selected-files-only"></a>
@@ -134,15 +138,13 @@ You could also activate it globally via <code>options</code>.</p>
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="co"># Global option</span>
-<span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="op">)</span> 
 <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></code></pre></div>
 <p>By activating it globally using <code>options</code>, all proceeding
 processes will not be aggregated unless it’s changed during function
-call or you reset the options if you have saved the default with
-<code>op &lt;- options()</code>.</p>
+call or you reset the options.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/reset_options.html">reset_opt</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

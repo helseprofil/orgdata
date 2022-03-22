@@ -50,16 +50,16 @@ can be found with \code{getOptions("orgdata.geo")}. The default is \code{tblGeo}
 \description{
 Geo codes other than those downloaded from SSB API can be merged
 to the main geo table ie. \code{tblGeo} in the geocodes database. The file must
-consist of column to merge to ie. \code{id.file} and the geo codes to add to ie.
-\code{column}.
+consist of id column to merge into ie. \code{id.file} and the geo codes to add
+to ie. \code{geo.col}.
 }
 \examples{
 \dontrun{
 dt <- geo_merge(id.table = "grunnkrets",
                 id.file = "id",
                 geo.col = "col2",
-                file = "C:/path/to/file.csv",
                 geo.level = "levekaar",
+                file = "C:/path/to/file.csv",
                 year = 2022)
 }
 }

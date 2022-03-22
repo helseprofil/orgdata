@@ -1,4 +1,4 @@
-#' @title Granularity of Georgraphical Codes
+#' @title Granularity of Geographical Codes
 #' @description Create a database granularity of geographical codes to aggregate
 #'   data accordingly. Implementation of this function is base on [norgeo::cast_geo()]
 #'   function in \href{https://helseprofil.github.io/norgeo/}{norgeo} package.
@@ -11,11 +11,11 @@
 #' @family geo codes functions
 #' @examples
 #' \dontrun{
-#' geo_levels(2020, write = TRUE)
-#' geo_levels(2021, append = TRUE)
+#' geo_map(2020, write = TRUE)
+#' geo_map(2021, append = TRUE)
 #' }
 #' @export
-geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
+geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
   is_null(year)
   is_write_msg(msg = "fetch")
   ## break msg before showing message from cast_geo
@@ -54,7 +54,7 @@ geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblG
   return(geo$tblvalue)
 }
 
-#' @title Geographical Codes
+#' @title Geographical Codes to Recode
 #' @description Create a table of current year geographical codes against previous
 #'  years geogprahical codes. This is used to recode the previous years codes to the
 #'  current codes. Implementation of this function is base on [norgeo::track_change()]
@@ -62,7 +62,7 @@ geo_levels <- function(year = NULL, write = FALSE, append = FALSE, table = "tblG
 #' @param type Type of regional granularity ie. enumeration area (grunnkrets)
 #' @param from Starting year for the range period. Current year is the default if left empty
 #' @param to End of year for the range period. Current year is the default if left empty
-#' @inheritParams geo_levels
+#' @inheritParams geo_map
 #' @importFrom norgeo track_change
 #' @family geo codes functions
 #' @examples
@@ -126,8 +126,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @title Merge Other Geo Level Manually
 #' @description Geo codes other than those downloaded from SSB API can be merged
 #'   to the main geo table ie. `tblGeo` in the geocodes database. The file must
-#'   consist of column to merge to ie. `id.file` and the geo codes to add to ie.
-#'   `column`.
+#'   consist of id column to merge into ie. `id.file` and the geo codes to add
+#'   to ie. `geo.col`.
 #' @param id.table ID columname to merge to that is found in the database eg.
 #'   `kommune`
 #' @param id.file ID columname from the file to merge from. This depends on the
@@ -144,7 +144,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @param file Complete path of filename to merge from
 #' @param year Year the code is valid for. If not sepecified `orgdata.year` is
 #'   used.
-#' @inheritParams geo_levels
+#' @inheritParams geo_map
 #' @param table.name Name of the table for geo recode in geocodes database. This
 #'   can be found with `getOptions("orgdata.geo")`. The default is `tblGeo`.
 #' @param ... Other possible arguments
@@ -153,8 +153,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' dt <- geo_merge(id.table = "grunnkrets",
 #'                 id.file = "id",
 #'                 geo.col = "col2",
-#'                 file = "C:/path/to/file.csv",
 #'                 geo.level = "levekaar",
+#'                 file = "C:/path/to/file.csv",
 #'                 year = 2022)
 #' }
 #' @export

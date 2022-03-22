@@ -20,7 +20,7 @@ are needed for recoding older codes to current enumeration area codes.
 }
 \seealso{
 Other geo codes functions: 
-\code{\link{geo_levels}()},
+\code{\link{geo_map}()},
 \code{\link{geo_recode}()}
 }
 \concept{geo codes functions}
