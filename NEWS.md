@@ -1,13 +1,14 @@
-# orgdata 0.5.10
+# orgdata 0.6.0
+- Use *KOBLID* to add or delete from Duck database (#261)
+- Depends for *norgeo* package refers directly to CRAN version instead of GitHub
+  repo.
+
+# orgdata 0.5
 - Use *KOBLID* as table name in DuckDB instead of *FILID* since *FILID* is not a
   unique number ie. can be used by multiple *KOBLID*.
-  
-# orgdata 0.5.9
 - Update text and website 
 - Change function name from `geo_levels()` to `geo_map()` for mapping geo codes
   granularity.
-  
-# orgdata 0.5.8
 - Change helper function names for `read_file()`. (#250) 
 - Fixed bugs when reading file from the web with https (#251)
 - `read_file()` accept Stata file with `dta` extension (#252)
@@ -24,14 +25,10 @@
   file format accepted by `read_file()` function. The data to be merged must
   have column to be merged ie. `id.file`, that is equivalent to the column id in
   the database ie. `id.table`. The `id.file` must be unique.
-
-# orgdata 0.5.7
 - Handle unbalanced parentheses in post recode whenever possible when `raw` is
   used, else give error message. #246
 - `read_file()` accept filegroup name as argument in `file` to read the
   completed file after running `make_file()` function. #247
-  
-# orgdata 0.5.6
 - Debug functions can go deeper to show helper functions as well with
   `debug_opt("deep")` or `options(orgdata.debug = "deep")` #243
 - Post recode uses type `PS` in codebook. The function is used when there is a
@@ -41,19 +38,13 @@
   must have `raw` prefix eg. `raw(AAR %in% c(2000, 2005))`. #244 #245
 - Delete rows with `"-"` minus symbol in `TIL` column in the codebook is
   accepted for `do_recode_post()`.
-
-# orgdata 0.5.5
 - Able to aggregate to country level in addition to other geographical levels (#240)
 - Download the geo code to aggregate with only once despite the different
   geographical levels the dataset to be aggregated into (#241)
-
-# orgdata 0.5.4
 - Update package via function `update_orgdata()`. Basically it's just a wrapper
   for `remotes::install_github()`.
 - Can aggregate to country level as well (#240)
 - Speed up aggregate process (#241) 
-
-# orgdata 0.5.3
 - Fixed the bugs with reshape wide consisting multiple dimensions ie. more than
   one *TAB* columns. (#228)
 - Ensure melting columns are not converted to factor (#234)
@@ -63,15 +54,11 @@
   log when coercion where *NA* is introduced. (#235)
 - Use log file to check what or which codes that have problem. (#237)
 - Warn and give logfile if GEO can't be converted to integer before geo recode. (#233 #236)
-
-# orgdata 0.5.2
 - Able to read files that have no specific extension but they have to be coma or
   semicolon separated (#227)
 - Ensure all **VAL** columns are numeric type (#229)
 - Give explicit warning when **GEO** codes have character that can cause
   coercion resulting in converting GEO codes to `NA` (#229)
-  
-# orgdata 0.5.1
 - Log files for `code99` also include koblid. The files will be named as
   `code99_koblidxxx` (#222)
 - Running parallel processing is unstable. Not sure if the process crash due to
@@ -80,8 +67,6 @@
 - User can specify more or less cores than 50% if needed. To use 75% cores by
   specifying `parallel = 0.75` in the argment `make_file()` or in the global
   options `orgdata.parallel` (#225)
-
-# orgdata 0.5.0
 - Connect to both database with common function. (#212)
 - Use global options `orgdata.year` to specify production year if not using
   current year. (#216)

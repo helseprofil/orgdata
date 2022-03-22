@@ -4,12 +4,12 @@
 \alias{see_org}
 \title{See Original Data in the Database}
 \usage{
-see_org(name = NULL, filid = NULL, action = c("read", "delete"))
+see_org(name = NULL, koblid = NULL, action = c("read", "delete"))
 }
 \arguments{
 \item{name}{The filegroup name}
 
-\item{filid}{File ID for the raw data}
+\item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
 
 \item{action}{To read or delete the data in the database. Default is \code{read}.}
 }
@@ -21,6 +21,6 @@ database.
 }
 \examples{
 \dontrun{
-dt <- see_org("LESEFERD", filid = 134)
+dt <- see_org("LESEFERD", koblid = 134)
 }
 }

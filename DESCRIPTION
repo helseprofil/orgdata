@@ -1,6 +1,6 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 0.5.10
+Version: 0.6.0
 Authors@R:
     c(person(given = "Yusman",
              family = "Kamaleri",
@@ -44,8 +44,7 @@ Imports:
     yaml (>= 2.3.5),
     methods,
     duckdb (>= 0.3.2.1)
-Remotes: helseprofil/norgeo
-Suggests: 
+Suggests:
     testthat (>= 3.0.0),
     tibble (>= 3.1.4),
     utils,
