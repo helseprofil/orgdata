@@ -184,6 +184,11 @@ geo_merge <- function(id.table = NULL,
 
   DT <- geo$db_read(table.name)
   dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
+
+  ## dupID <- dt[duplicated(get(geo.col))][[1]]
+  ## dt <- dt[!is.na(get(geo.col))]
+  ## dt <- dt[!duplicated(get(geo.col))]
+
   delCols <- setdiff(names(dt), c(id.file, geo.col))
   dt[, (delCols) := NULL]
 
@@ -204,6 +209,10 @@ geo_merge <- function(id.table = NULL,
   }
   dd[, validTo := year]
 
+  if (isFALSE(id.table == id.file)){
+    dd[ , (id.file) := NULL]
+  }
+
   # Dataset merged to main table
   DT[dt, (geo.col) := get(geo.col)]
   data.table::setnames(DT, geo.col, geo.level)
@@ -216,7 +225,7 @@ geo_merge <- function(id.table = NULL,
     write <- utils::askYesNo("Should the result be added to geo database?", default = FALSE)
   }
 
-  if (write) {
+  if (isTRUE(write)) {
     is_write_msg(msg = "write")
     geo$db_write(name = table.name, value = DT, write = write)
     msgWrite <- paste0("Write table `", table.name, "` is completed in: \n")
