@@ -72,7 +72,7 @@ test_that("Get aggregate levels", {
                         SPLITTFRA = "LANDSSB", SPLITTTIL = "LANDBAK, INNVKAT"),
                    class = "data.frame", row.names = c(NA, -1L))
 
-  output <- c("bydel", "fylke")
+  output <- c(B = "bydel", F = "fylke")
 
   ## TEST -------------
   expect_equal(get_aggregate(spec = spec), output)

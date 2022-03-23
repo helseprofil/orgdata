@@ -5,8 +5,8 @@
 #' @inheritParams do_split
 #' @param source What geographical granularity codes that is available in the
 #'   source data. This will be used for merging with the geo codebook generated
-#'   from `geo_map()`
-#' @param level Geographical granularity for aggregating data to
+#'   from `geo_map()` ie. from `tblGeo` in geo database
+#' @param level Geographical granularity for aggregating data. See `getOption("orgdata.geo.levels")`
 #' @param year Which year of georaphical code to use for recoding and
 #'   aggregating. If not specified, then current year will be used
 #' @param aggregate.col Other columns to aggregate other than the standard ie.
@@ -34,13 +34,7 @@ do_aggregate <- function(dt = NULL,
                            "kommune",
                            "bydel"
                          ),
-                         level = c(
-                           "grunnkrets",
-                           "fylke",
-                           "kommune",
-                           "bydel",
-                           "land"
-                         ),
+                         level = getOption("orgdata.geo.levels"),
                          year = NULL,
                          aggregate.col = NULL,
                          geoDT = NULL,
@@ -83,7 +77,7 @@ do_aggregate <- function(dt = NULL,
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
 
-  deleteVar <- c("code", "level", "name", "validTo")
+  deleteVar <- c("code", "level", "name", "validto")
   keepVar <- setdiff(names(geoDT), deleteVar)
 
   ## is_verbose("Merging geo codes...", type = "note")
@@ -95,7 +89,11 @@ do_aggregate <- function(dt = NULL,
     return(dt)
   }
 
-  dt <- is_level_na(dt = dt, level = level)
+  if (level %in% c("kommune", "fylke")){
+    dt <- is_level_na(dt = dt, level = level)
+  } else {
+    dt <- dt[!is.na(get(level))]
+  }
 
   xCols <- is_set_list(
     level = level,
@@ -139,15 +137,10 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
   input <- find_column_multi(spec, "AGGREGERE")
   ## is_separate(input, sep = ",")
   level <- vector(mode = "list", length = length(input))
-  for (i in seq_along(input)){
-    gg <- switch(input[i],
-                 "F" = "fylke",
-                 "K" = "kommune",
-                 "B" = "bydel",
-                 "L" = "land",
-                 "grunnkrets"
-                 )
-    level[[i]] <- gg
+  level <- stats::setNames(level, input)
+  for (i in input){
+    level[[i]] <- is_geo_names(i)
+
   }
 
   if (isTRUE(getOption("orgdata.debug.geo")) | isTRUE(getOption("orgdata.debug.aggregate"))){
@@ -159,6 +152,13 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
 
 
 ## Helper ----------------------------------------------------------------
+
+is_geo_names <- function(x){
+  geoNames <- tolower(getOption("orgdata.geo.levels"))
+  geoAbv <- getOption("orgdata.geo.abv")
+  abv <- grep(x, geoAbv)
+  geoNames[abv]
+}
 
 ## Handling missing geo levels
 is_level_na <- function(dt, level){
@@ -249,8 +249,12 @@ is_geo_cast <- function(source, year){
   )
   data.table::setDT(geoDT)
 
+  colsRename <- tolower(names(geoDT))
+  data.table::setnames(geoDT, names(geoDT), colsRename)
+
   ## Columns that are type integer
-  intCols <- c("code", "grunnkrets", "kommune", "fylke", "bydel")
+  intCols <- c("code", getOption("orgdata.geo.levels"))
+  intCols <- intersect(names(geoDT), intCols)
   geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
   geoDT[, "land" := 0L]
   ncols <- names(geoDT)!="batch"

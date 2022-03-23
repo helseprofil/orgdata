@@ -7,7 +7,7 @@
 do_aggregate(
   dt = NULL,
   source = c("grunnkrets", "fylke", "kommune", "bydel"),
-  level = c("grunnkrets", "fylke", "kommune", "bydel", "land"),
+  level = getOption("orgdata.geo.levels"),
   year = NULL,
   aggregate.col = NULL,
   geoDT = NULL,
@@ -22,9 +22,9 @@ do_aggregate(
 
 \item{source}{What geographical granularity codes that is available in the
 source data. This will be used for merging with the geo codebook generated
-from \code{geo_map()}}
+from \code{geo_map()} ie. from \code{tblGeo} in geo database}
 
-\item{level}{Geographical granularity for aggregating data to}
+\item{level}{Geographical granularity for aggregating data. See \code{getOption("orgdata.geo.levels")}}
 
 \item{year}{Which year of georaphical code to use for recoding and
 aggregating. If not specified, then current year will be used}

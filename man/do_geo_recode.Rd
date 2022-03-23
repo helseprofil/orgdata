@@ -21,7 +21,7 @@ do_geo_recode(
 
 \item{code}{Code dataset of old and new codes in a \code{data.table} format.}
 
-\item{type}{The geographical granularity for recoding The dataset is the
+\item{type}{The geographical granularity for recoding. The dataset is the
 output after running \code{get_geo_recode()} function.}
 
 \item{year}{Which year the geograhical codes to be recoded to. If it is empty

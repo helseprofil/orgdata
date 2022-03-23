@@ -71,7 +71,7 @@ granularity level than the <code>level</code> input.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">do_aggregate</span><span class="op">(</span>
   dt <span class="op">=</span> <span class="cn">NULL</span>,
   source <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grunnkrets"</span>, <span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span><span class="op">)</span>,
-  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grunnkrets"</span>, <span class="st">"fylke"</span>, <span class="st">"kommune"</span>, <span class="st">"bydel"</span>, <span class="st">"land"</span><span class="op">)</span>,
+  level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"orgdata.geo.levels"</span><span class="op">)</span>,
   year <span class="op">=</span> <span class="cn">NULL</span>,
   aggregate.col <span class="op">=</span> <span class="cn">NULL</span>,
   geoDT <span class="op">=</span> <span class="cn">NULL</span>,
@@ -89,9 +89,9 @@ granularity level than the <code>level</code> input.</p>
 <dt>source</dt>
 <dd><p>What geographical granularity codes that is available in the
 source data. This will be used for merging with the geo codebook generated
-from <code><a href="geo_map.html">geo_map()</a></code></p></dd>
+from <code><a href="geo_map.html">geo_map()</a></code> ie. from <code>tblGeo</code> in geo database</p></dd>
 <dt>level</dt>
-<dd><p>Geographical granularity for aggregating data to</p></dd>
+<dd><p>Geographical granularity for aggregating data. See <code>getOption("orgdata.geo.levels")</code></p></dd>
 <dt>year</dt>
 <dd><p>Which year of georaphical code to use for recoding and
 aggregating. If not specified, then current year will be used</p></dd>
