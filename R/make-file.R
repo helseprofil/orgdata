@@ -219,7 +219,7 @@ make_file <- function(group = NULL,
                                     type = "note",
                                     emoji = TRUE))
 
-  withr::with_options(list(orgdata.emoji = "folder"),
+  withr::with_options(list(orgdata.emoji = "paper"),
                       is_verbose(x = is_orgdata_path(),
                                  msg = "Log files can be found in",
                                  emoji = TRUE))
