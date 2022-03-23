@@ -227,6 +227,7 @@ geo_merge <- function(id.table = NULL,
 
   if (isTRUE(write)) {
     is_write_msg(msg = "write")
+    is_color_txt(x = "", msg = "This will take time to complete ...")
     geo$db_write(name = table.name, value = DT, write = write)
     msgWrite <- paste0("Write table `", table.name, "` is completed in: \n")
     is_verbose(x = geoDB, msg = msgWrite, type = "note")
