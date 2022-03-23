@@ -76,8 +76,6 @@ do_aggregate <- function(dt = NULL,
   aggNot <- c("GEO", colVals, "origin", "dummy_grk")
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
-  ##:ess-bp-start::browser@nil:##
-  browser(expr=is.null(.ESSBP.[["@6@"]]));##:ess-bp-end:##
 
   deleteVar <- c("code", "level", "name", "validto")
   keepVar <- setdiff(names(geoDT), deleteVar)
@@ -91,7 +89,11 @@ do_aggregate <- function(dt = NULL,
     return(dt)
   }
 
-  dt <- is_level_na(dt = dt, level = level)
+  if (level %in% c("kommune", "fylke")){
+    dt <- is_level_na(dt = dt, level = level)
+  } else {
+    dt <- dt[!is.na(get(level))]
+  }
 
   xCols <- is_set_list(
     level = level,
