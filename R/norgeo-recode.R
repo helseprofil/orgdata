@@ -61,7 +61,7 @@ do_recode_without_aggregate <- function(dt = NULL,
 #'   will be selected to recode.
 #' @inheritParams do_split
 #' @param code Code dataset of old and new codes in a `data.table` format.
-#' @param type The geographical granularity for recoding The dataset is the
+#' @param type The geographical granularity for recoding. The dataset is the
 #'   output after running `get_geo_recode()` function.
 #' @param year Which year the geograhical codes to be recoded to. If it is empty
 #'   then current year will be used.
@@ -167,7 +167,7 @@ do_geo_recode <- function(dt = NULL,
 #' @description Get the geographical codes registered in `geo-database` which
 #'   consist of old and new codes that are applicable to the respective year.
 #' @inheritParams find_spec
-#' @inheritParams do_geo_recode
+#' @param type The geographical granularity to recode
 #' @return A dataset with columns `GEO` and `to` representing the GEO codes that
 #'   will be recoded to a new code ie. `to`.
 #' @import data.table
