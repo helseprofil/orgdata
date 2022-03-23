@@ -264,13 +264,13 @@ is_colour_txt <- function(x, msg,
                  write = "\U00270D",
                  mark = "\U0002713",
                  smile = "\U0001F60A",
-                 sad = "\U002639",
+                 sad = "\U001F629",
                  santa = "\U0001F385",
                  search = "\U001F50D",
                  folder = "\U001F4C1",
                  book = "\U0001F4DA",
-                 safe = "\U001F5C4"
-                   )
+                 safe = "\U001F4E6"
+                 )
 
   if (emoji){
     cat(symb, clrMsg, "\n")
