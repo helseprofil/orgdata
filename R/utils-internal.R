@@ -268,6 +268,7 @@ is_colour_txt <- function(x, msg,
                  santa = "\U0001F385",
                  search = "\U001F50D",
                  folder = "\U001F4C1",
+                 paper = "\U001F4F0",
                  book = "\U0001F4DA",
                  safe = "\U001F4E6"
                  )
