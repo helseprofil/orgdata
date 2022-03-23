@@ -137,7 +137,7 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
   input <- find_column_multi(spec, "AGGREGERE")
   ## is_separate(input, sep = ",")
   level <- vector(mode = "list", length = length(input))
-  level <- setNames(level, input)
+  level <- stats::setNames(level, input)
   for (i in input){
     level[[i]] <- is_geo_names(i)
 

@@ -12,7 +12,7 @@ do_implicit_null(
 \arguments{
 \item{dt}{Dataset consisting all years}
 
-\item{level}{Geographical granularity for aggregating data to}
+\item{level}{Geographical granularity for aggregating data. See \code{getOption("orgdata.geo.levels")}}
 }
 \description{
 Implicit Null happens when a variable in a dataset has unequal

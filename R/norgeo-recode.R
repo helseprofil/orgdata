@@ -168,6 +168,7 @@ do_geo_recode <- function(dt = NULL,
 #'   consist of old and new codes that are applicable to the respective year.
 #' @inheritParams find_spec
 #' @param type The geographical granularity to recode
+#' @inheritParams do_geo_recode
 #' @return A dataset with columns `GEO` and `to` representing the GEO codes that
 #'   will be recoded to a new code ie. `to`.
 #' @import data.table
