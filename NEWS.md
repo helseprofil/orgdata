@@ -2,6 +2,10 @@
 - Use *KOBLID* to add or delete from Duck database (#261)
 - Depends for *norgeo* package refers directly to CRAN version instead of GitHub
   repo.
+- Use function `geo_merge()` to add geo granularity that aren't from API. This
+  can be a csv, xls or any other format that is accepted by `read_file` (#262)
+- Deactive KONTROLLERT without the need to umark from Access database by using
+  argument `raw = TRUE` when using function `make_file()` (#264)
 
 # orgdata 0.5
 - Use *KOBLID* as table name in DuckDB instead of *FILID* since *FILID* is not a
