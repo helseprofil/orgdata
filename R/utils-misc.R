@@ -132,6 +132,9 @@ opt_rename <- function(x){
 
 # Debug options -------
 # Check if any debug options is activated
+# This is usefull to deactivate KONTROLLERT and read raw file instead of from DuckDB
 is_option_active <- function(){
-  any(c(getOption("orgdata.debug.aggregate"), getOption("orgdata.debug.geo")))
+  any(c(getOption("orgdata.debug.aggregate"),
+        getOption("orgdata.debug.geo"),
+        getOption("orgdata.read.raw")))
 }
