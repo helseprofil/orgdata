@@ -19,8 +19,11 @@
 #' @param parallel Logical or numeric value. With logical value `TRUE` it will
 #'   run with parallel using 50% ie. 0.5 of local cores. User can decide other
 #'   percentage if needed. For example to use 75% of the cores then specify as
-#'   `parallel = 0.75`. Nevertheless, maximum cores allowed is only 80%.
-#'   Default value is `FALSE` ie. to use sequential processing
+#'   `parallel = 0.75`. Nevertheless, maximum cores allowed is only 80%. Default
+#'   value is `FALSE` ie. to use sequential processing
+#' @param raw Logical value. Either to read original raw data directly even if
+#'   the dataset is available in DuckDB without the need to unmark `KONTROLLERT`
+#'   in the database
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
@@ -39,7 +42,8 @@ make_file <- function(group = NULL,
                       implicitnull = NULL,
                       row = NULL,
                       base = NULL,
-                      parallel = NULL
+                      parallel = NULL,
+                      raw = FALSE
                       ) {
 
   LEVEL <- NULL
@@ -53,6 +57,10 @@ make_file <- function(group = NULL,
   if (is.null(row)) row <- getOption("orgdata.debug.row")
   if (is.null(base)) base <- getOption("orgdata.recode.base")
   if (is.null(parallel)) parallel <- getOption("orgdata.parallel")
+
+  ## Use argument `raw` as standard value to avoid
+  ## resetting the global options
+  options(orgdata.read.raw = raw)
 
   dbFile <- is_path_db(
     db = getOption("orgdata.db"),

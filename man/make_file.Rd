@@ -14,7 +14,8 @@ make_file(
   implicitnull = NULL,
   row = NULL,
   base = NULL,
-  parallel = NULL
+  parallel = NULL,
+  raw = FALSE
 )
 
 lag_fil(
@@ -26,7 +27,8 @@ lag_fil(
   implicitnull = NULL,
   row = NULL,
   base = NULL,
-  parallel = NULL
+  parallel = NULL,
+  raw = FALSE
 )
 }
 \arguments{
@@ -55,8 +57,12 @@ available codes in geo codebook}
 \item{parallel}{Logical or numeric value. With logical value \code{TRUE} it will
 run with parallel using 50\% ie. 0.5 of local cores. User can decide other
 percentage if needed. For example to use 75\% of the cores then specify as
-\code{parallel = 0.75}. Nevertheless, maximum cores allowed is only 80\%.
-Default value is \code{FALSE} ie. to use sequential processing}
+\code{parallel = 0.75}. Nevertheless, maximum cores allowed is only 80\%. Default
+value is \code{FALSE} ie. to use sequential processing}
+
+\item{raw}{Logical value. Either to read original raw data directly even if
+the dataset is available in DuckDB without the need to unmark \code{KONTROLLERT}
+in the database}
 }
 \description{
 Make a \code{csv} file with the specifications in the register
