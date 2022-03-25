@@ -76,7 +76,7 @@ df <- make_file("BEFOLKNING")
 
 By activating it globally using `options`, all proceeding processes will not be
 aggregated unless it's changed during function call ie. include argument
-`aggregate = FALSE`, or you reset the global options with:
+`aggregate = TRUE`, or you reset the global options with:
 
 ```r
 reset_opt()
