@@ -38,7 +38,7 @@ read_log <- function(name = NULL, koblid = NULL){
 }
 
 ## Helper --------------
-is_log_write <- function(value = NULL, x = NULL, koblid = NULL){
+is_log_write <- function(value = NULL, x = NULL, koblid = NULL, colname = "V1"){
   # value - Object to put in log
   # x  - name the object
   orgpath <- is_orgdata_path()
@@ -52,7 +52,7 @@ is_log_write <- function(value = NULL, x = NULL, koblid = NULL){
   }
 
   outCmd <- tryCatch({
-    data.table::fwrite(x = list(V1 = value), file = file.path(orgpath, nameFile))
+    data.table::fwrite(x = stats::setNames(list(value), colname), file = file.path(orgpath, nameFile))
     logFun
   },
   error = function(err){
