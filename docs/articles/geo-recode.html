@@ -92,16 +92,16 @@
 
     
     
-<p>This guide explains how to create geo table to recode and map geo
-codes. This file will be saved in database file specified in
+<p>This guide explains how to create geo table for recoding and mapping
+geo codes. The table will be saved in a database file as specified in
 <strong>orgdata.geo</strong> option. See
 <code>getOptions("orgdata.geo")</code></p>
 <div class="section level2">
 <h2 id="recode-geo-codes">Recode Geo Codes<a class="anchor" aria-label="anchor" href="#recode-geo-codes"></a>
 </h2>
 <p>The function to create table for recoding geo codes is
-<code><a href="../reference/geo_recode.html">geo_recode()</a></code>. The table will consist of previous codes and
-their new codes whenever available. For instance, to get all codes for
+<code><a href="../reference/geo_recode.html">geo_recode()</a></code>. The table consist of previous codes and their
+new codes whenever available. For instance, to get all codes for
 <em>kommuner</em> from 2017 to 2022. The table will list all the codes
 for <em>kommuner</em> since 2017 in columname <code>oldCode</code> while
 their current codes ie. 2022, is in colum <code>currentCode</code>. Any
@@ -112,8 +112,8 @@ since 2017 will have the value as <code>NA</code> in the
 <p>Use argument <code>write = TRUE</code> to save it in the database. If
 the table already exists in the database and you just want to add a new
 dataset to the table, use argument <code>append = TRUE</code>. The table
-in the database will be called <em>kommune2022</em> if the data consist
-of geo codes up to 2022, ie. argument <code>to = 2022</code> and
+in the database will be named as <em>kommune2022</em> if the data
+consist of geo codes up to 2022, ie. argument <code>to = 2022</code> and
 <code>typ = kommune</code>.</p>
 <p>However in most cases you will only need to use argument
 <code>write = TRUE</code>. Check the documentation for possible
@@ -135,7 +135,7 @@ arguments with <code><a href="../reference/geo_recode.html">help("geo_recode")</
 <p>The function to create geo mapping is <code><a href="../reference/geo_map.html">geo_map()</a></code>. The
 default table name to be created in the database is <em>tblGeo</em>. It
 consists of all the geo granularities (<code>levels</code>) of the
-selected year. The lowest level is enumeration areas codes or
+selected year. The lowest level is enumeration area codes or
 <em>grunnkrets</em>.</p>
 <p>Arguments <code>write</code> and <code>append</code> can be used when
 calling <code><a href="../reference/geo_map.html">geo_map()</a></code> function. However in most cases, you will
@@ -160,12 +160,12 @@ available via API can be done with the function
 <code><a href="../reference/geo_merge.html">geo_merge()</a></code>.</p>
 <p>The data to merge can be in any format that is accepted by
 <code><a href="../reference/read_file.html">read_file()</a></code> function. The new data must have column id to
-merge into the database <em>tblGeo</em> and column with the new geo
-codes to be added to. For instance if a new dataset from 2022 has
+merge into the <em>tblGeo</em> table and column with the new geo codes
+to be added to. For instance if a new dataset from 2022 has
 <code>levekaar</code> codes in columname <code>code_levekaar</code> and
 these <code>levekaar</code> codes are derived from <code>bydel</code>
-codes, then the specification for the arguments will be as the example
-below.</p>
+codes with columname <code>var01</code>, then the specification for the
+arguments will be as the example below.</p>
 <p>Please read the documentation for details on arguments that can be
 used with <code><a href="../reference/geo_merge.html">help("geo_merge")</a></code> or <code><a href="../reference/geo_merge.html">?geo_merge</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
