@@ -100,24 +100,26 @@ geo codes. The table will be saved in a database file as specified in
 <h2 id="recode-geo-codes">Recode Geo Codes<a class="anchor" aria-label="anchor" href="#recode-geo-codes"></a>
 </h2>
 <p>The function to create table for recoding geo codes is
-<code><a href="../reference/geo_recode.html">geo_recode()</a></code>. The table consist of previous codes and their
-new codes whenever available. For instance, to get all codes for
+<code><a href="../reference/geo_recode.html">geo_recode()</a></code>. The table consists of previous codes and
+their new codes whenever available. For instance, to get all codes for
 <em>kommuner</em> from 2017 to 2022. The table will list all the codes
 for <em>kommuner</em> since 2017 in columname <code>oldCode</code> while
-their current codes ie. 2022, is in colum <code>currentCode</code>. Any
+their current codes ie. 2022, is in column <code>currentCode</code>. Any
 geo codes that have changed since 2017 will have their new codes in
 <code>currentCode</code> column. For geo codes that have not changed
 since 2017 will have the value as <code>NA</code> in the
 <code>oldCode</code> column.</p>
-<p>Use argument <code>write = TRUE</code> to save it in the database. If
-the table already exists in the database and you just want to add a new
-dataset to the table, use argument <code>append = TRUE</code>. The table
-in the database will be named as <em>kommune2022</em> if the data
-consist of geo codes up to 2022, ie. argument <code>to = 2022</code> and
-<code>typ = kommune</code>.</p>
-<p>However in most cases you will only need to use argument
-<code>write = TRUE</code>. Check the documentation for possible
-arguments with <code><a href="../reference/geo_recode.html">help("geo_recode")</a></code>.</p>
+<p>Use argument <code>write = TRUE</code> to save it in the database.
+The table in the database will be named as <em>kommune2022</em> if the
+data consist of geo codes up to 2022, ie. argument
+<code>to = 2022</code> and <code>type = kommune</code> were used. If the
+table already exists in the database and you just want to add a new
+dataset to the table, you could use argument <code>append = TRUE</code>,
+but appending should only be used for control purposes and not for
+production as it might create duplication in <code>oldCode</code>
+column.</p>
+<p>Please check the documentation for details with
+<code><a href="../reference/geo_recode.html">help("geo_recode")</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_recode.html">geo_recode</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2018</span>, to <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span>

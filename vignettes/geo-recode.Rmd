@@ -21,21 +21,22 @@ option. See `getOptions("orgdata.geo")`
 # Recode Geo Codes
 
 The function to create table for recoding geo codes is `geo_recode()`. The table
-consist of previous codes and their new codes whenever available. For instance,
+consists of previous codes and their new codes whenever available. For instance,
 to get all codes for *kommuner* from 2017 to 2022. The table will list all the
 codes for *kommuner* since 2017 in columname `oldCode` while their current codes
-ie. 2022, is in colum `currentCode`. Any geo codes that have changed since 2017
+ie. 2022, is in column `currentCode`. Any geo codes that have changed since 2017
 will have their new codes in `currentCode` column. For geo codes that have not
 changed since 2017 will have the value as `NA` in the `oldCode` column.
 
-Use argument `write = TRUE` to save it in the database. If the table already
-exists in the database and you just want to add a new dataset to the table, use
-argument `append = TRUE`. The table in the database will be named as
-*kommune2022* if the data consist of geo codes up to 2022, ie. argument `to =
-2022` and `typ = kommune`.
+Use argument `write = TRUE` to save it in the database. The table in the
+database will be named as *kommune2022* if the data consist of geo codes up to
+2022, ie. argument `to = 2022` and `type = kommune` were used. If the table
+already exists in the database and you just want to add a new dataset to the
+table, you could use argument `append = TRUE`, but appending should only be used
+for control purposes and not for production as it might create duplication in
+`oldCode` column.
 
-However in most cases you will only need to use argument `write = TRUE`. Check
-the documentation for possible arguments with `help("geo_recode")`.
+Please check the documentation for details with `help("geo_recode")`.
 
 ```{r geo-recode, eval = FALSE}
 library(orgdata)
