@@ -14,25 +14,25 @@ knitr::opts_chunk$set(
 )
 ```
 
-This guide explains how to create geo table to recode and map geo codes. This
-file will be saved in database file specified in **orgdata.geo** option. See
-`getOptions("orgdata.geo")`
+This guide explains how to create geo table for recoding and mapping geo codes.
+The table will be saved in a database file as specified in **orgdata.geo**
+option. See `getOptions("orgdata.geo")`
 
 # Recode Geo Codes
 
 The function to create table for recoding geo codes is `geo_recode()`. The table
-will consist of previous codes and their new codes whenever available. For
-instance, to get all codes for *kommuner* from 2017 to 2022. The table will list
-all the codes for *kommuner* since 2017 in columname `oldCode` while their current
-codes ie. 2022, is in colum `currentCode`. Any geo codes that have changed since
-2017 will have their new codes in `currentCode` column. For geo codes that have
-not changed since 2017 will have the value as `NA` in the `oldCode` column.
+consist of previous codes and their new codes whenever available. For instance,
+to get all codes for *kommuner* from 2017 to 2022. The table will list all the
+codes for *kommuner* since 2017 in columname `oldCode` while their current codes
+ie. 2022, is in colum `currentCode`. Any geo codes that have changed since 2017
+will have their new codes in `currentCode` column. For geo codes that have not
+changed since 2017 will have the value as `NA` in the `oldCode` column.
 
 Use argument `write = TRUE` to save it in the database. If the table already
 exists in the database and you just want to add a new dataset to the table, use
-argument `append = TRUE`. The table in the database will be called *kommune2022*
-if the data consist of geo codes up to 2022, ie. argument `to = 2022` and `typ =
-kommune`.
+argument `append = TRUE`. The table in the database will be named as
+*kommune2022* if the data consist of geo codes up to 2022, ie. argument `to =
+2022` and `typ = kommune`.
 
 However in most cases you will only need to use argument `write = TRUE`. Check
 the documentation for possible arguments with `help("geo_recode")`.
@@ -56,7 +56,7 @@ oldCode              oldName currentCode           newName changeOccurred      b
 
 The function to create geo mapping is `geo_map()`. The default table name to
 be created in the database is *tblGeo*. It consists of all the geo granularities
-(`levels`) of the selected year. The lowest level is enumeration areas codes or
+(`levels`) of the selected year. The lowest level is enumeration area codes or
 *grunnkrets*.
 
 Arguments `write` and `append` can be used when calling `geo_map()` function.
@@ -85,11 +85,11 @@ SSB. To merge geo codes that aren't available via API can be done with the
 function `geo_merge()`.
 
 The data to merge can be in any format that is accepted by `read_file()`
-function. The new data must have column id to merge into the database *tblGeo*
-and column with the new geo codes to be added to. For instance if a new dataset
-from 2022 has `levekaar` codes in columname `code_levekaar` and these `levekaar`
-codes are derived from `bydel` codes, then the specification for the arguments
-will be as the example below.
+function. The new data must have column id to merge into the *tblGeo* table and
+column with the new geo codes to be added to. For instance if a new dataset from
+2022 has `levekaar` codes in columname `code_levekaar` and these `levekaar`
+codes are derived from `bydel` codes with columname `var01`, then the
+specification for the arguments will be as the example below.
 
 Please read the documentation for details on arguments that can be used with
 `help("geo_merge")` or `?geo_merge`.
