@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.2",
+    "Version": "4.1.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -27,10 +27,10 @@
     },
     "RSQLite": {
       "Package": "RSQLite",
-      "Version": "2.2.10",
+      "Version": "2.2.11",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5d747a4aa7492f22d659be8c343e9045",
+      "Hash": "967ae705c1226ebb10579aaa9aedc459",
       "Requirements": [
         "DBI",
         "Rcpp",
@@ -43,10 +43,10 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.0.8",
+      "Version": "1.0.8.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "22b546dd7e337f6c0c58a39983a496bc",
+      "Hash": "32e79b908fda56ee57fe518a8d37b864",
       "Requirements": []
     },
     "askpass": {
@@ -154,10 +154,10 @@
     },
     "crayon": {
       "Package": "crayon",
-      "Version": "1.5.0",
+      "Version": "1.5.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "741c2e098e98afe3dc26a7b0e5489f4e",
+      "Hash": "8dc45fd8a1ee067a92b85ef274e66d6a",
       "Requirements": []
     },
     "crul": {
@@ -201,10 +201,10 @@
     },
     "duckdb": {
       "Package": "duckdb",
-      "Version": "0.3.2-1",
+      "Version": "0.3.2-2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "29d4f41f42b2cf0feecd265f8fd8412f",
+      "Hash": "2c2e60917d2acc1e35883e4c8b5e73e3",
       "Requirements": [
         "DBI"
       ]
@@ -221,10 +221,10 @@
     },
     "fansi": {
       "Package": "fansi",
-      "Version": "1.0.2",
+      "Version": "1.0.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f28149c2d7a1342a834b314e95e67260",
+      "Hash": "83a8afdbe71839506baa9f90eebad7ec",
       "Requirements": []
     },
     "fastmap": {
@@ -400,10 +400,10 @@
     },
     "magrittr": {
       "Package": "magrittr",
-      "Version": "2.0.2",
+      "Version": "2.0.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "cdc87ecd81934679d1557633d8e1fe51",
+      "Hash": "7ce2733a9826b3aeb1775d56fd305472",
       "Requirements": []
     },
     "memoise": {
@@ -471,16 +471,15 @@
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.5.10",
+      "Version": "0.6.0",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "713065a4aaec01bfd46ea14572084534ac4b60ac",
-      "Remotes": "helseprofil/norgeo",
-      "Hash": "96e6372b9f7d6f7e09c056f9f4f02570",
+      "RemoteSha": "3348f0528f53ab3998ab5bfdd41f60d081e19c85",
+      "Hash": "003abe05082543d0dfa9b88cf007c73c",
       "Requirements": [
         "DBI",
         "R6",
@@ -610,13 +609,13 @@
     },
     "readxl": {
       "Package": "readxl",
-      "Version": "1.3.1",
+      "Version": "1.4.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "63537c483c2dbec8d9e3183b3735254a",
+      "Hash": "170c35f745563bb307e963bde0197e4f",
       "Requirements": [
-        "Rcpp",
         "cellranger",
+        "cpp11",
         "progress",
         "tibble"
       ]
@@ -722,10 +721,10 @@
     },
     "tzdb": {
       "Package": "tzdb",
-      "Version": "0.2.0",
+      "Version": "0.3.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5e069fb033daf2317bd628d3100b75c5",
+      "Hash": "b2e1cbce7c903eaf23ec05c58e59fb5e",
       "Requirements": [
         "cpp11"
       ]
@@ -769,12 +768,12 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.3.8",
+      "Version": "0.4.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "ecf749a1b39ea72bd9b51b76292261f1",
+      "Hash": "95c2573b232eac82df562f9e300f9790",
       "Requirements": [
-        "ellipsis",
+        "cli",
         "glue",
         "rlang"
       ]
