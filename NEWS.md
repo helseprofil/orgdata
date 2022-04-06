@@ -1,3 +1,8 @@
+# orgdata 0.6.1
+- Can reshape multiple columns when reshaping to LONG. Applicable when there are
+  multiple columns represent number of cases and one column represent
+  denominator for all these numerators (#266)
+  
 # orgdata 0.6.0
 - Use *KOBLID* to add or delete from Duck database (#261)
 - Depends for *norgeo* package refers directly to CRAN version instead of GitHub
