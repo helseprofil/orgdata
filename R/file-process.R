@@ -58,11 +58,18 @@ is_process_file <- function(file,
     dt <- dt[row,]
   }
 
+  # Keep original GEO codes
+  if (!geo2col) {
+    dt[, "originGEO" := get(geoVals)]
+  }
+
   ## GEO codes from two columns needs to be joined
   if (geo2col){
     dt[, GEO := paste0(get(geoVals[1]), get(geoVals[2]))]
     dt[, (geoVals) := NULL]
+    dt[, "originGEO" := GEO]
   }
+
 
   manSpec <- get_manheader(spec = filespec)
   dt <- do_manheader(dt, manSpec)
@@ -88,19 +95,6 @@ is_process_file <- function(file,
     reshSpec <- get_reshape_id_val(dt, spec = filespec)
     dt <- do_reshape(dt, reshSpec)
   }
-
-
-  ## ## Add dataset to DuckDB -------------
-  ## if (isFALSE(control) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
-  ##   duck$db_write(name = tblFilid, value = dt, write = TRUE)
-  ## }
-
-  ## if (isTRUE(control) && isTRUE(any(as.integer(tblFilid) %in% duckID))){
-  ##   is_color_txt(x = tblFilid, msg = "Read from Database. FILID:")
-  ##   dt <- duck$db_read(name = tblFilid)
-  ## } else {
-  ##   duck$db_write(name = tblFilid, value = dt, write = TRUE)
-  ## }
 
   return(dt)
 }
