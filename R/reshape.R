@@ -38,7 +38,19 @@ do_reshape <- function(dt = NULL, respec = NULL){
     return(dt)
   }
 
-  dt <- data.table::melt(dt, id.vars = respec$id, measure.vars = respec$var)
+  varCols <- length(respec$var)
+  if (varCols > 1){
+    listCols <- vector("list", length = varCols)
+    for (i in seq_len(varCols)){
+      col <- is_separate(respec$var[i], sep = ",")
+      listCols[[i]] <- col
+    }
+    dt <- data.table::melt(dt, id.vars = respec$id, measure.vars = listCols)
+  } else {
+    dt <- data.table::melt(dt, id.vars = respec$id, measure.vars = respec$var)
+  }
+
+  return(dt)
 }
 
 #' @title Reshape Id and Measure
@@ -149,7 +161,7 @@ is_reshape_val <- function(input, var, vals){
 
 is_reshape_input <- function(input){
   if (grepl("^list", input)){
-    out <- "vars"
+    out <- "list"
   } else if (grepl("^-", input)){
     out <- "not"
   } else {
