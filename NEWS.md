@@ -1,3 +1,8 @@
+# orgdata 0.6.2
+- Give more information when error to reshape data, especially long reshape.
+  Most of the time the source of error is in defining `RESHAPE_KOL` and
+  `RESHAPE_VAL` (#268)
+
 # orgdata 0.6.1
 - Can reshape multiple columns when reshaping to LONG. Applicable when there are
   multiple columns represent number of cases and one column represent
