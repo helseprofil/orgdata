@@ -17,7 +17,18 @@ do_reshape_rename_col <- function(dt = NULL, spec = NULL){
     input <- is_reshape_col_val(input = input)
     ## TODO Give error if TAB1, VAL1 etc allready exist and specified in
     ## innlesing under TAB1 or VAL1 etc
-    data.table::setnames(dt, old = input[["old"]], new = input[["new"]])
+    tryCatch(
+      data.table::setnames(dt, old = input[["old"]], new = input[["new"]]),
+      error = function(err){
+        allColNames <- setdiff(names(dt), c(getOption("orgdata.columns"), "LANDBAK", "INNVKAT"))
+        colNames <- is_long_vector(allColNames)
+        is_color_txt(spec$RESHAPE_KOL, msg = "Your defined RESHAPE_KOL in Access is:", type = "error")
+        is_color_txt(is_long_vector(input$old), "Selected column(s) to rename from:")
+        is_color_txt(is_long_vector(input$new), "Selected column(s) to rename to:")
+        is_color_txt(x = colNames, msg = "Available columnames to rename in the dataset:")
+        is_stop("Please redefine RESHAPE_KOL or RESHAPE_VAL!", "")
+      }
+    )
   }
 
   return(dt)
