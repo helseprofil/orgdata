@@ -48,7 +48,8 @@ aggregating. If not specified, then current year will be used}
 \item{implicitnull}{Logical value. Default is \code{TRUE} to add implicit null to
 the dataset. Global options with \code{orgdata.implicit.null}.}
 
-\item{row}{Select only specify row(s). Useful for debugging}
+\item{row}{Select only specify row(s). Useful for debugging. Please read
+\code{Debugging} article for detail.}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all

@@ -29,7 +29,8 @@ to the specification in registration database. Global options with
 \item{year}{Which year of georaphical code to use for recoding and
 aggregating. If not specified, then current year will be used}
 
-\item{row}{Select only specify row(s). Useful for debugging}
+\item{row}{Select only specify row(s). Useful for debugging. Please read
+\code{Debugging} article for detail.}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all

@@ -14,7 +14,8 @@
 #' @inheritParams do_aggregate
 #' @param implicitnull Logical value. Default is `TRUE` to add implicit null to
 #'   the dataset. Global options with `orgdata.implicit.null`.
-#' @param row Select only specify row(s). Useful for debugging
+#' @param row Select only specify row(s). Useful for debugging. Please read
+#'   `Debugging` article for detail.
 #' @inheritParams do_geo_recode
 #' @param parallel Logical or numeric value. With logical value `TRUE` it will
 #'   run with parallel using 50% ie. 0.5 of local cores. User can decide other
