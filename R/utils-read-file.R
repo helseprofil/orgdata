@@ -72,7 +72,8 @@ is_aggregate <- function(dt = NULL,
 
   ## Ensure variables to be used to aggregate is type numeric
   colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
-  dt <- is_col_num(dt = dt, cols = colVals)
+  cols <- intersect(colVals, grep("^VAL", names(dt), value = T))
+  dt <- is_col_num_warn(dt = dt, cols = cols, ...)
 
   ## recode GEO codes
   code <- get_geo_recode(con = geoDB$dbconn, type = source, year = year)
@@ -169,8 +170,9 @@ is_org_files <- function(spec, id = NULL) {
 
 ## Covert to numeric for columns that are expected to be numeric
 ## but only after variables are recoded
+## USE function is_col_num_warn instead
 is_col_num <- function(dt, cols){
-
+  cols <- intersect(cols, grep("^VAL", names(dt), value = T))
   for (j in seq_len(length(cols))){
     col <- cols[j]
     if (methods::is(dt[[col]], "character")) {

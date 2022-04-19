@@ -106,14 +106,15 @@ is_post_exp <- function(input){
 
   if (length(numCols) > 0){
     for (i in numCols){
+      if (methods::is(argVAL[[i]], "character")){
+        argVAL[[i]] <- eval(str2lang(argVAL[[i]]))
+      }
       tryCatch(
         as.numeric(argVAL[[i]]),
         warning = function(er) {
           is_stop(msg = "Post recode codebook `FRA` is not numeric for", var = i)
         }
       )
-
-      argVAL[[i]] <- eval(str2lang(argVAL[[i]]))
     }
   }
 
@@ -145,4 +146,13 @@ is_post_delete_row <- function(dt, spec, input, toVAL, typ){
   }
 
   is_delete_index(dt, idx)
+}
+
+is_seq_num <- function(x){
+  if(grepl(":", x)){
+    vals <- is_separate(x, ":")
+    x <- seq(vals[1], vals[2])
+  }
+
+  return(x)
 }

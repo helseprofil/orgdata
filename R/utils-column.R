@@ -89,8 +89,11 @@ is_col_num_warn <- function(dt, cols, koblid = NULL){
 
         fileNA <- paste0(col, "xx")
         logCmd <- is_log_write(value = notCodes, x = fileNA, koblid = koblid, colname = "GEO")
-        msg <- paste0("Check column ", col, "! NAs introduced by coercion!! Check codes with:")
-        is_color_txt(logCmd, msg = msg, type = "warn2")
+        msg <- paste0("Check Column ", col, "! NAs introduced by coercion!! Check codes with:")
+        is_color_txt(logCmd, msg = msg, type = "warn")
+      },
+      finally = {
+        suppressWarnings(data.table::set(dt, j = col, value = as.numeric(dt[[col]])))
       })
     }
   }
