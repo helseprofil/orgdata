@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,6 +55,15 @@
       <small>Source: <a href="https://github.com/helseprofil/orgdata/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.3" id="orgdata-063">orgdata 0.6.3<a class="anchor" aria-label="anchor" href="#orgdata-063"></a></h2>
+<ul><li>Reshape multiple columns containing more than one <code>VAL</code>
+is handled properly. It should give error if <code>VAL</code> is defined
+in <code>RESHAPE_ID</code>. When reshaping multiple columns to be just
+one <code>VAL</code> then leaving <code>RESHAPE_VAL</code> empty ie. use
+all columns not defined in <code>RESHAPE_ID</code> should work as before
+(<a href="https://github.com/helseprofil/orgdata/issues/269" class="external-link">#269</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.2" id="orgdata-062">orgdata 0.6.2<a class="anchor" aria-label="anchor" href="#orgdata-062"></a></h2>
 <ul><li>Give more information when error to reshape data, especially long
