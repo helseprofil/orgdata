@@ -90,11 +90,9 @@ test_that("Reshape long columns", {
   DT <- readRDS(system.file("testdata", "reshape-dt.rds", package = "orgdata"))
   DTout <- readRDS(system.file("testdata", "reshape-out.rds", package = "orgdata"))
   DToutList <- readRDS(system.file("testdata", "reshape-out-list.rds", package = "orgdata"))
-  respErr <- readRDS(system.file("testdata", "reshape-respec-error.rds", package = "orgdata"))
   respYes <- readRDS(system.file("testdata", "reshape-respec-correct.rds", package = "orgdata"))
   respList <- readRDS(system.file("testdata", "reshape-respec-list.rds", package = "orgdata"))
 
-  expect_error(do_reshape(dt = copy(DT), respec = respErr))
   expect_equal(do_reshape(dt = copy(DT), respec = respYes), DTout)
   expect_equal(do_reshape(dt = copy(DT), respec = respList), DToutList)
 
