@@ -52,11 +52,11 @@ do_reshape <- function(dt = NULL, respec = NULL){
     return(dt)
   }
 
-  varID <- any(idCols %in% paste0("VAL", 1:getOption("orgdata.vals")))
-  if (varID){
-    is_color_txt("", msg = "VAL column can't be an ID! It should be in RESHAPE_VAL or RESHAPE_KOL", type = "error")
-    is_stop("Your defined RESHAPE_KOL is", idCols)
-  }
+  ## varID <- any(idCols %in% paste0("VAL", 1:getOption("orgdata.vals")))
+  ## if (varID){
+  ##   is_color_txt("", msg = "VAL column found in RESHAPE_ID!", type = "warn")
+  ##   is_stop("Your defined RESHAPE_KOL is", idCols)
+  ## }
 
   ## This is when more than 1 column for VAL
   if (respec$type == "list"){
