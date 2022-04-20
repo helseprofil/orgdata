@@ -26,7 +26,7 @@ do_reshape_rename_col <- function(dt = NULL, spec = NULL){
         is_color_txt(is_long_vector(input$old), "Selected column(s) to rename from:")
         is_color_txt(is_long_vector(input$new), "Selected column(s) to rename to:")
         is_color_txt(x = colNames, msg = "Available columnames to rename in the dataset:")
-        is_stop("Please redefine RESHAPE_KOL or RESHAPE_VAL!", "")
+        is_stop("Please redefine RESHAPE_ID, RESHAPE_KOL or RESHAPE_VAL!", "")
       }
     )
   }
@@ -37,28 +37,38 @@ do_reshape_rename_col <- function(dt = NULL, spec = NULL){
 #' @title Reshape from Wide to Long
 #' @description Reshape the dataset from wide format to long format.
 #' @param dt Dataset to be reshaped
-#' @param respec Reshape specification with `id` and `measure` variables. This
-#'   is the output from `get_reshape_id_val()`
+#' @param respec Reshape specification with `id`, `measure` and `reshape type`
+#'   variables. This is the output from `get_reshape_id_val()`
 #' @family reshape functions
 #' @export
 do_reshape <- function(dt = NULL, respec = NULL){
 
   is_debug()
 
-  if (length(respec$id) == 0){
+  idCols <- respec$id
+  varCols <- respec$var
+
+  if (length(idCols) == 0){
     return(dt)
   }
 
-  varCols <- length(respec$var)
-  if (varCols > 1){
-    listCols <- vector("list", length = varCols)
-    for (i in seq_len(varCols)){
-      col <- is_separate(respec$var[i], sep = ",")
+  varID <- any(idCols %in% paste0("VAL", 1:getOption("orgdata.vals")))
+  if (varID){
+    is_color_txt("", msg = "VAL column can't be an ID! It should be in RESHAPE_VAL or RESHAPE_KOL", type = "error")
+    is_stop("Your defined RESHAPE_KOL is", idCols)
+  }
+
+  ## This is when more than 1 column for VAL
+  if (respec$type == "list"){
+    lenCols <- length(varCols)
+    listCols <- vector("list", length = lenCols)
+    for (i in seq_len(lenCols)){
+      col <- is_separate(varCols[i], sep = ",")
       listCols[[i]] <- col
     }
-    dt <- data.table::melt(dt, id.vars = respec$id, measure.vars = listCols)
+    dt <- data.table::melt(dt, id.vars = idCols, measure.vars = listCols)
   } else {
-    dt <- data.table::melt(dt, id.vars = respec$id, measure.vars = respec$var)
+    dt <- data.table::melt(dt, id.vars = idCols, measure.vars = varCols)
   }
 
   return(dt)
@@ -101,7 +111,7 @@ get_reshape_id_val <- function(dt = NULL, group = NULL, con = NULL, spec = NULL)
                      list = is_reshape_var_list(spec),
                      not = is_reshape_var_other(dtnames = dtNames, reshapeid = reshapeID, spec))
 
-  list(id = reshapeID, var = reshVars)
+  list(id = reshapeID, var = reshVars, type = resh)
 }
 
 
