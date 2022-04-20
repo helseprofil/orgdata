@@ -9,8 +9,8 @@ do_reshape(dt = NULL, respec = NULL)
 \arguments{
 \item{dt}{Dataset to be reshaped}
 
-\item{respec}{Reshape specification with \code{id} and \code{measure} variables. This
-is the output from \code{get_reshape_id_val()}}
+\item{respec}{Reshape specification with \code{id}, \code{measure} and \verb{reshape type}
+variables. This is the output from \code{get_reshape_id_val()}}
 }
 \description{
 Reshape the dataset from wide format to long format.
