@@ -1,8 +1,8 @@
 # orgdata 0.6.3
 - Reshape multiple columns containing more than one `VAL` is handled properly.
-  It should give error if `VAL` is defined in `RESHAPE_ID`. When reshaping
-  multiple columns to be just one `VAL` then leaving `RESHAPE_VAL` empty ie. use
-  all columns not defined in `RESHAPE_ID` should work as before (#269)
+  When reshaping multiple columns to be just one `VAL` then leaving
+  `RESHAPE_VAL` empty ie. use all columns not defined in `RESHAPE_ID` should
+  work as before (#269)
 
 # orgdata 0.6.2
 - Give more information when error to reshape data, especially long reshape.
