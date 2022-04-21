@@ -25,7 +25,7 @@ do_geo_recode(
 output after running \code{get_geo_recode()} function.}
 
 \item{year}{Which year the geograhical codes to be recoded to. If it is empty
-then current year will be used.}
+then global option for \code{orgdata.year} will be used.}
 
 \item{con}{Connection to database}
 

@@ -26,8 +26,8 @@ from \code{geo_map()} ie. from \code{tblGeo} in geo database}
 
 \item{level}{Geographical granularity for aggregating data. See \code{getOption("orgdata.geo.levels")}}
 
-\item{year}{Which year of georaphical code to use for recoding and
-aggregating. If not specified, then current year will be used}
+\item{year}{Which year the geograhical codes to be recoded to. If it is empty
+then global option for \code{orgdata.year} will be used.}
 
 \item{aggregate.col}{Other columns to aggregate other than the standard ie.
 \code{UTDANN}, \code{LANDSSB}, \code{LANDBAK} and \code{INNVKAT}}

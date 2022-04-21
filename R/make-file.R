@@ -10,8 +10,9 @@
 #' @param aggregate Logical value. Default is `TRUE`. Aggregate data according
 #'   to the specification in registration database. Global options with
 #'   `orgdata.aggregate`.
-#' @param save Save as `.csv` by activating `save_file()`. Default is `FALSE`
-#' @inheritParams do_aggregate
+#' @param save Logical value. Default is `FALSE`. To save as `.csv` format file
+#'   by activating `save_file()` function.
+#' @inheritParams do_geo_recode
 #' @param implicitnull Logical value. Default is `TRUE` to add implicit null to
 #'   the dataset. Global options with `orgdata.implicit.null`.
 #' @param row Select only specify row(s). Useful for debugging. Please read
@@ -29,6 +30,7 @@
 #' @examples
 #' \dontrun{
 #' dt <- make_file("ENPERSON")
+#' dt <- make_file("ENPERSON", raw = TRUE) #Skip DuckDB and read directly from original files
 #' dt <- make_file("ENPERSON", koblid = 120:125, parallel = TRUE) #with parallel processing
 #' }
 #' @importFrom data.table `:=` `%chin%`
@@ -222,11 +224,12 @@ make_file <- function(group = NULL,
   }
 
   prodMsg <- paste0("Done! `", group ,"` for")
-  withr::with_options(list(orgdata.emoji = "thumb"),
-                      is_colour_txt(x = year,
-                                    msg = prodMsg,
-                                    type = "note",
-                                    emoji = TRUE))
+
+  is_colour_txt(x = year,
+                msg = prodMsg,
+                type = "note",
+                emoji = TRUE,
+                symbol = "thumb")
 
   withr::with_options(list(orgdata.emoji = "paper"),
                       is_verbose(x = is_orgdata_path(),

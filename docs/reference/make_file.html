@@ -115,10 +115,11 @@ Specifying <code>koblid</code> is useful especially for testing purposes.</p>
 to the specification in registration database. Global options with
 <code>orgdata.aggregate</code>.</p></dd>
 <dt>save</dt>
-<dd><p>Save as <code>.csv</code> by activating <code><a href="save_file.html">save_file()</a></code>. Default is <code>FALSE</code></p></dd>
+<dd><p>Logical value. Default is <code>FALSE</code>. To save as <code>.csv</code> format file
+by activating <code><a href="save_file.html">save_file()</a></code> function.</p></dd>
 <dt>year</dt>
-<dd><p>Which year of georaphical code to use for recoding and
-aggregating. If not specified, then current year will be used</p></dd>
+<dd><p>Which year the geograhical codes to be recoded to. If it is empty
+then global option for <code>orgdata.year</code> will be used.</p></dd>
 <dt>implicitnull</dt>
 <dd><p>Logical value. Default is <code>TRUE</code> to add implicit null to
 the dataset. Global options with <code>orgdata.implicit.null</code>.</p></dd>
@@ -150,6 +151,7 @@ in the database</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu">make_file</span><span class="op">(</span><span class="st">"ENPERSON"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu">make_file</span><span class="op">(</span><span class="st">"ENPERSON"</span>, raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#Skip DuckDB and read directly from original files</span></span>
 <span class="r-in"><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu">make_file</span><span class="op">(</span><span class="st">"ENPERSON"</span>, koblid <span class="op">=</span> <span class="fl">120</span><span class="op">:</span><span class="fl">125</span>, parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#with parallel processing</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>

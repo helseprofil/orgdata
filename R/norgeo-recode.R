@@ -64,7 +64,7 @@ do_recode_without_aggregate <- function(dt = NULL,
 #' @param type The geographical granularity for recoding. The dataset is the
 #'   output after running `get_geo_recode()` function.
 #' @param year Which year the geograhical codes to be recoded to. If it is empty
-#'   then current year will be used.
+#'   then global option for `orgdata.year` will be used.
 #' @inheritParams find_spec
 #' @param geo Logical value. Keep old geographical code if TRUE. Default is FALSE.
 #' @param base Logical value. If `TRUE` then use year in the original data as the base
