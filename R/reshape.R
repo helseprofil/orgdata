@@ -15,6 +15,7 @@ do_reshape_rename_col <- function(dt = NULL, spec = NULL){
     input <- is_col_separate(input = input)
     input <- is_reshape_col_id(input = input)
     input <- is_reshape_col_val(input = input)
+
     ## TODO Give error if TAB1, VAL1 etc allready exist and specified in
     ## innlesing under TAB1 or VAL1 etc
     tryCatch(
@@ -22,7 +23,8 @@ do_reshape_rename_col <- function(dt = NULL, spec = NULL){
       error = function(err){
         allColNames <- setdiff(names(dt), c(getOption("orgdata.columns"), "LANDBAK", "INNVKAT"))
         colNames <- is_long_vector(allColNames)
-        is_color_txt(spec$RESHAPE_KOL, msg = "Your defined RESHAPE_KOL in Access is:", type = "error")
+        is_color_txt("", "Woops! Something isn't quite right with reshape", type = "warn2", emoji = TRUE, symbol = "sad")
+        is_color_txt(spec$RESHAPE_KOL, msg = "Your defined RESHAPE_KOL in Access is:")
         is_color_txt(is_long_vector(input$old), "Selected column(s) to rename from:")
         is_color_txt(is_long_vector(input$new), "Selected column(s) to rename to:")
         is_color_txt(x = colNames, msg = "Available columnames to rename in the dataset:")

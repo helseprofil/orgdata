@@ -67,7 +67,7 @@ is_not_null_both <- function(x = NULL, y = NULL, msg = NULL, verbose = NULL) {
   }
 }
 
-## TABS and VALS should be extansible
+## TABS and VALS should be extensible
 is_standard_cols <- function(){
   landsplit <- c("LANDBAK", "INNVKAT")
   c(getOption("orgdata.columns"),
@@ -131,6 +131,7 @@ is_verbose <- function(x = NULL, msg = NULL,
                        ctrl = parent.frame(),
                        emoji = FALSE) {
   ## x - Arg or object to show in the message
+  ## ctrl - If KONTROLLERT is marked then don't show message
   type <- match.arg(type)
 
   if (!is.null(msg)) {
@@ -232,7 +233,8 @@ is_orgdata_path <- function(dir = c("home", "temp")){
 is_colour_txt <- function(x, msg,
                           type = c("note", "warn", "warn2",
                                    "error", "error2", "other", "debug"),
-                          emoji = FALSE){
+                          emoji = FALSE,
+                          symbol = "mark"){
   ## msg - Message to display
   ## x - Object to display in the message
   ## emoji - Add emoji
