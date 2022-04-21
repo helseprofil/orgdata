@@ -20,7 +20,7 @@ source data. This will be used for merging with the output from
 \code{geo_map()}}
 
 \item{year}{Which year the geograhical codes to be recoded to. If it is empty
-then current year will be used.}
+then global option for \code{orgdata.year} will be used.}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all

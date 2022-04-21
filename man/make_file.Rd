@@ -40,10 +40,11 @@ lag_fil(
 to the specification in registration database. Global options with
 \code{orgdata.aggregate}.}
 
-\item{save}{Save as \code{.csv} by activating \code{save_file()}. Default is \code{FALSE}}
+\item{save}{Logical value. Default is \code{FALSE}. To save as \code{.csv} format file
+by activating \code{save_file()} function.}
 
-\item{year}{Which year of georaphical code to use for recoding and
-aggregating. If not specified, then current year will be used}
+\item{year}{Which year the geograhical codes to be recoded to. If it is empty
+then global option for \code{orgdata.year} will be used.}
 
 \item{implicitnull}{Logical value. Default is \code{TRUE} to add implicit null to
 the dataset. Global options with \code{orgdata.implicit.null}.}
@@ -77,6 +78,7 @@ The function \code{\link[=lag_fil]{lag_fil()}} is an alias to \code{\link[=make_
 \examples{
 \dontrun{
 dt <- make_file("ENPERSON")
+dt <- make_file("ENPERSON", raw = TRUE) #Skip DuckDB and read directly from original files
 dt <- make_file("ENPERSON", koblid = 120:125, parallel = TRUE) #with parallel processing
 }
 }

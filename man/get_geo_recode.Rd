@@ -16,7 +16,7 @@ get_geo_recode(
 \item{type}{The geographical granularity to recode}
 
 \item{year}{Which year the geograhical codes to be recoded to. If it is empty
-then current year will be used.}
+then global option for \code{orgdata.year} will be used.}
 }
 \value{
 A dataset with columns \code{GEO} and \code{to} representing the GEO codes that

@@ -7,8 +7,7 @@
 #'   source data. This will be used for merging with the geo codebook generated
 #'   from `geo_map()` ie. from `tblGeo` in geo database
 #' @param level Geographical granularity for aggregating data. See `getOption("orgdata.geo.levels")`
-#' @param year Which year of georaphical code to use for recoding and
-#'   aggregating. If not specified, then current year will be used
+#' @inheritParams do_geo_recode
 #' @param aggregate.col Other columns to aggregate other than the standard ie.
 #'   `UTDANN`, `LANDSSB`, `LANDBAK` and `INNVKAT`
 #' @param geoDT Geo codes to aggregate dataset with
