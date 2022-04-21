@@ -21,7 +21,7 @@ do_implicit_null <- function(dt = NULL,
                              )){
   is_debug()
   withr::with_options(list(orgdata.emoji = "search"),
-                      is_verbose(x = level, msg = "Checking for implicit null for:", emoji = TRUE))
+                      is_verbose(x = level, msg = "Checking implicit null for:", emoji = TRUE))
 
   stdVals <- paste0("VAL", 1:getOption("orgdata.vals"))
   ignoreCols <- c("GEO", "AAR", stdVals)
