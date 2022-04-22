@@ -1,7 +1,7 @@
 #' Implement the Specifications
-#' @description Make a `csv` file with the specifications in the register
+#' @description Make a `csv` file with the specifications in the Access register
 #'   database and implement them to the raw data of the selected group of files
-#'   (\emph{filgruppe}). All files under the selected group will be affected
+#'   ie. (\emph{filgruppe}). All files under the selected group will be affected
 #'   unless the \code{KOBLID} with argument \code{koblid} is specified.
 #'   Specifying \code{koblid} is useful especially for testing purposes.
 #' @description The function [lag_fil()] is an alias to [make_file()].
@@ -15,17 +15,17 @@
 #' @inheritParams do_geo_recode
 #' @param implicitnull Logical value. Default is `TRUE` to add implicit null to
 #'   the dataset. Global options with `orgdata.implicit.null`.
-#' @param row Select only specify row(s). Useful for debugging. Please read
-#'   `Debugging` article for detail.
+#' @param row Select specific row(s) numbers only. Useful for debugging. Please
+#'   read `Debugging` article for detail.
 #' @inheritParams do_geo_recode
 #' @param parallel Logical or numeric value. With logical value `TRUE` it will
 #'   run with parallel using 50% ie. 0.5 of local cores. User can decide other
 #'   percentage if needed. For example to use 75% of the cores then specify as
 #'   `parallel = 0.75`. Nevertheless, maximum cores allowed is only 80%. Default
 #'   value is `FALSE` ie. to use sequential processing
-#' @param raw Logical value. Either to read original raw data directly even if
-#'   the dataset is available in DuckDB without the need to unmark `KONTROLLERT`
-#'   in the database
+#' @param raw Logical value. Default is `FALSE`. Read original raw data directly
+#'   from source file even if the dataset is already available in DuckDB without
+#'   the need to unmark `KONTROLLERT` in the Access database
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
@@ -243,6 +243,9 @@ make_file <- function(group = NULL,
 #' @rdname make_file
 lag_fil <- make_file
 
+#' @export
+#' @rdname make_file
+mf <- make_file
 
 ## HELPER -----------------------------------------
 ## Helper functions are in file utils-read-file.R

@@ -3,6 +3,7 @@
 \name{make_file}
 \alias{make_file}
 \alias{lag_fil}
+\alias{mf}
 \title{Implement the Specifications}
 \usage{
 make_file(
@@ -19,6 +20,19 @@ make_file(
 )
 
 lag_fil(
+  group = NULL,
+  koblid = NULL,
+  aggregate = NULL,
+  save = FALSE,
+  year = NULL,
+  implicitnull = NULL,
+  row = NULL,
+  base = NULL,
+  parallel = NULL,
+  raw = FALSE
+)
+
+mf(
   group = NULL,
   koblid = NULL,
   aggregate = NULL,
@@ -49,8 +63,8 @@ then global option for \code{orgdata.year} will be used.}
 \item{implicitnull}{Logical value. Default is \code{TRUE} to add implicit null to
 the dataset. Global options with \code{orgdata.implicit.null}.}
 
-\item{row}{Select only specify row(s). Useful for debugging. Please read
-\code{Debugging} article for detail.}
+\item{row}{Select specific row(s) numbers only. Useful for debugging. Please
+read \code{Debugging} article for detail.}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
@@ -62,14 +76,14 @@ percentage if needed. For example to use 75\% of the cores then specify as
 \code{parallel = 0.75}. Nevertheless, maximum cores allowed is only 80\%. Default
 value is \code{FALSE} ie. to use sequential processing}
 
-\item{raw}{Logical value. Either to read original raw data directly even if
-the dataset is available in DuckDB without the need to unmark \code{KONTROLLERT}
-in the database}
+\item{raw}{Logical value. Default is \code{FALSE}. Read original raw data directly
+from source file even if the dataset is already available in DuckDB without
+the need to unmark \code{KONTROLLERT} in the Access database}
 }
 \description{
-Make a \code{csv} file with the specifications in the register
+Make a \code{csv} file with the specifications in the Access register
 database and implement them to the raw data of the selected group of files
-(\emph{filgruppe}). All files under the selected group will be affected
+ie. (\emph{filgruppe}). All files under the selected group will be affected
 unless the \code{KOBLID} with argument \code{koblid} is specified.
 Specifying \code{koblid} is useful especially for testing purposes.
 
