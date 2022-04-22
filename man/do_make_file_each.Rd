@@ -29,8 +29,8 @@ to the specification in registration database. Global options with
 \item{year}{Which year the geograhical codes to be recoded to. If it is empty
 then global option for \code{orgdata.year} will be used.}
 
-\item{row}{Select only specify row(s). Useful for debugging. Please read
-\code{Debugging} article for detail.}
+\item{row}{Select specific row(s) numbers only. Useful for debugging. Please
+read \code{Debugging} article for detail.}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
