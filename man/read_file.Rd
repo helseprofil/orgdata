@@ -3,11 +3,14 @@
 \name{read_file}
 \alias{read_file}
 \alias{les_fil}
+\alias{rf}
 \title{Read Data File}
 \usage{
 read_file(file = NULL, ...)
 
 les_fil(file = NULL, ...)
+
+rf(file = NULL, ...)
 }
 \arguments{
 \item{file}{Use FILID, FILEGROUP or a complete path of a filename. Data set

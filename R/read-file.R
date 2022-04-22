@@ -73,6 +73,9 @@ read_file <- function(file = NULL, ...) {
 #' @rdname read_file
 les_fil <- read_file
 
+#' @export
+#' @rdname read_file
+rf <- read_file
 
 ## Helper -------------------------------------
 
