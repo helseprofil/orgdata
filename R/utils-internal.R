@@ -302,8 +302,15 @@ is_batch <- function(type = c("date", "time")){
 }
 
 is_package_condition <- function(pkg, arg){
-  if (!requireNamespace(pkg, quietly = TRUE)){
-    msg <- sprintf("Please install %s package(s) to use arg %s", pkg, arg)
+  # pkgs must be as list if multiples
+
+  yesno <- sapply(pkg, function(x) requireNamespace(x, quietly = TRUE))
+  pkgs <- unlist(pkg[yesno])
+  nopkg <- setdiff(unlist(pkg), pkgs)
+
+  if (length(nopkg) > 0){
+    pp <- is_long_vector(nopkg)
+    msg <- sprintf("Please install %s package(s) to use arg %s", pp, arg)
     is_stop(msg)
   }
 
