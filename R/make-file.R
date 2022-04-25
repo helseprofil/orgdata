@@ -223,7 +223,8 @@ make_file <- function(group = NULL,
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
 
-  prodMsg <- paste0("Done! `", group ,"` for")
+  praise::praise("${EXCLAMATION}! ${adjective} jobb!")
+  prodMsg <- paste0("Completed `", group ,"` for")
 
   is_colour_txt(x = year,
                 msg = prodMsg,
