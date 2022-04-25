@@ -122,7 +122,7 @@ make_file <- function(group = NULL,
   }
 
   if (useParallel){
-    is_package_condition("future.apply", "parallel")
+    is_package_condition("future.apply, parallel and parallelly", "parallel")
 
     options(parallelly.availableCores.custom = function() {
       ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
@@ -134,14 +134,14 @@ make_file <- function(group = NULL,
   }
 
   if (useParallel){
-    p <- progressr::progressor(steps = rowFile)
+    ## p <- progressr::progressor(steps = rowFile)
     paraMsg1 <- paste0("Start parallel processing ... \U001F680")
     paraMsg <- paste0("Start parallel processing with ", parallelly::availableCores(), " cores \U001F680")
     is_verbose(msg = paraMsg)
 
     DT <- future.apply::future_lapply(seq_len(rowFile),
                                       function(x) {
-                                        p()
+                                        ## p()
                                         Sys.sleep(0.01)
                                         do_make_file_each(
                                           spec = spec[x,],
