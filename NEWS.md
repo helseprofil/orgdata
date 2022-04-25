@@ -1,3 +1,8 @@
+# orgdata 0.6.4
+- Implicit null for number of geo digits is moved to config file. This make it
+  easy to maintain and expand.
+- Use `future.apply` package conditionally to reduce package vulnerability.
+
 # orgdata 0.6.3
 - Reshape multiple columns containing more than one `VAL` is handled properly.
   When reshaping multiple columns to be just one `VAL` then leaving
