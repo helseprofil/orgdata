@@ -122,7 +122,8 @@ make_file <- function(group = NULL,
   }
 
   if (useParallel){
-    is_package_condition("future.apply, parallel and parallelly", "parallel")
+    is_package_condition(pkg = list("future.apply", "parallel", "parallelly"),
+                         arg = "parallel")
 
     options(parallelly.availableCores.custom = function() {
       ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
