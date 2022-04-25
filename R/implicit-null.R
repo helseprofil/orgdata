@@ -156,11 +156,14 @@ find_implicit_null <- function(imp, year, colstr, level){
     dtTemp <- data.table::setnames(data.table::data.table(matrix(
       nrow = length(vals), ncol = length(colstr))), names(colstr))
 
-    geo99 <- switch(level,
-                    fylke = "99",
-                    kommune = "9999",
-                    bydel = "999999",
-                    "99999999")
+    ## Number of digits for 9 should represent the number of digits for geo level
+    cfg99 <- unlist(getOption("orgdata.geo.digits"))
+    imp99 <- cfg99[level]
+    geo99 <- paste0(rep(9, imp99), collapse = "")
+
+    if(!any(names(cfg99) == level)){
+      is_stop("Geo levels not found in config file for `geo.digits`. Please update config file!")
+    }
 
     valCol <- intersect(names(colstr), paste0("VAL", 1:getOption("orgdata.vals")))
 
