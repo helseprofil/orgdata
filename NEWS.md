@@ -2,6 +2,8 @@
 - Implicit null for number of geo digits is moved to config file. This make it
   easy to maintain and expand.
 - Use `future.apply` package conditionally to reduce package vulnerability.
+- Deactivate dependency packages for parallel processing. Use it conditionally
+  ie. to install manually if needed.
 
 # orgdata 0.6.3
 - Reshape multiple columns containing more than one `VAL` is handled properly.
