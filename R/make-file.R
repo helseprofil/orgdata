@@ -223,7 +223,6 @@ make_file <- function(group = NULL,
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
 
-  praise::praise("${EXCLAMATION}! ${adjective} jobb!")
   prodMsg <- paste0("Completed `", group ,"` for")
 
   is_colour_txt(x = year,
@@ -237,6 +236,7 @@ make_file <- function(group = NULL,
                                  msg = "Log files can be found in",
                                  emoji = TRUE))
 
+  cat(praise::praise("${EXCLAMATION}! ${adjective} job!"), "\n")
   return(outDT[])
 }
 

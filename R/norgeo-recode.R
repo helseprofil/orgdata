@@ -203,7 +203,7 @@ get_geo_recode <- function(con = NULL,
   colNames <- c("oldCode", "currentCode", "changeOccurred", "batch")
 
   for (j in colNames[-4]){
-    if (class(geoDT[[j]]) == 'character')
+    if (methods::is(geoDT[[j]], "character"))
       data.table::set(geoDT, j = j, value = as.integer(geoDT[[j]]))
   }
 
