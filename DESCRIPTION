@@ -46,7 +46,7 @@ Imports:
     duckdb (>= 0.3.2.1),
     praise(>= 1.0.0)
 Remotes:
-    rladies/praise
+    ybkamaleri/praise
 Suggests:
     testthat (>= 3.0.0),
     tibble (>= 3.1.4),
