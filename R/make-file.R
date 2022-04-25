@@ -121,14 +121,17 @@ make_file <- function(group = NULL,
     useParallel <- parallel
   }
 
-  options(parallelly.availableCores.custom = function() {
-    ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
-    ncores <- min(as.integer(useCore * ncores))
-    max(1L, ncores)
-  })
+  if (useParallel){
+    is_package_condition("future.apply", "parallel")
 
-  future::plan("multisession")
+    options(parallelly.availableCores.custom = function() {
+      ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
+      ncores <- min(as.integer(useCore * ncores))
+      max(1L, ncores)
+    })
 
+    future::plan("multisession")
+  }
 
   if (useParallel){
     p <- progressr::progressor(steps = rowFile)

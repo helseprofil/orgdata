@@ -301,3 +301,11 @@ is_batch <- function(type = c("date", "time")){
          )
 }
 
+is_package_condition <- function(pkg, arg){
+  if (!requireNamespace(pkg, quietly = TRUE)){
+    msg <- sprintf("Please install %s package to use arg %s", pkg, arg)
+    is_stop(msg)
+  }
+
+  invisible()
+}
