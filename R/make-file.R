@@ -219,8 +219,10 @@ make_file <- function(group = NULL,
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(dt = outDT, cols = grpCols)
 
-  ## Shut down parallel workers
-  future::plan("sequential")
+  if (useParallel){
+    ## Shut down parallel workers
+    future::plan("sequential")
+  }
 
   if (save) {
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
