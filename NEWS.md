@@ -1,3 +1,7 @@
+# orgdata 0.6.5
+- Use ellipsis for other arguments of `data.table::fwrite()` in `save_file()`
+  function.
+
 # orgdata 0.6.4
 - Implicit null for number of geo digits is moved to config file. This make it
   easy to maintain and expand.
