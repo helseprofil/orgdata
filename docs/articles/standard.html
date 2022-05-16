@@ -78,9 +78,7 @@
   </div>
 </nav><div class="container template-article">
 
-
-
-<script src="standard_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+<div class="row">
   <main id="main"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Make things standard</h1>
             
@@ -97,13 +95,20 @@
 </h2>
 <p>These keywords will be helpful when searching for relevant commits:</p>
 <ul>
-<li><p><code>Feat:</code> for new feature or function</p></li>
-<li><p><code>Fix:</code> for bug fix</p></li>
-<li><p><code>Doc:</code> for documentation or changes to documentation</p></li>
-<li><p><code>Close:</code> or <code>Style:</code> for changes to code or comments that aren’t because of bugs</p></li>
-<li><p><code>Test:</code> for code testing in <code>tests</code> folder</p></li>
-<li><p><code>DEV:</code> for development processes for new feature</p></li>
-<li><p><code>VER:</code> for first version upgrade</p></li>
+<li>
+<code>Feat:</code> for new feature or function</li>
+<li>
+<code>Fix:</code> for bug fix</li>
+<li>
+<code>Doc:</code> for documentation or changes to documentation</li>
+<li>
+<code>Close:</code> or <code>Style:</code> for changes to code or comments that aren’t because of bugs</li>
+<li>
+<code>Test:</code> for code testing in <code>tests</code> folder</li>
+<li>
+<code>DEV:</code> for development processes for new feature</li>
+<li>
+<code>VER:</code> for first version upgrade</li>
 <li>
 <p><code>Misc:</code> for any changes that aren’t critical or doesn’t fit to any of the above keywords. Avoid using it if possible or only as a last resort</p>
 <p>Example of commit message</p>
@@ -157,10 +162,10 @@ line break for long sentences.</code></pre>
 </h2>
 <p>An effort to group functions according to their responsibilities :)</p>
 <ul>
-<li><p>Files with <code>read_</code> perfix for major functions.</p></li>
-<li><p>Files with <code>do_</code> prefix for doing some action functions.</p></li>
-<li><p>Files with <code>get_</code> prefix for column specific functions.</p></li>
-<li><p>Files with <code>find_</code> prefix for helper functions.</p></li>
+<li>Files with <code>read_</code> perfix for major functions.</li>
+<li>Files with <code>do_</code> prefix for doing some action functions.</li>
+<li>Files with <code>get_</code> prefix for column specific functions.</li>
+<li>Files with <code>find_</code> prefix for helper functions.</li>
 <li>
 <p>Files with <code>is_</code> prefix for internal functions or utility to use <code>orgdata</code> package.</p>
 <p>Internal functions will not be exported but if needed, they can be accessed with <code>:::</code> eg. <code>orgdata:::is_separate()</code>.</p>

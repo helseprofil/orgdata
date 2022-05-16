@@ -2,6 +2,7 @@
 
 # orgdata <img src='man/figures/logo.png' align="right" width="110" height="138" />
 
+
 [![R build
 status](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
 [![](https://app.codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/orgdata)
@@ -13,7 +14,8 @@ preferred dataset.
 
 ## Installation
 
-To install then run this code
+To install then run this
+code
 
 ``` r
 source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
@@ -23,7 +25,8 @@ kh_install("orgdata")
 To maintain dependencies package version, you can install *orgdata* from
 the *user* branch for reproducibility, ie. keeping the package version
 for all dependencies as they were used during the development process.
-You must however install **Git** prior to using `kh_restore()` function.
+You must however install **Git** prior to using `kh_restore()`
+function.
 
 ``` r
 source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
