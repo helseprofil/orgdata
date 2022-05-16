@@ -5,9 +5,9 @@
 
 [![R build
 status](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
-[![](https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://codecov.io/gh/helseprofil/orgdata)
+[![](https://app.codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg)](https://app.codecov.io/gh/helseprofil/orgdata)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
-[![](https://img.shields.io/badge/devel%20version-0.6.4-blue.svg)](https://github.com/helseprofil/orgdata)
+[![](https://img.shields.io/badge/devel%20version-0.6.5-blue.svg)](https://github.com/helseprofil/orgdata)
 
 Cleaning, restructuring and aggregating **OR**i**G**inal **DATA** into a
 preferred dataset.
@@ -62,11 +62,11 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 
 ## Resources
 
--   [Get
+  - [Get
     started](https://helseprofil.github.io/orgdata/articles/get-started.html)
--   [Functions
+  - [Functions
     overview](https://helseprofil.github.io/orgdata/reference/index.html)
--   [Presentation
+  - [Presentation
     slides](https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1)
--   [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
--   [Video guide](https://youtu.be/PhEQq4iWJCY)
+  - [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
+  - [Video guide](https://youtu.be/PhEQq4iWJCY)
