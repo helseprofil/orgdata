@@ -35,7 +35,7 @@
     
     <a class="navbar-brand me-2" href="index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,14 +82,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="orgdata-">orgdata
-<a class="anchor" aria-label="anchor" href="#orgdata-"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="orgdata-">orgdata <a class="anchor" aria-label="anchor" href="#orgdata-"></a>
 </h1>
 </div>
 
-<p>Cleaning, restructuring and aggregating
-<strong>OR</strong>i<strong>G</strong>inal <strong>DATA</strong> into a
-preferred dataset.</p>
+<p>Cleaning, restructuring and aggregating <strong>OR</strong>i<strong>G</strong>inal <strong>DATA</strong> into a preferred dataset.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -97,17 +94,11 @@ preferred dataset.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/helseprofil/misc/main/utils.R"</span><span class="op">)</span>
 <span class="fu">kh_install</span><span class="op">(</span><span class="st">"orgdata"</span><span class="op">)</span></code></pre></div>
-<p>To maintain dependencies package version, you can install
-<em>orgdata</em> from the <em>user</em> branch for reproducibility, ie.
-keeping the package version for all dependencies as they were used
-during the development process. You must however install
-<strong>Git</strong> prior to using <code>kh_restore()</code>
-function.</p>
+<p>To maintain dependencies package version, you can install <em>orgdata</em> from the <em>user</em> branch for reproducibility, ie. keeping the package version for all dependencies as they were used during the development process. You must however install <strong>Git</strong> prior to using <code>kh_restore()</code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/helseprofil/misc/main/utils.R"</span><span class="op">)</span>
 <span class="fu">kh_restore</span><span class="op">(</span><span class="st">"orgdata"</span><span class="op">)</span></code></pre></div>
-<p>Alternatively you can install the development version via
-<code>orgdata</code>.</p>
+<p>Alternatively you can install the development version via <code>orgdata</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/update_orgdata.html">update_orgdata</a></span><span class="op">(</span>ref <span class="op">=</span> <span class="st">"dev"</span><span class="op">)</span></code></pre></div>
@@ -115,8 +106,7 @@ function.</p>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>To implement the specifications per file group as being registered in
-the database use <code><a href="reference/make_file.html">make_file()</a></code> function.</p>
+<p>To implement the specifications per file group as being registered in the database use <code><a href="reference/make_file.html">make_file()</a></code> function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span>
 <span class="co"># All files under BEFOLKNING group</span>
@@ -125,8 +115,7 @@ the database use <code><a href="reference/make_file.html">make_file()</a></code>
 <span class="co"># For selected files with KOBLID</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">48</span><span class="op">)</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">48</span>, <span class="fl">72</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Use function <code><a href="reference/make_filegroups.html">make_filegroups()</a></code> to process multiple file
-groups at once.</p>
+<p>Use function <code><a href="reference/make_filegroups.html">make_filegroups()</a></code> to process multiple file groups at once.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/make_filegroups.html">make_filegroups</a></span><span class="op">(</span><span class="va">BEFOLKNING</span>, <span class="va">LESEFERD</span>, <span class="va">NEET</span><span class="op">)</span></code></pre></div>
 </div>
@@ -134,12 +123,9 @@ groups at once.</p>
 <h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
 </h2>
 <ul>
-<li><a href="https://helseprofil.github.io/orgdata/articles/get-started.html">Get
-started</a></li>
-<li><a href="https://helseprofil.github.io/orgdata/reference/index.html">Functions
-overview</a></li>
-<li><a href="https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1" class="external-link">Presentation
-slides</a></li>
+<li><a href="https://helseprofil.github.io/orgdata/articles/get-started.html">Get started</a></li>
+<li><a href="https://helseprofil.github.io/orgdata/reference/index.html">Functions overview</a></li>
+<li><a href="https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1" class="external-link">Presentation slides</a></li>
 <li><a href="https://github.com/helseprofil/orgdata/blob/main/dev/standard.org" class="external-link">Conventions</a></li>
 <li><a href="https://youtu.be/PhEQq4iWJCY" class="external-link">Video guide</a></li>
 </ul>
@@ -183,9 +169,9 @@ slides</a></li>
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/helseprofil/orgdata/actions" class="external-link"><img src="https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/helseprofil/orgdata" class="external-link"><img src="https://codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg"></a></li>
+<li><a href="https://app.codecov.io/gh/helseprofil/orgdata" class="external-link"><img src="https://app.codecov.io/gh/helseprofil/orgdata/branch/main/graph/badge.svg"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#maturing" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg"></a></li>
-<li><a href="https://github.com/helseprofil/orgdata" class="external-link"><img src="https://img.shields.io/badge/devel%20version-0.6.4-blue.svg"></a></li>
+<li><a href="https://github.com/helseprofil/orgdata" class="external-link"><img src="https://img.shields.io/badge/devel%20version-0.6.5-blue.svg"></a></li>
 </ul>
 </div>
 
@@ -195,15 +181,12 @@ slides</a></li>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by
-<a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman
-Kamaleri</a>.</p>
+<p>Developed by <a href="https://www.fhi.no/en/about/departments-and-centres/health-and-inequality/yusman-bin-kamaleri/" class="external-link">Yusman Kamaleri</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>
