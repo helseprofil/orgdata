@@ -46,17 +46,17 @@ Data must be in a \code{data.frame} or \code{data.table} format.}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{KHelse$new()}}
-\item \href{#method-db_connect}{\code{KHelse$db_connect()}}
-\item \href{#method-db_write}{\code{KHelse$db_write()}}
-\item \href{#method-db_read}{\code{KHelse$db_read()}}
-\item \href{#method-db_remove_table}{\code{KHelse$db_remove_table()}}
-\item \href{#method-db_close}{\code{KHelse$db_close()}}
+\item \href{#method-KHelse-new}{\code{KHelse$new()}}
+\item \href{#method-KHelse-db_connect}{\code{KHelse$db_connect()}}
+\item \href{#method-KHelse-db_write}{\code{KHelse$db_write()}}
+\item \href{#method-KHelse-db_read}{\code{KHelse$db_read()}}
+\item \href{#method-KHelse-db_remove_table}{\code{KHelse$db_remove_table()}}
+\item \href{#method-KHelse-db_close}{\code{KHelse$db_close()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-KHelse-new"></a>}}
+\if{latex}{\out{\hypertarget{method-KHelse-new}{}}}
 \subsection{Method \code{new()}}{
 Start connecting to the database.
 \subsection{Usage}{
@@ -91,8 +91,8 @@ kh$db_connect()
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-db_connect"></a>}}
-\if{latex}{\out{\hypertarget{method-db_connect}{}}}
+\if{html}{\out{<a id="method-KHelse-db_connect"></a>}}
+\if{latex}{\out{\hypertarget{method-KHelse-db_connect}{}}}
 \subsection{Method \code{db_connect()}}{
 Reconnect to the database when \code{db_close} was used.
 \subsection{Usage}{
@@ -101,8 +101,8 @@ Reconnect to the database when \code{db_close} was used.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-db_write"></a>}}
-\if{latex}{\out{\hypertarget{method-db_write}{}}}
+\if{html}{\out{<a id="method-KHelse-db_write"></a>}}
+\if{latex}{\out{\hypertarget{method-KHelse-db_write}{}}}
 \subsection{Method \code{db_write()}}{
 Write table to the database.
 \subsection{Usage}{
@@ -133,8 +133,8 @@ the table if it already exists}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-db_read"></a>}}
-\if{latex}{\out{\hypertarget{method-db_read}{}}}
+\if{html}{\out{<a id="method-KHelse-db_read"></a>}}
+\if{latex}{\out{\hypertarget{method-KHelse-db_read}{}}}
 \subsection{Method \code{db_read()}}{
 Read table and convert to data.table format
 \subsection{Usage}{
@@ -150,8 +150,8 @@ Read table and convert to data.table format
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-db_remove_table"></a>}}
-\if{latex}{\out{\hypertarget{method-db_remove_table}{}}}
+\if{html}{\out{<a id="method-KHelse-db_remove_table"></a>}}
+\if{latex}{\out{\hypertarget{method-KHelse-db_remove_table}{}}}
 \subsection{Method \code{db_remove_table()}}{
 Remove table in the database.
 \subsection{Usage}{
@@ -167,8 +167,8 @@ Remove table in the database.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-db_close"></a>}}
-\if{latex}{\out{\hypertarget{method-db_close}{}}}
+\if{html}{\out{<a id="method-KHelse-db_close"></a>}}
+\if{latex}{\out{\hypertarget{method-KHelse-db_close}{}}}
 \subsection{Method \code{db_close()}}{
 Close connection to the database.
 \subsection{Usage}{

@@ -108,13 +108,13 @@ Data must be in a <code>data.frame</code> or <code>data.table</code> format.</p>
 <div class="section">
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
 
-<ul><li><p><a href="#method-new"><code>KHelse$new()</code></a></p></li>
-<li><p><a href="#method-db_connect"><code>KHelse$db_connect()</code></a></p></li>
-<li><p><a href="#method-db_write"><code>KHelse$db_write()</code></a></p></li>
-<li><p><a href="#method-db_read"><code>KHelse$db_read()</code></a></p></li>
-<li><p><a href="#method-db_remove_table"><code>KHelse$db_remove_table()</code></a></p></li>
-<li><p><a href="#method-db_close"><code>KHelse$db_close()</code></a></p></li>
-</ul></div><p></p><hr><a id="method-new"></a><div class="section">
+<ul><li><p><a href="#method-KHelse-new"><code>KHelse$new()</code></a></p></li>
+<li><p><a href="#method-KHelse-db_connect"><code>KHelse$db_connect()</code></a></p></li>
+<li><p><a href="#method-KHelse-db_write"><code>KHelse$db_write()</code></a></p></li>
+<li><p><a href="#method-KHelse-db_read"><code>KHelse$db_read()</code></a></p></li>
+<li><p><a href="#method-KHelse-db_remove_table"><code>KHelse$db_remove_table()</code></a></p></li>
+<li><p><a href="#method-KHelse-db_close"><code>KHelse$db_close()</code></a></p></li>
+</ul></div><p></p><hr><a id="method-KHelse-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
 <p>Start connecting to the database.</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
@@ -151,7 +151,7 @@ kh$db_connect()
 </div>
 
 
-</div><p></p><hr><a id="method-db_connect"></a><div class="section">
+</div><p></p><hr><a id="method-KHelse-db_connect"></a><div class="section">
 <h3 id="method-db-connect-">Method <code>db_connect()</code><a class="anchor" aria-label="anchor" href="#method-db-connect-"></a></h3>
 <p>Reconnect to the database when <code>db_close</code> was used.</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
@@ -159,7 +159,7 @@ kh$db_connect()
 </div>
 
 
-</div><p></p><hr><a id="method-db_write"></a><div class="section">
+</div><p></p><hr><a id="method-KHelse-db_write"></a><div class="section">
 <h3 id="method-db-write-">Method <code>db_write()</code><a class="anchor" aria-label="anchor" href="#method-db-write-"></a></h3>
 <p>Write table to the database.</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
@@ -198,7 +198,7 @@ the table if it already exists</p></dd>
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-db_read"></a><div class="section">
+</div><p></p><hr><a id="method-KHelse-db_read"></a><div class="section">
 <h3 id="method-db-read-">Method <code>db_read()</code><a class="anchor" aria-label="anchor" href="#method-db-read-"></a></h3>
 <p>Read table and convert to data.table format</p><div class="section">
 <h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
@@ -214,7 +214,7 @@ the table if it already exists</p></dd>
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-db_remove_table"></a><div class="section">
+</div><p></p><hr><a id="method-KHelse-db_remove_table"></a><div class="section">
 <h3 id="method-db-remove-table-">Method <code>db_remove_table()</code><a class="anchor" aria-label="anchor" href="#method-db-remove-table-"></a></h3>
 <p>Remove table in the database.</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
@@ -230,7 +230,7 @@ the table if it already exists</p></dd>
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-db_close"></a><div class="section">
+</div><p></p><hr><a id="method-KHelse-db_close"></a><div class="section">
 <h3 id="method-db-close-">Method <code>db_close()</code><a class="anchor" aria-label="anchor" href="#method-db-close-"></a></h3>
 <p>Close connection to the database.</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
