@@ -34,7 +34,7 @@ pkgs <- c(
   "digest", "rlang", "tibble", "cachem", "future.apply",
   "withr", "progressr", "parallelly", "crayon", "lifecycle",
   "rex", "listenv", "norgeo", "haven", "yaml", "duckdb",
-  "qpdf", "here"
+  "qpdf", "here", "badger"
   )
 
 sapply(pkgs, function(x) if(!requireNamespace(x)) install.packages(x))

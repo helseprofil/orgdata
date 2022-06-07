@@ -5,32 +5,53 @@
 \alias{lagre_fil}
 \title{Save Data to CSV file}
 \usage{
-save_file(dt = NULL, name = NULL, path = NULL, date = FALSE, fgSpec = NULL)
+save_file(
+  dt = NULL,
+  name = NULL,
+  path = NULL,
+  date = FALSE,
+  fgSpec = NULL,
+  sep = ";",
+  ...
+)
 
-lagre_fil(dt = NULL, name = NULL, path = NULL, date = FALSE, fgSpec = NULL)
+lagre_fil(
+  dt = NULL,
+  name = NULL,
+  path = NULL,
+  date = FALSE,
+  fgSpec = NULL,
+  sep = ";",
+  ...
+)
 }
 \arguments{
 \item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
 
 \item{name}{Filename for the \code{.csv} file or filegroup name}
 
-\item{path}{Folder path to save the file. If \code{name} is
-a valide filegroup \emph{(FILGRUPPE)} then use the specified \code{UTMAPPE}
-in Access registration database else file will be saved in default folder
-\verb{C:\\Users\\YourUserName\\orgdata_logs}. The default folder will be
-created if not exist.}
+\item{path}{Folder path to save the file. If \code{name} is a valide filegroup
+\emph{(FILGRUPPE)} then use the specified \code{UTMAPPE} in Access registration
+database else file will be saved in default folder
+\verb{C:\\Users\\YourUserName\\orgdata_logs}. The default folder will be created if
+not exist.}
 
 \item{date}{Use date and time as part of the filename}
 
 \item{fgSpec}{File group specification from Access registration database}
+
+\item{sep}{The separator between columns. Default is \code{";"}}
+
+\item{...}{Other arguments for \code{data.table::fwrite}}
 }
 \description{
 Save data as a \code{.csv} format file with semicolon \verb{;} as
-seperation. The file will be saved to the specified folder in \code{path} or as
+seperator. The file will be saved to the specified folder in \code{path} or as
 in Access regstration database with the root as in
 \code{getOption("orgdata.folder.data")}. Use argument \code{save = TRUE} in
 \code{make_file()} will activate \code{save_file()} directly. Else you can call
-\code{save_file()} to save the object output from \code{make_file()}
+\code{save_file()} to save the object output from \code{make_file()}. This function
+is a wrapper to \code{data.table:fwrite()}.
 }
 \examples{
 \dontrun{

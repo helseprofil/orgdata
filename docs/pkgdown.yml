@@ -1,12 +1,12 @@
 pandoc: 2.17.1.1
-pkgdown: 2.0.2
+pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   debugging: debugging.html
   geo-recode: geo-recode.html
   get-started: get-started.html
   standard: standard.html
-last_built: 2022-04-25T14:55Z
+last_built: 2022-06-07T13:16Z
 urls:
   reference: https://helseprofil.github.io/orgdata/reference
   article: https://helseprofil.github.io/orgdata/articles

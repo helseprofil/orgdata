@@ -1,19 +1,22 @@
 #' @title Save Data to CSV file
 #' @description Save data as a `.csv` format file with semicolon `;` as
-#'   seperation. The file will be saved to the specified folder in `path` or as
+#'   seperator. The file will be saved to the specified folder in `path` or as
 #'   in Access regstration database with the root as in
 #'   `getOption("orgdata.folder.data")`. Use argument `save = TRUE` in
 #'   `make_file()` will activate `save_file()` directly. Else you can call
-#'   `save_file()` to save the object output from `make_file()`
+#'   `save_file()` to save the object output from `make_file()`. This function
+#'   is a wrapper to `data.table:fwrite()`.
 #' @inheritParams do_split
 #' @param name Filename for the `.csv` file or filegroup name
-#' @param path Folder path to save the file. If `name` is
-#'   a valide filegroup \emph{(FILGRUPPE)} then use the specified `UTMAPPE`
-#'   in Access registration database else file will be saved in default folder
-#'   `C:\Users\YourUserName\orgdata_logs`. The default folder will be
-#'   created if not exist.
+#' @param path Folder path to save the file. If `name` is a valide filegroup
+#'   \emph{(FILGRUPPE)} then use the specified `UTMAPPE` in Access registration
+#'   database else file will be saved in default folder
+#'   `C:\Users\YourUserName\orgdata_logs`. The default folder will be created if
+#'   not exist.
 #' @param date Use date and time as part of the filename
 #' @param fgSpec File group specification from Access registration database
+#' @param sep The separator between columns. Default is `";"`
+#' @param ... Other arguments for `data.table::fwrite`
 #' @examples
 #' \dontrun{
 #'  # Save file directly
@@ -32,12 +35,13 @@ save_file <- function(dt = NULL,
                       name = NULL,
                       path = NULL,
                       date = FALSE,
-                      fgSpec = NULL){
+                      fgSpec = NULL,
+                      sep = ";", ...){
   is_null(dt)
   is_null(name)
 
   file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
-  data.table::fwrite(dt, file = file, sep = ";")
+  data.table::fwrite(dt, file = file, sep = sep, ...)
 }
 
 #' @export
