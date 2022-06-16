@@ -1,6 +1,6 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 0.6.5
+Version: 0.6.6
 Authors@R:
     c(person(given = "Yusman",
              family = "Kamaleri",
@@ -38,8 +38,8 @@ Imports:
     haven (>= 2.4.3),
     yaml (>= 2.3.5),
     methods,
-    duckdb (>= 0.3.2.1),
-    praise(>= 1.0.0)
+    praise (>= 1.0.0),
+    RSQLite (>= 2.2.14)
 Remotes:
     ybkamaleri/praise
 Suggests:

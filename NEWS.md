@@ -1,3 +1,6 @@
+# orgdata 0.6.6
+- Replace DuckDB with SQLite (#271)
+
 # orgdata 0.6.5
 - Use ellipsis for other arguments of `data.table::fwrite()` in `save_file()`
   function.

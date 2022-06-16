@@ -118,7 +118,7 @@ usethis::use_package("withr")
 usethis::use_package("remotes")
 usethis::use_package("haven")
 usethis::use_package("yaml", min_version = TRUE)
-usethis::use_package("duckdb", min_version = TRUE)
+usethis::use_package("RSQLite", min_version = TRUE)
 usethis::use_package("here", type = "Suggest", min_version = TRUE)
 usethis::use_dev_package("praise")
 
