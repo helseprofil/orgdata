@@ -33,7 +33,7 @@ pkgs <- c(
   "rmarkdown", "future", "foreach", "styler", "remotes",
   "digest", "rlang", "tibble", "cachem", "future.apply",
   "withr", "progressr", "parallelly", "crayon", "lifecycle",
-  "rex", "listenv", "norgeo", "haven", "yaml", "duckdb",
+  "rex", "listenv", "norgeo", "haven", "yaml",
   "qpdf", "here", "badger"
   )
 
