@@ -33,7 +33,7 @@ pkgs <- c(
   "rmarkdown", "future", "foreach", "styler", "remotes",
   "digest", "rlang", "tibble", "cachem", "future.apply",
   "withr", "progressr", "parallelly", "crayon", "lifecycle",
-  "rex", "listenv", "norgeo", "haven", "yaml", "duckdb",
+  "rex", "listenv", "norgeo", "haven", "yaml",
   "qpdf", "here", "badger"
   )
 
@@ -118,7 +118,7 @@ usethis::use_package("withr")
 usethis::use_package("remotes")
 usethis::use_package("haven")
 usethis::use_package("yaml", min_version = TRUE)
-usethis::use_package("duckdb", min_version = TRUE)
+usethis::use_package("RSQLite", min_version = TRUE)
 usethis::use_package("here", type = "Suggest", min_version = TRUE)
 usethis::use_dev_package("praise")
 
