@@ -1,5 +1,6 @@
 # orgdata 0.6.6
 - Replace DuckDB with SQLite (#271)
+- Columnames are case insensitive (#115)
 
 # orgdata 0.6.5
 - Use ellipsis for other arguments of `data.table::fwrite()` in `save_file()`
