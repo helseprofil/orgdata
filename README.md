@@ -5,7 +5,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
-![Codecov](https://img.shields.io/codecov/c/github/helseprofil/orgdata?logo=codecov)
+[![Codecov test
+coverage](https://img.shields.io/codecov/c/github/helseprofil/orgdata?logo=codecov)](https://app.codecov.io/gh/helseprofil/orgdata?branch=main)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![](https://img.shields.io/badge/devel%20version-0.6.6-blue.svg)](https://github.com/helseprofil/orgdata)
 
