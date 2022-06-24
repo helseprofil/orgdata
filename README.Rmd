@@ -18,13 +18,20 @@ knitr::opts_chunk$set(
 
 # orgdata <img src='man/figures/logo.png' align="right" width="110" height="138" />
 
+<!-- badges: start -->
 
-```{r echo=FALSE, results="hide", message=FALSE}
+[![R-CMD-check](https://github.com/helseprofil/orgdata/workflows/R-CMD-check/badge.svg)](https://github.com/helseprofil/orgdata/actions)
+[![Codecov test coverage](https://img.shields.io/codecov/c/github/helseprofil/orgdata?logo=codecov)](https://app.codecov.io/gh/helseprofil/orgdata?branch=main)
+[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![](https://img.shields.io/badge/devel%20version-0.6.6-blue.svg)](https://github.com/helseprofil/orgdata)
+
+<!-- badges: end -->
+
+```{r echo=FALSE, results="hide", message=FALSE, eval=FALSE}
 library("badger")
 ```
 
-
-```{r, echo = FALSE, results='asis'}
+```{r, echo = FALSE, results='asis', eval=FALSE}
 cat(
   badge_github_actions(),
   badge_codecov("helseprofil/orgdata"),

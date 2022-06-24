@@ -158,3 +158,7 @@ devtools::install()
 ## ADD BADGER ---------------
 remotes::install_github("GuangchuangYu/badger")
 library(badger)
+
+remotes::install_github("FRBCesab/rcompendium")
+library(rcompendium)
+add_codecov_badge()
