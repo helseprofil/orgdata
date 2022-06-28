@@ -1,3 +1,7 @@
+# orgdata 0.6.7
+- Show as data frame when warning `NAs with coercion` instead of just the GEO
+  number where the coercion took place (#274)
+
 # orgdata 0.6.6
 - Replace DuckDB with SQLite (#271)
 - Columnames are case insensitive (#115)
