@@ -38,9 +38,10 @@ read_log <- function(name = NULL, koblid = NULL){
 }
 
 ## Helper --------------
-is_log_write <- function(value = NULL, x = NULL, koblid = NULL){
+is_log_write <- function(value = NULL, x = NULL, koblid = NULL, format = "vector"){
   # value - Object to put in log
   # x  - name the object
+  # format - Object time as "vector", "dt" etc
   orgpath <- is_orgdata_path()
 
   if (is.null(koblid)){
@@ -51,8 +52,13 @@ is_log_write <- function(value = NULL, x = NULL, koblid = NULL){
     logFun <- paste0('`', 'read_log("', x, '", koblid)`')
   }
 
+  fileName <- file.path(orgpath, nameFile)
   outCmd <- tryCatch({
-    data.table::fwrite(x = list(V1 = value), file = file.path(orgpath, nameFile))
+    if (format == "dt"){
+      data.table::fwrite(x = value, file = fileName)
+    } else {
+      data.table::fwrite(x = list(V1 = value), file = fileName)
+    }
     logFun
   },
   error = function(err){
