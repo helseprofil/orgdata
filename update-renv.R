@@ -8,3 +8,5 @@ renv::snapshot()
 
 renv::status()
 renv::clean()
+
+renv::remove("duckdb")
