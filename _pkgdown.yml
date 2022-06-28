@@ -28,6 +28,8 @@ navbar:
         href: articles/debugging.html
       - text: Make standard
         href: articles/standard.html
+      - text: SePaaFil
+        href: articles/sepaafil.html
     reference:
       text: Functions
       href: reference/index.html
