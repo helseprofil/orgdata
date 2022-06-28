@@ -84,16 +84,25 @@ is_col_num_warn <- function(dt, cols, koblid = NULL){
         dumCol <- "dumCol"
         dt[, (dumCol) := get(col)]
         suppressWarnings(data.table::set(dt, j = dumCol, value = as.numeric(dt[[dumCol]])))
-        notCodes <- dt[is.na(dumCol), GEO][[1]]
+        notDT <- dt[is.na(dumCol)]
         dt[, (dumCol) := NULL]
 
+        naDT <- is_col_coercion(notDT, col)
         fileNA <- paste0(col, "xx")
-        logCmd <- is_log_write(value = notCodes, x = fileNA, koblid = koblid)
+        logCmd <- is_log_write(value = naDT, x = fileNA, koblid = koblid, format = "dt")
         msg <- paste0("Check column ", col, "! NAs introduced by coercion!! Check codes with:")
         is_color_txt(logCmd, msg = msg, type = "warn2")
       })
     }
   }
   return(dt)
+}
+
+# Create dataset for the coercion column
+is_col_coercion <- function(dt, col){
+
+  dt[unique(data.table::as.data.table(GEO)), na_col := 1L, on = "GEO", mult = "first"]
+  cols <- c("GEO", "LEVEL", col)
+  dt[na_col == 1, ..cols]
 }
 
