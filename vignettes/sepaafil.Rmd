@@ -64,22 +64,22 @@ save_file(dt, "BEFOLKNING")
 
 ```
 
-Å lage det et annet sted
+Å lagre det et annet sted
 
 ```
 save_file(dt, name = "MinFil", path = "C:/Navn/Til/Mappen")
 
 ```
 
-Evt. hvis alle filer har vært kontrollert
+Evt. hvis alle filer har ingen feil
 
 ```
 lag_fil("BEFOLKNING", save = TRUE)
 ```
 
-Hvis filene har blitt kontrollert så kan man lage flere
-FILGRUPPER med en gang, du velg selv måten du liker å gjøre det.
-FILGRUPPE blir laget som csv direkte. Ingen feilmelding er gitt.
+Hvis filene har blitt kontrollert så kan man lagre flere
+FILGRUPPER med en gang, du velger selv måten du liker å gjøre det.
+FILGRUPPE blir lagret som csv direkte. Ingen feilmelding er gitt.
 
 
 ```
@@ -96,15 +96,17 @@ lag_filgrupper(BEFOLKNING, NEET, DODE) #uten
 
 ## Tips and Tricks
 
-Lest bare en bestemt antall rader f.eks 5 rader
-kan også brukes andre argumenter f.eks header = FALSE, skip = 0, sep = ; osv
+Lest bare et bestemt antall rader f.eks 5 rader
+kan også brukes andre argumenter f.eks header = FALSE, skip = 0, sep = ; osv. Sjekk dokumentet.
 
 ```
 les_fil(file = 1, nrows = 5)
 ```
-Sjekk kategorier evt. omkoding
+
+Sjekk koding:
 
 ```
+# Sjekk kategorier evt. omkoding
 df <- les_fil(file = 1)
 se_fil(df) #alle kolonner
 se_fil(df, 1) #bare kolonne 1
@@ -155,7 +157,7 @@ orgdata:::opt.orgdata #default verdi
 
 ## Debugging
 
-For å se original kode og hva det skal bli kodet til
+For å se original koder og hva det skal bli kodet til
 
 ```
 debug_opt("geo")
@@ -165,6 +167,7 @@ For å se hva kodene skal bli aggregert til
 ```
 debug_opt("aggregate")
 ```
+
 HUSK å nullstille etter bruk av debug funksjon
 ```
 reset_opt()
