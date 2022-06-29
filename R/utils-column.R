@@ -98,11 +98,9 @@ is_col_num_warn <- function(dt, cols, koblid = NULL){
   return(dt)
 }
 
-# Create dataset for the coercion column
+# Create dataset for the coercion column to show
+# GEO and the coercion codes
 is_col_coercion <- function(dt, col){
-  ##:ess-bp-start::browser@nil:##
-  browser(expr=is.null(.ESSBP.[["@2@"]]));##:ess-bp-end:##
-
   selCols <- c("GEO", col)
   dd <- unique(dt[, ..selCols])
   dt[dd, na_col := 1L, on = selCols, mult = "first"]
