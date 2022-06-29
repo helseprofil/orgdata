@@ -81,9 +81,8 @@
 
 
 
-
-<div class="row">
-  <main id="main" class="col-md-9"><div class="page-header">
+<script src="debugging_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+  <main id="main"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>How to debug</h1>
             
       
@@ -93,10 +92,7 @@
 
     
     
-<p>Debugging can be done via specification in <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> or
-a wrapper <code><a href="../reference/debug_opt.html">debug_opt()</a></code>. To check all the <em>options</em>
-available for <code>orgdata</code> use
-<code>orgdata:::opt.orgdata</code>. Debugging options include:</p>
+<p>Debugging can be done via specification in <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> or a wrapper <code><a href="../reference/debug_opt.html">debug_opt()</a></code>. To check all the <em>options</em> available for <code>orgdata</code> use <code>orgdata:::opt.orgdata</code>. Debugging options include:</p>
 <ul>
 <li><code>orgdata.debug</code></li>
 <li><code>orgdata.debug.nrow</code></li>
@@ -111,13 +107,7 @@ available for <code>orgdata</code> use
 <div class="section level2">
 <h2 id="orgdata-debug">orgdata.debug<a class="anchor" aria-label="anchor" href="#orgdata-debug"></a>
 </h2>
-<p>This is used to display the process flow when running any functions
-in <code>orgdata</code>. It is useful to know which process creates
-problems during troubleshoot. Options <code>shallow</code> and
-<code>deep</code> are used to decide the levels of functions to be shown
-during the process flow. Selecting <code>shallow</code> is equal to
-<code>TRUE</code> while <code>deep</code> will show the helper functions
-as well. To activate:</p>
+<p>This is used to display the process flow when running any functions in <code>orgdata</code>. It is useful to know which process creates problems during troubleshoot. Options <code>shallow</code> and <code>deep</code> are used to decide the levels of functions to be shown during the process flow. Selecting <code>shallow</code> is equal to <code>TRUE</code> while <code>deep</code> will show the helper functions as well. To activate:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># OR</span>
@@ -128,9 +118,7 @@ as well. To activate:</p>
 <div class="section level2">
 <h2 id="orgdata-debug-nrow">orgdata.debug.nrow<a class="anchor" aria-label="anchor" href="#orgdata-debug-nrow"></a>
 </h2>
-<p>To make testing faster for a very big file, you can load only some
-rows by activating this options. For instance, to load only the first 50
-rows use:</p>
+<p>To make testing faster for a very big file, you can load only some rows by activating this options. For instance, to load only the first 50 rows use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug.nrow <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
 <span class="co"># OR</span>
@@ -139,9 +127,7 @@ rows use:</p>
 <div class="section level2">
 <h2 id="orgdata-debug-row">orgdata.debug.row<a class="anchor" aria-label="anchor" href="#orgdata-debug-row"></a>
 </h2>
-<p>To select only specific row(s) for further processing. This is very
-useful especially when activating <a href="#geo"><code>orgdata.debug.geo</code></a> option. To select only
-rows 20 to 50:</p>
+<p>To select only specific row(s) for further processing. This is very useful especially when activating <a href="#geo"><code>orgdata.debug.geo</code></a> option. To select only rows 20 to 50:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug.row <span class="op">=</span> <span class="fl">20</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span>
 <span class="co"># OR</span>
@@ -150,16 +136,8 @@ rows 20 to 50:</p>
 <div class="section level2">
 <h2 id="orgdata-debug-aggregate">orgdata.debug.aggregate<a class="anchor" aria-label="anchor" href="#orgdata-debug-aggregate"></a>
 </h2>
-<p>To check how the geographical codes in the original data will or
-could be aggregated to. For instance the original data that consist of
-enumeration area codes can be aggregated to municipality or county.
-Activating this options will add the columns of origin geographical
-codes and the codes to aggregate into municipality, county, city etc to
-the output data.</p>
-<p>The difference between this options and <code>aggreagate</code>
-argument in <code><a href="../reference/make_file.html">make_file()</a></code> is that the argument
-<code>aggregate = FALSE</code> will cease aggregating after recoding
-geographical codes in the original data. To use:</p>
+<p>To check how the geographical codes in the original data will or could be aggregated to. For instance the original data that consist of enumeration area codes can be aggregated to municipality or county. Activating this options will add the columns of origin geographical codes and the codes to aggregate into municipality, county, city etc to the output data.</p>
+<p>The difference between this options and <code>aggreagate</code> argument in <code><a href="../reference/make_file.html">make_file()</a></code> is that the argument <code>aggregate = FALSE</code> will cease aggregating after recoding geographical codes in the original data. To use:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug.aggregate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># OR</span>
@@ -168,15 +146,8 @@ geographical codes in the original data. To use:</p>
 <div class="section level2">
 <h2 id="geo">orgdata.debug.geo<a class="anchor" aria-label="anchor" href="#geo"></a>
 </h2>
-<p>This option is used to check the code to use for recoding
-geographical codes from the original data to the current geographical
-codes. A new columns called <code>oriGEO</code> will be added consisting
-the geographical codes of the original data as in the <a href="#expl">example</a>.</p>
-<p>Column <code>GEO</code> is the code to recode <code>oriGEO</code>. If
-the value is <code>NA</code> in column <code>GEO</code> then no recode
-will be done for the respective code. The reason is either the codes is
-still valid for the current year or no recode code available/valid and
-will be deleted. A warning will be given.</p>
+<p>This option is used to check the code to use for recoding geographical codes from the original data to the current geographical codes. A new columns called <code>oriGEO</code> will be added consisting the geographical codes of the original data as in the <a href="#expl">example</a>.</p>
+<p>Column <code>GEO</code> is the code to recode <code>oriGEO</code>. If the value is <code>NA</code> in column <code>GEO</code> then no recode will be done for the respective code. The reason is either the codes is still valid for the current year or no recode code available/valid and will be deleted. A warning will be given.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug.geo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># OR</span>
@@ -185,17 +156,14 @@ will be deleted. A warning will be given.</p>
 <div class="section level2">
 <h2 id="reset">reset<a class="anchor" aria-label="anchor" href="#reset"></a>
 </h2>
-<p>When activating any options for <code>orgdata</code>, it will be kept
-active until you actively deactivate it or restart a new R session. You
-can deactivate it with:</p>
+<p>When activating any options for <code>orgdata</code>, it will be kept active until you actively deactivate it or restart a new R session. You can deactivate it with:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/reset_options.html">reset_opt</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="expl">Example output<a class="anchor" aria-label="anchor" href="#expl"></a>
 </h2>
-<p>Here is an example of output after activating
-<code>orgdata.debug.geo</code></p>
+<p>Here is an example of output after activating <code>orgdata.debug.geo</code></p>
 <pre><code>          oriGEO      GEO  AAR KJONN UTDANN TAB1 TAB2 TAB3 TAB4   ANDRE   ANNEN
      1:  1010102 30010102 2019     0     01    2    8    1    1       1       2
      2:  1010102 30010102 2019     0     01    2    5    1    1       1       3
@@ -223,7 +191,7 @@ can deactivate it with:</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>

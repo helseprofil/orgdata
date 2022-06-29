@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Upload
+## Loading
 
 For å aktivere `orgdata` pakke
 
