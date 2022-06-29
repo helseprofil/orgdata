@@ -98,11 +98,13 @@ is_col_num_warn <- function(dt, cols, koblid = NULL){
   return(dt)
 }
 
-# Create dataset for the coercion column
+# Create dataset for the coercion column to show
+# GEO and the coercion codes
 is_col_coercion <- function(dt, col){
-
-  dt[unique(data.table::as.data.table(GEO)), na_col := 1L, on = "GEO", mult = "first"]
-  cols <- c("GEO", "LEVEL", col)
+  selCols <- c("GEO", col)
+  dd <- unique(dt[, ..selCols])
+  dt[dd, na_col := 1L, on = selCols, mult = "first"]
+  cols <- c("GEO", "LEVEL", "AAR", col)
   dt[na_col == 1, ..cols]
 }
 
