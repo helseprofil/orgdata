@@ -42,15 +42,23 @@ dvs. ^
 Les original fil som det er ved å velge FILID
 
 ```
-df <- les_fil(1)
+df <- les_fil(file = 12) #12 er en FILID 
 ```
 
-Aggregere utvalgte filer med KOBLID
+`les_fil()` kan også brukes til å lese data ved å skrive hele stien til filen og kan brukes til å lese filer i flere formater bl.a Excel, Stata, .CSV etc.
+
+```
+df <- les_fil("C:/Users/abc/FileName.csv")
+```
+
+Aggregere utvalgte fil eller filer med KOBLID
 
 ```
 dt <- lag_fil("BEFOLKNING", koblid = 13)
+dt <- lag_fil("BEFOLKNING", koblid = c(13, 15, 20))
 ```
-Les filen og bruk oppsettet i Access
+
+Les filene i en filgruppe og bruk oppsettet som er spesifisert i Access
 
 ```
 dt <- lag_fil("BEFOLKNING")
