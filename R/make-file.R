@@ -35,6 +35,7 @@
 #' }
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`
+#' @importFrom lifecycle deprecated
 #' @family filegroups functions
 #' @export
 make_file <- function(group = NULL,
@@ -45,7 +46,7 @@ make_file <- function(group = NULL,
                       implicitnull = NULL,
                       row = NULL,
                       base = NULL,
-                      parallel = NULL,
+                      parallel = deprecated(),
                       raw = FALSE
                       ) {
 
@@ -59,7 +60,14 @@ make_file <- function(group = NULL,
   if (is.null(implicitnull)) implicitnull <- getOption("orgdata.implicit.null")
   if (is.null(row)) row <- getOption("orgdata.debug.row")
   if (is.null(base)) base <- getOption("orgdata.recode.base")
-  if (is.null(parallel)) parallel <- getOption("orgdata.parallel")
+
+  if (lifecycle::is_present(parallel)){
+    lifecycle::deprecate_stop(
+      when = "0.6.8",
+      what = "make_file(parallel)",
+      details = "Parallel prosessing is now deprecated. Use `KONTROLLERT` solution instead for speed"
+    )
+  }
 
   ## Use argument `raw` as standard value to avoid
   ## resetting the global options
@@ -112,61 +120,17 @@ make_file <- function(group = NULL,
   dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------
-  ## Parallel uses 50% of the cores but not more than 80%
-  useCore <- 0.5
-  if (is.numeric(parallel)){
-    useParallel <- TRUE
-    useCore <- min(parallel, 0.8)
-  } else {
-    useParallel <- parallel
-  }
-
-  if (useParallel){
-    is_package_condition(pkg = list("future.apply", "parallel", "parallelly"),
-                         arg = "parallel")
-
-    options(parallelly.availableCores.custom = function() {
-      ncores <- max(parallel::detectCores(), 1L, na.rm = TRUE)
-      ncores <- min(as.integer(useCore * ncores))
-      max(1L, ncores)
-    })
-
-    future::plan("multisession")
-  }
-
-  if (useParallel){
-    ## p <- progressr::progressor(steps = rowFile)
-    paraMsg1 <- paste0("Start parallel processing ... \U001F680")
-    paraMsg <- paste0("Start parallel processing with ", parallelly::availableCores(), " cores \U001F680")
-    is_verbose(msg = paraMsg)
-
-    DT <- future.apply::future_lapply(seq_len(rowFile),
-                                      function(x) {
-                                        ## p()
-                                        Sys.sleep(0.01)
-                                        do_make_file_each(
-                                          spec = spec[x,],
-                                          fgspec = fgSpec,
-                                          aggregate = aggregate,
-                                          datacols = dataCols,
-                                          year = year,
-                                          row = row,
-                                          base = base,
-                                          duck = duck)},
-                                      future.seed = TRUE)
-  } else {
-    DT <- lapply(seq_len(rowFile),
-                 function(x) {
-                   do_make_file_each(spec = spec[x,],
-                                     fgspec = fgSpec,
-                                     aggregate = aggregate,
-                                     datacols = dataCols,
-                                     year = year,
-                                     row = row,
-                                     base = base,
-                                     duck = duck)
-                 })
-  }
+  DT <- lapply(seq_len(rowFile),
+               function(x) {
+                 do_make_file_each(spec = spec[x,],
+                                   fgspec = fgSpec,
+                                   aggregate = aggregate,
+                                   datacols = dataCols,
+                                   year = year,
+                                   row = row,
+                                   base = base,
+                                   duck = duck)
+               })
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
@@ -219,11 +183,6 @@ make_file <- function(group = NULL,
   ## RENAME STANDARD COLUMNS ---------------------------------
   grpCols <- get_colname(spec = fgSpec)
   outDT <- do_colname(dt = outDT, cols = grpCols)
-
-  if (useParallel){
-    ## Shut down parallel workers
-    future::plan("sequential")
-  }
 
   if (save) {
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
