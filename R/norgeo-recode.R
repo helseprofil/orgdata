@@ -250,6 +250,7 @@ is_grunnkrets_0000 <- function(dt, control = FALSE, ...){
     is_check_geo(notCodes, control)
     is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
     is_verbose(x = logCmd, msg = "To see these codes, run command:")
+    message("Still working ...")
   }
 
   return(dt)
@@ -276,6 +277,7 @@ is_grunnkrets <- function(dt, control = FALSE, ...){
   is_check_geo(notCodes, control = control)
   is_verbose(msg = "99 or 9999 are added to the end of the code respectively")
   is_verbose(x = logCmd, msg = "To see these codes, run command:")
+  message("Still working ...")
 
   for (i in idx){
 
@@ -391,6 +393,7 @@ is_problem_message <- function(mode, codes, control = FALSE, ...){
     is_verbose(x = scode, msg = "The codes:")
     is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
     is_verbose(x = logCmd, msg = "To see these codes, run command:")
+    message("Still working ...")
   }
 
   if (mode == "delete"){
@@ -398,6 +401,7 @@ is_problem_message <- function(mode, codes, control = FALSE, ...){
     is_verbose(x = length(codes), msg = "Number of geo codes fail to recode and are excluded:", type = "warn2")
     is_verbose(x = scode, msg = "The codes:")
     is_verbose(x = logCmd, msg = "To see these codes, run command:")
+    message("Still working ...")
   }
 
   invisible(codes)

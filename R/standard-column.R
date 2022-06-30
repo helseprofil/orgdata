@@ -14,9 +14,9 @@ do_column_standard <- function(dt = NULL, spec = NULL) {
     stop("Input for `spec` must be a 'list' with `old` and `new` names")
   }
 
-  data.table::setnames(dt, names(dt), tolower(names(dt)))
+  data.table::setnames(dt, names(dt), toupper(names(dt)))
   # Ensure older spec with rigit columnames still work
-  spec$old <- tolower(spec$old)
+  spec$old <- toupper(spec$old)
 
   is_check_cols(x = spec$old, y = names(dt))
   data.table::setnames(dt, spec$old, spec$new)
