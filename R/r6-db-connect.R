@@ -158,7 +158,7 @@ is_conn_db <- function(dbname = NULL, db = c("kh", "geo", "raw"), .test = FALSE,
   }
 
   if (db == "raw"){
-    KHelse$new(dbname = dbname, dbtype = "DuckDB", dbyear = getOption("orgdata.year"), ...)
+    KHelse$new(dbname = dbname, dbtype = "DuckDB", ...)
   } else {
     KHelse$new(dbname = dbname, ...)
   }
