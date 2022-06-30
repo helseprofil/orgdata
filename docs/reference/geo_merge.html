@@ -16,7 +16,7 @@ to ie. geo.col."><meta property="og:image" content="https://helseprofil.github.i
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,33 +90,50 @@ to ie. <code>geo.col</code>.</p>
     <dl><dt>id.table</dt>
 <dd><p>ID columname to merge to that is found in the database eg.
 <code>kommune</code></p></dd>
+
+
 <dt>id.file</dt>
 <dd><p>ID columname from the file to merge from. This depends on the
 columnames in the files. If <code>id.table</code> is <code>kommune</code>, then <code>id.file</code> must be
 the columname representing geo codes that is equivalent to <code>kommune</code> codes.
 Both <code>id.table</code> and <code>id.file</code> will be used for merging and these codes must
 be unique.</p></dd>
+
+
 <dt>geo.col</dt>
 <dd><p>Columname where the new geo codes are eg. if the new geo codes
 is on levekaar, then <code>geo.col</code> is the columname where codes for levekaar
 can be found.</p></dd>
+
+
 <dt>geo.level</dt>
 <dd><p>Geographical level of the merged file will be representing
 eg. "levekaar". This will be the value in column <code>level</code> in the <code>tblGeo</code> in
 the database.</p></dd>
+
+
 <dt>file</dt>
 <dd><p>Complete path of filename to merge from</p></dd>
+
+
 <dt>year</dt>
 <dd><p>Year the code is valid for. If not sepecified <code>orgdata.year</code> is
 used.</p></dd>
+
+
 <dt>write</dt>
 <dd><p>Write table to the <code>orgdata.geo</code> database. It will overwrite
 the table if it already exists</p></dd>
+
+
 <dt>table.name</dt>
 <dd><p>Name of the table for geo recode in geocodes database. This
 can be found with <code>getOptions("orgdata.geo")</code>. The default is <code>tblGeo</code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other possible arguments</p></dd>
+
 </dl></div>
 
     <div class="section level2">
@@ -140,7 +157,7 @@ can be found with <code>getOptions("orgdata.geo")</code>. The default is <code>t
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

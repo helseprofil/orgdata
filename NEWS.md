@@ -1,3 +1,6 @@
+# orgdata 0.6.8
+- Standardize arguments names for `see_org()`.
+
 # orgdata 0.6.7
 - Show as data frame when warning `NAs with coercion` instead of just the GEO
   number where the coercion took place (#274)
