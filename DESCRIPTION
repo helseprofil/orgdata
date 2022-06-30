@@ -39,7 +39,7 @@ Imports:
     yaml (>= 2.3.5),
     methods,
     praise (>= 1.0.0),
-    RSQLite (>= 2.2.13)
+    duckdb (>= 0.4.0)
 Remotes:
     ybkamaleri/praise
 Suggests:
