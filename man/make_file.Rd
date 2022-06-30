@@ -15,7 +15,7 @@ make_file(
   implicitnull = NULL,
   row = NULL,
   base = NULL,
-  parallel = NULL,
+  parallel = deprecated(),
   raw = FALSE
 )
 
@@ -28,7 +28,7 @@ lag_fil(
   implicitnull = NULL,
   row = NULL,
   base = NULL,
-  parallel = NULL,
+  parallel = deprecated(),
   raw = FALSE
 )
 
@@ -41,7 +41,7 @@ mf(
   implicitnull = NULL,
   row = NULL,
   base = NULL,
-  parallel = NULL,
+  parallel = deprecated(),
   raw = FALSE
 )
 }
