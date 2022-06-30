@@ -3,7 +3,7 @@
 #'   the column *KONTROLLERT* is marked. This means the dataset has been cleaned
 #'   and recoded as specified in *INNLESING* table in Access registration
 #'   database.
-#' @param name The filegroup name
+#' @param group The filegroup name (\emph{filgruppe})
 #' @inheritParams make_file
 #' @param action To read or delete the data in the database. Default is `read`.
 #' @examples
@@ -11,21 +11,24 @@
 #' dt <- see_org("LESEFERD", koblid = 134)
 #' }
 #' @export
-see_org <- function(name = NULL, koblid  = NULL, action = c("read", "delete")){
+see_org <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read", "delete")){
 
   action <- match.arg(action)
+  if (is.null(year))
+    year <- getOption("orgdata.year")
+
   if (length(action) > 1) action = "read"
-  is_null_both(name, koblid, msg = "Both args can't be empty!")
+  is_null_both(group, koblid, msg = "Both args can't be empty!")
 
   duckPath <- is_path_db(getOption("orgdata.folder.org.db"))
   duckFile <- file.path(duckPath,
                         getOption("orgdata.year"),
-                        paste0( name, ".duckdb" ))
+                        paste0( group, ".duckdb" ))
   if(!(fs::is_file(duckFile))){
-    is_stop("Database file not found for FILGRUPPE:", name)
+    is_stop("Database file not found for FILGRUPPE:", group)
   }
 
-  rcon <- is_conn_db(dbname = name, db = "raw")
+  rcon <- is_conn_db(dbname = group, db = "raw", dbyear = year)
   on.exit(rcon$db_close(), add = TRUE)
 
   dbTables <- DBI::dbListTables(rcon$dbconn)
