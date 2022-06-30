@@ -16,4 +16,6 @@ opt.orgdata <- as.list(opt_rename(optOrg))
   packageStartupMessage(paste("orgdata version",
                               utils::packageDescription("orgdata")[["Version"]]))
 
+  is_latest_version()
+
 }

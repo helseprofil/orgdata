@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,8 +57,16 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.8" id="orgdata-068">orgdata 0.6.8<a class="anchor" aria-label="anchor" href="#orgdata-068"></a></h2>
+<ul><li>Standardize arguments names for <code><a href="../reference/see_org.html">see_org()</a></code>.</li>
+<li>Parallel processing is not deactivated since it doesn’t work smoothly with Access and DuckDB connection ie. DBI package, due to the problem with not-exportable objects for <a href="https://cran.r-project.org/web/packages/future/vignettes/future-4-non-exportable-objects.html" title="future" class="external-link">future</a> package.</li>
+<li>Replace SQLite with DuckDB again due to the speed for DuckDB. But since DuckDB is under active development, the new version might not work with the file created by older version. It such situation older DuckDB database should be deleted and rerun with the newer DuckDB version.</li>
+<li>When loading the package, users will be reminded whenever new version is available.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.7" id="orgdata-067">orgdata 0.6.7<a class="anchor" aria-label="anchor" href="#orgdata-067"></a></h2>
-<ul><li>Show as data frame when warning <code>NAs with coercion</code> instead of just the GEO number where the coercion took place (<a href="https://github.com/helseprofil/orgdata/issues/274" class="external-link">#274</a>)</li></ul></div>
+<ul><li>Show as data frame when warning <code>NAs with coercion</code> instead of just the GEO number where the coercion took place (<a href="https://github.com/helseprofil/orgdata/issues/274" class="external-link">#274</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.6" id="orgdata-066">orgdata 0.6.6<a class="anchor" aria-label="anchor" href="#orgdata-066"></a></h2>
 <ul><li>Replace DuckDB with SQLite (<a href="https://github.com/helseprofil/orgdata/issues/271" class="external-link">#271</a>)</li>
@@ -66,7 +74,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.5" id="orgdata-065">orgdata 0.6.5<a class="anchor" aria-label="anchor" href="#orgdata-065"></a></h2>
-<ul><li>Use ellipsis for other arguments of <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html" class="external-link">data.table::fwrite()</a></code> in <code><a href="../reference/save_file.html">save_file()</a></code> function.</li></ul></div>
+<ul><li>Use ellipsis for other arguments of <code><a href="https://Rdatatable.gitlab.io/data.table/reference/fwrite.html" class="external-link">data.table::fwrite()</a></code> in <code><a href="../reference/save_file.html">save_file()</a></code> function.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.4" id="orgdata-064">orgdata 0.6.4<a class="anchor" aria-label="anchor" href="#orgdata-064"></a></h2>
 <ul><li>Implicit null for number of geo digits is moved to config file. This make it easy to maintain and expand.</li>
@@ -75,13 +84,16 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.3" id="orgdata-063">orgdata 0.6.3<a class="anchor" aria-label="anchor" href="#orgdata-063"></a></h2>
-<ul><li>Reshape multiple columns containing more than one <code>VAL</code> is handled properly. When reshaping multiple columns to be just one <code>VAL</code> then leaving <code>RESHAPE_VAL</code> empty ie. use all columns not defined in <code>RESHAPE_ID</code> should work as before (<a href="https://github.com/helseprofil/orgdata/issues/269" class="external-link">#269</a>)</li></ul></div>
+<ul><li>Reshape multiple columns containing more than one <code>VAL</code> is handled properly. When reshaping multiple columns to be just one <code>VAL</code> then leaving <code>RESHAPE_VAL</code> empty ie. use all columns not defined in <code>RESHAPE_ID</code> should work as before (<a href="https://github.com/helseprofil/orgdata/issues/269" class="external-link">#269</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.2" id="orgdata-062">orgdata 0.6.2<a class="anchor" aria-label="anchor" href="#orgdata-062"></a></h2>
-<ul><li>Give more information when error to reshape data, especially long reshape. Most of the time the source of error is in defining <code>RESHAPE_KOL</code> and <code>RESHAPE_VAL</code> (<a href="https://github.com/helseprofil/orgdata/issues/268" class="external-link">#268</a>)</li></ul></div>
+<ul><li>Give more information when error to reshape data, especially long reshape. Most of the time the source of error is in defining <code>RESHAPE_KOL</code> and <code>RESHAPE_VAL</code> (<a href="https://github.com/helseprofil/orgdata/issues/268" class="external-link">#268</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.1" id="orgdata-061">orgdata 0.6.1<a class="anchor" aria-label="anchor" href="#orgdata-061"></a></h2>
-<ul><li>Can reshape multiple columns when reshaping to LONG. Applicable when there are multiple columns represent number of cases and one column represent denominator for all these numerators (<a href="https://github.com/helseprofil/orgdata/issues/266" class="external-link">#266</a>)</li></ul></div>
+<ul><li>Can reshape multiple columns when reshaping to LONG. Applicable when there are multiple columns represent number of cases and one column represent denominator for all these numerators (<a href="https://github.com/helseprofil/orgdata/issues/266" class="external-link">#266</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.0" id="orgdata-060">orgdata 0.6.0<a class="anchor" aria-label="anchor" href="#orgdata-060"></a></h2>
 <ul><li>Use <em>KOBLID</em> to add or delete from Duck database (<a href="https://github.com/helseprofil/orgdata/issues/261" class="external-link">#261</a>)</li>
@@ -100,7 +112,7 @@
 <code><a href="../reference/read_file.html">read_file()</a></code> accept Stata file with <code>dta</code> extension (<a href="https://github.com/helseprofil/orgdata/issues/252" class="external-link">#252</a>)</li>
 <li>Use yaml format for global configuration file to ease update. The file is located in <a href="https://github.com/helseprofil/config/blob/main/config-orgdata.yml" class="external-link">config repo</a> (<a href="https://github.com/helseprofil/orgdata/issues/256" class="external-link">#256</a>)</li>
 <li>Raw data that have been controlled for are saved in DuckDB database format. This increase reading speed especially for big files. Mark column <em>KONTROLLERT</em> in the Access registration database to activate this function. Unmark to read from the original raw file instead. (<a href="https://github.com/helseprofil/orgdata/issues/257" class="external-link">#257</a>)</li>
-<li>Use <code><a href="../reference/see_org.html">see_org()</a></code> to read the raw data in the database. Argument <code>action = "delete"</code> can be used to delete the data from the raw database.</li>
+<li>Use <code><a href="../reference/see_org.html">see_org()</a></code> to read the raw data in the database. Argument <code>action =   "delete"</code> can be used to delete the data from the raw database.</li>
 <li>Function <code><a href="../reference/geo_merge.html">geo_merge()</a></code> for merging geo codes that aren’t available from API to the mapping table ie. <em>tblGeo</em>, in the geo database. The data could be in any file format accepted by <code><a href="../reference/read_file.html">read_file()</a></code> function. The data to be merged must have column to be merged ie. <code>id.file</code>, that is equivalent to the column id in the database ie. <code>id.table</code>. The <code>id.file</code> must be unique.</li>
 <li>Handle unbalanced parentheses in post recode whenever possible when <code>raw</code> is used, else give error message. <a href="https://github.com/helseprofil/orgdata/issues/246" class="external-link">#246</a></li>
 <li>
@@ -211,7 +223,7 @@
 <li>Fixed <a href="https://github.com/helseprofil/orgdata/issues/57" class="external-link">#57</a> split column with duplicated values will keep the original column (<a href="https://github.com/helseprofil/orgdata/issues/60" class="external-link">#60</a>)</li>
 <li>Fixed <a href="https://github.com/helseprofil/orgdata/issues/56" class="external-link">#56</a> aggregate all VAL columns whenever specified and not only specific to <code>VAL1</code> (<a href="https://github.com/helseprofil/orgdata/issues/62" class="external-link">#62</a>)</li>
 <li>Edit verbose messages</li>
-<li>Reshape dataset from wide to long. Reshape can have more than one <code>measure variables</code>. Please read how this is specified in Access registration database.</li>
+<li>Reshape dataset from wide to long. Reshape can have more than one <code>measure   variables</code>. Please read how this is specified in Access registration database.</li>
 <li>Split columns must have equal number of values to the defined <code>SPLITTIL</code>. Duplicate the value if it is less than the maximum <code>SPLITTIL</code>. For example for value <code>0</code> in column <code>LANDSSB</code> which will be split into <code>LANDBAK</code> and <code>INNVKAT</code>, the value will be duplicated into <code>00</code> to avoid split with value <code>NA</code>.</li>
 <li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code>do_aggregate_recode_standard()</code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_num()</code>.</li>
 </ul></div>
@@ -246,7 +258,7 @@
 <ul><li><p>When MANHEADER is used then the new columname must be specified in the respective standard column (<a href="https://github.com/helseprofil/orgdata/issues/21" class="external-link">#21</a>)</p></li>
 <li><p>Deprecated arguments <code>geo</code> and <code>val</code> in <code>make_file</code>. Output data must use standard columnames instead of keeping the columnames from original dataset.</p></li>
 <li><p>Rename functions <code>read_raw</code> or <code>lesraw</code> to <code>make_file</code> or <code>lag_fil</code> (<a href="https://github.com/helseprofil/orgdata/issues/27" class="external-link">#27</a>)</p></li>
-<li><p>Alle functions uses underscore "_" for both english and norwegian.</p></li>
+<li><p>Alle functions uses underscore “_” for both english and norwegian.</p></li>
 <li><p>Add new columns if one of the standard columns is missing in the original data. The value to be inserted to the new column must use symbol less than <code>&lt;</code> and more than <code>&gt;</code>. For instance when column <code>KJONN</code> doesn’t exist in the original data, we can specify with <code>&lt;2&gt;</code> in under column <code>KJONN</code> in the Access registration database. The output will add a new column <code>KJONN</code> with value <code>2</code>. (<a href="https://github.com/helseprofil/orgdata/issues/15" class="external-link">#15</a>)</p></li>
 <li><p>Fix <a href="https://github.com/helseprofil/orgdata/issues/13" class="external-link">#13</a> and <a href="https://github.com/helseprofil/orgdata/issues/18" class="external-link">#18</a></p></li>
 <li><p>Default <code>orgdata.verbose</code> is <code>TRUE</code>.</p></li>
@@ -262,7 +274,8 @@
 <p>Order standard columns in the output dataset with this order for the first four columns:</p>
 <ul><li>
 <code>GEO</code>, <code>AAR</code>, <code>ALDER</code>, <code>KJONN</code>
-</li></ul></li>
+</li>
+</ul></li>
 <li><p>Change norwegian name for <code>save_file</code> from <code>lagfil</code> to <code>lagrefil</code>.</p></li>
 <li><p>Use column name <code>KOLNAVN</code> instead of <code>ADDKOL</code>.</p></li>
 <li><p>Rename function <code>do_addcols</code> and <code>get_addcols</code> to <code>do_colname</code> and <code>get_colname</code> to be consistent with the changes in Access registration database.</p></li>
@@ -302,7 +315,8 @@
 <div class="section level3">
 <h3 id="orgdata---alpha-0-0-1-2">orgdata 0.0.2 - alpha<a class="anchor" aria-label="anchor" href="#orgdata---alpha-0-0-1-2"></a></h3>
 <p>Things that are implemented</p>
-<ul><li>Bla.. bla.. bla..</li></ul></div>
+<ul><li>Bla.. bla.. bla..</li>
+</ul></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
@@ -313,7 +327,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

@@ -158,7 +158,7 @@ is_conn_db <- function(dbname = NULL, db = c("kh", "geo", "raw"), .test = FALSE,
   }
 
   if (db == "raw"){
-    KHelse$new(dbname = dbname, dbtype = "DuckDB", dbyear = getOption("orgdata.year"), ...)
+    KHelse$new(dbname = dbname, dbtype = "DuckDB", ...)
   } else {
     KHelse$new(dbname = dbname, ...)
   }
@@ -174,14 +174,14 @@ connect_db <- function(dbname, dbtype, dbyear, dbdriver){
                           encoding = "latin1")
          },
          DuckDB = {
-           duckFile <- paste0(dbname, ".db")
+           duckFile <- paste0(dbname, ".duckdb")
            duckPath <- is_path_db(getOption("orgdata.folder.org.db"))
            duckRoot <- file.path(duckPath, dbyear)
            if (!fs::dir_exists(duckRoot)){
              fs::dir_create(duckRoot)
            }
 
-           DBI::dbConnect(RSQLite::SQLite(), file.path(duckRoot, duckFile))
+           DBI::dbConnect(duckdb::duckdb(), file.path(duckRoot, duckFile))
          })
 
 }

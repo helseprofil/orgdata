@@ -19,13 +19,6 @@ make_filegroups <- function(...){
   options(orgdata.verbose = FALSE)
   on.exit(reset_opt())
 
-  if (isFALSE(getOption("orgdata.parallel"))){
-    para <- utils::askYesNo("Do you want to run parallelly?")
-    if (para){
-      withr::local_options(list(orgdata.parallel = TRUE))
-    }
-  }
-
   fgp <- tryCatch({
     unlist(list(...))
   },

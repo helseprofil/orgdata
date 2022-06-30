@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,8 +81,9 @@
 
 
 
-<script src="sepaafil_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <main id="main"><div class="page-header">
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>SePaaFil</h1>
             
       
@@ -103,26 +104,32 @@
 <p>Oppdatere pakken når ny versjon er tilgjengelig</p>
 <pre><code><span class="fu"><a href="../reference/update_orgdata.html">update_orgdata</a></span><span class="op">(</span><span class="op">)</span></code></pre>
 <hr>
-<p>HUSK Å ALLTID TILORDNE ET OBJEKT for <code><a href="../reference/make_file.html">make_file()</a></code> og <code><a href="../reference/read_file.html">read_file()</a></code>!</p>
+<p>HUSK Å ALLTID TILORDNE ET OBJEKT for <code><a href="../reference/make_file.html">make_file()</a></code> og
+<code><a href="../reference/read_file.html">read_file()</a></code>!</p>
 <pre><code>  dt &lt;- make_file()
 dvs. ^</code></pre>
 <p>Les original fil som det er ved å velge FILID</p>
 <pre><code><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> <span class="co">#12 er en FILID </span></code></pre>
-<p><code><a href="../reference/read_file.html">les_fil()</a></code> kan også brukes til å lese data ved å skrive hele stien til filen og kan brukes til å lese filer i flere formater bl.a Excel, Stata, .CSV etc.</p>
+<p><code><a href="../reference/read_file.html">les_fil()</a></code> kan også brukes til å lese data ved å skrive
+hele stien til filen og kan brukes til å lese filer i flere formater
+bl.a Excel, Stata, .CSV etc.</p>
 <pre><code><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span><span class="st">"C:/Users/abc/FileName.csv"</span><span class="op">)</span></code></pre>
 <p>Aggregere utvalgte fil eller filer med KOBLID</p>
 <pre><code><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>
 <span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></code></pre>
-<p>Les filene i en filgruppe og bruk oppsettet som er spesifisert i Access</p>
+<p>Les filene i en filgruppe og bruk oppsettet som er spesifisert i
+Access</p>
 <pre><code><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span>
-<span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#bruk parallel prosessing</span></code></pre>
+<span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#les fra original filen hvis allerede er KONTROLLERT</span></code></pre>
 <p>Lagre CSV fil</p>
 <pre><code><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">dt</span>, <span class="st">"BEFOLKNING"</span><span class="op">)</span></code></pre>
 <p>Å lagre det et annet sted</p>
 <pre><code><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">dt</span>, name <span class="op">=</span> <span class="st">"MinFil"</span>, path <span class="op">=</span> <span class="st">"C:/Navn/Til/Mappen"</span><span class="op">)</span></code></pre>
 <p>Evt. hvis alle filer har ingen feil</p>
 <pre><code><span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre>
-<p>Hvis filene har blitt kontrollert så kan man lagre flere FILGRUPPER med en gang, du velger selv måten du liker å gjøre det. FILGRUPPE blir lagret som csv direkte. Ingen feilmelding er gitt.</p>
+<p>Hvis filene har blitt kontrollert så kan man lagre flere FILGRUPPER
+med en gang, du velger selv måten du liker å gjøre det. FILGRUPPE blir
+lagret som csv direkte. Ingen feilmelding er gitt.</p>
 <pre><code><span class="va">fgp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, <span class="st">"NEET"</span>, <span class="st">"DODE"</span><span class="op">)</span> <span class="co">#med " "</span>
 <span class="fu"><a href="../reference/make_filegroups.html">lag_filgrupper</a></span><span class="op">(</span><span class="va">fgp</span><span class="op">)</span></code></pre>
 <p>Eller</p>
@@ -131,7 +138,9 @@ dvs. ^</code></pre>
 <div class="section level2">
 <h2 id="tips-and-tricks">Tips and Tricks<a class="anchor" aria-label="anchor" href="#tips-and-tricks"></a>
 </h2>
-<p>Lest bare et bestemt antall rader f.eks 5 rader kan også brukes andre argumenter f.eks header = FALSE, skip = 0, sep = ; osv. Sjekk dokumentet.</p>
+<p>Lest bare et bestemt antall rader f.eks 5 rader kan også brukes andre
+argumenter f.eks header = FALSE, skip = 0, sep = ; osv. Sjekk
+dokumentet.</p>
 <pre><code><span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fl">1</span>, nrows <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre>
 <p>Sjekk koding:</p>
 <pre><code><span class="co"># Sjekk kategorier evt. omkoding</span>
@@ -204,7 +213,7 @@ dvs. ^</code></pre>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer>
