@@ -3,6 +3,7 @@
 - Parallel processing is not deactivated since it doesn't work smoothly with
   Access and DuckDB connection ie. DBI package, due to the problem with not-exportable objects for [future](https://cran.r-project.org/web/packages/future/vignettes/future-4-non-exportable-objects.html "future") package. 
 - Replace SQLite with DuckDB again due to the speed for DuckDB. But since DuckDB is under active development, the new version might not work with the file created by older version. It such situation older DuckDB database should be deleted and rerun with the newer DuckDB version.
+- When loading the package, users will be reminded whenever new version is available.
 
 # orgdata 0.6.7
 - Show as data frame when warning `NAs with coercion` instead of just the GEO
