@@ -1,3 +1,6 @@
+# orgdata 0.6.9
+- Make standard columns should be uppercase. Lowercase creates error when GEO comes from two separate columns when handling recode from codebook (#277)
+
 # orgdata 0.6.8
 - Standardize arguments names for `see_org()`.
 - Parallel processing is not deactivated since it doesn't work smoothly with
