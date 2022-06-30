@@ -141,6 +141,8 @@ is_option_active <- function(){
 
 # Check version
 is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Version"]]){
+
+  V1 <- V2 <- NULL
   gitDes <- fread("https://raw.githubusercontent.com/helseprofil/orgdata/main/DESCRIPTION", nrows = 4, fill = TRUE)
   gitVer <- gitDes[V1 %like% "Version", V2]
 

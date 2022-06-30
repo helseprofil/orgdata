@@ -4,12 +4,15 @@
 \alias{see_org}
 \title{See Original Data in the Database}
 \usage{
-see_org(name = NULL, koblid = NULL, action = c("read", "delete"))
+see_org(group = NULL, koblid = NULL, year = NULL, action = c("read", "delete"))
 }
 \arguments{
-\item{name}{The filegroup name}
+\item{group}{The filegroup name (\emph{filgruppe})}
 
 \item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
+
+\item{year}{Which year the geograhical codes to be recoded to. If it is empty
+then global option for \code{orgdata.year} will be used.}
 
 \item{action}{To read or delete the data in the database. Default is \code{read}.}
 }
