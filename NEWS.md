@@ -1,5 +1,7 @@
 # orgdata 0.6.8
 - Standardize arguments names for `see_org()`.
+- Parallel processing is not deactivated since it doesn't work smoothly with
+  Access and DuckDB connection ie. DBI package, due to the problem with not-exportable objects for [future](https://cran.r-project.org/web/packages/future/vignettes/future-4-non-exportable-objects.html "future") package. 
 
 # orgdata 0.6.7
 - Show as data frame when warning `NAs with coercion` instead of just the GEO

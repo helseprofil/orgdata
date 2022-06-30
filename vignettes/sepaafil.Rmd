@@ -62,7 +62,7 @@ Les filene i en filgruppe og bruk oppsettet som er spesifisert i Access
 
 ```
 dt <- lag_fil("BEFOLKNING")
-dt <- lag_fil("BEFOLKNING", parallel = TRUE) #bruk parallel prosessing
+dt <- lag_fil("BEFOLKNING", raw = TRUE) #les fra original filen hvis allerede er KONTROLLERT
 ```
 
 Lagre CSV fil
