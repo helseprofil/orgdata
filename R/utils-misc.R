@@ -168,6 +168,6 @@ is_online <- function(x){
     TRUE
   },
   error = function(e) FALSE,
-  warning = function(w) FALSE
+  warning = function(w) tryInvokeRestart("muffleWarning")
   )
 }
