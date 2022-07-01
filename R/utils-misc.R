@@ -151,7 +151,9 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
     gitDes <- data.table::fread("https://raw.githubusercontent.com/helseprofil/orgdata/main/DESCRIPTION", nrows = 4, fill = TRUE)
     gitVer <- gitDes[V1 %like% "Version", V2]
 
-    if(ver != gitVer){
+    newVer <- numeric_version(gitVer) > numeric_version(ver)
+
+    if(newVer){
       is_color_txt(gitVer, "New version is available for update!", type = "note", emoji = TRUE, symbol = "thumb")
     }
   } else {
