@@ -1,3 +1,7 @@
+# orgdata 0.6.10
+- Some text editing here and there.
+- Function `is_colour_txt()` can specify symbol directly without needing to rely on the global options or to use `withr` package. Just for cosmetic purposes :smiley:
+
 # orgdata 0.6.9
 - Standard columns should be uppercase. Using lowercase creates error when GEO comes
   from two separated columns especially when handling recode from codebook (#277)
