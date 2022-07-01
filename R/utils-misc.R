@@ -152,7 +152,7 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
     gitVer <- gitDes[V1 %like% "Version", V2]
 
     if(ver != gitVer){
-      is_color_txt(gitVer, "New version is available for update!")
+      is_color_txt(gitVer, "New version is available for update!", type = "note", emoji = TRUE, symbol = "thumb")
     }
   } else {
     is_color_txt("", "You have no internet connection!",
