@@ -58,13 +58,13 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.9" id="orgdata-069">orgdata 0.6.9<a class="anchor" aria-label="anchor" href="#orgdata-069"></a></h2>
-<ul><li>Make standard columns should be uppercase. Lowercase creates error when GEO comes from two separate columns when handling recode from codebook (<a href="https://github.com/helseprofil/orgdata/issues/277" class="external-link">#277</a>)</li>
+<ul><li>Standard columns should be uppercase. Using lowercase creates error when GEO comes from two separated columns especially when handling recode from codebook (<a href="https://github.com/helseprofil/orgdata/issues/277" class="external-link">#277</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.8" id="orgdata-068">orgdata 0.6.8<a class="anchor" aria-label="anchor" href="#orgdata-068"></a></h2>
-<ul><li>Standardize arguments names for <code><a href="../reference/see_org.html">see_org()</a></code>.</li>
-<li>Parallel processing is not deactivated since it doesn’t work smoothly with Access and DuckDB connection ie. DBI package, due to the problem with not-exportable objects for <a href="https://cran.r-project.org/web/packages/future/vignettes/future-4-non-exportable-objects.html" title="future" class="external-link">future</a> package.</li>
-<li>Replace SQLite with DuckDB again due to the speed for DuckDB. But since DuckDB is under active development, the new version might not work with the file created by older version. It such situation older DuckDB database should be deleted and rerun with the newer DuckDB version.</li>
+<ul><li>Standardize arguments names in <code><a href="../reference/see_org.html">see_org()</a></code> function.</li>
+<li>Parallel processing is deactivated since it doesn’t work smoothly with Access and DuckDB connection ie. DBI package, due to the problem with not-exportable objects for <a href="https://cran.r-project.org/web/packages/future/vignettes/future-4-non-exportable-objects.html%20%22future%22" class="external-link">future</a> package.</li>
+<li>Replace SQLite with DuckDB again due to the speed for DuckDB. But since DuckDB is under active development, the new version might not work with the file created by older version. In such situation older DuckDB database should be deleted and re-run with the newer DuckDB version.</li>
 <li>When loading the package, users will be reminded whenever new version is available.</li>
 </ul></div>
     <div class="section level2">
