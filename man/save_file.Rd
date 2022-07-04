@@ -36,7 +36,7 @@ database else file will be saved in default folder
 \verb{C:\\Users\\YourUserName\\orgdata_logs}. The default folder will be created if
 not exist.}
 
-\item{date}{Use date and time as part of the filename}
+\item{date}{Logical value. If TRUE then use date and time as part of the filename. Default is FALSE.}
 
 \item{fgSpec}{File group specification from Access registration database}
 
