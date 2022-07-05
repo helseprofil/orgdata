@@ -134,7 +134,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
     withr::with_options(list(orgdata.emoji = "safe"),
                         is_color_txt(x = "",
-                                     msg = "Updating dataset to the database ...",
+                                     msg = "Updating dataset in the database ...",
                                      type = "debug", emoji = TRUE))
     duck$db_write(name = tblKoblid, value = dt, write = TRUE)
   }
