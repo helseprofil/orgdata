@@ -143,12 +143,33 @@ is_option_active <- function(){
 is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Version"]]){
 
   V1 <- V2 <- NULL
-  gitDes <- fread("https://raw.githubusercontent.com/helseprofil/orgdata/main/DESCRIPTION", nrows = 4, fill = TRUE)
-  gitVer <- gitDes[V1 %like% "Version", V2]
+  desc <- "https://raw.githubusercontent.com/helseprofil/orgdata/main/DESCRIPTION"
 
-  if(ver != gitVer){
-    is_color_txt(gitVer, "New version is available for update!")
+  isOn <- is_online(desc)
+
+  if (isOn){
+    gitDes <- data.table::fread("https://raw.githubusercontent.com/helseprofil/orgdata/main/DESCRIPTION", nrows = 4, fill = TRUE)
+    gitVer <- gitDes[V1 %like% "Version", V2]
+
+    newVer <- numeric_version(gitVer) > numeric_version(ver)
+
+    if(newVer){
+      is_color_txt(gitVer, "New version is available for update!", type = "note", emoji = TRUE, symbol = "thumb")
+    }
+  } else {
+    is_color_txt("", "You have no internet connection!",
+                 type = "error", emoji = TRUE, symbol = "sad")
   }
 
   invisible()
+}
+
+is_online <- function(x){
+  tryCatch({
+    readLines(x, n=1)
+    TRUE
+  },
+  error = function(e) FALSE,
+  warning = function(w) tryInvokeRestart("muffleWarning")
+  )
 }

@@ -234,10 +234,13 @@ is_colour_txt <- function(x, msg,
                           type = c("note", "warn", "warn2",
                                    "error", "error2", "other", "debug"),
                           emoji = FALSE,
-                          symbol = "mark"){
+                          symbol = NULL){
   ## msg - Message to display
   ## x - Object to display in the message
   ## emoji - Add emoji
+
+  if (is.null(symbol))
+    symbol <- getOption("orgdata.emoji")
 
   type <- match.arg(arg = type)
 
@@ -261,7 +264,7 @@ is_colour_txt <- function(x, msg,
                    other = otherClr(paste0(msg)),
                    debug = debugClr(paste0(msg, " ", crayon::green(x))))
 
-  symb <- switch(getOption("orgdata.emoji"),
+  symb <- switch(symbol,
                  thumb = "\U0001F44D",
                  write = "\U00270D",
                  mark = "\U0002713",

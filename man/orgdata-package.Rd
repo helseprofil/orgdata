@@ -27,7 +27,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item KHelse group (https://www.fhi.no/hn/folkehelse) [contributor, reviewer]
+  \item FHI KHelse group (https://www.fhi.no/hn/folkehelse) [contributor, reviewer]
 }
 
 }

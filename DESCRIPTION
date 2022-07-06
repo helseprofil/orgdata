@@ -1,13 +1,13 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 0.6.9
+Version: 0.6.10
 Authors@R:
     c(person(given = "Yusman",
              family = "Kamaleri",
              role = c("aut", "cre"),
              email = "ybka@fhi.no",
              comment = c(ORCID = "0000-0001-5014-3665")),
-      person(given = "KHelse group",
+      person(given = "FHI KHelse group",
              role = c("ctb", "rev"),
              comment = "https://www.fhi.no/hn/folkehelse"))
 Description: Cleaning, restructuring and aggregating original data

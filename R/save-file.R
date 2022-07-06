@@ -13,7 +13,7 @@
 #'   database else file will be saved in default folder
 #'   `C:\Users\YourUserName\orgdata_logs`. The default folder will be created if
 #'   not exist.
-#' @param date Use date and time as part of the filename
+#' @param date Logical value. If TRUE then use date and time as part of the filename. Default is FALSE.
 #' @param fgSpec File group specification from Access registration database
 #' @param sep The separator between columns. Default is `";"`
 #' @param ... Other arguments for `data.table::fwrite`

@@ -44,9 +44,10 @@ df <- make_file("BEFOLKNING", save = TRUE)
 
 It is advisable to mark the file as *KONTROLLERT* in the Access Database under
 table for *original files* when you have checked the output. This will ensure
-shorter process time when you run `make_file()` again because it will not re-run
-all the cleaning and recording processes as they are allready saved in a
-database. The database can be found in *../PRODUKSJON/STYRING/raw-khelse/org_database*
+shorter processing time when you re-run `make_file()` because it will skip all
+the cleaning and recording processes. This is because they are allready saved in
+the database. The database can be found in
+*../PRODUKSJON/STYRING/raw-khelse/org_database*
 
 ## Aggregate selected files only
 
@@ -62,9 +63,9 @@ df <- make_file("BEFOLKNING", c(4,10,15))
 
 ## Process files without aggregating
 
-When there is a need to look at the file prior to being aggregated. You could
-specify argument `aggregate` as `FALSE`. You could also activate it globally via
-`options`.
+When there is a need to look at the file prior to aggregating it. You could
+specify argument `aggregate` as `FALSE`. The same behavior could also be
+achieved by activating it globally via `options`.
 
 ```r
 df <- make_file("BEFOLKNING", aggregate = FALSE)

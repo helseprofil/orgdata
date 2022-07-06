@@ -15,7 +15,6 @@ devtools::check(env_vars = c(ORGDATA_TEST = "true"))
 devtools::document()
 
 ## devtools::build()
-
 pkgdown::build_site(new_process = FALSE)
 pkgdown::build_site()
 pkgdown::preview_site()

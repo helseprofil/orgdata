@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.10</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,9 +117,9 @@ directly as a <code>.csv</code> file with argument
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>It is advisable to mark the file as <em>KONTROLLERT</em> in the
 Access Database under table for <em>original files</em> when you have
-checked the output. This will ensure shorter process time when you run
-<code><a href="../reference/make_file.html">make_file()</a></code> again because it will not re-run all the
-cleaning and recording processes as they are allready saved in a
+checked the output. This will ensure shorter processing time when you
+re-run <code><a href="../reference/make_file.html">make_file()</a></code> because it will skip all the cleaning
+and recording processes. This is because they are allready saved in the
 database. The database can be found in
 <em>../PRODUKSJON/STYRING/raw-khelse/org_database</em></p>
 </div>
@@ -137,9 +137,10 @@ example below is for selecting one and few files respectively.</p>
 <div class="section level2">
 <h2 id="process-files-without-aggregating">Process files without aggregating<a class="anchor" aria-label="anchor" href="#process-files-without-aggregating"></a>
 </h2>
-<p>When there is a need to look at the file prior to being aggregated.
-You could specify argument <code>aggregate</code> as <code>FALSE</code>.
-You could also activate it globally via <code>options</code>.</p>
+<p>When there is a need to look at the file prior to aggregating it. You
+could specify argument <code>aggregate</code> as <code>FALSE</code>. The
+same behavior could also be achieved by activating it globally via
+<code>options</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
