@@ -76,5 +76,5 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 
 ## Contributors
 
-<!-- readme: contributors -start -->
+<!-- readme: <ybkamaleri>, contributors -start -->
 <!-- readme: contributors -end -->
