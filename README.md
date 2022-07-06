@@ -74,8 +74,8 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 -   [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
 -   [Video guide](https://youtu.be/PhEQq4iWJCY)
 
-<a href = "https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
-<img src = "https://contrib.rocks/image?repo = GitHub_username/repository_name"/>
+<a href = "https://github.com/helseprofil/orgdata/graphs/contributors">
+<img src = "https://contrib.rocks/image?repo = helseprofil/orgdata"/>
 </a>
 
 Made with [contributors-img](https://contrib.rocks).
