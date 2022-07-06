@@ -73,3 +73,8 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
     slides](https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1)
 -   [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
 -   [Video guide](https://youtu.be/PhEQq4iWJCY)
+
+## Contributors
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
