@@ -92,10 +92,14 @@ make_file <- function(group = NULL,
   on.exit(duck$db_close(), add = TRUE)
 
   ## SPECIFICATIONS ----------------------------------------
+  today <- format(Sys.time(), "#%Y-%m-%d#")
+
   spec <- find_spec(
     file = "specification.sql",
-    value = group,
-    con = kh$dbconn
+    char = group,
+    char2 = today,
+    con = kh$dbconn,
+    date = TRUE
   )
   ## data.table::setDT(spec)
   ## TODO Can't use DT yet. Some functions are still

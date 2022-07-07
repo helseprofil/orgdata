@@ -29,6 +29,7 @@
 #' @param char First input value to be added in the query
 #' @param char2 Second input value to be added in the query
 #' @param opposite TRUE if second input value will be read before first input value
+#' @param ... Extra argument for reading SQL file eg. date = TRUE
 #' @return Out put will be a data.frame.
 #' @examples
 #' \dontrun{
@@ -42,9 +43,9 @@ find_spec <- function(file = NULL,
                       external = FALSE,
                       char = NULL,
                       char2 = NULL,
-                      opposite = FALSE) {
+                      opposite = FALSE, ...) {
   is_null(con)
-  qs <- is_query(file, value, external, char, char2, opposite)
+  qs <- is_query(file, value, external, char, char2, opposite, ...)
   DBI::dbGetQuery(con, qs)
 }
 
@@ -57,7 +58,8 @@ is_query <- function(file = NULL,
                      external = FALSE,
                      char = NULL,
                      char2 = NULL,
-                     opposite = FALSE) {
+                     opposite = FALSE,
+                     ...) {
   is_null(file)
   is_not_null_both(value, char)
   is_not_null_both(value, char2)
@@ -74,18 +76,25 @@ is_query <- function(file = NULL,
   if (!is.null(value)) {
     qry <- sprintf(txt, value)
   } else {
-    qry <- is_opposite(txt, char, char2, opposite)
+    qry <- is_opposite(txt, char, char2, opposite, ...)
   }
+
 }
 
 ## Helper ----------------------------------------------------
 
-is_opposite <- function(txt, char, char2, opposite){
+is_opposite <- function(txt, char, char2, opposite, date = FALSE){
+
+  if (date){
+    txt <- is_spec_date()
+  }
+
   if (opposite){
     out <- sprintf(txt, char2, char)
   } else {
     out <- sprintf(txt, char, char2)
   }
+
 }
 
 ## SQL code need sprintf for dynamic query
@@ -96,4 +105,15 @@ is_sql_code <- function(x) {
   }
 
   invisible(x)
+}
+
+is_spec_date <- function(){
+  "SELECT KOBLID, tbl_Koble.FILID, tbl_Koble.FILGRUPPE, FILNAVN, IBRUKTIL, KONTROLLERT, tbl_Innlesing.*\n
+     FROM tbl_Innlesing\nINNER JOIN (tbl_Koble\n
+            INNER JOIN tbl_Orgfile\n
+            ON tbl_Koble.FILID = tbl_Orgfile.FILID)\n
+     ON tbl_Koble.LESID = tbl_Innlesing.LESID\n
+     AND tbl_Koble.FILGRUPPE = tbl_Innlesing.FILGRUPPE\n
+     WHERE tbl_Koble.FILGRUPPE = '%s'\n
+     AND tbl_Orgfile.IBRUKTIL >= %s"
 }
