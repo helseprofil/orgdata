@@ -1,3 +1,6 @@
+# orgdata 0.7.0
+- Filter active files with date was done pragmatically ie. alle file with `BRUKTIL` date other than `01-01-9999` will be excluded. Now filtering with date will be compared against current date. (#272)
+
 # orgdata 0.6.10
 - Some text editing here and there.
 - Function `is_colour_txt()` can specify symbol directly without needing to rely on the global options or to use `withr` package. Just for cosmetic purposes :smiley:
