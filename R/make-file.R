@@ -98,8 +98,7 @@ make_file <- function(group = NULL,
     file = "specification.sql",
     char = group,
     char2 = today,
-    con = kh$dbconn,
-    date = TRUE
+    con = kh$dbconn
   )
   ## data.table::setDT(spec)
   ## TODO Can't use DT yet. Some functions are still
