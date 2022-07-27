@@ -7,13 +7,16 @@
 #'   } file, [haven::read_dta()] is used and all other arguments for
 #'   \code{read_dta} function can be used.
 #' @description Nevertheless, some most used arguments are standardized for
-#'   `read_file()` and there are: \itemize{ \item `nrows` to display maksimum
-#'   numbers to read \item `header` FALSE to give default columnames as `V1`,
-#'   `V2` etc \item `skip` a specific number of raws before reading the data
-#'   \item `trimws` to trim leading and trailing whitespace \item `na` for
-#'   character value to be interpreted as `NA` }
+#'   `read_file()` and they are:
+#'     \itemize{ \item `nrows` to display maksimum
+#'                  numbers of rows to read
+#'               \item `header` FALSE to give default columnames as `V1`,
+#'                  `V2` etc
+#'               \item `skip` a specific number of rows before reading the data
+#'               \item `trimws` to trim leading and trailing whitespace
+#'               \item `na` for character value to be interpreted as `NA` }
 #' @param file Use FILID, FILEGROUP or a complete path of a filename. Data set
-#'   of `.csv` extension on `https://` can also be file input arg.
+#'   with `.csv` extension on `https://` can also be as a input file arg.
 #' @param ... All other arguments to be passed related to the file format
 #' @examples
 #' \dontrun{
