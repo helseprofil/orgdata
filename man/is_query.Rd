@@ -10,8 +10,7 @@ is_query(
   external = FALSE,
   char = NULL,
   char2 = NULL,
-  opposite = FALSE,
-  ...
+  opposite = FALSE
 )
 }
 \description{

@@ -11,8 +11,7 @@ find_spec(
   external = FALSE,
   char = NULL,
   char2 = NULL,
-  opposite = FALSE,
-  ...
+  opposite = FALSE
 )
 }
 \arguments{
@@ -32,8 +31,6 @@ style. For example the name of a \emph{filgruppe}.}
 \item{char2}{Second input value to be added in the query}
 
 \item{opposite}{TRUE if second input value will be read before first input value}
-
-\item{...}{Extra argument for reading SQL file eg. date = TRUE}
 }
 \value{
 Out put will be a data.frame.
