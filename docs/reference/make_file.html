@@ -88,7 +88,7 @@ Specifying <code>koblid</code> is useful especially for testing purposes.</p>
   row <span class="op">=</span> <span class="cn">NULL</span>,
   base <span class="op">=</span> <span class="cn">NULL</span>,
   parallel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,
-  raw <span class="op">=</span> <span class="cn">FALSE</span>
+  raw <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span>
 
 <span class="fu">lag_fil</span><span class="op">(</span>
@@ -101,7 +101,7 @@ Specifying <code>koblid</code> is useful especially for testing purposes.</p>
   row <span class="op">=</span> <span class="cn">NULL</span>,
   base <span class="op">=</span> <span class="cn">NULL</span>,
   parallel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,
-  raw <span class="op">=</span> <span class="cn">FALSE</span>
+  raw <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span>
 
 <span class="fu">mf</span><span class="op">(</span>
@@ -114,7 +114,7 @@ Specifying <code>koblid</code> is useful especially for testing purposes.</p>
   row <span class="op">=</span> <span class="cn">NULL</span>,
   base <span class="op">=</span> <span class="cn">NULL</span>,
   parallel <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Deprecated.html" class="external-link">deprecated</a></span><span class="op">(</span><span class="op">)</span>,
-  raw <span class="op">=</span> <span class="cn">FALSE</span>
+  raw <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -169,9 +169,10 @@ value is <code>FALSE</code> ie. to use sequential processing</p></dd>
 
 
 <dt>raw</dt>
-<dd><p>Logical value. Default is <code>FALSE</code>. Read original raw data directly
-from source file even if the dataset is already available in DuckDB without
-the need to unmark <code>KONTROLLERT</code> in the Access database</p></dd>
+<dd><p>Logical value. Default is <code>FALSE</code> as in config. If <code>TRUE</code> then read
+original raw data directly from source file even if the dataset is already
+available in DuckDB without the need to unmark <code>KONTROLLERT</code> in the Access
+database</p></dd>
 
 </dl></div>
     <div class="section level2">

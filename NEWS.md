@@ -1,6 +1,7 @@
 # orgdata 0.7.0
 - Filter active files with date was done pragmatically ie. all files with `BRUKTIL` date other than `01-01-9999` will be excluded. Now filtering with date will be compared against current date. (#272)
 - Delete dataset from the database when unmark column `KONTROLLERT` instead of updating the dataset due to time consuming by updating it. The users have to mark the column to save or read the dataset in the database. (#278)
+- Change default for argument `raw` in `make_file()` to `FALSE` as in [config](https://github.com/helseprofil/config/blob/main/config-orgdata.yml "config") file.
 
 # orgdata 0.6
 - Some text editing here and there.

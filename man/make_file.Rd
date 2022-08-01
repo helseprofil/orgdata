@@ -16,7 +16,7 @@ make_file(
   row = NULL,
   base = NULL,
   parallel = deprecated(),
-  raw = FALSE
+  raw = NULL
 )
 
 lag_fil(
@@ -29,7 +29,7 @@ lag_fil(
   row = NULL,
   base = NULL,
   parallel = deprecated(),
-  raw = FALSE
+  raw = NULL
 )
 
 mf(
@@ -42,7 +42,7 @@ mf(
   row = NULL,
   base = NULL,
   parallel = deprecated(),
-  raw = FALSE
+  raw = NULL
 )
 }
 \arguments{
@@ -76,9 +76,10 @@ percentage if needed. For example to use 75\% of the cores then specify as
 \code{parallel = 0.75}. Nevertheless, maximum cores allowed is only 80\%. Default
 value is \code{FALSE} ie. to use sequential processing}
 
-\item{raw}{Logical value. Default is \code{FALSE}. Read original raw data directly
-from source file even if the dataset is already available in DuckDB without
-the need to unmark \code{KONTROLLERT} in the Access database}
+\item{raw}{Logical value. Default is \code{FALSE} as in config. If \code{TRUE} then read
+original raw data directly from source file even if the dataset is already
+available in DuckDB without the need to unmark \code{KONTROLLERT} in the Access
+database}
 }
 \description{
 Make a \code{csv} file with the specifications in the Access register
