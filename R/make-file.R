@@ -23,9 +23,10 @@
 #'   percentage if needed. For example to use 75% of the cores then specify as
 #'   `parallel = 0.75`. Nevertheless, maximum cores allowed is only 80%. Default
 #'   value is `FALSE` ie. to use sequential processing
-#' @param raw Logical value. Default is `FALSE`. Read original raw data directly
-#'   from source file even if the dataset is already available in DuckDB without
-#'   the need to unmark `KONTROLLERT` in the Access database
+#' @param raw Logical value. Default is `FALSE` as in config. If `TRUE` then read
+#'   original raw data directly from source file even if the dataset is already
+#'   available in DuckDB without the need to unmark `KONTROLLERT` in the Access
+#'   database
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
@@ -47,7 +48,7 @@ make_file <- function(group = NULL,
                       row = NULL,
                       base = NULL,
                       parallel = deprecated(),
-                      raw = FALSE
+                      raw = NULL
                       ) {
 
   LEVEL <- NULL
@@ -60,6 +61,7 @@ make_file <- function(group = NULL,
   if (is.null(implicitnull)) implicitnull <- getOption("orgdata.implicit.null")
   if (is.null(row)) row <- getOption("orgdata.debug.row")
   if (is.null(base)) base <- getOption("orgdata.recode.base")
+  if (is.null(raw)) raw <- getOption("orgdata.read.raw")
 
   if (lifecycle::is_present(parallel)){
     lifecycle::deprecate_stop(
