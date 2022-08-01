@@ -127,6 +127,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   }
 
   ## Add to or read from DuckDB -------------
+  ## TODO Need to refactor the codes below
   fileName <- find_column_input(fileSpec, "FILNAVN")
   fileName <- paste0("../", gsub("\\\\", "/", fileName))
 
@@ -134,9 +135,9 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
     withr::with_options(list(orgdata.emoji = "safe"),
                         is_color_txt(x = "",
-                                     msg = "Updating dataset in the database ...",
+                                     msg = "Delete dataset in the database ...",
                                      type = "debug", emoji = TRUE))
-    duck$db_write(name = tblKoblid, value = dt, write = TRUE)
+    duck$db_remove_table(name = tblKoblid)
   }
 
   if (fileCtrl && fileDuck){
