@@ -38,7 +38,7 @@ make_filegroups <- function(...){
 
     FGP <- tryCatch({
       is_color_txt(i, msg = "Processing:")
-      make_file(i, save = TRUE, parallel = getOption("orgdata.parallel"))
+      make_file(i, save = TRUE)
     },
     error = function(err) err)
 
