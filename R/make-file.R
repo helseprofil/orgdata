@@ -204,7 +204,7 @@ make_file <- function(group = NULL,
                                  msg = "Log files can be found in",
                                  emoji = TRUE))
 
-  cat(praise::praise("${EXCLAMATION}! ${adjective} job!"), "\n")
+  cat(praise::praise("${EXCLAMATION}! What a ${adjective} job! \U0001F60A"), "\n\n")
   return(outDT[])
 }
 
