@@ -49,7 +49,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     reshapeLong <- reshVal == 1
     reshapeWide <- reshVal == 2
 
-    ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
+    ## Rename columns "variable" and "value" back to TAB1..TAB3 and VAL1..VAL3 as
     ## defined in Access coz aggregating uses the standard columnames. Else it
     ## will be deleted as undefined columns in Access database
     if (!is.na(reshVal) && reshapeLong){
