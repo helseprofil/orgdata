@@ -16,6 +16,6 @@ is_conn_db(dbname = NULL, db = c("kh", "geo", "raw"), .test = FALSE, ...)
 \item{...}{Other arguments}
 }
 \description{
-Use R6 object to connect to database
+Alternative function to produce R6 object for connecting to the database
 }
 \keyword{internal}

@@ -135,7 +135,7 @@ KHelse <- R6::R6Class(
 )
 
 #' @title Connect to Database
-#' @description Use R6 object to connect to database
+#' @description Alternative function to produce R6 object for connecting to the database
 #' @param dbname Database filename with complete path
 #' @param db Database file `kh` (Kommunehelse), `geo` (Geo code) or `raw` (Raw database)
 #' @param .test Use for testing only
