@@ -6,4 +6,4 @@ INNER JOIN (tbl_Koble
 ON tbl_Koble.LESID = tbl_Innlesing.LESID
 AND tbl_Koble.FILGRUPPE = tbl_Innlesing.FILGRUPPE
 WHERE tbl_Koble.FILGRUPPE = '%s'
-AND tbl_Orgfile.IBRUKTIL = #9999-01-01#
+AND tbl_Orgfile.IBRUKTIL >= %s

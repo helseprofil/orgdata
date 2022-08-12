@@ -49,7 +49,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     reshapeLong <- reshVal == 1
     reshapeWide <- reshVal == 2
 
-    ## Rename columns "variable" and "value" back as TAB1 to 3 and VAL1 to 3 as
+    ## Rename columns "variable" and "value" back to TAB1..TAB3 and VAL1..VAL3 as
     ## defined in Access coz aggregating uses the standard columnames. Else it
     ## will be deleted as undefined columns in Access database
     if (!is.na(reshVal) && reshapeLong){
@@ -127,6 +127,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   }
 
   ## Add to or read from DuckDB -------------
+  ## TODO Need to refactor the codes below
   fileName <- find_column_input(fileSpec, "FILNAVN")
   fileName <- paste0("../", gsub("\\\\", "/", fileName))
 
@@ -134,9 +135,9 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
     withr::with_options(list(orgdata.emoji = "safe"),
                         is_color_txt(x = "",
-                                     msg = "Updating dataset in the database ...",
+                                     msg = "Delete dataset in the database ...",
                                      type = "debug", emoji = TRUE))
-    duck$db_write(name = tblKoblid, value = dt, write = TRUE)
+    duck$db_remove_table(name = tblKoblid)
   }
 
   if (fileCtrl && fileDuck){
@@ -179,3 +180,5 @@ is_long_col <- function(dt, spec, widespec){
 
   return(dt)
 }
+
+# Test message

@@ -57,7 +57,8 @@ is_query <- function(file = NULL,
                      external = FALSE,
                      char = NULL,
                      char2 = NULL,
-                     opposite = FALSE) {
+                     opposite = FALSE
+                     ) {
   is_null(file)
   is_not_null_both(value, char)
   is_not_null_both(value, char2)
@@ -76,16 +77,19 @@ is_query <- function(file = NULL,
   } else {
     qry <- is_opposite(txt, char, char2, opposite)
   }
+
 }
 
 ## Helper ----------------------------------------------------
 
 is_opposite <- function(txt, char, char2, opposite){
+
   if (opposite){
     out <- sprintf(txt, char2, char)
   } else {
     out <- sprintf(txt, char, char2)
   }
+
 }
 
 ## SQL code need sprintf for dynamic query
@@ -97,3 +101,4 @@ is_sql_code <- function(x) {
 
   invisible(x)
 }
+

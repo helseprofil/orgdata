@@ -34,10 +34,14 @@ source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
 kh_restore("orgdata")
 ```
 
-Alternatively you can install the development version via `orgdata`.
+Alternatively you can update new version or install the development
+version via `orgdata`.
 
 ``` r
 library(orgdata)
+update_orgdata()
+
+# install development versjon
 update_orgdata(ref = "dev")
 ```
 
@@ -65,11 +69,11 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 
 ## Resources
 
--   [Get
+  - [Get
     started](https://helseprofil.github.io/orgdata/articles/get-started.html)
--   [Functions
+  - [Functions
     overview](https://helseprofil.github.io/orgdata/reference/index.html)
--   [Presentation
+  - [Presentation
     slides](https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1)
--   [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
--   [Video guide](https://youtu.be/PhEQq4iWJCY)
+  - [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
+  - [Video guide](https://youtu.be/PhEQq4iWJCY)

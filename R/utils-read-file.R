@@ -156,7 +156,11 @@ is_org_files <- function(spec, id = NULL) {
   }
 
   spec[, IBRUKTIL := as.Date(IBRUKTIL, format = "%Y-%m-%d")]
-  spec <- spec[IBRUKTIL == as.Date("9999-01-01", format = "%Y-%m-%d"), ]
+
+  ## Second filter date after SQL filter
+  ## To fix with testthat error
+  today <- format(Sys.Date(), "%Y-%m-%d")
+  spec <- spec[IBRUKTIL >= today, ]
 
   nfile <- nrow(spec)
   if (nfile == 0) {
@@ -179,4 +183,3 @@ is_col_num <- function(dt, cols){
   }
   return(dt)
 }
-

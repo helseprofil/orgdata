@@ -14,7 +14,7 @@ rf(file = NULL, ...)
 }
 \arguments{
 \item{file}{Use FILID, FILEGROUP or a complete path of a filename. Data set
-of \code{.csv} extension on \verb{https://} can also be file input arg.}
+with \code{.csv} extension on \verb{https://} can also be as a input file arg.}
 
 \item{...}{All other arguments to be passed related to the file format}
 }
@@ -28,11 +28,14 @@ function can be used. For a \code{ .xlsx } or \code{ .xls } file
 \code{read_dta} function can be used.
 
 Nevertheless, some most used arguments are standardized for
-\code{read_file()} and there are: \itemize{ \item \code{nrows} to display maksimum
-numbers to read \item \code{header} FALSE to give default columnames as \code{V1},
-\code{V2} etc \item \code{skip} a specific number of raws before reading the data
-\item \code{trimws} to trim leading and trailing whitespace \item \code{na} for
-character value to be interpreted as \code{NA} }
+\code{read_file()} and they are:
+\itemize{ \item \code{nrows} to display maksimum
+numbers of rows to read
+\item \code{header} FALSE to give default columnames as \code{V1},
+\code{V2} etc
+\item \code{skip} a specific number of rows before reading the data
+\item \code{trimws} to trim leading and trailing whitespace
+\item \code{na} for character value to be interpreted as \code{NA} }
 }
 \examples{
 \dontrun{

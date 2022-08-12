@@ -1,12 +1,13 @@
-# orgdata 0.6.10
+# orgdata 0.7.0
+- Filter active files with date was done pragmatically ie. all files with `BRUKTIL` date other than `01-01-9999` will be excluded. Now filtering with date will be compared against current date. (#272)
+- Delete dataset from the database when unmark column `KONTROLLERT` instead of updating the dataset due to time consuming by updating it. The users have to mark the column to save or read the dataset in the database. (#278)
+- Change default for argument `raw` in `make_file()` to `FALSE` as in [config](https://github.com/helseprofil/config/blob/main/config-orgdata.yml "config") file.
+
+# orgdata 0.6
 - Some text editing here and there.
 - Function `is_colour_txt()` can specify symbol directly without needing to rely on the global options or to use `withr` package. Just for cosmetic purposes :smiley:
- 
-# orgdata 0.6.9
 - Standard columns should be uppercase. Using lowercase creates error when GEO comes
   from two separated columns especially when handling recode from codebook (#277)
-
-# orgdata 0.6.8
 - Standardize arguments names in `see_org()` function.
 - Parallel processing is deactivated since it doesn't work smoothly with
   Access and DuckDB connection ie. DBI package, due to the problem with
@@ -18,43 +19,27 @@
   created by older version. In such situation older DuckDB database should be
   deleted and re-run with the newer DuckDB version.
 - When loading the package, users will be reminded whenever new version is available.
-
-# orgdata 0.6.7
 - Show as data frame when warning `NAs with coercion` instead of just the GEO
   number where the coercion took place (#274)
-
-# orgdata 0.6.6
 - Replace DuckDB with SQLite (#271)
 - Columnames are case insensitive (#115)
-
-# orgdata 0.6.5
 - Use ellipsis for other arguments of `data.table::fwrite()` in `save_file()`
   function.
-
-# orgdata 0.6.4
 - Implicit null for number of geo digits is moved to config file. This make it
   easy to maintain and expand.
 - Use `future.apply` package conditionally to reduce package vulnerability.
 - Deactivate dependency packages for parallel processing. Use it conditionally
   ie. to install manually if needed.
-
-# orgdata 0.6.3
 - Reshape multiple columns containing more than one `VAL` is handled properly.
   When reshaping multiple columns to be just one `VAL` then leaving
   `RESHAPE_VAL` empty ie. use all columns not defined in `RESHAPE_ID` should
   work as before (#269)
-
-# orgdata 0.6.2
 - Give more information when error to reshape data, especially long reshape.
   Most of the time the source of error is in defining `RESHAPE_KOL` and
   `RESHAPE_VAL` (#268)
-
-# orgdata 0.6.1
 - Can reshape multiple columns when reshaping to LONG. Applicable when there are
   multiple columns represent number of cases and one column represent
   denominator for all these numerators (#266)
-  
-# orgdata 0.6.0
 - Use *KOBLID* to add or delete from Duck database (#261)
 - Depends for *norgeo* package refers directly to CRAN version instead of GitHub
   repo.
