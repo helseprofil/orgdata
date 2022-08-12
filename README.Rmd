@@ -61,10 +61,13 @@ source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
 kh_restore("orgdata")
 ```
 
-Alternatively you can install the development version via `orgdata`.
+Alternatively you can update new version or install the development version via `orgdata`.
 
 ```r
 library(orgdata)
+update_orgdata()
+
+# install development versjon
 update_orgdata(ref = "dev")
 ```
 
