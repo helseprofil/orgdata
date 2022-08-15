@@ -78,7 +78,7 @@ les_fil <- read_file
 
 #' @export
 #' @rdname read_file
-rf <- read_file
+rdf <- read_file
 
 ## Helper -------------------------------------
 
