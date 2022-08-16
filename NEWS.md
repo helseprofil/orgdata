@@ -1,6 +1,7 @@
 # orgdata 0.7.1
 - Rename function alias from `rf()` to `rdf()` since `rf()` is already in use in *stats* package.
 - Deleting row with specification of lesid and without lesid ie. common filegroup, create errors. This is not fixed (#279)
+- Need to update version whenever a new release is available to ensure everyone is using the latest release.
 
 # orgdata 0.7.0
 - Filter active files with date was done pragmatically ie. all files with `BRUKTIL` date other than `01-01-9999` will be excluded. Now filtering with date will be compared against current date. (#272)
