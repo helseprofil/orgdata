@@ -38,3 +38,15 @@ test_that("Duplicate split input", {
   expect_equal(is_split_check(dt = dSpt, split = spt), out)
   expect_error(is_split_check(dt = erdata, split = spt))
 })
+
+test_that("Split common variable", {
+
+  # Data ---------
+  dts <- readRDS(system.file("testdata", "splitdt_err.rds", package = "orgdata"))
+  code_err <- readRDS(system.file("testdata", "splitcode_err.rds", package = "orgdata"))
+  dtout <- readRDS(system.file("testdata", "dtout.rds", package = "orgdata"))
+  dtCom <- readRDS(system.file("testdata", "dtout_comm.rds", package = "orgdata"))
+
+  expect_equal(is_delete_lesid(dt = copy(dts), code_err, "v1"), dtout)
+  expect_equal(is_delete_common(dt = copy(dts), code_err, "LES_TEST"), dtCom)
+})

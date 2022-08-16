@@ -42,7 +42,7 @@ is_delete_lesid <- function(dt, code, lesid){
 
   idCode <- code[LESID == lesid, list(KOL, FRA)]
   cols <- unique(idCode$KOL)
-  dt <- is_delete_row(dt, code = code, cols = cols)
+  dt <- is_delete_row(dt, code = idCode, cols = cols)
 }
 
 
@@ -52,6 +52,7 @@ is_delete_common <- function(dt, code, group){
   allCode <- code[FILGRUPPE == group & is.na(LESID), list(KOL, FRA)]
   cols <- unique(allCode$KOL)
   dt <- is_delete_row(dt, code = allCode, cols = cols)
+  return(dt)
 }
 
 is_delete_all <- function(dt, code){
