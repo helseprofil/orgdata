@@ -1,7 +1,14 @@
+# orgdata 0.7.2
+- Some minor text editing.
+- Delete older file of DuckDB automatically since new version can't read the older files (#280)
+- Actively ask users to update with given options when new release version is available.
+- Control all columns that should be numeric don't contain any string. The
+  columns to be controls for is now dynamic (#281)
+
 # orgdata 0.7.1
 - Rename function alias from `rf()` to `rdf()` since `rf()` is already in use in *stats* package.
 - Deleting row with specification of lesid and without lesid ie. common filegroup, create errors. This is not fixed (#279)
-- Need to update version whenever a new release is available to ensure everyone is using the latest release.
+- Need to update version whenever a new release is available to ensure everyone is using the latest release. Else users can't load the package.
 
 # orgdata 0.7.0
 - Filter active files with date was done pragmatically ie. all files with `BRUKTIL` date other than `01-01-9999` will be excluded. Now filtering with date will be compared against current date. (#272)

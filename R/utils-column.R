@@ -70,7 +70,6 @@ is_col_var <- function(col){
 #' @param dt Dataset
 #' @param cols Columns to be converted to numeric
 #' @param koblid ID to connect file and spec
-#' @param ... Extra arguments
 is_col_num_warn <- function(dt, cols, koblid = NULL){
   GEO <- NULL
   is_debug(deep = TRUE)
@@ -105,7 +104,8 @@ is_col_coercion <- function(dt, col){
   selCols <- c("GEO", col)
   dd <- unique(dt[, selCols, with = FALSE])
   dt[dd, na_col := 1L, on = selCols, mult = "first"]
-  cols <- c("GEO", "LEVEL", "AAR", col)
+  stdCols <- intersect(names(dt), c("GEO", "LEVEL", "AAR"))
+  cols <- c(stdCols, col)
   dt[na_col == 1, cols, with = FALSE]
 }
 
