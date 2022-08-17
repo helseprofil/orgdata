@@ -165,11 +165,13 @@ is_codebook <- function(cb){
 
 check_dublicate_col <- function(code){
 
-  dp <- duplicated(code[["KOL"]])
-  dps <- sum(dp)
+  dp <- data.table::copy(code)
+  cols <- c("KOL", "FRA")
+  dp[, dup := .N > 1, by = cols]
+  dps <- sum(dp[["dup"]])
 
   if (dps > 0){
-    is_stop("Recode variable is not unique for", code$KOL[dp])
+    is_stop("Recode variable is not unique for", unique(code[["KOL"]]))
   }
   invisible()
 }
