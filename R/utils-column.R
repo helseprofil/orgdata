@@ -77,7 +77,7 @@ is_col_num_warn <- function(dt, cols, koblid = NULL){
     col <- cols[j]
     if (methods::is(dt[[col]], "character")) {
       tryCatch({
-        data.table::set(dt, j = col, value = as.numeric(dt[[col]]))
+        suppressWarnings( data.table::set(dt, j = col, value = as.numeric(dt[[col]])) )
       },
       warning = function(x) {
         dumCol <- "dumCol"

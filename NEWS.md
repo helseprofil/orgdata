@@ -1,3 +1,10 @@
+# orgdata 0.7.4
+- Delete raw of similar columns with multiple specifications (#282)
+- Different ways to recode of similar column with defined lesid will give error.
+
+# orgdata 0.7.3
+- Testing
+
 # orgdata 0.7.2
 - Some minor text editing.
 - Delete older file of DuckDB automatically since new version can't read the older files (#280)

@@ -45,6 +45,8 @@ is_recode_lesid <- function(dt, code, lesid) {
   LESID <- KOL <- FRA <- TIL <- NULL
 
   idCode <- code[LESID == lesid, list(KOL, FRA, TIL)]
+  check_dublicate_col(idCode)
+
   kols <- unique(idCode$KOL)
   is_recode(dt = dt, code = idCode, cols = kols)
 }
@@ -58,6 +60,7 @@ is_recode_common <- function(dt, code, group) {
   allCode <- code[FILGRUPPE == group & is.na(LESID), list(KOL, FRA, TIL)]
 
   if (nrow(allCode) > 0){
+    ## check_dublicate_col(allCode)
     kols <- unique(allCode$KOL)
     dt <- is_recode(dt, code = allCode, cols = kols)
   }
@@ -157,4 +160,16 @@ is_codebook <- function(cb){
   }
 
   invisible(cb)
+}
+
+
+check_dublicate_col <- function(code){
+
+  dp <- duplicated(code[["KOL"]])
+  dps <- sum(dp)
+
+  if (dps > 0){
+    is_stop("Recode variable is not unique for", code$KOL[dp])
+  }
+  invisible()
 }
