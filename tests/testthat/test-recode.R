@@ -54,3 +54,11 @@ test_that("Recode variables", {
   expect_error(is_codebook(cb = specCB))
   expect_equal(is_NA(dt = dtt, code = code, col = "LANDF"), dtout)
 })
+
+test_that("Recode duplicate", {
+
+  dt <- readRDS(system.file("testdata", "RecodeDupDT.rds", package = "orgdata" ))
+  code <- readRDS(system.file("testdata", "RecodeDupCode.rds", package = "orgdata" ))
+
+  expect_error(is_recode_lesid(dt, code, "vers2"))
+})
