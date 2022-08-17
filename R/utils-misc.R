@@ -143,6 +143,7 @@ is_option_active <- function(){
 is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Version"]]){
 
   V1 <- V2 <- NULL
+  out <- FALSE
   desc <- "https://raw.githubusercontent.com/helseprofil/orgdata/main/DESCRIPTION"
 
   isOn <- is_online(desc)
@@ -154,16 +155,15 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
     newVer <- numeric_version(gitVer) > numeric_version(ver)
 
     if(newVer){
-      is_color_txt(gitVer, "New version is available for update!", type = "note", emoji = TRUE, symbol = "thumb")
-      is_color_txt("orgdata::update_orgdata()", "To update run:")
-      is_stop("Please update to maintain stability!")
+      is_color_txt(gitVer, "New version is available!", type = "note", emoji = TRUE, symbol = "thumb")
+      out <- TRUE
     }
   } else {
     is_color_txt("", "You have no internet connection!",
                  type = "error", emoji = TRUE, symbol = "sad")
   }
 
-  invisible()
+  return(out)
 }
 
 is_online <- function(x){
