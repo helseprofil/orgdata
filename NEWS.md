@@ -1,6 +1,7 @@
 # orgdata 0.7.4
 - Delete raw of similar columns with multiple specifications (#282)
-- Different ways to recode of similar column with defined lesid will give error.
+- Different ways to recode of similar column ie. duplicated, with defined lesid will give error.
+- Show current installed version against the new release version.
 
 # orgdata 0.7.3
 - Testing

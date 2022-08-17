@@ -155,6 +155,7 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
     newVer <- numeric_version(gitVer) > numeric_version(ver)
 
     if(newVer){
+      is_color_txt(ver, "Your installed version:", type = "note")
       is_color_txt(gitVer, "New version is available!", type = "note", emoji = TRUE, symbol = "thumb")
       out <- TRUE
     }
