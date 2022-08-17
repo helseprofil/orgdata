@@ -31,9 +31,9 @@ KHelse <- R6::R6Class(
     tblvalue = NULL,
 
     #' @field dbpath Database path
-    dbpath = NULL,
+    dbpath = FALSE,
 
-    #' @field conn Make connection. Default is `TRUE`
+    #' @field conn Create database connection. Default is `TRUE`
     conn = TRUE,
 
     #' @description
@@ -41,6 +41,8 @@ KHelse <- R6::R6Class(
     #' @param dbname Database filename.
     #' @param dbtype Database type eg. Access, SQLite, DuckDB etc.
     #' @param dbyear Production year. This arg only relevant to raw database in DuckDB
+    #' @param dbpath Path to the database file
+    #' @param conn Create database connection. Default is `TRUE`
     #' @examples
     #' \dontrun{
     #' kh <- KHelse$new(file.path(getOption("orgdata.drive"),
