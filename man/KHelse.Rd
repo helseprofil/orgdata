@@ -40,6 +40,10 @@ kh$db_connect()
 
 \item{\code{tblvalue}}{Data to be inserted in the table \code{tblname}.
 Data must be in a \code{data.frame} or \code{data.table} format.}
+
+\item{\code{dbpath}}{Database path}
+
+\item{\code{conn}}{Create database connection. Default is \code{TRUE}}
 }
 \if{html}{\out{</div>}}
 }
@@ -60,7 +64,13 @@ Data must be in a \code{data.frame} or \code{data.table} format.}
 \subsection{Method \code{new()}}{
 Start connecting to the database.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{KHelse$new(dbname = NULL, dbtype = "Access", dbyear = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{KHelse$new(
+  dbname = NULL,
+  dbtype = "Access",
+  dbyear = NULL,
+  dbpath = FALSE,
+  conn = TRUE
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -71,6 +81,10 @@ Start connecting to the database.
 \item{\code{dbtype}}{Database type eg. Access, SQLite, DuckDB etc.}
 
 \item{\code{dbyear}}{Production year. This arg only relevant to raw database in DuckDB}
+
+\item{\code{dbpath}}{Path to the database file}
+
+\item{\code{conn}}{Create database connection. Default is \code{TRUE}}
 }
 \if{html}{\out{</div>}}
 }

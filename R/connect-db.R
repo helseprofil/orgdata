@@ -30,11 +30,19 @@ KHelse <- R6::R6Class(
     #'   Data must be in a \code{data.frame} or \code{data.table} format.
     tblvalue = NULL,
 
+    #' @field dbpath Database path
+    dbpath = FALSE,
+
+    #' @field conn Create database connection. Default is `TRUE`
+    conn = TRUE,
+
     #' @description
     #' Start connecting to the database.
     #' @param dbname Database filename.
     #' @param dbtype Database type eg. Access, SQLite, DuckDB etc.
     #' @param dbyear Production year. This arg only relevant to raw database in DuckDB
+    #' @param dbpath Path to the database file
+    #' @param conn Create database connection. Default is `TRUE`
     #' @examples
     #' \dontrun{
     #' kh <- KHelse$new(file.path(getOption("orgdata.drive"),
@@ -44,19 +52,30 @@ KHelse <- R6::R6Class(
     #' kh$db_close()
     #' kh$db_connect()
     #' }
-    initialize = function(dbname = NULL, dbtype = "Access", dbyear = NULL) {
+    initialize = function(dbname = NULL,
+                          dbtype = "Access",
+                          dbyear = NULL,
+                          dbpath = FALSE,
+                          conn = TRUE) {
 
       if (is.null(dbname)) {
         stop(message(" Woopss!! Can't find database file!"))
       } else {
-
         self$dbname <- dbname
         self$dbtype <- dbtype
         self$dbyear <- dbyear
+      }
+
+      if (dbpath){
+        self$dbpath <- duck_db_path(dbname, dbyear)
+      }
+
+      if (conn){
         self$dbconn <- connect_db(dbname = self$dbname,
                                   dbtype = self$dbtype,
                                   dbyear = self$dbyear,
                                   dbdriver = private$..drv)
+
       }
     },
 
@@ -174,16 +193,27 @@ connect_db <- function(dbname, dbtype, dbyear, dbdriver){
                           encoding = "latin1")
          },
          DuckDB = {
-           duckFile <- paste0(dbname, ".duckdb")
-           duckPath <- is_path_db(getOption("orgdata.folder.org.db"))
-           duckRoot <- file.path(duckPath, dbyear)
+           duckRoot <- duck_db_path(dbname, dbyear, file = FALSE)
            if (!fs::dir_exists(duckRoot)){
              fs::dir_create(duckRoot)
            }
 
-           DBI::dbConnect(duckdb::duckdb(), file.path(duckRoot, duckFile))
+           duckFile <- duck_db_path(dbname, dbyear, file = TRUE)
+           DBI::dbConnect(duckdb::duckdb(), file.path(duckFile))
          })
 
+}
+
+# Give only path to DuckDB or including DuckDB file ie. TRUE
+duck_db_path <- function(dbname, dbyear, file = TRUE){
+  duckFile <- paste0(dbname, ".duckdb")
+  duckPath <- is_path_db(getOption("orgdata.folder.org.db"))
+
+  if (file) {
+    file.path(duckPath, dbyear, duckFile)
+  } else {
+    file.path(duckPath, dbyear)
+  }
 }
 
 write_db <- function(name = NULL,

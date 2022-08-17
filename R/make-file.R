@@ -88,9 +88,27 @@ make_file <- function(group = NULL,
   on.exit(kh$db_close(), add = TRUE)
 
   ## DuckDB
-  duck <- is_conn_db(dbname = group,
-                     dbtype = "DuckDB",
-                     dbyear = year)
+  # DuckDB is on active development and newer version isn't able to read
+  # older duck. Therefore need to delete if the saved DuckDB is older version
+  duck <- tryCatch({is_conn_db(dbname = group,
+                               dbtype = "DuckDB",
+                               dbyear = year)},
+                   error = function(err){
+                     ddk <- KHelse$new(dbname = group,
+                                       dbtype = "DuckDB",
+                                       dbyear = year,
+                                       dbpath = TRUE,
+                                       conn = FALSE)
+                     fs::file_delete(ddk$dbpath)
+                     rm(ddk)
+                   })
+
+  if (is.null(duck)){
+    duck <- is_conn_db(dbname = group,
+                       dbtype = "DuckDB",
+                       dbyear = year)
+  }
+
   on.exit(duck$db_close(), add = TRUE)
 
   ## SPECIFICATIONS ----------------------------------------
