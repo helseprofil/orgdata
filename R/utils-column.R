@@ -105,7 +105,8 @@ is_col_coercion <- function(dt, col){
   selCols <- c("GEO", col)
   dd <- unique(dt[, selCols, with = FALSE])
   dt[dd, na_col := 1L, on = selCols, mult = "first"]
-  cols <- c("GEO", "LEVEL", "AAR", col)
+  stdCols <- intersect(names(dt), c("GEO", "LEVEL", "AAR"))
+  cols <- c(stdCols, col)
   dt[na_col == 1, cols, with = FALSE]
 }
 
