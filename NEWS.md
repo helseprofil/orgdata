@@ -2,6 +2,8 @@
 - Some minor text editing.
 - Delete older file of DuckDB automatically since new version can't read the older files (#280)
 - Actively ask users to update with given options when new release version is available.
+- Control all columns that should be numeric don't contain any string. The
+  columns to be controls for is now dynamic (#281)
 
 # orgdata 0.7.1
 - Rename function alias from `rf()` to `rdf()` since `rf()` is already in use in *stats* package.
