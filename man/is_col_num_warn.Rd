@@ -12,8 +12,6 @@ is_col_num_warn(dt, cols, koblid = NULL)
 \item{cols}{Columns to be converted to numeric}
 
 \item{koblid}{ID to connect file and spec}
-
-\item{...}{Extra arguments}
 }
 \description{
 Covert to numeric for columns that are expected to be numeric

@@ -41,3 +41,13 @@ test_that("Delete rows", {
   expect_equal(is_delete_common(dt = data.table::copy(data), code = specCommon, group = "VGS"), output)
   expect_equal(is_delete_all(dt = data.table::copy(data), code = specAll), output)
 })
+
+test_that("Delete rows with multiple spec", {
+
+  dt <- readRDS(system.file("testdata", "DeleteRowDT.rds", package = "orgdata" ))
+  code <- readRDS(system.file("testdata", "DeleteRowCode.rds", package = "orgdata" ))
+  cols <- readRDS(system.file("testdata", "DeleteRowCols.rds", package = "orgdata" ))
+  dtOut <- readRDS(system.file("testdata", "DeleteRowOut.rds", package = "orgdata" ))
+
+  expect_equal(is_delete_row(dt, code, cols), dtOut)
+})
