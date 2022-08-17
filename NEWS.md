@@ -1,3 +1,7 @@
+# orgdata 0.7.2
+- Some minor text editing.
+- Delete older file of DuckDB automatically since new version can't read the older files (#280)
+
 # orgdata 0.7.1
 - Rename function alias from `rf()` to `rdf()` since `rf()` is already in use in *stats* package.
 - Deleting row with specification of lesid and without lesid ie. common filegroup, create errors. This is not fixed (#279)
