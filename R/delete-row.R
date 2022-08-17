@@ -83,7 +83,13 @@ is_delete_row <- function(dt, code, cols){
     col <- cols[i]
     del <- code[KOL == col, FRA]
     dt <- is_NA(dt = dt, code = code[KOL == col], col = col)
-    delidx <- dt[get(col) == del, which = TRUE]
+
+    if (methods::is(dt[[col]], "numeric")){
+      delidx <- dt[get(col) %in% del, which = TRUE]
+    } else {
+      delidx <- dt[get(col) %chin% del, which = TRUE]
+    }
+
     dt <- is_delete_index(dt, delidx)
   }
 
