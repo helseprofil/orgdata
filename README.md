@@ -38,11 +38,10 @@ Alternatively you can update new version or install the development
 version via `orgdata`.
 
 ``` r
-library(orgdata)
-update_orgdata()
+orgdata::update_orgdata()
 
 # install development versjon
-update_orgdata(ref = "dev")
+orgdata::update_orgdata(ref = "dev")
 ```
 
 ## Usage
@@ -69,11 +68,11 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 
 ## Resources
 
-  - [Get
-    started](https://helseprofil.github.io/orgdata/articles/get-started.html)
-  - [Functions
-    overview](https://helseprofil.github.io/orgdata/reference/index.html)
-  - [Presentation
-    slides](https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1)
-  - [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
-  - [Video guide](https://youtu.be/PhEQq4iWJCY)
+- [Get
+  started](https://helseprofil.github.io/orgdata/articles/get-started.html)
+- [Functions
+  overview](https://helseprofil.github.io/orgdata/reference/index.html)
+- [Presentation
+  slides](https://ybkamaleri.github.io/slides/2021-08-24-orgdata/#1)
+- [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
+- [Video guide](https://youtu.be/PhEQq4iWJCY)

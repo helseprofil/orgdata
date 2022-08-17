@@ -64,11 +64,10 @@ kh_restore("orgdata")
 Alternatively you can update new version or install the development version via `orgdata`.
 
 ```r
-library(orgdata)
-update_orgdata()
+orgdata::update_orgdata()
 
 # install development versjon
-update_orgdata(ref = "dev")
+orgdata::update_orgdata(ref = "dev")
 ```
 
 ## Usage 
