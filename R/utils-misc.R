@@ -155,8 +155,8 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
 
     if(newVer){
       is_color_txt(gitVer, "New version is available for update!", type = "note", emoji = TRUE, symbol = "thumb")
-      is_color_txt("update_orgdata()", "To update run:")
-      is_stop("Please update!")
+      is_color_txt("orgdata::update_orgdata()", "To update run:")
+      is_stop("Please update to maintain stability!")
     }
   } else {
     is_color_txt("", "You have no internet connection!",
