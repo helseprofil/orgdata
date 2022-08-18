@@ -29,3 +29,13 @@ test_that("Regular expression", {
   expect_equal(is_recode_common_regexp(dt = dt01, code = code02, group = "FODTE"), output01)
   expect_equal(is_recode_all_regexp(dt = dt01, code = code03), output01)
 })
+
+
+test_that("Regexp with empty TIL col", {
+
+  dt <- readRDS(system.file("testdata", "RegExpDT.rds", package = "orgdata"))
+  code <- readRDS(system.file("testdata", "RegExpCode.rds", package = "orgdata"))
+  dtout <- readRDS(system.file("testdata", "RegExpOut.rds", package = "orgdata"))
+
+  expect_equal(is_recode_regexp(dt = dt, code = code, cols = "AAR"), dtout)
+})
