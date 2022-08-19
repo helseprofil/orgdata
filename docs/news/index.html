@@ -59,6 +59,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.5" id="orgdata-075">orgdata 0.7.5<a class="anchor" aria-label="anchor" href="#orgdata-075"></a></h2>
 <ul><li>Use either <code>empty</code> or <code>tom</code> to represent regular expression to replace to since Access makes symbol <code>""</code> to be invisible (<a href="https://github.com/helseprofil/orgdata/issues/285" class="external-link">#285</a>)</li>
+<li>Change function name from <code>see_org()</code> to <code><a href="../reference/see_data.html">see_data()</a></code> for viewing data in the data warehouse.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.4" id="orgdata-074">orgdata 0.7.4<a class="anchor" aria-label="anchor" href="#orgdata-074"></a></h2>
@@ -95,7 +96,7 @@
 <li>Function <code>is_colour_txt()</code> can specify symbol directly without needing to rely on the global options or to use <code>withr</code> package. Just for cosmetic purposes <span class="emoji" data-emoji="smiley">😃</span>
 </li>
 <li>Standard columns should be uppercase. Using lowercase creates error when GEO comes from two separated columns especially when handling recode from codebook (<a href="https://github.com/helseprofil/orgdata/issues/277" class="external-link">#277</a>)</li>
-<li>Standardize arguments names in <code><a href="../reference/see_org.html">see_org()</a></code> function.</li>
+<li>Standardize arguments names in <code>see_org()</code> function.</li>
 <li>Parallel processing is deactivated since it doesn’t work smoothly with Access and DuckDB connection ie. DBI package, due to the problem with not-exportable objects for <a href="https://cran.r-project.org/web/packages/future/vignettes/future-4-non-exportable-objects.html%20%22future%22" class="external-link">future</a> package.</li>
 <li>Replace SQLite with DuckDB again due to the speed for DuckDB. But since DuckDB is under active development, the new version might not work with the file created by older version. In such situation older DuckDB database should be deleted and re-run with the newer DuckDB version.</li>
 <li>When loading the package, users will be reminded whenever new version is available.</li>
@@ -125,7 +126,7 @@
 <code><a href="../reference/read_file.html">read_file()</a></code> accept Stata file with <code>dta</code> extension (<a href="https://github.com/helseprofil/orgdata/issues/252" class="external-link">#252</a>)</li>
 <li>Use yaml format for global configuration file to ease update. The file is located in <a href="https://github.com/helseprofil/config/blob/main/config-orgdata.yml" class="external-link">config repo</a> (<a href="https://github.com/helseprofil/orgdata/issues/256" class="external-link">#256</a>)</li>
 <li>Raw data that have been controlled for are saved in DuckDB database format. This increase reading speed especially for big files. Mark column <em>KONTROLLERT</em> in the Access registration database to activate this function. Unmark to read from the original raw file instead. (<a href="https://github.com/helseprofil/orgdata/issues/257" class="external-link">#257</a>)</li>
-<li>Use <code><a href="../reference/see_org.html">see_org()</a></code> to read the raw data in the database. Argument <code>action =   "delete"</code> can be used to delete the data from the raw database.</li>
+<li>Use <code>see_org()</code> to read the raw data in the database. Argument <code>action =   "delete"</code> can be used to delete the data from the raw database.</li>
 <li>Function <code><a href="../reference/geo_merge.html">geo_merge()</a></code> for merging geo codes that aren’t available from API to the mapping table ie. <em>tblGeo</em>, in the geo database. The data could be in any file format accepted by <code><a href="../reference/read_file.html">read_file()</a></code> function. The data to be merged must have column to be merged ie. <code>id.file</code>, that is equivalent to the column id in the database ie. <code>id.table</code>. The <code>id.file</code> must be unique.</li>
 <li>Handle unbalanced parentheses in post recode whenever possible when <code>raw</code> is used, else give error message. <a href="https://github.com/helseprofil/orgdata/issues/246" class="external-link">#246</a></li>
 <li>
