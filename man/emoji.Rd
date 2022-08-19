@@ -9,10 +9,10 @@ emoji(
 )
 }
 \arguments{
-\item{x}{Emoji to choose ie. thumb, smile or sad}
+\item{x}{Emoji to choose ie. thumb, smile etc}
 }
 \description{
-Use emoji for fun 😄
+Change emoji in the output messages for fun 😄
 }
 \examples{
 emoji("smile")

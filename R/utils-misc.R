@@ -51,8 +51,8 @@ debug_opt <- function(opt = c("shallow", "deep", "nrow", "row", "aggregate", "ge
 
 
 #' @title Emoji
-#' @description Use emoji for fun &#128516;
-#' @param x Emoji to choose ie. thumb, smile or sad
+#' @description Change emoji in the output messages for fun &#128516;
+#' @param x Emoji to choose ie. thumb, smile etc
 #' @examples emoji("smile")
 #' @export
 emoji <- function(x = c("mark", "thumb", "write",
@@ -70,6 +70,8 @@ emoji <- function(x = c("mark", "thumb", "write",
          folder = options(orgdata.emoji = "folder"),
          book = options(orgdata.emoji = "book")
          )
+
+  invisible()
 }
 
 
