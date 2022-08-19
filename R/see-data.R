@@ -6,10 +6,10 @@
 #'   in Access registration database.
 #' @param group The filegroup name (\emph{filgruppe})
 #' @inheritParams make_file
-#' @param action To read or delete the data in the database. Default is `read`.
+#' @param action To read or delete the data in the warehouse. Default is `read`.
 #' @examples
 #' \dontrun{
-#' dt <- see_org("LESEFERD", koblid = 134)
+#' dt <- see_data("LESEFERD", koblid = 134)
 #' }
 #' @export
 see_data <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read", "delete")){

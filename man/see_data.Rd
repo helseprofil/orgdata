@@ -19,7 +19,7 @@ see_data(
 \item{year}{Which year the geograhical codes to be recoded to. If it is empty
 then global option for \code{orgdata.year} will be used.}
 
-\item{action}{To read or delete the data in the database. Default is \code{read}.}
+\item{action}{To read or delete the data in the warehouse. Default is \code{read}.}
 }
 \description{
 See the original data that have been clean and structured i the
@@ -30,6 +30,6 @@ in Access registration database.
 }
 \examples{
 \dontrun{
-dt <- see_org("LESEFERD", koblid = 134)
+dt <- see_data("LESEFERD", koblid = 134)
 }
 }
