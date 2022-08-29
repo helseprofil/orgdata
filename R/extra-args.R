@@ -1,8 +1,9 @@
 #' @title Execute Extra Arguments
 #' @description This is based on the input in `EXTRA` column from Access
 #'   registration database. The arguments that are valid here can be expanded
-#'   whenever needed. See details section for valid arguments to be used.
-#'   All argument names are written in `CamelCase` style.
+#'   whenever needed. See details section for valid arguments to be used. All
+#'   argument names are written in `CamelCase` style. Use symbol `|` to separate
+#'   multiple arguments.
 #'
 #' @details Currently, these arguments can be used:
 #'   - `DeleteNaRow` : Delete any row consisting only NA in all columns
@@ -38,7 +39,7 @@ get_extra_args <- function(group = NULL, con = NULL, spec = NULL){
   input <- find_column_input(spec = spec, col = "EXTRA")
 
   if (!is.na(input)) {
-    input <- find_column_multi(spec = spec, col = "EXTRA", sep = ",")
+    input <- find_column_multi(spec = spec, col = "EXTRA", sep = "|")
   }
   return(input)
 

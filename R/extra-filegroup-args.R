@@ -41,7 +41,7 @@ get_extra_args_group <- function(group = NULL, con = NULL, spec = NULL){
   input <- find_column_input(spec = spec, col = "EXTRA")
 
   if (!is.na(input)) {
-    input <- find_column_multi(spec = spec, col = "EXTRA", sep = ",")
+    input <- find_column_multi(spec = spec, col = "EXTRA", sep = "|")
   }
   return(input)
 
@@ -60,4 +60,20 @@ is_delete_bydel_before_2003 <- function(dt = NULL, extra = NULL){
     dt <- is_delete_index(dt, idx)
   }
   return(dt)
+}
+
+is_age_category <- function(dt = NULL, extra = NULL){
+  is_debug(deep = TRUE)
+
+  ageCat <- any(extra == "AgeCat")
+}
+
+input_age_category <- function(x){
+
+  ageCat <- x[grepl("AgeCat", x)]
+
+  if (length(ageCat) > 0){
+
+  }
+
 }
