@@ -3,7 +3,8 @@
 #' @description This is based on the input in `EXTRA` column from Access
 #'   registration database on filegroup. The arguments that are valid here can
 #'   be expanded whenever needed. See details section for valid arguments to be
-#'   used. All argument names are written in `CamelCase` style.
+#'   used. All argument names are written in `CamelCase` style. Use symbol `|`
+#'   to separate multiple arguments.
 #'
 #' @details Currently, these arguments can be used:
 #'   - `DeleteOldBydel` : Delete bydel codes before 2003, except for Oslo
@@ -13,6 +14,9 @@
 #' @export
 do_extra_args_group <- function(dt = NULL, args = NULL){
   dt <- is_delete_bydel_before_2003(dt, extra = args)
+  dt <- is_age_category(dt, extra = args)
+
+  return(dt)
 }
 
 
@@ -65,15 +69,33 @@ is_delete_bydel_before_2003 <- function(dt = NULL, extra = NULL){
 is_age_category <- function(dt = NULL, extra = NULL){
   is_debug(deep = TRUE)
 
-  ageCat <- any(extra == "AgeCat")
-}
+  ageCat <- extra[grepl("AgeCat", extra)]
+  if (length(ageCat > 0)){
 
-input_age_category <- function(x){
-
-  ageCat <- x[grepl("AgeCat", x)]
-
-  if (length(ageCat) > 0){
-
+    gp <- input_age_class(ageCat)
+    dt <- age_category(dt = dt, interval = gp)
   }
 
+  return(dt)
+}
+
+input_age_class <- function(input){
+  input <- sub("^AgeCat\\((.*)\\)", "\\1", input)
+
+  inx <- is_separate(input, sep = ",")
+
+  if (length(inx) > 1){
+    # category with specified group
+    class(inx) <- append(class(inx), "cat")
+
+  } else {
+    # category with interval eg. every 5 years
+    inx <- tryCatch(as.numeric(inx),
+                    warning = function(w){
+                      is_stop("Interval for AgeCat in EXTRA is not numeric:", inx)
+                    })
+    class(inx) <- append(class(inx), "val")
+  }
+
+  return(inx)
 }
