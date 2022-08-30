@@ -15,5 +15,7 @@ test_that("Extra age category", {
   inx <- readRDS(system.file("testdata", "AgeCatInterval.rds", package = "orgdata"))
   dtout <- readRDS(system.file("testdata", "AgeCatOut.rds", package = "orgdata"))
 
+  expect_error(input_age_class("5_"))
   expect_equal(age_category.val(dt, interval = inx), dtout)
+
 })

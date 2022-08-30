@@ -25,12 +25,10 @@ age_category.val <- function(dt, interval){
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
   gpv <- setdiff(names(dt), vals)
   mix <- dt[, .(min = min(ALDER, na.rm = TRUE),
-                max = max(ALDER, na.rm = TRUE) + 2)] #+2 ensure inclusion of max age
+                max = max(ALDER, na.rm = TRUE))]
+  ageBrk <- c(seq(mix[["min"]], mix[["max"]], by = interval), Inf)
 
-  dt[, grp := cut(ALDER, breaks = seq(mix[["min"]],
-                                      mix[["max"]],
-                                      by = interval),
-                  right = FALSE), by = mget(gpv)]
+  dt[, grp := cut(ALDER, breaks = ageBrk, right = FALSE), by = mget(gpv)]
 
   dt[, ageid := .GRP, by = c(gpv, "grp")]
 
