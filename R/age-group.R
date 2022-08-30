@@ -23,12 +23,15 @@ age_category.default <- function(dt, interval) {
 #' @export
 age_category.val <- function(dt, interval){
 
-  ALDER <- ageid <- grp <- ageGRP <- up <- NULL
+  ALDER <- ageid <- grp <- ageGRP <- alderGRP <- NULL
+  up <- lo <- NULL
 
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
   gpv <- setdiff(names(dt), vals)
-  mix <- dt[, .(min = min(ALDER, na.rm = TRUE),
-                max = max(ALDER, na.rm = TRUE))]
+
+  ## Always min = 0
+  mix <- dt[, list(min = 0,
+                   max = max(ALDER, na.rm = TRUE))]
   ageBrk <- c(seq(mix[["min"]], mix[["max"]], by = interval), Inf)
 
   dt[, grp := cut(ALDER, breaks = ageBrk, right = FALSE), by = mget(gpv)][, grp := as.character(grp)]
@@ -54,7 +57,7 @@ age_category.val <- function(dt, interval){
 
   dt[, up := up - 1]
   dt[up != Inf, alderGRP := paste0(lo, "_", up)]
-  dt[up == Inf, alderGRP := paste0(lo, "<")]
+  dt[up == Inf, alderGRP := paste0(lo, "+")]
   dt[, ALDER := alderGRP]
 
   delVals <- c("grp", "ageGRP", "alderGRP", ageVars)
