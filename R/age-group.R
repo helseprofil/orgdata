@@ -19,17 +19,19 @@ age_category.default <- function(dt, interval) {
   stop(sprintf("Age categories not valid: `%s`", interval))
 }
 
+#' @method age_category val
+#' @export
 age_category.val <- function(dt, interval){
 
-  ALDER <- ageid <- grp <- NULL
+  ALDER <- ageid <- grp <- ageGRP <- up <- NULL
+
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
   gpv <- setdiff(names(dt), vals)
   mix <- dt[, .(min = min(ALDER, na.rm = TRUE),
                 max = max(ALDER, na.rm = TRUE))]
   ageBrk <- c(seq(mix[["min"]], mix[["max"]], by = interval), Inf)
 
-  dt[, grp := cut(ALDER, breaks = ageBrk, right = FALSE), by = mget(gpv)]
-
+  dt[, grp := cut(ALDER, breaks = ageBrk, right = FALSE), by = mget(gpv)][, grp := as.character(grp)]
   dt[, ageid := .GRP, by = c(gpv, "grp")]
 
   vals <- grep("^VAL", names(dt), value = TRUE)
@@ -41,8 +43,25 @@ age_category.val <- function(dt, interval){
   }
 
   dt <- dt[, .SD[1], by = ageid]
+  dt[, ageGRP := sub("\\[(.*)\\)", "\\1", grp)]
 
-  delVals <- c("grp", "ageid")
+  ageVars <- c("lo", "up")
+  dt[, (ageVars) := data.table::tstrsplit(ageGRP, ",")]
+
+  for (j in ageVars){
+    suppressWarnings(data.table::set(dt, j = j, value = as.numeric(dt[[j]])))
+  }
+
+  dt[, up := up - 1]
+  dt[up != Inf, alderGRP := paste0(lo, "_", up)]
+  dt[up == Inf, alderGRP := paste0(lo, "<")]
+  dt[, ALDER := alderGRP]
+
+  delVals <- c("grp", "ageGRP", "alderGRP", ageVars)
   dt[, (delVals) := NULL]
   return(dt)
 }
+
+
+
+## Helper ----------
