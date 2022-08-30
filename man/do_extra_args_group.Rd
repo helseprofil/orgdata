@@ -15,7 +15,8 @@ do_extra_args_group(dt = NULL, args = NULL)
 This is based on the input in \code{EXTRA} column from Access
 registration database on filegroup. The arguments that are valid here can
 be expanded whenever needed. See details section for valid arguments to be
-used. All argument names are written in \code{CamelCase} style.
+used. All argument names are written in \code{CamelCase} style. Use symbol \code{|}
+to separate multiple arguments.
 }
 \details{
 Currently, these arguments can be used:
