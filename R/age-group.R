@@ -29,13 +29,18 @@ age_category.val <- function(dt, interval){
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
   gpv <- setdiff(names(dt), vals)
 
+  is_color_txt(x = interval, msg = "Creating age category with year-interval of", emoji = TRUE)
+
   ## Always min = 0
   mix <- dt[, list(min = 0,
                    max = max(ALDER, na.rm = TRUE))]
   ageBrk <- c(seq(mix[["min"]], mix[["max"]], by = interval), Inf)
 
-  dt[, grp := cut(ALDER, breaks = ageBrk, right = FALSE), by = mget(gpv)][, grp := as.character(grp)]
-  dt[, ageid := .GRP, by = c(gpv, "grp")]
+  dt[, grpid := .GRP, by = mget(gpv)]
+  dt[, grp := cut(ALDER, breaks = ageBrk, right = FALSE), by = grpid][, grp := as.character(grp)]
+
+  idVars <- c("grpid", "grp")
+  dt[, ageid := .GRP, by = mget(idVars)]
 
   vals <- grep("^VAL", names(dt), value = TRUE)
   for (i in vals){
@@ -60,7 +65,7 @@ age_category.val <- function(dt, interval){
   dt[up == Inf, alderGRP := paste0(lo, "+")]
   dt[, ALDER := alderGRP]
 
-  delVals <- c("grp", "ageGRP", "alderGRP", ageVars)
+  delVals <- c("ageGRP", "alderGRP", idVars, ageVars)
   dt[, (delVals) := NULL]
   return(dt)
 }
