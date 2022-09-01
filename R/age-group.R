@@ -61,16 +61,13 @@ find_age_category.cat <- function(dt, interval){
 make_age_cat <- function(dt, category){
 
   ALDER <- ageid <- ageGRP <- alderGRP <- NULL
-  grp <- up <- lo <- grpid <- NULL
+  grp <- up <- lo <- NULL
 
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
-  gpv <- setdiff(names(dt), vals)
 
-  dt[, grpid := .GRP, by = mget(gpv)]
-  dt[, grp := cut(ALDER, breaks = category, right = FALSE), by = grpid][, grp := as.character(grp)]
-
-  idVars <- c("grpid", "grp")
-  dt[, ageid := .GRP, by = mget(idVars)]
+  dt[, grp := cut(ALDER, breaks = category, right = FALSE)]
+  gpv <- setdiff(names(dt), c(vals, "ALDER"))
+  dt[, ageid := .GRP, by = mget(gpv)]
 
   vals <- grep("^VAL", names(dt), value = TRUE)
   for (i in vals){
@@ -95,7 +92,7 @@ make_age_cat <- function(dt, category){
   dt[up == Inf, alderGRP := paste0(lo, "+")]
   dt[, ALDER := alderGRP]
 
-  delVals <- c("ageGRP", "alderGRP", "ageid", idVars, ageVars)
+  delVals <- c("ageGRP", "alderGRP", "ageid", "grp", ageVars)
   dt[, (delVals) := NULL]
   return(dt)
 }
