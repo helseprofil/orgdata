@@ -31,10 +31,12 @@ age_category.val <- function(dt, interval){
 
   is_color_txt(x = interval, msg = "Creating age category with year-interval of", emoji = TRUE)
 
-  ## Always min = 0
-  mix <- dt[, list(min = 0,
-                   max = max(ALDER, na.rm = TRUE))]
-  ageBrk <- c(seq(mix[["min"]], mix[["max"]], by = interval), Inf)
+  ## Age lower and upper limit for odd and even number
+  valOdd <- interval %% 2
+  maxAge <- ifelse(valOdd == 0, 80, 85)
+  minAge <- 0
+
+  ageBrk <- c(seq(from = minAge, to = maxAge, by = interval), Inf)
 
   dt[, grpid := .GRP, by = mget(gpv)]
   dt[, grp := cut(ALDER, breaks = ageBrk, right = FALSE), by = grpid][, grp := as.character(grp)]

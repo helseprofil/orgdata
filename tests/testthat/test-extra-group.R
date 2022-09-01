@@ -12,10 +12,11 @@ test_that("Extra args for group", {
 test_that("Extra age category", {
 
   dt <- readRDS(system.file("testdata", "AgeCatDT.rds", package = "orgdata"))
-  inx <- readRDS(system.file("testdata", "AgeCatInterval.rds", package = "orgdata"))
   dtout <- readRDS(system.file("testdata", "AgeCatOut.rds", package = "orgdata"))
+  dtoutEven <- readRDS(system.file("testdata", "AgeCatOutEven.rds", package = "orgdata"))
 
   expect_error(input_age_class("5_"))
-  expect_equal(age_category.val(dt, interval = inx), dtout)
+  expect_equal(age_category.val(dt = data.table::copy(dt), interval = 3), dtout)
+  expect_equal(age_category.val(dt = data.table::copy(dt), interval = 10), dtoutEven)
 
 })
