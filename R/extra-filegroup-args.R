@@ -1,13 +1,13 @@
-
 #' @title Execute Extra Arguments for Filegroup
 #' @description This is based on the input in `EXTRA` column from Access
 #'   registration database on filegroup. The arguments that are valid here can
 #'   be expanded whenever needed. See details section for valid arguments to be
-#'   used. All argument names are written in `CamelCase` style. Use symbol `|`
-#'   to separate multiple arguments.
+#'   used. All argument names are written in `CamelCase` style.
+#' @description NB! Use symbol `|` to separate multiple arguments eg. `DeleteOldBydel | AgeCat(5)`
 #'
 #' @details Currently, these arguments can be used:
 #'   - `DeleteOldBydel` : Delete bydel codes before 2003, except for Oslo
+#'   - `AgeCat()` : Categorise age to different groups with defined interval. Example can be found in `find_age_category()`.
 #' @param dt Dataset
 #' @param args Extra arguments as specified in details section below.
 #' @family extra arguments
@@ -73,7 +73,7 @@ is_age_category <- function(dt = NULL, extra = NULL){
   if (length(ageCat > 0)){
 
     gp <- is_input_age_class(ageCat)
-    dt <- age_category(dt = dt, interval = gp)
+    dt <- find_age_category(dt = dt, interval = gp)
   }
 
   return(dt)

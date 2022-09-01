@@ -16,8 +16,8 @@ test_that("Extra age category", {
   dtoutEven <- readRDS(system.file("testdata", "AgeCatOutEven.rds", package = "orgdata"))
 
   expect_error(is_input_age_class("5_"))
-  expect_equal(age_category.val(dt = data.table::copy(dt), interval = 3), dtout)
-  expect_equal(age_category.val(dt = data.table::copy(dt), interval = 10), dtoutEven)
+  expect_equal(find_age_category.val(dt = data.table::copy(dt), interval = 3), dtout)
+  expect_equal(find_age_category.val(dt = data.table::copy(dt), interval = 10), dtoutEven)
 
 })
 
@@ -28,6 +28,6 @@ test_that("Extra age category fix group", {
   inx <- readRDS(system.file("testdata", "AgeGrpInterval.rds", package = "orgdata"))
   dtout <- readRDS(system.file("testdata", "AgeGrpOut.rds", package = "orgdata"))
 
-  expect_equal(age_category.cat(dt = data.table::copy(dt), interval = inx), dtout)
+  expect_equal(find_age_category.cat(dt = data.table::copy(dt), interval = inx), dtout)
 
 })

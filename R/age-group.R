@@ -1,20 +1,27 @@
 #' Create age categories
-#' @description
-#' Create age categories either by interval or specified age categories.
+#' @description Create age categories either by age interval or specified age
+#'   categories. How to define the age categories in `EXTRA` column in Access is
+#'   shown in the example below.
+#' @description Age categories can be specified as follows:
+#'   - Specific interval eg. every 5 years. Interval with odd numbers will use minimum age of 0 and maximum age is 85+, while even number uses maximum age of 80+.
+#'   - Specified interval eg. 0-18, 19-44, 45-64, 65-79, 80+
 #' @param dt Dataset
 #' @param interval Age interval
 #' @examples
 #' \dontrun{
-#' dd
+#' AgeCat(5) #Group age for every 5 years with min 0 and max 85+
+#' AgeCat(10) #Group age for every 10 years with min 0 and max 80+
+#' AgeCat(0, 19, 45, 65, 80) #Age group of 0-18, 19-44, 45-64, 65-79, 80+
 #' }
+#' @family extra arguments
 #' @export
-age_category <- function(dt = NULL, interval = NULL) {
-  UseMethod("age_category", interval)
+find_age_category <- function(dt = NULL, interval = NULL) {
+  UseMethod("find_age_category", interval)
 }
 
-#' @method age_category default
+#' @method find_age_category default
 #' @export
-age_category.default <- function(dt, interval) {
+find_age_category.default <- function(dt, interval) {
   message("Selected age category: ", interval)
   stop(sprintf("Age categories not valid: `%s`", interval))
 }
@@ -22,9 +29,9 @@ age_category.default <- function(dt, interval) {
 # Interval value to categorize age. The minimum age will always be
 # 0 while maximum age is 80 for even age interval and 85 for odd age
 # interval.
-#' @method age_category val
+#' @method find_age_category val
 #' @export
-age_category.val <- function(dt, interval){
+find_age_category.val <- function(dt, interval){
   is_color_txt(x = interval, msg = "Creating age category with year-interval of", emoji = TRUE)
 
   ## Age lower and upper limit for odd and even number
@@ -37,9 +44,9 @@ age_category.val <- function(dt, interval){
   return(dt)
 }
 
-#' @method age_category.cat
+#' @method find_age_category cat
 #' @export
-age_category.cat <- function(dt, interval){
+find_age_category.cat <- function(dt, interval){
 
   txt <- paste(interval, collapse = ", ")
   is_color_txt(x = paste0(txt, "+"), msg = "Creating age category", emoji = TRUE)
