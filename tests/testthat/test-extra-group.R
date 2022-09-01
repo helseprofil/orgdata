@@ -31,3 +31,10 @@ test_that("Extra age category fix group", {
   expect_equal(find_age_category.cat(dt = data.table::copy(dt), interval = inx), dtout)
 
 })
+
+test_that("Create age codebook", {
+
+  codebook <- readRDS(system.file("testdata", "AgeCodebook.rds", package = "orgdata"))
+
+  expect_equal(is_age_codebook(sample(1:33, 20, replace = TRUE), c(1, 5, 10, 15, 20, Inf)), codebook)
+})
