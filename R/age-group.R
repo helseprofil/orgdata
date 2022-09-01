@@ -40,7 +40,7 @@ find_age_category.val <- function(dt, interval){
   minAge <- 0
 
   ageBrk <- c(seq(from = minAge, to = maxAge, by = interval), Inf)
-  dt <- make_age_cat(dt, category = ageBrk)
+  dt <- is_recode_age(dt, category = ageBrk)
   return(dt)
 }
 
@@ -51,14 +51,14 @@ find_age_category.cat <- function(dt, interval){
   txt <- paste(interval, collapse = ", ")
   is_color_txt(x = paste0(txt, "+"), msg = "Creating age category", emoji = TRUE)
   ageBrk <- c(interval, Inf)
-  dt <- make_age_cat(dt, category = ageBrk)
+  dt <- is_recode_age(dt, category = ageBrk)
   return(dt)
 }
 
 
 ## Helper ----------
 
-make_age_cat <- function(dt, category){
+is_recode_age <- function(dt, category){
 
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
 
@@ -80,13 +80,13 @@ make_age_cat <- function(dt, category){
   }
 
   dt <- dt[, .SD[1], by = get(idCol)]
-
   dt[, (idCol) := NULL]
   return(dt)
 }
 
+# Create codeboook to recode age
 is_age_codebook <- function(x, category){
-  # x - A vector of numeric
+  # x - Numeric vector eg. age
 
   dt <- data.table::data.table(ALDER = x, grp = NA)
   dt[, "grp" := cut(ALDER, breaks = category, right = FALSE)]
