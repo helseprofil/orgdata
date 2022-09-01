@@ -1,17 +1,18 @@
-#' @title See Original Data in the Database
-#' @description See the original data that are saved in the org database when
-#'   the column *KONTROLLERT* is marked. This means the dataset has been cleaned
-#'   and recoded as specified in *INNLESING* table in Access registration
-#'   database.
+#' @title See Structured Data in the Data Warehouse
+#' @description See the original data that have been clean and structured i the
+#'   data warehouse. Data is saved in the warehouse when the column
+#'   *KONTROLLERT* is marked in the original file table in Access. This means
+#'   the dataset has been cleaned and recoded as specified in *INNLESING* table
+#'   in Access registration database.
 #' @param group The filegroup name (\emph{filgruppe})
 #' @inheritParams make_file
-#' @param action To read or delete the data in the database. Default is `read`.
+#' @param action To read or delete the data in the warehouse. Default is `read`.
 #' @examples
 #' \dontrun{
-#' dt <- see_org("LESEFERD", koblid = 134)
+#' dt <- see_data("LESEFERD", koblid = 134)
 #' }
 #' @export
-see_org <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read", "delete")){
+see_data <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read", "delete")){
 
   action <- match.arg(action)
   if (is.null(year))

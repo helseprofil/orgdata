@@ -51,8 +51,8 @@ debug_opt <- function(opt = c("shallow", "deep", "nrow", "row", "aggregate", "ge
 
 
 #' @title Emoji
-#' @description Use emoji for fun &#128516;
-#' @param x Emoji to choose ie. thumb, smile or sad
+#' @description Change emoji in the output messages for fun &#128516;
+#' @param x Emoji to choose ie. thumb, smile etc
 #' @examples emoji("smile")
 #' @export
 emoji <- function(x = c("mark", "thumb", "write",
@@ -70,6 +70,8 @@ emoji <- function(x = c("mark", "thumb", "write",
          folder = options(orgdata.emoji = "folder"),
          book = options(orgdata.emoji = "book")
          )
+
+  invisible()
 }
 
 
@@ -155,8 +157,9 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
     newVer <- numeric_version(gitVer) > numeric_version(ver)
 
     if(newVer){
-      is_color_txt(ver, "Your installed version:", type = "note")
       is_color_txt(gitVer, "New version is available!", type = "note", emoji = TRUE, symbol = "thumb")
+      is_color_txt(ver, "Your installed version:", type = "note")
+      is_color_txt("Changelog", "Find out what's new in", type = "note", emoji = TRUE, symbol = "book")
       out <- TRUE
     }
   } else {
@@ -164,7 +167,7 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
                  type = "error", emoji = TRUE, symbol = "sad")
   }
 
-  return(out)
+  invisible(out)
 }
 
 is_online <- function(x){

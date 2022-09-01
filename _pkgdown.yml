@@ -84,7 +84,7 @@ reference:
   desc: Some functions that are nice to have.
   contents:
     - see_file
-    - see_org
+    - see_data
     - log
     - read_log
     - debug_opt

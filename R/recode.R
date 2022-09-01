@@ -167,7 +167,7 @@ check_dublicate_col <- function(code){
 
   dp <- data.table::copy(code)
   cols <- c("KOL", "FRA")
-  dp[, dup := .N > 1, by = cols]
+  dp[, "dup" := .N > 1, by = cols]
   dps <- sum(dp[["dup"]])
 
   if (dps > 0){

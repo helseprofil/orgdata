@@ -20,7 +20,7 @@ opt.orgdata <- as.list(opt_rename(optOrg))
   if (latest){
     x <- utils::askYesNo("Update orgdata now?")
     if (isTRUE(x)){
-      update_orgdata()
+      orgdata::update_orgdata()
     }
   }
 }

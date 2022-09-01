@@ -16,16 +16,20 @@ This is based on the input in \code{EXTRA} column from Access
 registration database on filegroup. The arguments that are valid here can
 be expanded whenever needed. See details section for valid arguments to be
 used. All argument names are written in \code{CamelCase} style.
+
+NB! Use symbol \code{|} to separate multiple arguments eg. \code{DeleteOldBydel | AgeCat(5)}
 }
 \details{
 Currently, these arguments can be used:
 \itemize{
 \item \code{DeleteOldBydel} : Delete bydel codes before 2003, except for Oslo
+\item \code{AgeCat()} : Categorise age to different groups with defined interval. Example can be found in \code{find_age_category()}.
 }
 }
 \seealso{
 Other extra arguments: 
 \code{\link{do_extra_args}()},
+\code{\link{find_age_category}()},
 \code{\link{get_extra_args_group}()},
 \code{\link{get_extra_args}()}
 }

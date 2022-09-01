@@ -1,3 +1,9 @@
+# orgdata 0.7.5
+- Use either `empty` or `tom` to represent regular expression to replace to since Access makes symbol `""` to be invisible (#285)
+- Change function name from `see_org()` to `see_data()` for viewing data in the data warehouse.
+- Use symbol `|` to separate multiple arguments in column `EXTRA` (#288)
+- Group age to specific or specified interval with `AgeCat()`. This function can be use in table for filegroup under `EXTRA` column (#287 #289)
+
 # orgdata 0.7.4
 - Delete raw of similar columns with multiple specifications (#282)
 - Different ways to recode of similar column ie. duplicated, with defined lesid will give error.

@@ -113,7 +113,7 @@ is_recode_regexp <- function(dt, code, cols){
   for (i in seq_along(cols)){
     col <- cols[i]
     fra <- is_rex(code = code[["FRA"]])
-    til <- code[["TIL"]]
+    til <- is_empty_til(code = code[["TIL"]])
 
     dt[, (col) := gsub(fra, til, get(col))]
   }
@@ -125,6 +125,18 @@ is_rex <- function(code){
   rexExp <- grepl("^rex\\(", code)
   if (rexExp){
     code <- eval(parse(text = paste0("rex::", code)))
+  }
+
+  return(code)
+}
+
+## Symbol "" in Access make it invisible so better use
+## something clear with the word 'empty' or 'tom'
+is_empty_til <- function(code){
+  code <- trimws(code)
+  ety <- c("empty", "emtpy", "tom")
+  if (is.element(code, ety)){
+    code <- ""
   }
 
   return(code)
