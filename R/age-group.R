@@ -60,25 +60,37 @@ find_age_category.cat <- function(dt, interval){
 
 make_age_cat <- function(dt, category){
 
-  ALDER <- ageid <- ageGRP <- alderGRP <- NULL
-  grp <- up <- lo <- NULL
-
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
 
-  dt[, grp := cut(ALDER, breaks = category, right = FALSE)]
-  gpv <- setdiff(names(dt), c(vals, "ALDER"))
-  dt[, ageid := .GRP, by = mget(gpv)]
+  ageVec <- sort( unique(dt[["ALDER"]]) )
+  dtCode <- is_age_codebook(x = ageVec, category = category)
+  dt <- dt[dtCode, on = "ALDER"]
+  dt[, "ALDER" := to][, "to" := NULL]
+
+  idCol <- "ageid"
+  gpv <- setdiff(names(dt), vals)
+  dt[, (idCol) := .GRP, by = mget(gpv)]
 
   vals <- grep("^VAL", names(dt), value = TRUE)
   for (i in vals){
     vai <- tolower(i)
-    dt[, (vai) := sum(get(i), na.rm = TRUE), by = ageid]
+    dt[, (vai) := sum(get(i), na.rm = TRUE), by = get(idCol)]
     dt[, (i) := get(vai)]
     dt[, (vai) := NULL]
   }
 
-  dt <- dt[, .SD[1], by = ageid]
-  dt[, ageGRP := sub("\\[(.*)\\)", "\\1", grp)]
+  dt <- dt[, .SD[1], by = get(idCol)]
+
+  dt[, (idCol) := NULL]
+  return(dt)
+}
+
+is_age_codebook <- function(x, category){
+  # x - A vector of numeric
+
+  dt <- data.table::data.table(ALDER = x, grp = NA)
+  dt[, "grp" := cut(ALDER, breaks = category, right = FALSE)]
+  dt[, "ageGRP" := sub("\\[(.*)\\)", "\\1", grp)]
 
   ageVars <- c("lo", "up")
   dt[, (ageVars) := data.table::tstrsplit(ageGRP, ",")]
@@ -87,12 +99,13 @@ make_age_cat <- function(dt, category){
     suppressWarnings(data.table::set(dt, j = j, value = as.numeric(dt[[j]])))
   }
 
-  dt[, up := up - 1]
-  dt[up != Inf, alderGRP := paste0(lo, "_", up)]
-  dt[up == Inf, alderGRP := paste0(lo, "+")]
-  dt[, ALDER := alderGRP]
+  dt[, "up" := up - 1]
+  agp <- "alderGRP"
+  dt[up != Inf, (agp) := paste0(lo, "_", up)]
+  dt[up == Inf, (agp) := paste0(lo, "+")]
 
-  delVals <- c("ageGRP", "alderGRP", "ageid", "grp", ageVars)
-  dt[, (delVals) := NULL]
+  delCols <- c(ageVars, "to", "ageGRP", "grp")
+  dt[, (delCols) := NULL]
+  data.table::setnames(dt, "alderGRP", "to")
   return(dt)
 }
