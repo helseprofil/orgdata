@@ -196,7 +196,6 @@ make_file <- function(group = NULL,
   outDT <- is_col_num_warn(outDT, numCols)
 
   ## EXTRA ARGUMENTS FOR FILEGROUP ---------------------------
-  ## -- DELETE OLD BYDEL --
   bySpec <- get_extra_args_group(spec = fgSpec)
   outDT <- do_extra_args_group(dt = outDT, args = bySpec )
 
