@@ -60,6 +60,7 @@ find_age_category.cat <- function(dt, interval){
 
 is_recode_age <- function(dt, category){
 
+  to <- NULL
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
 
   ageVec <- sort( unique(dt[["ALDER"]]) )
@@ -87,6 +88,8 @@ is_recode_age <- function(dt, category){
 # Create codeboook to recode age
 is_age_codebook <- function(x, category){
   # x - Numeric vector eg. age
+
+  ALDER <- grp <- ageGRP <- up <- lo <- NULL
 
   dt <- data.table::data.table(ALDER = x, grp = NA)
   dt[, "grp" := cut(ALDER, breaks = category, right = FALSE)]
