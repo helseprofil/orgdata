@@ -289,10 +289,10 @@
     },
     "hms": {
       "Package": "hms",
-      "Version": "1.1.1",
+      "Version": "1.1.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5b8a2dd0fdbe2ab4f6081e6c7be6dfca",
+      "Hash": "41100392191e1244b887878b533eea91",
       "Requirements": [
         "ellipsis",
         "lifecycle",
@@ -431,16 +431,16 @@
     },
     "orgdata": {
       "Package": "orgdata",
-      "Version": "0.7.0",
+      "Version": "0.7.5",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "helseprofil",
       "RemoteRepo": "orgdata",
       "RemoteRef": "main",
-      "RemoteSha": "3de70f8cc90892205f41d3fe7bd14ccdac5e85af",
+      "RemoteSha": "6aed387fb0a384dee4b0ba311fd7aee974284710",
       "Remotes": "ybkamaleri/praise",
-      "Hash": "bf1ac14b56a4c52d28ac42adcb2d8877",
+      "Hash": "f67ae2e834be92bff9ef3fe9f7b8942e",
       "Requirements": [
         "DBI",
         "R6",
@@ -463,10 +463,10 @@
     },
     "pillar": {
       "Package": "pillar",
-      "Version": "1.8.0",
+      "Version": "1.8.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f95cf85794546c4ac2b9a6ca42e671ff",
+      "Hash": "f2316df30902c81729ae9de95ad5a608",
       "Requirements": [
         "cli",
         "fansi",
