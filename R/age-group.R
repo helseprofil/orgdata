@@ -19,12 +19,15 @@ age_category.default <- function(dt, interval) {
   stop(sprintf("Age categories not valid: `%s`", interval))
 }
 
+# Interval value to categorize age. The minimum age will always be
+# 0 while maximum age is 80 for even age interval and 85 for odd age
+# interval.
 #' @method age_category val
 #' @export
 age_category.val <- function(dt, interval){
 
-  ALDER <- ageid <- grp <- ageGRP <- alderGRP <- NULL
-  up <- lo <- NULL
+  ALDER <- ageid <- ageGRP <- alderGRP <- NULL
+  grp <- up <- lo <- grpid <- NULL
 
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
   gpv <- setdiff(names(dt), vals)
