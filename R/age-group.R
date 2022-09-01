@@ -1,10 +1,10 @@
-#' Create age categories
-#' @description Create age categories either by age interval or specified age
+#' Define age categories
+#' @description Define and create age categories either by age interval or specified age
 #'   categories. How to define the age categories in `EXTRA` column in Access is
-#'   shown in the example below.
+#'   shown in the example below. This function is only applicable in the filegroup table.
 #' @description Age categories can be specified as follows:
 #'   - Specific interval eg. every 5 years. Interval with odd numbers will use minimum age of 0 and maximum age is 85+, while even number uses maximum age of 80+.
-#'   - Specified interval eg. 0-18, 19-44, 45-64, 65-79, 80+
+#'   - Specified interval lower bound eg. `0, 19, 45, 65, 80` for age categories of 0-18, 19-44, 45-64, 65-79, 80+.
 #' @param dt Dataset
 #' @param interval Age interval
 #' @examples

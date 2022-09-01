@@ -68,10 +68,10 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 
 ## Resources
 
-- [Get
-  started](https://helseprofil.github.io/orgdata/articles/get-started.html)
-- [Functions
-  overview](https://helseprofil.github.io/orgdata/reference/index.html)
-- [General guide](https://helseprofil.github.io)
-- [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
-- [Video guide](https://youtu.be/PhEQq4iWJCY)
+  - [Get
+    started](https://helseprofil.github.io/orgdata/articles/get-started.html)
+  - [Functions
+    overview](https://helseprofil.github.io/orgdata/reference/index.html)
+  - [General guide](https://helseprofil.github.io)
+  - [Conventions](https://helseprofil.github.io/orgdata/articles/standard.html)
+  - [Video guide](https://youtu.be/PhEQq4iWJCY)
