@@ -1,5 +1,5 @@
 # orgdata 0.7.6
-- Fixed duplicated age groups.
+- Fixed duplicated age groups (#290).
 - Use codebook to recode age category for better speed.
 
 # orgdata 0.7.5
