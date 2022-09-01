@@ -95,7 +95,7 @@ make_age_cat <- function(dt, category){
   dt[up == Inf, alderGRP := paste0(lo, "+")]
   dt[, ALDER := alderGRP]
 
-  delVals <- c("ageGRP", "alderGRP", idVars, ageVars)
+  delVals <- c("ageGRP", "alderGRP", "ageid", idVars, ageVars)
   dt[, (delVals) := NULL]
   return(dt)
 }
