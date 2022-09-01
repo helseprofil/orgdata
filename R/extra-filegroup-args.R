@@ -72,7 +72,7 @@ is_age_category <- function(dt = NULL, extra = NULL){
   ageCat <- extra[grepl("AgeCat", extra)]
   if (length(ageCat > 0)){
 
-    gp <- input_age_class(ageCat)
+    gp <- is_input_age_class(ageCat)
     dt <- age_category(dt = dt, interval = gp)
   }
 
@@ -81,23 +81,29 @@ is_age_category <- function(dt = NULL, extra = NULL){
 
 
 ## Helper ---------------
-input_age_class <- function(input){
+is_input_age_class <- function(input){
   input <- sub("^AgeCat\\((.*)\\)", "\\1", input)
 
-  inx <- is_separate(input, sep = ",")
+  input <- is_separate(input, sep = ",")
 
-  if (length(inx) > 1){
+  if (length(input) > 1){
     # category with specified group
-    class(inx) <- append(class(inx), "cat")
+    input <- is_check_age_input(input)
+    class(input) <- append(class(input), "cat")
 
   } else {
     # category with interval eg. every 5 years
-    inx <- tryCatch(as.numeric(inx),
-                    warning = function(w){
-                      is_stop("Interval for AgeCat in EXTRA is not numeric:", inx)
-                    })
-    class(inx) <- append(class(inx), "val")
+    input <- is_check_age_input(input)
+    class(input) <- append(class(input), "val")
   }
 
-  return(inx)
+  return(input)
+}
+
+is_check_age_input <- function(inx){
+  inx <- trimws(inx)
+  inx <- tryCatch(as.numeric(inx),
+                  warning = function(w){
+                    is_stop("Interval for AgeCat in EXTRA is not numeric:", inx)
+                  })
 }

@@ -25,13 +25,6 @@ age_category.default <- function(dt, interval) {
 #' @method age_category val
 #' @export
 age_category.val <- function(dt, interval){
-
-  ALDER <- ageid <- ageGRP <- alderGRP <- NULL
-  grp <- up <- lo <- grpid <- NULL
-
-  vals <- paste0("VAL", 1:getOption("orgdata.vals"))
-  gpv <- setdiff(names(dt), vals)
-
   is_color_txt(x = interval, msg = "Creating age category with year-interval of", emoji = TRUE)
 
   ## Age lower and upper limit for odd and even number
@@ -40,9 +33,34 @@ age_category.val <- function(dt, interval){
   minAge <- 0
 
   ageBrk <- c(seq(from = minAge, to = maxAge, by = interval), Inf)
+  dt <- make_age_cat(dt, category = ageBrk)
+  return(dt)
+}
+
+#' @method age_category.cat
+#' @export
+age_category.cat <- function(dt, interval){
+
+  txt <- paste(interval, collapse = ", ")
+  is_color_txt(x = paste0(txt, "+"), msg = "Creating age category", emoji = TRUE)
+  ageBrk <- c(interval, Inf)
+  dt <- make_age_cat(dt, category = ageBrk)
+  return(dt)
+}
+
+
+## Helper ----------
+
+make_age_cat <- function(dt, category){
+
+  ALDER <- ageid <- ageGRP <- alderGRP <- NULL
+  grp <- up <- lo <- grpid <- NULL
+
+  vals <- paste0("VAL", 1:getOption("orgdata.vals"))
+  gpv <- setdiff(names(dt), vals)
 
   dt[, grpid := .GRP, by = mget(gpv)]
-  dt[, grp := cut(ALDER, breaks = ageBrk, right = FALSE), by = grpid][, grp := as.character(grp)]
+  dt[, grp := cut(ALDER, breaks = category, right = FALSE), by = grpid][, grp := as.character(grp)]
 
   idVars <- c("grpid", "grp")
   dt[, ageid := .GRP, by = mget(idVars)]
@@ -74,7 +92,3 @@ age_category.val <- function(dt, interval){
   dt[, (delVals) := NULL]
   return(dt)
 }
-
-
-
-## Helper ----------
