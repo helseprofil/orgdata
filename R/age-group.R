@@ -109,6 +109,6 @@ is_age_codebook <- function(x, category){
 
   delCols <- c(ageVars, "to", "ageGRP", "grp")
   dt[, (delCols) := NULL]
-  data.table::setnames(dt, "alderGRP", "to")
+  data.table::setnames(dt, agp, "to")
   return(dt)
 }
