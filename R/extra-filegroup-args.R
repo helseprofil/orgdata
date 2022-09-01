@@ -79,6 +79,8 @@ is_age_category <- function(dt = NULL, extra = NULL){
   return(dt)
 }
 
+
+## Helper ---------------
 input_age_class <- function(input){
   input <- sub("^AgeCat\\((.*)\\)", "\\1", input)
 
