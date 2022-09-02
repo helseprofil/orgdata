@@ -11,6 +11,8 @@
 #' @examples
 #' \dontrun{
 #' dt <- see_data("LESEFERD", koblid = 134)
+#' dt <- see_data("ENPERSON", koblid = "all")
+#' dt <- see_data("ENPERSON", koblid = 267:270, action = "delete")
 #' }
 #' @export
 see_data <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read", "delete")){
@@ -42,13 +44,30 @@ see_data <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read
   if (action == "delete"){
     is_delete_tables(group, koblid, dbTables, conn = rcon)
   } else {
-    dt <- rcon$db_read(as.character(koblid))
-    data.table::setDT(dt)
-    dt[]
+    dt <- is_read_tables(group, koblid, dbTables, conn = rcon)
+    return(dt)
   }
+
+  invisible()
 }
 
 ## Helper -------------
+is_read_tables <- function(group, koblid, dbTables, conn){
+
+  if (any(koblid == "all")){
+    is_color_txt(group, "Read all data in warehose for", type = "note")
+    koblid <- as.character(dbTables)
+  } else {
+    idTxt <- is_short_code(koblid)
+    is_color_txt(idTxt, "Read data in warehouse for KOBLID:")
+    koblid <- as.character(koblid)
+  }
+
+  dt <- lapply(koblid, conn$db_read)
+  dt <- data.table::rbindlist(dt)
+  data.table::setDT(dt)
+}
+
 is_delete_tables <- function(group, koblid, dbTables, conn){
 
   if (any(koblid == "all")){
@@ -56,7 +75,7 @@ is_delete_tables <- function(group, koblid, dbTables, conn){
     koblid <- as.character(dbTables)
   } else {
     idTxt <- is_short_code(koblid)
-    is_color_txt(idTxt, "Delete raw database for KOBLID:")
+    is_color_txt(idTxt, "Delete data in warehouse for KOBLID:")
     koblid <- as.character(koblid)
   }
 
