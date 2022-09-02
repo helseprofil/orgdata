@@ -39,7 +39,7 @@ see_data <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read
   dbTables <- vapply(dbTables, as.integer, integer(1))
 
   if (!any(koblid == "all"))
-    is_check_tables(koblid, dbTables)
+    is_check_tables(koblid, dbTables, group)
 
   if (action == "delete"){
     is_delete_tables(group, koblid, dbTables, conn = rcon)
@@ -83,14 +83,14 @@ is_delete_tables <- function(group, koblid, dbTables, conn){
   invisible()
 }
 
-is_check_tables <- function(koblid, dbTables){
+is_check_tables <- function(koblid, dbTables, group){
 
   if (length(dbTables) != 0){
-    msg <- "Available koblid"
-    txt <- ""
-  } else {
-    msg <- "Data not found in the warehouse!"
+    msg <- "Available koblid:"
     txt <- is_short_code(dbTables)
+  } else {
+    msg <- "No data found in the warehouse for"
+    txt <- group
   }
 
   if (isFALSE(any(koblid %in% dbTables))){
