@@ -81,7 +81,8 @@
 
 
 
-<script src="standard_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Make things standard</h1>
             
@@ -92,21 +93,30 @@
 
     
     
-<p>Contributing to this package is very much welcome. This is an effort to structure things and follow certain convention when pushing to <code>Github</code>.</p>
+<p>Contributing to this package is very much welcome. This is an effort
+to structure things and follow certain convention when pushing to
+<code>Github</code>.</p>
 <div class="section level2">
 <h2 id="keyword-for-github-commit">Keyword for GitHub Commit<a class="anchor" aria-label="anchor" href="#keyword-for-github-commit"></a>
 </h2>
-<p>These keywords will be helpful when searching for relevant commits:</p>
+<p>These keywords will be helpful when searching for relevant
+commits:</p>
 <ul>
 <li><p><code>Feat:</code> for new feature or function</p></li>
 <li><p><code>Fix:</code> for bug fix</p></li>
-<li><p><code>Doc:</code> for documentation or changes to documentation</p></li>
-<li><p><code>Close:</code> or <code>Style:</code> for changes to code or comments that aren’t because of bugs</p></li>
-<li><p><code>Test:</code> for code testing in <code>tests</code> folder</p></li>
-<li><p><code>DEV:</code> for development processes for new feature</p></li>
+<li><p><code>Doc:</code> for documentation or changes to
+documentation</p></li>
+<li><p><code>Close:</code> or <code>Style:</code> for changes to code or
+comments that aren’t because of bugs</p></li>
+<li><p><code>Test:</code> for code testing in <code>tests</code>
+folder</p></li>
+<li><p><code>DEV:</code> for development processes for new
+feature</p></li>
 <li><p><code>VER:</code> for first version upgrade</p></li>
 <li>
-<p><code>Misc:</code> for any changes that aren’t critical or doesn’t fit to any of the above keywords. Avoid using it if possible or only as a last resort</p>
+<p><code>Misc:</code> for any changes that aren’t critical or
+doesn’t fit to any of the above keywords. Avoid using it if possible or
+only as a last resort</p>
 <p>Example of commit message</p>
 <pre><code>Feat: Get list of new files
 
@@ -123,18 +133,27 @@ current list before aggregating.</code></pre>
 
 More detail explanation if necessary with maximum 72 characters and use
 line break for long sentences.</code></pre>
-<p>The first line gives summary for what was done. Preferably to write this as imperative mood or like commanding someone especially for commit related to features, functions <code>(Feat:)</code> or fixing code <code>(Fix)</code>.</p>
+<p>The first line gives summary for what was done. Preferably to write
+this as imperative mood or like commanding someone especially for commit
+related to features, functions <code>(Feat:)</code> or fixing code
+<code>(Fix)</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="folders-structure">Folders structure<a class="anchor" aria-label="anchor" href="#folders-structure"></a>
 </h2>
 <p>Where are the files located and how the files will be used.</p>
 <ul>
-<li>Folder <code>/R</code> where all the R codes for the functions and objects for <code>orgdata</code> live.</li>
-<li>Folder <code>/inst</code> is for SQL code files and other files that are needed by the package.</li>
-<li>Folder <code>/dev</code> is for other files that aren’t used in the package but good to have as reference or code testing.</li>
-<li>Files with prefix <code>utils-*</code> in folder <code>/R</code> have helper functions that are used multiple times in different places.</li>
-<li>Put the functions and helper functions in the same file if they aren’t used in different places.</li>
+<li>Folder <code>/R</code> where all the R codes for the functions and
+objects for <code>orgdata</code> live.</li>
+<li>Folder <code>/inst</code> is for SQL code files and other files that
+are needed by the package.</li>
+<li>Folder <code>/dev</code> is for other files that aren’t used in the
+package but good to have as reference or code testing.</li>
+<li>Files with prefix <code>utils-*</code> in folder <code>/R</code>
+have helper functions that are used multiple times in different
+places.</li>
+<li>Put the functions and helper functions in the same file if they
+aren’t used in different places.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -143,28 +162,39 @@ line break for long sentences.</code></pre>
 <p>Use these naming style:</p>
 <ul>
 <li>
-<code>snake_case</code> style is for <strong>function</strong> eg. <code>find_column_input</code>
+<code>snake_case</code> style is for <strong>function</strong> eg.
+<code>find_column_input</code>
 </li>
 <li>
-<code>camelCase</code> style is for <strong>object</strong> eg. <code>fileGroup</code>
+<code>camelCase</code> style is for <strong>object</strong> eg.
+<code>fileGroup</code>
 </li>
 <li>
-<code>kebab-case</code> style for <strong>filename</strong> eg. <code>utils-internal.R</code>
+<code>kebab-case</code> style for <strong>filename</strong> eg.
+<code>utils-internal.R</code>
 </li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="function-names">Function names<a class="anchor" aria-label="anchor" href="#function-names"></a>
 </h2>
-<p>An effort to group functions according to their responsibilities :)</p>
+<p>An effort to group functions according to their responsibilities
+:)</p>
 <ul>
-<li><p>Files with <code>read_</code> perfix for major functions.</p></li>
-<li><p>Files with <code>do_</code> prefix for doing some action functions.</p></li>
-<li><p>Files with <code>get_</code> prefix for column specific functions.</p></li>
-<li><p>Files with <code>find_</code> prefix for helper functions.</p></li>
+<li><p>Files with <code>read_</code> perfix for major
+functions.</p></li>
+<li><p>Files with <code>do_</code> prefix for doing some action
+functions.</p></li>
+<li><p>Files with <code>get_</code> prefix for column specific
+functions.</p></li>
+<li><p>Files with <code>find_</code> prefix for helper
+functions.</p></li>
 <li>
-<p>Files with <code>is_</code> prefix for internal functions or utility to use <code>orgdata</code> package.</p>
-<p>Internal functions will not be exported but if needed, they can be accessed with <code>:::</code> eg. <code>orgdata:::is_separate()</code>.</p>
+<p>Files with <code>is_</code> prefix for internal functions or
+utility to use <code>orgdata</code> package.</p>
+<p>Internal functions will not be exported but if needed, they can be
+accessed with <code>:::</code> eg.
+<code>orgdata:::is_separate()</code>.</p>
 </li>
 </ul>
 </div>

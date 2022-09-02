@@ -58,11 +58,12 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.7" id="orgdata-077">orgdata 0.7.7<a class="anchor" aria-label="anchor" href="#orgdata-077"></a></h2>
-<ul><li>Edit document here and there.</li></ul></div>
+<ul><li>Edit document here and there.</li>
+<li>Use codebook to recode age category for better speed (<a href="https://github.com/helseprofil/orgdata/issues/292" class="external-link">#292</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.6" id="orgdata-076">orgdata 0.7.6<a class="anchor" aria-label="anchor" href="#orgdata-076"></a></h2>
 <ul><li>Fixed duplicated age groups (<a href="https://github.com/helseprofil/orgdata/issues/290" class="external-link">#290</a>).</li>
-<li>Use codebook to recode age category for better speed.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.5" id="orgdata-075">orgdata 0.7.5<a class="anchor" aria-label="anchor" href="#orgdata-075"></a></h2>
@@ -79,7 +80,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.3" id="orgdata-073">orgdata 0.7.3<a class="anchor" aria-label="anchor" href="#orgdata-073"></a></h2>
-<ul><li>Testing</li></ul></div>
+<ul><li>Testing</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.2" id="orgdata-072">orgdata 0.7.2<a class="anchor" aria-label="anchor" href="#orgdata-072"></a></h2>
 <ul><li>Some minor text editing.</li>
@@ -135,7 +137,7 @@
 <code><a href="../reference/read_file.html">read_file()</a></code> accept Stata file with <code>dta</code> extension (<a href="https://github.com/helseprofil/orgdata/issues/252" class="external-link">#252</a>)</li>
 <li>Use yaml format for global configuration file to ease update. The file is located in <a href="https://github.com/helseprofil/config/blob/main/config-orgdata.yml" class="external-link">config repo</a> (<a href="https://github.com/helseprofil/orgdata/issues/256" class="external-link">#256</a>)</li>
 <li>Raw data that have been controlled for are saved in DuckDB database format. This increase reading speed especially for big files. Mark column <em>KONTROLLERT</em> in the Access registration database to activate this function. Unmark to read from the original raw file instead. (<a href="https://github.com/helseprofil/orgdata/issues/257" class="external-link">#257</a>)</li>
-<li>Use <code>see_org()</code> to read the raw data in the database. Argument <code>action = "delete"</code> can be used to delete the data from the raw database.</li>
+<li>Use <code>see_org()</code> to read the raw data in the database. Argument <code>action =   "delete"</code> can be used to delete the data from the raw database.</li>
 <li>Function <code><a href="../reference/geo_merge.html">geo_merge()</a></code> for merging geo codes that aren’t available from API to the mapping table ie. <em>tblGeo</em>, in the geo database. The data could be in any file format accepted by <code><a href="../reference/read_file.html">read_file()</a></code> function. The data to be merged must have column to be merged ie. <code>id.file</code>, that is equivalent to the column id in the database ie. <code>id.table</code>. The <code>id.file</code> must be unique.</li>
 <li>Handle unbalanced parentheses in post recode whenever possible when <code>raw</code> is used, else give error message. <a href="https://github.com/helseprofil/orgdata/issues/246" class="external-link">#246</a></li>
 <li>
@@ -246,7 +248,7 @@
 <li>Fixed <a href="https://github.com/helseprofil/orgdata/issues/57" class="external-link">#57</a> split column with duplicated values will keep the original column (<a href="https://github.com/helseprofil/orgdata/issues/60" class="external-link">#60</a>)</li>
 <li>Fixed <a href="https://github.com/helseprofil/orgdata/issues/56" class="external-link">#56</a> aggregate all VAL columns whenever specified and not only specific to <code>VAL1</code> (<a href="https://github.com/helseprofil/orgdata/issues/62" class="external-link">#62</a>)</li>
 <li>Edit verbose messages</li>
-<li>Reshape dataset from wide to long. Reshape can have more than one <code>measure variables</code>. Please read how this is specified in Access registration database.</li>
+<li>Reshape dataset from wide to long. Reshape can have more than one <code>measure   variables</code>. Please read how this is specified in Access registration database.</li>
 <li>Split columns must have equal number of values to the defined <code>SPLITTIL</code>. Duplicate the value if it is less than the maximum <code>SPLITTIL</code>. For example for value <code>0</code> in column <code>LANDSSB</code> which will be split into <code>LANDBAK</code> and <code>INNVKAT</code>, the value will be duplicated into <code>00</code> to avoid split with value <code>NA</code>.</li>
 <li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code>do_aggregate_recode_standard()</code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_num()</code>.</li>
 </ul></div>
@@ -281,7 +283,7 @@
 <ul><li><p>When MANHEADER is used then the new columname must be specified in the respective standard column (<a href="https://github.com/helseprofil/orgdata/issues/21" class="external-link">#21</a>)</p></li>
 <li><p>Deprecated arguments <code>geo</code> and <code>val</code> in <code>make_file</code>. Output data must use standard columnames instead of keeping the columnames from original dataset.</p></li>
 <li><p>Rename functions <code>read_raw</code> or <code>lesraw</code> to <code>make_file</code> or <code>lag_fil</code> (<a href="https://github.com/helseprofil/orgdata/issues/27" class="external-link">#27</a>)</p></li>
-<li><p>Alle functions uses underscore "_" for both english and norwegian.</p></li>
+<li><p>Alle functions uses underscore “_” for both english and norwegian.</p></li>
 <li><p>Add new columns if one of the standard columns is missing in the original data. The value to be inserted to the new column must use symbol less than <code>&lt;</code> and more than <code>&gt;</code>. For instance when column <code>KJONN</code> doesn’t exist in the original data, we can specify with <code>&lt;2&gt;</code> in under column <code>KJONN</code> in the Access registration database. The output will add a new column <code>KJONN</code> with value <code>2</code>. (<a href="https://github.com/helseprofil/orgdata/issues/15" class="external-link">#15</a>)</p></li>
 <li><p>Fix <a href="https://github.com/helseprofil/orgdata/issues/13" class="external-link">#13</a> and <a href="https://github.com/helseprofil/orgdata/issues/18" class="external-link">#18</a></p></li>
 <li><p>Default <code>orgdata.verbose</code> is <code>TRUE</code>.</p></li>
@@ -297,7 +299,8 @@
 <p>Order standard columns in the output dataset with this order for the first four columns:</p>
 <ul><li>
 <code>GEO</code>, <code>AAR</code>, <code>ALDER</code>, <code>KJONN</code>
-</li></ul></li>
+</li>
+</ul></li>
 <li><p>Change norwegian name for <code>save_file</code> from <code>lagfil</code> to <code>lagrefil</code>.</p></li>
 <li><p>Use column name <code>KOLNAVN</code> instead of <code>ADDKOL</code>.</p></li>
 <li><p>Rename function <code>do_addcols</code> and <code>get_addcols</code> to <code>do_colname</code> and <code>get_colname</code> to be consistent with the changes in Access registration database.</p></li>
@@ -337,7 +340,8 @@
 <div class="section level3">
 <h3 id="orgdata---alpha-0-0-1-2">orgdata 0.0.2 - alpha<a class="anchor" aria-label="anchor" href="#orgdata---alpha-0-0-1-2"></a></h3>
 <p>Things that are implemented</p>
-<ul><li>Bla.. bla.. bla..</li></ul></div>
+<ul><li>Bla.. bla.. bla..</li>
+</ul></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

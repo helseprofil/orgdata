@@ -1,9 +1,9 @@
 # orgdata 0.7.7
 - Edit document here and there.
+- Use codebook to recode age category for better speed (#292)
 
 # orgdata 0.7.6
 - Fixed duplicated age groups (#290).
-- Use codebook to recode age category for better speed.
 
 # orgdata 0.7.5
 - Use either `empty` or `tom` to represent regular expression to replace to since Access makes symbol `""` to be invisible (#285)

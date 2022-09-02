@@ -1,5 +1,5 @@
-#' Read Data File
-#' @description Read rawdata either using `FILID` value or complete file path.
+#' Read Raw Data or File
+#' @description Read raw data either using `FILID` value or a complete file path.
 #'   It uses the [find_data()] generic method. For a \code{ .csv } file,
 #'   [data.table::fread()] is used and all other arguments for \code{fread}
 #'   function can be used. For a \code{ .xlsx } or \code{ .xls } file

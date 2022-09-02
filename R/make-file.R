@@ -1,10 +1,11 @@
-#' Implement the Specifications
+#' Implement the Specifications for Raw Files
 #' @description Make a `csv` file with the specifications in the Access register
 #'   database and implement them to the raw data of the selected group of files
 #'   ie. (\emph{filgruppe}). All files under the selected group will be affected
 #'   unless the \code{KOBLID} with argument \code{koblid} is specified.
 #'   Specifying \code{koblid} is useful especially for testing purposes.
-#' @description The function [lag_fil()] is an alias to [make_file()].
+#' @description This function is the most used function in KHelse for processing raw data.
+#'   The function [lag_fil()] is an alias to [make_file()].
 #' @param group The group of files (\emph{filgruppe})
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
 #' @param aggregate Logical value. Default is `TRUE`. Aggregate data according
@@ -32,7 +33,7 @@
 #' \dontrun{
 #' dt <- make_file("ENPERSON")
 #' dt <- make_file("ENPERSON", raw = TRUE) #Skip DuckDB and read directly from original files
-#' dt <- make_file("ENPERSON", koblid = 120:125, parallel = TRUE) #with parallel processing
+#' dt <- make_file("ENPERSON", koblid = 120:125) #Select specific files only
 #' }
 #' @importFrom data.table `:=` `%chin%`
 #' @importFrom crayon `%+%`

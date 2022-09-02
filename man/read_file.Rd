@@ -4,7 +4,7 @@
 \alias{read_file}
 \alias{les_fil}
 \alias{rdf}
-\title{Read Data File}
+\title{Read Raw Data or File}
 \usage{
 read_file(file = NULL, ...)
 
@@ -19,7 +19,7 @@ with \code{.csv} extension on \verb{https://} can also be as a input file arg.}
 \item{...}{All other arguments to be passed related to the file format}
 }
 \description{
-Read rawdata either using \code{FILID} value or complete file path.
+Read raw data either using \code{FILID} value or a complete file path.
 It uses the \code{\link[=find_data]{find_data()}} generic method. For a \code{ .csv } file,
 \code{\link[data.table:fread]{data.table::fread()}} is used and all other arguments for \code{fread}
 function can be used. For a \code{ .xlsx } or \code{ .xls } file
