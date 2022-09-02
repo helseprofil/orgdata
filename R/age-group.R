@@ -32,6 +32,7 @@ find_age_category.default <- function(dt, interval) {
 #' @method find_age_category val
 #' @export
 find_age_category.val <- function(dt, interval){
+  is_debug()
   is_color_txt(x = interval, msg = "Creating age category with year-interval of", emoji = TRUE)
 
   ## Age lower and upper limit for odd and even number
@@ -47,7 +48,7 @@ find_age_category.val <- function(dt, interval){
 #' @method find_age_category cat
 #' @export
 find_age_category.cat <- function(dt, interval){
-
+  is_debug()
   txt <- paste(interval, collapse = ", ")
   is_color_txt(x = paste0(txt, "+"), msg = "Creating age category", emoji = TRUE)
   ageBrk <- c(interval, Inf)
@@ -59,7 +60,7 @@ find_age_category.cat <- function(dt, interval){
 ## Helper ----------
 
 is_recode_age <- function(dt, category){
-
+  is_debug(deep = TRUE)
   to <- NULL
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
 
@@ -88,7 +89,7 @@ is_recode_age <- function(dt, category){
 # Create codeboook to recode age
 is_age_codebook <- function(x, category){
   # x - Numeric vector eg. age
-
+  is_debug(deep = TRUE)
   ALDER <- grp <- ageGRP <- up <- lo <- NULL
 
   dt <- data.table::data.table(ALDER = x, grp = NA)

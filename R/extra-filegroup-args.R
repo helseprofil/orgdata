@@ -13,6 +13,8 @@
 #' @family extra arguments
 #' @export
 do_extra_args_group <- function(dt = NULL, args = NULL){
+
+  is_debug()
   dt <- is_delete_bydel_before_2003(dt, extra = args)
   dt <- is_age_category(dt, extra = args)
 
