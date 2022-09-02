@@ -12,21 +12,29 @@ find_age_category(dt = NULL, interval = NULL)
 \item{interval}{Age interval}
 }
 \description{
-Define and create age categories either by age interval or specified age
-categories. How to define the age categories in \code{EXTRA} column in Access is
-shown in the example below. This function is only applicable in the filegroup table.
+Define and create age categories either by age interval or
+specified age categories. How to define the age categories in \code{EXTRA}
+column in Access is shown in the example below. This function is only
+applicable in the filegroup table. The input dataset must be in
+\code{data.table} format if using the function outside Access. Convert dataset
+to \code{data.table} with \code{data.table::setDT(DF)}.
 
-Age categories can be specified as follows:
-\itemize{
-\item Specific interval eg. every 5 years. Interval with odd numbers will use minimum age of 0 and maximum age is 85+, while even number uses maximum age of 80+.
-\item Specified interval lower bound eg. \verb{0, 19, 45, 65, 80} for age categories of 0-18, 19-44, 45-64, 65-79, 80+.
-}
+Age categories can be specified as follows: - Specific interval
+eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
+maximum age is 85+, while even number uses maximum age of 80+. - Specified
+interval lower bound eg. \verb{0, 19, 45, 65, 80} for age categories of 0-18,
+19-44, 45-64, 65-79, 80+.
 }
 \examples{
 \dontrun{
+# This is how to specify it in EXTRA column in Access
 AgeCat(5) #Group age for every 5 years with min 0 and max 85+
 AgeCat(10) #Group age for every 10 years with min 0 and max 80+
 AgeCat(0, 19, 45, 65, 80) #Age group of 0-18, 19-44, 45-64, 65-79, 80+
+
+# To use it as a function
+DT <- find_age_category(DT, interval = 5)
+DT <- find_age_category(DT, interval = c(0, 15, 30, 50))
 }
 }
 \seealso{
