@@ -5,6 +5,7 @@
 #'   the dataset has been cleaned and recoded as specified in *INNLESING* table
 #'   in Access registration database.
 #' @param group The filegroup name (\emph{filgruppe})
+#' @param koblid Specify one or multiple KOBLID. Use `"all"` to delete all data in warehouse for seleted filegroup.
 #' @inheritParams make_file
 #' @param action To read or delete the data in the warehouse. Default is `read`.
 #' @examples
@@ -35,18 +36,38 @@ see_data <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read
   dbTables <- DBI::dbListTables(rcon$dbconn)
   dbTables <- vapply(dbTables, as.integer, integer(1))
 
-  if (isFALSE(any(koblid %in% dbTables))){
-    message("Available koblid:", is_short_code(dbTables))
-    is_stop("Not found KOBLID:", koblid)
-  }
+  if (!any(koblid == "all"))
+    is_check_tables(koblid, dbTables)
 
   if (action == "delete"){
-    rcon$db_remove_table(as.character(koblid))
-    is_color_txt(koblid, "Delete raw database for KOBLID:")
-    invisible()
+    is_delete_tables(group, koblid, dbTables, conn = rcon)
   } else {
     dt <- rcon$db_read(as.character(koblid))
     data.table::setDT(dt)
     dt[]
   }
+}
+
+## Helper -------------
+is_delete_tables <- function(group, koblid, dbTables, conn){
+
+  if (any(koblid == "all")){
+    is_color_txt(group, "Delete all data in warehose for", type = "warn")
+    koblid <- as.character(dbTables)
+  } else {
+    idTxt <- is_short_code(koblid)
+    is_color_txt(idTxt, "Delete raw database for KOBLID:")
+    koblid <- as.character(koblid)
+  }
+
+  lapply(koblid, conn$db_remove_table)
+  invisible()
+}
+
+is_check_tables <- function(koblid, dbTables){
+  if (isFALSE(any(koblid %in% dbTables))){
+    message("Available koblid:", is_short_code(dbTables))
+    is_stop("Not found KOBLID:", koblid)
+  }
+  invisible()
 }
