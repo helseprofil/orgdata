@@ -15,7 +15,7 @@
 #' }
 #' @family extra arguments
 #' @export
-find_age_category <- function(dt = NULL, ...) {
+find_age_category <- function(dt = NULL, interval = NULL) {
   UseMethod("find_age_category")
 }
 
