@@ -14,7 +14,7 @@ see_data(
 \arguments{
 \item{group}{The filegroup name (\emph{filgruppe})}
 
-\item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
+\item{koblid}{Specify one or multiple KOBLID. Use \code{"all"} to delete all data in warehouse for seleted filegroup.}
 
 \item{year}{Which year the geograhical codes to be recoded to. If it is empty
 then global option for \code{orgdata.year} will be used.}
@@ -31,5 +31,7 @@ in Access registration database.
 \examples{
 \dontrun{
 dt <- see_data("LESEFERD", koblid = 134)
+dt <- see_data("ENPERSON", koblid = "all")
+dt <- see_data("ENPERSON", koblid = 267:270, action = "delete")
 }
 }
