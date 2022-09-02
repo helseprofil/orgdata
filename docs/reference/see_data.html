@@ -90,7 +90,7 @@ in Access registration database.</p>
 
 
 <dt>koblid</dt>
-<dd><p><code>KOBLID</code> from table <em>tbl_Koble</em></p></dd>
+<dd><p>Specify one or multiple KOBLID. Use <code>"all"</code> to delete all data in warehouse for seleted filegroup.</p></dd>
 
 
 <dt>year</dt>
@@ -107,6 +107,8 @@ then global option for <code>orgdata.year</code> will be used.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu">see_data</span><span class="op">(</span><span class="st">"LESEFERD"</span>, koblid <span class="op">=</span> <span class="fl">134</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu">see_data</span><span class="op">(</span><span class="st">"ENPERSON"</span>, koblid <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu">see_data</span><span class="op">(</span><span class="st">"ENPERSON"</span>, koblid <span class="op">=</span> <span class="fl">267</span><span class="op">:</span><span class="fl">270</span>, action <span class="op">=</span> <span class="st">"delete"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
