@@ -84,9 +84,19 @@ is_delete_tables <- function(group, koblid, dbTables, conn){
 }
 
 is_check_tables <- function(koblid, dbTables){
+
+  if (length(dbTables) != 0){
+    msg <- "Available koblid"
+    txt <- ""
+  } else {
+    msg <- "Data not found in the warehouse!"
+    txt <- is_short_code(dbTables)
+  }
+
   if (isFALSE(any(koblid %in% dbTables))){
-    message("Available koblid:", is_short_code(dbTables))
+    is_color_txt(txt, msg = msg)
     is_stop("Not found KOBLID:", koblid)
   }
+
   invisible()
 }
