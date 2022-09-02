@@ -74,7 +74,8 @@ make_file <- function(group = NULL,
 
   ## Use argument `raw` as standard value to avoid
   ## resetting the global options
-  options(orgdata.read.raw = raw)
+  ## options(orgdata.read.raw = raw)
+  withr::local_options(list(orgdata.read.raw = raw))
 
   dbFile <- is_path_db(
     db = getOption("orgdata.db"),
