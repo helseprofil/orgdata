@@ -23,7 +23,9 @@ NB! Use symbol \code{|} to separate multiple arguments eg. \code{DeleteOldBydel 
 Currently, these arguments can be used:
 \itemize{
 \item \code{DeleteOldBydel} : Delete bydel codes before 2003, except for Oslo
-\item \code{AgeCat()} : Categorise age to different groups with defined interval. Example can be found in \code{find_age_category()}.
+\item \code{AgeCat()} : Categorise age to different groups with defined interval.
+Skal hovedsakelig legges inn på teller-filer i orgdata, på filer som skal aldersstandardiseres.
+KHfunctions vil selv tilpasse aldersgruppene i en eventuell nevnerfil. Example can be found in \code{find_age_category()}.
 }
 }
 \seealso{

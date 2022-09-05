@@ -58,8 +58,7 @@ reference:
 - title: Geo codes
   desc: >
     Functions to get geographical codes for aggregating and recoding. The codes are fetched from
-    [SSB](https://www.ssb.no/klass/) via API. The [norgeo](https://helseprofil.github.io/norgeo/)
-    package is used behind the scene.
+    [SSB](https://www.ssb.no/klass/) via API. These functions are heavily dependent on [norgeo](https://helseprofil.github.io/norgeo/) package.
   contents:
   - starts_with("geo_")
 - title: Action functions

@@ -1,22 +1,32 @@
-#' Create age categories
-#' @description Create age categories either by age interval or specified age
-#'   categories. How to define the age categories in `EXTRA` column in Access is
-#'   shown in the example below.
-#' @description Age categories can be specified as follows:
-#'   - Specific interval eg. every 5 years. Interval with odd numbers will use minimum age of 0 and maximum age is 85+, while even number uses maximum age of 80+.
-#'   - Specified interval eg. 0-18, 19-44, 45-64, 65-79, 80+
+#' Define age categories
+#' @description Define and create age categories either by age interval or
+#'   specified age categories. How to define the age categories in `EXTRA`
+#'   column in Access is shown in the example below. This function is only
+#'   applicable in the filegroup table. The input dataset must be in
+#'   `data.table` format if using the function outside Access. Convert dataset
+#'   to `data.table` with `data.table::setDT(DF)`.
+#' @description Age categories can be specified as follows: - Specific interval
+#'   eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
+#'   maximum age is 85+, while even number uses maximum age of 80+. - Specified
+#'   interval lower bound eg. `0, 19, 45, 65, 80` for age categories of 0-18,
+#'   19-44, 45-64, 65-79, 80+.
 #' @param dt Dataset
 #' @param interval Age interval
 #' @examples
 #' \dontrun{
+#' # This is how to specify it in EXTRA column in Access
 #' AgeCat(5) #Group age for every 5 years with min 0 and max 85+
 #' AgeCat(10) #Group age for every 10 years with min 0 and max 80+
 #' AgeCat(0, 19, 45, 65, 80) #Age group of 0-18, 19-44, 45-64, 65-79, 80+
+#'
+#' # To use it as a function
+#' DT <- find_age_category(DT, interval = 5)
+#' DT <- find_age_category(DT, interval = c(0, 15, 30, 50))
 #' }
 #' @family extra arguments
 #' @export
 find_age_category <- function(dt = NULL, interval = NULL) {
-  UseMethod("find_age_category", interval)
+  UseMethod("find_age_category")
 }
 
 #' @method find_age_category default
@@ -32,6 +42,7 @@ find_age_category.default <- function(dt, interval) {
 #' @method find_age_category val
 #' @export
 find_age_category.val <- function(dt, interval){
+  is_debug()
   is_color_txt(x = interval, msg = "Creating age category with year-interval of", emoji = TRUE)
 
   ## Age lower and upper limit for odd and even number
@@ -47,7 +58,7 @@ find_age_category.val <- function(dt, interval){
 #' @method find_age_category cat
 #' @export
 find_age_category.cat <- function(dt, interval){
-
+  is_debug()
   txt <- paste(interval, collapse = ", ")
   is_color_txt(x = paste0(txt, "+"), msg = "Creating age category", emoji = TRUE)
   ageBrk <- c(interval, Inf)
@@ -59,7 +70,7 @@ find_age_category.cat <- function(dt, interval){
 ## Helper ----------
 
 is_recode_age <- function(dt, category){
-
+  is_debug(deep = TRUE)
   to <- NULL
   vals <- paste0("VAL", 1:getOption("orgdata.vals"))
 
@@ -88,7 +99,7 @@ is_recode_age <- function(dt, category){
 # Create codeboook to recode age
 is_age_codebook <- function(x, category){
   # x - Numeric vector eg. age
-
+  is_debug(deep = TRUE)
   ALDER <- grp <- ageGRP <- up <- lo <- NULL
 
   dt <- data.table::data.table(ALDER = x, grp = NA)
@@ -109,6 +120,6 @@ is_age_codebook <- function(x, category){
 
   delCols <- c(ageVars, "to", "ageGRP", "grp")
   dt[, (delCols) := NULL]
-  data.table::setnames(dt, "alderGRP", "to")
+  data.table::setnames(dt, agp, "to")
   return(dt)
 }

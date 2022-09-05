@@ -1,6 +1,11 @@
+# orgdata 0.7.7
+- Edit document here and there.
+- Use codebook to recode age category for better speed (#292)
+- Read or delete data in the data warehouse can use multiple koblid in `see_data()`. Use `"all"`
+  in `koblid` argument to select all data on the chosen filegroup (#291)
+  
 # orgdata 0.7.6
-- Fixed duplicated age groups.
-- Use codebook to recode age category for better speed.
+- Fixed duplicated age groups (#290).
 
 # orgdata 0.7.5
 - Use either `empty` or `tom` to represent regular expression to replace to since Access makes symbol `""` to be invisible (#285)

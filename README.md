@@ -24,7 +24,7 @@ source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
 kh_install("orgdata")
 ```
 
-To maintain dependencies package version, you can install *orgdata* from
+To maintain package version dependencies, you can install *orgdata* from
 the *user* branch for reproducibility, ie. keeping the package version
 for all dependencies as they were used during the development process.
 You must however install **Git** prior to using `kh_restore()` function.
@@ -68,10 +68,12 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 
 ## Resources
 
+- [Config
+  file](https://github.com/helseprofil/config/blob/main/config-orgdata.yml)
 - [Get
   started](https://helseprofil.github.io/orgdata/articles/get-started.html)
 - [Functions
   overview](https://helseprofil.github.io/orgdata/reference/index.html)
 - [General guide](https://helseprofil.github.io)
-- [Conventions](https://github.com/helseprofil/orgdata/blob/main/dev/standard.org)
+- [Conventions](https://helseprofil.github.io/orgdata/articles/standard.html)
 - [Video guide](https://youtu.be/PhEQq4iWJCY)

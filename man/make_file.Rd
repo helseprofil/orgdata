@@ -4,7 +4,7 @@
 \alias{make_file}
 \alias{lag_fil}
 \alias{mf}
-\title{Implement the Specifications}
+\title{Implement the Specifications for Raw Files}
 \usage{
 make_file(
   group = NULL,
@@ -88,13 +88,14 @@ ie. (\emph{filgruppe}). All files under the selected group will be affected
 unless the \code{KOBLID} with argument \code{koblid} is specified.
 Specifying \code{koblid} is useful especially for testing purposes.
 
+This function is the most used function in KHelse for processing raw data.
 The function \code{\link[=lag_fil]{lag_fil()}} is an alias to \code{\link[=make_file]{make_file()}}.
 }
 \examples{
 \dontrun{
 dt <- make_file("ENPERSON")
 dt <- make_file("ENPERSON", raw = TRUE) #Skip DuckDB and read directly from original files
-dt <- make_file("ENPERSON", koblid = 120:125, parallel = TRUE) #with parallel processing
+dt <- make_file("ENPERSON", koblid = 120:125) #Select specific files only
 }
 }
 \seealso{

@@ -143,7 +143,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   if (fileCtrl && fileDuck){
     withr::with_options(list(orgdata.emoji = "safe"),
                         is_color_txt(x = "",
-                                     msg = "Read data directly from Data Warehouse",
+                                     msg = "Read data directly from data warehouse",
                                      type = "debug", emoji = TRUE))
     is_color_txt(x = fileName, msg = "File:")
     dt <- duck$db_read(name = tblKoblid)
@@ -153,7 +153,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
     withr::with_options(list(orgdata.emoji = "safe"),
                         is_color_txt(x = "",
-                                     msg = "Adding dataset to the data warehouse ...",
+                                     msg = "Adding dataset to data warehouse ...",
                                      type = "debug", emoji = TRUE))
     duck$db_write(name = tblKoblid, value = dt, write = TRUE)
   }

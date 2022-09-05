@@ -7,12 +7,16 @@
 #'
 #' @details Currently, these arguments can be used:
 #'   - `DeleteOldBydel` : Delete bydel codes before 2003, except for Oslo
-#'   - `AgeCat()` : Categorise age to different groups with defined interval. Example can be found in `find_age_category()`.
+#'   - `AgeCat()` : Categorise age to different groups with defined interval.
+#'      Skal hovedsakelig legges inn på teller-filer i orgdata, på filer som skal aldersstandardiseres.
+#'      KHfunctions vil selv tilpasse aldersgruppene i en eventuell nevnerfil. Example can be found in `find_age_category()`.
 #' @param dt Dataset
 #' @param args Extra arguments as specified in details section below.
 #' @family extra arguments
 #' @export
 do_extra_args_group <- function(dt = NULL, args = NULL){
+
+  is_debug()
   dt <- is_delete_bydel_before_2003(dt, extra = args)
   dt <- is_age_category(dt, extra = args)
 
