@@ -1,39 +1,30 @@
-# orgdata 0.7.7
+# orgdata 1.0
+- Order does matter when using functions in EXTRA column (#294)
+- Fix S3 age category functions `find_age_category()` (#294) 
+- Delete unwanted column in the output when using `AgeCat` function in EXTRA (#295)
+- Use global options in input argument when relevant instead of using `match.arg()` (#263)
+
+# orgdata 0.7
 - Edit document here and there.
 - Use codebook to recode age category for better speed (#292)
 - Read or delete data in the data warehouse can use multiple koblid in `see_data()`. Use `"all"`
   in `koblid` argument to select all data on the chosen filegroup (#291)
-  
-# orgdata 0.7.6
 - Fixed duplicated age groups (#290).
-
-# orgdata 0.7.5
 - Use either `empty` or `tom` to represent regular expression to replace to since Access makes symbol `""` to be invisible (#285)
 - Change function name from `see_org()` to `see_data()` for viewing data in the data warehouse.
 - Use symbol `|` to separate multiple arguments in column `EXTRA` (#288)
 - Group age to specific or specified interval with `AgeCat()`. This function can be use in table for filegroup under `EXTRA` column (#287 #289)
-
-# orgdata 0.7.4
 - Delete raw of similar columns with multiple specifications (#282)
 - Different ways to recode of similar column ie. duplicated, with defined lesid will give error.
 - Show current installed version against the new release version.
-
-# orgdata 0.7.3
-- Testing
-
-# orgdata 0.7.2
 - Some minor text editing.
 - Delete older file of DuckDB automatically since new version can't read the older files (#280)
 - Actively ask users to update with given options when new release version is available.
 - Control all columns that should be numeric don't contain any string. The
   columns to be controls for is now dynamic (#281)
-
-# orgdata 0.7.1
 - Rename function alias from `rf()` to `rdf()` since `rf()` is already in use in *stats* package.
 - Deleting row with specification of lesid and without lesid ie. common filegroup, create errors. This is not fixed (#279)
 - Need to update version whenever a new release is available to ensure everyone is using the latest release. Else users can't load the package.
-
-# orgdata 0.7.0
 - Filter active files with date was done pragmatically ie. all files with `BRUKTIL` date other than `01-01-9999` will be excluded. Now filtering with date will be compared against current date. (#272)
 - Delete dataset from the database when unmark column `KONTROLLERT` instead of updating the dataset due to time consuming by updating it. The users have to mark the column to save or read the dataset in the database. (#278)
 - Change default for argument `raw` in `make_file()` to `FALSE` as in [config](https://github.com/helseprofil/config/blob/main/config-orgdata.yml "config") file.

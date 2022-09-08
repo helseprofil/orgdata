@@ -95,7 +95,7 @@ is_check_tables <- function(koblid, dbTables, group){
 
   if (isFALSE(any(koblid %in% dbTables))){
     is_color_txt(txt, msg = msg)
-    is_stop("Not found KOBLID:", koblid)
+    is_stop("Not found for requested KOBLID:", koblid)
   }
 
   invisible()

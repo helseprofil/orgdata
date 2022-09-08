@@ -15,6 +15,7 @@ test_that("Extra age category", {
   dtout <- readRDS(system.file("testdata", "AgeCatOut.rds", package = "orgdata"))
   dtoutEven <- readRDS(system.file("testdata", "AgeCatOutEven.rds", package = "orgdata"))
 
+  expect_error(find_age_category(dt = cars, "bla"))
   expect_error(is_input_age_class("5_"))
   expect_equal(find_age_category.val(dt = data.table::copy(dt), interval = 3), dtout)
   expect_equal(find_age_category.val(dt = data.table::copy(dt), interval = 10), dtoutEven)
