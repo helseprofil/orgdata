@@ -2,6 +2,7 @@
 - Order does matter when using functions in EXTRA column (#294)
 - Fix S3 age category functions `find_age_category()` (#294) 
 - Delete unwanted column in the output when using `AgeCat` function in EXTRA (#295)
+- Use global options in input argument when relevant instead of using `match.arg()` (#263)
 
 # orgdata 0.7
 - Edit document here and there.
