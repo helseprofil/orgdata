@@ -4,10 +4,7 @@
 \alias{do_implicit_null}
 \title{Create Implicit Null}
 \usage{
-do_implicit_null(
-  dt = NULL,
-  level = c("grunnkrets", "fylke", "kommune", "bydel")
-)
+do_implicit_null(dt = NULL, level = getOption("orgdata.geo.levels"))
 }
 \arguments{
 \item{dt}{Dataset consisting all years}
