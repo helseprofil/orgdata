@@ -91,7 +91,7 @@ is_recode_age <- function(dt, category){
     dt[, (vai) := NULL]
   }
 
-  dt <- dt[, .SD[1], by = get(idCol)]
+  dt <- dt[, .SD[1], by = idCol]
   dt[, (idCol) := NULL]
   return(dt)
 }
