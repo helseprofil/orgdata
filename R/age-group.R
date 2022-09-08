@@ -26,14 +26,14 @@
 #' @family extra arguments
 #' @export
 find_age_category <- function(dt = NULL, interval = NULL) {
-  UseMethod("find_age_category")
+  UseMethod("find_age_category", object = interval)
 }
 
 #' @method find_age_category default
 #' @export
 find_age_category.default <- function(dt, interval) {
-  message("Selected age category: ", interval)
-  stop(sprintf("Age categories not valid: `%s`", interval))
+  is_color_txt(interval, "Selected age category:")
+  is_stop("Age categories not valid:", interval)
 }
 
 # Interval value to categorize age. The minimum age will always be
@@ -118,7 +118,7 @@ is_age_codebook <- function(x, category){
   dt[up != Inf, (agp) := paste0(lo, "_", up)]
   dt[up == Inf, (agp) := paste0(lo, "+")]
 
-  delCols <- c(ageVars, "to", "ageGRP", "grp")
+  delCols <- c(ageVars, "ageGRP", "grp")
   dt[, (delCols) := NULL]
   data.table::setnames(dt, agp, "to")
   return(dt)
