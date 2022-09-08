@@ -13,13 +13,9 @@
 #' @family implicit-null functions
 #' @export
 do_implicit_null <- function(dt = NULL,
-                             level = c(
-                               "grunnkrets",
-                               "fylke",
-                               "kommune",
-                               "bydel"
-                             )){
+                             level = getOption("orgdata.geo.levels")){
   is_debug()
+
   withr::with_options(list(orgdata.emoji = "search"),
                       is_verbose(x = level, msg = "Checking implicit null for:", emoji = TRUE))
 
