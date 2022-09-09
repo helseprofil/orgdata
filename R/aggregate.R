@@ -153,7 +153,7 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
 ## Helper ----------------------------------------------------------------
 
 is_geo_names <- function(x){
-  abv <- as.data.frame(getOption("orgdata.geo.abv"))
+  abv <- unlist(getOption("orgdata.geo.abv"))
   names(abv)[abv == x]
 }
 
