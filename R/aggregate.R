@@ -153,10 +153,8 @@ get_aggregate <- function(group = NULL, con = NULL, spec = NULL) {
 ## Helper ----------------------------------------------------------------
 
 is_geo_names <- function(x){
-  geoNames <- tolower(getOption("orgdata.geo.levels"))
-  geoAbv <- getOption("orgdata.geo.abv")
-  abv <- grep(x, geoAbv)
-  geoNames[abv]
+  abv <- as.data.frame(getOption("orgdata.geo.abv"))
+  names(abv)[abv == x]
 }
 
 ## Handling missing geo levels
