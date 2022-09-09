@@ -6,7 +6,7 @@
 #' @inheritParams make_file
 #' @param duck R6 object for DuckDB
 #' @export
-do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base, duck = NULL){
+do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base, duck = NULL, dump){
   is_debug()
   fileSpec <- spec
   filePath <- is_path_raw(fileSpec, check = TRUE)
@@ -41,8 +41,11 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
       con = DB$dbconn,
       row = row,
       control = fileCtrl,
-      duck = duck
+      duck = duck,
+      dump = dump
     )
+
+    if (dump == "file") return(dt)
 
     ## RESHAPE structure -----------------------------------------
     reshVal <- find_column_input(fileSpec, "RESHAPE")

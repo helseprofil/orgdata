@@ -28,6 +28,7 @@
 #'   original raw data directly from source file even if the dataset is already
 #'   available in DuckDB without the need to unmark `KONTROLLERT` in the Access
 #'   database
+#' @param dump Dump dataset at `file` or `group` process
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
@@ -49,7 +50,8 @@ make_file <- function(group = NULL,
                       row = NULL,
                       base = NULL,
                       parallel = deprecated(),
-                      raw = NULL
+                      raw = NULL,
+                      dump = c("file", "group")
                       ) {
 
   LEVEL <- NULL
@@ -154,12 +156,19 @@ make_file <- function(group = NULL,
                                    year = year,
                                    row = row,
                                    base = base,
-                                   duck = duck)
+                                   duck = duck,
+                                   dump = dump)
                })
+
 
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
   rm(DT)
+
+  if (dump == "file"){
+    is_color_txt(dump, "Incomplete process! Dump dataset at", type = "warn2")
+    return(outDT)
+  }
 
   if (getOption("orgdata.debug.geo")){
     return(outDT)

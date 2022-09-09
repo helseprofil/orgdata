@@ -11,6 +11,7 @@
 #' @param control Logical value. If the file has been checked for possible
 #'   errors
 #' @param duck R6 object for DuckDB
+#' @inheritParams make_file
 #' @return A dataset with `data.table` format
 
 is_process_file <- function(file,
@@ -20,7 +21,8 @@ is_process_file <- function(file,
                             verbose = NULL,
                             row = NULL,
                             control = FALSE,
-                            duck = NULL
+                            duck = NULL,
+                            dump
                             ) {
   GEO <- NULL
   is_debug(deep = TRUE)
@@ -52,6 +54,8 @@ is_process_file <- function(file,
   } else {
     dt <- is_read_file_dots(file = file, dots = dots, extra = extra)
   }
+
+  if (dump == "file") return(dt)
 
   ## From options(orgdata.debug.row)
   if (!is.null(row)){
