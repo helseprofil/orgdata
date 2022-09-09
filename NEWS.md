@@ -1,3 +1,7 @@
+# orgdata 1.1.0
+- Make geo abbreviation clearer in the global options and no more depending on
+  the order of geo names (#286)
+
 # orgdata 1.0
 - Order does matter when using functions in EXTRA column (#294)
 - Fix S3 age category functions `find_age_category()` (#294) 
