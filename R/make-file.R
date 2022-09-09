@@ -210,6 +210,11 @@ make_file <- function(group = NULL,
   bySpec <- get_extra_args_group(spec = fgSpec)
   outDT <- do_extra_args_group(dt = outDT, args = bySpec )
 
+  if (dump == "group"){
+    is_color_txt(dump, "Incomplete process! Dump dataset at", type = "warn2")
+    return(outDT)
+  }
+
   ## POST RECODE ---------------------------------------------
   outDT <- do_recode_post(dt = outDT, spec = fgSpec, con = kh$dbconn)
 
