@@ -28,9 +28,9 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   DB <- is_conn_db(db = "kh")
 
   ## Check dataset in DuckDB -------------
-  duckID <- as.integer(DBI::dbListTables(duck$dbconn))
-  tblKoblid <- as.character(koblID)
-  fileDuck <- any(as.integer(tblKoblid) %in% duckID)
+  duckIDs <- DBI::dbListTables(duck$dbconn)
+  duckTbl <- paste0("tbl_", koblID)
+  fileDuck <- any(duckTbl %chin% duckIDs)
 
   ## Read from raw file if not allready found in DuckDB
   if (!fileCtrl || !fileDuck) {
@@ -137,7 +137,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
                         is_color_txt(x = "",
                                      msg = "Delete dataset in the data warehouse ...",
                                      type = "debug", emoji = TRUE))
-    duck$db_remove_table(name = tblKoblid)
+    duck$db_remove_table(name = duckTbl)
   }
 
   if (fileCtrl && fileDuck){
@@ -146,7 +146,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
                                      msg = "Read data directly from data warehouse",
                                      type = "debug", emoji = TRUE))
     is_color_txt(x = fileName, msg = "File:")
-    dt <- duck$db_read(name = tblKoblid)
+    dt <- duck$db_read(name = duckTbl)
   }
 
   if (fileCtrl && !fileDuck){
@@ -155,7 +155,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
                         is_color_txt(x = "",
                                      msg = "Adding dataset to data warehouse ...",
                                      type = "debug", emoji = TRUE))
-    duck$db_write(name = tblKoblid, value = dt, write = TRUE)
+    duck$db_write(name = duckTbl, value = dt, write = TRUE)
   }
 
   data.table::copy(dt)
