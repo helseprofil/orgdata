@@ -1,3 +1,7 @@
+# orgdata 1.2.0
+- Function `read_file()` accept SPSS file too (#297)
+- Function `read_file()` now accept txt file extension.
+
 # orgdata 1.1.0
 - Make geo abbreviation clearer in the global options and no more depending on
   the order of geo names (#286)

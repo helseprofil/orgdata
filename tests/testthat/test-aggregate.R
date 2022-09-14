@@ -75,6 +75,7 @@ test_that("Get aggregate levels", {
   output <- c(B = "bydel", F = "fylke")
 
   ## TEST -------------
+  reset_opt()
   expect_equal(get_aggregate(spec = spec), output)
 
   options(orgdata.debug.geo = TRUE)
