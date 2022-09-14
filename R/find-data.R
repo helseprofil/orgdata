@@ -34,6 +34,10 @@ find_data.csv <- function(file, ...) {
   dt <- do.call(data.table::fread, dots)
 }
 
+#' @method find_data txt
+#' @export
+find_data.txt <- find_data.csv
+
 #' @method find_data fhi
 #' @export
 find_data.fhi <- find_data.csv
