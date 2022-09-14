@@ -1,3 +1,6 @@
+# orgdata 1.2.1
+- Fix error when writting and reading data warehouse (#298)
+
 # orgdata 1.2.0
 - Function `read_file()` accept SPSS file too (#297)
 - Function `read_file()` now accept txt file extension.
