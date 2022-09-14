@@ -93,6 +93,15 @@ find_data.dta <- function(file, ...){
   do.call(haven::read_dta, dots)
 }
 
+#' @method find_data sav
+#' @export
+find_data.sav <- function(file, ...){
+  dots <- is_sav_dots(...)
+  is_verbose(file, msg = "File:")
+  dots$file <- file
+  do.call(haven::read_sav, dots)
+}
+
 ## Helper -------------------------------------------
 is_csv_dots <- function(...){
   if(length(list(...)) > 0){
@@ -118,6 +127,16 @@ is_dta_dots <- function(...){
   if (length(list(...)) > 0){
     dots <- is_args(...)
     dots <- is_dta_args(dots)
+  } else {
+    dots <- list()
+  }
+  return(dots)
+}
+
+is_sav_dots <- function(...){
+  if (length(list(...)) > 0){
+    dots <- is_args(...)
+    dots <- is_sav_args(dots)
   } else {
     dots <- list()
   }
@@ -165,6 +184,19 @@ is_xls_args <- function(x){
   return(x)
 }
 
+is_sav_args <- function(x){
+  x <- is_rename_args(from = "nrows", to = "n_max")
+  x <- is_rename_args(from = "na", to = "user_na")
+  argInt <- c("skip", "n_max")
+  inx <- is.element(argInt, names(x))
+  elm <- argInt[inx]
+
+  if (sum(inx)>0){
+    x <- is_numeric_args(x, elm)
+  }
+  return(x)
+}
+
 is_dta_args <- function(x){
   x <- is_rename_args(from = "nrows", to = "n_max")
   argInt <- c("skip", "n_max")
@@ -176,7 +208,6 @@ is_dta_args <- function(x){
   }
   return(x)
 }
-
 
 ## Use standard args in orgdata and rename it to the respective
 ## read functions arguments
