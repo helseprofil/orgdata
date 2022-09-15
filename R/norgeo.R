@@ -87,14 +87,18 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   is_write_msg(msg = "fetch")
 
   ## Conn ----------------
-  geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
-  geo <- KHelse$new(geoFile)
-  on.exit(geo$db_close(), add = TRUE)
+  if (write || append){
+    geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+    geo <- KHelse$new(geoFile)
+    on.exit(geo$db_close(), add = TRUE)
+  } else {
+    geo <- listenv::listenv()
+  }
 
   cat("..")
   if (type %in% c("grunnkrets", "kommune")){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
+    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to, type = type)
     geo$tblvalue <- dtGrunn[, "batch" := is_batch("date")]
   } else {
     dtLevels <- norgeo::track_change(type = type, from = from, to = to)
@@ -103,7 +107,9 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 
   geo$tblname <- tblName
 
-  is_write(write, tblName, geo$dbconn)
+  if (write || append){
+    is_write(write, tblName, geo$dbconn)
+  }
 
   if (write) {
     is_write_msg(msg = "write")
@@ -253,8 +259,8 @@ get_geo_dummy <- function(dt, from, to, type){
                      kommune = "fylke")
 
   geoCodes <- norgeo::track_change(type = geoLevel, from = from, to = to)
-  dt <- is_unknown_geo(dt, geoCodes, level)
-  dt <- is_geo_99(dt, level)
+  dt <- is_unknown_geo(dt, geoCodes, type = type)
+  dt <- is_geo_99(dt, type = type)
 }
 
 ## Helper -----------------------------------------------------
