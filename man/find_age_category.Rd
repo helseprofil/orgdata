@@ -19,11 +19,13 @@ applicable in the filegroup table. The input dataset must be in
 \code{data.table} format if using the function outside Access. Convert dataset
 to \code{data.table} with \code{data.table::setDT(DF)}.
 
-Age categories can be specified as follows: - Specific interval
-eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
-maximum age is 85+, while even number uses maximum age of 80+. - Specified
-interval lower bound eg. \verb{0, 19, 45, 65, 80} for age categories of 0-18,
+Age categories can be specified as follows:
+\itemize{
+\item Specific interval eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
+maximum age is 85+, while even number uses maximum age of 80+.
+\item Specified interval lower bound eg. \verb{0, 19, 45, 65, 80} for age categories of 0-18,
 19-44, 45-64, 65-79, 80+.
+}
 }
 \examples{
 \dontrun{
