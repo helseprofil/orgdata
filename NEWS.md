@@ -1,6 +1,7 @@
 # orgdata 1.2.1
 - Fix error when writting and reading data warehouse (#298)
 - Fix bugs when reading data from data warehouse (#300)
+- Upgrade package version dependency.
 
 # orgdata 1.2.0
 - Function `read_file()` accept SPSS file too (#297)
