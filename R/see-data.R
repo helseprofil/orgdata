@@ -85,6 +85,8 @@ is_delete_tables <- function(group, koblid, dbTables, conn){
 
 is_check_tables <- function(koblid, dbTables, group){
 
+  dbTables <- vapply(dbTables, function(x) as.numeric(sub("tbl_", "", x)), numeric(1))
+
   if (length(dbTables) != 0){
     msg <- "Available koblid:"
     txt <- is_short_code(dbTables)
