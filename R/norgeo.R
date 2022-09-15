@@ -92,11 +92,11 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
   on.exit(geo$db_close(), add = TRUE)
 
   cat("..")
-  if (type == "grunnkrets"){
+  if (type %in% c("grunnkrets", "kommune")){
     dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    dtGrunn <- get_grunnkrets_dummy(dt = dtGrunn, from = from, to = to)
+    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to)
     geo$tblvalue <- dtGrunn[, "batch" := is_batch("date")]
-  } else                     {
+  } else {
     dtLevels <- norgeo::track_change(type = type, from = from, to = to)
     geo$tblvalue <- dtLevels[, "batch" := is_batch("date")]
   }
@@ -246,10 +246,15 @@ geo_merge <- function(id.table = NULL,
 #' @inheritParams geo_recode
 #' @family geo codes functions
 #' @export
-get_grunnkrets_dummy <- function(dt, from, to){
-  kommune <- norgeo::track_change("kommune", from = from, to = to)
-  dt <- is_unknown_grunnkrets(dt, kommune)
-  dt <- is_grunnkrets_99(dt)
+get_geo_dummy <- function(dt, from, to, type){
+
+  geoLevel <- switch(type,
+                     grunnkrets = "kommune",
+                     kommune = "fylke")
+
+  geoCodes <- norgeo::track_change(type = geoLevel, from = from, to = to)
+  dt <- is_unknown_geo(dt, geoCodes, level)
+  dt <- is_geo_99(dt, level)
 }
 
 ## Helper -----------------------------------------------------
@@ -296,19 +301,25 @@ is_write_msg <- function(msg = c("write", "append", "fetch")){
 
 
 ## Issue #39
-## Ensure that all manucipality have unknown grunnkrets because
+## Ensure that all manucipalities have unknown grunnkrets because
 ## sometime unknown grunnkrets doesn't exist in API
-is_unknown_grunnkrets <- function(dt, kom){
-  # kom - municipality data from norgeo::track_change()
+## This is the same with all counties to have unknown municipalities
+is_unknown_geo <- function(dt, dd, type){
+  # dd - municipality or county data from norgeo::track_change()
+  # type - geo levels ie. grunnkrets or kommune
   oldCode <- currentCode <- NULL
 
-  kom <- data.table::copy(kom)
+  dd <- data.table::copy(dd)
 
-  kom <- kom[!is.na(oldCode)]
-  kom <- kom[, `:=`(oldCode = paste0(oldCode, "9999"),
-                    currentCode = paste0(currentCode, "9999"))]
+  geo99 <- switch(type,
+                  grunnkrets = "9999",
+                  kommune = "99")
 
-  dt <- data.table::rbindlist(list(dt, kom))
+  dd <- dd[!is.na(oldCode)]
+  dd <- dd[, `:=`(oldCode = paste0(oldCode, geo99),
+                  currentCode = paste0(currentCode, geo99))]
+
+  dt <- data.table::rbindlist(list(dt, dd))
   data.table::setkey(dt, currentCode)
 }
 
@@ -357,14 +368,21 @@ is_grunnkrets_00 <- function(dt){
 }
 
 
-## To avoid error that recode not found
-is_grunnkrets_99 <- function(dt){
-  gr99 <- is.element("99999999", dt$oldCode)
+## To avoid error that recode not found when
+## 99999999 or 9999 exist in the rawdata for
+## grunnkrets or kommune respectively
+is_geo_99 <- function(dt, type){
+
+  geo99 <- switch(type,
+                  grunnkrets = "99999999",
+                  kommune = "9999")
+
+  gr99 <- is.element(geo99, dt$oldCode)
   yrs <- as.integer(unique(dt$changeOccurred))
 
   if (isFALSE(gr99)){
     dt99 <- data.table::data.table(changeOccurred = max(yrs))
-    dt99[, c("oldCode", "currentCode") := "99999999"]
+    dt99[, c("oldCode", "currentCode") := geo99]
     dt99[, c("oldName", "newName") := "Uoppgitt"]
     dt <- data.table::rbindlist(list(dt, dt99), use.names = TRUE)
   }
