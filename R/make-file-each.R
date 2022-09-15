@@ -29,7 +29,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
   ## Check dataset in DuckDB -------------
   duckIDs <- DBI::dbListTables(duck$dbconn)
-  duckTbl <- paste0("tbl_", koblID)
+  duckTbl <- is_tables_name(koblID)
   fileDuck <- any(duckTbl %chin% duckIDs)
 
   ## Read from raw file if not allready found in DuckDB

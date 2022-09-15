@@ -70,7 +70,7 @@ is_read_tables <- function(group, koblid, dbTables, conn){
 is_delete_tables <- function(group, koblid, dbTables, conn){
 
   if (any(koblid == "all")){
-    is_color_txt(group, "Delete all data in warehose for", type = "warn")
+    is_color_txt(group, "Delete all data in warehouse for", type = "warn")
     koblid <- dbTables
   } else {
     idTxt <- is_short_code(koblid)
