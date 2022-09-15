@@ -4,6 +4,12 @@
     <loc>https://helseprofil.github.io/orgdata/404.html</loc>
   </url>
   <url>
+    <loc>https://helseprofil.github.io/orgdata/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://helseprofil.github.io/orgdata/LICENSE.html</loc>
+  </url>
+  <url>
     <loc>https://helseprofil.github.io/orgdata/articles/debugging.html</loc>
   </url>
   <url>
@@ -31,13 +37,10 @@
     <loc>https://helseprofil.github.io/orgdata/index.html</loc>
   </url>
   <url>
-    <loc>https://helseprofil.github.io/orgdata/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/orgdata/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://helseprofil.github.io/orgdata/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://helseprofil.github.io/orgdata/reference/KHelse.html</loc>
   </url>
   <url>
     <loc>https://helseprofil.github.io/orgdata/reference/debug_opt.html</loc>
@@ -202,7 +205,7 @@
     <loc>https://helseprofil.github.io/orgdata/reference/get_geo_recode.html</loc>
   </url>
   <url>
-    <loc>https://helseprofil.github.io/orgdata/reference/get_geo_dummy.html</loc>
+    <loc>https://helseprofil.github.io/orgdata/reference/get_grunnkrets_dummy.html</loc>
   </url>
   <url>
     <loc>https://helseprofil.github.io/orgdata/reference/get_implicit_col.html</loc>
@@ -266,9 +269,6 @@
   </url>
   <url>
     <loc>https://helseprofil.github.io/orgdata/reference/is_query.html</loc>
-  </url>
-  <url>
-    <loc>https://helseprofil.github.io/orgdata/reference/KHelse.html</loc>
   </url>
   <url>
     <loc>https://helseprofil.github.io/orgdata/reference/log.html</loc>
