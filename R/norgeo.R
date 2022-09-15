@@ -25,17 +25,22 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
   ## Note: No need to create table with year eg. tblGeo2021
   ## since column ValidTo will be used to select valid year to aggregate
   ## -----------------------------------------
-
-  geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
-  geo <- KHelse$new(geoFile)
-  on.exit(geo$db_close(), add = TRUE)
+  if (write || append){
+    geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+    geo <- KHelse$new(geoFile)
+    on.exit(geo$db_close(), add = TRUE)
+  } else {
+    geo <- listenv::listenv()
+  }
 
   DT <- norgeo::cast_geo(year = year)
   DT <- is_grunnkrets_00(DT)
   geo$tblvalue <- DT[, "batch" := is_batch("date")]
   geo$tblname <- table
 
-  is_write(write, table, geo$dbconn)
+  if (write || append){
+    is_write(write, table, geo$dbconn)
+  }
 
   if (write) {
     is_write_msg(msg = "write")
