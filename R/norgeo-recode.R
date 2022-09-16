@@ -133,12 +133,12 @@ do_geo_recode <- function(dt = NULL,
 
   ## recode to unknown geo codes if not able to merge ie. xxxx9999
   ## Fylke codes excluded here
-  codeProb <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "recode", ...)
+  codeProb <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "recode", ..., type = type)
   dt <- is_problem_geo(dt = dt, codes = codeProb, type = type)
   dt <- is_problem_geo_before_2002(dt, codeProb, type = type, year = year, con = con )
 
   ## Delete codes that can't be merged
-  xcode <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "delete")
+  xcode <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "delete", ..., type = type)
   xind <- dt[, .I[GEO %in% xcode]]
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
@@ -361,7 +361,7 @@ is_problem_geo_before_2002 <- function(dt, dcode, type, year, con){
 }
 
 ## Codes that can't be merged since it's not found in geo codebook database
-is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c("recode", "delete"), ...){
+is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c("recode", "delete"), ..., type = type){
   ## x - dataset
   ## y - geocodes
   ## vector - Either a data.frame or vector
@@ -380,7 +380,11 @@ is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c
   dcode <- setdiff(x, y)
 
   if (length(dcode) > 0){
-    dcode <- is_problem_message(mode = mode, codes = dcode, control = control, ...)
+    dcode <- is_problem_message(mode = mode,
+                                codes = dcode,
+                                control = control,
+                                ...,
+                                type = type)
   }
 
   return(dcode)
