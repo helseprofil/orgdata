@@ -151,8 +151,8 @@ is_verbose <- function(x = NULL, msg = NULL,
 
   if (control){
     emoji <- TRUE
-    x <- ""
-    msg <- "File has been checked"
+    x <- "see_data()"
+    msg <- "File has been checked or added to warehouse. Read with"
     type <- "debug"
   }
 
