@@ -131,19 +131,33 @@ do_geo_recode <- function(dt = NULL,
 
   code[, changeOccurred := NULL]
 
-  ## recode to unknown grunnkrets if not able to merge ie. xxxx9999
-  if (type %in% c("grunnkrets", "bydel")){
-    codeProb <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "recode", ...)
-    dt <- is_problem_geo(dt = dt, codes = codeProb, type = type)
-    dt <- is_problem_geo_before_2002(dt, codeProb, type = type, year = year, con = con )
-  }
+  ## recode to unknown geo codes if not able to merge ie. xxxx9999, xx99 etc
+  ## Fylke codes excluded here ---------------------------------------------
+  codeProb <- is_problem_geo_merge(dt,
+                                   code,
+                                   vector = FALSE,
+                                   control = control,
+                                   mode = "recode",
+                                   ...,
+                                   type = type)
 
-  xcode <- is_problem_geo_merge(dt, code, vector = FALSE, control = control, mode = "delete")
+  dt <- is_problem_geo(dt = dt, codes = codeProb, type = type)
+  dt <- is_problem_geo_before_2002(dt, codeProb, type = type, year = year, con = con )
+
+  ## Delete codes that can't be merged at all --------------------
+  xcode <- is_problem_geo_merge(dt,
+                                code,
+                                vector = FALSE,
+                                control = control,
+                                mode = "delete",
+                                ...,
+                                type = type)
+
   xind <- dt[, .I[GEO %in% xcode]]
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
-  ## Use the first code to recode to new geo codes if old geo codes were split
-  ## into multiple new codes
+  ## OBS!! Use the first code to recode to new geo codes if old geo codes were
+  ## split into multiple new codes --------------------------------------------
   code <- code[!duplicated(GEO)][!is.na(GEO)]
 
   if (geo){
@@ -321,6 +335,10 @@ is_problem_geo_before_2002 <- function(dt, dcode, type, year, con){
 
   GEO <- Geo_Dummy <- oldCode <- currentCode <- i.newGEO <- newGEO <- NULL
 
+  if (type %in% c("fylke", "kommune")){
+    return(dt)
+  }
+
   is_debug(deep = TRUE)
   yr <- unique(dt$AAR)
 
@@ -357,7 +375,12 @@ is_problem_geo_before_2002 <- function(dt, dcode, type, year, con){
 }
 
 ## Codes that can't be merged since it's not found in geo codebook database
-is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c("recode", "delete"), ...){
+is_problem_geo_merge <- function(x, y,
+                                 vector = FALSE,
+                                 control = FALSE,
+                                 mode = c("recode", "delete"),
+                                 ...,
+                                 type = type){
   ## x - dataset
   ## y - geocodes
   ## vector - Either a data.frame or vector
@@ -376,22 +399,33 @@ is_problem_geo_merge <- function(x, y, vector = FALSE, control = FALSE, mode = c
   dcode <- setdiff(x, y)
 
   if (length(dcode) > 0){
-    dcode <- is_problem_message(mode = mode, codes = dcode, control = control, ...)
+    dcode <- is_problem_message(mode = mode,
+                                codes = dcode,
+                                control = control,
+                                ...,
+                                type = type)
   }
 
   return(dcode)
 }
 
-is_problem_message <- function(mode, codes, control = FALSE, ...){
+is_problem_message <- function(mode, codes, control = FALSE, ..., type){
   # mode - Either recode or delete
+  # type - geo levels
 
   scode <- is_short_code(codes, n1 = 10, n2 = 6)
+
+  xx99 <- switch(type,
+                 grunnkrets = "xxxx9999",
+                 kommune = "xx99",
+                 bydel = "xxxx99",
+                 "x9")
 
   if (mode == "recode"){
     logCmd <- is_log_write(value = codes, x = "code99", ...)
     is_verbose(x = length(codes), msg = "Number of codes that fail to recode:", type = "warn2")
     is_verbose(x = scode, msg = "The codes:")
-    is_verbose(x = "xxxx9999", msg = "They are now recoded with:", type = "note")
+    is_verbose(x = xx99, msg = "They are now recoded with:", type = "note")
     is_verbose(x = logCmd, msg = "To see these codes, run command:")
     message("Processing ...")
   }
@@ -413,14 +447,24 @@ is_problem_geo <- function(dt, codes, type){
   # codes - the problem codes from is_problem_geo_merge()
   # type - type of granularity levels
 
+  if (type == "fylke")
+    return(dt)
+
   to99 <- switch(type,
+                 kommune = "99",
                  bydel = "99",
                  grunnkrets = "9999")
 
+  from99 <- switch(type,
+                   kommune = "\\d{2}$",
+                   bydel = "\\d{4}$",
+                   grunnkrets = "\\d{4}$"
+                   )
+
   GEO <- NULL
-  idx <- dt[, .I[GEO %in% codes]]
+  idx <- dt[GEO %in% codes, which = TRUE]
   dt <- is_replace_geo(dt, idx = idx,
-                       from = "\\d{4}$",
+                       from = from99,
                        to = to99)
 
   return(dt)

@@ -9,9 +9,30 @@ do_manheader <- function(dt = NULL, manspec = NULL) {
   is_null(dt, "Data set not found!")
   is_null(manspec)
 
-  check <- length(manspec)
-  if (check == 2) {
-    indx <- as.integer(manspec[["old"]])
+  varLength <- length(manspec)
+  if (varLength == 2) {
+    ## indx <- as.integer(manspec[["old"]])
+    indx <- tryCatch({
+      as.numeric(manspec[["old"]])
+    },
+    warning = function(wr){
+      colx <- trimws(manspec[["old"]])
+      vapply(colx, function(x) grep(x, names(dt)), numeric(1))
+    },
+    error = function(er){
+      colx <- trimws(manspec[["old"]])
+      varsDT <- lapply(colx, function(x) grep(x, names(dt), value = TRUE))
+      names(varsDT) <- colx
+      for (i in seq_len(length( varsDT ))){
+        msg <- paste0("Columname(s) selected with spec `", names(varsDT)[i], "`:")
+        is_color_txt(varsDT[i], msg)
+      }
+
+      renameInput <- paste(paste(manspec[[1]], manspec[[2]], sep = "="), collapse = ",")
+      is_color_txt(renameInput, "Your MANHEADER input:")
+      is_stop("Check input MANHEADER! Columnames you select might not unique")
+    })
+
     data.table::setnames(dt, names(dt)[indx], manspec[["new"]])
   }
   return(dt)

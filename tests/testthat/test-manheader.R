@@ -40,7 +40,17 @@ test_that("Manheader rename colume by index", {
   DT2 <- copy(DT)
   data.table::setnames(DT2, names(DT2)[5], "UTDANN")
 
+  regSpec <- list(old = c("^grun","vaa$"), new = c("GEO", "UTDANN"))
+  DT3 <- data.table::copy(DT)
+  data.table::setnames(DT3, names(DT)[c(2,5)], c("GEO", "UTDANN"))
+
+  regError1 <- list(old = "^a", new = "AAR")
+  regError2 <- list(old = c("nn", "aa"), new = c("GEO", "EDU" ))
+
   # Test ------------------------------------------------------
-  expect_equal(do_manheader(DT, NA_character_), DT)
-  expect_equal(do_manheader(DT, manspec), DT2)
+  expect_equal(do_manheader(copy(DT), NA_character_), DT)
+  expect_equal(do_manheader(copy(DT), manspec), DT2)
+  expect_equal(do_manheader(copy(DT), regSpec), DT3)
+  expect_error(do_manheader(copy(DT), regError1))
+  expect_error(do_manheader(copy(DT), regError2))
 })

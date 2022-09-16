@@ -36,7 +36,6 @@ see_data <- function(group = NULL, koblid  = NULL, year = NULL, action = c("read
   on.exit(rcon$db_close(), add = TRUE)
 
   dbTables <- DBI::dbListTables(rcon$dbconn)
-  dbTables <- vapply(dbTables, as.integer, integer(1))
 
   if (!any(koblid == "all"))
     is_check_tables(koblid, dbTables, group)
@@ -56,11 +55,11 @@ is_read_tables <- function(group, koblid, dbTables, conn){
 
   if (any(koblid == "all")){
     is_color_txt(group, "Read all data in warehose for", type = "note")
-    koblid <- as.character(dbTables)
+    koblid <- dbTables
   } else {
     idTxt <- is_short_code(koblid)
     is_color_txt(idTxt, "Read data in warehouse for KOBLID:")
-    koblid <- as.character(koblid)
+    koblid <- is_tables_name(koblid)
   }
 
   dt <- lapply(koblid, conn$db_read)
@@ -71,12 +70,12 @@ is_read_tables <- function(group, koblid, dbTables, conn){
 is_delete_tables <- function(group, koblid, dbTables, conn){
 
   if (any(koblid == "all")){
-    is_color_txt(group, "Delete all data in warehose for", type = "warn")
-    koblid <- as.character(dbTables)
+    is_color_txt(group, "Delete all data in warehouse for", type = "warn")
+    koblid <- dbTables
   } else {
     idTxt <- is_short_code(koblid)
     is_color_txt(idTxt, "Delete data in warehouse for KOBLID:")
-    koblid <- as.character(koblid)
+    koblid <- is_tables_name(koblid)
   }
 
   lapply(koblid, conn$db_remove_table)
@@ -86,17 +85,29 @@ is_delete_tables <- function(group, koblid, dbTables, conn){
 is_check_tables <- function(koblid, dbTables, group){
 
   if (length(dbTables) != 0){
+    tblID <- is_tables_id(dbTables)
     msg <- "Available koblid:"
-    txt <- is_short_code(dbTables)
+    txt <- is_short_code(tblID)
   } else {
     msg <- "No data found in the warehouse for"
     txt <- group
   }
 
+  koblid <- is_tables_name(koblid)
   if (isFALSE(any(koblid %in% dbTables))){
     is_color_txt(txt, msg = msg)
-    is_stop("Not found for requested KOBLID:", koblid)
+    tblNum <- is_tables_id(koblid)
+    is_stop("Not found for requested KOBLID:", tblNum)
   }
 
   invisible()
+}
+
+# Convert table names to numeric
+is_tables_id <- function(tbls){
+  vapply(tbls, function(x) as.numeric(sub("tbl_", "", x)), numeric(1))
+}
+
+is_tables_name <- function(tbls){
+  paste0("tbl_", tbls)
 }

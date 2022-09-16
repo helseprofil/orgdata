@@ -67,8 +67,12 @@ test_that("Grunnkrets lack 99999999 code", {
                      row.names = c(NA, -4L),
                      class = c("data.table", "data.frame"))
 
+  dtt <- readRDS(file.path( system.file(package = "orgdata"),"testdata", "GeoUknown99.rds" ))
+  dttOut <- readRDS(file.path( system.file (package = "orgdata" ), "testdata", "GeoUknown99out.rds"))
+
   ## Test ---------
-  expect_equal(is_grunnkrets_99(dt), dtout)
+  expect_equal(is_geo_99(dt, type = "grunnkrets"), dtout)
+  expect_equal(is_geo_99(dtt, type = "kommune"), dttOut)
 })
 
 
@@ -100,8 +104,13 @@ test_that("Unknown grunnkrets from municipality", {
                           changeOccurred = c("2020", "2020", "2020", "2020", "2020")),
                      row.names = c(NA, -5L), class = c("data.table", "data.frame"), sorted = "currentCode")
 
+  geoDT <- readRDS(system.file("testdata", "GeoLevel99.rds", package = "orgdata"))
+  geoKom <- readRDS(system.file("testdata", "GeoLevel99kom.rds", package = "orgdata"))
+  geoOut <- readRDS(system.file("testdata", "GeoLevel99out.rds", package = "orgdata"))
+
   ## test --------
-  expect_equal(is_unknown_grunnkrets(dt = dt, kom = kom), dtout)
+  expect_equal(is_unknown_geo(dt = dt, dd = kom, type = "grunnkrets"), dtout)
+  expect_equal(is_unknown_geo(dt = geoDT, dd = geoKom, type = "kommune"), geoOut)
 })
 
 
