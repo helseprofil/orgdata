@@ -1,11 +1,13 @@
 # orgdata 1.2.1
-- Fix bugs when writing and reading data from warehouse (#298)
-- Fix bugs when accessing data with `see_data()` from data warehouse (#300)
+- Fix bugs when writing and reading data from warehouse ie. marked the
+  `KONTROLLERT` column in Access (#298)
+- Fix bugs when accessing or deleting data with `see_data()` from data warehouse
+  (#300)
 - Upgrade package version dependency.
 - Create unknown municipality codes with `xx99` in `geo_recode()` function ie.
   geo record table in Access. (#302)
 - Recode unknown municipality codes with `xx99` for known county. (#303)
-- MANHEADER accept regular expression to select columname in addition to column
+- MANHEADER accepts regular expression to select columname in addition to column
   index (#301)
 
 # orgdata 1.2.0
