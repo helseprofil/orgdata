@@ -21,13 +21,16 @@ do_manheader <- function(dt = NULL, manspec = NULL) {
     },
     error = function(er){
       colx <- trimws(manspec[["old"]])
-      varsDT <- sapply(colx, function(x) grep(x, names(dt), value = TRUE))
+      varsDT <- lapply(colx, function(x) grep(x, names(dt), value = TRUE))
+      names(varsDT) <- colx
       for (i in seq_len(length( varsDT ))){
-        msg <- paste0("Columnames in the dataset to rename `", names(varsDT)[i], "`:")
+        msg <- paste0("Columname(s) selected with spec `", names(varsDT)[i], "`:")
         is_color_txt(varsDT[i], msg)
       }
-      print(manspec)
-      is_stop("Check MANHEADER! Columnames to rename must be unique")
+
+      renameInput <- paste(paste(manspec[[1]], manspec[[2]], sep = "="), collapse = ",")
+      is_color_txt(renameInput, "Your MANHEADER input:")
+      is_stop("Check input MANHEADER! Columnames you select might not unique")
     })
 
     data.table::setnames(dt, names(dt)[indx], manspec[["new"]])
