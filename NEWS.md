@@ -1,10 +1,12 @@
 # orgdata 1.2.1
-- Fix error when writting and reading data warehouse (#298)
-- Fix bugs when reading data from data warehouse (#300)
+- Fix bugs when writing and reading data from warehouse (#298)
+- Fix bugs when accessing data with `see_data()` from data warehouse (#300)
 - Upgrade package version dependency.
 - Create unknown municipality codes with `xx99` in `geo_recode()` function ie.
   geo record table in Access. (#302)
 - Recode unknown municipality codes with `xx99` for known county. (#303)
+- MANHEADER accept regular expression to select columname in addition to column
+  index (#301)
 
 # orgdata 1.2.0
 - Function `read_file()` accept SPSS file too (#297)
