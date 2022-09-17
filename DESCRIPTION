@@ -20,7 +20,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Depends:
-    R (>= 4.1.3)
+    R (>= 4.1.0)
 Imports: 
     data.table (>= 1.14.2),
     DBI (>= 1.1.3),
