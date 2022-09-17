@@ -83,6 +83,8 @@ is_recode_age <- function(dt, category){
   gpv <- setdiff(names(dt), vals)
   dt[, (idCol) := .GRP, by = mget(gpv)]
 
+  data.table::setkeyv(dt, idCol)
+
   vals <- grep("^VAL", names(dt), value = TRUE)
   for (i in vals){
     vai <- tolower(i)
