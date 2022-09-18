@@ -79,6 +79,7 @@ is_recode_age <- function(dt, category){
   dt <- dt[dtCode, on = "ALDER"]
   dt[, "ALDER" := to][, "to" := NULL]
 
+  ## ID to group rows by vars other than VAR
   idCol <- "ageid"
   gpv <- setdiff(names(dt), vals)
   dt[, (idCol) := .GRP, by = mget(gpv)]
