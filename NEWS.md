@@ -1,3 +1,6 @@
+# orgdata 1.2.2
+- Add unidentified municipalities as `xx99` to `geo_map()`. Unidentified municipalities do not exist from API. (#304)
+
 # orgdata 1.2.1
 - Fix bugs when writing and reading data from warehouse ie. marked the
   `KONTROLLERT` column in Access (#298)
