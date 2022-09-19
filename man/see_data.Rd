@@ -2,7 +2,7 @@
 % Please edit documentation in R/see-data.R
 \name{see_data}
 \alias{see_data}
-\title{See Structured Data in the Data Warehouse}
+\title{Access Structured Data in Data Warehouse}
 \usage{
 see_data(
   group = NULL,
@@ -22,16 +22,16 @@ then global option for \code{orgdata.year} will be used.}
 \item{action}{To read or delete the data in the warehouse. Default is \code{read}.}
 }
 \description{
-See the original data that have been clean and structured i the
-data warehouse. Data is saved in the warehouse when the column
-\emph{KONTROLLERT} is marked in the original file table in Access. This means
-the dataset has been cleaned and recoded as specified in \emph{INNLESING} table
+See or delete the original data in data warehouse that have been cleaned and structured.
+Data is saved in the warehouse when column
+\emph{KONTROLLERT} is marked in the original file table in Access database. This indicates
+that dataset has been checked and recoded as specified in \emph{INNLESING} table
 in Access registration database.
 }
 \examples{
 \dontrun{
 dt <- see_data("LESEFERD", koblid = 134)
-dt <- see_data("ENPERSON", koblid = "all")
+dt <- see_data("ENPERSON", koblid = "all", action = "delete")
 dt <- see_data("ENPERSON", koblid = 267:270, action = "delete")
 }
 }
