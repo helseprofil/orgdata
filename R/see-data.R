@@ -1,8 +1,8 @@
-#' @title See Structured Data in the Data Warehouse
-#' @description See the original data that have been clean and structured i the
-#'   data warehouse. Data is saved in the warehouse when the column
-#'   *KONTROLLERT* is marked in the original file table in Access. This means
-#'   the dataset has been cleaned and recoded as specified in *INNLESING* table
+#' @title Access Structured Data in Data Warehouse
+#' @description See or delete the original data in data warehouse that have been cleaned and structured.
+#'   Data is saved in the warehouse when column
+#'   *KONTROLLERT* is marked in the original file table in Access database. This indicates
+#'   that dataset has been checked and recoded as specified in *INNLESING* table
 #'   in Access registration database.
 #' @param group The filegroup name (\emph{filgruppe})
 #' @param koblid Specify one or multiple KOBLID. Use `"all"` to delete all data in warehouse for seleted filegroup.
@@ -11,7 +11,7 @@
 #' @examples
 #' \dontrun{
 #' dt <- see_data("LESEFERD", koblid = 134)
-#' dt <- see_data("ENPERSON", koblid = "all")
+#' dt <- see_data("ENPERSON", koblid = "all", action = "delete")
 #' dt <- see_data("ENPERSON", koblid = 267:270, action = "delete")
 #' }
 #' @export
