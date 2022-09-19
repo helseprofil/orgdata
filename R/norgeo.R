@@ -35,6 +35,7 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
 
   DT <- norgeo::cast_geo(year = year)
   DT <- is_grunnkrets_00(DT)
+  DT <- is_kommune_99(DT)
   geo$tblvalue <- DT[, "batch" := is_batch("date")]
   geo$tblname <- table
 
@@ -378,6 +379,23 @@ is_grunnkrets_00 <- function(dt){
   return(dt)
 }
 
+## Need in mapping since it doesn't exist via API
+is_kommune_99 <- function(dt){
+  kommune <- level <- name <- code <- NULL
+
+  fkode <- dt[!is.na(fylke)][!duplicated(fylke)]
+  fkode[, kommune := paste0(fylke, "99")]
+  fkode[, level := "kommune"]
+  fkode[, name := "Uoppgitt"]
+  fkode[, code := kommune]
+
+  kkode <- unique(dt[['kommune']])
+  kom99 <- fkode[["code"]]
+  komUT <- setdiff(kom99, kkode)
+  fkode <- fkode[code %chin% komUT]
+
+  data.table::rbindlist(list(dt, fkode))
+}
 
 ## To avoid error that recode not found when
 ## 99999999 or 9999 exist in the rawdata for
