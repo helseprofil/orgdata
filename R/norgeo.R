@@ -381,7 +381,7 @@ is_grunnkrets_00 <- function(dt){
 
 ## Need in mapping since it doesn't exist via API
 is_kommune_99 <- function(dt){
-  kommune <- level <- name <- code <- NULL
+  kommune <- level <- fylke <- name <- code <- NULL
 
   fkode <- dt[!is.na(fylke)][!duplicated(fylke)]
   fkode[, kommune := paste0(fylke, "99")]
