@@ -90,19 +90,14 @@ is_age_category <- function(dt = NULL, extra = NULL){
 ## Helper ---------------
 is_input_age_class <- function(input){
   input <- sub("^AgeCat\\((.*)\\)", "\\1", input)
-  input <- is_separate(input, sep = ",")
-
-  mix <- FALSE
-  mix <- grepl("\\[.*\\]", input)
+  # mix - For mix class ie. AgeCat(0, 5, [10], 55, 60)
+  mix <- any(grepl("\\[.*\\]", input))
 
   if (mix){
     input <- is_age_mix(input)
   } else {
     input <- is_age_not_mix(input)
   }
-
-
-
   return(input)
 }
 
@@ -117,6 +112,8 @@ is_check_age_input <- function(inx){
 }
 
 is_age_not_mix <- function(input){
+
+  input <- is_separate(input, sep = ",")
 
   if (length(input) > 1){
     # category with specified group
@@ -133,8 +130,6 @@ is_age_not_mix <- function(input){
 }
 
 is_age_mix <- function(input){
-  ##:ess-bp-start::browser@nil:##
-  browser(expr=is.null(.ESSBP.[["@3@"]]));##:ess-bp-end:##
 
   input <- is_separate(input, "\\[", fixed = FALSE)
   lhs <- is_separate(input[1], ",")
@@ -147,22 +142,10 @@ is_age_mix <- function(input){
   rhs <- is_separate(rhs, ",")
   rhs <- is_check_age_input(rhs)
 
-  upLHS <- length(lhs)
-  loRHS <- length(rhs)
-  intVal <- c(seq(from = lhs[upLHS], to = rhs[1], by = val))
+  intVal <- c(seq(from = lhs[length(lhs)], to = rhs[1], by = val))
+  intVal <- intVal[-c(1, length(intVal))]
 
-  if (length(upLHS) > 1){
-    lhsInput <- paste0(lhs[upLHS - 1])
-  } else {
-    lhsInput <- lhs
-  }
-
-  if (length(loRHS) > 1){
-    rhsInput <- paste0(rhs[loRHS - 1])
-  } else {
-    rhsInput <- rhs
-  }
-
-  input <- paste0(lhsInput, intVal, rhsInput)
+  input <- c(lhs, intVal, rhs)
   class(input) <- append(class(input), "mix")
+  return(input)
 }

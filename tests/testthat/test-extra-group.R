@@ -39,3 +39,11 @@ test_that("Create age codebook", {
 
   expect_equal(is_age_codebook(sample(1:33, 20, replace = TRUE), c(1, 5, 10, 15, 20, Inf)), codebook)
 })
+
+test_that("Create age category mix group", {
+
+  input <- "AgeCat(0,5, [10], 55, 60)"
+  dtout <- readRDS(system.file("testdata", "MixOut.rds", package = "orgdata"))
+
+  expect_equal(is_input_age_class(input), dtout)
+})

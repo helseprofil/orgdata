@@ -66,6 +66,16 @@ find_age_category.cat <- function(dt, interval){
   return(dt)
 }
 
+#' @method find_age_category mix
+#' @export
+find_age_category.mix <- function(dt, interval){
+  is_debug()
+  txt <- paste(interval, collapse = ", ")
+  is_color_txt(x = paste0(txt, "+"), msg = "Creating age category", emoji = TRUE)
+  ageBrk <- c(interval, Inf)
+  dt <- is_recode_age(dt, category = ageBrk)
+  return(dt)
+}
 
 ## Helper ----------
 
@@ -82,6 +92,7 @@ is_recode_age <- function(dt, category){
   ## ID to group rows by vars other than VAR
   idCol <- "ageid"
   gpv <- setdiff(names(dt), vals)
+  data.table::setkeyv(dt, gpv)
   dt[, (idCol) := .GRP, by = mget(gpv)]
 
   data.table::setkeyv(dt, idCol)
