@@ -31,7 +31,7 @@ test_that("Extra age category fix group", {
   extra <- "AgeCat(0,10,40,70)"
   mix <- "AgeCat(0,5,[10],55, 70)"
   intmix <- is_input_age_class(mix)
-  mixOut <- readRDS(system.file("testdata", "mixOut.rds", package = "orgdata"))
+  mixOut <- readRDS(system.file("testdata", "dtMixOut.rds", package = "orgdata"))
 
   expect_equal(is_age_category(dt = data.table::copy(dt), extra = extra), dtout)
   expect_equal(find_age_category.cat(dt = data.table::copy(dt), interval = inx), dtout)
