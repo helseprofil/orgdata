@@ -50,5 +50,5 @@ test_that("Create age category mix group", {
   mixIn <- "AgeCat(0,5, [10], 55, 60)"
   mixClass <- readRDS(system.file("testdata", "mixClassOut.rds", package = "orgdata"))
 
-  expect_equal(is_input_age_class(input), mixClass)
+  expect_equal(is_input_age_class(mixIn), mixClass)
 })
