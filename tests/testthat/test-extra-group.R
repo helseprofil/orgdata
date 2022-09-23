@@ -6,7 +6,7 @@ test_that("Extra args for group", {
 
   ## TEST -----
   expect_equal(is_delete_bydel_before_2003(dt, "DeleteOldBydel"), dout)
-
+  expect_equal(do_extra_args_group(dt = data.table::copy(dt), "DeleteOldBydel"), dout)
 })
 
 test_that("Extra age category", {
@@ -33,6 +33,7 @@ test_that("Extra age category fix group", {
   intmix <- is_input_age_class(mix)
   mixOut <- readRDS(system.file("testdata", "dtMixOut.rds", package = "orgdata"))
 
+  expect_equal(do_extra_args_group(data.table::copy(dt), extra), dtout)
   expect_equal(is_age_category(dt = data.table::copy(dt), extra = extra), dtout)
   expect_equal(find_age_category.cat(dt = data.table::copy(dt), interval = inx), dtout)
   expect_equal(find_age_category.mix(dt = data.table::copy(dt), intmix), mixOut)
