@@ -21,18 +21,25 @@ to \code{data.table} with \code{data.table::setDT(DF)}.
 
 Age categories can be specified as follows:
 \itemize{
-\item Specific interval eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
-maximum age is 85+, while even number uses maximum age of 80+.
-\item Specified interval lower bound eg. \verb{0, 19, 45, 65, 80} for age categories of 0-18,
-19-44, 45-64, 65-79, 80+.
+\item Specific interval
+eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
+maximum age is 85+, while even number uses maximum age of 80+ eg \code{AgeCat(5)}.
+\item Specified
+interval lower bound eg. \verb{0, 19, 45, 65, 80} for age categories of 0-18,
+19-44, 45-64, 65-79, 80+ eg. \code{AgeCat(0, 19, 45, 65, 80)}.
+\item Mix between specific and varied interval with \verb{[x]} eg.
+\verb{0, 5, 10, 20, 30, 40, 55+}. Here the first 3 groups has interval of 5
+and followed by interval of 10 eg. \verb{AgeCat(0, 5, 10, [10], 40, 55)}.
 }
 }
 \examples{
 \dontrun{
 # This is how to specify it in EXTRA column in Access
-AgeCat(5) #Group age for every 5 years with min 0 and max 85+
-AgeCat(10) #Group age for every 10 years with min 0 and max 80+
-AgeCat(0, 19, 45, 65, 80) #Age group of 0-18, 19-44, 45-64, 65-79, 80+
+AgeCat(5) #Every 5 years with min 0 and max 85+
+AgeCat(10) #Every 10 years with min 0 and max 80+
+AgeCat(0, 19, 45, 65, 80) #Age group 0-18, 19-44, 45-64, 65-79, 80+
+# Age group 0-4, 5-9, 10-19, 20-29, 30-39, 40-54, 55+
+AgeCat(0, 5, 10, [10], 40, 55)
 
 # To use it as a function
 DT <- find_age_category(DT, interval = 5)

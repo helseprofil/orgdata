@@ -2,6 +2,7 @@
 
 S3method(find_age_category,cat)
 S3method(find_age_category,default)
+S3method(find_age_category,mix)
 S3method(find_age_category,val)
 S3method(find_data,csv)
 S3method(find_data,default)

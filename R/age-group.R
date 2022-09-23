@@ -6,18 +6,25 @@
 #'   `data.table` format if using the function outside Access. Convert dataset
 #'   to `data.table` with `data.table::setDT(DF)`.
 #' @description Age categories can be specified as follows:
-#'    - Specific interval eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
-#'   maximum age is 85+, while even number uses maximum age of 80+.
-#'   - Specified interval lower bound eg. `0, 19, 45, 65, 80` for age categories of 0-18,
-#'   19-44, 45-64, 65-79, 80+.
+#'   - Specific interval
+#'   eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
+#'   maximum age is 85+, while even number uses maximum age of 80+ eg `AgeCat(5)`.
+#'   - Specified
+#'   interval lower bound eg. `0, 19, 45, 65, 80` for age categories of 0-18,
+#'   19-44, 45-64, 65-79, 80+ eg. `AgeCat(0, 19, 45, 65, 80)`.
+#'   - Mix between specific and varied interval with `[x]` eg.
+#'   `0, 5, 10, 20, 30, 40, 55+`. Here the first 3 groups has interval of 5
+#'   and followed by interval of 10 eg. `AgeCat(0, 5, 10, [10], 40, 55)`.
 #' @param dt Dataset
 #' @param interval Age interval
 #' @examples
 #' \dontrun{
 #' # This is how to specify it in EXTRA column in Access
-#' AgeCat(5) #Group age for every 5 years with min 0 and max 85+
-#' AgeCat(10) #Group age for every 10 years with min 0 and max 80+
-#' AgeCat(0, 19, 45, 65, 80) #Age group of 0-18, 19-44, 45-64, 65-79, 80+
+#' AgeCat(5) #Every 5 years with min 0 and max 85+
+#' AgeCat(10) #Every 10 years with min 0 and max 80+
+#' AgeCat(0, 19, 45, 65, 80) #Age group 0-18, 19-44, 45-64, 65-79, 80+
+#' # Age group 0-4, 5-9, 10-19, 20-29, 30-39, 40-54, 55+
+#' AgeCat(0, 5, 10, [10], 40, 55)
 #'
 #' # To use it as a function
 #' DT <- find_age_category(DT, interval = 5)
@@ -25,6 +32,7 @@
 #' }
 #' @family extra arguments
 #' @export
+
 find_age_category <- function(dt = NULL, interval = NULL) {
   UseMethod("find_age_category", object = interval)
 }
@@ -66,6 +74,16 @@ find_age_category.cat <- function(dt, interval){
   return(dt)
 }
 
+#' @method find_age_category mix
+#' @export
+find_age_category.mix <- function(dt, interval){
+  is_debug()
+  txt <- paste(interval, collapse = ", ")
+  is_color_txt(x = paste0(txt, "+"), msg = "Creating age category", emoji = TRUE)
+  ageBrk <- c(interval, Inf)
+  dt <- is_recode_age(dt, category = ageBrk)
+  return(dt)
+}
 
 ## Helper ----------
 
@@ -82,6 +100,7 @@ is_recode_age <- function(dt, category){
   ## ID to group rows by vars other than VAR
   idCol <- "ageid"
   gpv <- setdiff(names(dt), vals)
+  data.table::setkeyv(dt, gpv)
   dt[, (idCol) := .GRP, by = mget(gpv)]
 
   data.table::setkeyv(dt, idCol)

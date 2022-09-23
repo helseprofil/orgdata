@@ -90,6 +90,28 @@ is_age_category <- function(dt = NULL, extra = NULL){
 ## Helper ---------------
 is_input_age_class <- function(input){
   input <- sub("^AgeCat\\((.*)\\)", "\\1", input)
+  # mix - For mix class ie. AgeCat(0, 5, [10], 55, 60)
+  mix <- any(grepl("\\[.*\\]", input))
+
+  if (mix){
+    input <- is_age_mix(input)
+  } else {
+    input <- is_age_not_mix(input)
+  }
+  return(input)
+}
+
+is_check_age_input <- function(inx){
+  inx <- trimws(inx)
+  inx <- tryCatch(as.numeric(inx),
+                  warning = function(w){
+                    is_stop("Interval for AgeCat in EXTRA is not numeric:", inx)
+                  })
+
+  inx[!is.na(inx)]
+}
+
+is_age_not_mix <- function(input){
 
   input <- is_separate(input, sep = ",")
 
@@ -107,10 +129,23 @@ is_input_age_class <- function(input){
   return(input)
 }
 
-is_check_age_input <- function(inx){
-  inx <- trimws(inx)
-  inx <- tryCatch(as.numeric(inx),
-                  warning = function(w){
-                    is_stop("Interval for AgeCat in EXTRA is not numeric:", inx)
-                  })
+is_age_mix <- function(input){
+
+  input <- is_separate(input, "\\[", fixed = FALSE)
+  lhs <- is_separate(input[1], ",")
+  lhs <- is_check_age_input(lhs)
+
+  val <- is_separate(input[2], "\\]", keep = 1, fixed = FALSE)
+  val <- is_check_age_input(val)
+
+  rhs <- is_separate(input[2], "\\]", keep = 2, fixed = FALSE)
+  rhs <- is_separate(rhs, ",")
+  rhs <- is_check_age_input(rhs)
+
+  intVal <- c(seq(from = lhs[length(lhs)], to = rhs[1], by = val))
+  intVal <- intVal[-c(1, length(intVal))]
+
+  input <- c(lhs, intVal, rhs)
+  class(input) <- append(class(input), "mix")
+  return(input)
 }
