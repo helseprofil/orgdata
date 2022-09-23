@@ -47,8 +47,8 @@ test_that("Create age codebook", {
 
 test_that("Create age category mix group", {
 
-  input <- "AgeCat(0,5, [10], 55, 60)"
-  dtout <- readRDS(system.file("testdata", "MixOut.rds", package = "orgdata"))
+  mixIn <- "AgeCat(0,5, [10], 55, 60)"
+  mixClass <- readRDS(system.file("testdata", "mixClassOut.rds", package = "orgdata"))
 
-  expect_equal(is_input_age_class(input), dtout)
+  expect_equal(is_input_age_class(input), mixClass)
 })
