@@ -25,5 +25,5 @@ test_that("Implicit null", {
 
   expect_equal(do_implicit_null(dt = dtimp, level = "grunnkrets"), dtOut)
   expect_equal(do_implicit_null(dt = dtimp, level = "kommune"), dtOutKom)
-
+  expect_error(do_implicit_null(dt = dtimp, level = "town"))
 })

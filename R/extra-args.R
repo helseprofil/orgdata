@@ -41,8 +41,8 @@ get_extra_args <- function(group = NULL, con = NULL, spec = NULL){
   if (!is.na(input)) {
     input <- find_column_multi(spec = spec, col = "EXTRA", sep = "|")
   }
-  return(input)
 
+  return(input)
 }
 
 ## Helper ---------------------------

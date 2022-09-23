@@ -62,3 +62,11 @@ test_that("Recode duplicate", {
 
   expect_error(is_recode_lesid(dt, code, "vers2"))
 })
+
+test_that("Add kommune 99", {
+  dt <- readRDS(system.file("testdata", 'kom99data.rds', package = "orgdata"))
+  dtout <- readRDS(system.file("testdata", 'kom99out.rds', package = "orgdata"))
+
+  expect_equal(is_kommune_99(dt), dtout)
+
+})

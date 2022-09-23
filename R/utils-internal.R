@@ -89,7 +89,7 @@ is_col_dummy <- function(col) {
 
 # To separate a string with selected sep symbol
 # Can keep both value ie. lhs and rhs or either one
-is_separate <- function(x, sep = NULL, keep = NULL) {
+is_separate <- function(x, sep = NULL, keep = NULL, fixed = TRUE) {
   # x : the string to be separated
   # sep : separate symbole like ",","=" etc.
   # keep : Keep 1=lhs or 2=rhs eg. x[1] for lhs
@@ -97,7 +97,7 @@ is_separate <- function(x, sep = NULL, keep = NULL) {
   if (methods::is(x, "numeric")) {
     x <- as.character(x)
   }
-  out <- unlist(strsplit(x, sep, fixed = TRUE))
+  out <- unlist(strsplit(x, sep, fixed = fixed))
   if (!is.null(keep)) {
     out <- out[keep]
   }
