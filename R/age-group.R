@@ -68,14 +68,7 @@ find_age_category.cat <- function(dt, interval){
 
 #' @method find_age_category mix
 #' @export
-find_age_category.mix <- function(dt, interval){
-  is_debug()
-  txt <- paste(interval, collapse = ", ")
-  is_color_txt(x = paste0(txt, "+"), msg = "Creating age category", emoji = TRUE)
-  ageBrk <- c(interval, Inf)
-  dt <- is_recode_age(dt, category = ageBrk)
-  return(dt)
-}
+find_age_category.mix <- find_age_category.cat
 
 ## Helper ----------
 
@@ -102,13 +95,13 @@ is_recode_age <- function(dt, category){
     vai <- tolower(i)
     dt[, (vai) := sum(get(i), na.rm = TRUE), by = get(idCol)]
     dt[, (i) := get(vai)]
-    dt[, (vai) := NULL]
-  }
+      dt[, (vai) := NULL]
+    }
 
-  dt <- dt[, .SD[1], by = idCol]
-  dt[, (idCol) := NULL]
-  return(dt)
-}
+    dt <- dt[, .SD[1], by = idCol]
+    dt[, (idCol) := NULL]
+    return(dt)
+  }
 
 # Create codeboook to recode age
 is_age_codebook <- function(x, category){
