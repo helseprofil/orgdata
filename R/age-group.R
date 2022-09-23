@@ -17,11 +17,7 @@
 #'   and followed by interval of 10 eg. `AgeCat(0, 5, 10, [10], 40, 55)`.
 #' @param dt Dataset
 #' @param interval Age interval
-#' @examples
-#' \dontrun{
-#' AgeCat(5) #Every 5 years interval
-#' AgeCat(0,19,45,65,80) #Varied intervals
-#' }
+#' @example inst/codes/example-age-category.R
 #' @family extra arguments
 #' @export
 
