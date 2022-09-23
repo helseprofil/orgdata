@@ -9,6 +9,8 @@
 coverage](https://img.shields.io/codecov/c/github/helseprofil/orgdata?logo=codecov)](https://app.codecov.io/gh/helseprofil/orgdata?branch=main)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![GitHub R package version
+(branch)](https://img.shields.io/github/r-package/v/helseprofil/orgdata/main)](https://github.com/helseprofil/orgdata)
+[![GitHub R package version
 (branch)](https://img.shields.io/github/r-package/v/helseprofil/orgdata/dev)](https://github.com/helseprofil/orgdata)
 <!-- badges: end -->
 
