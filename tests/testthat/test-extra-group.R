@@ -28,7 +28,9 @@ test_that("Extra age category fix group", {
   dt <- readRDS(system.file("testdata", "AgeGrpDT.rds", package = "orgdata"))
   inx <- readRDS(system.file("testdata", "AgeGrpInterval.rds", package = "orgdata"))
   dtout <- readRDS(system.file("testdata", "AgeGrpOut.rds", package = "orgdata"))
+  extra <- "AgeCat(0,10,40,70)"
 
+  expect_equal(is_age_category(dt = data.table::copy(dt), extra = extra), dtout)
   expect_equal(find_age_category.cat(dt = data.table::copy(dt), interval = inx), dtout)
 
 })
