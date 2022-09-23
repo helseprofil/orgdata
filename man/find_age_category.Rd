@@ -33,10 +33,11 @@ and followed by interval of 10 eg. \verb{AgeCat(0, 5, 10, [10], 40, 55)}.
 }
 }
 \examples{
-\dontrun{
-AgeCat(5) #Every 5 years interval
-AgeCat(0,19,45,65,80) #Varied intervals
-}
+# How to write it in column EXTRA in Access:
+
+# AgeCat(5) #Specific interval. Every 5 years
+# AgeCat(0,19,45,65,80) #Varied intervals with each group lower bound
+# AgeCat(0, 5, 10, [10], 40, 55) #Varied and specific interval (10 years)
 }
 \seealso{
 Other extra arguments: 

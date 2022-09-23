@@ -135,10 +135,12 @@ and followed by interval of 10 eg. <code>AgeCat(0, 5, 10, [10], 40, 55)</code>.<
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">AgeCat</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="co">#Every 5 years interval</span></span>
-<span class="r-in"><span class="fu">AgeCat</span><span class="op">(</span><span class="fl">0</span>,<span class="fl">19</span>,<span class="fl">45</span>,<span class="fl">65</span>,<span class="fl">80</span><span class="op">)</span> <span class="co">#Varied intervals</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># How to write it in column EXTRA in Access:</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># AgeCat(5) #Specific interval. Every 5 years</span></span>
+<span class="r-in"><span class="co"># AgeCat(0,19,45,65,80) #Varied intervals with each group lower bound</span></span>
+<span class="r-in"><span class="co"># AgeCat(0, 5, 10, [10], 40, 55) #Varied and specific interval (10 years)</span></span>
+<span class="r-in"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
