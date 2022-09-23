@@ -9,10 +9,10 @@ Age categories can be specified as follows:
 Specific interval
 eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
 maximum age is 85+, while even number uses maximum age of 80+ eg AgeCat(5).
-Specified
-interval lower bound eg. 0, 19, 45, 65, 80 for age categories of 0-18,
-19-44, 45-64, 65-79, 80+ eg. AgeCat(0, 19, 45, 65, 80).
-Mix between specific and varied interval with [x] eg.
+Varied
+intervals where lower bound need to be specified eg. 0, 19, 45, 65, 80
+for age categories of 0-18,19-44,45-64,65-79, 80+ eg. AgeCat(0, 19, 45, 65, 80).
+Mix between specific and varied intervals with [x] eg.
 0, 5, 10, 20, 30, 40, 55+. Here the first 3 groups has interval of 5
 and followed by interval of 10 eg. AgeCat(0, 5, 10, [10], 40, 55).
 
@@ -26,10 +26,10 @@ Age categories can be specified as follows:
 Specific interval
 eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
 maximum age is 85+, while even number uses maximum age of 80+ eg AgeCat(5).
-Specified
-interval lower bound eg. 0, 19, 45, 65, 80 for age categories of 0-18,
-19-44, 45-64, 65-79, 80+ eg. AgeCat(0, 19, 45, 65, 80).
-Mix between specific and varied interval with [x] eg.
+Varied
+intervals where lower bound need to be specified eg. 0, 19, 45, 65, 80
+for age categories of 0-18,19-44,45-64,65-79, 80+ eg. AgeCat(0, 19, 45, 65, 80).
+Mix between specific and varied intervals with [x] eg.
 0, 5, 10, 20, 30, 40, 55+. Here the first 3 groups has interval of 5
 and followed by interval of 10 eg. AgeCat(0, 5, 10, [10], 40, 55).
 
@@ -101,10 +101,10 @@ to <code>data.table</code> with <code>data.table::setDT(DF)</code>.</p>
 <p>Age categories can be specified as follows:</p><ul><li><p>Specific interval
 eg. every 5 years. Interval with odd numbers will use minimum age of 0 and
 maximum age is 85+, while even number uses maximum age of 80+ eg <code>AgeCat(5)</code>.</p></li>
-<li><p>Specified
-interval lower bound eg. <code>0, 19, 45, 65, 80</code> for age categories of 0-18,
-19-44, 45-64, 65-79, 80+ eg. <code>AgeCat(0, 19, 45, 65, 80)</code>.</p></li>
-<li><p>Mix between specific and varied interval with <code>[x]</code> eg.
+<li><p>Varied
+intervals where lower bound need to be specified eg. <code>0, 19, 45, 65, 80</code>
+for age categories of 0-18,19-44,45-64,65-79, 80+ eg. <code>AgeCat(0, 19, 45, 65, 80)</code>.</p></li>
+<li><p>Mix between specific and varied intervals with <code>[x]</code> eg.
 <code>0, 5, 10, 20, 30, 40, 55+</code>. Here the first 3 groups has interval of 5
 and followed by interval of 10 eg. <code>AgeCat(0, 5, 10, [10], 40, 55)</code>.</p></li>
 </ul></div>
@@ -135,7 +135,11 @@ and followed by interval of 10 eg. <code>AgeCat(0, 5, 10, [10], 40, 55)</code>.<
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="fu">AgeCat</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="co">#Every 5 years interval</span></span>
+<span class="r-in"><span class="fu">AgeCat</span><span class="op">(</span><span class="fl">0</span>,<span class="fl">19</span>,<span class="fl">45</span>,<span class="fl">65</span>,<span class="fl">80</span><span class="op">)</span> <span class="co">#Varied intervals</span></span>
+<span class="r-in"><span class="op">}</span></span>
+</code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
