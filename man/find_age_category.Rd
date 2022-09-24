@@ -28,8 +28,9 @@ maximum age is 85+, while even number uses maximum age of 80+ eg \code{AgeCat(5)
 intervals where lower bound need to be specified eg. \verb{0, 19, 45, 65, 80}
 for age categories of 0-18,19-44,45-64,65-79, 80+ eg. \code{AgeCat(0, 19, 45, 65, 80)}.
 \item Mix between specific and varied intervals with \verb{[x]} eg.
-\verb{0, 5, 10, 20, 30, 40, 55+}. Here the first 3 groups has interval of 5
-and followed by interval of 10 eg. \verb{AgeCat(0, 5, 10, [10], 40, 55)}.
+\verb{0, 3, 10, 20, 30, 40, 55+}. Here the first 3 groups has varied intervals
+and followed by specified interval of 10 year eg. \verb{AgeCat(0, 3, 10, [10], 40, 55)}.
+However, multiple use of \verb{[x]} in a call will fail eg. \verb{AgeCat(0, [5], 30, [10], 60, 75)}.
 }
 }
 \examples{
@@ -37,7 +38,7 @@ and followed by interval of 10 eg. \verb{AgeCat(0, 5, 10, [10], 40, 55)}.
 
 # AgeCat(5) #Specific interval. Every 5 years
 # AgeCat(0,19,45,65,80) #Varied intervals with each group lower bound
-# AgeCat(0, 5, 10, [10], 40, 55) #Varied and specific interval (10 years)
+# AgeCat(0, 3, 10, [10], 40, 55) #Varied and specific interval (10 years)
 }
 \seealso{
 Other extra arguments: 

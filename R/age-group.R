@@ -13,8 +13,9 @@
 #'   intervals where lower bound need to be specified eg. `0, 19, 45, 65, 80`
 #'   for age categories of 0-18,19-44,45-64,65-79, 80+ eg. `AgeCat(0, 19, 45, 65, 80)`.
 #'   - Mix between specific and varied intervals with `[x]` eg.
-#'   `0, 5, 10, 20, 30, 40, 55+`. Here the first 3 groups has interval of 5
-#'   and followed by interval of 10 eg. `AgeCat(0, 5, 10, [10], 40, 55)`.
+#'   `0, 3, 10, 20, 30, 40, 55+`. Here the first 3 groups has varied intervals
+#'   and followed by specified interval of 10 year eg. `AgeCat(0, 3, 10, [10], 40, 55)`.
+#'   However, multiple use of `[x]` in a call will fail eg. `AgeCat(0, [5], 30, [10], 60, 75)`.
 #' @param dt Dataset
 #' @param interval Age interval
 #' @example inst/codes/example-age-category.R

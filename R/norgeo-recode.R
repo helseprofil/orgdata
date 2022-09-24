@@ -153,7 +153,7 @@ do_geo_recode <- function(dt = NULL,
                                 ...,
                                 type = type)
 
-  xind <- dt[, .I[GEO %in% xcode]]
+  xind <- dt[GEO %in% xcode, which = TRUE]
   dt <- is_delete_index(dt, xind) #delete row that can't be merged
 
   ## OBS!! Use the first code to recode to new geo codes if old geo codes were
@@ -251,7 +251,7 @@ is_grunnkrets_0000 <- function(dt, control = FALSE, ...){
   is_debug(deep = TRUE)
   nr00 <- dt[GEO %like% "0000$", .N]
   if (nr00 > 0){
-    idx <- dt[, .I[GEO %like% "0000$"]]
+    idx <- dt[GEO %like% "0000$", which = TRUE]
     notCodes <- dt[idx]$GEO
 
     dt <- is_replace_geo(dt,
@@ -283,7 +283,7 @@ is_grunnkrets <- function(dt, control = FALSE, ...){
   }
 
   dt[dummy_grk != 0 , dummy_grk := nchar(GEO)]
-  idx <- dt[, .I[dummy_grk != 0]]
+  idx <- dt[dummy_grk != 0, which = TRUE]
   notCodes <- dt[idx]$GEO
 
   logCmd <- is_log_write(value = notCodes, x = "codeShort", ...)

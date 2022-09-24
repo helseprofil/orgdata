@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,6 +57,10 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.2.3" id="orgdata-123">orgdata 1.2.3<a class="anchor" aria-label="anchor" href="#orgdata-123"></a></h2>
+<ul><li>Rewrite some codes for speed. (<a href="https://github.com/helseprofil/orgdata/issues/231" class="external-link">#231</a>)</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.2" id="orgdata-122">orgdata 1.2.2<a class="anchor" aria-label="anchor" href="#orgdata-122"></a></h2>
 <ul><li>Add unidentified municipalities as <code>xx99</code> to <code><a href="../reference/geo_map.html">geo_map()</a></code>. Unidentified municipalities do not exist from API. (<a href="https://github.com/helseprofil/orgdata/issues/304" class="external-link">#304</a>)</li>
 <li>Age group with <code>AgeCat</code> can use mix categories easily with <code>[x]</code>. See example in <code><a href="../reference/find_age_category.html">find_age_category()</a></code>. (<a href="https://github.com/helseprofil/orgdata/issues/305" class="external-link">#305</a>)</li>
@@ -85,10 +89,7 @@
 <li>Fix S3 age category functions <code><a href="../reference/find_age_category.html">find_age_category()</a></code> (<a href="https://github.com/helseprofil/orgdata/issues/294" class="external-link">#294</a>)</li>
 <li>Delete unwanted column in the output when using <code>AgeCat</code> function in EXTRA (<a href="https://github.com/helseprofil/orgdata/issues/295" class="external-link">#295</a>)</li>
 <li>Use global options in input argument when relevant instead of using <code><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg()</a></code> (<a href="https://github.com/helseprofil/orgdata/issues/263" class="external-link">#263</a>)</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.7" id="orgdata-07">orgdata 0.7<a class="anchor" aria-label="anchor" href="#orgdata-07"></a></h2>
-<ul><li>Edit document here and there.</li>
+<li>Edit document here and there.</li>
 <li>Use codebook to recode age category for better speed (<a href="https://github.com/helseprofil/orgdata/issues/292" class="external-link">#292</a>)</li>
 <li>Read or delete data in the data warehouse can use multiple koblid in <code><a href="../reference/see_data.html">see_data()</a></code>. Use <code>"all"</code> in <code>koblid</code> argument to select all data on the chosen filegroup (<a href="https://github.com/helseprofil/orgdata/issues/291" class="external-link">#291</a>)</li>
 <li>Fixed duplicated age groups (<a href="https://github.com/helseprofil/orgdata/issues/290" class="external-link">#290</a>).</li>
@@ -109,10 +110,7 @@
 <li>Filter active files with date was done pragmatically ie. all files with <code>BRUKTIL</code> date other than <code>01-01-9999</code> will be excluded. Now filtering with date will be compared against current date. (<a href="https://github.com/helseprofil/orgdata/issues/272" class="external-link">#272</a>)</li>
 <li>Delete dataset from the database when unmark column <code>KONTROLLERT</code> instead of updating the dataset due to time consuming by updating it. The users have to mark the column to save or read the dataset in the database. (<a href="https://github.com/helseprofil/orgdata/issues/278" class="external-link">#278</a>)</li>
 <li>Change default for argument <code>raw</code> in <code><a href="../reference/make_file.html">make_file()</a></code> to <code>FALSE</code> as in <a href="https://github.com/helseprofil/config/blob/main/config-orgdata.yml" title="config" class="external-link">config</a> file.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.6" id="orgdata-06">orgdata 0.6<a class="anchor" aria-label="anchor" href="#orgdata-06"></a></h2>
-<ul><li>Some text editing here and there.</li>
+<li>Some text editing here and there.</li>
 <li>Function <code>is_colour_txt()</code> can specify symbol directly without needing to rely on the global options or to use <code>withr</code> package. Just for cosmetic purposes <span class="emoji" data-emoji="smiley">😃</span>
 </li>
 <li>Standard columns should be uppercase. Using lowercase creates error when GEO comes from two separated columns especially when handling recode from codebook (<a href="https://github.com/helseprofil/orgdata/issues/277" class="external-link">#277</a>)</li>
@@ -134,10 +132,7 @@
 <li>Depends for <em>norgeo</em> package refers directly to CRAN version instead of GitHub repo.</li>
 <li>Use function <code><a href="../reference/geo_merge.html">geo_merge()</a></code> to add geo granularity that aren’t from API. This can be a csv, xls or any other format that is accepted by <code>read_file</code> (<a href="https://github.com/helseprofil/orgdata/issues/262" class="external-link">#262</a>)</li>
 <li>Deactive KONTROLLERT without the need to umark from Access database by using argument <code>raw = TRUE</code> when using function <code><a href="../reference/make_file.html">make_file()</a></code> (<a href="https://github.com/helseprofil/orgdata/issues/264" class="external-link">#264</a>)</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.5" id="orgdata-05">orgdata 0.5<a class="anchor" aria-label="anchor" href="#orgdata-05"></a></h2>
-<ul><li>Use <em>KOBLID</em> as table name in DuckDB instead of <em>FILID</em> since <em>FILID</em> is not a unique number ie. can be used by multiple <em>KOBLID</em>.</li>
+<li>Use <em>KOBLID</em> as table name in DuckDB instead of <em>FILID</em> since <em>FILID</em> is not a unique number ie. can be used by multiple <em>KOBLID</em>.</li>
 <li>Update text and website</li>
 <li>Change function name from <code>geo_levels()</code> to <code><a href="../reference/geo_map.html">geo_map()</a></code> for mapping geo codes granularity.</li>
 <li>Change helper function names for <code><a href="../reference/read_file.html">read_file()</a></code>. (<a href="https://github.com/helseprofil/orgdata/issues/250" class="external-link">#250</a>)</li>
@@ -173,10 +168,7 @@
 <li>Connect to both database with common function. (<a href="https://github.com/helseprofil/orgdata/issues/212" class="external-link">#212</a>)</li>
 <li>Use global options <code>orgdata.year</code> to specify production year if not using current year. (<a href="https://github.com/helseprofil/orgdata/issues/216" class="external-link">#216</a>)</li>
 <li>Use parallel processing in <code><a href="../reference/make_file.html">make_file()</a></code> with argument <code>parallel = TRUE</code>. (<a href="https://github.com/helseprofil/orgdata/issues/217" class="external-link">#217</a>)</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.4" id="orgdata-04">orgdata 0.4<a class="anchor" aria-label="anchor" href="#orgdata-04"></a></h2>
-<ul><li>Get feedback for successful and unsuccessful filegroups when running <code><a href="../reference/make_filegroups.html">make_filegroups()</a></code>. (<a href="https://github.com/helseprofil/orgdata/issues/199" class="external-link">#199</a>)</li>
+<li>Get feedback for successful and unsuccessful filegroups when running <code><a href="../reference/make_filegroups.html">make_filegroups()</a></code>. (<a href="https://github.com/helseprofil/orgdata/issues/199" class="external-link">#199</a>)</li>
 <li>Reshape wide is not limited to only 3 reshape columns as it was. (<a href="https://github.com/helseprofil/orgdata/issues/200" class="external-link">#200</a> <a href="https://github.com/helseprofil/orgdata/issues/201" class="external-link">#201</a>)</li>
 <li>Create log files in default orgdata folder instead of occupying the REM. (<a href="https://github.com/helseprofil/orgdata/issues/202" class="external-link">#202</a>)</li>
 <li>Delete old bydel codes ie. before 2003, except for Oslo. This is due to the unstable geographical recoding of bydel. Use <code>EXTRA</code> column on filegroup level with argument <code>DeleteOldBydel</code>. (<a href="https://github.com/helseprofil/orgdata/issues/204" class="external-link">#204</a> <a href="https://github.com/helseprofil/orgdata/issues/206" class="external-link">#206</a>)</li>
@@ -215,10 +207,7 @@
 <li>Fixed <a href="https://github.com/helseprofil/orgdata/issues/122" class="external-link">#122</a> delete rows with NA via EXTRA column (<a href="https://github.com/helseprofil/orgdata/issues/127" class="external-link">#127</a>)</li>
 <li>Fixed <a href="https://github.com/helseprofil/orgdata/issues/118" class="external-link">#118</a> warning text when column(s) aren’t defined in FILGRUPPE and will be deleted (<a href="https://github.com/helseprofil/orgdata/issues/128" class="external-link">#128</a>)</li>
 <li>Edit error message for columns with existing NA value before aggregating. Total value will be NA and this will conflict with the allready existing NA category in the aggregated column(s). Therefore existing NA value in the selected column(s) must be recoded to a valid value.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3" id="orgdata-03">orgdata 0.3<a class="anchor" aria-label="anchor" href="#orgdata-03"></a></h2>
-<ul><li>Use <code>options(orgdata.debug.geo = TRUE)</code> to keep old geo codes for debuging (<a href="https://github.com/helseprofil/orgdata/issues/120" class="external-link">#120</a>)</li>
+<li>Use <code>options(orgdata.debug.geo = TRUE)</code> to keep old geo codes for debuging (<a href="https://github.com/helseprofil/orgdata/issues/120" class="external-link">#120</a>)</li>
 <li>Use <code><a href="../reference/reset_options.html">reset_options()</a></code> to reset to default options.</li>
 <li>Warn when process discontinued due to debugging.</li>
 <li>Add vignettes for <strong>Standardize git</strong> and <strong>Debugging</strong>
@@ -260,10 +249,7 @@
 <li>Reshape dataset from wide to long. Reshape can have more than one <code>measure   variables</code>. Please read how this is specified in Access registration database.</li>
 <li>Split columns must have equal number of values to the defined <code>SPLITTIL</code>. Duplicate the value if it is less than the maximum <code>SPLITTIL</code>. For example for value <code>0</code> in column <code>LANDSSB</code> which will be split into <code>LANDBAK</code> and <code>INNVKAT</code>, the value will be duplicated into <code>00</code> to avoid split with value <code>NA</code>.</li>
 <li>Recode for <code>LANDBAK</code> and <code>INNVKAT</code> after aggregating are done internally ie. hard coded, in <code>do_aggregate_recode_standard()</code>. Total is coded with <code>20</code>. Any eventuality for future change should also look other related functions such as <code>is_aggregate_standard_cols()</code> and <code>is_col_num()</code>.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2" id="orgdata-02">orgdata 0.2<a class="anchor" aria-label="anchor" href="#orgdata-02"></a></h2>
-<ul><li>Change argument parameter for <code><a href="../reference/find_spec.html">find_spec()</a></code> function.</li>
+<li>Change argument parameter for <code><a href="../reference/find_spec.html">find_spec()</a></code> function.</li>
 <li>Update text document in several places.</li>
 <li>Add colour type <em>warn2</em> for warning message without <code>Warning:</code> prefix.</li>
 <li>Request (<a href="https://github.com/helseprofil/orgdata/issues/43" class="external-link">#43</a>) messages with specific colour</li>
