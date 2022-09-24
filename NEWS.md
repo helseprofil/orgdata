@@ -1,3 +1,6 @@
+# orgdata 1.2.3
+- Rewrite some codes for speed. (#231)
+
 # orgdata 1.2.2
 - Add unidentified municipalities as `xx99` to `geo_map()`. Unidentified municipalities do not exist from API. (#304)
 - Age group with `AgeCat` can use mix categories easily with `[x]`. See example in `find_age_category()`. (#305) 
@@ -27,8 +30,6 @@
 - Fix S3 age category functions `find_age_category()` (#294) 
 - Delete unwanted column in the output when using `AgeCat` function in EXTRA (#295)
 - Use global options in input argument when relevant instead of using `match.arg()` (#263)
-
-# orgdata 0.7
 - Edit document here and there.
 - Use codebook to recode age category for better speed (#292)
 - Read or delete data in the data warehouse can use multiple koblid in `see_data()`. Use `"all"`
@@ -52,8 +53,6 @@
 - Filter active files with date was done pragmatically ie. all files with `BRUKTIL` date other than `01-01-9999` will be excluded. Now filtering with date will be compared against current date. (#272)
 - Delete dataset from the database when unmark column `KONTROLLERT` instead of updating the dataset due to time consuming by updating it. The users have to mark the column to save or read the dataset in the database. (#278)
 - Change default for argument `raw` in `make_file()` to `FALSE` as in [config](https://github.com/helseprofil/config/blob/main/config-orgdata.yml "config") file.
-
-# orgdata 0.6
 - Some text editing here and there.
 - Function `is_colour_txt()` can specify symbol directly without needing to rely on the global options or to use `withr` package. Just for cosmetic purposes :smiley:
 - Standard columns should be uppercase. Using lowercase creates error when GEO comes
@@ -97,8 +96,6 @@
   can be a csv, xls or any other format that is accepted by `read_file` (#262)
 - Deactive KONTROLLERT without the need to umark from Access database by using
   argument `raw = TRUE` when using function `make_file()` (#264)
-
-# orgdata 0.5
 - Use *KOBLID* as table name in DuckDB instead of *FILID* since *FILID* is not a
   unique number ie. can be used by multiple *KOBLID*.
 - Update text and website 
@@ -167,8 +164,6 @@
   current year. (#216)
 - Use parallel processing in `make_file()` with argument `parallel = TRUE`.
   (#217)
-
-# orgdata 0.4
 - Get feedback for successful and unsuccessful filegroups when running
   `make_filegroups()`. (#199)
 - Reshape wide is not limited to only 3 reshape columns as it was. (#200 #201)
@@ -252,8 +247,6 @@
   Total value will be NA and this will conflict with the allready existing NA
   category in the aggregated column(s). Therefore existing NA value in the
   selected column(s) must be recoded to a valid value.
-
-# orgdata 0.3
 - Use `options(orgdata.debug.geo = TRUE)` to keep old geo codes for debuging (#120)
 - Use `reset_options()` to reset to default options.
 - Warn when process discontinued due to debugging.
@@ -324,8 +317,6 @@
   hard coded, in `do_aggregate_recode_standard()`. Total is coded with `20`. Any
   eventuality for future change should also look other related functions such as
   `is_aggregate_standard_cols()` and `is_col_num()`.
-
-# orgdata 0.2
 - Change argument parameter for `find_spec()` function.
 - Update text document in several places.
 - Add colour type *warn2* for warning message without `Warning:` prefix.
