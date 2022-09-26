@@ -192,9 +192,8 @@ is_col_num <- function(dt, cols){
 # Ensure the maximum digits in the dataset to identify geo level
 is_digit_geo <- function(dd){
   GEO <- digitGEO <- NULL
-  dt <- dd[!is.na(GEO) || GEO!=""][sample(1:.N, 10)]
+  dt <- dd[!is.na(GEO) || GEO!=""][sample(1:.N, 20)]
   dt[, digitGEO := nchar(GEO)]
-  geo <- dt[max(digitGEO), list(GEO)][1]
-  rm(dt)
+  geo <- dt[max(digitGEO), list(GEO)]
   return(geo)
 }

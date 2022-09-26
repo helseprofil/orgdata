@@ -160,6 +160,7 @@ make_file <- function(group = NULL,
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
   rm(DT)
+  invisible(gc(reset = TRUE))
 
   if (getOption("orgdata.debug.geo")){
     return(outDT)
