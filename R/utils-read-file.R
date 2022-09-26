@@ -195,6 +195,5 @@ is_digit_geo <- function(dd){
   dt <- dd[!is.na(GEO) || GEO!=""][sample(1:.N, 20)]
   dt[, digitGEO := nchar(GEO)]
   geo <- dt[max(digitGEO), list(GEO)]
-  rm(dt)
   return(geo)
 }
