@@ -1,3 +1,7 @@
+# orgdata 1.2.4
+- Selecting geo levels when geo codes derived from two columns will use the
+  maximum number of digits to find geo level (#307)
+  
 # orgdata 1.2.3
 - Rewrite some codes for speed. (#231)
 

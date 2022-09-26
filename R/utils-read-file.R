@@ -62,7 +62,7 @@ is_aggregate <- function(dt = NULL,
 
 
   aggSpec <- get_aggregate(spec = fgspec)
-  source <- is_geo_level(dt[!is.na(GEO), GEO][1])
+  source <- is_geo_level(dd = dt)
   aggCol <- find_column_multi(spec = fgspec, "AGGKOL") #Other columns to aggregate
 
   geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
@@ -120,7 +120,12 @@ is_aggregate <- function(dt = NULL,
 }
 
 ## identify geo level base on number of digits in codes
-is_geo_level <- function(x){
+is_geo_level <- function(x = NULL, dd = NULL){
+
+  if (!is.null(dd)){
+    x <- is_digit_geo(dd)
+  }
+
   geo <- nchar(x)
   data.table::fcase(geo %in% 7:8, "grunnkrets",
                     geo %in% 5:6, "bydel",
@@ -182,4 +187,14 @@ is_col_num <- function(dt, cols){
     }
   }
   return(dt)
+}
+
+# How many digit to find geo level
+is_digit_geo <- function(dd){
+  dt <- dd[!is.na(GEO) || GEO!=""][sample(1:.N, 10)]
+  GEO <- digitGEO <- NULL
+  dt[, digitGEO := nchar(GEO)]
+  geo <- dt[max(digitGEO), list(GEO)][1]
+  rm(dt)
+  return(geo)
 }
