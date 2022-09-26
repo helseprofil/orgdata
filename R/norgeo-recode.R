@@ -113,6 +113,7 @@ do_geo_recode <- function(dt = NULL,
   dt[, "origin" := GEO]
 
   ## Ensure GEO can be converted to int and no character GEO
+  ## Here will missing GEO becomes NA
   dt <- is_col_num_warn(dt, "GEO", ...)
   dt[, GEO := as.integer(GEO)]
 
@@ -230,7 +231,7 @@ get_geo_recode <- function(con = NULL,
 ## Helper -----------------
 is_grunnkrets_na <- function(dt, control = FALSE){
   GEO <- AAR <- NULL
-
+  # Missing GEO allready became NA when converted to int
   nrNA <- dt[is.na(GEO), .N]
   if (nrNA > 0){
     dt[is.na(GEO), GEO := 99999999]
