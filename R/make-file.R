@@ -157,11 +157,10 @@ make_file <- function(group = NULL,
                                    duck = duck)
                })
 
-  invisible(gc(reset = TRUE))
-
   ## PROCESS ON FILGRUPPE LEVEL ----------------------------------
   outDT <- data.table::rbindlist(DT, fill = TRUE)
   rm(DT)
+  invisible(gc(reset = TRUE))
 
   if (getOption("orgdata.debug.geo")){
     return(outDT)
