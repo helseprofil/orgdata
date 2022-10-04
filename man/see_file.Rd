@@ -16,19 +16,23 @@ se_fil(dt = NULL, ...)
 columns will be listed.}
 }
 \description{
-See what categories available in the dataset.
+See what categories available in each columns in the
+dataset. This function will mostly be useful in defining the codebook.
 }
 \examples{
 \dontrun{
-DT <- make_file("BEFOLKNING")
-# Use columnames
-see_file(DT, KJONN, UTDANN, LANDSSB)
-
+# Read raw data with FILID of 15
 dt <- read_file(15)
 # Use column index
 see_file(dt) #all columns
 see_file(dt , c(2,5))
 see_file(dt, c(1:3)) #columns 1 to 3
 see_file(dt, c(2, 4, 7:9))
+
+# Check the completed FILGRUPPE
+DT <- make_file("BEFOLKNING")
+# Use columnames
+see_file(DT, KJONN, UTDANN, LANDSSB)
+
 }
 }
