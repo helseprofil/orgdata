@@ -1,20 +1,24 @@
 #' @title See Column Categories
-#' @description See what categories available in the dataset.
+#' @description See what categories available in each columns in the
+#'   dataset. This function will mostly be useful in defining the codebook.
 #' @param dt Dataset of type `data.frame` or `data.table`
 #' @param ... Columnames or column index to be displayed. If missing then all
 #'   columns will be listed.
 #' @examples
 #' \dontrun{
-#' DT <- make_file("BEFOLKNING")
-#' # Use columnames
-#' see_file(DT, KJONN, UTDANN, LANDSSB)
-#'
+#' # Read raw data with FILID of 15
 #' dt <- read_file(15)
 #' # Use column index
 #' see_file(dt) #all columns
 #' see_file(dt , c(2,5))
 #' see_file(dt, c(1:3)) #columns 1 to 3
 #' see_file(dt, c(2, 4, 7:9))
+#'
+#' # Check the completed FILGRUPPE
+#' DT <- make_file("BEFOLKNING")
+#' # Use columnames
+#' see_file(DT, KJONN, UTDANN, LANDSSB)
+#'
 #' }
 #' @export
 see_file <- function(dt = NULL, ...){
