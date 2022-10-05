@@ -39,5 +39,5 @@ available codes in geo codebook}
 \item{duck}{R6 object for DuckDB}
 }
 \description{
-Process each file parallelly
+Process each file according to the specification in Access database.
 }

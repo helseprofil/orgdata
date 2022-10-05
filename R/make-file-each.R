@@ -1,5 +1,5 @@
 #' @title Process Each File
-#' @description Process each file parallelly
+#' @description Process each file according to the specification in Access database.
 #' @param spec File specification
 #' @param fgspec Filegroup specification
 #' @param datacols Columnames to be kept
@@ -56,8 +56,8 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
       dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
     }
 
-    ## Recode must happen before reshape wide as reshape wide will use selected TAB
-    ## of reshape column creating columns of unique value of TAB ie. wideCol object
+    ## Recode must happen before reshape wide coz reshape wide will use selected TAB
+    ## of reshaped column, creating columns of unique value of TAB ie. wideCol object
     dt <- do_recode(dt = dt, spec = fileSpec, con = DB$dbconn, control = fileCtrl)
     dt <- do_recode_regexp(dt = dt, spec = fileSpec, con = DB$dbconn)
 
@@ -97,9 +97,9 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     }
 
     ## AGGREGATE ------------------------------------
-    ## TODO - Not sure if this necessary. Turn off temporarily
+    ## TODO - Not sure if this's necessary. Turn off temporarily
     ## Convert some columns to interger. Must be after
-    ## the variables are recoded eg. INNKAT is string before recorded to number
+    ## the variables are recoded eg. INNKAT is string before recorded to numeric
     ## dt <- is_col_num(dt)
 
     dt <- is_aggregate(dt = dt,
@@ -113,7 +113,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
 
     ## RESHAPE LONG SPECIAL CASES --------------------------------------
-    ## When dataset was long then reshape to wide before long again
+    ## When dataset is long then reshape to wide before long again
     if (!is.na(reshVal) && reshapeWide){
       dt <- do_reshape_long(dt = dt, respec = wideSpec)
       dt <- is_long_col(dt, spec = fileSpec, widespec = wideSpec)
