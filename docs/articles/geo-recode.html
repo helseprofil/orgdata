@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,8 +81,7 @@
 
 
 
-
-<div class="row">
+<script src="geo-recode_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Recode and Map Geo</h1>
             
@@ -93,84 +92,45 @@
 
     
     
-<p>This guide explains how to create geo table for recoding and mapping
-geo codes. The table will be saved in a database file as specified in
-<strong>orgdata.geo</strong> option. See
-<code>getOptions("orgdata.geo")</code></p>
+<p>This guide explains how to create geo table for recoding and mapping geo codes. The table will be saved in a database file as specified in <strong>orgdata.geo</strong> option. See <code>getOptions("orgdata.geo")</code></p>
 <div class="section level2">
 <h2 id="recode-geo-codes">Recode Geo Codes<a class="anchor" aria-label="anchor" href="#recode-geo-codes"></a>
 </h2>
-<p>The function to create table for recoding geo codes is
-<code><a href="../reference/geo_recode.html">geo_recode()</a></code>. The table consists of previous codes and
-their new codes whenever available. For instance, to get all codes for
-<em>kommuner</em> from 2017 to 2022. The table will list all the codes
-for <em>kommuner</em> since 2017 in columname <code>oldCode</code> while
-their current codes ie. 2022, is in column <code>currentCode</code>. Any
-geo codes that have changed since 2017 will have their new codes in
-<code>currentCode</code> column. For geo codes that have not changed
-since 2017 will have the value as <code>NA</code> in the
-<code>oldCode</code> column.</p>
-<p>Use argument <code>write = TRUE</code> to save it in the database.
-The table in the database will be named as <em>kommune2022</em> if the
-data consist of geo codes up to 2022, ie. argument
-<code>to = 2022</code> and <code>type = kommune</code> were used. If the
-table already exists in the database and you just want to add a new
-dataset to the table, you could use argument <code>append = TRUE</code>,
-but appending should only be used for control purposes and not for
-production as it might create duplication in <code>oldCode</code>
-column.</p>
-<p>Please check the documentation for details with
-<code><a href="../reference/geo_recode.html">help("geo_recode")</a></code>.</p>
+<p>The function to create table for recoding geo codes is <code><a href="../reference/geo_recode.html">geo_recode()</a></code>. The table consists of previous codes and their new codes whenever available. For instance, to get all codes for <em>kommuner</em> from 2017 to 2022. The table will list all the codes for <em>kommuner</em> since 2017 in columname <code>oldCode</code> while their current codes ie. 2022, is in column <code>currentCode</code>. Any geo codes that have changed since 2017 will have their new codes in <code>currentCode</code> column. For geo codes that have not changed since 2017 will have the value as <code>NA</code> in the <code>oldCode</code> column.</p>
+<p>Use argument <code>write = TRUE</code> to save it in the database. The table in the database will be named as <em>kommune2022</em> if the data consist of geo codes up to 2022, ie. argument <code>to = 2022</code> and <code>type = kommune</code> were used. If the table already exists in the database and you just want to add a new dataset to the table, you could use argument <code>append = TRUE</code>, but appending should only be used for control purposes and not for production as it might create duplication in <code>oldCode</code> column.</p>
+<p>Please check the documentation for details with <code><a href="../reference/geo_recode.html">help("geo_recode")</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span></span>
 <span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_recode.html">geo_recode</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"kommune"</span>, from <span class="op">=</span> <span class="fl">2018</span>, to <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span></span>
 <span><span class="va">dt</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>oldCode              oldName currentCode           newName changeOccurred      batch</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span>    <span class="er">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>              <span class="er">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>        <span class="dv">0301</span>              Oslo           <span class="dv">2022</span> <span class="dv">2022-03-15</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span>    <span class="er">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>              <span class="er">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>        <span class="dv">1101</span>         Eigersund           <span class="dv">2022</span> <span class="dv">2022-03-15</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span>    <span class="dv">1141</span>            Finnøy        <span class="dv">1103</span>         Stavanger           <span class="dv">2020</span> <span class="dv">2022-03-15</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span>    <span class="dv">1142</span>          Rennesøy        <span class="dv">1103</span>         Stavanger           <span class="dv">2020</span> <span class="dv">2022-03-15</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">:</span>    <span class="er">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>              <span class="er">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span>        <span class="dv">1106</span>         Haugesund           <span class="dv">2022</span> <span class="dv">2022-03-15</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>oldCode              oldName currentCode           newName changeOccurred      batch</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="dv">1</span><span class="op">:</span><span class="st">    </span><span class="er">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st">              </span><span class="er">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st">        </span><span class="dv">0301</span>              Oslo           <span class="dv">2022</span> <span class="dv">2022-03-15</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="dv">2</span><span class="op">:</span><span class="st">    </span><span class="er">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st">              </span><span class="er">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st">        </span><span class="dv">1101</span>         Eigersund           <span class="dv">2022</span> <span class="dv">2022-03-15</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dv">3</span><span class="op">:</span><span class="st">    </span><span class="dv">1141</span>            Finnøy        <span class="dv">1103</span>         Stavanger           <span class="dv">2020</span> <span class="dv">2022-03-15</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="dv">4</span><span class="op">:</span><span class="st">    </span><span class="dv">1142</span>          Rennesøy        <span class="dv">1103</span>         Stavanger           <span class="dv">2020</span> <span class="dv">2022-03-15</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="dv">5</span><span class="op">:</span><span class="st">    </span><span class="er">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st">              </span><span class="er">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st">        </span><span class="dv">1106</span>         Haugesund           <span class="dv">2022</span> <span class="dv">2022-03-15</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="mapping-geo-codes">Mapping Geo Codes<a class="anchor" aria-label="anchor" href="#mapping-geo-codes"></a>
 </h2>
-<p>The function to create geo mapping is <code><a href="../reference/geo_map.html">geo_map()</a></code>. The
-default table name to be created in the database is <em>tblGeo</em>. It
-consists of all the geo granularities (<code>levels</code>) of the
-selected year. The lowest level is enumeration area codes or
-<em>grunnkrets</em>.</p>
-<p>Arguments <code>write</code> and <code>append</code> can be used when
-calling <code><a href="../reference/geo_map.html">geo_map()</a></code> function. However in most cases, you will
-only need to use <code>append = TRUE</code>, ie. to append the data to
-the existing <em>tblGeo</em> in the database.</p>
+<p>The function to create geo mapping is <code><a href="../reference/geo_map.html">geo_map()</a></code>. The default table name to be created in the database is <em>tblGeo</em>. It consists of all the geo granularities (<code>levels</code>) of the selected year. The lowest level is enumeration area codes or <em>grunnkrets</em>.</p>
+<p>Arguments <code>write</code> and <code>append</code> can be used when calling <code><a href="../reference/geo_map.html">geo_map()</a></code> function. However in most cases, you will only need to use <code>append = TRUE</code>, ie. to append the data to the existing <em>tblGeo</em> in the database.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_map.html">geo_map</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span></span>
 <span><span class="va">DT</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">.N</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>code                      name validTo      level grunnkrets kommune fylke bydel      batch</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="dv">30470104</span> Søndre Simostranda    <span class="dv">2022</span> grunnkrets   <span class="dv">30470104</span>    <span class="dv">3047</span>    <span class="dv">30</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> <span class="dv">2022-03-15</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> <span class="dv">11140110</span>           Vikeså <span class="dv">2</span>    <span class="dv">2022</span> grunnkrets   <span class="dv">11140110</span>    <span class="dv">1114</span>    <span class="dv">11</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> <span class="dv">2022-03-15</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> <span class="dv">30020408</span>           Ørehavna    <span class="dv">2022</span> grunnkrets   <span class="dv">30020408</span>    <span class="dv">3002</span>    <span class="dv">30</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> <span class="dv">2022-03-15</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span> <span class="dv">46350304</span>          Hjartholm    <span class="dv">2022</span> grunnkrets   <span class="dv">46350304</span>    <span class="dv">4635</span>    <span class="dv">46</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> <span class="dv">2022-03-15</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">:</span> <span class="dv">42160109</span>     Birkeland Nord    <span class="dv">2022</span> grunnkrets   <span class="dv">42160109</span>    <span class="dv">4216</span>    <span class="dv">42</span>  <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> <span class="dv">2022-03-15</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>code                      name validTo      level grunnkrets kommune fylke bydel      batch</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="dv">1</span><span class="op">:</span><span class="st"> </span><span class="dv">30470104</span> Søndre Simostranda    <span class="dv">2022</span> grunnkrets   <span class="dv">30470104</span>    <span class="dv">3047</span>    <span class="dv">30</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span><span class="dv">2022-03-15</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="dv">2</span><span class="op">:</span><span class="st"> </span><span class="dv">11140110</span>           Vikeså <span class="dv">2</span>    <span class="dv">2022</span> grunnkrets   <span class="dv">11140110</span>    <span class="dv">1114</span>    <span class="dv">11</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span><span class="dv">2022-03-15</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="dv">3</span><span class="op">:</span><span class="st"> </span><span class="dv">30020408</span>           Ørehavna    <span class="dv">2022</span> grunnkrets   <span class="dv">30020408</span>    <span class="dv">3002</span>    <span class="dv">30</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span><span class="dv">2022-03-15</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="dv">4</span><span class="op">:</span><span class="st"> </span><span class="dv">46350304</span>          Hjartholm    <span class="dv">2022</span> grunnkrets   <span class="dv">46350304</span>    <span class="dv">4635</span>    <span class="dv">46</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span><span class="dv">2022-03-15</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="dv">5</span><span class="op">:</span><span class="st"> </span><span class="dv">42160109</span>     Birkeland Nord    <span class="dv">2022</span> grunnkrets   <span class="dv">42160109</span>    <span class="dv">4216</span>    <span class="dv">42</span>  <span class="op">&lt;</span><span class="ot">NA</span><span class="op">&gt;</span><span class="st"> </span><span class="dv">2022-03-15</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="merge-geo-codes">Merge Geo Codes<a class="anchor" aria-label="anchor" href="#merge-geo-codes"></a>
 </h2>
-<p>Both <code><a href="../reference/geo_recode.html">geo_recode()</a></code> and <code><a href="../reference/geo_map.html">geo_map()</a></code> fetch the
-data via API available from SSB. To merge geo codes that aren’t
-available via API can be done with the function
-<code><a href="../reference/geo_merge.html">geo_merge()</a></code>.</p>
-<p>The data to merge can be in any format that is accepted by
-<code><a href="../reference/read_file.html">read_file()</a></code> function. The new data must have column id to
-merge into the <em>tblGeo</em> table and column with the new geo codes
-to be added to. For instance if a new dataset from 2022 has
-<code>levekaar</code> codes in columname <code>code_levekaar</code> and
-these <code>levekaar</code> codes are derived from <code>bydel</code>
-codes with columname <code>var01</code>, then the specification for the
-arguments will be as the example below.</p>
-<p>Please read the documentation for details on arguments that can be
-used with <code><a href="../reference/geo_merge.html">help("geo_merge")</a></code> or <code><a href="../reference/geo_merge.html">?geo_merge</a></code>.</p>
+<p>Both <code><a href="../reference/geo_recode.html">geo_recode()</a></code> and <code><a href="../reference/geo_map.html">geo_map()</a></code> fetch the data via API available from SSB. To merge geo codes that aren’t available via API can be done with the function <code><a href="../reference/geo_merge.html">geo_merge()</a></code>.</p>
+<p>The data to merge can be in any format that is accepted by <code><a href="../reference/read_file.html">read_file()</a></code> function. The new data must have column id to merge into the <em>tblGeo</em> table and column with the new geo codes to be added to. For instance if a new dataset from 2022 has <code>levekaar</code> codes in columname <code>code_levekaar</code> and these <code>levekaar</code> codes are derived from <code>bydel</code> codes with columname <code>var01</code>, then the specification for the arguments will be as the example below.</p>
+<p>Please read the documentation for details on arguments that can be used with <code><a href="../reference/geo_merge.html">help("geo_merge")</a></code> or <code><a href="../reference/geo_merge.html">?geo_merge</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_merge.html">geo_merge</a></span><span class="op">(</span>id.table <span class="op">=</span> <span class="st">"bydel"</span>,</span>
 <span>                id.file <span class="op">=</span> <span class="st">"var01"</span>,</span>

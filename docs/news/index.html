@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,12 +58,10 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.4" id="orgdata-124">orgdata 1.2.4<a class="anchor" aria-label="anchor" href="#orgdata-124"></a></h2>
-<ul><li>Selecting geo levels when geo codes derived from two columns will use the maximum number of digits to find geo level (<a href="https://github.com/helseprofil/orgdata/issues/307" class="external-link">#307</a>)</li>
-</ul></div>
+<ul><li>Selecting geo levels when geo codes derived from two columns will use the maximum number of digits to find geo level (<a href="https://github.com/helseprofil/orgdata/issues/307" class="external-link">#307</a>)</li></ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.3" id="orgdata-123">orgdata 1.2.3<a class="anchor" aria-label="anchor" href="#orgdata-123"></a></h2>
-<ul><li>Rewrite some codes for speed. (<a href="https://github.com/helseprofil/orgdata/issues/231" class="external-link">#231</a>)</li>
-</ul></div>
+<ul><li>Rewrite some codes for speed. (<a href="https://github.com/helseprofil/orgdata/issues/231" class="external-link">#231</a>)</li></ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.2" id="orgdata-122">orgdata 1.2.2<a class="anchor" aria-label="anchor" href="#orgdata-122"></a></h2>
 <ul><li>Add unidentified municipalities as <code>xx99</code> to <code><a href="../reference/geo_map.html">geo_map()</a></code>. Unidentified municipalities do not exist from API. (<a href="https://github.com/helseprofil/orgdata/issues/304" class="external-link">#304</a>)</li>
@@ -85,8 +83,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="orgdata-110">orgdata 1.1.0<a class="anchor" aria-label="anchor" href="#orgdata-110"></a></h2>
-<ul><li>Make geo abbreviation clearer in the global options and no more depending on the order of geo names (<a href="https://github.com/helseprofil/orgdata/issues/286" class="external-link">#286</a>)</li>
-</ul></div>
+<ul><li>Make geo abbreviation clearer in the global options and no more depending on the order of geo names (<a href="https://github.com/helseprofil/orgdata/issues/286" class="external-link">#286</a>)</li></ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0" id="orgdata-10">orgdata 1.0<a class="anchor" aria-label="anchor" href="#orgdata-10"></a></h2>
 <ul><li>Order does matter when using functions in EXTRA column (<a href="https://github.com/helseprofil/orgdata/issues/294" class="external-link">#294</a>)</li>
@@ -282,7 +279,7 @@
 <ul><li><p>When MANHEADER is used then the new columname must be specified in the respective standard column (<a href="https://github.com/helseprofil/orgdata/issues/21" class="external-link">#21</a>)</p></li>
 <li><p>Deprecated arguments <code>geo</code> and <code>val</code> in <code>make_file</code>. Output data must use standard columnames instead of keeping the columnames from original dataset.</p></li>
 <li><p>Rename functions <code>read_raw</code> or <code>lesraw</code> to <code>make_file</code> or <code>lag_fil</code> (<a href="https://github.com/helseprofil/orgdata/issues/27" class="external-link">#27</a>)</p></li>
-<li><p>Alle functions uses underscore “_” for both english and norwegian.</p></li>
+<li><p>Alle functions uses underscore "_" for both english and norwegian.</p></li>
 <li><p>Add new columns if one of the standard columns is missing in the original data. The value to be inserted to the new column must use symbol less than <code>&lt;</code> and more than <code>&gt;</code>. For instance when column <code>KJONN</code> doesn’t exist in the original data, we can specify with <code>&lt;2&gt;</code> in under column <code>KJONN</code> in the Access registration database. The output will add a new column <code>KJONN</code> with value <code>2</code>. (<a href="https://github.com/helseprofil/orgdata/issues/15" class="external-link">#15</a>)</p></li>
 <li><p>Fix <a href="https://github.com/helseprofil/orgdata/issues/13" class="external-link">#13</a> and <a href="https://github.com/helseprofil/orgdata/issues/18" class="external-link">#18</a></p></li>
 <li><p>Default <code>orgdata.verbose</code> is <code>TRUE</code>.</p></li>
@@ -298,8 +295,7 @@
 <p>Order standard columns in the output dataset with this order for the first four columns:</p>
 <ul><li>
 <code>GEO</code>, <code>AAR</code>, <code>ALDER</code>, <code>KJONN</code>
-</li>
-</ul></li>
+</li></ul></li>
 <li><p>Change norwegian name for <code>save_file</code> from <code>lagfil</code> to <code>lagrefil</code>.</p></li>
 <li><p>Use column name <code>KOLNAVN</code> instead of <code>ADDKOL</code>.</p></li>
 <li><p>Rename function <code>do_addcols</code> and <code>get_addcols</code> to <code>do_colname</code> and <code>get_colname</code> to be consistent with the changes in Access registration database.</p></li>
@@ -339,8 +335,7 @@
 <div class="section level3">
 <h3 id="orgdata---alpha-0-0-1-2">orgdata 0.0.2 - alpha<a class="anchor" aria-label="anchor" href="#orgdata---alpha-0-0-1-2"></a></h3>
 <p>Things that are implemented</p>
-<ul><li>Bla.. bla.. bla..</li>
-</ul></div>
+<ul><li>Bla.. bla.. bla..</li></ul></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
