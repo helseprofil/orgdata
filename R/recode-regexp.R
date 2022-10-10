@@ -134,7 +134,7 @@ is_rex <- function(code){
 ## something clear with the word 'empty' or 'tom'
 is_empty_til <- function(code){
   code <- trimws(code)
-  ety <- c("empty", "emtpy", "tom")
+  ety <- c("delete", "slett", "empty", "emtpy", "tom")
   if (is.element(code, ety)){
     code <- ""
   }
