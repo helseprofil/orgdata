@@ -1,15 +1,13 @@
+# orgdata 1.2.5
+- Use keyword `delete` or `slett` when recoding with RE options to `""`. This
+  replaces `empty` and `tom` as in #285.
+
 # orgdata 1.2.4
 - Selecting geo levels when geo codes derived from two columns will use the
   maximum number of digits to find geo level (#307)
-  
-# orgdata 1.2.3
 - Rewrite some codes for speed. (#231)
-
-# orgdata 1.2.2
 - Add unidentified municipalities as `xx99` to `geo_map()`. Unidentified municipalities do not exist from API. (#304)
 - Age group with `AgeCat` can use mix categories easily with `[x]`. See example in `find_age_category()`. (#305) 
-
-# orgdata 1.2.1
 - Fix bugs when writing and reading data from warehouse ie. marked the
   `KONTROLLERT` column in Access (#298)
 - Fix bugs when accessing or deleting data with `see_data()` from data warehouse
@@ -20,8 +18,6 @@
 - Recode unknown municipality codes with `xx99` for known county. (#303)
 - MANHEADER accepts regular expression to select columname in addition to column
   index (#301)
-
-# orgdata 1.2.0
 - Function `read_file()` accept SPSS file too (#297)
 - Function `read_file()` now accept txt file extension.
 

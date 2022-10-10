@@ -14,3 +14,4 @@
 ^\.dir-locals-el$
 ^appveyor\.yml$
 ^inst/testdata_dev$
+^Makefile$
