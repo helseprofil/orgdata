@@ -66,9 +66,14 @@ usethis::use_build_ignore("_pkgdown.yml")
 usethis::use_build_ignore("renv.lock")
 usethis::use_build_ignore("orgdata.Rproj")
 usethis::use_build_ignore(".dir-locals-el")
+usethis::use_build_ignore("[.]tar.gz")
+usethis::use_build_ignore("[.]Rcheck")
+
 ## usethis::use_testthat()
 usethis::use_git_ignore("inst/testdata_dev")
 usethis::use_git_ignore("dev/testdata_dev")
+usethis::use_git_ignore("[.]tar.gz")
+usethis::use_git_ignore("[.]Rcheck")
 
 ## Document ------------------------------------
 usethis::use_package_doc() # for package document roxygen style

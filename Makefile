@@ -5,6 +5,7 @@
 PKGNAME = $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
 PKGVERS = $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
+.PHONY: all clean
 
 all: check
 
@@ -23,4 +24,4 @@ install: build
 	R CMD INSTALL $(PKGNAME)_$(PKGVERS).tar.gz
 
 clean:
-	@rm -rf $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
+	$(RM) -r $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
