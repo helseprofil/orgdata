@@ -2,8 +2,9 @@
 # https://github.com/yihui/knitr/blob/dc5ead7bcfc0ebd2789fe99c527c7d91afb3de4a/Makefile#L1-L4
 # Note the portability change as suggested in the manual:
 # https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Writing-portable-packages
-PKGNAME = $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
-PKGVERS = $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
+PKGNAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
+PKGVERS := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
+PKGDIR := $(shell pwd)
 
 .PHONY: all clean
 
@@ -24,4 +25,5 @@ install: build
 	R CMD INSTALL $(PKGNAME)_$(PKGVERS).tar.gz
 
 clean:
+	cd $(PKGDIR);\
 	$(RM) -r $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
