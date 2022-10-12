@@ -15,3 +15,5 @@
 ^appveyor\.yml$
 ^inst/testdata_dev$
 ^Makefile$
+^[\.]tar\.gz$
+^[\.]Rcheck$
