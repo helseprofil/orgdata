@@ -16,29 +16,31 @@ knitr::opts_chunk$set(
 
 ## Loading
 
-For å aktivere `orgdata` pakke
+For å kunne bruke funksjonenen i `orgdata` pakke, må pakken først gjort
+tilgjengelig. Kjør denne komandoen:
 
 ```
-# Kjør alt herfra -------------------
 library(orgdata)
-options(orgdata.year = 2021) #Hvilket årgang til å omkode geo
-#til hit som oppsett ----------------
 ```
 
-Oppdatere pakken når ny versjon er tilgjengelig
+Du får spørsmål om å oppdatere når ny versjon er tilgjengelig. Svar `YES` til
+spørsmålet for å oppdatere. Evt. kan du også gjøre det manuelt ved å kjøre:
 
 ```
 update_orgdata()
 ```
 
-----------------------------------
-HUSK Å ALLTID TILORDNE ET OBJEKT for `make_file()` og `read_file()`!
+## Objekt 
+
+OBS! HUSK Å ALLTID TILORDNE ET OBJEKT for `make_file()` og `read_file()`! Ellers blir
+ikke resultatene tilgjengelig til lagring eller visning dvs. bruk symbol `<-`.
 
 ```
   dt <- make_file()
 dvs. ^
 ```
 
+## Les filer
 Les original fil som det er ved å velge FILID
 
 ```
@@ -50,6 +52,8 @@ df <- les_fil(file = 12) #12 er en FILID
 ```
 df <- les_fil("C:/Users/abc/FileName.csv")
 ```
+
+## Lag filgrupper
 
 Aggregere utvalgte fil eller filer med KOBLID
 
@@ -65,7 +69,10 @@ dt <- lag_fil("BEFOLKNING")
 dt <- lag_fil("BEFOLKNING", raw = TRUE) #les fra original filen hvis allerede er KONTROLLERT
 ```
 
-Lagre CSV fil
+## Lagre resultatene eller objekter
+
+Objekt eller resultat fra `lag_file()` ovenfor kan lages til en `.CSV` fil ved å
+kjøre:
 
 ```
 save_file(dt, "BEFOLKNING")
@@ -84,6 +91,8 @@ Evt. hvis alle filer har ingen feil
 ```
 lag_fil("BEFOLKNING", save = TRUE)
 ```
+
+## Flere filgrupper
 
 Hvis filene har blitt kontrollert så kan man lagre flere
 FILGRUPPER med en gang, du velger selv måten du liker å gjøre det.
