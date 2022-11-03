@@ -1,6 +1,8 @@
 # orgdata 1.2.5
 - Use keyword `delete` or `slett` when recoding with RE options to `""`. This
   replaces `empty` and `tom` as in #285.
+- Update vignette.
+
 
 # orgdata 1.2.4
 - Selecting geo levels when geo codes derived from two columns will use the
