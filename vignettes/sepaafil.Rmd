@@ -77,8 +77,8 @@ dt <- lag_fil("BEFOLKNING", raw = TRUE)
 
 ## Lagre resultatene eller objekter
 
-Objekt eller resultat fra `lag_fil()` ovenfor kan lages til en `.csv` fil ved å
-kjøre:
+Hvis man har tilordnet resultat fra `lag_fil()` som et objekt, kan objektet
+lages til en `.csv` fil ved å kjøre:
 
 ```
 save_file(dt, "BEFOLKNING")
