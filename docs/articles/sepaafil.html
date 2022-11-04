@@ -81,8 +81,7 @@
 
 
 
-
-<div class="row">
+<script src="sepaafil_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>SePaaFil</h1>
             
@@ -96,20 +95,15 @@
 <div class="section level2">
 <h2 id="loading">Loading<a class="anchor" aria-label="anchor" href="#loading"></a>
 </h2>
-<p>For å kunne bruke funksjonenen i <code>orgdata</code> pakke, må
-pakken først gjort tilgjengelig. Kjør denne komandoen:</p>
+<p>For å kunne bruke funksjonenen i <code>orgdata</code> pakke, må pakken først gjort tilgjengelig. Kjør denne komandoen:</p>
 <pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span></span></code></pre>
-<p>Du får spørsmål om å oppdatere når ny versjon er tilgjengelig. Svar
-<code>YES</code> til spørsmålet for å oppdatere. Evt. kan du også gjøre
-det manuelt ved å kjøre:</p>
+<p>Du får spørsmål om å oppdatere når ny versjon er tilgjengelig. Svar <code>YES</code> til spørsmålet for å oppdatere. Evt. kan du også gjøre det manuelt ved å kjøre:</p>
 <pre><code><span><span class="fu"><a href="../reference/update_orgdata.html">update_orgdata</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="objekt">Objekt<a class="anchor" aria-label="anchor" href="#objekt"></a>
 </h2>
-<p>OBS! HUSK Å ALLTID TILORDNE ET OBJEKT for <code><a href="../reference/make_file.html">make_file()</a></code> og
-<code><a href="../reference/read_file.html">read_file()</a></code>! Ellers blir ikke resultatene tilgjengelig til
-lagring eller visning dvs. bruk symbol <code>&lt;-</code>.</p>
+<p>OBS! HUSK Å ALLTID TILORDNE ET OBJEKT for <code><a href="../reference/make_file.html">make_file()</a></code> og <code><a href="../reference/read_file.html">read_file()</a></code>! Dvs. bruk symbol <code>&lt;-</code>. Ellers blir ikke resultatene tilgjengelig til lagring eller videre behandling.</p>
 <pre><code>  dt &lt;- make_file()
 dvs. ^</code></pre>
 </div>
@@ -118,9 +112,7 @@ dvs. ^</code></pre>
 </h2>
 <p>Les original fil som det er ved å velge FILID</p>
 <pre><code><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> <span class="co">#12 er en FILID </span></span></code></pre>
-<p><code><a href="../reference/read_file.html">les_fil()</a></code> kan også brukes til å lese data ved å skrive
-hele stien til filen og kan brukes til å lese filer i flere formater
-bl.a Excel, Stata, .CSV etc.</p>
+<p><code><a href="../reference/read_file.html">les_fil()</a></code> kan også brukes til å lese data ved å skrive hele stien til filen og kan brukes til å lese filer i flere formater bl.a <code>.xls</code>, <code>.xlsx</code>, .<code>.dta</code>, <code>.csv</code> etc.</p>
 <pre><code><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span><span class="st">"C:/Users/abc/FileName.csv"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
@@ -129,28 +121,27 @@ bl.a Excel, Stata, .CSV etc.</p>
 <p>Aggregere utvalgte fil eller filer med KOBLID</p>
 <pre><code><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">13</span><span class="op">)</span></span>
 <span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-<p>Les filene i en filgruppe og bruk oppsettet som er spesifisert i
-Access</p>
+<p>Les filene i en filgruppe og bruk oppsettet som er spesifisert i Access</p>
 <pre><code><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></span>
-<span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#les fra original filen hvis allerede er KONTROLLERT</span></span></code></pre>
+<span></span>
+<span><span class="co">## les fra original filen selv om filene allerede er sjekket som KONTROLLERT</span></span>
+<span><span class="co">## dvs. allerede ligger i datavarehus</span></span>
+<span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="lagre-resultatene-eller-objekter">Lagre resultatene eller objekter<a class="anchor" aria-label="anchor" href="#lagre-resultatene-eller-objekter"></a>
 </h2>
-<p>Objekt eller resultat fra <code>lag_file()</code> ovenfor kan lages
-til en <code>.CSV</code> fil ved å kjøre:</p>
+<p>Objekt eller resultat fra <code><a href="../reference/make_file.html">lag_fil()</a></code> ovenfor kan lages til en <code>.csv</code> fil ved å kjøre:</p>
 <pre><code><span><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">dt</span>, <span class="st">"BEFOLKNING"</span><span class="op">)</span></span></code></pre>
-<p>Å lagre det et annet sted</p>
+<p>Å lagre filen et annet utvalgte sted enn standard</p>
 <pre><code><span><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">dt</span>, name <span class="op">=</span> <span class="st">"MinFil"</span>, path <span class="op">=</span> <span class="st">"C:/Navn/Til/Mappen"</span><span class="op">)</span></span></code></pre>
-<p>Evt. hvis alle filer har ingen feil</p>
+<p>Evt. hvis alle filer har ingen feil dvs. allerede kontrollert</p>
 <pre><code><span><span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="flere-filgrupper">Flere filgrupper<a class="anchor" aria-label="anchor" href="#flere-filgrupper"></a>
 </h2>
-<p>Hvis filene har blitt kontrollert så kan man lagre flere FILGRUPPER
-med en gang, du velger selv måten du liker å gjøre det. FILGRUPPE blir
-lagret som csv direkte. Ingen feilmelding er gitt.</p>
+<p>Hvis filene har blitt kontrollert så kan man lagre flere FILGRUPPER med en gang, du velger selv måten du liker å gjøre det. FILGRUPPE blir lagret som csv direkte. Ingen feilmelding er gitt.</p>
 <pre><code><span><span class="va">fgp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, <span class="st">"NEET"</span>, <span class="st">"DODE"</span><span class="op">)</span> <span class="co">#med " "</span></span>
 <span><span class="fu"><a href="../reference/make_filegroups.html">lag_filgrupper</a></span><span class="op">(</span><span class="va">fgp</span><span class="op">)</span></span></code></pre>
 <p>Eller</p>
@@ -159,9 +150,7 @@ lagret som csv direkte. Ingen feilmelding er gitt.</p>
 <div class="section level2">
 <h2 id="tips-and-tricks">Tips and Tricks<a class="anchor" aria-label="anchor" href="#tips-and-tricks"></a>
 </h2>
-<p>Lest bare et bestemt antall rader f.eks 5 rader kan også brukes andre
-argumenter f.eks header = FALSE, skip = 0, sep = ; osv. Sjekk
-dokumentet.</p>
+<p>Lest bare et bestemt antall rader f.eks 5 rader kan også brukes andre argumenter f.eks header = FALSE, skip = 0, sep = ; osv. Sjekk dokumentet.</p>
 <pre><code><span><span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fl">1</span>, nrows <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre>
 <p>Sjekk koding:</p>
 <pre><code><span><span class="co"># Sjekk kategorier evt. omkoding</span></span>
@@ -220,6 +209,8 @@ dokumentet.</p>
 <pre><code><span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"aggregate"</span><span class="op">)</span></span></code></pre>
 <p>HUSK å nullstille etter bruk av debug funksjon</p>
 <pre><code><span><span class="fu"><a href="../reference/reset_options.html">reset_opt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<p>Vis alle funksjonene som kjøres eller leses</p>
+<pre><code><span><span class="va">show_functions</span> <span class="op">=</span> <span class="cn">TRUE</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
