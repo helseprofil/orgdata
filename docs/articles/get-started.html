@@ -81,7 +81,8 @@
 
 
 
-<script src="get-started_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get started</h1>
             
@@ -92,27 +93,43 @@
 
     
     
-<p>Presuming that <code>orgdata</code> package has been installed, this is how you can start using the main function.</p>
+<p>Presuming that <code>orgdata</code> package has been installed, this
+is how you can start using the main function.</p>
 <div class="section level2">
 <h2 id="aggregate-all-files">Aggregate all files<a class="anchor" aria-label="anchor" href="#aggregate-all-files"></a>
 </h2>
-<p>To aggregate all files under a specific group such as <em>BEFOLKNING</em> group.</p>
+<p>To aggregate all files under a specific group such as
+<em>BEFOLKNING</em> group.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></span>
 <span><span class="va">df</span></span></code></pre></div>
-<p>If you are satisfy with the output and no error is shown during the process, you could save the output ie, object <em>df</em> above, as a <code>.csv</code> file with:</p>
+<p>If you are satisfy with the output and no error is shown during the
+process, you could save the output ie, object <em>df</em> above, as a
+<code>.csv</code> file with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"BEFOLKNING"</span><span class="op">)</span></span></code></pre></div>
-<p>If you are certain that the process has been controlled before and everything should be working correctly. You could save the output directly as a <code>.csv</code> file with argument <code>save = TRUE</code>:</p>
+<p>If you are certain that the process has been controlled before and
+everything should be working correctly. You could save the output
+directly as a <code>.csv</code> file with argument
+<code>save = TRUE</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>It is advisable to mark the file as <em>KONTROLLERT</em> in the Access Database under table for <em>original files</em> when you have checked the output. This will ensure shorter processing time when you re-run <code><a href="../reference/make_file.html">make_file()</a></code> because it will skip all the cleaning and recording processes. This is because they are allready saved in the database. The database can be found in <em>../PRODUKSJON/STYRING/raw-khelse/org_database</em></p>
+<p>It is advisable to mark the file as <em>KONTROLLERT</em> in the
+Access Database under table for <em>original files</em> when you have
+checked the output. This will ensure shorter processing time when you
+re-run <code><a href="../reference/make_file.html">make_file()</a></code> because it will skip all the cleaning
+and recording processes. This is because they are allready saved in the
+database. The database can be found in
+<em>../PRODUKSJON/STYRING/raw-khelse/org_database</em></p>
 </div>
 <div class="section level2">
 <h2 id="aggregate-selected-files-only">Aggregate selected files only<a class="anchor" aria-label="anchor" href="#aggregate-selected-files-only"></a>
 </h2>
-<p>Aggregating the whole files in a group could take a long time when there are many files in the selected group. You could select only specific file or files by selecting the <code>KOBLID</code> instead. The example below is for selecting one and few files respectively.</p>
+<p>Aggregating the whole files in a group could take a long time when
+there are many files in the selected group. You could select only
+specific file or files by selecting the <code>KOBLID</code> instead. The
+example below is for selecting one and few files respectively.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">10</span>,<span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -120,14 +137,20 @@
 <div class="section level2">
 <h2 id="process-files-without-aggregating">Process files without aggregating<a class="anchor" aria-label="anchor" href="#process-files-without-aggregating"></a>
 </h2>
-<p>When there is a need to look at the file prior to aggregating it. You could specify argument <code>aggregate</code> as <code>FALSE</code>. The same behavior could also be achieved by activating it globally via <code>options</code>.</p>
+<p>When there is a need to look at the file prior to aggregating it. You
+could specify argument <code>aggregate</code> as <code>FALSE</code>. The
+same behavior could also be achieved by activating it globally via
+<code>options</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Global option</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></span></code></pre></div>
-<p>By activating it globally using <code>options</code>, all proceeding processes will not be aggregated unless it’s changed during function call ie. include argument <code>aggregate = TRUE</code>, or you reset the global options with:</p>
+<p>By activating it globally using <code>options</code>, all proceeding
+processes will not be aggregated unless it’s changed during function
+call ie. include argument <code>aggregate = TRUE</code>, or you reset
+the global options with:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/reset_options.html">reset_opt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
