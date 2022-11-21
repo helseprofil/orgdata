@@ -94,7 +94,7 @@
     
     
 <p>Presuming that <code>orgdata</code> package has been installed, this
-is how you can start using the main function.</p>
+is how you can start using the most important functions.</p>
 <div class="section level2">
 <h2 id="aggregate-all-files">Aggregate all files<a class="anchor" aria-label="anchor" href="#aggregate-all-files"></a>
 </h2>
@@ -111,7 +111,8 @@ process, you could save the output ie, object <em>df</em> above, as a
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"BEFOLKNING"</span><span class="op">)</span></span></code></pre></div>
 <p>If you are certain that the process has been controlled before and
 everything should be working correctly. You could save the output
-directly as a <code>.csv</code> file with argument
+directly as a <code>.csv</code> file when running
+<code><a href="../reference/make_file.html">make_file()</a></code> function with argument
 <code>save = TRUE</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -119,8 +120,8 @@ directly as a <code>.csv</code> file with argument
 Access Database under table for <em>original files</em> when you have
 checked the output. This will ensure shorter processing time when you
 re-run <code><a href="../reference/make_file.html">make_file()</a></code> because it will skip all the cleaning
-and recording processes. This is because they are allready saved in the
-database. The database can be found in
+and recording processes. This is because they are already saved in the
+data warehouse. The data warehouse can be found in
 <em>../PRODUKSJON/STYRING/raw-khelse/org_database</em></p>
 </div>
 <div class="section level2">
@@ -129,7 +130,7 @@ database. The database can be found in
 <p>Aggregating the whole files in a group could take a long time when
 there are many files in the selected group. You could select only
 specific file or files by selecting the <code>KOBLID</code> instead. The
-example below is for selecting one and few files respectively.</p>
+example below is for selecting one or few files respectively.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">10</span>,<span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 Presuming that `orgdata` package has been installed, this is how you can start
-using the main function.
+using the most important functions.
 
 ## Aggregate all files
 
@@ -36,7 +36,7 @@ save_file(df, "BEFOLKNING")
 
 If you are certain that the process has been controlled before and everything
 should be working correctly. You could save the output directly as a `.csv` file
-with argument `save = TRUE`:
+when running `make_file()` function with argument `save = TRUE`:
 
 ```r
 df <- make_file("BEFOLKNING", save = TRUE)
@@ -45,15 +45,15 @@ df <- make_file("BEFOLKNING", save = TRUE)
 It is advisable to mark the file as *KONTROLLERT* in the Access Database under
 table for *original files* when you have checked the output. This will ensure
 shorter processing time when you re-run `make_file()` because it will skip all
-the cleaning and recording processes. This is because they are allready saved in
-the database. The database can be found in
+the cleaning and recording processes. This is because they are already saved in
+the data warehouse. The data warehouse can be found in
 *../PRODUKSJON/STYRING/raw-khelse/org_database*
 
 ## Aggregate selected files only
 
 Aggregating the whole files in a group could take a long time when there are
 many files in the selected group. You could select only specific file or files
-by selecting the `KOBLID` instead. The example below is for selecting one and
+by selecting the `KOBLID` instead. The example below is for selecting one or 
 few files respectively.
 
 ```r
