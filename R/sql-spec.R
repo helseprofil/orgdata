@@ -100,9 +100,15 @@ is_query <- function(...) {
 is_quick_fix <- function(...){
   args <- list(...)
   if (!is.null(args$char3)){
-    out <- sprintf(fmt = args$txt, char = args$char, char2 = args$char2, char3 = args$char3)
+    out <- sprintf(fmt = args$txt,
+                   char = args$char,
+                   char2 = args$char2,
+                   char3 = args$char3)
   } else {
-    out <- is_opposite(txt = args$txt, char = args$char, char2 = args$char2, opposite = args$opposite)
+    out <- is_opposite(txt = args$txt,
+                       char = args$char,
+                       char2 = args$char2,
+                       opposite = args$opposite)
   }
 
   return(out)
