@@ -1,4 +1,4 @@
-SELECT KOBLID, tbl_Koble.FILID, tbl_Koble.FILGRUPPE, FILNAVN, IBRUKTIL, KONTROLLERT, tbl_Innlesing.*
+SELECT KOBLID, tbl_Koble.FILID, tbl_Koble.FILGRUPPE, FILNAVN, IBRUKFRA, IBRUKTIL, KONTROLLERT, tbl_Innlesing.*
 FROM tbl_Innlesing
 INNER JOIN (tbl_Koble
             INNER JOIN tbl_Orgfile
@@ -6,4 +6,5 @@ INNER JOIN (tbl_Koble
 ON tbl_Koble.LESID = tbl_Innlesing.LESID
 AND tbl_Koble.FILGRUPPE = tbl_Innlesing.FILGRUPPE
 WHERE tbl_Koble.FILGRUPPE = '%s'
-AND tbl_Orgfile.IBRUKTIL >= %s
+AND tbl_Orgfile.IBRUKFRA <= %s
+AND tbl_Orgfile.IBRUKTIL > %s

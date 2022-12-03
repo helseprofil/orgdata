@@ -28,6 +28,7 @@
 #'   \code{FALSE}.
 #' @param char First input value to be added in the query
 #' @param char2 Second input value to be added in the query
+#' @param char3 Third input value to be added in the query
 #' @param opposite TRUE if second input value will be read before first input value
 #' @return Out put will be a data.frame.
 #' @examples
@@ -42,9 +43,21 @@ find_spec <- function(file = NULL,
                       external = FALSE,
                       char = NULL,
                       char2 = NULL,
+                      char3 = NULL,
                       opposite = FALSE) {
+
+  is_null(file)
+  is_not_null_both(value, char)
+  is_not_null_both(value, char2)
   is_null(con)
-  qs <- is_query(file, value, external, char, char2, opposite)
+
+  qs <- is_query(file = file,
+                 value = value,
+                 external = external,
+                 char = char,
+                 char2 = char2,
+                 char3 = char3,
+                 opposite = opposite)
   DBI::dbGetQuery(con, qs)
 }
 
@@ -52,45 +65,66 @@ find_spec <- function(file = NULL,
 #' @keywords internal
 #' @title Create the SQL query
 #' @description Create the SQL query to get the data as specified
-is_query <- function(file = NULL,
-                     value = NULL,
-                     external = FALSE,
-                     char = NULL,
-                     char2 = NULL,
-                     opposite = FALSE
-                     ) {
-  is_null(file)
-  is_not_null_both(value, char)
-  is_not_null_both(value, char2)
+is_query <- function(...) {
 
-  path <- system.file(file, package = "orgdata")
+  args <- list(...)
+  path <- system.file(args$file, package = "orgdata")
 
-  if (external) {
-    path <- file
+  exFile <- is.element("external", names(args))
+  if (!exFile){
+    args$external <- FALSE
+  }
+
+  if (args$external) {
+    path <- args$file
   }
 
   txt <- paste(readLines(path), collapse = "\n")
   txt <- is_sql_code(txt)
 
-  if (!is.null(value)) {
-    qry <- sprintf(txt, value)
+  if (!is.null(args$value)) {
+    qry <- sprintf(txt, args$value)
   } else {
-    qry <- is_opposite(txt, char, char2, opposite)
+    qry <- is_quick_fix(txt = txt,
+                        char = args$char,
+                        char2 = args$char2,
+                        char3 = args$char3,
+                        opposite = args$opposite)
   }
 
+  return(qry)
 }
 
 ## Helper ----------------------------------------------------
+# Quick fix issue 309
+is_quick_fix <- function(...){
+  args <- list(...)
+  if (!is.null(args$char3)){
+    out <- sprintf(fmt = args$txt,
+                   char = args$char,
+                   char2 = args$char2,
+                   char3 = args$char3)
+  } else {
+    out <- is_opposite(txt = args$txt,
+                       char = args$char,
+                       char2 = args$char2,
+                       opposite = args$opposite)
+  }
+
+  return(out)
+}
 
 is_opposite <- function(txt, char, char2, opposite){
-
   if (opposite){
     out <- sprintf(txt, char2, char)
   } else {
     out <- sprintf(txt, char, char2)
   }
 
+  return(out)
 }
+
+
 
 ## SQL code need sprintf for dynamic query
 is_sql_code <- function(x) {
@@ -101,4 +135,3 @@ is_sql_code <- function(x) {
 
   invisible(x)
 }
-
