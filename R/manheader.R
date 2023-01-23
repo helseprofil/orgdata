@@ -30,7 +30,7 @@ do_manheader <- function(dt = NULL, manspec = NULL) {
 
       renameInput <- paste(paste(manspec[[1]], manspec[[2]], sep = "="), collapse = ",")
       is_color_txt(renameInput, "Your MANHEADER input:")
-      is_stop("Check input MANHEADER! Columnames you select might not unique")
+      is_stop("Check input MANHEADER! Columnames must be unique")
     })
 
     data.table::setnames(dt, names(dt)[indx], manspec[["new"]])
