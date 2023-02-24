@@ -105,7 +105,7 @@
 <img src="debug-geo.png" alt=""><p class="caption">debug-warning</p>
 </div>
 <div class="section level2">
-<h2 id="orgdata-debug">orgdata.debug<a class="anchor" aria-label="anchor" href="#orgdata-debug"></a>
+<h2 id="process">process<a class="anchor" aria-label="anchor" href="#process"></a>
 </h2>
 <p>This is used to display the process flow when running any functions in <code>orgdata</code>. It is useful to know which process creates problems during troubleshoot. Options <code>shallow</code> and <code>deep</code> are used to decide the levels of functions to be shown during the process flow. Selecting <code>shallow</code> is equal to <code>TRUE</code> while <code>deep</code> will show the helper functions as well. To activate:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -116,7 +116,7 @@
 <span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"deep"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="orgdata-debug-nrow">orgdata.debug.nrow<a class="anchor" aria-label="anchor" href="#orgdata-debug-nrow"></a>
+<h2 id="nrow">nrow<a class="anchor" aria-label="anchor" href="#nrow"></a>
 </h2>
 <p>To make testing faster for a very big file, you can load only some rows by activating this options. For instance, to load only the first 50 rows use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -125,7 +125,7 @@
 <span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"nrow"</span>, <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="orgdata-debug-row">orgdata.debug.row<a class="anchor" aria-label="anchor" href="#orgdata-debug-row"></a>
+<h2 id="row">row<a class="anchor" aria-label="anchor" href="#row"></a>
 </h2>
 <p>To select only specific row(s) for further processing. This is very useful especially when activating <a href="#geo"><code>orgdata.debug.geo</code></a> option. To select only rows 20 to 50:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -134,7 +134,7 @@
 <span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"row"</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="orgdata-debug-aggregate">orgdata.debug.aggregate<a class="anchor" aria-label="anchor" href="#orgdata-debug-aggregate"></a>
+<h2 id="aggregate">aggregate<a class="anchor" aria-label="anchor" href="#aggregate"></a>
 </h2>
 <p>To check how the geographical codes in the original data will or could be aggregated to. For instance the original data that consist of enumeration area codes can be aggregated to municipality or county. Activating this options will add the columns of origin geographical codes and the codes to aggregate into municipality, county, city etc to the output data.</p>
 <p>The difference between this options and <code>aggreagate</code> argument in <code><a href="../reference/make_file.html">make_file()</a></code> is that the argument <code>aggregate = FALSE</code> will cease aggregating after recoding geographical codes in the original data. To use:</p>
@@ -144,7 +144,7 @@
 <span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"aggregate"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="geo">orgdata.debug.geo<a class="anchor" aria-label="anchor" href="#geo"></a>
+<h2 id="geo">geo<a class="anchor" aria-label="anchor" href="#geo"></a>
 </h2>
 <p>This option is used to check the code to use for recoding geographical codes from the original data to the current geographical codes. A new columns called <code>oriGEO</code> will be added consisting the geographical codes of the original data as in the <a href="#expl">example</a>.</p>
 <p>Column <code>GEO</code> is the code to recode <code>oriGEO</code>. If the value is <code>NA</code> in column <code>GEO</code> then no recode will be done for the respective code. The reason is either the codes is still valid for the current year or no recode code available/valid and will be deleted. A warning will be given.</p>
