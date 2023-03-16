@@ -13,7 +13,7 @@ opt.orgdata <- as.list(opt_rename(optOrg))
 }
 
 .onAttach <- function(libname, pkgname) {
-  print.orgdata_logo(orgdata_logo())
+  print(orgdata_logo())
 
   packageStartupMessage(paste("          Version",
                               utils::packageDescription("orgdata")[["Version"]], "\n"))
