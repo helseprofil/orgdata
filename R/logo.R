@@ -8,7 +8,7 @@
 #'  }
 #' }
 #' @rdname orgdata_logo
-#' @export
+#' @keywords internal
 #' @importFrom cli col_black
 orgdata_logo <- function() {
 
