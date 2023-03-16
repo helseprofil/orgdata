@@ -21,7 +21,7 @@ orgdata_logo <- function() {
     "          `---'                    "
     )
 
-  structure(cli::col_black(logo), class = "orgdata_logo")
+  structure(cli::col_br_magenta(logo), class = "orgdata_logo")
 }
 
 
