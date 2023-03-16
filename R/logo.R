@@ -21,8 +21,9 @@ orgdata_logo <- function(unicode = cli::is_utf8_output()) {
     ",---.,---.,---.,---|,---.|--- ,---.",
     "|   ||    |   ||   |,---||    ,---|",
     "`---'`    `---|`---'`---^`---'`---^",
-    "          `---'                    "
-  )
+    "          `---'                    ",
+    " "
+    )
 
   structure(cli::col_blue(logo), class = "org_logo")
 }
