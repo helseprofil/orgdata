@@ -4,10 +4,7 @@
 \alias{orgdata_logo}
 \title{Orgdata logo}
 \usage{
-orgdata_logo(unicode = cli::is_utf8_output())
-}
-\arguments{
-\item{unicode}{Use utf-8. Default: cli::is_utf8_output()}
+orgdata_logo()
 }
 \value{
 Orgdata logo
@@ -21,7 +18,4 @@ if(interactive()){
  print.orgdata_logo()
  }
 }
-}
-\seealso{
-\code{\link[cli]{is_utf8_output}}, \code{\link[cli]{ansi-styles}}
 }
