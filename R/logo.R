@@ -9,7 +9,7 @@
 #' }
 #' @rdname orgdata_logo
 #' @keywords internal
-#' @importFrom cli col_black
+#' @importFrom cli col_br_magenta
 orgdata_logo <- function() {
 
   logo <- c(
