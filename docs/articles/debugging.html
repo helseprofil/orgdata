@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,11 +105,11 @@ available for <code>orgdata</code> use
 <li><code>orgdata.debug.geo</code></li>
 </ul>
 <p>Warning will be given when debugging is active.</p>
-<div class="figure">
-<img src="debug-geo.png" alt=""><p class="caption">debug-warning</p>
+<div class="float">
+<img src="debug-geo.png" alt="debug-warning"><div class="figcaption">debug-warning</div>
 </div>
 <div class="section level2">
-<h2 id="orgdata-debug">orgdata.debug<a class="anchor" aria-label="anchor" href="#orgdata-debug"></a>
+<h2 id="process">process<a class="anchor" aria-label="anchor" href="#process"></a>
 </h2>
 <p>This is used to display the process flow when running any functions
 in <code>orgdata</code>. It is useful to know which process creates
@@ -126,7 +126,7 @@ as well. To activate:</p>
 <span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"deep"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="orgdata-debug-nrow">orgdata.debug.nrow<a class="anchor" aria-label="anchor" href="#orgdata-debug-nrow"></a>
+<h2 id="nrow">nrow<a class="anchor" aria-label="anchor" href="#nrow"></a>
 </h2>
 <p>To make testing faster for a very big file, you can load only some
 rows by activating this options. For instance, to load only the first 50
@@ -137,7 +137,7 @@ rows use:</p>
 <span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"nrow"</span>, <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="orgdata-debug-row">orgdata.debug.row<a class="anchor" aria-label="anchor" href="#orgdata-debug-row"></a>
+<h2 id="row">row<a class="anchor" aria-label="anchor" href="#row"></a>
 </h2>
 <p>To select only specific row(s) for further processing. This is very
 useful especially when activating <a href="#geo"><code>orgdata.debug.geo</code></a> option. To select only
@@ -148,7 +148,7 @@ rows 20 to 50:</p>
 <span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"row"</span>, <span class="fl">20</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="orgdata-debug-aggregate">orgdata.debug.aggregate<a class="anchor" aria-label="anchor" href="#orgdata-debug-aggregate"></a>
+<h2 id="aggregate">aggregate<a class="anchor" aria-label="anchor" href="#aggregate"></a>
 </h2>
 <p>To check how the geographical codes in the original data will or
 could be aggregated to. For instance the original data that consist of
@@ -166,7 +166,7 @@ geographical codes in the original data. To use:</p>
 <span><span class="fu"><a href="../reference/debug_opt.html">debug_opt</a></span><span class="op">(</span><span class="st">"aggregate"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="geo">orgdata.debug.geo<a class="anchor" aria-label="anchor" href="#geo"></a>
+<h2 id="geo">geo<a class="anchor" aria-label="anchor" href="#geo"></a>
 </h2>
 <p>This option is used to check the code to use for recoding
 geographical codes from the original data to the current geographical

@@ -28,7 +28,7 @@ Warning will be given when debugging is active.
 
 ![debug-warning](debug-geo.png)
 
-## orgdata.debug
+## process 
 
 This is used to display the process flow when running any functions in
 `orgdata`. It is useful to know which process creates problems during
@@ -44,7 +44,7 @@ debug_opt("shallow")
 debug_opt("deep")
 ```
 
-## orgdata.debug.nrow
+## nrow
 
 To make testing faster for a very big file, you can load only some rows by
 activating this options. For instance, to load only the first 50 rows use:
@@ -55,7 +55,7 @@ options(orgdata.debug.nrow = 50)
 debug_opt("nrow", 50)
 ```
 
-## orgdata.debug.row 
+## row 
 
 To select only specific row(s) for further processing. This is very useful
 especially when activating [`orgdata.debug.geo`](#geo) option. To select only
@@ -67,7 +67,7 @@ options(orgdata.debug.row = 20:50)
 debug_opt("row", 20:50)
 ```
 
-## orgdata.debug.aggregate
+## aggregate
 
 To check how the geographical codes in the original data will or could be
 aggregated to. For instance the original data that consist of enumeration area
@@ -85,7 +85,7 @@ options(orgdata.debug.aggregate = TRUE)
 debug_opt("aggregate")
 ```
 
-## orgdata.debug.geo {#geo}
+## geo {#geo}
 
 This option is used to check the code to use for recoding geographical codes
 from the original data to the current geographical codes. A new columns called

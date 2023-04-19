@@ -11,6 +11,7 @@ find_spec(
   external = FALSE,
   char = NULL,
   char2 = NULL,
+  char3 = NULL,
   opposite = FALSE
 )
 }
@@ -29,6 +30,8 @@ style. For example the name of a \emph{filgruppe}.}
 \item{char}{First input value to be added in the query}
 
 \item{char2}{Second input value to be added in the query}
+
+\item{char3}{Third input value to be added in the query}
 
 \item{opposite}{TRUE if second input value will be read before first input value}
 }

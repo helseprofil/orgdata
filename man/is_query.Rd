@@ -4,14 +4,7 @@
 \alias{is_query}
 \title{Create the SQL query}
 \usage{
-is_query(
-  file = NULL,
-  value = NULL,
-  external = FALSE,
-  char = NULL,
-  char2 = NULL,
-  opposite = FALSE
-)
+is_query(...)
 }
 \description{
 Create the SQL query to get the data as specified

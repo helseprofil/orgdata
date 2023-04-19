@@ -1,3 +1,11 @@
+# orgdata 1.3.0
+- Filtering with `IBRUKTIL` and `IBRUKFRA` for selecting original files.
+  `IBRUKTIL` uses `>=` and `IBRUKFRA` uses `<` of the specified date. (#309)
+- Update vignette on debugging.
+- Utilise input from config when mutating columns [#ref](https://github.com/helseprofil/orgdata/commit/38ff241e37959bb426e833bf1597a5755c317184)
+- Add welcome logo.
+- Use integer (#310)
+
 # orgdata 1.2.6
 - Update vignette.
 

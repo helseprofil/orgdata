@@ -29,7 +29,7 @@ lesraw("TEST01")
 
 ## Get Specification
 file <- "specification.sql"
-query <- find_query(file, "Dode")
+query <- orgdata:::find_query(file, "Dode")
 query
 spec <- find_spec(file, "Dode", kh$dbconn)
 spec
@@ -52,3 +52,5 @@ spec[1, ]
 ## Innlesarg
 ## TODO - Error if EXTRA column uses "," to sperarate arguments
 (input <- get_innlesarg("ark", spec$INNLESARG))
+
+options(op)
