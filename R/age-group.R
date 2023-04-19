@@ -95,9 +95,9 @@ is_recode_age <- function(dt, category){
       dt[, (vai) := NULL]
     }
 
-    dt <- dt[, .SD[1], by = idCol]
-    dt[, (idCol) := NULL]
-    return(dt)
+  dt <- dt[, .SD[1L], by = idCol]
+  dt[, (idCol) := NULL]
+  return(dt)
   }
 
 # Create codeboook to recode age
