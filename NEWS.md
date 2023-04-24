@@ -1,4 +1,4 @@
-# orgdata 1.3.0
+# orgdata 1.3.1
 - Filtering with `IBRUKTIL` and `IBRUKFRA` for selecting original files.
   `IBRUKTIL` uses `>=` and `IBRUKFRA` uses `<` of the specified date. (#309)
 - Update vignette on debugging.
