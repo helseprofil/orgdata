@@ -9,12 +9,23 @@ opt.orgdata <- as.list(opt_rename(optOrg))
   op <- options()
   orgDT <- !(names(opt.orgdata) %in% names(op))
   if (any(orgDT)) options(opt.orgdata[orgDT])
+
+  ## Encoding after R ver 4.2 and above to UTF-8
+  if (Sys.info()["sysname"] == "Windows") {
+    if (rvers()) {
+      Sys.setlocale("LC_CTYPE", "nb_NO.UTF-8")
+      message('"LC_CTYPE" is set to nb_NO.UTF-8')
+      message('To change it run Sys.setlocale("LC_CTYPE", ctype) where `ctype` is your preferred type')
+    }
+  }
+
   invisible()
 }
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage(paste("orgdata version",
-                              utils::packageDescription("orgdata")[["Version"]]))
+  print(orgdata_logo())
+  packageStartupMessage(paste("           Version",
+                              utils::packageDescription("orgdata")[["Version"]], "\n"))
 
   latest <- is_latest_version()
   if (latest){
@@ -23,4 +34,9 @@ opt.orgdata <- as.list(opt_rename(optOrg))
       orgdata::update_orgdata()
     }
   }
+}
+
+rvers <- function(){
+  rlokal <- paste(version[c("major", "minor")], collapse = ".")
+  numeric_version(rlokal) > numeric_version("4.1.0")
 }

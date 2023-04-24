@@ -120,6 +120,7 @@ make_file <- function(group = NULL,
     file = "specification.sql",
     char = group,
     char2 = today,
+    char3 = today,
     con = kh$dbconn
   )
   ## data.table::setDT(spec)

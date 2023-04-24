@@ -51,3 +51,5 @@ inst/doc
 /renv/
 inst/testdata_dev
 dev/testdata_dev
+[.]tar.gz
+[.]Rcheck

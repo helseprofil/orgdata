@@ -45,7 +45,7 @@ preferred dataset.
 
 ## Installation
 
-To install then run this code
+The easiest way to install *orgdata* is to use `kh_install()` function.
 
 ```r
 source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")

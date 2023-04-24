@@ -16,7 +16,8 @@ do_mutate <- function(dt = NULL, spec = NULL){
 
   colVals <- paste0("VAL", 1:getOption("orgdata.vals"))
   colTabs <- paste0("TAB", 1:getOption("orgdata.tabs"))
-  cols <- c("GEO", "AAR", "KJONN", "ALDER", "UTDANN", "LANDSSB", colTabs, colVals)
+  stdCols <- getOption("orgdata.columns")
+  cols <- c(stdCols[stdCols!="LEVEL"], colTabs, colVals)
   for (i in cols){
     col <- spec[[i]]
     val <- get_mutate_value(col)

@@ -3,7 +3,9 @@ devtools::load_all()
 devtools::test()
 
 reset_opt()
+oldLoc <- Sys.setlocale("LC_ALL")
 
+Sys.setlocale(locale = "no_NB.utf8") #no_NO
 usethis::use_make()
 
 ## devtools::check(vignettes = FALSE)
@@ -17,7 +19,7 @@ devtools::check(env_vars = c(ORGDATA_TEST = "true"))
 devtools::document()
 
 ## devtools::build()
-pkgdown::build_site(new_process = FALSE)
+pkgdown::build_site()
 pkgdown::build_site()
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
@@ -66,9 +68,14 @@ usethis::use_build_ignore("_pkgdown.yml")
 usethis::use_build_ignore("renv.lock")
 usethis::use_build_ignore("orgdata.Rproj")
 usethis::use_build_ignore(".dir-locals-el")
+usethis::use_build_ignore("[.]tar.gz")
+usethis::use_build_ignore("[.]Rcheck")
+
 ## usethis::use_testthat()
 usethis::use_git_ignore("inst/testdata_dev")
 usethis::use_git_ignore("dev/testdata_dev")
+usethis::use_git_ignore("[.]tar.gz")
+usethis::use_git_ignore("[.]Rcheck")
 
 ## Document ------------------------------------
 usethis::use_package_doc() # for package document roxygen style
@@ -123,6 +130,7 @@ usethis::use_package("yaml", min_version = TRUE)
 usethis::use_package("RSQLite", min_version = TRUE)
 usethis::use_package("here", type = "Suggest", min_version = TRUE)
 usethis::use_dev_package("praise")
+usethis::use_package("cli", min_version = TRUE)
 
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub

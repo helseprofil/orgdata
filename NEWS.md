@@ -1,6 +1,19 @@
+# orgdata 1.3.1
+- Filtering with `IBRUKTIL` and `IBRUKFRA` for selecting original files.
+  `IBRUKTIL` uses `>=` and `IBRUKFRA` uses `<` of the specified date. (#309)
+- Update vignette on debugging.
+- Utilise input from config when mutating columns [#ref](https://github.com/helseprofil/orgdata/commit/38ff241e37959bb426e833bf1597a5755c317184)
+- Add welcome logo.
+- Use integer (#310)
+- Proper use of boolean (#311)
+
+# orgdata 1.2.6
+- Update vignette.
+
 # orgdata 1.2.5
 - Use keyword `delete` or `slett` when recoding with RE options to `""`. This
   replaces `empty` and `tom` as in #285.
+
 
 # orgdata 1.2.4
 - Selecting geo levels when geo codes derived from two columns will use the

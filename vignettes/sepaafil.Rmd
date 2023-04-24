@@ -16,40 +16,47 @@ knitr::opts_chunk$set(
 
 ## Loading
 
-For å aktivere `orgdata` pakke
+For å kunne bruke funksjonenen i `orgdata` pakke, må pakken først gjort
+tilgjengelig. Kjør denne komandoen:
 
 ```
-# Kjør alt herfra -------------------
 library(orgdata)
-options(orgdata.year = 2021) #Hvilket årgang til å omkode geo
-#til hit som oppsett ----------------
 ```
 
-Oppdatere pakken når ny versjon er tilgjengelig
+Du får spørsmål om å oppdatere når ny versjon er tilgjengelig. Svar `YES` til
+spørsmålet for å oppdatere. Evt. kan du også gjøre det manuelt ved å kjøre:
 
 ```
 update_orgdata()
 ```
 
-----------------------------------
-HUSK Å ALLTID TILORDNE ET OBJEKT for `make_file()` og `read_file()`!
+## Objekt 
+
+OBS! HUSK Å ALLTID TILORDNE ET OBJEKT for `make_file()` og `read_file()`! Dvs.
+bruk symbol `<-`. Ellers blir ikke resultatene tilgjengelig til lagring eller
+videre behandling.
 
 ```
   dt <- make_file()
 dvs. ^
 ```
 
+## Les filer
 Les original fil som det er ved å velge FILID
 
 ```
 df <- les_fil(file = 12) #12 er en FILID 
 ```
 
-`les_fil()` kan også brukes til å lese data ved å skrive hele stien til filen og kan brukes til å lese filer i flere formater bl.a Excel, Stata, .CSV etc.
+`les_fil()` kan også brukes til å lese data ved å skrive hele stien til filen og
+kan brukes til å lese filer i flere formater bl.a `.xls`, `.xlsx`, .`.dta`,
+`.csv` etc. 
 
 ```
 df <- les_fil("C:/Users/abc/FileName.csv")
 ```
+
+## Lag filgrupper
 
 Aggregere utvalgte fil eller filer med KOBLID
 
@@ -62,28 +69,36 @@ Les filene i en filgruppe og bruk oppsettet som er spesifisert i Access
 
 ```
 dt <- lag_fil("BEFOLKNING")
-dt <- lag_fil("BEFOLKNING", raw = TRUE) #les fra original filen hvis allerede er KONTROLLERT
+
+## les fra original filen selv om filene allerede er sjekket som KONTROLLERT
+## dvs. allerede ligger i datavarehus
+dt <- lag_fil("BEFOLKNING", raw = TRUE) 
 ```
 
-Lagre CSV fil
+## Lagre resultatene eller objekter
+
+Hvis man har tilordnet resultat fra `lag_fil()` som et objekt, kan objektet
+lages til en `.csv` fil ved å kjøre:
 
 ```
 save_file(dt, "BEFOLKNING")
 
 ```
 
-Å lagre det et annet sted
+Å lagre filen et annet utvalgte sted enn standard
 
 ```
 save_file(dt, name = "MinFil", path = "C:/Navn/Til/Mappen")
 
 ```
 
-Evt. hvis alle filer har ingen feil
+Evt. hvis alle filer har ingen feil dvs. allerede kontrollert
 
 ```
 lag_fil("BEFOLKNING", save = TRUE)
 ```
+
+## Flere filgrupper
 
 Hvis filene har blitt kontrollert så kan man lagre flere
 FILGRUPPER med en gang, du velger selv måten du liker å gjøre det.
@@ -179,4 +194,10 @@ debug_opt("aggregate")
 HUSK å nullstille etter bruk av debug funksjon
 ```
 reset_opt()
+```
+
+Vis alle funksjonene som kjøres eller leses
+
+```
+show_functions = TRUE
 ```
