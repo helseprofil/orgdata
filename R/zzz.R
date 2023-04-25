@@ -10,15 +10,6 @@ opt.orgdata <- as.list(opt_rename(optOrg))
   orgDT <- !(names(opt.orgdata) %in% names(op))
   if (any(orgDT)) options(opt.orgdata[orgDT])
 
-  ## Encoding after R ver 4.2 and above to UTF-8
-  if (Sys.info()["sysname"] == "Windows") {
-    if (rvers()) {
-      Sys.setlocale("LC_CTYPE", "nb_NO.UTF-8")
-      message('"LC_CTYPE" is set to nb_NO.UTF-8')
-      message('To change it run Sys.setlocale("LC_CTYPE", ctype) where `ctype` is your preferred type')
-    }
-  }
-
   invisible()
 }
 
