@@ -1,3 +1,6 @@
+# orgdata 1.3.2
+- Manage encoding warning for R 4.1 and below.
+
 # orgdata 1.3.1
 - Filtering with `IBRUKTIL` and `IBRUKFRA` for selecting original files.
   `IBRUKTIL` uses `>=` and `IBRUKFRA` uses `<` of the specified date. (#309)
