@@ -82,7 +82,7 @@ make_file <- function(group = NULL,
     check = TRUE
   )
 
-  is_color_txt(year, "Geography mapping year:")
+  is_color_txt(year, "Start processing data with GEO mapping")
 
   ## CONNECTION --------------------------------------------
   ## Access
