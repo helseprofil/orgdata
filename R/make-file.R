@@ -214,14 +214,19 @@ make_file <- function(group = NULL,
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
 
-  prodMsg <- paste0("Completed `", group ,"` and output folder is")
-  prodPath <- gsub("\\\\", "/", fgSpec$UTMAPPE)
 
-  is_colour_txt(x = prodPath,
-                msg = prodMsg,
-                type = "note",
-                emoji = TRUE,
-                symbol = "thumb")
+  is_color_txt(x = group,
+               msg = "Completed filegroup:",
+               type = "note",
+               emoji = TRUE,
+               symbol = "thumb")
+
+  prodPath <- gsub("\\\\", "/", fgSpec$UTMAPPE)
+  is_color_txt(x = prodPath,
+               msg = "Output folder:",
+               type = "note",
+               emoji = TRUE,
+               symbol = "folder")
 
   withr::with_options(list(orgdata.emoji = "paper"),
                       is_verbose(x = is_orgdata_path(),
