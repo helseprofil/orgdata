@@ -128,6 +128,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
   ## Add to or read from DuckDB -------------
   ## TODO Need to refactor the codes below
+  ## To use if..else.. makes the codes difficult to read
   fileName <- find_column_input(fileSpec, "FILNAVN")
   fileName <- paste0("../", gsub("\\\\", "/", fileName))
 
@@ -140,15 +141,6 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     duck$db_remove_table(name = duckTbl)
   }
 
-  if (fileCtrl && fileDuck){
-    withr::with_options(list(orgdata.emoji = "safe"),
-                        is_color_txt(x = "",
-                                     msg = "Data found in data warehouse. To read raw data uncheck KONTROLLERT or use `raw=TRUE` instead",
-                                     type = "debug", emoji = TRUE))
-    is_color_txt(x = fileName, msg = "File:")
-    dt <- duck$db_read(name = duckTbl)
-  }
-
   if (fileCtrl && !fileDuck){
     is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
     withr::with_options(list(orgdata.emoji = "safe"),
@@ -156,6 +148,15 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
                                      msg = "Adding dataset to data warehouse ...",
                                      type = "debug", emoji = TRUE))
     duck$db_write(name = duckTbl, value = dt, write = TRUE)
+  }
+
+  if (fileCtrl && fileDuck){
+    withr::with_options(list(orgdata.emoji = "safe"),
+                        is_color_txt(x = "",
+                                     msg = "Data found in data warehouse. To read raw data uncheck KONTROLLERT or use `raw=TRUE` instead",
+                                     type = "debug", emoji = TRUE))
+    is_color_txt(x = fileName, msg = "File:")
+    dt <- duck$db_read(name = duckTbl)
   }
 
   data.table::copy(dt)
