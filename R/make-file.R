@@ -221,7 +221,7 @@ make_file <- function(group = NULL,
                emoji = TRUE,
                symbol = "thumb")
 
-  prodPath <- gsub("\\\\", "/", fgSpec$UTMAPPE)
+  prodPath <- gsub("\\\\", "/", fgSpec$UTMAPPE, fixed = TRUE)
   is_color_txt(x = prodPath,
                msg = "Output folder:",
                type = "note",
