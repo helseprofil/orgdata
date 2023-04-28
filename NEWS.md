@@ -1,6 +1,7 @@
 # orgdata 1.3.3
 - Fix `dbDisconnect` error (#312)
 - Edit message (#313)
+- Edit few other messages as well.
 
 # orgdata 1.3.2
 - Manage encoding warning for R 4.1 and below.
