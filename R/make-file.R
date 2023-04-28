@@ -214,7 +214,7 @@ make_file <- function(group = NULL,
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
 
-  prodMsg <- paste0("Completed `", group ,"` and saved in ")
+  prodMsg <- paste0("Completed `", group ,"` and can be saved in ")
   prodPath <- gsub("\\\\", "/", fgSpec$UTMAPPE)
 
   is_colour_txt(x = prodPath,
