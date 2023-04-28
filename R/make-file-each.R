@@ -153,7 +153,7 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   if (fileCtrl && fileDuck){
     withr::with_options(list(orgdata.emoji = "safe"),
                         is_color_txt(x = "",
-                                     msg = "Data found in data warehouse. To read raw data uncheck KONTROLLERT or use `raw=TRUE` instead",
+                                     msg = "Data found in data warehouse! To read from raw data uncheck KONTROLLERT or use `raw=TRUE` instead",
                                      type = "debug", emoji = TRUE))
     is_color_txt(x = fileName, msg = "File:")
     dt <- duck$db_read(name = duckTbl)
