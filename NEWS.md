@@ -1,3 +1,6 @@
+# orgdata 1.3.4 (dev)
+- Avoid warning when connection to the database is already closed.
+
 # orgdata 1.3.3
 - Fix `dbDisconnect` error (#312)
 - Edit message (#313)
