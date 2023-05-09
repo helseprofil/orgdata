@@ -18,15 +18,10 @@
 - Use integer (#310)
 - Proper use of boolean (#311)
 
-# orgdata 1.2.6
+# orgdata 1.2.0
 - Update vignette.
-
-# orgdata 1.2.5
 - Use keyword `delete` or `slett` when recoding with RE options to `""`. This
   replaces `empty` and `tom` as in #285.
-
-
-# orgdata 1.2.4
 - Selecting geo levels when geo codes derived from two columns will use the
   maximum number of digits to find geo level (#307)
 - Rewrite some codes for speed. (#231)
