@@ -130,24 +130,20 @@ KHelse <- R6::R6Class(
     #' @description
     #' Close connection to the database.
     db_close = function() {
-      if (!is.null(self$dbconn) && self$dbtype == "Access"){
-        DBI::dbDisconnect(self$dbconn)
-      }
-
-      if (!is.null(self$dbconn) && self$dbtype == "DuckDB"){
-        DBI::dbDisconnect(self$dbconn, shutdown = TRUE)
+      if(!is.null(self$dbconn) && DBI::dbIsValid(self$dbconn)){
+        switch(self$dbtype,
+               "Access" = DBI::dbDisconnect(self$dbconn),
+               "DuckDB" = DBI::dbDisconnect(self$dbconn, shutdown = TRUE))
       }
     }
   ),
     private = list(
       ..drv = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=",
       finalize = function() {
-        if (!is.null(self$dbconn) && self$dbtype == "Access"){
-          DBI::dbDisconnect(self$dbconn)
-        }
-
-        if (!is.null(self$dbconn) && self$dbtype == "DuckDB"){
-          DBI::dbDisconnect(self$dbconn, shutdown = TRUE)
+        if(!is.null(self$dbconn) && DBI::dbIsValid(self$dbconn)){
+          switch(self$dbtype,
+                 "Access" = DBI::dbDisconnect(self$dbconn),
+                 "DuckDB" = DBI::dbDisconnect(self$dbconn, shutdown = TRUE))
         }
       }
     )
