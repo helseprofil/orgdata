@@ -147,9 +147,8 @@ is_sav_dots <- function(...){
   return(dots)
 }
 
-## Direct args or from registration database
+## Direct args or those from registration database
 is_args <- function(...){
-  ## take it out from nested list
   dd <- list(...)[[1]]
   if (is.list(dd)){
     dots <- dd
@@ -159,7 +158,7 @@ is_args <- function(...){
   return(dots)
 }
 
-## For arguments in fread that have numeric input
+## Arguments in fread that have numeric input
 is_dt_args <- function(x){
   x <- is_rename_args(from = "trimws", to = "strip.white")
   x <- is_rename_args(from = "na", to = "na.strings")
@@ -173,7 +172,7 @@ is_dt_args <- function(x){
   return(x)
 }
 
-## For arguments in read_excel that have numeric input
+## Arguments in read_excel that have numeric input
 is_xls_args <- function(x){
   x <- is_rename_args(from = "nrows", to = "n_max")
   x <- is_rename_args(from = "trimws", to = "trim_ws")
@@ -230,8 +229,8 @@ is_numeric_args <- function(x = NULL, elm = NULL){
   return(x)
 }
 
-## standard readxl header style ...1 etc needs to be changed to V1 etc
-## like fread style
+## Standard readxl header style ie. ...1, ...2 etc needs
+## to be renamed to V1,V2 etc similar fread style
 is_header_name <- function(x){
   vars <- paste0("V", 1:ncol(x))
   data.table::setnames(x, old = names(x), new = vars)
