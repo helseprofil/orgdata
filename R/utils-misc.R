@@ -3,7 +3,9 @@
 #' @param url The URL
 #' @export
 website <- function(url = NULL){
-  if (is.null(url)){url = "https://helseprofil.github.io/orgdata"}
+  if (is.null(url))
+    url = "https://helseprofil.github.io/orgdata"
+
   utils::browseURL(url = url)
 }
 
@@ -85,7 +87,6 @@ emoji <- function(x = c("mark", "thumb", "write",
 #' }
 #' @export
 update_orgdata <- function(...){
-  ## if(!requireNamespace("remotes")) install.packages("remotes", repos = "https://cloud.r-project.org")
   unloadNamespace("orgdata")
   suppressWarnings(remotes::install_github("helseprofil/orgdata", force = TRUE, ...))
   attachNamespace("orgdata")
@@ -102,18 +103,16 @@ skip_error_db <- function(){
 
   dbFile <- fs::file_exists(is_path_db(getOption("orgdata.db")))
 
-  if (isFALSE(dbFile)){
+  if (isFALSE(dbFile))
     return(invisible(TRUE))
-  }
 
   testthat::skip("DB not found")
 }
 
 ## Skip test when running R CMD check
 skip_if_check <- function(){
-  if (identical(Sys.getenv("ORGDATA_TEST", unset = "TRUE"), "TRUE")){
+  if (identical(Sys.getenv("ORGDATA_TEST", unset = "TRUE"), "TRUE"))
     return(invisible(TRUE))
-  }
 
   testthat::skip("Not run when CMD check")
 }
@@ -156,7 +155,7 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
 
     newVer <- numeric_version(gitVer) > numeric_version(ver)
 
-    if(newVer){
+    if (newVer){
       is_color_txt(gitVer, "New version is available!", type = "note", emoji = TRUE, symbol = "thumb")
       is_color_txt(ver, "Your installed version:", type = "note")
       is_color_txt("Changelog", "Find out what's new in", type = "note", emoji = TRUE, symbol = "book")
