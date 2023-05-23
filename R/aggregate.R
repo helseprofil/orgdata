@@ -85,6 +85,8 @@ do_aggregate <- function(dt = NULL,
   ## Breakpoint here to check the missing GEO when merging
   if (check) {
     is_debug_warn("`orgdata.debug.aggregate`")
+    dt[, "dummy_grk" := NULL]
+    orgEnv$status <- 0
     return(dt)
   }
 
