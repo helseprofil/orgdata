@@ -1,4 +1,4 @@
-# orgdata 1.3.4 (dev)
+# orgdata 1.3.4
 - Avoid warning when connection to the database is already closed.
 
 # orgdata 1.3.3
