@@ -16,12 +16,21 @@ website <- function(url = NULL){
 #' @export
 reset_options <- function(){
   options(opt.orgdata)
+
+  if (exists("orgEnv"))
+    orgEnv$status <- 1
 }
+
+#' @title Status workflow
+#' @description Status workflow to display message. Default is 1
+orgEnv <- new.env()
+orgEnv$status <- 1
 
 
 #' @export
 #' @rdname reset_options
 reset_opt <- reset_options
+
 
 #' @title Debugging options
 #' @description A wrapper for debugging options.

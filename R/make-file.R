@@ -233,7 +233,10 @@ make_file <- function(group = NULL,
                                  msg = "Log files can be found in",
                                  emoji = TRUE))
 
-  cat("\n", praise::praise("${EXCLAMATION}! ${adjective} job is completed!"), is_party(), "\n\n")
+  if (orgEnv$status){
+    cat("\n", praise::praise("${EXCLAMATION}! ${adjective} job is completed!"), is_party(), "\n\n")
+  }
+
   return(outDT)
 }
 
