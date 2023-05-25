@@ -12,10 +12,28 @@ test_that("Post recode raw", {
   toVAL <- ".."
   dtOut <- readRDS(system.file("testdata", "post-recode-out-raw.rds", package = "orgdata"))
 
-  expect_equal(is_recode_post(dt = dt, spec = spec, input = input, recodeCol = recodeCol, toVAL = toVAL), dtOut)
-  expect_equal(is_recode_post(dt = dt, spec = spec, input = input2, recodeCol = recodeCol, toVAL = toVAL), dtOut)
-  expect_error(is_recode_post(dt = dt, spec = spec, input = input3, recodeCol = recodeCol, toVAL = toVAL))
+  expect_equal(is_recode_post(dt = data.table::copy(dt), spec = spec, input = input, recodeCol = recodeCol, toVAL = toVAL), dtOut)
+  expect_equal(is_recode_post(dt = data.table::copy(dt), spec = spec, input = input2, recodeCol = recodeCol, toVAL = toVAL), dtOut)
+  expect_error(is_recode_post(dt = data.table::copy(dt), spec = spec, input = input3, recodeCol = recodeCol, toVAL = toVAL))
 })
+
+test_that("Delete post row", {
+
+  dt <- readRDS(system.file("testdata", "post-recode-dt.rds", package = "orgdata"))
+  spec <- structure(list(FILGRUPPE = "TEST01", KOL = "INNVKAT", TYPE = "PS",
+                         FRA = "AAR = 2014 & LANDBAK = 20",
+                         TIL = "-"), row.names = 1L, class = "data.frame")
+
+  input <- "raw(AAR == 2014 & LANDBAK == 20)" #balanced parenthesis
+  recodeCol <- "INNVKAT"
+  toVal = "-"
+  dtDelOut <- readRDS(system.file("testdata", "post-delete-out-raw.rds", package = "orgdata"))
+
+  expect_equal(is_post_delete_row(data.table::copy(dt), input = input, toVAL = toVal, typ = "raw"), dtDelOut)
+  expect_equal(is_post_delete_row(data.table::copy(dt), spec = spec, toVAL = toVal, typ = "exp"), dtDelOut)
+
+})
+
 
 test_that("Post recode exp", {
 
