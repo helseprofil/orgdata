@@ -30,7 +30,7 @@ find_age_category <- function(dt = NULL, interval = NULL) {
 #' @export
 find_age_category.default <- function(dt, interval) {
   is_color_txt(interval, "Selected age category:")
-  is_stop("Age categories not valid:", interval)
+  is_stop("Age categories are not valid:", interval)
 }
 
 # Interval value to categorize age. The minimum age will always be
