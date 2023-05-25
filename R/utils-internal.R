@@ -327,3 +327,16 @@ is_package_condition <- function(pkg, arg){
 
   invisible()
 }
+
+# end - ending of each word
+is_word <- function(end = NULL){
+  words <- c("job", "effort", "workflow", "endeavor",
+             "accomplishment", "achievement", "work",
+             "precision", "attainment", "production",
+             "and you nailed it")
+
+  if (!is.null(end))
+    word <- paste0(words, end)
+
+  sample(word, 1)
+}
