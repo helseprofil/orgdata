@@ -91,7 +91,8 @@ The function <code>lag_fil()</code> is an alias to <code>make_file()</code>.</p>
 <span>  row <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  base <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  parallel <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  raw <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  raw <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  select <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">lag_fil</span><span class="op">(</span></span>
@@ -104,7 +105,8 @@ The function <code>lag_fil()</code> is an alias to <code>make_file()</code>.</p>
 <span>  row <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  base <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  parallel <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  raw <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  raw <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  select <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">mf</span><span class="op">(</span></span>
@@ -117,7 +119,8 @@ The function <code>lag_fil()</code> is an alias to <code>make_file()</code>.</p>
 <span>  row <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  base <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  parallel <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  raw <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  raw <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  select <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -176,6 +179,11 @@ value is <code>FALSE</code> ie. to use sequential processing</p></dd>
 original raw data directly from source file even if the dataset is already
 available in DuckDB without the need to unmark <code>KONTROLLERT</code> in the Access
 database</p></dd>
+
+
+<dt>select</dt>
+<dd><p>Select number of valid files to process as an alternative to using
+<code>KOBLID</code>. To select the first 5 files then write <code>select=1:5</code></p></dd>
 
 </dl></div>
     <div class="section level2">
