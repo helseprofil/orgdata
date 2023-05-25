@@ -16,7 +16,8 @@ make_file(
   row = NULL,
   base = NULL,
   parallel = deprecated(),
-  raw = NULL
+  raw = NULL,
+  select = NULL
 )
 
 lag_fil(
@@ -29,7 +30,8 @@ lag_fil(
   row = NULL,
   base = NULL,
   parallel = deprecated(),
-  raw = NULL
+  raw = NULL,
+  select = NULL
 )
 
 mf(
@@ -42,7 +44,8 @@ mf(
   row = NULL,
   base = NULL,
   parallel = deprecated(),
-  raw = NULL
+  raw = NULL,
+  select = NULL
 )
 }
 \arguments{
@@ -80,6 +83,9 @@ value is \code{FALSE} ie. to use sequential processing}
 original raw data directly from source file even if the dataset is already
 available in DuckDB without the need to unmark \code{KONTROLLERT} in the Access
 database}
+
+\item{select}{Select number of valid files to process as an alternative to using
+\code{KOBLID}. To select the first 5 files then write \code{select=1:5}}
 }
 \description{
 Make a \code{csv} file with the specifications in the Access register

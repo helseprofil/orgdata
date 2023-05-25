@@ -28,6 +28,8 @@
 #'   original raw data directly from source file even if the dataset is already
 #'   available in DuckDB without the need to unmark `KONTROLLERT` in the Access
 #'   database
+#' @param select Select number of valid files to process as an alternative to using
+#'   `KOBLID`. To select the first 5 files then write `select=1:5`
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
@@ -49,7 +51,8 @@ make_file <- function(group = NULL,
                       row = NULL,
                       base = NULL,
                       parallel = deprecated(),
-                      raw = NULL
+                      raw = NULL,
+                      select = NULL
                       ) {
 
   LEVEL <- NULL
@@ -141,6 +144,11 @@ make_file <- function(group = NULL,
   withr::with_options(list(orgdata.emoji = "book"),
                       is_colour_txt(x = rowFile, grpMsg, type = "note", emoji = TRUE))
 
+  if (!is.null(select)){
+    spec <- spec[select,]
+    rowFile <- nrow(spec)
+    is_color_txt(length(select), "Number of file(s) to process:")
+  }
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
