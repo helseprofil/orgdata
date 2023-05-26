@@ -44,21 +44,7 @@ sapply(pkgs, function(x) if(!requireNamespace(x)) install.packages(x))
 
 devtools::install_github("helseprofil/norgeo", force = TRUE)
 
-## renv --------------------------------
-## Unload package before running these
-## install.packages("renv")
-## remotes::install_github("rstudio/renv")
-## renv::init(bare = TRUE)
-## ## install packages declared in DESCRIPTION
-## renv::install()
-## renv::install("helseprofil/norgeo")
-## renv::install(pkgs)
-## renv::install("pkgdown")
-## renv::snapshot()
-## renv::restore()
-## renv::remove("orgdata")
-## devtools::install_github("helseprofil/norgeo")
-
+## Package ------------------------------
 ## usethis::create_package("orgdata")
 ## devtools::load_all()
 usethis::use_build_ignore("dev")
