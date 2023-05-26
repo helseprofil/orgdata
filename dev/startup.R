@@ -118,6 +118,7 @@ usethis::use_package("RSQLite", min_version = TRUE)
 usethis::use_package("here", type = "Suggest", min_version = TRUE)
 usethis::use_dev_package("praise")
 usethis::use_package("cli", min_version = TRUE)
+usethis::use_dev_package("emo", type = "Suggest")
 
 ## Run to build the website ----------------------------------
 ## Install development version from GitHub
