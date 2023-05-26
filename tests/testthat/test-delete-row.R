@@ -30,6 +30,10 @@ test_that("Delete rows", {
                        class = c("data.table", "data.frame"), row.names = c(NA, -2L),
                        index = structure(integer(0), "`__FILGRUPPE`" = integer(0)))
 
+  specErr <- data.table::copy(specAll)
+  specErr[2, KOL := "LSB"]
+
+
   output <- structure(list(AAR = c("2006_2012", "2006_2012"),
                            GEO = c(15L, 15L), KJONN = c(0L, 0L),
                            UTDANN = c(0L, 0L), LANDSSB = c("1C", "2B"),
@@ -40,6 +44,7 @@ test_that("Delete rows", {
   expect_equal(is_delete_lesid(dt = data.table::copy(data), code = specRow, lesid = "vers1"), output)
   expect_equal(is_delete_common(dt = data.table::copy(data), code = specCommon, group = "VGS"), output)
   expect_equal(is_delete_all(dt = data.table::copy(data), code = specAll), output)
+  expect_error(is_delete_all(dt = data.table::copy(data), code = specErr))
 })
 
 test_that("Delete rows with multiple spec", {

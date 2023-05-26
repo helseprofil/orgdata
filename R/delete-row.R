@@ -63,7 +63,7 @@ is_delete_all <- function(dt, code){
 
   notCols <- setdiff(cols, names(dt))
   if (length(notCols) > 0){
-    is_verbose(paste_cols(notCols), "Columname(s) defined in ALLE for row deleting not found:", type = "warn")
+    is_stop("Columname(s) defined in ALLE for row deleting not found:", paste_cols(notCols))
   }
 
   yesCols <- intersect(cols, names(dt))
