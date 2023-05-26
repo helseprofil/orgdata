@@ -43,6 +43,7 @@ pkgs <- c(
 sapply(pkgs, function(x) if(!requireNamespace(x)) install.packages(x))
 
 devtools::install_github("helseprofil/norgeo", force = TRUE)
+devtools::install_github("hadley/emo")
 
 ## Package ------------------------------
 ## usethis::create_package("orgdata")
