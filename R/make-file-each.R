@@ -10,7 +10,6 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   is_debug()
   fileSpec <- spec
   filePath <- is_path_raw(fileSpec, check = TRUE)
-
   filePath <- gsub("\\\\", "/", filePath)
 
   is_verbose(msg = is_line_long(), type = "other")
@@ -52,9 +51,8 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     ## Rename columns "variable" and "value" back to TAB1..TAB3 and VAL1..VAL3 as
     ## defined in Access coz aggregating uses the standard columnames. Else it
     ## will be deleted as undefined columns in Access database
-    if (!is.na(reshVal) && reshapeLong){
+    if (!is.na(reshVal) && reshapeLong)
       dt <- do_reshape_rename_col(dt = dt, spec = fileSpec)
-    }
 
     ## Recode must happen before reshape wide coz reshape wide will use selected TAB
     ## of reshaped column, creating columns of unique value of TAB ie. wideCol object
@@ -74,9 +72,9 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
     ## after renaming specified RESHAPE columns back to standard columnames.
     deleteVar <- setdiff(names(dt), datacols)
 
-    if (length(deleteVar) != 0) {
+    if (length(deleteVar) != 0)
       dt[, (deleteVar) := NULL]
-    }
+
 
     if (length(deleteVar) != 0) {
       ## What does this mean? Need to ask the senior people in the project :-)
@@ -118,13 +116,12 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
       dt <- do_reshape_long(dt = dt, respec = wideSpec)
       dt <- is_long_col(dt, spec = fileSpec, widespec = wideSpec)
     }
-
   }
 
   ## When debug then skip everything with DuckDB
-  if (debugOpt){
+  if (debugOpt)
     return(data.table::copy(dt))
-  }
+
 
   ## Add to or read from DuckDB -------------
   ## TODO Need to refactor the codes below
@@ -182,4 +179,3 @@ is_long_col <- function(dt, spec, widespec){
   return(dt)
 }
 
-# Test message
