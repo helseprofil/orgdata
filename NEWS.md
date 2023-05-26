@@ -2,6 +2,7 @@
 - Avoid warning when connection to the database is already closed.
 - Create environment for status flow ie. `orgEnv`.
 - Can use `select` arg to choose file(s) in `make_file()` instead of `KOBLID`
+- Error when defined column(s) in codebook is not found. 
 
 # orgdata 1.3.3
 - Fix `dbDisconnect` error (#312)
