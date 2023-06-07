@@ -271,7 +271,7 @@ get_geo_dummy <- function(dt, from, to, type){
 
 ## Helper -----------------------------------------------------
 ## Warn user if table exists incase it's a mistake
-is_write <- function(write, table, con, answer = 0) {
+is_write <- function(write, table, con, answer = 9) {
   tblExist <- DBI::dbExistsTable(conn = con, name = table)
   valg <- c("Overwrite", "Append", "Cancel")
   if (isTRUE(write) && isTRUE(tblExist)) {
