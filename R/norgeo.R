@@ -273,26 +273,27 @@ get_geo_dummy <- function(dt, from, to, type){
 ## Warn user if table exists incase it's a mistake
 is_write <- function(write, table, con, answer = 0) {
   tblExist <- DBI::dbExistsTable(conn = con, name = table)
+  valg <- c("Overwrite", "Append", "Cancel")
   if (isTRUE(write) && isTRUE(tblExist)) {
     msgs <- sprintf("\nWoops!! Table `%s` allready exists. What will you do?", table)
     ## write <- utils::askYesNo(msg = msgs, )
-    answer <- utils::menu(c("Overwrite", "Append", "Cancel"), title = msgs)
+    answer <- utils::menu(choices = valg, title = msgs)
   }
 
-  if (answer == 1){
-    is_assign_var("write", TRUE)
-    is_assign_var("append", FALSE)
-  }
-
-  if (answer == 2){
-    is_assign_var("write", FALSE)
-    is_assign_var("append", TRUE)
-  }
-
-  if (answer == 3){
-    is_assign_var("write", FALSE)
-    is_assign_var("append", FALSE)
-  }
+  what <- valg[answer]
+  switch(what,
+         "Overwrite" = {
+           is_assign_var("write", TRUE)
+           is_assign_var("append", FALSE)
+         },
+         "Append" = {
+           is_assign_var("write", FALSE)
+           is_assign_var("append", TRUE)
+         },
+         "Cancel" = {
+           is_assign_var("write", FALSE)
+           is_assign_var("append", FALSE)
+         })
 
   invisible()
 }
