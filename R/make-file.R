@@ -29,7 +29,8 @@
 #'   available in DuckDB without the need to unmark `KONTROLLERT` in the Access
 #'   database
 #' @param select Select number of valid files to process as an alternative to using
-#'   `KOBLID`. To select the first 5 files then write `select=1:5`
+#'   `KOBLID`. To select the first 5 files then write `select=1:5`. Use `select="last"`
+#'    to select the last file.
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
@@ -145,6 +146,9 @@ make_file <- function(group = NULL,
                       is_colour_txt(x = rowFile, grpMsg, type = "note", emoji = TRUE))
 
   if (!is.null(select)){
+    if (select == "last"){
+      select <- max(nrow(spec))
+    }
     spec <- spec[select,]
     rowFile <- nrow(spec)
     is_color_txt(length(select), "Number of file(s) to process:")
