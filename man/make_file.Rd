@@ -85,7 +85,8 @@ available in DuckDB without the need to unmark \code{KONTROLLERT} in the Access
 database}
 
 \item{select}{Select number of valid files to process as an alternative to using
-\code{KOBLID}. To select the first 5 files then write \code{select=1:5}}
+\code{KOBLID}. To select the first 5 files then write \code{select=1:5}. Use \code{select="last"}
+to select the last file.}
 }
 \description{
 Make a \code{csv} file with the specifications in the Access register
