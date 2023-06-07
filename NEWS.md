@@ -1,7 +1,8 @@
 # orgdata 1.3.5
 - Avoid warning when connection to the database is already closed.
 - Create environment for status flow ie. `orgEnv`.
-- Can use `select` arg to choose file(s) in `make_file()` instead of `KOBLID`
+- Can use `select` arg to ease choosing file(s) in `make_file()` instead of `KOBLID`.
+  Read the document on how to use the argument.
 - Refactor some codes.
 
 # orgdata 1.3.3
