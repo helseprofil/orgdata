@@ -20,7 +20,6 @@ devtools::document()
 
 ## devtools::build()
 pkgdown::build_site()
-pkgdown::build_site()
 pkgdown::preview_site()
 pkgdown::build_news(preview = TRUE)
 

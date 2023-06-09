@@ -7,7 +7,7 @@
 get_extra_args(group = NULL, con = NULL, spec = NULL)
 }
 \arguments{
-\item{group}{The group of files (\emph{filgruppe})}
+\item{group}{The name of filegroup as specified in \emph{filgruppe}}
 
 \item{con}{Connection to database}
 

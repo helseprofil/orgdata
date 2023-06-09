@@ -4,6 +4,7 @@
 - Can use `select` arg to ease choosing file(s) in `make_file()` instead of `KOBLID`.
   Read the document on how to use the argument.
 - Refactor some codes.
+- Edit some documents.
 
 # orgdata 1.3.3
 - Fix `dbDisconnect` error (#312)

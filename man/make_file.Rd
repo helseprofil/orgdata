@@ -49,7 +49,7 @@ mf(
 )
 }
 \arguments{
-\item{group}{The group of files (\emph{filgruppe})}
+\item{group}{The name of filegroup as specified in \emph{filgruppe}}
 
 \item{koblid}{\code{KOBLID} from table \emph{tbl_Koble}}
 
@@ -79,30 +79,32 @@ percentage if needed. For example to use 75\% of the cores then specify as
 \code{parallel = 0.75}. Nevertheless, maximum cores allowed is only 80\%. Default
 value is \code{FALSE} ie. to use sequential processing}
 
-\item{raw}{Logical value. Default is \code{FALSE} as in config. If \code{TRUE} then read
-original raw data directly from source file even if the dataset is already
-available in DuckDB without the need to unmark \code{KONTROLLERT} in the Access
-database}
+\item{raw}{Logical value. Default is \code{FALSE} as in config. If \code{TRUE} then
+read original raw data directly from source file even if the dataset is
+already available in DuckDB without the need to unmark \code{KONTROLLERT} in the
+Access database}
 
-\item{select}{Select number of valid files to process as an alternative to using
-\code{KOBLID}. To select the first 5 files then write \code{select=1:5}. Use \code{select="last"}
-to select the last file.}
+\item{select}{Select number of valid files to process as an alternative to
+using \code{KOBLID}. To select the first 5 files then write \code{select=1:5}. Use
+\code{select="last"} to select the last file.}
 }
 \description{
 Make a \code{csv} file with the specifications in the Access register
 database and implement them to the raw data of the selected group of files
 ie. (\emph{filgruppe}). All files under the selected group will be affected
-unless the \code{KOBLID} with argument \code{koblid} is specified.
-Specifying \code{koblid} is useful especially for testing purposes.
+unless the \code{KOBLID} with argument \code{koblid} is specified or
+\code{select} argument is used. Specifying \code{koblid} or \code{select}
+is useful especially for testing purposes.
 
-This function is the most used function in KHelse for processing raw data.
-The function \code{\link[=lag_fil]{lag_fil()}} is an alias to \code{\link[=make_file]{make_file()}}.
+This function is the most used function in KHelse for processing
+raw data. The function \code{\link[=lag_fil]{lag_fil()}} is an alias to \code{\link[=make_file]{make_file()}}.
 }
 \examples{
 \dontrun{
 dt <- make_file("ENPERSON")
 dt <- make_file("ENPERSON", raw = TRUE) #Skip DuckDB and read directly from original files
 dt <- make_file("ENPERSON", koblid = 120:125) #Select specific files only
+dt <- make_file("ENPERSON", select = "last") #Select most recent file
 }
 }
 \seealso{
