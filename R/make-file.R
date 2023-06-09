@@ -140,7 +140,7 @@ make_file <- function(group = NULL,
   ## SELECT FILES ------------------------------------------
   spec <- is_org_files(spec = spec, id = koblid)
   rowFile <- nrow(spec)
-  grpMsg <- paste0("File(s) to be processed in ", group, ":")
+  grpMsg <- paste0("Total valid file(s) to process for ", group, ":")
   withr::with_options(list(orgdata.emoji = "book"),
                       is_colour_txt(x = rowFile, grpMsg, type = "note", emoji = TRUE))
 
@@ -150,7 +150,7 @@ make_file <- function(group = NULL,
     }
     spec <- spec[select,]
     rowFile <- nrow(spec)
-    is_color_txt(length(select), "Number of file(s) to process:")
+    is_color_txt(length(select), "Number of file(s) selected:")
   }
 
   ## COLUMNS TO KEEP ---------------------------------------
