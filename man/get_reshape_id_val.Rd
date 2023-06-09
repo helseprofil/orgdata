@@ -9,7 +9,7 @@ get_reshape_id_val(dt = NULL, group = NULL, con = NULL, spec = NULL)
 \arguments{
 \item{dt}{Dataset to be reshaped}
 
-\item{group}{The group of files (\emph{filgruppe})}
+\item{group}{The name of filegroup as specified in \emph{filgruppe}}
 
 \item{con}{Connection to database}
 

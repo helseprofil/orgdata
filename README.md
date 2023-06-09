@@ -36,7 +36,7 @@ source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
 kh_restore("orgdata")
 ```
 
-Alternatively you can update new version or install the development
+Alternatively you can update to new version or install the development
 version via `orgdata`.
 
 ``` r
@@ -49,16 +49,20 @@ orgdata::update_orgdata(ref = "dev")
 ## Usage
 
 To implement the specifications per file group as being registered in
-the database use `make_file()` function.
+the database can be done using `make_file()` function.
 
 ``` r
 library(orgdata)
 # All files under BEFOLKNING group
 dt <- make_file("BEFOLKNING")
 
-# For selected files with KOBLID
+# Select files with KOBLID
 dt <- make_file("BEFOLKNING", koblid = 48)
 dt <- make_file("BEFOLKNING", koblid = c(48, 72))
+
+# Select files without KOBLID
+dt <- make_file("BEFOLKNING", select = 1) #select the first valid file
+dt <- make_file("BEFOLKNING", select = "last") #select the most recent file
 ```
 
 Use function `make_filegroups()` to process multiple file groups at
@@ -70,12 +74,12 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 
 ## Resources
 
-- [Config
-  file](https://github.com/helseprofil/config/blob/main/config-orgdata.yml)
-- [Get
-  started](https://helseprofil.github.io/orgdata/articles/get-started.html)
-- [Functions
-  overview](https://helseprofil.github.io/orgdata/reference/index.html)
-- [General guide](https://helseprofil.github.io)
-- [Conventions](https://helseprofil.github.io/orgdata/articles/standard.html)
-- [Video guide](https://youtu.be/PhEQq4iWJCY)
+  - [Config
+    file](https://github.com/helseprofil/config/blob/main/config-orgdata.yml)
+  - [Get
+    started](https://helseprofil.github.io/orgdata/articles/get-started.html)
+  - [Functions
+    overview](https://helseprofil.github.io/orgdata/reference/index.html)
+  - [General guide](https://helseprofil.github.io)
+  - [Conventions](https://helseprofil.github.io/orgdata/articles/standard.html)
+  - [Video guide](https://youtu.be/PhEQq4iWJCY)

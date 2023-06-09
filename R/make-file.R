@@ -2,11 +2,12 @@
 #' @description Make a `csv` file with the specifications in the Access register
 #'   database and implement them to the raw data of the selected group of files
 #'   ie. (\emph{filgruppe}). All files under the selected group will be affected
-#'   unless the \code{KOBLID} with argument \code{koblid} is specified.
-#'   Specifying \code{koblid} is useful especially for testing purposes.
-#' @description This function is the most used function in KHelse for processing raw data.
-#'   The function [lag_fil()] is an alias to [make_file()].
-#' @param group The group of files (\emph{filgruppe})
+#'   unless the \code{KOBLID} with argument \code{koblid} is specified or
+#'   \code{select} argument is used. Specifying \code{koblid} or \code{select}
+#'   is useful especially for testing purposes.
+#' @description This function is the most used function in KHelse for processing
+#'   raw data. The function [lag_fil()] is an alias to [make_file()].
+#' @param group The name of filegroup as specified in \emph{filgruppe}
 #' @param koblid \code{KOBLID} from table \emph{tbl_Koble}
 #' @param aggregate Logical value. Default is `TRUE`. Aggregate data according
 #'   to the specification in registration database. Global options with
@@ -24,22 +25,22 @@
 #'   percentage if needed. For example to use 75% of the cores then specify as
 #'   `parallel = 0.75`. Nevertheless, maximum cores allowed is only 80%. Default
 #'   value is `FALSE` ie. to use sequential processing
-#' @param raw Logical value. Default is `FALSE` as in config. If `TRUE` then read
-#'   original raw data directly from source file even if the dataset is already
-#'   available in DuckDB without the need to unmark `KONTROLLERT` in the Access
-#'   database
-#' @param select Select number of valid files to process as an alternative to using
-#'   `KOBLID`. To select the first 5 files then write `select=1:5`. Use `select="last"`
-#'    to select the last file.
+#' @param raw Logical value. Default is `FALSE` as in config. If `TRUE` then
+#'   read original raw data directly from source file even if the dataset is
+#'   already available in DuckDB without the need to unmark `KONTROLLERT` in the
+#'   Access database
+#' @param select Select number of valid files to process as an alternative to
+#'   using `KOBLID`. To select the first 5 files then write `select=1:5`. Use
+#'   `select="last"` to select the last file.
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
 #' dt <- make_file("ENPERSON")
 #' dt <- make_file("ENPERSON", raw = TRUE) #Skip DuckDB and read directly from original files
 #' dt <- make_file("ENPERSON", koblid = 120:125) #Select specific files only
+#' dt <- make_file("ENPERSON", select = "last") #Select most recent file
 #' }
 #' @importFrom data.table `:=` `%chin%`
-#' @importFrom crayon `%+%`
 #' @importFrom lifecycle deprecated
 #' @family filegroups functions
 #' @export
@@ -76,9 +77,7 @@ make_file <- function(group = NULL,
     )
   }
 
-  ## Use argument `raw` as standard value to avoid
-  ## resetting the global options
-  ## options(orgdata.read.raw = raw)
+  ## Avoid resetting the global options
   withr::local_options(list(orgdata.read.raw = raw))
 
   dbFile <- is_path_db(
@@ -225,7 +224,6 @@ make_file <- function(group = NULL,
   if (save) {
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
-
 
   is_color_txt(x = group,
                msg = "Completed filegroup:",
