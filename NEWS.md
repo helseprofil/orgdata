@@ -1,3 +1,7 @@
+# orgdata 1.3.6 (dev)
+- Refactor some codes.
+- Specify encoding via config.yml file.
+
 # orgdata 1.3.5
 - Avoid warning when connection to the database is already closed.
 - Create environment for status flow ie. `orgEnv`.
