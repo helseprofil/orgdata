@@ -11,3 +11,11 @@ test_that("Make file simple", {
   ## expect_equal(make_file("LESEFERD", 144, year = 2021), leseOUT)
   reset_opt()
 })
+
+test_that("Select files", {
+
+  sel <- readRDS(file = system.file("testdata", "spec-file.rds", package = "orgdata"))
+  out <- readRDS(file = system.file("testdata", "spec-file-output.rds", package = "orgdata"))
+
+  expect_equal(is_select_file(spec = sel, select = 30:34), out)
+})
