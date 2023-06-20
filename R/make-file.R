@@ -144,7 +144,7 @@ make_file <- function(group = NULL,
   withr::with_options(list(orgdata.emoji = "book"),
                       is_colour_txt(x = rowFile, grpMsg, type = "note", emoji = TRUE))
 
-  selDF <- is_select_file(spec = spec, select = select)
+  selDF <- is_select_file(spec = spec, select = select, rowfile = rowFile)
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
