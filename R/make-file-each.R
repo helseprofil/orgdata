@@ -136,11 +136,15 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
   } else if (fileCtrl && fileDuck){
     opt <- "option3"
     optMsg <- "Data found in data warehouse! To read from raw data uncheck KONTROLLERT or use `raw=TRUE` instead"
+  } else {
+    opt <- "option4"
   }
 
-  is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
-  withr::with_options(list(orgdata.emoji = "safe"),
-                      is_color_txt(x = "", msg = optMsg, type = "debug", emoji = TRUE))
+  if (opt != "option4"){
+    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
+    withr::with_options(list(orgdata.emoji = "safe"),
+                        is_color_txt(x = "", msg = optMsg, type = "debug", emoji = TRUE))
+  }
 
   switch(opt,
          option1 = duck$db_remove_table(name = duckTbl),
