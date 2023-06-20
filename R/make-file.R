@@ -144,22 +144,15 @@ make_file <- function(group = NULL,
   withr::with_options(list(orgdata.emoji = "book"),
                       is_colour_txt(x = rowFile, grpMsg, type = "note", emoji = TRUE))
 
-  if (!is.null(select)){
-    if (select == "last"){
-      select <- max(nrow(spec))
-    }
-    spec <- spec[select,]
-    rowFile <- nrow(spec)
-    is_color_txt(length(select), "Number of file(s) selected:")
-  }
+  selDF <- is_select_file(spec = spec, select = select)
 
   ## COLUMNS TO KEEP ---------------------------------------
   dataCols <- is_data_cols(fgspec = fgSpec)
 
   ## PROCESS ON FILES LEVEL IN A FILGRUPPE -----------------
-  DT <- lapply(seq_len(rowFile),
+  DT <- lapply(seq_len(selDF$rowFile),
                function(x) {
-                 do_make_file_each(spec = spec[x,],
+                 do_make_file_each(spec = selDF$spec[x,],
                                    fgspec = fgSpec,
                                    aggregate = aggregate,
                                    datacols = dataCols,

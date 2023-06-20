@@ -197,3 +197,19 @@ is_digit_geo <- function(dd){
   geo <- dt[max(digitGEO), list(GEO)]
   return(geo)
 }
+
+# Select files using vectors instead of KOBLID
+is_select_file <- function(spec, select){
+
+  if (!is.null(select)){
+    if (is.element("last", select)){
+      select <- max(nrow(spec))
+    }
+
+    spec <- spec[select,]
+    rowFile <- nrow(spec)
+    is_color_txt(length(select), "Number of file(s) selected:")
+  }
+
+  return(list(spec = spec, rowFile = rowFile))
+}
