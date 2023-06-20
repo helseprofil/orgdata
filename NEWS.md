@@ -4,6 +4,7 @@
 
 # orgdata 1.3.6
 - Fix selecting files without `KOBLID` (#315)
+- Add more testing.
 
 # orgdata 1.3.5
 - Avoid warning when connection to the database is already closed.

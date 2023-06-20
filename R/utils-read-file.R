@@ -203,7 +203,7 @@ is_digit_geo <- function(dd, .test = FALSE){
 }
 
 # Select files using vectors instead of KOBLID
-is_select_file <- function(spec, select){
+is_select_file <- function(spec, select, rowfile){
 
   if (!is.null(select)){
     if (is.element("last", select)){
@@ -211,9 +211,9 @@ is_select_file <- function(spec, select){
     }
 
     spec <- spec[select,]
-    rowFile <- nrow(spec)
+    rowfile <- nrow(spec)
     is_color_txt(length(select), "Number of file(s) selected:")
   }
 
-  return(list(spec = spec, rowFile = rowFile))
+  return(list(spec = spec, rowFile = rowfile))
 }
