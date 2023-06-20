@@ -76,6 +76,12 @@ test_that("Columns and class data", {
 
 
 test_that("Geo level", {
+  dt <- readRDS(file = system.file("testdata", "geo-level-dt.rds", package = "orgdata"))
+  dt2 <- readRDS(file = system.file("testdata", "geo-level-output.rds", package = "orgdata"))
+
+  expect_equal(is_geo_level(dd = dt), "grunnkrets")
+  expect_equal(is_digit_geo(dd = dt, .test = TRUE), dt2)
+
   expect_equal(is_geo_level(2), "fylke")
   expect_equal(is_geo_level(12345678), "grunnkrets")
   expect_equal(is_geo_level(1234567), "grunnkrets")
