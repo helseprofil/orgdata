@@ -60,7 +60,6 @@ is_aggregate <- function(dt = NULL,
   if (is.null(aggregate)) aggregate <- getOption("orgdata.aggregate")
   if (is.null(base)) base <- getOption("orgdata.recode.base")
 
-
   aggSpec <- get_aggregate(spec = fgspec)
   source <- is_geo_level(dd = dt)
   aggCol <- find_column_multi(spec = fgspec, "AGGKOL") #Other columns to aggregate
@@ -190,7 +189,12 @@ is_col_num <- function(dt, cols){
 }
 
 # Ensure the maximum digits in the dataset to identify geo level
-is_digit_geo <- function(dd){
+is_digit_geo <- function(dd, .test = FALSE){
+
+  if (.test){
+    set.seed(1472)
+  }
+
   GEO <- digitGEO <- NULL
   dt <- dd[!is.na(GEO) | GEO!=""][sample(1:.N, 50)]
   dt[, digitGEO := nchar(GEO)]
