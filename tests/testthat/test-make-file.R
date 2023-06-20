@@ -16,6 +16,8 @@ test_that("Select files", {
 
   sel <- readRDS(file = system.file("testdata", "spec-file.rds", package = "orgdata"))
   out <- readRDS(file = system.file("testdata", "spec-file-output.rds", package = "orgdata"))
+  last <- readRDS(file = system.file("testdata", "last-file-output.rds", package = "orgdata"))
 
   expect_equal(is_select_file(spec = sel, select = 30:34), out)
+  expect_equal(is_select_file(spec = sel, select = "last"), last)
 })
