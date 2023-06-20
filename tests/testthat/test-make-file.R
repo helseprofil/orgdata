@@ -20,4 +20,5 @@ test_that("Select files", {
 
   expect_equal(is_select_file(spec = sel, select = 30:34), out)
   expect_equal(is_select_file(spec = sel, select = "last"), last)
+  expect_equal(is_select_file(spec = sel[30:34,], select = NULL, rowfile = 5), out)
 })
