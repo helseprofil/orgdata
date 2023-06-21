@@ -240,7 +240,7 @@ make_file <- function(group = NULL,
     cat("\n", praise::praise("${EXCLAMATION}! ${adjective}"), is_word("!!!"), is_party(), "\n\n")
   }
 
-  return(outDT)
+  return(outDT[])
 }
 
 #' @export
