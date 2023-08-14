@@ -24,7 +24,7 @@ Depends:
 Imports: 
     data.table (>= 1.14.6),
     DBI (>= 1.1.3),
-    norgeo (>= 2.1.0),
+    norgeo (>= 2.2.0),
     odbc (>= 1.3.4),
     R6 (>= 2.5.1),
     readxl (>= 1.4.1),
@@ -43,7 +43,8 @@ Imports:
     cli (>= 3.4.0)
 Remotes: 
     ybkamaleri/praise,
-    hadley/emo
+    hadley/emo,
+    helseprofil/norgeo
 Suggests:
     testthat (>= 3.0.0),
     tibble (>= 3.1.4),
