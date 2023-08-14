@@ -1,7 +1,7 @@
-# orgdata 1.4.0 (dev)
+# orgdata 1.4.1 (dev)
 - Refactor some codes.
 - Specify encoding via config.yml file.
-- Use `norgeo` package from Github ie. dev, instead of CRAN.
+- Use `norgeo` package version 2.3.0 from Github ie. dev, instead of CRAN.
 
 # orgdata 1.3.6
 - Fix selecting files without `KOBLID` (#315)
