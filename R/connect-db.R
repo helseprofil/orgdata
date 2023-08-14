@@ -186,7 +186,7 @@ connect_db <- function(dbname, dbtype, dbyear, dbdriver){
          Access = {
            DBI::dbConnect(odbc::odbc(),
                           .connection_string = paste0(dbdriver, dbname),
-                          encoding = "latin1")
+                          encoding = getOption("orgdata.encoding"))
          },
          DuckDB = {
            duckRoot <- duck_db_path(dbname, dbyear, file = FALSE)

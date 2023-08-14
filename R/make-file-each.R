@@ -124,37 +124,35 @@ do_make_file_each <- function(spec, fgspec, aggregate, datacols, year, row, base
 
 
   ## Add to or read from DuckDB -------------
-  ## TODO Need to refactor the codes below
-  ## To use if..else.. makes the codes difficult to read
   fileName <- find_column_input(fileSpec, "FILNAVN")
   fileName <- paste0("../", gsub("\\\\", "/", fileName))
 
   if (!fileCtrl && fileDuck){
-    is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
-    withr::with_options(list(orgdata.emoji = "safe"),
-                        is_color_txt(x = "",
-                                     msg = "Delete dataset in the data warehouse ...",
-                                     type = "debug", emoji = TRUE))
-    duck$db_remove_table(name = duckTbl)
+    opt <- "option1"
+    optMsg <- "Delete dataset in the data warehouse ..."
+  } else if (fileCtrl && !fileDuck){
+    opt <- "option2"
+    optMsg <- "Adding dataset to data warehouse ..."
+  } else if (fileCtrl && fileDuck){
+    opt <- "option3"
+    optMsg <- "Data found in data warehouse! To read from raw data uncheck KONTROLLERT or use `raw=TRUE` instead"
+  } else {
+    opt <- "option4"
   }
 
-  if (fileCtrl && !fileDuck){
+  if (opt != "option4"){
     is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
     withr::with_options(list(orgdata.emoji = "safe"),
-                        is_color_txt(x = "",
-                                     msg = "Adding dataset to data warehouse ...",
-                                     type = "debug", emoji = TRUE))
-    duck$db_write(name = duckTbl, value = dt, write = TRUE)
+                        is_color_txt(x = "", msg = optMsg, type = "debug", emoji = TRUE))
   }
 
-  if (fileCtrl && fileDuck){
-    withr::with_options(list(orgdata.emoji = "safe"),
-                        is_color_txt(x = "",
-                                     msg = "Data found in data warehouse! To read from raw data uncheck KONTROLLERT or use `raw=TRUE` instead",
-                                     type = "debug", emoji = TRUE))
-    is_color_txt(x = fileName, msg = "File:")
-    dt <- duck$db_read(name = duckTbl)
-  }
+  switch(opt,
+         option1 = duck$db_remove_table(name = duckTbl),
+         option2 = duck$db_write(name = duckTbl, value = dt, write = TRUE),
+         option3 = {
+           is_color_txt(x = fileName, msg = "File:")
+           dt <- duck$db_read(name = duckTbl)
+         })
 
   data.table::copy(dt)
 }

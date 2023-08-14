@@ -218,6 +218,7 @@ make_file <- function(group = NULL,
     save_file(dt = outDT, name = group, fgSpec = fgSpec)
   }
 
+  is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)
   is_color_txt(x = group,
                msg = "Completed filegroup:",
                type = "note",
