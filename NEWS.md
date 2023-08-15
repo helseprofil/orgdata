@@ -1,4 +1,7 @@
-# orgdata 1.4.1 (dev)
+# orgdata 1.4.2 (dev)
+- Display output when called.
+
+# orgdata 1.4.1
 - Refactor some codes.
 - Specify encoding via config.yml file.
 - Use `norgeo` package version 2.3.0 from Github ie. dev, instead of CRAN.
