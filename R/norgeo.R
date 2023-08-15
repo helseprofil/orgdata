@@ -57,7 +57,7 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
     is_verbose(x = geoFile, msg = msgAppend, type = "note")
   }
 
-  return(geo$tblvalue)
+  return(geo$tblvalue[])
 }
 
 #' @title Geographical Codes to Recode
@@ -131,7 +131,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
     is_verbose(x = geoFile, msg = msgAppend, type = "note")
   }
 
-  return(geo$tblvalue)
+  return(geo$tblvalue[])
 }
 
 
@@ -247,7 +247,7 @@ geo_merge <- function(id.table = NULL,
     is_verbose(x = geoDB, msg = msgWrite, type = "note")
   }
 
-  return(DT)
+  return(DT[])
 }
 
 #' @title Create Dummy Enumeration Area Codes
