@@ -1,5 +1,6 @@
-# orgdata 1.4.2 (dev)
+# orgdata 1.4.2
 - Display output when called.
+- Require `norgeo` package version 2.3.1
 
 # orgdata 1.4.1
 - Refactor some codes.

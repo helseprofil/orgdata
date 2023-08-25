@@ -24,7 +24,7 @@ Depends:
 Imports: 
     data.table (>= 1.14.6),
     DBI (>= 1.1.3),
-    norgeo (>= 2.3.0),
+    norgeo (>= 2.3.1),
     odbc (>= 1.3.4),
     R6 (>= 2.5.1),
     readxl (>= 1.4.1),
