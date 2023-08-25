@@ -7,27 +7,19 @@
 - Specify encoding via config.yml file.
 - Use `norgeo` package version 2.3.0 from Github ie. dev, instead of CRAN.
 
-# orgdata 1.3.6
+# orgdata 1.3.0
 - Fix selecting files without `KOBLID` (#315)
 - Add more testing.
-
-# orgdata 1.3.5
 - Avoid warning when connection to the database is already closed.
 - Create environment for status flow ie. `orgEnv`.
 - Can use `select` arg to ease choosing file(s) in `make_file()` instead of `KOBLID`.
   Read the document on how to use the argument.
 - Refactor some codes.
 - Edit some documents.
-
-# orgdata 1.3.3
 - Fix `dbDisconnect` error (#312)
 - Edit message (#313)
 - Edit few other messages as well.
-
-# orgdata 1.3.2
 - Manage encoding warning for R 4.1 and below.
-
-# orgdata 1.3.1
 - Filtering with `IBRUKTIL` and `IBRUKFRA` for selecting original files.
   `IBRUKTIL` uses `>=` and `IBRUKFRA` uses `<` of the specified date. (#309)
 - Update vignette on debugging.
