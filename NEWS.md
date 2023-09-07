@@ -1,3 +1,6 @@
+# orgdata 1.4.3
+- Have access to future data from API (#316)
+
 # orgdata 1.4.2
 - Display output when called.
 - Require `norgeo` package version 2.3.1
