@@ -88,17 +88,23 @@ emoji <- function(x = c("mark", "thumb", "write",
 
 #' @title Update package
 #' @description Update orgdata directly with Github repo. Default is `main` branch.
-#' @param ... Other arguments to `remotes::install_github()`
+#' @param branch The branch in Github to install from
+#' @param force Use the laterst version(s) of all dependencies. Default is FALSE
 #' @examples
 #' \dontrun{
-#' update_orgdata() #use default
-#' update_orgdata(ref = "dev") #to upgrade with dev branch
+#' update_orgdata(branch = "main") #default
+#' update_orgdata(branch = "dev") #to upgrade with dev branch
 #' }
 #' @export
-update_orgdata <- function(...){
+update_orgdata <- function(branch = c("main", "dev"), force = FALSE){
+  branch <- match.arg(branch)
   unloadNamespace("orgdata")
-  suppressWarnings(remotes::install_github("helseprofil/orgdata", force = TRUE, ...))
+  switch(branch,
+         main = pak::pkg_install("helseprofil/orgdata", upgrade = force),
+         dev = pak::pkg_install("helseprofil/orgdata@dev", upgrade = force)
+         )
   attachNamespace("orgdata")
+  invisible()
 }
 
 #' @export
