@@ -69,7 +69,7 @@ via `orgdata`.
 orgdata::update_orgdata()
 
 # install development versjon
-orgdata::update_orgdata(ref = "dev")
+orgdata::update_orgdata(branch = "dev")
 ```
 
 ## Usage 

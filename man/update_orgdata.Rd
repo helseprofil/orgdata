@@ -5,19 +5,21 @@
 \alias{upgrade_orgdata}
 \title{Update package}
 \usage{
-update_orgdata(...)
+update_orgdata(branch = c("main", "dev"), force = FALSE)
 
-upgrade_orgdata(...)
+upgrade_orgdata(branch = c("main", "dev"), force = FALSE)
 }
 \arguments{
-\item{...}{Other arguments to \code{remotes::install_github()}}
+\item{branch}{The branch in Github to install from}
+
+\item{force}{Use the laterst version(s) of all dependencies. Default is FALSE}
 }
 \description{
 Update orgdata directly with Github repo. Default is \code{main} branch.
 }
 \examples{
 \dontrun{
-update_orgdata() #use default
-update_orgdata(ref = "dev") #to upgrade with dev branch
+update_orgdata(branch = "main") #default
+update_orgdata(branch = "dev") #to upgrade with dev branch
 }
 }

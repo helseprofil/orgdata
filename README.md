@@ -43,7 +43,7 @@ version via `orgdata`.
 orgdata::update_orgdata()
 
 # install development versjon
-orgdata::update_orgdata(ref = "dev")
+orgdata::update_orgdata(branch = "dev")
 ```
 
 ## Usage
@@ -74,12 +74,12 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 
 ## Resources
 
-  - [Config
-    file](https://github.com/helseprofil/config/blob/main/config-orgdata.yml)
-  - [Get
-    started](https://helseprofil.github.io/orgdata/articles/get-started.html)
-  - [Functions
-    overview](https://helseprofil.github.io/orgdata/reference/index.html)
-  - [General guide](https://helseprofil.github.io)
-  - [Conventions](https://helseprofil.github.io/orgdata/articles/standard.html)
-  - [Video guide](https://youtu.be/PhEQq4iWJCY)
+- [Config
+  file](https://github.com/helseprofil/config/blob/main/config-orgdata.yml)
+- [Get
+  started](https://helseprofil.github.io/orgdata/articles/get-started.html)
+- [Functions
+  overview](https://helseprofil.github.io/orgdata/reference/index.html)
+- [General guide](https://helseprofil.github.io)
+- [Conventions](https://helseprofil.github.io/orgdata/articles/standard.html)
+- [Video guide](https://youtu.be/PhEQq4iWJCY)
