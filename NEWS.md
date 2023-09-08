@@ -1,5 +1,6 @@
-# orgdata 1.4.3
-- Have access to future data from API (#316)
+# orgdata 1.4.5
+- Have access to future data from API (#316).
+- Use `pak` package for upgrade.
 
 # orgdata 1.4.2
 - Display output when called.
