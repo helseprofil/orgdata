@@ -162,8 +162,7 @@ test_that("Recode geo", {
                           GEO = c(50600310L, 50600311L, 50600312L, 50609999L, 99999999L),
                           ALDER = c("          18", "          22", "          23", "          24", "          25"),
                           VAL1 = c(1L, 2L, 1L, 2L, 4L),
-                          origin = c(50510310L, 50510311L, 50510312L, 50519999L, 99999999L),
-                          dummy_grk = c(0, 0, 0, 0, 0)),
+                          origin = c(50510310L, 50510311L, 50510312L, 50519999L, 99999999L)),
                      row.names = c(NA, -5L), class = c("data.table", "data.frame"))
 
   ## TEST
