@@ -1,3 +1,7 @@
+# orgdata 1.4.6
+- Should not give unnecessary warning with `dummy_grk` (#318)
+- Rename argument `year` to `year.geo` in `make_file()` to be more explicit (#317)
+
 # orgdata 1.4.5
 - Have access to future data from API (#316).
 - Use `pak` package for upgrade.
@@ -250,7 +254,7 @@
 - Actively select only the first geo code when old geo code is split into
   multiple new geo codes. (#159)
 - Able to select a base year for geo recode based on the year available in the
-  original data. This is available in column `AAR` in the dataset. Use argument
+  original data. This is available in column `AAR` in the dataset. Use argument
   `base` or global option `orgdata.recode.base` with logical input. `TRUE` will
   select the base year for recoding geographical code from the year of the
   original file to the current year. Default is `FALSE` ie. include all
