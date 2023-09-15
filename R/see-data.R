@@ -6,6 +6,8 @@
 #'   in Access registration database.
 #' @param group The filegroup name (\emph{filgruppe})
 #' @param koblid Specify one or multiple KOBLID. Use `"all"` to delete all data in warehouse for seleted filegroup.
+#' @param year Which reference year to use for geograhical coding. If it is
+#'   missing then global option for `orgdata.year` will be used.
 #' @inheritParams make_file
 #' @param action To read or delete the data in the warehouse. Default is `read`.
 #' @examples

@@ -16,6 +16,9 @@ see_data(
 
 \item{koblid}{Specify one or multiple KOBLID. Use \code{"all"} to delete all data in warehouse for seleted filegroup.}
 
+\item{year}{Which reference year to use for geograhical coding. If it is
+missing then global option for \code{orgdata.year} will be used.}
+
 \item{action}{To read or delete the data in the warehouse. Default is \code{read}.}
 }
 \description{

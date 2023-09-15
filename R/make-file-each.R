@@ -3,6 +3,8 @@
 #' @param spec File specification
 #' @param fgspec Filegroup specification
 #' @param datacols Columnames to be kept
+#' @param year Which reference year to use for geograhical coding. If it is
+#'   missing then global option for `orgdata.year` will be used.
 #' @inheritParams make_file
 #' @param duck R6 object for DuckDB
 #' @export
