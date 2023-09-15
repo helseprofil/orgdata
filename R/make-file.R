@@ -15,7 +15,7 @@
 #' @param save Logical value. Default is `FALSE`. To save as `.csv` format file
 #'   by activating `save_file()` function.
 #' @param year.geo Which reference year to use for geograhical coding. If it is
-#'   missing then global option for orgdata.year will be used.
+#'   missing then global option for `orgdata.year` will be used.
 #' @inheritParams do_geo_recode
 #' @param implicitnull Logical value. Default is `TRUE` to add implicit null to
 #'   the dataset. Global options with `orgdata.implicit.null`.
