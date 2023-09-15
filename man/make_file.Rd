@@ -11,7 +11,7 @@ make_file(
   koblid = NULL,
   aggregate = NULL,
   save = FALSE,
-  year = NULL,
+  year.geo = NULL,
   implicitnull = NULL,
   row = NULL,
   base = NULL,
@@ -25,7 +25,7 @@ lag_fil(
   koblid = NULL,
   aggregate = NULL,
   save = FALSE,
-  year = NULL,
+  year.geo = NULL,
   implicitnull = NULL,
   row = NULL,
   base = NULL,
@@ -39,7 +39,7 @@ mf(
   koblid = NULL,
   aggregate = NULL,
   save = FALSE,
-  year = NULL,
+  year.geo = NULL,
   implicitnull = NULL,
   row = NULL,
   base = NULL,
@@ -60,8 +60,8 @@ to the specification in registration database. Global options with
 \item{save}{Logical value. Default is \code{FALSE}. To save as \code{.csv} format file
 by activating \code{save_file()} function.}
 
-\item{year}{Which year the geograhical codes to be recoded to. If it is empty
-then global option for \code{orgdata.year} will be used.}
+\item{year.geo}{Which reference year to use for geograhical coding. If it is
+missing then global option for orgdata.year will be used.}
 
 \item{implicitnull}{Logical value. Default is \code{TRUE} to add implicit null to
 the dataset. Global options with \code{orgdata.implicit.null}.}

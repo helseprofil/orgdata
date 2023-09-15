@@ -24,7 +24,7 @@ raw data. The function lag_fil() is an alias to make_file()."><meta property="og
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@ raw data. The function <code>lag_fil()</code> is an alias to <code>make_file()</
 <span>  koblid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  aggregate <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  year.geo <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  implicitnull <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  row <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  base <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -103,7 +103,7 @@ raw data. The function <code>lag_fil()</code> is an alias to <code>make_file()</
 <span>  koblid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  aggregate <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  year.geo <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  implicitnull <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  row <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  base <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -117,7 +117,7 @@ raw data. The function <code>lag_fil()</code> is an alias to <code>make_file()</
 <span>  koblid <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  aggregate <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  save <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  year.geo <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  implicitnull <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  row <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  base <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -148,9 +148,9 @@ to the specification in registration database. Global options with
 by activating <code><a href="save_file.html">save_file()</a></code> function.</p></dd>
 
 
-<dt>year</dt>
-<dd><p>Which year the geograhical codes to be recoded to. If it is empty
-then global option for <code>orgdata.year</code> will be used.</p></dd>
+<dt>year.geo</dt>
+<dd><p>Which reference year to use for geograhical coding. If it is
+missing then global option for orgdata.year will be used.</p></dd>
 
 
 <dt>implicitnull</dt>

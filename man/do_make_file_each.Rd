@@ -26,9 +26,6 @@ to the specification in registration database. Global options with
 
 \item{datacols}{Columnames to be kept}
 
-\item{year}{Which year the geograhical codes to be recoded to. If it is empty
-then global option for \code{orgdata.year} will be used.}
-
 \item{row}{Select specific row(s) numbers only. Useful for debugging. Please
 read \code{Debugging} article for detail.}
 
