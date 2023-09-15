@@ -61,7 +61,7 @@ to the specification in registration database. Global options with
 by activating \code{save_file()} function.}
 
 \item{year.geo}{Which reference year to use for geograhical coding. If it is
-missing then global option for orgdata.year will be used.}
+missing then global option for \code{orgdata.year} will be used.}
 
 \item{implicitnull}{Logical value. Default is \code{TRUE} to add implicit null to
 the dataset. Global options with \code{orgdata.implicit.null}.}
