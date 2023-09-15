@@ -14,6 +14,8 @@
 #'   `orgdata.aggregate`.
 #' @param save Logical value. Default is `FALSE`. To save as `.csv` format file
 #'   by activating `save_file()` function.
+#' @param year.geo Which reference year to use for geograhical coding. If it is
+#'   missing then global option for orgdata.year will be used.
 #' @inheritParams do_geo_recode
 #' @param implicitnull Logical value. Default is `TRUE` to add implicit null to
 #'   the dataset. Global options with `orgdata.implicit.null`.
@@ -48,7 +50,7 @@ make_file <- function(group = NULL,
                       koblid = NULL,
                       aggregate = NULL,
                       save = FALSE,
-                      year = NULL,
+                      year.geo = NULL,
                       implicitnull = NULL,
                       row = NULL,
                       base = NULL,
@@ -61,6 +63,8 @@ make_file <- function(group = NULL,
 
   is_null(group, "Filgruppe is missing")
   is_debug()
+
+  year <- year.geo
 
   if (is.null(aggregate)) aggregate <- getOption("orgdata.aggregate")
   if (is.null(year)) year <- getOption("orgdata.year")
