@@ -169,7 +169,7 @@ do_geo_recode <- function(dt = NULL,
     dt[, "batch" := srcBatch]
 
     dt[code, on = "GEO", "geo2" := i.to]
-    dt[, c("GEO", "dummy_grk") := NULL]
+    dt[, GEO := NULL] # keep and rename geo2 instead
     geoVar <- c("oriGEO", "GEO")
     data.table::setnames(dt, c("origin", "geo2"), geoVar)
     data.table::setcolorder(dt, c(geoVar, "AAR"))
@@ -280,6 +280,7 @@ is_grunnkrets <- function(dt, control = FALSE, ...){
 
   dummy <- dt[dummy_grk != 0, .N]
   if (dummy == 0){
+    dt[, dummy_grk := NULL]
     return(dt)
   }
 
@@ -295,7 +296,6 @@ is_grunnkrets <- function(dt, control = FALSE, ...){
   message("Processing ...")
 
   for (i in idx){
-
     val <- dt[i, dummy_grk]
     addVal <- is_geo_oddeven(val)
     val9 <- as.integer(paste(rep(9, addVal), collapse = ""))

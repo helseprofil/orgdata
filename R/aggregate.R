@@ -72,7 +72,7 @@ do_aggregate <- function(dt = NULL,
     colVals <- c(colVals, wide)
   }
 
-  aggNot <- c("GEO", colVals, "origin", "dummy_grk")
+  aggNot <- c("GEO", colVals, "origin")
   aggYes <- setdiff(names(dt), aggNot)
   aggCols <- c(level, aggYes)
 
@@ -85,7 +85,6 @@ do_aggregate <- function(dt = NULL,
   ## Breakpoint here to check the missing GEO when merging
   if (check) {
     is_debug_warn("`orgdata.debug.aggregate`")
-    dt[, "dummy_grk" := NULL]
     orgEnv$status <- 0
     return(dt)
   }
