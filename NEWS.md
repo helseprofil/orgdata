@@ -1,5 +1,5 @@
 # orgdata 1.4.7 (dev)
-- Can use different encodings for reading files and Access database. Encoding can be specified in `options` with either `encoding.access` or `encoding.csv`. Check [config](https://github.com/helseprofil/config/blob/main/config-orgdata.yml) file.
+- Can use different encodings for reading files and Access database. Encoding can be specified in `options` with either `orgdata.encoding.access` or `orgdata.encoding.csv`. Check [config](https://github.com/helseprofil/config/blob/main/config-orgdata.yml) file.
 
 # orgdata 1.4.6
 - Should not give unnecessary warning with `dummy_grk` (#318)
