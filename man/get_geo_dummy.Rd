@@ -4,7 +4,7 @@
 \alias{get_geo_dummy}
 \title{Create Dummy Enumeration Area Codes}
 \usage{
-get_geo_dummy(dt, from, to, type)
+get_geo_dummy(dt, from, to, type, fix = TRUE)
 }
 \arguments{
 \item{dt}{Downloaded data with norgeo::track_change()}
@@ -14,6 +14,11 @@ get_geo_dummy(dt, from, to, type)
 \item{to}{End of year for the range period. Current year is the default if left empty}
 
 \item{type}{Type of regional granularity ie. enumeration area (grunnkrets)}
+
+\item{fix}{Default is TRUE. Use external codes to fix geo
+changes manually. The codes is sourced from
+\href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+depending on the granularity levels.}
 }
 \description{
 Some of the downloaded enumeration area codes from SSB lack
