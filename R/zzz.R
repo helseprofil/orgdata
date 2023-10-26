@@ -1,14 +1,18 @@
 ## Path for different operating system
 OS <- Sys.info()["sysname"]
 
-## Options for Folkehelseprofiler
-optOrg <- yaml::yaml.load_file("https://raw.githubusercontent.com/helseprofil/config/main/config-orgdata.yml")
-opt.orgdata <- as.list(opt_rename(optOrg))
+## Global options
+is_options <- function(){
+  optOrg <- yaml::yaml.load_file("https://raw.githubusercontent.com/helseprofil/config/main/config-orgdata.yml")
+  as.list(opt_rename(optOrg))
+}
+opt.orgdata <- is_options()
 
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  orgDT <- !(names(opt.orgdata) %in% names(op))
-  if (any(orgDT)) options(opt.orgdata[orgDT])
+  optOrg <- is_options()
+  orgDT <- !(names(optOrg) %in% names(op))
+  if (any(orgDT)) options(optOrg[orgDT])
 
   invisible()
 }
@@ -31,3 +35,4 @@ rvers <- function(){
   rlokal <- paste(version[c("major", "minor")], collapse = ".")
   numeric_version(rlokal) > numeric_version("4.1.0")
 }
+
