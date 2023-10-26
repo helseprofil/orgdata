@@ -217,3 +217,24 @@ is_select_file <- function(spec, select, rowfile){
 
   return(list(spec = spec, rowFile = rowfile))
 }
+
+# Filegroup name
+# y - selected filegroup
+# con - connection
+is_filegroup <- function(y, con){
+  gp <- find_spec("filegroup-all.sql",
+                  con = con,
+                 asis = TRUE)
+
+  x <- gp$FILGRUPPE
+
+  if(any(y == x)){
+    return(y)
+  } else {
+    g <- substr(y, 1, 2)
+    gg <- grep(paste0("^", g), x, value = TRUE)
+  }
+
+  is_stop("Can't find filegroup. May be you mean one of these? \n", gg)
+  invisible()
+}
