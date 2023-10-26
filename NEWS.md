@@ -1,4 +1,4 @@
-# orgdata 1.4.7 (dev)
+# orgdata 1.4.7
 - Can use different encodings for reading files and Access database. Encoding
   can be specified in `options` with either `orgdata.encoding.access` or
   `orgdata.encoding.csv`. Check
