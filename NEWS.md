@@ -1,4 +1,5 @@
 # orgdata 1.4.8 (dev)
+- Check filegroup input and give suggestion if not found.
 - Fix `debug.rows` options.
 
 # orgdata 1.4.7
