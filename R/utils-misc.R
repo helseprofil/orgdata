@@ -3,7 +3,9 @@
 #' @description Update global options based on the file in config repo
 #' @export
 update_globs <- function(){
-
+  g <- is_globs()
+  x <- names(g) %in% names(options())
+  if (any(x)) options(g[x])
 
   invisible()
 }
