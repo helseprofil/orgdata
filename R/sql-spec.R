@@ -30,6 +30,7 @@
 #' @param char2 Second input value to be added in the query
 #' @param char3 Third input value to be added in the query
 #' @param opposite TRUE if second input value will be read before first input value
+#' @param asis TRUE if sql code file should be read as it is without any other input
 #' @return Out put will be a data.frame.
 #' @examples
 #' \dontrun{
@@ -44,20 +45,27 @@ find_spec <- function(file = NULL,
                       char = NULL,
                       char2 = NULL,
                       char3 = NULL,
-                      opposite = FALSE) {
+                      opposite = FALSE,
+                      asis = FALSE) {
 
   is_null(file)
   is_not_null_both(value, char)
   is_not_null_both(value, char2)
   is_null(con)
 
-  qs <- is_query(file = file,
-                 value = value,
-                 external = external,
-                 char = char,
-                 char2 = char2,
-                 char3 = char3,
-                 opposite = opposite)
+  if (asis){
+    path <- system.file(file, package = "orgdata")
+    qs <- paste(readLines(path), collapse = "\n")
+  } else {
+    qs <- is_query(file = file,
+                   value = value,
+                   external = external,
+                   char = char,
+                   char2 = char2,
+                   char3 = char3,
+                   opposite = opposite)
+  }
+
   DBI::dbGetQuery(con, qs)
 }
 
