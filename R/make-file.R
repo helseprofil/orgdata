@@ -69,7 +69,7 @@ make_file <- function(group = NULL,
   if (is.null(aggregate)) aggregate <- getOption("orgdata.aggregate")
   if (is.null(year)) year <- getOption("orgdata.year")
   if (is.null(implicitnull)) implicitnull <- getOption("orgdata.implicit.null")
-  if (is.null(row)) row <- getOption("orgdata.debug.row")
+  if (is.null(row)) row <- getOption("orgdata.debug.rows")
   if (is.null(base)) base <- getOption("orgdata.recode.base")
   if (is.null(raw)) raw <- getOption("orgdata.read.raw")
 

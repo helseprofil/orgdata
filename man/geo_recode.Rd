@@ -9,7 +9,8 @@ geo_recode(
   from = NULL,
   to = NULL,
   write = FALSE,
-  append = FALSE
+  append = FALSE,
+  fix = TRUE
 )
 }
 \arguments{
@@ -23,6 +24,11 @@ geo_recode(
 the table if it already exists}
 
 \item{append}{Append the data to an existing table in the \code{orgdata.geo}}
+
+\item{fix}{Default is TRUE. Use external codes to fix geo
+changes manually. The codes is sourced from
+\href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+depending on the granularity levels.}
 }
 \description{
 Create a table of current year geographical codes against previous

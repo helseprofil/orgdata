@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +59,9 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.7" id="orgdata-147-dev">orgdata 1.4.7 (dev)<a class="anchor" aria-label="anchor" href="#orgdata-147-dev"></a></h2>
 <ul><li>Can use different encodings for reading files and Access database. Encoding can be specified in <code>options</code> with either <code>orgdata.encoding.access</code> or <code>orgdata.encoding.csv</code>. Check <a href="https://github.com/helseprofil/config/blob/main/config-orgdata.yml" class="external-link">config</a> file.</li>
+<li>Fix geo splitting in <code><a href="../reference/geo_recode.html">geo_recode()</a></code> using <code>fix=TRUE</code> as default argument.</li>
+<li>Change options name from <code>debug.row</code> to <code>debug.rows</code>.</li>
+<li>Fix problem updating global options when config file has changed (<a href="https://github.com/helseprofil/orgdata/issues/320" class="external-link">#320</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.6" id="orgdata-146">orgdata 1.4.6<a class="anchor" aria-label="anchor" href="#orgdata-146"></a></h2>
@@ -238,7 +241,7 @@
 </li>
 <li>Recode geo even when argument <code>aggregate = FALSE</code> in <code><a href="../reference/make_file.html">make_file()</a></code> function.</li>
 <li>Rename <code>make_filegroup</code> and <code>lag_filgruppe</code> to plural ie. <code>make_filegroups</code> and <code>lag_filgrupper</code>.</li>
-<li>Use options <code>orgdata.debug.row</code> to select only specific row(s) for further processing. It can be activated via global options with <code>options(orgdata.debug.row = 20:50)</code> or via argument <code>row = 20:50</code> in <code><a href="../reference/make_file.html">make_file()</a></code> to select row 20 to 50.</li>
+<li>Use options <code>orgdata.debug.rows</code> to select only specific row(s) for further processing. It can be activated via global options with <code>options(orgdata.debug.rows = 20:50)</code> or via argument <code>row = 20:50</code> in <code><a href="../reference/make_file.html">make_file()</a></code> to select row 20 to 50.</li>
 <li>Fixed <a href="https://github.com/helseprofil/orgdata/issues/135" class="external-link">#135</a> with incorrect geo recode. (<a href="https://github.com/helseprofil/orgdata/issues/131" class="external-link">#131</a>)</li>
 <li>Make multiple filegroups via <code>make_filegroups</code>. (<a href="https://github.com/helseprofil/orgdata/issues/137" class="external-link">#137</a>)</li>
 <li>Fixed <a href="https://github.com/helseprofil/orgdata/issues/132" class="external-link">#132</a> LANDSSB must be string</li>

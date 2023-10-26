@@ -20,7 +20,7 @@ Debugging can be done via specification in `options()` or a wrapper
 
  - `orgdata.debug`
  - `orgdata.debug.nrow`
- - `orgdata.debug.row`
+ - `orgdata.debug.rows`
  - `orgdata.debug.aggregate`
  - `orgdata.debug.geo`
 
@@ -62,7 +62,7 @@ especially when activating [`orgdata.debug.geo`](#geo) option. To select only
 rows 20 to 50:
 
 ```{r eval = FALSE}
-options(orgdata.debug.row = 20:50)
+options(orgdata.debug.rows = 20:50)
 # OR
 debug_opt("row", 20:50)
 ```

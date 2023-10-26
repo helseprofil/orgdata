@@ -16,7 +16,7 @@ function."><meta property="og:image" content="https://helseprofil.github.io/orgd
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,8 @@ function.</p>
 <span>  from <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  to <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  write <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  append <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  append <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  fix <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -102,6 +103,13 @@ the table if it already exists</p></dd>
 
 <dt>append</dt>
 <dd><p>Append the data to an existing table in the <code>orgdata.geo</code></p></dd>
+
+
+<dt>fix</dt>
+<dd><p>Default is TRUE. Use external codes to fix geo
+changes manually. The codes is sourced from
+<a href="https://github.com/helseprofil/config/blob/main/geo/" class="external-link">config</a> files
+depending on the granularity levels.</p></dd>
 
 </dl></div>
     <div class="section level2">
