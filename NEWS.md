@@ -6,6 +6,7 @@
   file.
 - Fix geo splitting in `geo_recode()` using `fix=TRUE` as default argument.
 - Change options name from `debug.row` to `debug.rows`.
+- Fix problem updating global options when config file has changed (#320)
 
 # orgdata 1.4.6
 - Should not give unnecessary warning with `dummy_grk` (#318)
