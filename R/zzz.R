@@ -2,15 +2,11 @@
 OS <- Sys.info()["sysname"]
 
 ## Global options
-is_options <- function(){
-  optOrg <- yaml::yaml.load_file("https://raw.githubusercontent.com/helseprofil/config/main/config-orgdata.yml")
-  as.list(opt_rename(optOrg))
-}
-opt.orgdata <- is_options()
+opt.orgdata <- update_globs()
 
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  optOrg <- is_options()
+  optOrg <- update_globs()
   orgDT <- !(names(optOrg) %in% names(op))
   if (any(orgDT)) options(optOrg[orgDT])
 
