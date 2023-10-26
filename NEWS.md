@@ -5,6 +5,7 @@
   [config](https://github.com/helseprofil/config/blob/main/config-orgdata.yml)
   file.
 - Fix geo splitting in `geo_recode()` using `fix=TRUE` as default argument.
+- Change options name from `debug.row` to `debug.rows`.
 
 # orgdata 1.4.6
 - Should not give unnecessary warning with `dummy_grk` (#318)
@@ -276,9 +277,9 @@
 - Recode geo even when argument `aggregate = FALSE` in `make_file()` function.
 - Rename `make_filegroup` and `lag_filgruppe` to plural ie. `make_filegroups`
   and `lag_filgrupper`.
-- Use options `orgdata.debug.row` to select only specific row(s) for further
+- Use options `orgdata.debug.rows` to select only specific row(s) for further
   processing. It can be activated via global options with
-  `options(orgdata.debug.row = 20:50)` or via argument `row = 20:50` in
+  `options(orgdata.debug.rows = 20:50)` or via argument `row = 20:50` in
   `make_file()` to select row 20 to 50.
 - Fixed #135 with incorrect geo recode. (#131)
 - Make multiple filegroups via `make_filegroups`. (#137)

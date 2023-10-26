@@ -35,7 +35,7 @@ is_process_file <- function(file,
   dots <- get_innlesarg(spec = filespec)
 
   if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
-  if (is.null(row)) row <- getOption("orgdata.debug.row")
+  if (is.null(row)) row <- getOption("orgdata.debug.rows")
 
   ## For GEO codes that are derived from a combination of two columns
   geoVals <- is_separate(filespec$GEO, ",")
@@ -53,7 +53,7 @@ is_process_file <- function(file,
     dt <- is_read_file_dots(file = file, dots = dots, extra = extra)
   }
 
-  ## From options(orgdata.debug.row)
+  ## From options(orgdata.debug.rows)
   if (!is.null(row)){
     dt <- dt[row,]
   }

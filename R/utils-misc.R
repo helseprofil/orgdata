@@ -40,7 +40,7 @@ reset_opt <- reset_options
 #'   - "shallow"   : Show the executed funcitons in the process flow
 #'   - "deep"      : Show deeper including helper functions in the process flow
 #'   - "nrow"      : For `orgdata.debug.nrow`. Default value is 20 if `val` argument is missing
-#'   - "row"       : For `orgdata.debug.row`. Default value is 1:50 if `val` argument is missing
+#'   - "row"       : For `orgdata.debug.rows`. Default value is 1:50 if `val` argument is missing
 #'   - "aggregate" : Activating `orgdata.debug.aggregate`
 #'   - "geo"       : Activating `orgdata.debug.geo`
 #' @examples
@@ -55,7 +55,7 @@ debug_opt <- function(opt = c("shallow", "deep", "nrow", "row", "aggregate", "ge
          shallow = options(orgdata.debug = TRUE),
          deep = options(orgdata.debug = "deep"),
          nrow = options(orgdata.debug.nrow = ifelse(is.null(val), 20, val)),
-         row = options(orgdata.debug.row = ifelse(is.null(val), 1:50, val)),
+         row = options(orgdata.debug.rows = ifelse(is.null(val), 1:50, val)),
          aggregate = options(orgdata.debug.aggregate = TRUE),
          geo = options(orgdata.debug.geo = TRUE))
 }
