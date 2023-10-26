@@ -3,13 +3,19 @@
 #' @description Update global options based on the file in config repo
 #' @export
 update_globs <- function(){
-  optOrg <- yaml::yaml.load_file("https://raw.githubusercontent.com/helseprofil/config/main/config-orgdata.yml")
-  as.list(opt_rename(optOrg))
+
+
+  invisible()
 }
 
 #' @export
 #' @rdname update_globs
 up_opt <- update_globs
+
+is_globs <- function(){
+  optOrg <- yaml::yaml.load_file("https://raw.githubusercontent.com/helseprofil/config/main/config-orgdata.yml")
+  as.list(opt_rename(optOrg))
+}
 
 #' @title Show Website
 #' @description Display website of `orgdata` package ie. \href{https://helseprofil.github.io/orgdata/}{https://helseprofil.github.io/orgdata/}
