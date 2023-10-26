@@ -68,6 +68,10 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
 #' @param type Type of regional granularity ie. enumeration area (grunnkrets)
 #' @param from Starting year for the range period. Current year is the default if left empty
 #' @param to End of year for the range period. Current year is the default if left empty
+#' @param fix Default is TRUE. Use external codes to fix geo
+#'   changes manually. The codes is sourced from
+#'   \href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+#'   depending on the granularity levels.
 #' @inheritParams geo_map
 #' @importFrom norgeo track_change
 #' @family geo codes functions
@@ -81,7 +85,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
                        from = NULL,
                        to = NULL,
                        write = FALSE,
-                       append = FALSE) {
+                       append = FALSE,
+                       fix = TRUE) {
 
   type <- match.arg(type)
   yr <- to
@@ -103,11 +108,11 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 
   cat("..")
   if (type %in% c("grunnkrets", "kommune")){
-    dtGrunn <- norgeo::track_change(type = type, from = from, to = to)
-    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to, type = type)
+    dtGrunn <- norgeo::track_change(type = type, from = from, to = to, fix = fix)
+    dtGrunn <- get_geo_dummy(dt = dtGrunn, from = from, to = to, type = type, fix = fix)
     geo$tblvalue <- dtGrunn[, "batch" := is_batch("date")]
   } else {
-    dtLevels <- norgeo::track_change(type = type, from = from, to = to)
+    dtLevels <- norgeo::track_change(type = type, from = from, to = to, fix = fix)
     geo$tblvalue <- dtLevels[, "batch" := is_batch("date")]
   }
 
@@ -258,13 +263,13 @@ geo_merge <- function(id.table = NULL,
 #' @inheritParams geo_recode
 #' @family geo codes functions
 #' @export
-get_geo_dummy <- function(dt, from, to, type){
+get_geo_dummy <- function(dt, from, to, type, fix = TRUE){
 
   geoLevel <- switch(type,
                      grunnkrets = "kommune",
                      kommune = "fylke")
 
-  geoCodes <- norgeo::track_change(type = geoLevel, from = from, to = to)
+  geoCodes <- norgeo::track_change(type = geoLevel, from = from, to = to, fix = fix)
   dt <- is_unknown_geo(dt, geoCodes, type = type)
   dt <- is_geo_99(dt, type = type)
 }
