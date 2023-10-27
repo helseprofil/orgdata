@@ -1,4 +1,4 @@
-pandoc: 3.1.3
+pandoc: 2.9.2.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -7,7 +7,7 @@ articles:
   get-started: get-started.html
   sepaafil: sepaafil.html
   standard: standard.html
-last_built: 2023-10-26T11:57Z
+last_built: 2023-10-27T08:41Z
 urls:
   reference: https://helseprofil.github.io/orgdata/reference
   article: https://helseprofil.github.io/orgdata/articles
