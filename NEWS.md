@@ -1,5 +1,7 @@
-# orgdata 1.4.8 (dev)
-- Check filegroup input and give suggestion if not found.
+# orgdata 1.5.0 (dev)
+
+# orgdata 1.4.8
+- Check filegroup input and give suggestion if not found [a10ced4](https://github.com/helseprofil/orgdata/commit/a10ced412f590fb1a407bc33755fc032b7cf4a8a)
 - Fix `debug.rows` options.
 
 # orgdata 1.4.7

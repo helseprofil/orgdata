@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Get started">
 <meta property="og:description" content="orgdata">
@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,8 +81,7 @@
 
 
 
-
-<div class="row">
+<script src="get-started_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get started</h1>
             
@@ -93,44 +92,27 @@
 
     
     
-<p>Presuming that <code>orgdata</code> package has been installed, this
-is how you can start using the most important functions.</p>
+<p>Presuming that <code>orgdata</code> package has been installed, this is how you can start using the most important functions.</p>
 <div class="section level2">
 <h2 id="aggregate-all-files">Aggregate all files<a class="anchor" aria-label="anchor" href="#aggregate-all-files"></a>
 </h2>
-<p>To aggregate all files under a specific group such as
-<em>BEFOLKNING</em> group.</p>
+<p>To aggregate all files under a specific group such as <em>BEFOLKNING</em> group.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></span>
 <span><span class="va">df</span></span></code></pre></div>
-<p>If you are satisfy with the output and no error is shown during the
-process, you could save the output ie, object <em>df</em> above, as a
-<code>.csv</code> file with:</p>
+<p>If you are satisfy with the output and no error is shown during the process, you could save the output ie, object <em>df</em> above, as a <code>.csv</code> file with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"BEFOLKNING"</span><span class="op">)</span></span></code></pre></div>
-<p>If you are certain that the process has been controlled before and
-everything should be working correctly. You could save the output
-directly as a <code>.csv</code> file when running
-<code><a href="../reference/make_file.html">make_file()</a></code> function with argument
-<code>save = TRUE</code>:</p>
+<p>If you are certain that the process has been controlled before and everything should be working correctly. You could save the output directly as a <code>.csv</code> file when running <code><a href="../reference/make_file.html">make_file()</a></code> function with argument <code>save = TRUE</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, save <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>It is advisable to mark the file as <em>KONTROLLERT</em> in the
-Access Database under table for <em>original files</em> when you have
-checked the output. This will ensure shorter processing time when you
-re-run <code><a href="../reference/make_file.html">make_file()</a></code> because it will skip all the cleaning
-and recording processes. This is because they are already saved in the
-data warehouse. The data warehouse can be found in
-<em>../PRODUKSJON/STYRING/raw-khelse/org_database</em></p>
+<p>It is advisable to mark the file as <em>KONTROLLERT</em> in the Access Database under table for <em>original files</em> when you have checked the output. This will ensure shorter processing time when you re-run <code><a href="../reference/make_file.html">make_file()</a></code> because it will skip all the cleaning and recording processes. This is because they are already saved in the data warehouse. The data warehouse can be found in <em>../PRODUKSJON/STYRING/raw-khelse/org_database</em></p>
 </div>
 <div class="section level2">
 <h2 id="aggregate-selected-files-only">Aggregate selected files only<a class="anchor" aria-label="anchor" href="#aggregate-selected-files-only"></a>
 </h2>
-<p>Aggregating the whole files in a group could take a long time when
-there are many files in the selected group. You could select only
-specific file or files by selecting the <code>KOBLID</code> instead. The
-example below is for selecting one or few files respectively.</p>
+<p>Aggregating the whole files in a group could take a long time when there are many files in the selected group. You could select only specific file or files by selecting the <code>KOBLID</code> instead. The example below is for selecting one or few files respectively.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">10</span>,<span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -138,20 +120,14 @@ example below is for selecting one or few files respectively.</p>
 <div class="section level2">
 <h2 id="process-files-without-aggregating">Process files without aggregating<a class="anchor" aria-label="anchor" href="#process-files-without-aggregating"></a>
 </h2>
-<p>When there is a need to look at the file prior to aggregating it. You
-could specify argument <code>aggregate</code> as <code>FALSE</code>. The
-same behavior could also be achieved by activating it globally via
-<code>options</code>.</p>
+<p>When there is a need to look at the file prior to aggregating it. You could specify argument <code>aggregate</code> as <code>FALSE</code>. The same behavior could also be achieved by activating it globally via <code>options</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Global option</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.aggregate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">make_file</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></span></code></pre></div>
-<p>By activating it globally using <code>options</code>, all proceeding
-processes will not be aggregated unless it’s changed during function
-call ie. include argument <code>aggregate = TRUE</code>, or you reset
-the global options with:</p>
+<p>By activating it globally using <code>options</code>, all proceeding processes will not be aggregated unless it’s changed during function call ie. include argument <code>aggregate = TRUE</code>, or you reset the global options with:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/reset_options.html">reset_opt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>

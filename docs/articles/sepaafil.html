@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="SePaaFil">
 <meta property="og:description" content="orgdata">
@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">orgdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,8 +81,7 @@
 
 
 
-
-<div class="row">
+<script src="sepaafil_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>SePaaFil</h1>
             
@@ -96,21 +95,15 @@
 <div class="section level2">
 <h2 id="loading">Loading<a class="anchor" aria-label="anchor" href="#loading"></a>
 </h2>
-<p>For å kunne bruke funksjonenen i <code>orgdata</code> pakke, må
-pakken først gjort tilgjengelig. Kjør denne komandoen:</p>
+<p>For å kunne bruke funksjonenen i <code>orgdata</code> pakke, må pakken først gjort tilgjengelig. Kjør denne komandoen:</p>
 <pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/helseprofil/orgdata" class="external-link">orgdata</a></span><span class="op">)</span></span></code></pre>
-<p>Du får spørsmål om å oppdatere når ny versjon er tilgjengelig. Svar
-<code>YES</code> til spørsmålet for å oppdatere. Evt. kan du også gjøre
-det manuelt ved å kjøre:</p>
+<p>Du får spørsmål om å oppdatere når ny versjon er tilgjengelig. Svar <code>YES</code> til spørsmålet for å oppdatere. Evt. kan du også gjøre det manuelt ved å kjøre:</p>
 <pre><code><span><span class="fu"><a href="../reference/update_orgdata.html">update_orgdata</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="objekt">Objekt<a class="anchor" aria-label="anchor" href="#objekt"></a>
 </h2>
-<p>OBS! HUSK Å ALLTID TILORDNE ET OBJEKT for <code><a href="../reference/make_file.html">make_file()</a></code> og
-<code><a href="../reference/read_file.html">read_file()</a></code>! Dvs. bruk symbol <code>&lt;-</code>. Ellers
-blir ikke resultatene tilgjengelig til lagring eller videre
-behandling.</p>
+<p>OBS! HUSK Å ALLTID TILORDNE ET OBJEKT for <code><a href="../reference/make_file.html">make_file()</a></code> og <code><a href="../reference/read_file.html">read_file()</a></code>! Dvs. bruk symbol <code>&lt;-</code>. Ellers blir ikke resultatene tilgjengelig til lagring eller videre behandling.</p>
 <pre><code>  dt &lt;- make_file()
 dvs. ^</code></pre>
 </div>
@@ -119,10 +112,7 @@ dvs. ^</code></pre>
 </h2>
 <p>Les original fil som det er ved å velge FILID</p>
 <pre><code><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> <span class="co">#12 er en FILID </span></span></code></pre>
-<p><code><a href="../reference/read_file.html">les_fil()</a></code> kan også brukes til å lese data ved å skrive
-hele stien til filen og kan brukes til å lese filer i flere formater
-bl.a <code>.xls</code>, <code>.xlsx</code>, .<code>.dta</code>,
-<code>.csv</code> etc.</p>
+<p><code><a href="../reference/read_file.html">les_fil()</a></code> kan også brukes til å lese data ved å skrive hele stien til filen og kan brukes til å lese filer i flere formater bl.a <code>.xls</code>, <code>.xlsx</code>, .<code>.dta</code>, <code>.csv</code> etc.</p>
 <pre><code><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span><span class="st">"C:/Users/abc/FileName.csv"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
@@ -131,8 +121,7 @@ bl.a <code>.xls</code>, <code>.xlsx</code>, .<code>.dta</code>,
 <p>Aggregere utvalgte fil eller filer med KOBLID</p>
 <pre><code><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fl">13</span><span class="op">)</span></span>
 <span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, koblid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-<p>Les filene i en filgruppe og bruk oppsettet som er spesifisert i
-Access</p>
+<p>Les filene i en filgruppe og bruk oppsettet som er spesifisert i Access</p>
 <pre><code><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_file.html">lag_fil</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## les fra original filen selv om filene allerede er sjekket som KONTROLLERT</span></span>
@@ -142,8 +131,7 @@ Access</p>
 <div class="section level2">
 <h2 id="lagre-resultatene-eller-objekter">Lagre resultatene eller objekter<a class="anchor" aria-label="anchor" href="#lagre-resultatene-eller-objekter"></a>
 </h2>
-<p>Hvis man har tilordnet resultat fra <code><a href="../reference/make_file.html">lag_fil()</a></code> som et
-objekt, kan objektet lages til en <code>.csv</code> fil ved å kjøre:</p>
+<p>Hvis man har tilordnet resultat fra <code><a href="../reference/make_file.html">lag_fil()</a></code> som et objekt, kan objektet lages til en <code>.csv</code> fil ved å kjøre:</p>
 <pre><code><span><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">dt</span>, <span class="st">"BEFOLKNING"</span><span class="op">)</span></span></code></pre>
 <p>Å lagre filen et annet utvalgte sted enn standard</p>
 <pre><code><span><span class="fu"><a href="../reference/save_file.html">save_file</a></span><span class="op">(</span><span class="va">dt</span>, name <span class="op">=</span> <span class="st">"MinFil"</span>, path <span class="op">=</span> <span class="st">"C:/Navn/Til/Mappen"</span><span class="op">)</span></span></code></pre>
@@ -153,9 +141,7 @@ objekt, kan objektet lages til en <code>.csv</code> fil ved å kjøre:</p>
 <div class="section level2">
 <h2 id="flere-filgrupper">Flere filgrupper<a class="anchor" aria-label="anchor" href="#flere-filgrupper"></a>
 </h2>
-<p>Hvis filene har blitt kontrollert så kan man lagre flere FILGRUPPER
-med en gang, du velger selv måten du liker å gjøre det. FILGRUPPE blir
-lagret som csv direkte. Ingen feilmelding er gitt.</p>
+<p>Hvis filene har blitt kontrollert så kan man lagre flere FILGRUPPER med en gang, du velger selv måten du liker å gjøre det. FILGRUPPE blir lagret som csv direkte. Ingen feilmelding er gitt.</p>
 <pre><code><span><span class="va">fgp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BEFOLKNING"</span>, <span class="st">"NEET"</span>, <span class="st">"DODE"</span><span class="op">)</span> <span class="co">#med " "</span></span>
 <span><span class="fu"><a href="../reference/make_filegroups.html">lag_filgrupper</a></span><span class="op">(</span><span class="va">fgp</span><span class="op">)</span></span></code></pre>
 <p>Eller</p>
@@ -164,9 +150,7 @@ lagret som csv direkte. Ingen feilmelding er gitt.</p>
 <div class="section level2">
 <h2 id="tips-and-tricks">Tips and Tricks<a class="anchor" aria-label="anchor" href="#tips-and-tricks"></a>
 </h2>
-<p>Lest bare et bestemt antall rader f.eks 5 rader kan også brukes andre
-argumenter f.eks header = FALSE, skip = 0, sep = ; osv. Sjekk
-dokumentet.</p>
+<p>Lest bare et bestemt antall rader f.eks 5 rader kan også brukes andre argumenter f.eks header = FALSE, skip = 0, sep = ; osv. Sjekk dokumentet.</p>
 <pre><code><span><span class="fu"><a href="../reference/read_file.html">les_fil</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fl">1</span>, nrows <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre>
 <p>Sjekk koding:</p>
 <pre><code><span><span class="co"># Sjekk kategorier evt. omkoding</span></span>
