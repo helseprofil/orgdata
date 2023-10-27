@@ -1,8 +1,10 @@
 # orgdata 1.5.0 (dev)
 
 # orgdata 1.4.8
-- Check filegroup input and give suggestion if not found [a10ced4](https://github.com/helseprofil/orgdata/commit/a10ced412f590fb1a407bc33755fc032b7cf4a8a)
+- Check filegroup input is correct and give suggestion if not found [db19c0d](https://github.com/helseprofil/orgdata/commit/db19c0d364b2cc1d1dbac1ec590c50920f0c1a0c).
 - Fix `debug.rows` options.
+- Check global options are updated [a10ced4](https://github.com/helseprofil/orgdata/commit/a10ced412f590fb1a407bc33755fc032b7cf4a8a)
+
 
 # orgdata 1.4.7
 - Can use different encodings for reading files and Access database. Encoding
