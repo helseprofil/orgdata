@@ -25,6 +25,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Yusman Kamaleri \email{ybka@fhi.no} (\href{https://orcid.org/0000-0001-5014-3665}{ORCID})
 
+Authors:
+\itemize{
+  \item Vegard Lysne \email{vegard.lysne@fhi.no}
+}
+
 Other contributors:
 \itemize{
   \item FHI KHelse group (https://www.fhi.no/hn/folkehelse) [contributor, reviewer]
