@@ -1,0 +1,1 @@
+SELECT FILGRUPPE FROM tbl_Filgruppe

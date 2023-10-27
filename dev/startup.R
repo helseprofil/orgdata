@@ -5,7 +5,6 @@ devtools::test()
 reset_opt()
 oldLoc <- Sys.setlocale("LC_ALL")
 Sys.setlocale(locale = "no_NB.utf8") #no_NO
-usethis::use_make()
 
 ## devtools::check(vignettes = FALSE)
 roxygen2::roxygenise(clean = TRUE)

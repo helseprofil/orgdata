@@ -9,6 +9,14 @@ opt.orgdata <- is_globs()
   optOrg <- is_globs()
   orgDT <- !(names(optOrg) %in% names(op))
   if (any(orgDT)) options(optOrg[orgDT])
+  
+  corrglobs <- is_correct_globs(optOrg)
+  if(!isTRUE(corrglobs)){
+    x <- utils::askYesNo("Options are not the same as in the config file, update options now?")
+    if(isTRUE(x)){
+      update_globs()
+    }
+  }
 
   invisible()
 }
