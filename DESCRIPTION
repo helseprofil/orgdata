@@ -7,6 +7,10 @@ Authors@R:
              role = c("aut", "cre"),
              email = "ybka@fhi.no",
              comment = c(ORCID = "0000-0001-5014-3665")),
+      person(given = "Vegard",
+             family = "Lysne",
+             role = "aut",
+             email = "vegard.lysne@fhi.no"),
       person(given = "FHI KHelse group",
              role = c("ctb", "rev"),
              comment = "https://www.fhi.no/hn/folkehelse"))
