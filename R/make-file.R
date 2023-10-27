@@ -120,6 +120,10 @@ make_file <- function(group = NULL,
 
   on.exit(duck$db_close(), add = TRUE)
 
+  ## FILGRUPPE
+  group <- is_filegroup(y = group, con = kh$dbconn)
+
+
   ## SPECIFICATIONS ----------------------------------------
   today <- format(Sys.time(), "#%Y-%m-%d#")
 
