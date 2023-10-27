@@ -161,7 +161,7 @@ os_drive <- function(os = OS){
          Windows = getOption("orgdata.win.drive"))
 }
 
-# add prefix "kh" to options
+# add prefix "orgdata to options
 opt_rename <- function(x){
   x2 <- paste("orgdata", names(x), sep = ".")
   x <- stats::setNames(x, x2)
@@ -213,4 +213,9 @@ is_online <- function(x){
   error = function(e) FALSE,
   warning = function(w) tryInvokeRestart("muffleWarning")
   )
+}
+
+is_correct_globs <- function(x){
+  y <- names(x)[names(x) %in% names(options())]
+  all.equal(x[y], options()[y])
 }
