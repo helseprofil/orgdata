@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="How to debug">
 <meta property="og:description" content="orgdata">
@@ -81,7 +81,8 @@
 
 
 
-<script src="debugging_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>How to debug</h1>
             
@@ -92,7 +93,10 @@
 
     
     
-<p>Debugging can be done via specification in <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> or a wrapper <code><a href="../reference/debug_opt.html">debug_opt()</a></code>. To check all the <em>options</em> available for <code>orgdata</code> use <code>orgdata:::opt.orgdata</code>. Debugging options include:</p>
+<p>Debugging can be done via specification in <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code> or
+a wrapper <code><a href="../reference/debug_opt.html">debug_opt()</a></code>. To check all the <em>options</em>
+available for <code>orgdata</code> use
+<code>orgdata:::opt.orgdata</code>. Debugging options include:</p>
 <ul>
 <li><code>orgdata.debug</code></li>
 <li><code>orgdata.debug.nrow</code></li>
@@ -101,13 +105,19 @@
 <li><code>orgdata.debug.geo</code></li>
 </ul>
 <p>Warning will be given when debugging is active.</p>
-<div class="figure">
-<img src="debug-geo.png" alt=""><p class="caption">debug-warning</p>
+<div class="float">
+<img src="debug-geo.png" alt="debug-warning"><div class="figcaption">debug-warning</div>
 </div>
 <div class="section level2">
 <h2 id="process">process<a class="anchor" aria-label="anchor" href="#process"></a>
 </h2>
-<p>This is used to display the process flow when running any functions in <code>orgdata</code>. It is useful to know which process creates problems during troubleshoot. Options <code>shallow</code> and <code>deep</code> are used to decide the levels of functions to be shown during the process flow. Selecting <code>shallow</code> is equal to <code>TRUE</code> while <code>deep</code> will show the helper functions as well. To activate:</p>
+<p>This is used to display the process flow when running any functions
+in <code>orgdata</code>. It is useful to know which process creates
+problems during troubleshoot. Options <code>shallow</code> and
+<code>deep</code> are used to decide the levels of functions to be shown
+during the process flow. Selecting <code>shallow</code> is equal to
+<code>TRUE</code> while <code>deep</code> will show the helper functions
+as well. To activate:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># OR</span></span>
@@ -118,7 +128,9 @@
 <div class="section level2">
 <h2 id="nrow">nrow<a class="anchor" aria-label="anchor" href="#nrow"></a>
 </h2>
-<p>To make testing faster for a very big file, you can load only some rows by activating this options. For instance, to load only the first 50 rows use:</p>
+<p>To make testing faster for a very big file, you can load only some
+rows by activating this options. For instance, to load only the first 50
+rows use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug.nrow <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
 <span><span class="co"># OR</span></span>
@@ -127,7 +139,9 @@
 <div class="section level2">
 <h2 id="row">row<a class="anchor" aria-label="anchor" href="#row"></a>
 </h2>
-<p>To select only specific row(s) for further processing. This is very useful especially when activating <a href="#geo"><code>orgdata.debug.geo</code></a> option. To select only rows 20 to 50:</p>
+<p>To select only specific row(s) for further processing. This is very
+useful especially when activating <a href="#geo"><code>orgdata.debug.geo</code></a> option. To select only
+rows 20 to 50:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug.rows <span class="op">=</span> <span class="fl">20</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span></span>
 <span><span class="co"># OR</span></span>
@@ -136,8 +150,16 @@
 <div class="section level2">
 <h2 id="aggregate">aggregate<a class="anchor" aria-label="anchor" href="#aggregate"></a>
 </h2>
-<p>To check how the geographical codes in the original data will or could be aggregated to. For instance the original data that consist of enumeration area codes can be aggregated to municipality or county. Activating this options will add the columns of origin geographical codes and the codes to aggregate into municipality, county, city etc to the output data.</p>
-<p>The difference between this options and <code>aggreagate</code> argument in <code><a href="../reference/make_file.html">make_file()</a></code> is that the argument <code>aggregate = FALSE</code> will cease aggregating after recoding geographical codes in the original data. To use:</p>
+<p>To check how the geographical codes in the original data will or
+could be aggregated to. For instance the original data that consist of
+enumeration area codes can be aggregated to municipality or county.
+Activating this options will add the columns of origin geographical
+codes and the codes to aggregate into municipality, county, city etc to
+the output data.</p>
+<p>The difference between this options and <code>aggreagate</code>
+argument in <code><a href="../reference/make_file.html">make_file()</a></code> is that the argument
+<code>aggregate = FALSE</code> will cease aggregating after recoding
+geographical codes in the original data. To use:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug.aggregate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># OR</span></span>
@@ -146,8 +168,15 @@
 <div class="section level2">
 <h2 id="geo">geo<a class="anchor" aria-label="anchor" href="#geo"></a>
 </h2>
-<p>This option is used to check the code to use for recoding geographical codes from the original data to the current geographical codes. A new columns called <code>oriGEO</code> will be added consisting the geographical codes of the original data as in the <a href="#expl">example</a>.</p>
-<p>Column <code>GEO</code> is the code to recode <code>oriGEO</code>. If the value is <code>NA</code> in column <code>GEO</code> then no recode will be done for the respective code. The reason is either the codes is still valid for the current year or no recode code available/valid and will be deleted. A warning will be given.</p>
+<p>This option is used to check the code to use for recoding
+geographical codes from the original data to the current geographical
+codes. A new columns called <code>oriGEO</code> will be added consisting
+the geographical codes of the original data as in the <a href="#expl">example</a>.</p>
+<p>Column <code>GEO</code> is the code to recode <code>oriGEO</code>. If
+the value is <code>NA</code> in column <code>GEO</code> then no recode
+will be done for the respective code. The reason is either the codes is
+still valid for the current year or no recode code available/valid and
+will be deleted. A warning will be given.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>orgdata.debug.geo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># OR</span></span>
@@ -156,14 +185,17 @@
 <div class="section level2">
 <h2 id="reset">reset<a class="anchor" aria-label="anchor" href="#reset"></a>
 </h2>
-<p>When activating any options for <code>orgdata</code>, it will be kept active until you actively deactivate it or restart a new R session. You can deactivate it with:</p>
+<p>When activating any options for <code>orgdata</code>, it will be kept
+active until you actively deactivate it or restart a new R session. You
+can deactivate it with:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/reset_options.html">reset_opt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="expl">Example output<a class="anchor" aria-label="anchor" href="#expl"></a>
 </h2>
-<p>Here is an example of output after activating <code>orgdata.debug.geo</code></p>
+<p>Here is an example of output after activating
+<code>orgdata.debug.geo</code></p>
 <pre><code>          oriGEO      GEO  AAR KJONN UTDANN TAB1 TAB2 TAB3 TAB4   ANDRE   ANNEN
      1:  1010102 30010102 2019     0     01    2    8    1    1       1       2
      2:  1010102 30010102 2019     0     01    2    5    1    1       1       3
