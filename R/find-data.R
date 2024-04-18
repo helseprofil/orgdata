@@ -31,7 +31,9 @@ find_data.csv <- function(file, ...) {
   dots <- is_csv_dots(...)
   is_verbose(file, msg = "File:")
   dots$file <- file
+  if(is.null(dots$encoding)){
   dots$encoding <- getOption("orgdata.encoding.csv")
+  }
   dt <- do.call(data.table::fread, dots)
 }
 
