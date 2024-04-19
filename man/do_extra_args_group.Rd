@@ -32,7 +32,7 @@ KHfunctions vil selv tilpasse aldersgruppene i en eventuell nevnerfil. Example c
 Other extra arguments: 
 \code{\link{do_extra_args}()},
 \code{\link{find_age_category}()},
-\code{\link{get_extra_args_group}()},
-\code{\link{get_extra_args}()}
+\code{\link{get_extra_args}()},
+\code{\link{get_extra_args_group}()}
 }
 \concept{extra arguments}

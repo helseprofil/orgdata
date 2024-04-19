@@ -22,10 +22,10 @@ understand \code{formula} and \code{value} variables.
 }
 \seealso{
 Other reshape functions: 
+\code{\link{do_reshape}()},
 \code{\link{do_reshape_long}()},
 \code{\link{do_reshape_rename_col}()},
 \code{\link{do_reshape_wide}()},
-\code{\link{do_reshape}()},
 \code{\link{get_reshape_id_val}()}
 }
 \concept{reshape functions}
