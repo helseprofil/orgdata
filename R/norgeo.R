@@ -191,7 +191,7 @@ geo_merge <- function(id.table = NULL,
                       write = FALSE,
                       table.name = "tblGeo", ...){
 
-  code <- level <- name <- validTo <- NULL
+  batch <- grunnkrets <- code <- level <- name <- validTo <- NULL
 
   # when testing, use the file in dev folder
   file <- test_file(file = file, ...)
