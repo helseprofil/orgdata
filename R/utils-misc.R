@@ -198,21 +198,18 @@ is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Versi
       out <- TRUE
     }
   } else {
-    is_color_txt("", "You have no internet connection!",
+    is_color_txt("", "Too bad.. you have no internet connection to check for any updated version!",
                  type = "error", emoji = TRUE, symbol = "sad")
   }
 
   invisible(out)
 }
 
-is_online <- function(x){
-  tryCatch({
-    readLines(x, n=1)
-    TRUE
-  },
-  error = function(e) FALSE,
-  warning = function(w) tryInvokeRestart("muffleWarning")
-  )
+is_online <- function(x = "https://www.fhi.no/"){
+  con <- url(x)
+  check <- suppressWarnings(try(open.connection(con, open = "rt", timeout = TRUE), silent = TRUE))
+  suppressWarnings(try(close.connection(con),silent=TRUE))
+  ifelse(is.null(check),TRUE,FALSE)
 }
 
 is_correct_globs <- function(x){

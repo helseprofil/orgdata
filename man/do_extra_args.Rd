@@ -28,7 +28,7 @@ Currently, these arguments can be used:
 Other extra arguments: 
 \code{\link{do_extra_args_group}()},
 \code{\link{find_age_category}()},
-\code{\link{get_extra_args_group}()},
-\code{\link{get_extra_args}()}
+\code{\link{get_extra_args}()},
+\code{\link{get_extra_args_group}()}
 }
 \concept{extra arguments}

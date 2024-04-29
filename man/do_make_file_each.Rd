@@ -30,7 +30,7 @@ to the specification in registration database. Global options with
 missing then global option for \code{orgdata.year} will be used.}
 
 \item{row}{Select specific row(s) numbers only. Useful for debugging. Please
-read \code{Debugging} article for detail.}
+read \href{https://helseprofil.github.io/orgdata/articles/debugging.html}{Debugging} article for detail.}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all

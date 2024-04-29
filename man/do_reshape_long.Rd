@@ -18,9 +18,9 @@ reshaped to wide via Access specification in \code{RESHAPE} columns.
 }
 \seealso{
 Other reshape functions: 
+\code{\link{do_reshape}()},
 \code{\link{do_reshape_rename_col}()},
 \code{\link{do_reshape_wide}()},
-\code{\link{do_reshape}()},
 \code{\link{get_reshape_id_val}()},
 \code{\link{get_reshape_wide_spec}()}
 }

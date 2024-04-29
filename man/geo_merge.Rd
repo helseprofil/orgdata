@@ -9,6 +9,7 @@ geo_merge(
   id.file = NULL,
   geo.col = NULL,
   geo.level = NULL,
+  geo.name = NULL,
   file = NULL,
   year = NULL,
   write = FALSE,
@@ -32,15 +33,18 @@ can be found.}
 
 \item{geo.level}{Geographical level of the merged file will be representing
 eg. "levekaar". This will be the value in column \code{level} in the \code{tblGeo} in
-the database.}
+the database.
+the value in column \code{name} in the \code{tblGeo}in the database.}
+
+\item{geo.name}{Column containing names of the geographical units in the merged
+file. This will be the value in column \code{name}in the \code{tblGeo} in the database.}
 
 \item{file}{Complete path of filename to merge from}
 
 \item{year}{Year the code is valid for. If not sepecified \code{orgdata.year} is
 used.}
 
-\item{write}{Write table to the \code{orgdata.geo} database. It will overwrite
-the table if it already exists}
+\item{write}{}
 
 \item{table.name}{Name of the table for geo recode in geocodes database. This
 can be found with \code{getOptions("orgdata.geo")}. The default is \code{tblGeo}.}
@@ -59,6 +63,7 @@ dt <- geo_merge(id.table = "grunnkrets",
                 id.file = "id",
                 geo.col = "col2",
                 geo.level = "levekaar",
+                geo.name = "col3",
                 file = "C:/path/to/file.csv",
                 year = 2022)
 }

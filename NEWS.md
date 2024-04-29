@@ -1,5 +1,9 @@
 # orgdata 1.5.0 (dev)
 
+# orgdata 1.4.9
+- Fix `geo.merge` [d163c9a](https://github.com/helseprofil/orgdata/commit/d163c9ac08996b0a6ab0be5d6faee2bdbd5b2c1c)
+- Allow specification of encoding in `read_file` [ba980a7](https://github.com/helseprofil/orgdata/commit/ba980a791f96a18a4e2f1782f48ca0f48cf36bd2)
+
 # orgdata 1.4.8
 - Check filegroup input is correct and give suggestion if not found [db19c0d](https://github.com/helseprofil/orgdata/commit/db19c0d364b2cc1d1dbac1ec590c50920f0c1a0c).
 - Fix `debug.rows` options.
@@ -272,7 +276,8 @@
 - Actively select only the first geo code when old geo code is split into
   multiple new geo codes. (#159)
 - Able to select a base year for geo recode based on the year available in the
-  original data. This is available in column `AAR` in the dataset. Use argument
+  original data. This is available in column `AAR` in the dataset. Use argument
+
   `base` or global option `orgdata.recode.base` with logical input. `TRUE` will
   select the base year for recoding geographical code from the year of the
   original file to the current year. Default is `FALSE` ie. include all

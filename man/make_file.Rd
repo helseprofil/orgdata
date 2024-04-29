@@ -67,7 +67,7 @@ missing then global option for \code{orgdata.year} will be used.}
 the dataset. Global options with \code{orgdata.implicit.null}.}
 
 \item{row}{Select specific row(s) numbers only. Useful for debugging. Please
-read \code{Debugging} article for detail.}
+read \href{https://helseprofil.github.io/orgdata/articles/debugging.html}{Debugging} article for detail.}
 
 \item{base}{Logical value. If \code{TRUE} then use year in the original data as the base
 year to recode the geographical codes. Default is \code{FALSE} and use all
@@ -86,7 +86,7 @@ Access database}
 
 \item{select}{Select number of valid files to process as an alternative to
 using \code{KOBLID}. To select the first 5 files then write \code{select=1:5}. Use
-\code{select="last"} to select the last file.}
+\code{select="last"} to select the last or most recent file.}
 }
 \description{
 Make a \code{csv} file with the specifications in the Access register

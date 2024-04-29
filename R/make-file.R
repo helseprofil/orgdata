@@ -20,7 +20,7 @@
 #' @param implicitnull Logical value. Default is `TRUE` to add implicit null to
 #'   the dataset. Global options with `orgdata.implicit.null`.
 #' @param row Select specific row(s) numbers only. Useful for debugging. Please
-#'   read `Debugging` article for detail.
+#'   read \href{https://helseprofil.github.io/orgdata/articles/debugging.html}{Debugging} article for detail.
 #' @inheritParams do_geo_recode
 #' @param parallel Logical or numeric value. With logical value `TRUE` it will
 #'   run with parallel using 50% ie. 0.5 of local cores. User can decide other
@@ -33,7 +33,7 @@
 #'   Access database
 #' @param select Select number of valid files to process as an alternative to
 #'   using `KOBLID`. To select the first 5 files then write `select=1:5`. Use
-#'   `select="last"` to select the last file.
+#'   `select="last"` to select the last or most recent file.
 #' @aliases make_file lag_fil
 #' @examples
 #' \dontrun{
