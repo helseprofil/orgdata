@@ -167,9 +167,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #'   used.
 #' @param table.name Name of the table for geo recode in geocodes database. This
 #'   can be found with `getOptions("orgdata.geo")`. The default is `tblGeo`.
-#' @param write 
+#' @inheritParams geo_map
 #' @param ... Other possible arguments
-#'
 #' @examples
 #' \dontrun{
 #' dt <- geo_merge(id.table = "grunnkrets",
