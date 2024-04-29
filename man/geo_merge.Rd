@@ -44,7 +44,8 @@ file. This will be the value in column \code{name}in the \code{tblGeo} in the da
 \item{year}{Year the code is valid for. If not sepecified \code{orgdata.year} is
 used.}
 
-\item{write}{}
+\item{write}{Write table to the \code{orgdata.geo} database. It will overwrite
+the table if it already exists}
 
 \item{table.name}{Name of the table for geo recode in geocodes database. This
 can be found with \code{getOptions("orgdata.geo")}. The default is \code{tblGeo}.}
