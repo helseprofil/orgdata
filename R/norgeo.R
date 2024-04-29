@@ -145,6 +145,7 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #'   to the main geo table ie. `tblGeo` in the geocodes database. The file must
 #'   consist of id column to merge into ie. `id.file` and the geo codes to add
 #'   to ie. `geo.col`.
+#'
 #' @param id.table ID columname to merge to that is found in the database eg.
 #'   `kommune`
 #' @param id.file ID columname from the file to merge from. This depends on the
@@ -158,34 +159,39 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @param geo.level Geographical level of the merged file will be representing
 #'   eg. "levekaar". This will be the value in column `level` in the `tblGeo` in
 #'   the database.
+#'   the value in column `name` in the `tblGeo`in the database.
+#' @param geo.name Column containing names of the geographical units in the merged 
+#'   file. This will be the value in column `name`in the `tblGeo` in the database.
 #' @param file Complete path of filename to merge from
 #' @param year Year the code is valid for. If not sepecified `orgdata.year` is
 #'   used.
-#' @inheritParams geo_map
 #' @param table.name Name of the table for geo recode in geocodes database. This
 #'   can be found with `getOptions("orgdata.geo")`. The default is `tblGeo`.
+#' @param write 
 #' @param ... Other possible arguments
+#'
 #' @examples
 #' \dontrun{
 #' dt <- geo_merge(id.table = "grunnkrets",
 #'                 id.file = "id",
 #'                 geo.col = "col2",
 #'                 geo.level = "levekaar",
+#'                 geo.name = "col3",
 #'                 file = "C:/path/to/file.csv",
 #'                 year = 2022)
 #' }
 #' @export
-
 geo_merge <- function(id.table = NULL,
                       id.file = NULL,
                       geo.col = NULL,
                       geo.level = NULL,
+                      geo.name = NULL,
                       file = NULL,
                       year = NULL,
                       write = FALSE,
                       table.name = "tblGeo", ...){
 
-  code <- level <- name <- validTo <- NULL
+  batch <- grunnkrets <- code <- level <- name <- validTo <- NULL
 
   # when testing, use the file in dev folder
   file <- test_file(file = file, ...)
@@ -201,39 +207,62 @@ geo_merge <- function(id.table = NULL,
 
   DT <- geo$db_read(table.name)
   dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
+  
+  if(geo.col == geo.level){
+    setnames(dt, geo.col, paste0(geo.col, "_new"))
+    geo.col <- paste0(geo.col, "_new")
+  }
 
   ## dupID <- dt[duplicated(get(geo.col))][[1]]
   ## dt <- dt[!is.na(get(geo.col))]
   ## dt <- dt[!duplicated(get(geo.col))]
 
-  delCols <- setdiff(names(dt), c(id.file, geo.col))
+  delCols <- setdiff(names(dt), c(id.file, geo.col, geo.name))
   dt[, (delCols) := NULL]
-
+  
   is_unique_id(dt = dt, id = id.file)
 
   data.table::setkeyv(DT, id.table)
   data.table::setkeyv(dt, id.file)
 
-  ## Dataset for selected geo.level
-  geoCols <- names(DT)
-  dd <- data.table::copy(dt)
-  dd[DT, (geoCols) := mget(geoCols)]
-  dd[, level := geo.level]
-  dd[, name := NA]
-  dd[, code := get(id.file)]
+  ## Dataset for selected geo.level, only including unique levels 
+  geoCols <- grep("batch", names(DT), invert = T, value = T)
+  dd <- copy(dt)
+  dd <- dd[DT, (geoCols) := mget(geoCols)][, .SD[1], by = geo.col]
+  dd[, grunnkrets := NA]
+  dd[, code := get(geo.col)]
+  if (!is.null(geo.name)){
+    dd[, name := get(geo.name)]
+  } else {
+    dd[, name := NA_character_]
+  }
   if (is.null(year)){
     year <- getOption("orgdata.year")
   }
   dd[, validTo := year]
-
+  dd[, level := geo.level]
+  dd[, (geo.level) := get(geo.col)]
+  dd[, batch := as.POSIXct(is_batch("date"))]
+  
   if (isFALSE(id.table == id.file)){
     dd[ , (id.file) := NULL]
   }
+  
+  if (!is.null(geo.name) && geo.name != "name"){
+    dd[, (geo.name) := NULL]
+  }
+  
+  dd[, (geo.col) := NULL]
 
-  # Dataset merged to main table
+  # New column merged to main table for current year
+  if (geo.level %notin% names(DT)){
+    DT[, (geo.level) := character()]
+  }
   DT[dt, (geo.col) := get(geo.col)]
-  data.table::setnames(DT, geo.col, geo.level)
-
+  DT[validTo == year, (geo.level) := get(geo.col)]
+  DT[, (geo.col) := NULL]
+  
+  # New data appended to main table
   DT <- data.table::rbindlist(list(DT, dd), use.names = TRUE)
   data.table::setcolorder(DT, names(DT)[names(DT)!= "batch"])
   data.table::setkey(DT, code)

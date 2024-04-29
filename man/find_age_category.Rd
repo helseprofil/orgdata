@@ -42,9 +42,9 @@ However, multiple use of \verb{[x]} in a call will fail eg. \verb{AgeCat(0, [5],
 }
 \seealso{
 Other extra arguments: 
-\code{\link{do_extra_args_group}()},
 \code{\link{do_extra_args}()},
-\code{\link{get_extra_args_group}()},
-\code{\link{get_extra_args}()}
+\code{\link{do_extra_args_group}()},
+\code{\link{get_extra_args}()},
+\code{\link{get_extra_args_group}()}
 }
 \concept{extra arguments}

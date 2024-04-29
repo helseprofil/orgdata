@@ -18,11 +18,11 @@ will be used when neither \code{FILGRUPPE} nor \code{LESID} is specified.
 }
 \seealso{
 Other recode functions: 
+\code{\link{do_recode}()},
 \code{\link{do_recode_aggregate}()},
 \code{\link{do_recode_post}()},
 \code{\link{do_recode_regexp}()},
-\code{\link{do_recode}()},
-\code{\link{get_codebok_aggregate}()},
-\code{\link{get_codebok}()}
+\code{\link{get_codebok}()},
+\code{\link{get_codebok_aggregate}()}
 }
 \concept{recode functions}
