@@ -216,3 +216,14 @@ is_correct_globs <- function(x){
   y <- names(x)[names(x) %in% names(options())]
   all.equal(x[y], options()[y])
 }
+
+#' Temporary fix to run on HDIR systems 
+#'
+#' @export
+#'
+#' @examples
+run_orgdata_hdir <- function(){
+  options(orgdata.win.drive = "O:")
+  options(orgdata.folder.db = "Prosjekt/FHP/PRODUKSJON/STYRING/raw-khelse")
+  options(orgdata.folder.data = "Prosjekt/FHP/PRODUKSJON/ORGDATA")
+}

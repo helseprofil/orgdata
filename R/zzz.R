@@ -17,6 +17,11 @@ opt.orgdata <- is_globs()
       update_globs()
     }
   }
+  
+  hdir <- utils::askYesNo("Are you running orgdata on a HDIR computer?")
+  if(isTRUE(hdir)){
+    run_orgdata_hdir()
+  }
 
   invisible()
 }
