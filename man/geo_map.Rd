@@ -18,8 +18,7 @@ the table if it already exists}
 }
 \description{
 Create a database granularity of geographical codes to aggregate
-data accordingly. Implementation of this function is base on \code{\link[norgeo:cast_geo]{norgeo::cast_geo()}}
-function in \href{https://helseprofil.github.io/norgeo/}{norgeo} package.
+data accordingly. Implementation of this function is based on \code{\link[norgeo:cast_geo]{norgeo::cast_geo()}}.
 }
 \examples{
 \dontrun{
