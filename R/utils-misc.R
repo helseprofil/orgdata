@@ -220,8 +220,6 @@ is_correct_globs <- function(x){
 #' Temporary fix to run on HDIR systems 
 #'
 #' @export
-#'
-#' @examples
 run_orgdata_hdir <- function(){
   options(orgdata.win.drive = "O:")
   options(orgdata.folder.db = "Prosjekt/FHP/PRODUKSJON/STYRING/raw-khelse")
