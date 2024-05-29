@@ -1,7 +1,6 @@
 #' @title Granularity of Geographical Codes
 #' @description Create a database granularity of geographical codes to aggregate
-#'   data accordingly. Implementation of this function is based on \link[norgeo::cast_geo]{cast_geo}
-#'   function in \href{https://helseprofil.github.io/norgeo/}{norgeo} package.
+#'   data accordingly. Implementation of this function is based on [norgeo::cast_geo()].
 #' @param year Year for the valid geographical codes
 #' @param write Write table to the `orgdata.geo` database. It will overwrite
 #'    the table if it already exists
@@ -61,7 +60,7 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
 }
 
 #' @title Granularity of Geographical Codes (multi-year)
-#' @description A wrapper around `seeRD geo_map()`to generate a database granularity 
+#' @description A wrapper around [geo_map()] to generate a database granularity 
 #'   of geographical codes to aggregate data accordingly, for multiple years.
 #' @param from starting year 
 #' @param to ending year

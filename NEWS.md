@@ -1,7 +1,8 @@
 # orgdata 1.5.0 (dev)
 
 # orgdata 1.4.9
-- Fix `geo.merge` [d163c9a](https://github.com/helseprofil/orgdata/commit/d163c9ac08996b0a6ab0be5d6faee2bdbd5b2c1c)
+- Add `geo_map_multi()`, to generate a multiyear mappig table. [9b3e1a1](https://github.com/helseprofil/orgdata/commit/9b3e1a1071af6839bdcc1eb1716da33b62867144)
+- Fix `geo_merge()` [d163c9a](https://github.com/helseprofil/orgdata/commit/d163c9ac08996b0a6ab0be5d6faee2bdbd5b2c1c)
 - Allow specification of encoding in `read_file` [ba980a7](https://github.com/helseprofil/orgdata/commit/ba980a791f96a18a4e2f1782f48ca0f48cf36bd2)
 
 # orgdata 1.4.8

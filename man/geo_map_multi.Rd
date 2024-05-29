@@ -17,6 +17,6 @@ the table if it already exists}
 \item{table}{Table name to be created in the database. Default is \code{tblGeo}}
 }
 \description{
-A wrapper around \verb{seeRD geo_map()}to generate a database granularity
+A wrapper around \code{\link[=geo_map]{geo_map()}} to generate a database granularity
 of geographical codes to aggregate data accordingly, for multiple years.
 }
