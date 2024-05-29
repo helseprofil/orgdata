@@ -1,6 +1,6 @@
 #' @title Granularity of Geographical Codes
 #' @description Create a database granularity of geographical codes to aggregate
-#'   data accordingly. Implementation of this function is base on [norgeo::cast_geo()]
+#'   data accordingly. Implementation of this function is based on \link[norgeo::cast_geo]{cast_geo}
 #'   function in \href{https://helseprofil.github.io/norgeo/}{norgeo} package.
 #' @param year Year for the valid geographical codes
 #' @param write Write table to the `orgdata.geo` database. It will overwrite
@@ -57,6 +57,48 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
     is_verbose(x = geoFile, msg = msgAppend, type = "note")
   }
 
+  return(geo$tblvalue[])
+}
+
+#' @title Granularity of Geographical Codes (multi-year)
+#' @description A wrapper around `seeRD geo_map()`to generate a database granularity 
+#'   of geographical codes to aggregate data accordingly, for multiple years.
+#' @param from starting year 
+#' @param to ending year
+#' @param write Write table to the `orgdata.geo` database. It will overwrite
+#'    the table if it already exists
+#' @param table Table name to be created in the database. Default is `tblGeo`
+#' @export
+geo_map_multi <- function(from = NULL,
+                          to = NULL,
+                          write = FALSE,
+                          table = "tblGeo") {
+  if (write) {
+    geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
+    geo <- KHelse$new(geoFile)
+    on.exit(geo$db_close(), add = TRUE)
+  } else {
+    geo <- listenv::listenv()
+  }
+  
+  DT <- data.table::data.table()
+  
+  for (year in from:to) {
+    message(paste0("Processing year: ", year))
+    dt <- geo_map(year, append = FALSE, write = FALSE)
+    DT <- data.table::rbindlist(list(DT, dt))
+  }
+  
+  geo$tblvalue <- DT[, "batch" := is_batch("date")]
+  geo$tblname <- table
+  
+  if (write) {
+    is_write_msg(msg = "write")
+    geo$db_write(write = write)
+    msgWrite <- paste0("Write table `", table, "` is completed in: \n")
+    is_verbose(x = geoFile, msg = msgWrite, type = "note")
+  }
+  
   return(geo$tblvalue[])
 }
 
