@@ -78,31 +78,59 @@ code                      name validTo      level grunnkrets kommune fylke bydel
 5: 42160109     Birkeland Nord    2022 grunnkrets   42160109    4216    42  <NA> 2022-03-15
 ```
 
+# Mapping geo codes for multiple years
+
+To create a mapping table spanning multiple years, use the function `geo_map_multi()`. This is a wrapper around `geo_map()` which generates a multi-year table. 
+
+```{r geo-map-multi, eval = FALSE}
+DT <- geo_map_multi(from = 2022, to = 2024)
+```
+
 
 # Merge Geo Codes
 
 Both `geo_recode()` and `geo_map()` fetch the data via API available from
 SSB. To merge geo codes that aren't available via API can be done with the
-function `geo_merge()`.
+function `geo_merge()`. These codes can be added to tblGeo from the database, 
+or to a locally generated table generated with `geo_map_multi()`. 
 
 The data to merge can be in any format that is accepted by `read_file()`
-function. The new data must have column id to merge into the *tblGeo* table and
-column with the new geo codes to be added to, and optionally a column with names 
+function. The new data must have a column with geo codes corresponding to a column in 
+**tblGeo** and a column with the new geo codes to be added. Optionally a column with names 
 for the new geo level. For instance if a new dataset from
 2024 has `levekaar` codes in columname `code_levekaar` and these `levekaar`
 codes are derived from `grunnkrets` codes with columname `var01` and levekaar names 
 in `var02`, then the specification for the arguments will be as the example below. 
+
+The complete table can be written to the geo database, and the default is to write to **tblGeo**. 
 
 Please read the documentation for details on arguments that can be used with
 `help("geo_merge")` or `?geo_merge`.
 
 ```{r geo-merge, eval = FALSE}
 dd <- geo_merge(id.table = "grunnkrets",
-                id.file = "var01",
-                geo.col = "code_levekaar",
+                id.file = "Grunnkrets_kode",
+                geo.col = "Delbydel_kode",
                 geo.level = "levekaar",
-                geo.name = "var02",
-                file = "C:/Users/ybka/data/levekaar.csv",
-                year = 2024)
+                geo.name = "Delbydel_navn",
+                file = "path/to/file.csv",
+                localtable = NULL, 
+                year = 2024, 
+                table.name = "tblGeo")
 ```
 
+To generate a local table and merge new geo-codes you can use the following code:
+
+```{r geo-map-merge, eval = FALSE}
+DT <- geo_map_multi(from = 2022, to = 2024)
+
+dd <- geo_merge(id.table = "grunnkrets",
+                id.file = "Grunnkrets_kode",
+                geo.col = "Delbydel_kode",
+                geo.level = "levekaar",
+                geo.name = "Delbydel_navn",
+                file = "path/to/file.csv",
+                localtable = DT, 
+                year = 2024, 
+                table.name = "tblGeo")
+```
