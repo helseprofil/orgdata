@@ -204,6 +204,8 @@ geo_recode <- function(type = c("grunnkrets", "bydel", "kommune", "fylke"),
 #' @param geo.name Column containing names of the geographical units in the merged 
 #'   file. This will be the value in column `name`in the `tblGeo` in the database.
 #' @param file Complete path of filename to merge from
+#' @param localtable a data.table generated with [geo_map_multi()]. To create
+#'   complete mapping table of geo codes including manually merged codes. 
 #' @param year Year the code is valid for. If not sepecified `orgdata.year` is
 #'   used.
 #' @param table.name Name of the table for geo recode in geocodes database. This
@@ -227,6 +229,7 @@ geo_merge <- function(id.table = NULL,
                       geo.level = NULL,
                       geo.name = NULL,
                       file = NULL,
+                      localtable = NULL,
                       year = NULL,
                       write = FALSE,
                       table.name = "tblGeo", ...){
@@ -245,7 +248,11 @@ geo_merge <- function(id.table = NULL,
   geo <- KHelse$new(geoDB)
   on.exit(geo$db_close(), add = TRUE)
 
-  DT <- geo$db_read(table.name)
+  DT <- localtable
+  if(is.null(DT)){
+    DT <- geo$db_read(table.name)
+    DT[, batch := as.Date(batch)]
+  }
   dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
   
   if(geo.col == geo.level){
@@ -282,7 +289,7 @@ geo_merge <- function(id.table = NULL,
   dd[, validTo := year]
   dd[, level := geo.level]
   dd[, (geo.level) := get(geo.col)]
-  dd[, batch := as.POSIXct(is_batch("date"))]
+  dd[, batch := is_batch("date")]
   
   if (isFALSE(id.table == id.file)){
     dd[ , (id.file) := NULL]
@@ -310,13 +317,15 @@ geo_merge <- function(id.table = NULL,
   if (isFALSE(write)){
     write <- utils::askYesNo("Should the result be added to geo database?", default = FALSE)
   }
-
-  if (isTRUE(write)) {
+  
+  if (write) {
+    geo$tblvalue <- DT
+    geo$tblname <- table.name
     is_write_msg(msg = "write")
-    msgWrite = "This will take time to complete ..."
+    msgWrite = "This may take time to complete ..."
     withr::with_options(list(orgdata.emoji = "sad"),
                         is_colour_txt(x = "", msgWrite, type = "note", emoji = TRUE))
-    geo$db_write(name = table.name, value = DT, write = write)
+    geo$db_write(write = write)
     msgWrite <- paste0("Write table `", table.name, "` is completed in: \n")
     is_verbose(x = geoDB, msg = msgWrite, type = "note")
   }
