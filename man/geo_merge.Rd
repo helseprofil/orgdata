@@ -11,6 +11,7 @@ geo_merge(
   geo.level = NULL,
   geo.name = NULL,
   file = NULL,
+  localtable = NULL,
   year = NULL,
   write = FALSE,
   table.name = "tblGeo",
@@ -40,6 +41,9 @@ the value in column \code{name} in the \code{tblGeo}in the database.}
 file. This will be the value in column \code{name}in the \code{tblGeo} in the database.}
 
 \item{file}{Complete path of filename to merge from}
+
+\item{localtable}{a data.table generated with \code{\link[=geo_map_multi]{geo_map_multi()}}. To create
+complete mapping table of geo codes including manually merged codes.}
 
 \item{year}{Year the code is valid for. If not sepecified \code{orgdata.year} is
 used.}

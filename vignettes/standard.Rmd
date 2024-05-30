@@ -84,7 +84,7 @@ Use these naming style:
 
 # Function names
 
-An effort to group functions according to their responsibilities `r emo::ji("bright")` 
+An effort to group functions according to their responsibilities
 
 -   Files with `read_` perfix for major functions.
 -   Files with `do_` prefix for doing some action functions.

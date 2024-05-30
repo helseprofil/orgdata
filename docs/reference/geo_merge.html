@@ -79,6 +79,7 @@ to ie. <code>geo.col</code>.</p>
 <span>  geo.level <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  geo.name <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  localtable <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  write <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  table.name <span class="op">=</span> <span class="st">"tblGeo"</span>,</span>
@@ -123,13 +124,19 @@ file. This will be the value in column <code>name</code>in the <code>tblGeo</cod
 <dd><p>Complete path of filename to merge from</p></dd>
 
 
+<dt>localtable</dt>
+<dd><p>a data.table generated with <code><a href="geo_map_multi.html">geo_map_multi()</a></code>. To create
+complete mapping table of geo codes including manually merged codes.</p></dd>
+
+
 <dt>year</dt>
 <dd><p>Year the code is valid for. If not sepecified <code>orgdata.year</code> is
 used.</p></dd>
 
 
 <dt>write</dt>
-<dd></dd>
+<dd><p>Write table to the <code>orgdata.geo</code> database. It will overwrite
+the table if it already exists</p></dd>
 
 
 <dt>table.name</dt>
