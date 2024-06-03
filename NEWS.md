@@ -1,4 +1,5 @@
 # orgdata 1.5.0 (dev)
+- Some internal functions made more general to be used in other packages
 
 # orgdata 1.4.9
 - `geo_merge()` gains a `localtable` argument. It can now be used on mapping tables generated with `geo_map_multi`. 

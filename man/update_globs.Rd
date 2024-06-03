@@ -5,9 +5,12 @@
 \alias{up_opt}
 \title{Update Global Options}
 \usage{
-update_globs()
+update_globs(package = c("orgdata", "orgcube"))
 
-up_opt()
+up_opt(package = c("orgdata", "orgcube"))
+}
+\arguments{
+\item{package}{"orgdata" (default) or "orgcube"}
 }
 \description{
 Update global options based on the file in config repo

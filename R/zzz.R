@@ -6,7 +6,7 @@ opt.orgdata <- is_globs()
 
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  optOrg <- is_globs()
+  optOrg <- is_globs("orgdata")
   orgDT <- !(names(optOrg) %in% names(op))
   if (any(orgDT)) options(optOrg[orgDT])
   
@@ -14,7 +14,7 @@ opt.orgdata <- is_globs()
   if(!isTRUE(corrglobs)){
     x <- utils::askYesNo("Options are not the same as in the config file, update options now?")
     if(isTRUE(x)){
-      update_globs()
+      update_globs("orgdata")
     }
   }
   

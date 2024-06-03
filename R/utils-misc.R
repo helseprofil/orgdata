@@ -1,9 +1,11 @@
 
 #' @title Update Global Options
+#' @param package "orgdata" (default) or "orgcube"
+#'
 #' @description Update global options based on the file in config repo
 #' @export
-update_globs <- function(){
-  g <- is_globs()
+update_globs <- function(package = c("orgdata", "orgcube")){
+  g <- is_globs(package)
   x <- names(g) %in% names(options())
   if (any(x)) options(g[x])
 
@@ -14,9 +16,13 @@ update_globs <- function(){
 #' @rdname update_globs
 up_opt <- update_globs
 
-is_globs <- function(){
-  optOrg <- yaml::yaml.load_file("https://raw.githubusercontent.com/helseprofil/config/main/config-orgdata.yml")
-  as.list(opt_rename(optOrg))
+is_globs <- function(package = c("orgdata", "orgcube")){
+  package = match.arg(package)
+  file <- switch(package, 
+                 orgdata = "config-orgdata.yml",
+                 orgcube = "config-orgcube.yml")
+  optOrg <- yaml::yaml.load_file(paste("https://raw.githubusercontent.com/helseprofil/config/main", file, sep = "/"))
+  as.list(stats::setNames(optOrg, paste(package, names(optOrg), sep = ".")))
 }
 
 #' @title Show Website
@@ -122,7 +128,7 @@ update_orgdata <- function(branch = c("main", "dev"), force = FALSE){
   unloadNamespace("orgdata")
   switch(branch,
          main = pak::pkg_install("helseprofil/orgdata", upgrade = force),
-         dev = pak::pkg_install("helseprofil/orgdata@dev", upgrade = force)
+         dev = pak::pkg_install("helseprofil/orgdata@dev" , upgrade = force)
          )
   attachNamespace("orgdata")
   invisible()
@@ -162,8 +168,8 @@ os_drive <- function(os = OS){
 }
 
 # add prefix "orgdata to options
-opt_rename <- function(x){
-  x2 <- paste("orgdata", names(x), sep = ".")
+opt_rename <- function(x, prefix = "orgdata"){
+  x2 <- paste(prefix, names(x), sep = ".")
   x <- stats::setNames(x, x2)
 }
 
@@ -177,16 +183,17 @@ is_option_active <- function(){
 }
 
 # Check version
-is_latest_version <- function(ver = utils::packageDescription("orgdata")[["Version"]]){
-
+is_latest_version <- function(package = "orgdata", branch = "main"){
+  
   V1 <- V2 <- NULL
   out <- FALSE
-  desc <- "https://raw.githubusercontent.com/helseprofil/orgdata/main/DESCRIPTION"
+  ver = utils::packageDescription(package)[["Version"]]
+  desc <- paste("https://raw.githubusercontent.com/helseprofil", package, branch, "DESCRIPTION", sep = "/")
 
   isOn <- is_online(desc)
 
   if (isOn){
-    gitDes <- data.table::fread("https://raw.githubusercontent.com/helseprofil/orgdata/main/DESCRIPTION", nrows = 4, fill = TRUE)
+    gitDes <- data.table::fread(desc, nrows = 4, fill = TRUE)
     gitVer <- gitDes[V1 %like% "Version", V2]
 
     newVer <- numeric_version(gitVer) > numeric_version(ver)
