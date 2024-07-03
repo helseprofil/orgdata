@@ -1,4 +1,5 @@
-# orgdata 1.5.0 (dev)
+# orgdata 1.5.0
+- Make HDIR-systems default, keep FHI as an option. 
 - Some internal functions made more general to be used in other packages
 
 # orgdata 1.4.9

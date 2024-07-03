@@ -1,6 +1,6 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 1.4.9
+Version: 1.5.0
 Authors@R:
     c(person(given = "Yusman",
              family = "Kamaleri",
@@ -26,9 +26,9 @@ RoxygenNote: 7.3.1
 Depends:
     R (>= 4.1.0)
 Imports: 
-    data.table (>= 1.14.6),
+    data.table (>= 1.15),
     DBI (>= 1.1.3),
-    norgeo (>= 2.4.2),
+    norgeo (>= 2.4.4),
     odbc (>= 1.3.4),
     R6 (>= 2.5.1),
     readxl (>= 1.4.1),
