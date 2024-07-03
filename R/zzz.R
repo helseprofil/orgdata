@@ -18,11 +18,8 @@ opt.orgdata <- is_globs()
     }
   }
   
-  hdir <- utils::askYesNo("Are you running orgdata on a HDIR computer?")
-  if(isTRUE(hdir)){
-    run_orgdata_hdir()
-  }
-
+  message("Default paths set to HDIR systems.If you are running orgdata on a FHI computer,\nrun `use_orgdata_fhi()` in the console!")
+  
   invisible()
 }
 
@@ -45,3 +42,10 @@ rvers <- function(){
   numeric_version(rlokal) > numeric_version("4.1.0")
 }
 
+#' @keywords internal
+#' Keep option to run on FHI
+run_orgdata_fhi <- function(){
+  options(orgdata.win.drive = "F:")
+  options(orgdata.folder.db = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING/raw-khelse")
+  options(orgdata.folder.data = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA")
+}
