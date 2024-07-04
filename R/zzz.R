@@ -32,7 +32,7 @@ opt.orgdata <- is_globs("orgdata")
   if (latest){
     x <- utils::askYesNo("Update orgdata now?")
     if (isTRUE(x)){
-      orgdata::update_orgdata()
+      orgdata::update_khpackage("orgdata")
     }
   }
 }

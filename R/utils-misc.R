@@ -114,30 +114,30 @@ emoji <- function(x = c("mark", "thumb", "write",
 }
 
 
-#' @title Update package
-#' @description Update orgdata directly with Github repo. Default is `main` branch.
+#' @title Update khpackage
+#' @description Update package directly with Github repo. Default is `main` branch.
+#' 
 #' @param branch The branch in Github to install from
 #' @param force Use the laterst version(s) of all dependencies. Default is FALSE
 #' @examples
 #' \dontrun{
-#' update_orgdata(branch = "main") #default
-#' update_orgdata(branch = "dev") #to upgrade with dev branch
+#' update_khpackage(branch = "main") #default
+#' update_khpackage(branch = "dev") #to upgrade with dev branch
 #' }
 #' @export
-update_orgdata <- function(branch = c("main", "dev"), force = FALSE){
-  branch <- match.arg(branch)
-  unloadNamespace("orgdata")
-  switch(branch,
-         main = pak::pkg_install("helseprofil/orgdata", upgrade = force),
-         dev = pak::pkg_install("helseprofil/orgdata@dev" , upgrade = force)
-         )
-  attachNamespace("orgdata")
+update_khpackage <- function(package = c("orgdata", "orgcube", "qualcontrol"), branch = "main", force = FALSE){
+  package <- match.arg(package)
+  unloadNamespace(package)
+  repo <- paste0("helseprofil/", package)
+  if(branch != "main") repo <- paste(repo, branch, sep = "@")
+  pak::pkg_install(repo, upgrade = force)
+  attachNamespace(package)
   invisible()
 }
 
 #' @export
-#' @rdname update_orgdata
-upgrade_orgdata <- update_orgdata
+#' @rdname update_khpackage
+upgrade_khpackage <- update_khpackage
 
 
 ## TESTTHAT ----------------

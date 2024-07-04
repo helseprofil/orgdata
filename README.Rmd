@@ -55,10 +55,10 @@ kh_install("orgdata")
 Update to new version or install the development version via `orgdata`.
 
 ```r
-orgdata::update_orgdata()
+orgdata::update_khpackage("orgdata")
 
 # install development versjon
-orgdata::update_orgdata(branch = "dev")
+orgdata::update_khpackage("orgdata", branch = "dev")
 ```
 
 ## Usage 
