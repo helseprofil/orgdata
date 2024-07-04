@@ -27,7 +27,7 @@ Du får spørsmål om å oppdatere når ny versjon er tilgjengelig. Svar `YES` t
 spørsmålet for å oppdatere. Evt. kan du også gjøre det manuelt ved å kjøre:
 
 ```
-update_orgdata()
+update_khpackage("orgdata")
 ```
 
 ## Objekt 

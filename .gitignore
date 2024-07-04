@@ -53,3 +53,5 @@ inst/testdata_dev
 dev/testdata_dev
 [.]tar.gz
 [.]Rcheck
+/doc/
+/Meta/
