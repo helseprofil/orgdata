@@ -17,3 +17,5 @@
 ^Makefile$
 ^[\.]tar\.gz$
 ^[\.]Rcheck$
+^doc$
+^Meta$
