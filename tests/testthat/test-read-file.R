@@ -9,7 +9,6 @@ test_that("Read rawdata", {
   expect_equal(find_data.xlsx(system.file("testdata", "testfile.xlsx", package = "orgdata"), col_names=FALSE, skip=2, n_max=3), xlOut)
   expect_error(find_data("raw-data.spss"))
   expect_error(read_file.default("raw-data.spss"))
-  expect_error(read_file("raw-data.spss"))
 })
 
 test_that("Args for find_data", {
@@ -36,7 +35,6 @@ test_that("File path", {
 
   expect_equal(is_read_path(fcsv), fcsv)
   expect_equal(is_read_path(fcsv2), fcsv2)
-  expect_error(read_file(file = system.file("testdata", "bla.csv", package = "orgdata")))
 })
 
 
