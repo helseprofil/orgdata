@@ -18,16 +18,18 @@ upgrade_khpackage(
 )
 }
 \arguments{
-\item{branch}{The branch in Github to install from}
+\item{package}{Which khpackage to update}
 
-\item{force}{Use the laterst version(s) of all dependencies. Default is FALSE}
+\item{branch}{The branch in Github to install from, default = "main"}
+
+\item{force}{Use the latest version(s) of all dependencies. Default is FALSE}
 }
 \description{
 Update package directly with Github repo. Default is \code{main} branch.
 }
 \examples{
 \dontrun{
-update_khpackage(branch = "main") #default
-update_khpackage(branch = "dev") #to upgrade with dev branch
+update_khpackage(package = "orgdata") #default
+update_khpackage(package = "orgdata", branch = "dev") #to upgrade with dev branch
 }
 }
