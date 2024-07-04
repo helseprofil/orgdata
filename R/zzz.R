@@ -2,7 +2,7 @@
 OS <- Sys.info()["sysname"]
 
 ## Global options
-opt.orgdata <- is_globs()
+opt.orgdata <- is_globs("orgdata")
 
 .onLoad <- function(libname, pkgname) {
   op <- options()
