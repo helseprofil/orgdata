@@ -117,12 +117,14 @@ emoji <- function(x = c("mark", "thumb", "write",
 #' @title Update khpackage
 #' @description Update package directly with Github repo. Default is `main` branch.
 #' 
-#' @param branch The branch in Github to install from
-#' @param force Use the laterst version(s) of all dependencies. Default is FALSE
+#' @param package Which khpackage to update
+#' @param branch The branch in Github to install from, default = "main"
+#' @param force Use the latest version(s) of all dependencies. Default is FALSE
+#'
 #' @examples
 #' \dontrun{
-#' update_khpackage(branch = "main") #default
-#' update_khpackage(branch = "dev") #to upgrade with dev branch
+#' update_khpackage(package = "orgdata") #default
+#' update_khpackage(package = "orgdata", branch = "dev") #to upgrade with dev branch
 #' }
 #' @export
 update_khpackage <- function(package = c("orgdata", "orgcube", "qualcontrol"), branch = "main", force = FALSE){
