@@ -17,17 +17,17 @@ levels such as county, manucipality or town.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/helseprofil/orgdata}
+  \item \url{https://helseprofil.github.io/orgdata}
   \item Report bugs at \url{https://github.com/helseprofil/orgdata/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Yusman Kamaleri \email{ybka@fhi.no} (\href{https://orcid.org/0000-0001-5014-3665}{ORCID})
+\strong{Maintainer}: Vegard Lysne \email{vegard.lysne@helsedir.no}
 
 Authors:
 \itemize{
-  \item Vegard Lysne \email{vegard.lysne@fhi.no}
+  \item Yusman Kamaleri \email{ybka@fhi.no} (\href{https://orcid.org/0000-0001-5014-3665}{ORCID})
 }
 
 Other contributors:

@@ -2,27 +2,27 @@ Package: orgdata
 Title: Aggregating Original Data
 Version: 1.5.0
 Authors@R:
-    c(person(given = "Yusman",
-             family = "Kamaleri",
+    c(person(given = "Vegard",
+             family = "Lysne",
              role = c("aut", "cre"),
+             email = "vegard.lysne@helsedir.no"),
+      person(given = "Yusman",
+             family = "Kamaleri",
+             role = "aut",
              email = "ybka@fhi.no",
              comment = c(ORCID = "0000-0001-5014-3665")),
-      person(given = "Vegard",
-             family = "Lysne",
-             role = "aut",
-             email = "vegard.lysne@fhi.no"),
       person(given = "FHI KHelse group",
              role = c("ctb", "rev"),
              comment = "https://www.fhi.no/hn/folkehelse"))
 Description: Cleaning, restructuring and aggregating original data
     usually with enumerical area codes to any geographical codes.
 License: MIT + file LICENSE
-URL: https://github.com/helseprofil/orgdata
+URL: https://helseprofil.github.io/orgdata
 BugReports: https://github.com/helseprofil/orgdata/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Depends:
     R (>= 4.1.0)
 Imports: 

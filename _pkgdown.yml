@@ -90,6 +90,6 @@ reference:
     - debug_opt
     - update_globs
     - reset_options
-    - update_orgdata
+    - update_khpackage
     - website
     - emoji
