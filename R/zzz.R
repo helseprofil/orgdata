@@ -18,8 +18,6 @@ opt.orgdata <- is_globs("orgdata")
     }
   }
   
-  message("Default paths set to HDIR systems.If you are running orgdata on a FHI computer,\nrun `use_orgdata_fhi()` in the console!")
-  
   invisible()
 }
 
