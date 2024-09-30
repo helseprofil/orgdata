@@ -1,6 +1,6 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 1.5.0
+Version: 1.5.1
 Authors@R:
     c(person(given = "Vegard",
              family = "Lysne",
@@ -11,7 +11,7 @@ Authors@R:
              role = "aut",
              email = "ybka@fhi.no",
              comment = c(ORCID = "0000-0001-5014-3665")),
-      person(given = "FHI KHelse group",
+      person(given = "Hdir KHelse group",
              role = c("ctb", "rev"),
              comment = "https://www.fhi.no/hn/folkehelse"))
 Description: Cleaning, restructuring and aggregating original data
@@ -26,7 +26,7 @@ RoxygenNote: 7.3.2
 Depends:
     R (>= 4.1.0)
 Imports: 
-    data.table (>= 1.15),
+    data.table (>= 1.15.0),
     DBI (>= 1.1.3),
     norgeo (>= 2.4.4),
     odbc (>= 1.3.4),
