@@ -19,12 +19,8 @@ preferred dataset.
 
 ## Installation
 
-The easiest way to install *orgdata* is to use `kh_install()` function.
-
-``` r
-source("https://raw.githubusercontent.com/helseprofil/misc/main/utils.R")
-kh_install("orgdata")
-```
+The easiest way to install *orgdata* is to use the procedure decribed in
+the [manual](https://helseprofil.github.io/manual/start-install.html).
 
 Update to new version or install the development version via `orgdata`.
 
@@ -64,7 +60,7 @@ make_filegroups(BEFOLKNING, LESEFERD, NEET)
 ## Resources
 
 - [Config
-  file](https://github.com/helseprofil/config/blob/main/config-orgdata.yml)
+  file](https://github.com/helseprofil/backend/blob/main/config/config-orgdata.yml)
 - [Get
   started](https://helseprofil.github.io/orgdata/articles/get-started.html)
 - [Functions

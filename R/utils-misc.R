@@ -22,7 +22,7 @@ is_globs <- function(package = c("orgdata", "orgcube", "qualcontrol")){
                  orgdata = "config-orgdata.yml",
                  orgcube = "config-orgcube.yml",
                  qualcontrol = "config-qualcontrol.yml")
-  optOrg <- yaml::yaml.load_file(paste("https://raw.githubusercontent.com/helseprofil/config/main", file, sep = "/"))
+  optOrg <- yaml::yaml.load_file(paste("https://raw.githubusercontent.com/helseprofil/backend/main/config", file, sep = "/"))
   as.list(stats::setNames(optOrg, paste(package, names(optOrg), sep = ".")))
 }
 

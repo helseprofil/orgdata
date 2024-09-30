@@ -39,11 +39,3 @@ rvers <- function(){
   rlokal <- paste(version[c("major", "minor")], collapse = ".")
   numeric_version(rlokal) > numeric_version("4.1.0")
 }
-
-#' @keywords internal
-#' Keep option to run on FHI
-run_orgdata_fhi <- function(){
-  options(orgdata.win.drive = "F:")
-  options(orgdata.folder.db = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/STYRING/raw-khelse")
-  options(orgdata.folder.data = "Forskningsprosjekter/PDB 2455 - Helseprofiler og til_/PRODUKSJON/ORGDATA")
-}

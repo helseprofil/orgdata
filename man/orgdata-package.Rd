@@ -32,7 +32,7 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item FHI KHelse group (https://www.fhi.no/hn/folkehelse) [contributor, reviewer]
+  \item Hdir KHelse group (https://www.fhi.no/hn/folkehelse) [contributor, reviewer]
 }
 
 }

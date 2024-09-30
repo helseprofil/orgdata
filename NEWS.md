@@ -1,3 +1,7 @@
+# orgdata 1.5.1
+- Update path to config files, using the helseprofil/backend repository
+- Disable option to work on FHI systems. 
+
 # orgdata 1.5.0
 - Make HDIR-systems default, keep FHI as an option. 
 - Some internal functions made more general to be used in other packages

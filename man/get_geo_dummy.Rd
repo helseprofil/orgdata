@@ -17,7 +17,7 @@ get_geo_dummy(dt, from, to, type, fix = TRUE)
 
 \item{fix}{Default is TRUE. Use external codes to fix geo
 changes manually. The codes is sourced from
-\href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+\href{https://github.com/helseprofil/backend/tree/main/norgeo}{config} files
 depending on the granularity levels.}
 }
 \description{

@@ -111,7 +111,7 @@ geo_map_multi <- function(from = NULL,
 #' @param to End of year for the range period. Current year is the default if left empty
 #' @param fix Default is TRUE. Use external codes to fix geo
 #'   changes manually. The codes is sourced from
-#'   \href{https://github.com/helseprofil/config/blob/main/geo/}{config} files
+#'   \href{https://github.com/helseprofil/backend/tree/main/norgeo}{config} files
 #'   depending on the granularity levels.
 #' @inheritParams geo_map
 #' @importFrom norgeo track_change
