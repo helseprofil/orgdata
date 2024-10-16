@@ -468,7 +468,7 @@ is_grunnkrets_00 <- function(dt){
 is_kommune_99 <- function(dt){
   kommune <- level <- fylke <- name <- code <- NULL
 
-  fkode <- dt[level == "fylke"][!duplicated(fylke)]
+  fkode <- dt[!is.na(fylke)][!duplicated(fylke)]
   fkode[, kommune := paste0(fylke, "99")]
   fkode[, level := "kommune"]
   fkode[, name := "Uoppgitt"]

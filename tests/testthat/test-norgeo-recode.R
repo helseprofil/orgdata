@@ -27,7 +27,9 @@ test_that("Grunnkrets ends with 00", {
                           level = c("grunnkrets", "grunnkrets", "grunnkrets", "grunnkrets"),
                           grunnkrets = c("03010100", "03010101", "54449900", "54449999"),
                           kommune = c(NA, "0301", NA, "5444"), fylke = c(NA, "03", NA, "54"),
-                          bydel = c(NA, "030116", NA, NA)),
+                          bydel = c(NA, "030116", NA, NA),
+                          levekaar = rep(NA_character_, 4),
+                          okonomisk = rep(NA_character_, 4)),
                      row.names = c(NA, -4L),
                      class = c("data.table", "data.frame"), sorted = "code")
 
@@ -38,7 +40,9 @@ test_that("Grunnkrets ends with 00", {
                            grunnkrets = c("03010100", "03010101", "54449900", "54449999"),
                            kommune = c("0301", "0301", "5444", "5444"),
                            fylke = c("03", "03", "54", "54"),
-                           bydel = c("030116", "030116", NA, NA)),
+                           bydel = c("030116", "030116", NA, NA),
+                           levekaar = rep(NA_character_,4),
+                           okonomisk = rep(NA_character_,4)),
                       row.names = c(NA, -4L),
                       class = c("data.table", "data.frame"), sorted = "code")
 
