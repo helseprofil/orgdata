@@ -429,9 +429,9 @@ is_grunnkrets_00 <- function(dt){
   is_verbose(msg = "Searching for geo level with NA due to grunnkrets code ends with 00")
 
   dt <- copy(dt)
-  data.table::setkey(dt, code)
+  data.table::setkey(dt, level, code)
   idx <- dt[, .I[level == "grunnkrets" & code %like% "00$"]]
-  levels <- c("kommune", "fylke","bydel")
+  levels <- c("kommune", "fylke","bydel", "levekaar", "okonomisk")
 
   #cat(".") for every 40th index number
   cax <- idx[seq(1, length(idx), 40)]
@@ -453,12 +453,13 @@ is_grunnkrets_00 <- function(dt){
         data.table::set(dtlike, which(is.na(dtlike[[j]])), j = j, value = dtlike[2, get(j)])
       }
       dt <- data.table::rbindlist(list(dt, dtlike))
-      data.table::setkey(dt, code)
+      data.table::setkey(dt, level, code)
     }
 
     if (is.element(i, cax)) cat(".")
   }
 
+  setkey(dt, code)
   cat("\n")
   return(dt)
 }
@@ -467,7 +468,7 @@ is_grunnkrets_00 <- function(dt){
 is_kommune_99 <- function(dt){
   kommune <- level <- fylke <- name <- code <- NULL
 
-  fkode <- dt[!is.na(fylke)][!duplicated(fylke)]
+  fkode <- dt[level == "fylke"][!duplicated(fylke)]
   fkode[, kommune := paste0(fylke, "99")]
   fkode[, level := "kommune"]
   fkode[, name := "Uoppgitt"]
