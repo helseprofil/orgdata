@@ -1,3 +1,7 @@
+# orgdata 1.5.2
+- Fix bug caused by levekaar-codes being identical to grunnkrets.
+- Add levekaar and okonomisk to grunnkrets codes ending with 00
+
 # orgdata 1.5.1
 - Update path to config files, using the helseprofil/backend repository
 - Disable option to work on FHI systems. 
