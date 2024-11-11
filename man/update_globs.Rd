@@ -5,12 +5,12 @@
 \alias{up_opt}
 \title{Update Global Options}
 \usage{
-update_globs(package = c("orgdata", "orgcube", "qualcontrol"))
+update_globs(package = c("orgdata", "orgcube", "khfunctions", "qualcontrol"))
 
-up_opt(package = c("orgdata", "orgcube", "qualcontrol"))
+up_opt(package = c("orgdata", "orgcube", "khfunctions", "qualcontrol"))
 }
 \arguments{
-\item{package}{"orgdata" (default), "orgcube", or "qualcontrol"}
+\item{package}{"orgdata" (default), "orgcube", "khfunctions", or "qualcontrol"}
 }
 \description{
 Update global options based on the file in config repo
