@@ -1,6 +1,11 @@
+# orgdata 1.5.3
+- Add khfunctions to `is_globs()` and `update_globs()`
+
 # orgdata 1.5.2
 - Fix bug caused by levekaar-codes being identical to grunnkrets.
-- Add levekaar and okonomisk to grunnkrets codes ending with 00
+- Add levekaar and okonomisk to grunnkrets codes ending with 00.
+- Fix some tests
+- Depend on norgeo v 2.4.6 (prev 2.4.4) to get latest version of `norgeo::cast_geo()`.
 
 # orgdata 1.5.1
 - Update path to config files, using the helseprofil/backend repository

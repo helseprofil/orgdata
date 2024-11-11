@@ -1,10 +1,10 @@
 
 #' @title Update Global Options
-#' @param package "orgdata" (default), "orgcube", or "qualcontrol"
+#' @param package "orgdata" (default), "orgcube", "khfunctions", or "qualcontrol"
 #'
 #' @description Update global options based on the file in config repo
 #' @export
-update_globs <- function(package = c("orgdata", "orgcube", "qualcontrol")){
+update_globs <- function(package = c("orgdata", "orgcube", "khfunctions", "qualcontrol")){
   g <- is_globs(package)
   x <- names(g) %in% names(options())
   if (any(x)) options(g[x])
@@ -16,11 +16,12 @@ update_globs <- function(package = c("orgdata", "orgcube", "qualcontrol")){
 #' @rdname update_globs
 up_opt <- update_globs
 
-is_globs <- function(package = c("orgdata", "orgcube", "qualcontrol")){
+is_globs <- function(package = c("orgdata", "orgcube", "khfunctions", "qualcontrol")){
   package = match.arg(package)
   file <- switch(package, 
                  orgdata = "config-orgdata.yml",
                  orgcube = "config-orgcube.yml",
+                 khfunctions = "config-khfunctions.yml",
                  qualcontrol = "config-qualcontrol.yml")
   optOrg <- yaml::yaml.load_file(paste("https://raw.githubusercontent.com/helseprofil/backend/main/config", file, sep = "/"))
   as.list(stats::setNames(optOrg, paste(package, names(optOrg), sep = ".")))
