@@ -1,4 +1,5 @@
-# orgdata (development version)
+# orgdata 1.5.3
+- Add khfunctions to `is_globs()` and `update_globs()`
 
 # orgdata 1.5.2
 - Fix bug caused by levekaar-codes being identical to grunnkrets.
