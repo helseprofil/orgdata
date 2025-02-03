@@ -133,7 +133,8 @@ update_khpackage <- function(package = c("orgdata", "orgcube", "qualcontrol"), b
   unloadNamespace(package)
   repo <- paste0("helseprofil/", package)
   if(branch != "main") repo <- paste(repo, branch, sep = "@")
-  pak::pkg_install(repo, upgrade = force)
+  # pak::pkg_install(repo, upgrade = force)
+  remotes::install_github(repo)
   attachNamespace(package)
   invisible()
 }

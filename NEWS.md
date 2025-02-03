@@ -1,3 +1,6 @@
+# orgdata 1.5.4
+- Change from `pak::pkg_install()` to `remotes::install_github()`
+
 # orgdata 1.5.3
 - Add khfunctions to `is_globs()` and `update_globs()`
 
