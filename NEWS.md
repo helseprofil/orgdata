@@ -1,3 +1,6 @@
+# orgdata 1.5.5
+- Implemented saving of output files as `.qs` in addition to `.csv`. In the future, saving as `.csv` should probably be deprecated. 
+
 # orgdata 1.5.4
 - Change from `pak::pkg_install()` to `remotes::install_github()`
 
@@ -29,7 +32,6 @@
 - Check filegroup input is correct and give suggestion if not found [db19c0d](https://github.com/helseprofil/orgdata/commit/db19c0d364b2cc1d1dbac1ec590c50920f0c1a0c).
 - Fix `debug.rows` options.
 - Check global options are updated [a10ced4](https://github.com/helseprofil/orgdata/commit/a10ced412f590fb1a407bc33755fc032b7cf4a8a)
-
 
 # orgdata 1.4.7
 - Can use different encodings for reading files and Access database. Encoding
