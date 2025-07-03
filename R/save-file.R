@@ -43,8 +43,8 @@ save_file <- function(dt = NULL,
 
   file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
   data.table::fwrite(dt, file = file, sep = sep, ...)
-  fileqs <- gsub(".csv", ".qs", file)
-  qs::qsave(dt, fileqs, nthreads = parallel::detectCores())
+  fileqs <- gsub(".csv", ".qs2", file)
+  qs2::qs_save(dt, fileqs, nthreads = parallel::detectCores())
 }
 
 #' @export

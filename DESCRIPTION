@@ -46,8 +46,8 @@ Imports:
     cli (>= 3.4.0),
     pak (>= 0.6.0),
     remotes,
-    qs,
-    parallel
+    parallel,
+    qs2
 Remotes: 
     ybkamaleri/praise,
     hadley/emo,
