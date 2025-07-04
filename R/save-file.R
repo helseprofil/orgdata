@@ -17,6 +17,7 @@
 #' @param date Logical value. If TRUE then use date and time as part of the filename. Default is FALSE.
 #' @param fgSpec File group specification from Access registration database
 #' @param sep The separator between columns. Default is `";"`
+#' @param parquet Logical value, to additionally save a `.parquet` file
 #' @param ... Other arguments for `data.table::fwrite`
 #' @examples
 #' \dontrun{
@@ -37,14 +38,38 @@ save_file <- function(dt = NULL,
                       path = NULL,
                       date = FALSE,
                       fgSpec = NULL,
-                      sep = ";", ...){
+                      sep = ";",
+                      parquet = FALSE, ...){
   is_null(dt)
   is_null(name)
 
   file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
   data.table::fwrite(dt, file = file, sep = sep, ...)
-  fileqs <- gsub(".csv", ".qs2", file)
-  qs2::qs_save(dt, fileqs, nthreads = parallel::detectCores())
+  if(parquet) do_save_parquet(dt = dt, csvname = file)
+}
+
+do_save_parquet <- function(dt, csvname){
+  attremove <- grep("^(class|names)$", names(attributes(dt)), value = T, invert = T)
+  for(att in attremove) data.table::setattr(dt, att, NULL)
+  non_char_columns <- names(dt)[!sapply(dt, is.character)]
+  dt[, names(.SD) := lapply(.SD, as.character), .SDcols = non_char_columns]
+  filepath <- gsub(".csv", ".parquet", csvname)
+  arrow::write_parquet(dt, sink = filepath, compression = "snappy")
+}
+
+#' @title save_qdata
+#' @description
+#' Saves a .qdata file in addition to the .csv-file
+#' All columns are first converted to character, which is needed in the next steps
+#' @param dt data
+#' @param csvname name of csv-file, to be used as basis for the .qdata file name
+#' @export
+save_qdata <- function(dt, csvname){
+  non_char_columns <- names(dt)[!sapply(dt, is.character)]
+  dt[, names(.SD) := lapply(.SD, as.character), .SDcols = non_char_columns]
+  qdname <- gsub(".csv", ".qs2", csvname)
+  attributes(dt) <- NULL
+  qs2::qd_save(dt, qdname, nthreads = parallel::detectCores())
 }
 
 #' @export
