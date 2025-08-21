@@ -51,8 +51,8 @@ save_file <- function(dt = NULL,
 do_save_parquet <- function(dt, csvname){
   attremove <- grep("^(class|names)$", names(attributes(dt)), value = T, invert = T)
   for(att in attremove) data.table::setattr(dt, att, NULL)
-  non_char_columns <- names(dt)[!sapply(dt, is.character)]
-  dt[, names(.SD) := lapply(.SD, as.character), .SDcols = non_char_columns]
+  # non_char_columns <- names(dt)[!sapply(dt, is.character)]
+  # dt[, names(.SD) := lapply(.SD, as.character), .SDcols = non_char_columns]
   filepath <- gsub(".csv", ".parquet", csvname)
   arrow::write_parquet(dt, sink = filepath, compression = "snappy")
 }
