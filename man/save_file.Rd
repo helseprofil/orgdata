@@ -12,7 +12,6 @@ save_file(
   date = FALSE,
   fgSpec = NULL,
   sep = ";",
-  parquet = FALSE,
   ...
 )
 
@@ -23,7 +22,6 @@ lagre_fil(
   date = FALSE,
   fgSpec = NULL,
   sep = ";",
-  parquet = FALSE,
   ...
 )
 }
@@ -43,8 +41,6 @@ not exist.}
 \item{fgSpec}{File group specification from Access registration database}
 
 \item{sep}{The separator between columns. Default is \code{";"}}
-
-\item{parquet}{Logical value, to additionally save a \code{.parquet} file}
 
 \item{...}{Other arguments for \code{data.table::fwrite}}
 

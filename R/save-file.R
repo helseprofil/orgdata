@@ -7,6 +7,7 @@
 #'   `save_file()` to save the object output from `make_file()`. This function
 #'   is a wrapper to `data.table:fwrite()`. Additionally, a `.qs`-file is saved, 
 #'   which will be the main format in the future.
+#' @param dt file 
 #' @param name Filename for the `.csv` file or filegroup name
 #' @param path Folder path to save the file. If `name` is a valide filegroup
 #'   \emph{(FILGRUPPE)} then use the specified `UTMAPPE` in Access registration
@@ -16,8 +17,8 @@
 #' @param date Logical value. If TRUE then use date and time as part of the filename. Default is FALSE.
 #' @param fgSpec File group specification from Access registration database
 #' @param sep The separator between columns. Default is `";"`
-#' @param parquet Logical value, to additionally save a `.parquet` file
 #' @param ... Other arguments for `data.table::fwrite`
+#'
 #' @examples
 #' \dontrun{
 #'  # Save file directly
@@ -37,23 +38,27 @@ save_file <- function(dt = NULL,
                       path = NULL,
                       date = FALSE,
                       fgSpec = NULL,
-                      sep = ";",
-                      parquet = FALSE, ...){
+                      sep = ";", ...){
   is_null(dt)
   is_null(name)
 
   file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
   data.table::fwrite(dt, file = file, sep = sep, ...)
-  if(parquet) do_save_parquet(dt = dt, csvname = file)
+  parquetname <- gsub(".csv", ".parquet", file)
+  do_save_parquet(dt = dt, filename = parquetname)
 }
 
-do_save_parquet <- function(dt, csvname){
+#' @title do_save_parquet
+#' @description
+#' Save a .parquet file
+#' @param dt datafile
+#' @param filename filepath to store file
+#' @keywords internal
+#' @noRd
+do_save_parquet <- function(dt, filename){
   attremove <- grep("^(class|names)$", names(attributes(dt)), value = T, invert = T)
   for(att in attremove) data.table::setattr(dt, att, NULL)
-  # non_char_columns <- names(dt)[!sapply(dt, is.character)]
-  # dt[, names(.SD) := lapply(.SD, as.character), .SDcols = non_char_columns]
-  filepath <- gsub(".csv", ".parquet", csvname)
-  arrow::write_parquet(dt, sink = filepath, compression = "snappy")
+  arrow::write_parquet(dt, sink = filename, compression = "snappy")
 }
 
 #' @title save_qdata
