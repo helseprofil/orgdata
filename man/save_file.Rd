@@ -12,6 +12,7 @@ save_file(
   date = FALSE,
   fgSpec = NULL,
   sep = ";",
+  parquet = FALSE,
   ...
 )
 
@@ -22,11 +23,12 @@ lagre_fil(
   date = FALSE,
   fgSpec = NULL,
   sep = ";",
+  parquet = FALSE,
   ...
 )
 }
 \arguments{
-\item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
+\item{dt}{data}
 
 \item{name}{Filename for the \code{.csv} file or filegroup name}
 
@@ -42,7 +44,11 @@ not exist.}
 
 \item{sep}{The separator between columns. Default is \code{";"}}
 
+\item{parquet}{Logical value, to additionally save a \code{.parquet} file}
+
 \item{...}{Other arguments for \code{data.table::fwrite}}
+
+\item{csvname}{name of csv-file, to be used as basis for the .qdata file name}
 }
 \description{
 Save data as a \code{.csv} format file with semicolon \verb{;} as
@@ -51,7 +57,11 @@ in Access regstration database with the root as in
 \code{getOption("orgdata.folder.data")}. Use argument \code{save = TRUE} in
 \code{make_file()} will activate \code{save_file()} directly. Else you can call
 \code{save_file()} to save the object output from \code{make_file()}. This function
-is a wrapper to \code{data.table:fwrite()}.
+is a wrapper to \code{data.table:fwrite()}. Additionally, a \code{.qs}-file is saved,
+which will be the main format in the future.
+
+Saves a .qdata file in addition to the .csv-file
+All columns are first converted to character, which is needed in the next steps
 }
 \examples{
 \dontrun{

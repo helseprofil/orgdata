@@ -7,7 +7,6 @@
 #'   `save_file()` to save the object output from `make_file()`. This function
 #'   is a wrapper to `data.table:fwrite()`. Additionally, a `.qs`-file is saved, 
 #'   which will be the main format in the future.
-#' @inheritParams do_split
 #' @param name Filename for the `.csv` file or filegroup name
 #' @param path Folder path to save the file. If `name` is a valide filegroup
 #'   \emph{(FILGRUPPE)} then use the specified `UTMAPPE` in Access registration
