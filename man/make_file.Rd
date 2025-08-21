@@ -11,7 +11,6 @@ make_file(
   koblid = NULL,
   aggregate = NULL,
   save = FALSE,
-  parquet = FALSE,
   year.geo = NULL,
   implicitnull = NULL,
   row = NULL,
@@ -26,7 +25,6 @@ lag_fil(
   koblid = NULL,
   aggregate = NULL,
   save = FALSE,
-  parquet = FALSE,
   year.geo = NULL,
   implicitnull = NULL,
   row = NULL,
@@ -41,7 +39,6 @@ mf(
   koblid = NULL,
   aggregate = NULL,
   save = FALSE,
-  parquet = FALSE,
   year.geo = NULL,
   implicitnull = NULL,
   row = NULL,
@@ -62,9 +59,6 @@ to the specification in registration database. Global options with
 
 \item{save}{Logical value. Default is \code{FALSE}. To save as \code{.csv} format file
 by activating \code{save_file()} function.}
-
-\item{parquet}{Logical value. Default is \code{FALSE}. To additionally save a \code{.parquet} file.
-Only used if \code{save}=\code{TRUE}}
 
 \item{year.geo}{Which reference year to use for geograhical coding. If it is
 missing then global option for \code{orgdata.year} will be used.}
@@ -93,6 +87,9 @@ Access database}
 \item{select}{Select number of valid files to process as an alternative to
 using \code{KOBLID}. To select the first 5 files then write \code{select=1:5}. Use
 \code{select="last"} to select the last or most recent file.}
+
+\item{parquet}{Logical value. Default is \code{FALSE}. To additionally save a \code{.parquet} file.
+Only used if \code{save}=\code{TRUE}}
 }
 \description{
 Make a \code{csv} file with the specifications in the Access register
