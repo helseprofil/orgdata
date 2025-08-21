@@ -429,9 +429,7 @@ is_grunnkrets_00 <- function(dt){
   dt <- copy(dt)
   data.table::setkey(dt, level, code)
   idx <- dt[, .I[level == "grunnkrets" & code %like% "00$"]]
-  levels <- c("kommune", "fylke","bydel")
-  # levels <- c("kommune", "fylke","bydel", "levekaar", "okonomisk") 
-  # temporarily disabled until correspondance for levekaar is available.
+  levels <- intersect(c("kommune", "fylke","bydel", "levekaar", "okonomisk"), names(dt))
 
   #cat(".") for every 40th index number
   cax <- idx[seq(1, length(idx), 40)]
