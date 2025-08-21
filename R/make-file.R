@@ -14,6 +14,8 @@
 #'   `orgdata.aggregate`.
 #' @param save Logical value. Default is `FALSE`. To save as `.csv` format file
 #'   by activating `save_file()` function.
+#' @param parquet Logical value. Default is `FALSE`. To additionally save a `.parquet` file.
+#'   Only used if `save`=`TRUE`
 #' @param year.geo Which reference year to use for geograhical coding. If it is
 #'   missing then global option for `orgdata.year` will be used.
 #' @inheritParams do_geo_recode
@@ -50,6 +52,7 @@ make_file <- function(group = NULL,
                       koblid = NULL,
                       aggregate = NULL,
                       save = FALSE,
+                      parquet = FALSE,
                       year.geo = NULL,
                       implicitnull = NULL,
                       row = NULL,
@@ -223,7 +226,7 @@ make_file <- function(group = NULL,
   outDT <- do_colname(dt = outDT, cols = grpCols)
 
   if (save) {
-    save_file(dt = outDT, name = group, fgSpec = fgSpec)
+    save_file(dt = outDT, name = group, fgSpec = fgSpec, parquet = parquet)
   }
 
   is_verbose(msg = is_line_short(), type = "other", ctrl = FALSE)

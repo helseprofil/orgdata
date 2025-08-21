@@ -26,7 +26,7 @@ lagre_fil(
 )
 }
 \arguments{
-\item{dt}{Input data preferrably in a \code{data.table} format but is not mandatory}
+\item{dt}{file}
 
 \item{name}{Filename for the \code{.csv} file or filegroup name}
 
@@ -51,7 +51,8 @@ in Access regstration database with the root as in
 \code{getOption("orgdata.folder.data")}. Use argument \code{save = TRUE} in
 \code{make_file()} will activate \code{save_file()} directly. Else you can call
 \code{save_file()} to save the object output from \code{make_file()}. This function
-is a wrapper to \code{data.table:fwrite()}.
+is a wrapper to \code{data.table:fwrite()}. Additionally, a \code{.qs}-file is saved,
+which will be the main format in the future.
 }
 \examples{
 \dontrun{

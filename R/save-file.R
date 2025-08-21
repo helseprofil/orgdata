@@ -5,8 +5,9 @@
 #'   `getOption("orgdata.folder.data")`. Use argument `save = TRUE` in
 #'   `make_file()` will activate `save_file()` directly. Else you can call
 #'   `save_file()` to save the object output from `make_file()`. This function
-#'   is a wrapper to `data.table:fwrite()`.
-#' @inheritParams do_split
+#'   is a wrapper to `data.table:fwrite()`. Additionally, a `.qs`-file is saved, 
+#'   which will be the main format in the future.
+#' @param dt file 
 #' @param name Filename for the `.csv` file or filegroup name
 #' @param path Folder path to save the file. If `name` is a valide filegroup
 #'   \emph{(FILGRUPPE)} then use the specified `UTMAPPE` in Access registration
@@ -17,6 +18,7 @@
 #' @param fgSpec File group specification from Access registration database
 #' @param sep The separator between columns. Default is `";"`
 #' @param ... Other arguments for `data.table::fwrite`
+#'
 #' @examples
 #' \dontrun{
 #'  # Save file directly
@@ -42,6 +44,21 @@ save_file <- function(dt = NULL,
 
   file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
   data.table::fwrite(dt, file = file, sep = sep, ...)
+  parquetname <- gsub(".csv", ".parquet", file)
+  do_save_parquet(dt = dt, filename = parquetname)
+}
+
+#' @title do_save_parquet
+#' @description
+#' Save a .parquet file
+#' @param dt datafile
+#' @param filename filepath to store file
+#' @keywords internal
+#' @noRd
+do_save_parquet <- function(dt, filename){
+  attremove <- grep("^(class|names)$", names(attributes(dt)), value = T, invert = T)
+  for(att in attremove) data.table::setattr(dt, att, NULL)
+  arrow::write_parquet(dt, sink = filename, compression = "snappy")
 }
 
 #' @export

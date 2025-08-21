@@ -20,10 +20,8 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
   ## break msg before showing message from cast_geo
   cat("..\n")
 
-  ## -----------------------------------------
   ## Note: No need to create table with year eg. tblGeo2021
   ## since column ValidTo will be used to select valid year to aggregate
-  ## -----------------------------------------
   if (write || append){
     geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
     geo <- KHelse$new(geoFile)
@@ -431,7 +429,7 @@ is_grunnkrets_00 <- function(dt){
   dt <- copy(dt)
   data.table::setkey(dt, level, code)
   idx <- dt[, .I[level == "grunnkrets" & code %like% "00$"]]
-  levels <- c("kommune", "fylke","bydel", "levekaar", "okonomisk")
+  levels <- intersect(c("kommune", "fylke","bydel", "levekaar", "okonomisk"), names(dt))
 
   #cat(".") for every 40th index number
   cax <- idx[seq(1, length(idx), 40)]

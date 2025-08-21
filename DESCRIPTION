@@ -1,6 +1,6 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 1.5.4
+Version: 1.5.5
 Authors@R:
     c(person(given = "Vegard",
              family = "Lysne",
@@ -44,8 +44,8 @@ Imports:
     praise (>= 1.0.0),
     duckdb (>= 0.7.0),
     cli (>= 3.4.0),
-    pak (>= 0.6.0),
-    remotes
+    remotes,
+    arrow
 Remotes: 
     ybkamaleri/praise,
     hadley/emo,
@@ -55,7 +55,6 @@ Suggests:
     tibble (>= 3.1.4),
     future (>= 1.23.0),
     future.apply (>= 1.8.1),
-    parallel (>= 4.1.1),
     parallelly (>= 1.30.0),
     utils,
     covr,
