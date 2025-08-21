@@ -61,21 +61,6 @@ do_save_parquet <- function(dt, filename){
   arrow::write_parquet(dt, sink = filename, compression = "snappy")
 }
 
-#' @title save_qdata
-#' @description
-#' Saves a .qdata file in addition to the .csv-file
-#' All columns are first converted to character, which is needed in the next steps
-#' @param dt data
-#' @param csvname name of csv-file, to be used as basis for the .qdata file name
-#' @export
-# save_qdata <- function(dt, csvname){
-#   non_char_columns <- names(dt)[!sapply(dt, is.character)]
-#   dt[, names(.SD) := lapply(.SD, as.character), .SDcols = non_char_columns]
-#   qdname <- gsub(".csv", ".qs2", csvname)
-#   attributes(dt) <- NULL
-#   qs2::qd_save(dt, qdname, nthreads = parallel::detectCores())
-# }
-
 #' @export
 #' @rdname save_file
 lagre_fil <- save_file
