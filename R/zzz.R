@@ -22,7 +22,7 @@ opt.orgdata <- is_globs("orgdata")
 }
 
 .onAttach <- function(libname, pkgname) {
-  print(orgdata_logo())
+  packageStartupMessage(orgdata_logo())
   packageStartupMessage(paste("           Version",
                               utils::packageDescription("orgdata")[["Version"]], "\n"))
 
