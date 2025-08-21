@@ -1,5 +1,5 @@
-# orgdata 1.5.5
-- Implemented saving of output files as `.qs` in addition to `.csv`. In the future, saving as `.csv` should probably be deprecated. 
+# orgdata 1.5.5 (2025-08-21)
+- Implemented saving of output files as `.parquet` in addition to `.csv`. In the future, saving as `.csv` should probably be deprecated. 
 
 # orgdata 1.5.4
 - Change from `pak::pkg_install()` to `remotes::install_github()`
