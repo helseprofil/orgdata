@@ -1,6 +1,6 @@
 Package: orgdata
 Title: Aggregating Original Data
-Version: 1.5.5
+Version: 1.5.6
 Authors@R:
     c(person(given = "Vegard",
              family = "Lysne",

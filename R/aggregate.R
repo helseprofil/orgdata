@@ -250,10 +250,9 @@ is_geo_cast <- function(source, year){
   colsRename <- tolower(names(geoDT))
   data.table::setnames(geoDT, names(geoDT), colsRename)
 
-  ## Columns that are type integer
-  intCols <- c("code", getOption("orgdata.geo.levels"))
-  intCols <- intersect(names(geoDT), intCols)
-  geoDT[, (intCols) := lapply(.SD, as.integer), .SDcols = intCols]
+  ## Columns that are type integer (levekaar must be numeric due to large values)
+  intCols <- c("code", setdiff(getOption("orgdata.geo.levels"), "levekaar"))
+  geoDT[, (names(.SD)) := lapply(.SD, as.integer), .SDcols = intersect(names(geoDT), intCols)]
   geoDT[, "land" := 0L]
   ncols <- names(geoDT)!="batch"
   data.table::setcolorder(geoDT, c(names(geoDT)[ncols], "batch"))
