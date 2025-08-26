@@ -56,9 +56,8 @@ save_file <- function(dt = NULL,
 #' @keywords internal
 #' @noRd
 do_save_parquet <- function(dt, filename){
-  attremove <- grep("^(class|names)$", names(attributes(dt)), value = T, invert = T)
-  for(att in attremove) data.table::setattr(dt, att, NULL)
-  arrow::write_parquet(dt, sink = filename, compression = "lz4")
+  table <- arrow::as_arrow_table(dt)
+  arrow::write_parquet(table, sink = filename, compression = "snappy")
 }
 
 #' @export

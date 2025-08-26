@@ -1,6 +1,6 @@
 # orgdata 1.5.6
+- Instead of removing attributes before saving as .parquet, the data is converted to an arrow_table
 - Fixed problem where levekaar geographical codes > the maximum value for what can be represented as integer32 was coerced to NA. Levekaar is now kept as numeric.
-- Changed compression type of `.parquet` files to `lz4`
 
 # orgdata 1.5.5 (2025-08-21)
 - Implemented saving of output files as `.parquet` in addition to `.csv`. In the future, saving as `.csv` should probably be deprecated. 
