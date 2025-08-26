@@ -87,9 +87,6 @@ Access database}
 \item{select}{Select number of valid files to process as an alternative to
 using \code{KOBLID}. To select the first 5 files then write \code{select=1:5}. Use
 \code{select="last"} to select the last or most recent file.}
-
-\item{parquet}{Logical value. Default is \code{FALSE}. To additionally save a \code{.parquet} file.
-Only used if \code{save}=\code{TRUE}}
 }
 \description{
 Make a \code{csv} file with the specifications in the Access register

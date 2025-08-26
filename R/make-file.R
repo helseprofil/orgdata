@@ -14,8 +14,6 @@
 #'   `orgdata.aggregate`.
 #' @param save Logical value. Default is `FALSE`. To save as `.csv` format file
 #'   by activating `save_file()` function.
-#' @param parquet Logical value. Default is `FALSE`. To additionally save a `.parquet` file.
-#'   Only used if `save`=`TRUE`
 #' @param year.geo Which reference year to use for geograhical coding. If it is
 #'   missing then global option for `orgdata.year` will be used.
 #' @inheritParams do_geo_recode
