@@ -257,7 +257,8 @@ geo_merge <- function(id.table = NULL,
     DT <- geo$db_read(table.name)
     DT[, batch := as.Date(batch)]
   }
-  dt <- read_file(file, encoding = "UTF-8", colClasses = "character")
+  encoding <- ifelse(grepl(".csv$", file), getOption("orgdata.encoding.csv"), getOption("orgdata.encoding.access"))
+  dt <- read_file(file, encoding = encoding, colClasses = "character")
   
   if(geo.col == geo.level){
     setnames(dt, geo.col, paste0(geo.col, "_new"))
