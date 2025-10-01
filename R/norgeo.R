@@ -6,6 +6,7 @@
 #'    the table if it already exists
 #' @param append Append the data to an existing table in the `orgdata.geo`
 #' @param table Table name to be created in the database. Default is `tblGeo`
+#' @param extra_geo option to add `levekaar` and/or `okonomisk` to tblGeo
 #' @importFrom norgeo cast_geo
 #' @family geo codes functions
 #' @examples
@@ -14,7 +15,10 @@
 #' geo_map(2021, append = TRUE)
 #' }
 #' @export
-geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo") {
+geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo", extra_geo = NULL) {
+  if (!is.null(extra_geo) && !all(extra_geo %in% c("grunnkrets", "kommune", "fylke", "bydel", "levekaar", "okonomisk"))) {
+    stop("extra_geo må være NULL eller kun inneholde 'levekaar' og/eller 'okonomisk'")
+  }
   is_null(year)
   is_write_msg(msg = "fetch")
   ## break msg before showing message from cast_geo
@@ -30,7 +34,7 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
     geo <- listenv::listenv()
   }
 
-  DT <- norgeo::cast_geo(year = year)
+  DT <- norgeo::cast_geo(year = year, extra_geo = extra_geo)
   DT <- is_grunnkrets_00(DT)
   DT <- is_kommune_99(DT)
   geo$tblvalue <- DT[, "batch" := is_batch("date")]
@@ -65,11 +69,13 @@ geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo"
 #' @param write Write table to the `orgdata.geo` database. It will overwrite
 #'    the table if it already exists
 #' @param table Table name to be created in the database. Default is `tblGeo`
+#' @param extra_geo option to add `levekaar` and/or `okonomisk` to tblGeo
 #' @export
 geo_map_multi <- function(from = NULL,
                           to = NULL,
                           write = FALSE,
-                          table = "tblGeo") {
+                          table = "tblGeo",
+                          extra_geo = NULL) {
   if (write) {
     geoFile <- is_path_db(getOption("orgdata.geo"), check = TRUE)
     geo <- KHelse$new(geoFile)
@@ -82,8 +88,8 @@ geo_map_multi <- function(from = NULL,
   
   for (year in from:to) {
     message(paste0("Processing year: ", year))
-    dt <- geo_map(year, append = FALSE, write = FALSE)
-    DT <- data.table::rbindlist(list(DT, dt))
+    dt <- geo_map(year, append = FALSE, write = FALSE, extra_geo = extra_geo)
+    DT <- data.table::rbindlist(list(DT, dt), use.names = TRUE, fill = TRUE)
   }
   
   geo$tblvalue <- DT[, "batch" := is_batch("date")]

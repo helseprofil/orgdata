@@ -68,7 +68,7 @@ do_reshape <- function(dt = NULL, respec = NULL){
       col <- is_separate(varCols[i], sep = ",")
       listCols[[i]] <- col
     }
-    dt <- data.table::melt(dt, id.vars = idCols, measure.vars = listCols)
+    dt <- data.table::melt(dt, id.vars = idCols, measure.vars = unlist(listCols))
   } else {
     dt <- data.table::melt(dt, id.vars = idCols, measure.vars = varCols)
   }

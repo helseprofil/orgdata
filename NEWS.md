@@ -1,3 +1,7 @@
+# orgdata 1.5.7
+- Added argument extra_geo to geo_map and geo_map_multi, to be able to generate tblGeo without levekaar/okonomisk. This allow for manuall merging if needed. Corresponding to same argument in norgeo::cast_geo. 
+- Small syntax fix in reshape
+
 # orgdata 1.5.6
 - Instead of removing attributes before saving as .parquet, the data is converted to an arrow_table
 - Fixed problem where levekaar geographical codes > the maximum value for what can be represented as integer32 was coerced to NA. Levekaar is now kept as numeric.
