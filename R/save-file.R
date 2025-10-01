@@ -42,11 +42,10 @@ save_file <- function(dt = NULL,
   is_null(dt)
   is_null(name)
 
-  file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
-  # data.table::fwrite(dt, file = file, sep = sep, ...)
+  file <- is_file_parquet(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
   parquetname <- gsub(".csv", ".parquet", file)
   do_save_parquet(dt = dt, filename = parquetname)
-}
+} 
 
 #' @title do_save_parquet
 #' @description
