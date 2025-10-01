@@ -43,7 +43,7 @@ save_file <- function(dt = NULL,
   is_null(name)
 
   file <- is_file_csv(group = name, path = path, date = date, fgSpec = fgSpec, action = "save")
-  data.table::fwrite(dt, file = file, sep = sep, ...)
+  # data.table::fwrite(dt, file = file, sep = sep, ...)
   parquetname <- gsub(".csv", ".parquet", file)
   do_save_parquet(dt = dt, filename = parquetname)
 }
@@ -106,6 +106,48 @@ is_file_csv <- function(group = NULL,
 
   is_verbose(fileOut, msg = msg)
 
+  return(fileOut)
+}
+
+is_file_parquet <- function(group = NULL,
+                            path = NULL,
+                            date = FALSE,
+                            verbose = NULL,
+                            fgSpec = NULL,
+                            action = c("save", "read")){
+  
+  if (is.null(verbose)) verbose <- getOption("orgdata.verbose")
+  
+  if (date){
+    batch <- is_batch("time")
+    fileName <- paste0(group, "_", batch, ".parquet")
+  } else {
+    fileName <- paste0(group, ".parquet")
+  }
+  
+  if (is.null(path)){
+    fpath <- is_save_path(group = group, fgSpec = fgSpec, action = action)
+    fileOut <- file.path(fpath, fileName)
+  } else {
+    fileOut <- file.path(path, fileName)
+    if (!fs::dir_exists(path)) {
+      is_stop(msg = "Folder not found!", var = path)
+    }
+  }
+  
+  msg <- switch(action,
+                save = "Save file:",
+                read = "Read file:",
+                "File:")
+  
+  fileOut <- gsub("\\\\", "/", fileOut)
+  
+  if (action == "read"){
+    withr::local_options(list(orgdata.verbose = FALSE))
+  }
+  
+  is_verbose(fileOut, msg = msg)
+  
   return(fileOut)
 }
 
