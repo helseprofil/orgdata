@@ -5,7 +5,7 @@
 - Small syntax fix in reshape
 - For reshape long: `RESHAPE_VAL` can now be provided as a vector of columns to reshape. This can reduce file size drastically when all columns are not needed. 
 
-# orgdata 1.5.6
+# orgdata 1.5.6 (2025-08-26)
 - Instead of removing attributes before saving as .parquet, the data is converted to an arrow_table
 - Fixed problem where levekaar geographical codes > the maximum value for what can be represented as integer32 was coerced to NA. Levekaar is now kept as numeric.
 
