@@ -1,5 +1,7 @@
 # orgdata 1.5.7
-- Added argument extra_geo to geo_map and geo_map_multi, to be able to generate tblGeo without levekaar/okonomisk. This allow for manuall merging if needed. Corresponding to same argument in norgeo::cast_geo. 
+- Deprecated csv output from `make_file`/`lag_fil`
+- Added `is_file_parquet` to give message when reading/saving parquet. Copied from `is_file_csv`, returns file path. 
+- Added argument extra_geo to geo_map and geo_map_multi, to be able to generate tblGeo without levekaar/okonomisk. This allow for manual merging if needed. Corresponding to same argument in norgeo::cast_geo. 
 - Small syntax fix in reshape
 
 # orgdata 1.5.6
