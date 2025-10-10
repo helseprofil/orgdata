@@ -17,7 +17,7 @@
 #' @export
 geo_map <- function(year = NULL, write = FALSE, append = FALSE, table = "tblGeo", extra_geo = NULL) {
   if (!is.null(extra_geo) && !all(extra_geo %in% c("grunnkrets", "kommune", "fylke", "bydel", "levekaar", "okonomisk"))) {
-    stop("extra_geo må være NULL eller kun inneholde 'levekaar' og/eller 'okonomisk'")
+    stop("extra_geo must be NULL or only contain 'levekaar' og/eller 'okonomisk'")
   }
   is_null(year)
   is_write_msg(msg = "fetch")
