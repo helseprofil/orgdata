@@ -4,7 +4,13 @@
 \alias{geo_map}
 \title{Granularity of Geographical Codes}
 \usage{
-geo_map(year = NULL, write = FALSE, append = FALSE, table = "tblGeo")
+geo_map(
+  year = NULL,
+  write = FALSE,
+  append = FALSE,
+  table = "tblGeo",
+  extra_geo = NULL
+)
 }
 \arguments{
 \item{year}{Year for the valid geographical codes}
@@ -15,6 +21,8 @@ the table if it already exists}
 \item{append}{Append the data to an existing table in the \code{orgdata.geo}}
 
 \item{table}{Table name to be created in the database. Default is \code{tblGeo}}
+
+\item{extra_geo}{option to add \code{levekaar} and/or \code{okonomisk} to tblGeo}
 }
 \description{
 Create a database granularity of geographical codes to aggregate

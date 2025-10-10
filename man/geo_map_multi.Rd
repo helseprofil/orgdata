@@ -4,7 +4,13 @@
 \alias{geo_map_multi}
 \title{Granularity of Geographical Codes (multi-year)}
 \usage{
-geo_map_multi(from = NULL, to = NULL, write = FALSE, table = "tblGeo")
+geo_map_multi(
+  from = NULL,
+  to = NULL,
+  write = FALSE,
+  table = "tblGeo",
+  extra_geo = NULL
+)
 }
 \arguments{
 \item{from}{starting year}
@@ -15,6 +21,8 @@ geo_map_multi(from = NULL, to = NULL, write = FALSE, table = "tblGeo")
 the table if it already exists}
 
 \item{table}{Table name to be created in the database. Default is \code{tblGeo}}
+
+\item{extra_geo}{option to add \code{levekaar} and/or \code{okonomisk} to tblGeo}
 }
 \description{
 A wrapper around \code{\link[=geo_map]{geo_map()}} to generate a database granularity
