@@ -68,7 +68,7 @@ do_reshape <- function(dt = NULL, respec = NULL){
       col <- is_separate(varCols[i], sep = ",")
       listCols[[i]] <- col
     }
-    dt <- data.table::melt(dt, id.vars = idCols, measure.vars = unlist(listCols))
+    dt <- data.table::melt(dt, id.vars = idCols, measure.vars = listCols)
   } else {
     dt <- data.table::melt(dt, id.vars = idCols, measure.vars = varCols)
   }
@@ -110,8 +110,9 @@ get_reshape_id_val <- function(dt = NULL, group = NULL, con = NULL, spec = NULL)
 
   reshVars <- switch(resh,
                      all = is_reshape_var_all(dtnames = dtNames, reshapeid = reshapeID),
-                     list = is_reshape_var_list(spec),
-                     not = is_reshape_var_other(dtnames = dtNames, reshapeid = reshapeID, spec))
+                     list = is_reshape_var_list(spec = spec),
+                     cols = is_reshape_var_cols(dtnames = dtNames, spec = spec),
+                     not = is_reshape_var_not(dtnames = dtNames, reshapeid = reshapeID, spec = spec))
 
   list(id = reshapeID, var = reshVars, type = resh)
 }
@@ -187,6 +188,8 @@ is_reshape_input <- function(input){
     out <- "list"
   } else if (grepl("^-", input)){
     out <- "not"
+  } else if (grepl("^\\(?\\S", input)){
+    out <- "cols"
   } else {
     out <- "error"
   }
@@ -206,10 +209,19 @@ is_reshape_var_list <- function(spec){
   trimws(v4)
 }
 
-is_reshape_var_other <- function(dtnames, reshapeid, spec){
+is_reshape_var_not <- function(dtnames, reshapeid, spec){
   input <- spec$RESHAPE_VAL
   vars <- gsub("^-\\((.*)\\)", "\\1", input)
   vars <- is_separate(vars, sep = ",")
   vars <- c(vars, reshapeid)
   setdiff(dtnames, vars)
+}
+
+is_reshape_var_cols <- function(dtnames, spec){
+  input <- spec$RESHAPE_VAL
+  vars <- gsub("^\\(?([^()]+?)\\)?$", "\\1", input)
+  vars <- is_separate(vars, sep = ",")
+  vars <- trimws(vars)
+  if(!all(vars %in% dtnames)) is_stop("RESHAPE_VAL contains columns not in data:", input)
+  vars
 }
