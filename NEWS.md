@@ -1,8 +1,9 @@
-# orgdata 1.5.7
+# orgdata 1.5.7 (2025-10-10)
 - Deprecated csv output from `make_file`/`lag_fil`
 - Added `is_file_parquet` to give message when reading/saving parquet. Copied from `is_file_csv`, returns file path. 
 - Added argument extra_geo to geo_map and geo_map_multi, to be able to generate tblGeo without levekaar/okonomisk. This allow for manual merging if needed. Corresponding to same argument in norgeo::cast_geo. 
 - Small syntax fix in reshape
+- For reshape long: `RESHAPE_VAL` can now be provided as a vector of columns to reshape. This can reduce file size drastically when all columns are not needed. 
 
 # orgdata 1.5.6
 - Instead of removing attributes before saving as .parquet, the data is converted to an arrow_table
